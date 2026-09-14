@@ -176,6 +176,12 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
         public Output<string> BootVolume { get; private set; } = null!;
 
         /// <summary>
+        /// [bool] Whether the server is a Confidential Computing (SEV-SNP) VM. Derived on read from the server's enabled features; normally `False` for VCPU servers, which are not Confidential Computing VMs.
+        /// </summary>
+        [Output("confidential")]
+        public Output<bool> Confidential { get; private set; } = null!;
+
+        /// <summary>
         /// [integer] Number of server CPU cores.
         /// </summary>
         [Output("cores")]
@@ -189,6 +195,12 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
         /// </summary>
         [Output("datacenterId")]
         public Output<string> DatacenterId { get; private set; } = null!;
+
+        /// <summary>
+        /// [list] Features enabled on the server, e.g. `SEV-SNP` for a Confidential Computing VM.
+        /// </summary>
+        [Output("enabledFeatures")]
+        public Output<ImmutableArray<string>> EnabledFeatures { get; private set; } = null!;
 
         /// <summary>
         /// The associated firewall rule.
@@ -543,6 +555,12 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
         public Input<string>? BootVolume { get; set; }
 
         /// <summary>
+        /// [bool] Whether the server is a Confidential Computing (SEV-SNP) VM. Derived on read from the server's enabled features; normally `False` for VCPU servers, which are not Confidential Computing VMs.
+        /// </summary>
+        [Input("confidential")]
+        public Input<bool>? Confidential { get; set; }
+
+        /// <summary>
         /// [integer] Number of server CPU cores.
         /// </summary>
         [Input("cores")]
@@ -556,6 +574,18 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
         /// </summary>
         [Input("datacenterId")]
         public Input<string>? DatacenterId { get; set; }
+
+        [Input("enabledFeatures")]
+        private InputList<string>? _enabledFeatures;
+
+        /// <summary>
+        /// [list] Features enabled on the server, e.g. `SEV-SNP` for a Confidential Computing VM.
+        /// </summary>
+        public InputList<string> EnabledFeatures
+        {
+            get => _enabledFeatures ?? (_enabledFeatures = new InputList<string>());
+            set => _enabledFeatures = value;
+        }
 
         /// <summary>
         /// The associated firewall rule.

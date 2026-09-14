@@ -123,7 +123,7 @@ def get_pipeline(id: Optional[_builtins.str] = None,
 
 
     :param _builtins.str id: [string] The ID of the Monitoring pipeline you want to search for.
-    :param _builtins.str location: [string] The location of the Monitoring pipeline. Default is `de/fra`. It can be one of `de/fra`, `de/txl`, `gb/lhr`, `es/vit`, `fr/par`. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
+    :param _builtins.str location: [string] The location of the Monitoring pipeline. Default is `de/fra`. It can be one of `de/fra`, `de/fra/1`, `de/fra/2`, `de/txl`, `gb/lhr`, `es/vit`, `fr/par`. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
     :param _builtins.str name: [string] The name of the Monitoring pipeline you want to search for.
            
            Either `id` or `name` must be provided. If none, or both are provided, the datasource will return an error.
@@ -173,7 +173,7 @@ def get_pipeline_output(id: pulumi.Input[Optional[Optional[_builtins.str]]] = No
 
 
     :param _builtins.str id: [string] The ID of the Monitoring pipeline you want to search for.
-    :param _builtins.str location: [string] The location of the Monitoring pipeline. Default is `de/fra`. It can be one of `de/fra`, `de/txl`, `gb/lhr`, `es/vit`, `fr/par`. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
+    :param _builtins.str location: [string] The location of the Monitoring pipeline. Default is `de/fra`. It can be one of `de/fra`, `de/fra/1`, `de/fra/2`, `de/txl`, `gb/lhr`, `es/vit`, `fr/par`. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
     :param _builtins.str name: [string] The name of the Monitoring pipeline you want to search for.
            
            Either `id` or `name` must be provided. If none, or both are provided, the datasource will return an error.

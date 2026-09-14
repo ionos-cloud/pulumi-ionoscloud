@@ -137,7 +137,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Dbaas
         public Output<Outputs.InMemoryDBClusterV2Instances> Instances { get; private set; } = null!;
 
         /// <summary>
-        /// [string] The location of the cluster. Changing this forces a new resource. Available: `de/fra`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
+        /// [string] The location of the cluster. Changing this forces a new resource. Available: `de/fra`, `de/fra/1`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
         /// </summary>
         [Output("location")]
         public Output<string> Location { get; private set; } = null!;
@@ -274,7 +274,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Dbaas
         public Input<Inputs.InMemoryDBClusterV2InstancesArgs> Instances { get; set; } = null!;
 
         /// <summary>
-        /// [string] The location of the cluster. Changing this forces a new resource. Available: `de/fra`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
+        /// [string] The location of the cluster. Changing this forces a new resource. Available: `de/fra`, `de/fra/1`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
         /// </summary>
         [Input("location", required: true)]
         public Input<string> Location { get; set; } = null!;
@@ -378,7 +378,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Dbaas
         public Input<Inputs.InMemoryDBClusterV2InstancesGetArgs>? Instances { get; set; }
 
         /// <summary>
-        /// [string] The location of the cluster. Changing this forces a new resource. Available: `de/fra`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
+        /// [string] The location of the cluster. Changing this forces a new resource. Available: `de/fra`, `de/fra/1`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
         /// </summary>
         [Input("location")]
         public Input<string>? Location { get; set; }

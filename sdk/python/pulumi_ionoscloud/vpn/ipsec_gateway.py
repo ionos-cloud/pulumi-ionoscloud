@@ -37,7 +37,7 @@ class IpsecGatewayArgs:
         :param pulumi.Input[_builtins.str] gateway_ip: [string] Public IP address to be assigned to the gateway. Note: This must be an IP address in
                the same datacenter as the connections.
         :param pulumi.Input[_builtins.str] description: [string] The human-readable description of the IPSec Gateway.
-        :param pulumi.Input[_builtins.str] location: [string] The location of the IPSec Gateway. Supported locations: de/fra, de/fra/2, de/txl, es/vit, gb/bhx, gb/lhr, us/ewr, us/las, us/mci, fr/par.
+        :param pulumi.Input[_builtins.str] location: [string] The location of the IPSec Gateway. Supported locations: de/fra, de/fra/1, de/fra/2, de/txl, es/vit, gb/bhx, gb/lhr, us/ewr, us/las, us/mci, fr/par.
         :param pulumi.Input['IpsecGatewayMaintenanceWindowArgs'] maintenance_window: (Computed) A weekly 4 hour-long window, during which maintenance might occur.
         :param pulumi.Input[_builtins.str] name: [string] The name of the IPSec Gateway.
         :param pulumi.Input[_builtins.str] tier: (Computed)[string] Gateway performance options.  See product documentation for full details. Options: STANDARD, STANDARD_HA, ENHANCED, ENHANCED_HA, PREMIUM, PREMIUM_HA.
@@ -101,7 +101,7 @@ class IpsecGatewayArgs:
     @pulumi.getter
     def location(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        [string] The location of the IPSec Gateway. Supported locations: de/fra, de/fra/2, de/txl, es/vit, gb/bhx, gb/lhr, us/ewr, us/las, us/mci, fr/par.
+        [string] The location of the IPSec Gateway. Supported locations: de/fra, de/fra/1, de/fra/2, de/txl, es/vit, gb/bhx, gb/lhr, us/ewr, us/las, us/mci, fr/par.
         """
         return pulumi.get(self, "location")
 
@@ -178,7 +178,7 @@ class _IpsecGatewayState:
         :param pulumi.Input[_builtins.str] description: [string] The human-readable description of the IPSec Gateway.
         :param pulumi.Input[_builtins.str] gateway_ip: [string] Public IP address to be assigned to the gateway. Note: This must be an IP address in
                the same datacenter as the connections.
-        :param pulumi.Input[_builtins.str] location: [string] The location of the IPSec Gateway. Supported locations: de/fra, de/fra/2, de/txl, es/vit, gb/bhx, gb/lhr, us/ewr, us/las, us/mci, fr/par.
+        :param pulumi.Input[_builtins.str] location: [string] The location of the IPSec Gateway. Supported locations: de/fra, de/fra/1, de/fra/2, de/txl, es/vit, gb/bhx, gb/lhr, us/ewr, us/las, us/mci, fr/par.
         :param pulumi.Input['IpsecGatewayMaintenanceWindowArgs'] maintenance_window: (Computed) A weekly 4 hour-long window, during which maintenance might occur.
         :param pulumi.Input[_builtins.str] name: [string] The name of the IPSec Gateway.
         :param pulumi.Input[_builtins.str] tier: (Computed)[string] Gateway performance options.  See product documentation for full details. Options: STANDARD, STANDARD_HA, ENHANCED, ENHANCED_HA, PREMIUM, PREMIUM_HA.
@@ -244,7 +244,7 @@ class _IpsecGatewayState:
     @pulumi.getter
     def location(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        [string] The location of the IPSec Gateway. Supported locations: de/fra, de/fra/2, de/txl, es/vit, gb/bhx, gb/lhr, us/ewr, us/las, us/mci, fr/par.
+        [string] The location of the IPSec Gateway. Supported locations: de/fra, de/fra/1, de/fra/2, de/txl, es/vit, gb/bhx, gb/lhr, us/ewr, us/las, us/mci, fr/par.
         """
         return pulumi.get(self, "location")
 
@@ -369,7 +369,7 @@ class IpsecGateway(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] description: [string] The human-readable description of the IPSec Gateway.
         :param pulumi.Input[_builtins.str] gateway_ip: [string] Public IP address to be assigned to the gateway. Note: This must be an IP address in
                the same datacenter as the connections.
-        :param pulumi.Input[_builtins.str] location: [string] The location of the IPSec Gateway. Supported locations: de/fra, de/fra/2, de/txl, es/vit, gb/bhx, gb/lhr, us/ewr, us/las, us/mci, fr/par.
+        :param pulumi.Input[_builtins.str] location: [string] The location of the IPSec Gateway. Supported locations: de/fra, de/fra/1, de/fra/2, de/txl, es/vit, gb/bhx, gb/lhr, us/ewr, us/las, us/mci, fr/par.
         :param pulumi.Input[Union['IpsecGatewayMaintenanceWindowArgs', 'IpsecGatewayMaintenanceWindowArgsDict']] maintenance_window: (Computed) A weekly 4 hour-long window, during which maintenance might occur.
         :param pulumi.Input[_builtins.str] name: [string] The name of the IPSec Gateway.
         :param pulumi.Input[_builtins.str] tier: (Computed)[string] Gateway performance options.  See product documentation for full details. Options: STANDARD, STANDARD_HA, ENHANCED, ENHANCED_HA, PREMIUM, PREMIUM_HA.
@@ -501,7 +501,7 @@ class IpsecGateway(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] description: [string] The human-readable description of the IPSec Gateway.
         :param pulumi.Input[_builtins.str] gateway_ip: [string] Public IP address to be assigned to the gateway. Note: This must be an IP address in
                the same datacenter as the connections.
-        :param pulumi.Input[_builtins.str] location: [string] The location of the IPSec Gateway. Supported locations: de/fra, de/fra/2, de/txl, es/vit, gb/bhx, gb/lhr, us/ewr, us/las, us/mci, fr/par.
+        :param pulumi.Input[_builtins.str] location: [string] The location of the IPSec Gateway. Supported locations: de/fra, de/fra/1, de/fra/2, de/txl, es/vit, gb/bhx, gb/lhr, us/ewr, us/las, us/mci, fr/par.
         :param pulumi.Input[Union['IpsecGatewayMaintenanceWindowArgs', 'IpsecGatewayMaintenanceWindowArgsDict']] maintenance_window: (Computed) A weekly 4 hour-long window, during which maintenance might occur.
         :param pulumi.Input[_builtins.str] name: [string] The name of the IPSec Gateway.
         :param pulumi.Input[_builtins.str] tier: (Computed)[string] Gateway performance options.  See product documentation for full details. Options: STANDARD, STANDARD_HA, ENHANCED, ENHANCED_HA, PREMIUM, PREMIUM_HA.
@@ -552,7 +552,7 @@ class IpsecGateway(pulumi.CustomResource):
     @pulumi.getter
     def location(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
-        [string] The location of the IPSec Gateway. Supported locations: de/fra, de/fra/2, de/txl, es/vit, gb/bhx, gb/lhr, us/ewr, us/las, us/mci, fr/par.
+        [string] The location of the IPSec Gateway. Supported locations: de/fra, de/fra/1, de/fra/2, de/txl, es/vit, gb/bhx, gb/lhr, us/ewr, us/las, us/mci, fr/par.
         """
         return pulumi.get(self, "location")
 

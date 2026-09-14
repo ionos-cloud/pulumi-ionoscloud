@@ -315,6 +315,10 @@ namespace Ionoscloud.Pulumi.Ionoscloud.K8s
         /// HDD or SDD
         /// </summary>
         public readonly string StorageType;
+        /// <summary>
+        /// A list of taints applied to the nodes in this pool. Each taint has the following attributes:
+        /// </summary>
+        public readonly ImmutableArray<Outputs.GetNodePoolTaintResult> Taints;
 
         [OutputConstructor]
         private GetNodePoolResult(
@@ -360,7 +364,9 @@ namespace Ionoscloud.Pulumi.Ionoscloud.K8s
 
             int storageSize,
 
-            string storageType)
+            string storageType,
+
+            ImmutableArray<Outputs.GetNodePoolTaintResult> taints)
         {
             Annotations = annotations;
             AutoScalings = autoScalings;
@@ -384,6 +390,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.K8s
             State = state;
             StorageSize = storageSize;
             StorageType = storageType;
+            Taints = taints;
         }
     }
 }

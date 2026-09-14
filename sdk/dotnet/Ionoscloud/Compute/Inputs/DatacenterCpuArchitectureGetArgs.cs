@@ -19,6 +19,18 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute.Inputs
         [Input("cpuFamily")]
         public Input<string>? CpuFamily { get; set; }
 
+        [Input("enabledFeatures")]
+        private InputList<string>? _enabledFeatures;
+
+        /// <summary>
+        /// Features enabled for this CPU architecture, e.g. `SEV-SNP` for Confidential Computing
+        /// </summary>
+        public InputList<string> EnabledFeatures
+        {
+            get => _enabledFeatures ?? (_enabledFeatures = new InputList<string>());
+            set => _enabledFeatures = value;
+        }
+
         /// <summary>
         /// The maximum number of cores available
         /// </summary>

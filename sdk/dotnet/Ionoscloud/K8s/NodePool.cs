@@ -162,6 +162,12 @@ namespace Ionoscloud.Pulumi.Ionoscloud.K8s
         [Output("storageType")]
         public Output<string> StorageType { get; private set; } = null!;
 
+        /// <summary>
+        /// [set] Taints applied to the nodes in this pool. A taint repels pods that do not have a matching toleration. Maximum 50 taints per node pool.
+        /// </summary>
+        [Output("taints")]
+        public Output<ImmutableArray<Outputs.NodePoolTaint>> Taints { get; private set; } = null!;
+
 
         /// <summary>
         /// Create a NodePool resource with the given unique name, arguments, and options.
@@ -364,6 +370,18 @@ namespace Ionoscloud.Pulumi.Ionoscloud.K8s
         [Input("storageType", required: true)]
         public Input<string> StorageType { get; set; } = null!;
 
+        [Input("taints")]
+        private InputList<Inputs.NodePoolTaintArgs>? _taints;
+
+        /// <summary>
+        /// [set] Taints applied to the nodes in this pool. A taint repels pods that do not have a matching toleration. Maximum 50 taints per node pool.
+        /// </summary>
+        public InputList<Inputs.NodePoolTaintArgs> Taints
+        {
+            get => _taints ?? (_taints = new InputList<Inputs.NodePoolTaintArgs>());
+            set => _taints = value;
+        }
+
         public NodePoolArgs()
         {
         }
@@ -526,6 +544,18 @@ namespace Ionoscloud.Pulumi.Ionoscloud.K8s
         /// </summary>
         [Input("storageType")]
         public Input<string>? StorageType { get; set; }
+
+        [Input("taints")]
+        private InputList<Inputs.NodePoolTaintGetArgs>? _taints;
+
+        /// <summary>
+        /// [set] Taints applied to the nodes in this pool. A taint repels pods that do not have a matching toleration. Maximum 50 taints per node pool.
+        /// </summary>
+        public InputList<Inputs.NodePoolTaintGetArgs> Taints
+        {
+            get => _taints ?? (_taints = new InputList<Inputs.NodePoolTaintGetArgs>());
+            set => _taints = value;
+        }
 
         public NodePoolState()
         {

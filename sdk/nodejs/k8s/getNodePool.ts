@@ -167,6 +167,10 @@ export interface GetNodePoolResult {
      * HDD or SDD
      */
     readonly storageType: string;
+    /**
+     * A list of taints applied to the nodes in this pool. Each taint has the following attributes:
+     */
+    readonly taints: outputs.k8s.GetNodePoolTaint[];
 }
 /**
  * The **k8s Node Pool** data source can be used to search for and return existing k8s Node Pools.

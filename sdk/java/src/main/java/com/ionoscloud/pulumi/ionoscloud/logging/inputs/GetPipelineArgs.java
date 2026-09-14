@@ -31,14 +31,14 @@ public final class GetPipelineArgs extends com.pulumi.resources.InvokeArgs {
     }
 
     /**
-     * [string] The location of the Logging pipeline. Default: `de/txl`, other available locations: `de/fra`, `de/fra/2`, `de/txl`, `es/vit`, `gb/bhx`, `gb/lhr`,  `fr/par`, `us/mci`.
+     * [string] The location of the Logging pipeline. Default: `de/txl`, other available locations: `de/fra`, `de/fra/1`, `de/fra/2`, `de/txl`, `es/vit`, `gb/lhr`, `fr/par`.
      * 
      */
     @Import(name="location")
     private @Nullable Output<String> location;
 
     /**
-     * @return [string] The location of the Logging pipeline. Default: `de/txl`, other available locations: `de/fra`, `de/fra/2`, `de/txl`, `es/vit`, `gb/bhx`, `gb/lhr`,  `fr/par`, `us/mci`.
+     * @return [string] The location of the Logging pipeline. Default: `de/txl`, other available locations: `de/fra`, `de/fra/1`, `de/fra/2`, `de/txl`, `es/vit`, `gb/lhr`, `fr/par`.
      * 
      */
     public Optional<Output<String>> location() {
@@ -112,7 +112,7 @@ public final class GetPipelineArgs extends com.pulumi.resources.InvokeArgs {
         }
 
         /**
-         * @param location [string] The location of the Logging pipeline. Default: `de/txl`, other available locations: `de/fra`, `de/fra/2`, `de/txl`, `es/vit`, `gb/bhx`, `gb/lhr`,  `fr/par`, `us/mci`.
+         * @param location [string] The location of the Logging pipeline. Default: `de/txl`, other available locations: `de/fra`, `de/fra/1`, `de/fra/2`, `de/txl`, `es/vit`, `gb/lhr`, `fr/par`.
          * 
          * @return builder
          * 
@@ -123,7 +123,7 @@ public final class GetPipelineArgs extends com.pulumi.resources.InvokeArgs {
         }
 
         /**
-         * @param location [string] The location of the Logging pipeline. Default: `de/txl`, other available locations: `de/fra`, `de/fra/2`, `de/txl`, `es/vit`, `gb/bhx`, `gb/lhr`,  `fr/par`, `us/mci`.
+         * @param location [string] The location of the Logging pipeline. Default: `de/txl`, other available locations: `de/fra`, `de/fra/1`, `de/fra/2`, `de/txl`, `es/vit`, `gb/lhr`, `fr/par`.
          * 
          * @return builder
          * 

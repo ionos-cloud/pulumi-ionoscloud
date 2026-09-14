@@ -81,14 +81,14 @@ public final class MariaDBClusterState extends com.pulumi.resources.ResourceArgs
     }
 
     /**
-     * [string] The friendly name of your cluster.
+     * [string] The friendly name of your cluster. Maximum length: 63 characters. Must contain only word characters (letters, numbers, underscores), colons, hyphens, spaces, or dots.
      * 
      */
     @Import(name="displayName")
     private @Nullable Output<String> displayName;
 
     /**
-     * @return [string] The friendly name of your cluster.
+     * @return [string] The friendly name of your cluster. Maximum length: 63 characters. Must contain only word characters (letters, numbers, underscores), colons, hyphens, spaces, or dots.
      * 
      */
     public Optional<Output<String>> displayName() {
@@ -175,14 +175,14 @@ public final class MariaDBClusterState extends com.pulumi.resources.ResourceArgs
     }
 
     /**
-     * [int] The amount of memory per instance in gigabytes (GB).
+     * [int] The amount of memory per instance in gigabytes (GB). Minimum: 4.
      * 
      */
     @Import(name="ram")
     private @Nullable Output<Integer> ram;
 
     /**
-     * @return [int] The amount of memory per instance in gigabytes (GB).
+     * @return [int] The amount of memory per instance in gigabytes (GB). Minimum: 4.
      * 
      */
     public Optional<Output<Integer>> ram() {
@@ -190,14 +190,14 @@ public final class MariaDBClusterState extends com.pulumi.resources.ResourceArgs
     }
 
     /**
-     * [int] The amount of storage per instance in gigabytes (GB).
+     * [int] The amount of storage per instance in gigabytes (GB). Minimum: 10, Maximum: 2000.
      * 
      */
     @Import(name="storageSize")
     private @Nullable Output<Integer> storageSize;
 
     /**
-     * @return [int] The amount of storage per instance in gigabytes (GB).
+     * @return [int] The amount of storage per instance in gigabytes (GB). Minimum: 10, Maximum: 2000.
      * 
      */
     public Optional<Output<Integer>> storageSize() {
@@ -324,7 +324,7 @@ public final class MariaDBClusterState extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param displayName [string] The friendly name of your cluster.
+         * @param displayName [string] The friendly name of your cluster. Maximum length: 63 characters. Must contain only word characters (letters, numbers, underscores), colons, hyphens, spaces, or dots.
          * 
          * @return builder
          * 
@@ -335,7 +335,7 @@ public final class MariaDBClusterState extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param displayName [string] The friendly name of your cluster.
+         * @param displayName [string] The friendly name of your cluster. Maximum length: 63 characters. Must contain only word characters (letters, numbers, underscores), colons, hyphens, spaces, or dots.
          * 
          * @return builder
          * 
@@ -454,7 +454,7 @@ public final class MariaDBClusterState extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param ram [int] The amount of memory per instance in gigabytes (GB).
+         * @param ram [int] The amount of memory per instance in gigabytes (GB). Minimum: 4.
          * 
          * @return builder
          * 
@@ -465,7 +465,7 @@ public final class MariaDBClusterState extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param ram [int] The amount of memory per instance in gigabytes (GB).
+         * @param ram [int] The amount of memory per instance in gigabytes (GB). Minimum: 4.
          * 
          * @return builder
          * 
@@ -475,7 +475,7 @@ public final class MariaDBClusterState extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param storageSize [int] The amount of storage per instance in gigabytes (GB).
+         * @param storageSize [int] The amount of storage per instance in gigabytes (GB). Minimum: 10, Maximum: 2000.
          * 
          * @return builder
          * 
@@ -486,7 +486,7 @@ public final class MariaDBClusterState extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param storageSize [int] The amount of storage per instance in gigabytes (GB).
+         * @param storageSize [int] The amount of storage per instance in gigabytes (GB). Minimum: 10, Maximum: 2000.
          * 
          * @return builder
          * 

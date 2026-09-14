@@ -72,7 +72,7 @@ export class InMemoryDBReplicaSet extends pulumi.CustomResource {
      */
     declare public readonly initialSnapshotId: pulumi.Output<string | undefined>;
     /**
-     * [string] The location of your replica set. Updates to the value of the field force the replica set to be re-created. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`, other available locations are: `de/fra/2`, `de/txl`, `es/vit`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`, `fr/par`
+     * [string] The location of your replica set. Updates to the value of the field force the replica set to be re-created. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`, other available locations are: `de/fra/1`, `de/fra/2`, `de/txl`, `es/vit`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`, `fr/par`
      */
     declare public readonly location: pulumi.Output<string | undefined>;
     /**
@@ -200,7 +200,7 @@ export interface InMemoryDBReplicaSetState {
      */
     initialSnapshotId?: pulumi.Input<string | undefined>;
     /**
-     * [string] The location of your replica set. Updates to the value of the field force the replica set to be re-created. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`, other available locations are: `de/fra/2`, `de/txl`, `es/vit`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`, `fr/par`
+     * [string] The location of your replica set. Updates to the value of the field force the replica set to be re-created. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`, other available locations are: `de/fra/1`, `de/fra/2`, `de/txl`, `es/vit`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`, `fr/par`
      */
     location?: pulumi.Input<string | undefined>;
     /**
@@ -254,7 +254,7 @@ export interface InMemoryDBReplicaSetArgs {
      */
     initialSnapshotId?: pulumi.Input<string | undefined>;
     /**
-     * [string] The location of your replica set. Updates to the value of the field force the replica set to be re-created. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`, other available locations are: `de/fra/2`, `de/txl`, `es/vit`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`, `fr/par`
+     * [string] The location of your replica set. Updates to the value of the field force the replica set to be re-created. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`, other available locations are: `de/fra/1`, `de/fra/2`, `de/txl`, `es/vit`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`, `fr/par`
      */
     location?: pulumi.Input<string | undefined>;
     /**

@@ -17,14 +17,14 @@ public final class GetPSQLClustersV2Args extends com.pulumi.resources.InvokeArgs
     public static final GetPSQLClustersV2Args Empty = new GetPSQLClustersV2Args();
 
     /**
-     * [string] The region in which to look up clusters. Available locations: `de/fra`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
+     * [string] The region in which to look up clusters. Available locations: `de/fra`, `de/fra/1`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
      * 
      */
     @Import(name="location", required=true)
     private Output<String> location;
 
     /**
-     * @return [string] The region in which to look up clusters. Available locations: `de/fra`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
+     * @return [string] The region in which to look up clusters. Available locations: `de/fra`, `de/fra/1`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
      * 
      */
     public Output<String> location() {
@@ -72,7 +72,7 @@ public final class GetPSQLClustersV2Args extends com.pulumi.resources.InvokeArgs
         }
 
         /**
-         * @param location [string] The region in which to look up clusters. Available locations: `de/fra`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
+         * @param location [string] The region in which to look up clusters. Available locations: `de/fra`, `de/fra/1`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
          * 
          * @return builder
          * 
@@ -83,7 +83,7 @@ public final class GetPSQLClustersV2Args extends com.pulumi.resources.InvokeArgs
         }
 
         /**
-         * @param location [string] The region in which to look up clusters. Available locations: `de/fra`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
+         * @param location [string] The region in which to look up clusters. Available locations: `de/fra`, `de/fra/1`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
          * 
          * @return builder
          * 

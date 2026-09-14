@@ -27,7 +27,7 @@ class GetNodePoolResult:
     """
     A collection of values returned by getNodePool.
     """
-    def __init__(__self__, annotations=None, auto_scalings=None, availability_zone=None, available_upgrade_versions=None, cores_count=None, cpu_family=None, datacenter_id=None, id=None, k8s_cluster_id=None, k8s_version=None, labels=None, lans=None, location=None, maintenance_windows=None, name=None, node_count=None, public_ips=None, ram_size=None, server_type=None, state=None, storage_size=None, storage_type=None):
+    def __init__(__self__, annotations=None, auto_scalings=None, availability_zone=None, available_upgrade_versions=None, cores_count=None, cpu_family=None, datacenter_id=None, id=None, k8s_cluster_id=None, k8s_version=None, labels=None, lans=None, location=None, maintenance_windows=None, name=None, node_count=None, public_ips=None, ram_size=None, server_type=None, state=None, storage_size=None, storage_type=None, taints=None):
         if annotations and not isinstance(annotations, dict):
             raise TypeError("Expected argument 'annotations' to be a dict")
         pulumi.set(__self__, "annotations", annotations)
@@ -94,6 +94,9 @@ class GetNodePoolResult:
         if storage_type and not isinstance(storage_type, str):
             raise TypeError("Expected argument 'storage_type' to be a str")
         pulumi.set(__self__, "storage_type", storage_type)
+        if taints and not isinstance(taints, list):
+            raise TypeError("Expected argument 'taints' to be a list")
+        pulumi.set(__self__, "taints", taints)
 
     @_builtins.property
     @pulumi.getter
@@ -280,6 +283,14 @@ class GetNodePoolResult:
         """
         return pulumi.get(self, "storage_type")
 
+    @_builtins.property
+    @pulumi.getter
+    def taints(self) -> Sequence['outputs.GetNodePoolTaintResult']:
+        """
+        A list of taints applied to the nodes in this pool. Each taint has the following attributes:
+        """
+        return pulumi.get(self, "taints")
+
 
 class AwaitableGetNodePoolResult(GetNodePoolResult):
     # pylint: disable=using-constant-test
@@ -308,7 +319,8 @@ class AwaitableGetNodePoolResult(GetNodePoolResult):
             server_type=self.server_type,
             state=self.state,
             storage_size=self.storage_size,
-            storage_type=self.storage_type)
+            storage_type=self.storage_type,
+            taints=self.taints)
 
 
 def get_node_pool(id: Optional[_builtins.str] = None,
@@ -378,7 +390,8 @@ def get_node_pool(id: Optional[_builtins.str] = None,
         server_type=pulumi.get(__ret__, 'server_type'),
         state=pulumi.get(__ret__, 'state'),
         storage_size=pulumi.get(__ret__, 'storage_size'),
-        storage_type=pulumi.get(__ret__, 'storage_type'))
+        storage_type=pulumi.get(__ret__, 'storage_type'),
+        taints=pulumi.get(__ret__, 'taints'))
 def get_node_pool_output(id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                          k8s_cluster_id: pulumi.Input[Optional[_builtins.str]] = None,
                          location: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
@@ -445,4 +458,5 @@ def get_node_pool_output(id: pulumi.Input[Optional[Optional[_builtins.str]]] = N
         server_type=pulumi.get(__response__, 'server_type'),
         state=pulumi.get(__response__, 'state'),
         storage_size=pulumi.get(__response__, 'storage_size'),
-        storage_type=pulumi.get(__response__, 'storage_type')))
+        storage_type=pulumi.get(__response__, 'storage_type'),
+        taints=pulumi.get(__response__, 'taints')))

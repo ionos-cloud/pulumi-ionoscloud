@@ -43,7 +43,7 @@ class InMemoryDBClusterV2Args:
         :param pulumi.Input['InMemoryDBClusterV2CredentialsArgs'] credentials: [object] Credentials for the InMemoryDB cluster user.
         :param pulumi.Input[_builtins.str] eviction_policy: [string] Key eviction strategy: `noeviction`, `allkeys-lru`, `allkeys-lfu`, `allkeys-random`, `volatile-lru`, `volatile-lfu`, `volatile-random`, `volatile-ttl`.
         :param pulumi.Input['InMemoryDBClusterV2InstancesArgs'] instances: [object] The instance sizing configuration.
-        :param pulumi.Input[_builtins.str] location: [string] The location of the cluster. Changing this forces a new resource. Available: `de/fra`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
+        :param pulumi.Input[_builtins.str] location: [string] The location of the cluster. Changing this forces a new resource. Available: `de/fra`, `de/fra/1`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
         :param pulumi.Input['InMemoryDBClusterV2MaintenanceWindowArgs'] maintenance_window: [object] A weekly 4 hour-long window, during which maintenance might occur.
         :param pulumi.Input['InMemoryDBClusterV2SnapshotArgs'] snapshot: [object] Snapshot configuration.
         :param pulumi.Input[_builtins.str] version: [string] The InMemoryDB version. Upgrades only (see `/versions` endpoint).
@@ -130,7 +130,7 @@ class InMemoryDBClusterV2Args:
     @pulumi.getter
     def location(self) -> pulumi.Input[_builtins.str]:
         """
-        [string] The location of the cluster. Changing this forces a new resource. Available: `de/fra`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
+        [string] The location of the cluster. Changing this forces a new resource. Available: `de/fra`, `de/fra/1`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
         """
         return pulumi.get(self, "location")
 
@@ -287,7 +287,7 @@ class _InMemoryDBClusterV2State:
         :param pulumi.Input[_builtins.str] dns_name: The DNS name for connecting to the cluster's primary instance.
         :param pulumi.Input[_builtins.str] eviction_policy: [string] Key eviction strategy: `noeviction`, `allkeys-lru`, `allkeys-lfu`, `allkeys-random`, `volatile-lru`, `volatile-lfu`, `volatile-random`, `volatile-ttl`.
         :param pulumi.Input['InMemoryDBClusterV2InstancesArgs'] instances: [object] The instance sizing configuration.
-        :param pulumi.Input[_builtins.str] location: [string] The location of the cluster. Changing this forces a new resource. Available: `de/fra`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
+        :param pulumi.Input[_builtins.str] location: [string] The location of the cluster. Changing this forces a new resource. Available: `de/fra`, `de/fra/1`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
         :param pulumi.Input[_builtins.bool] logs_enabled: (Computed)[bool] Enable log collection for observability. If not set, the API default is used.
         :param pulumi.Input['InMemoryDBClusterV2MaintenanceWindowArgs'] maintenance_window: [object] A weekly 4 hour-long window, during which maintenance might occur.
         :param pulumi.Input[_builtins.bool] metrics_enabled: (Computed)[bool] Enable metrics collection for observability. If not set, the API default is used.
@@ -407,7 +407,7 @@ class _InMemoryDBClusterV2State:
     @pulumi.getter
     def location(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        [string] The location of the cluster. Changing this forces a new resource. Available: `de/fra`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
+        [string] The location of the cluster. Changing this forces a new resource. Available: `de/fra`, `de/fra/1`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
         """
         return pulumi.get(self, "location")
 
@@ -620,7 +620,7 @@ class InMemoryDBClusterV2(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] description: [string] Human-readable description.
         :param pulumi.Input[_builtins.str] eviction_policy: [string] Key eviction strategy: `noeviction`, `allkeys-lru`, `allkeys-lfu`, `allkeys-random`, `volatile-lru`, `volatile-lfu`, `volatile-random`, `volatile-ttl`.
         :param pulumi.Input[Union['InMemoryDBClusterV2InstancesArgs', 'InMemoryDBClusterV2InstancesArgsDict']] instances: [object] The instance sizing configuration.
-        :param pulumi.Input[_builtins.str] location: [string] The location of the cluster. Changing this forces a new resource. Available: `de/fra`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
+        :param pulumi.Input[_builtins.str] location: [string] The location of the cluster. Changing this forces a new resource. Available: `de/fra`, `de/fra/1`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
         :param pulumi.Input[_builtins.bool] logs_enabled: (Computed)[bool] Enable log collection for observability. If not set, the API default is used.
         :param pulumi.Input[Union['InMemoryDBClusterV2MaintenanceWindowArgs', 'InMemoryDBClusterV2MaintenanceWindowArgsDict']] maintenance_window: [object] A weekly 4 hour-long window, during which maintenance might occur.
         :param pulumi.Input[_builtins.bool] metrics_enabled: (Computed)[bool] Enable metrics collection for observability. If not set, the API default is used.
@@ -814,7 +814,7 @@ class InMemoryDBClusterV2(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] dns_name: The DNS name for connecting to the cluster's primary instance.
         :param pulumi.Input[_builtins.str] eviction_policy: [string] Key eviction strategy: `noeviction`, `allkeys-lru`, `allkeys-lfu`, `allkeys-random`, `volatile-lru`, `volatile-lfu`, `volatile-random`, `volatile-ttl`.
         :param pulumi.Input[Union['InMemoryDBClusterV2InstancesArgs', 'InMemoryDBClusterV2InstancesArgsDict']] instances: [object] The instance sizing configuration.
-        :param pulumi.Input[_builtins.str] location: [string] The location of the cluster. Changing this forces a new resource. Available: `de/fra`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
+        :param pulumi.Input[_builtins.str] location: [string] The location of the cluster. Changing this forces a new resource. Available: `de/fra`, `de/fra/1`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
         :param pulumi.Input[_builtins.bool] logs_enabled: (Computed)[bool] Enable log collection for observability. If not set, the API default is used.
         :param pulumi.Input[Union['InMemoryDBClusterV2MaintenanceWindowArgs', 'InMemoryDBClusterV2MaintenanceWindowArgsDict']] maintenance_window: [object] A weekly 4 hour-long window, during which maintenance might occur.
         :param pulumi.Input[_builtins.bool] metrics_enabled: (Computed)[bool] Enable metrics collection for observability. If not set, the API default is used.
@@ -899,7 +899,7 @@ class InMemoryDBClusterV2(pulumi.CustomResource):
     @pulumi.getter
     def location(self) -> pulumi.Output[_builtins.str]:
         """
-        [string] The location of the cluster. Changing this forces a new resource. Available: `de/fra`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
+        [string] The location of the cluster. Changing this forces a new resource. Available: `de/fra`, `de/fra/1`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
         """
         return pulumi.get(self, "location")
 

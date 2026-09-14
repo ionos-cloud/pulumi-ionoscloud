@@ -27,7 +27,7 @@ class PipelineArgs:
         """
         The set of arguments for constructing a Pipeline resource.
 
-        :param pulumi.Input[_builtins.str] location: [string] The location of the Monitoring pipeline. Default is `de/fra`. It can be one of `de/fra`, `de/fra/2`, `de/txl`, `es/vit`, `gb/bhx`, `gb/lhr`,`fr/par`, `us/mci`. If this is not set and if no value is provided for the `IONOS_API_URL_MONITORING` env var, the default `location` will be: `de/fra`.
+        :param pulumi.Input[_builtins.str] location: [string] The location of the Monitoring pipeline. Default is `de/fra`. It can be one of `de/fra`, `de/fra/1`, `de/fra/2`, `de/txl`, `es/vit`, `gb/lhr`, `fr/par`. If this is not set and if no value is provided for the `IONOS_API_URL_MONITORING` env var, the default `location` will be: `de/fra`.
         :param pulumi.Input[_builtins.str] name: [string] The name of the Monitoring pipeline.
         """
         if location is not None:
@@ -41,7 +41,7 @@ class PipelineArgs:
     @pulumi.getter
     def location(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        [string] The location of the Monitoring pipeline. Default is `de/fra`. It can be one of `de/fra`, `de/fra/2`, `de/txl`, `es/vit`, `gb/bhx`, `gb/lhr`,`fr/par`, `us/mci`. If this is not set and if no value is provided for the `IONOS_API_URL_MONITORING` env var, the default `location` will be: `de/fra`.
+        [string] The location of the Monitoring pipeline. Default is `de/fra`. It can be one of `de/fra`, `de/fra/1`, `de/fra/2`, `de/txl`, `es/vit`, `gb/lhr`, `fr/par`. If this is not set and if no value is provided for the `IONOS_API_URL_MONITORING` env var, the default `location` will be: `de/fra`.
         """
         return pulumi.get(self, "location")
 
@@ -88,7 +88,7 @@ class _PipelineState:
         :param pulumi.Input[_builtins.str] key: (Sensitive)[string] The key used to connect to the monitoring pipeline.
                
                > **⚠ NOTE:** `IONOS_API_URL_MONITORING` can be used to set a custom API URL for the resource. `location` field needs to be empty, otherwise it will override the custom API URL.
-        :param pulumi.Input[_builtins.str] location: [string] The location of the Monitoring pipeline. Default is `de/fra`. It can be one of `de/fra`, `de/fra/2`, `de/txl`, `es/vit`, `gb/bhx`, `gb/lhr`,`fr/par`, `us/mci`. If this is not set and if no value is provided for the `IONOS_API_URL_MONITORING` env var, the default `location` will be: `de/fra`.
+        :param pulumi.Input[_builtins.str] location: [string] The location of the Monitoring pipeline. Default is `de/fra`. It can be one of `de/fra`, `de/fra/1`, `de/fra/2`, `de/txl`, `es/vit`, `gb/lhr`, `fr/par`. If this is not set and if no value is provided for the `IONOS_API_URL_MONITORING` env var, the default `location` will be: `de/fra`.
         :param pulumi.Input[_builtins.str] name: [string] The name of the Monitoring pipeline.
         """
         if grafana_endpoint is not None:
@@ -146,7 +146,7 @@ class _PipelineState:
     @pulumi.getter
     def location(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        [string] The location of the Monitoring pipeline. Default is `de/fra`. It can be one of `de/fra`, `de/fra/2`, `de/txl`, `es/vit`, `gb/bhx`, `gb/lhr`,`fr/par`, `us/mci`. If this is not set and if no value is provided for the `IONOS_API_URL_MONITORING` env var, the default `location` will be: `de/fra`.
+        [string] The location of the Monitoring pipeline. Default is `de/fra`. It can be one of `de/fra`, `de/fra/1`, `de/fra/2`, `de/txl`, `es/vit`, `gb/lhr`, `fr/par`. If this is not set and if no value is provided for the `IONOS_API_URL_MONITORING` env var, the default `location` will be: `de/fra`.
         """
         return pulumi.get(self, "location")
 
@@ -233,7 +233,7 @@ class Pipeline(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[_builtins.str] location: [string] The location of the Monitoring pipeline. Default is `de/fra`. It can be one of `de/fra`, `de/fra/2`, `de/txl`, `es/vit`, `gb/bhx`, `gb/lhr`,`fr/par`, `us/mci`. If this is not set and if no value is provided for the `IONOS_API_URL_MONITORING` env var, the default `location` will be: `de/fra`.
+        :param pulumi.Input[_builtins.str] location: [string] The location of the Monitoring pipeline. Default is `de/fra`. It can be one of `de/fra`, `de/fra/1`, `de/fra/2`, `de/txl`, `es/vit`, `gb/lhr`, `fr/par`. If this is not set and if no value is provided for the `IONOS_API_URL_MONITORING` env var, the default `location` will be: `de/fra`.
         :param pulumi.Input[_builtins.str] name: [string] The name of the Monitoring pipeline.
         """
         ...
@@ -350,7 +350,7 @@ class Pipeline(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] key: (Sensitive)[string] The key used to connect to the monitoring pipeline.
                
                > **⚠ NOTE:** `IONOS_API_URL_MONITORING` can be used to set a custom API URL for the resource. `location` field needs to be empty, otherwise it will override the custom API URL.
-        :param pulumi.Input[_builtins.str] location: [string] The location of the Monitoring pipeline. Default is `de/fra`. It can be one of `de/fra`, `de/fra/2`, `de/txl`, `es/vit`, `gb/bhx`, `gb/lhr`,`fr/par`, `us/mci`. If this is not set and if no value is provided for the `IONOS_API_URL_MONITORING` env var, the default `location` will be: `de/fra`.
+        :param pulumi.Input[_builtins.str] location: [string] The location of the Monitoring pipeline. Default is `de/fra`. It can be one of `de/fra`, `de/fra/1`, `de/fra/2`, `de/txl`, `es/vit`, `gb/lhr`, `fr/par`. If this is not set and if no value is provided for the `IONOS_API_URL_MONITORING` env var, the default `location` will be: `de/fra`.
         :param pulumi.Input[_builtins.str] name: [string] The name of the Monitoring pipeline.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -395,7 +395,7 @@ class Pipeline(pulumi.CustomResource):
     @pulumi.getter
     def location(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
-        [string] The location of the Monitoring pipeline. Default is `de/fra`. It can be one of `de/fra`, `de/fra/2`, `de/txl`, `es/vit`, `gb/bhx`, `gb/lhr`,`fr/par`, `us/mci`. If this is not set and if no value is provided for the `IONOS_API_URL_MONITORING` env var, the default `location` will be: `de/fra`.
+        [string] The location of the Monitoring pipeline. Default is `de/fra`. It can be one of `de/fra`, `de/fra/1`, `de/fra/2`, `de/txl`, `es/vit`, `gb/lhr`, `fr/par`. If this is not set and if no value is provided for the `IONOS_API_URL_MONITORING` env var, the default `location` will be: `de/fra`.
         """
         return pulumi.get(self, "location")
 

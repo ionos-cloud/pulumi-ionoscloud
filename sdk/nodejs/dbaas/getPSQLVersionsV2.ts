@@ -32,7 +32,7 @@ export function getPSQLVersionsV2(args: GetPSQLVersionsV2Args, opts?: pulumi.Inv
  */
 export interface GetPSQLVersionsV2Args {
     /**
-     * [string] The region in which to look up available versions. Available locations: `de/fra`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
+     * [string] The region in which to look up available versions. Available locations: `de/fra`, `de/fra/1`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
      */
     location: string;
 }
@@ -77,7 +77,7 @@ export function getPSQLVersionsV2Output(args: GetPSQLVersionsV2OutputArgs, opts?
  */
 export interface GetPSQLVersionsV2OutputArgs {
     /**
-     * [string] The region in which to look up available versions. Available locations: `de/fra`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
+     * [string] The region in which to look up available versions. Available locations: `de/fra`, `de/fra/1`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
      */
     location: pulumi.Input<string>;
 }

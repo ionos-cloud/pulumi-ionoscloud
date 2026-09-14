@@ -6,6 +6,7 @@ package com.ionoscloud.pulumi.ionoscloud.k8s.outputs;
 import com.ionoscloud.pulumi.ionoscloud.k8s.outputs.GetNodePoolAutoScaling;
 import com.ionoscloud.pulumi.ionoscloud.k8s.outputs.GetNodePoolLan;
 import com.ionoscloud.pulumi.ionoscloud.k8s.outputs.GetNodePoolMaintenanceWindow;
+import com.ionoscloud.pulumi.ionoscloud.k8s.outputs.GetNodePoolTaint;
 import com.pulumi.core.annotations.CustomType;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Integer;
@@ -136,6 +137,11 @@ public final class GetNodePoolResult {
      * 
      */
     private String storageType;
+    /**
+     * @return A list of taints applied to the nodes in this pool. Each taint has the following attributes:
+     * 
+     */
+    private List<GetNodePoolTaint> taints;
 
     private GetNodePoolResult() {}
     /**
@@ -300,6 +306,13 @@ public final class GetNodePoolResult {
     public String storageType() {
         return this.storageType;
     }
+    /**
+     * @return A list of taints applied to the nodes in this pool. Each taint has the following attributes:
+     * 
+     */
+    public List<GetNodePoolTaint> taints() {
+        return this.taints;
+    }
 
     public static Builder builder() {
         return new Builder();
@@ -332,6 +345,7 @@ public final class GetNodePoolResult {
         private String state;
         private Integer storageSize;
         private String storageType;
+        private List<GetNodePoolTaint> taints;
         public Builder() {}
         public Builder(GetNodePoolResult defaults) {
     	      Objects.requireNonNull(defaults);
@@ -357,6 +371,7 @@ public final class GetNodePoolResult {
     	      this.state = defaults.state;
     	      this.storageSize = defaults.storageSize;
     	      this.storageType = defaults.storageType;
+    	      this.taints = defaults.taints;
         }
 
         @CustomType.Setter
@@ -548,6 +563,17 @@ public final class GetNodePoolResult {
             this.storageType = storageType;
             return this;
         }
+        @CustomType.Setter
+        public Builder taints(List<GetNodePoolTaint> taints) {
+            if (taints == null) {
+              throw new MissingRequiredPropertyException("GetNodePoolResult", "taints");
+            }
+            this.taints = taints;
+            return this;
+        }
+        public Builder taints(GetNodePoolTaint... taints) {
+            return taints(List.of(taints));
+        }
         public GetNodePoolResult build() {
             final var _resultValue = new GetNodePoolResult();
             _resultValue.annotations = annotations;
@@ -572,6 +598,7 @@ public final class GetNodePoolResult {
             _resultValue.state = state;
             _resultValue.storageSize = storageSize;
             _resultValue.storageType = storageType;
+            _resultValue.taints = taints;
             return _resultValue;
         }
     }

@@ -82,7 +82,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Cert
         public Output<string> LastIssuedCertificateId { get; private set; } = null!;
 
         /// <summary>
-        /// [string] The location of the auto-certificate. Available locations: `de/fra`, `de/fra/2`.
+        /// [string] The location of the auto-certificate. Available locations: `de/fra`, `de/fra/1`, `de/fra/2`.
         /// </summary>
         [Output("location")]
         public Output<string> Location { get; private set; } = null!;
@@ -165,7 +165,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Cert
         public Input<string> KeyAlgorithm { get; set; } = null!;
 
         /// <summary>
-        /// [string] The location of the auto-certificate. Available locations: `de/fra`, `de/fra/2`.
+        /// [string] The location of the auto-certificate. Available locations: `de/fra`, `de/fra/1`, `de/fra/2`.
         /// </summary>
         [Input("location", required: true)]
         public Input<string> Location { get; set; } = null!;
@@ -221,7 +221,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Cert
         public Input<string>? LastIssuedCertificateId { get; set; }
 
         /// <summary>
-        /// [string] The location of the auto-certificate. Available locations: `de/fra`, `de/fra/2`.
+        /// [string] The location of the auto-certificate. Available locations: `de/fra`, `de/fra/1`, `de/fra/2`.
         /// </summary>
         [Input("location")]
         public Input<string>? Location { get; set; }

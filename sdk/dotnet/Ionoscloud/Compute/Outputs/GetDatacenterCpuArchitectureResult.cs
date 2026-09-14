@@ -19,6 +19,10 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute.Outputs
         /// </summary>
         public readonly string CpuFamily;
         /// <summary>
+        /// Features enabled for this CPU architecture, e.g. `SEV-SNP` for Confidential Computing
+        /// </summary>
+        public readonly ImmutableArray<string> EnabledFeatures;
+        /// <summary>
         /// The maximum number of cores available
         /// </summary>
         public readonly int MaxCores;
@@ -35,6 +39,8 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute.Outputs
         private GetDatacenterCpuArchitectureResult(
             string cpuFamily,
 
+            ImmutableArray<string> enabledFeatures,
+
             int maxCores,
 
             int maxRam,
@@ -42,6 +48,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute.Outputs
             string vendor)
         {
             CpuFamily = cpuFamily;
+            EnabledFeatures = enabledFeatures;
             MaxCores = maxCores;
             MaxRam = maxRam;
             Vendor = vendor;

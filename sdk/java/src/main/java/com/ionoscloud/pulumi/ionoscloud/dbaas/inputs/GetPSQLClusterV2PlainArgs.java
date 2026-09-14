@@ -31,7 +31,7 @@ public final class GetPSQLClusterV2PlainArgs extends com.pulumi.resources.Invoke
     }
 
     /**
-     * [string] The region in which to look up the cluster. Available locations: `de/fra`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
+     * [string] The region in which to look up the cluster. Available locations: `de/fra`, `de/fra/1`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
      * 
      * Either &lt;span pulumi-lang-nodejs=&#34;`id`&#34; pulumi-lang-dotnet=&#34;`Id`&#34; pulumi-lang-go=&#34;`id`&#34; pulumi-lang-python=&#34;`id`&#34; pulumi-lang-yaml=&#34;`id`&#34; pulumi-lang-java=&#34;`id`&#34; pulumi-lang-hcl=&#34;`id`&#34;&gt;`id`&lt;/span&gt; or &lt;span pulumi-lang-nodejs=&#34;`name`&#34; pulumi-lang-dotnet=&#34;`Name`&#34; pulumi-lang-go=&#34;`name`&#34; pulumi-lang-python=&#34;`name`&#34; pulumi-lang-yaml=&#34;`name`&#34; pulumi-lang-java=&#34;`name`&#34; pulumi-lang-hcl=&#34;`name`&#34;&gt;`name`&lt;/span&gt; must be provided. If none, or both are provided, the datasource will return an error.
      * 
@@ -40,7 +40,7 @@ public final class GetPSQLClusterV2PlainArgs extends com.pulumi.resources.Invoke
     private String location;
 
     /**
-     * @return [string] The region in which to look up the cluster. Available locations: `de/fra`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
+     * @return [string] The region in which to look up the cluster. Available locations: `de/fra`, `de/fra/1`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
      * 
      * Either &lt;span pulumi-lang-nodejs=&#34;`id`&#34; pulumi-lang-dotnet=&#34;`Id`&#34; pulumi-lang-go=&#34;`id`&#34; pulumi-lang-python=&#34;`id`&#34; pulumi-lang-yaml=&#34;`id`&#34; pulumi-lang-java=&#34;`id`&#34; pulumi-lang-hcl=&#34;`id`&#34;&gt;`id`&lt;/span&gt; or &lt;span pulumi-lang-nodejs=&#34;`name`&#34; pulumi-lang-dotnet=&#34;`Name`&#34; pulumi-lang-go=&#34;`name`&#34; pulumi-lang-python=&#34;`name`&#34; pulumi-lang-yaml=&#34;`name`&#34; pulumi-lang-java=&#34;`name`&#34; pulumi-lang-hcl=&#34;`name`&#34;&gt;`name`&lt;/span&gt; must be provided. If none, or both are provided, the datasource will return an error.
      * 
@@ -102,7 +102,7 @@ public final class GetPSQLClusterV2PlainArgs extends com.pulumi.resources.Invoke
         }
 
         /**
-         * @param location [string] The region in which to look up the cluster. Available locations: `de/fra`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
+         * @param location [string] The region in which to look up the cluster. Available locations: `de/fra`, `de/fra/1`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
          * 
          * Either &lt;span pulumi-lang-nodejs=&#34;`id`&#34; pulumi-lang-dotnet=&#34;`Id`&#34; pulumi-lang-go=&#34;`id`&#34; pulumi-lang-python=&#34;`id`&#34; pulumi-lang-yaml=&#34;`id`&#34; pulumi-lang-java=&#34;`id`&#34; pulumi-lang-hcl=&#34;`id`&#34;&gt;`id`&lt;/span&gt; or &lt;span pulumi-lang-nodejs=&#34;`name`&#34; pulumi-lang-dotnet=&#34;`Name`&#34; pulumi-lang-go=&#34;`name`&#34; pulumi-lang-python=&#34;`name`&#34; pulumi-lang-yaml=&#34;`name`&#34; pulumi-lang-java=&#34;`name`&#34; pulumi-lang-hcl=&#34;`name`&#34;&gt;`name`&lt;/span&gt; must be provided. If none, or both are provided, the datasource will return an error.
          * 

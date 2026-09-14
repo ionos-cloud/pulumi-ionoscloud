@@ -348,9 +348,11 @@ class _VCPUServerState:
                  boot_cdrom: pulumi.Input[Optional[_builtins.str]] = None,
                  boot_image: pulumi.Input[Optional[_builtins.str]] = None,
                  boot_volume: pulumi.Input[Optional[_builtins.str]] = None,
+                 confidential: pulumi.Input[Optional[_builtins.bool]] = None,
                  cores: pulumi.Input[Optional[_builtins.int]] = None,
                  cpu_family: pulumi.Input[Optional[_builtins.str]] = None,
                  datacenter_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 enabled_features: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  firewallrule_id: pulumi.Input[Optional[_builtins.str]] = None,
                  firewallrule_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  hostname: pulumi.Input[Optional[_builtins.str]] = None,
@@ -377,8 +379,10 @@ class _VCPUServerState:
         :param pulumi.Input[_builtins.str] boot_cdrom: ***DEPRECATED*** Please refer to compute.BootDeviceSelection (Optional)[string] The associated boot drive, if any. Must be the UUID of a bootable CDROM image that can be retrieved using the compute_get_image data source.
         :param pulumi.Input[_builtins.str] boot_image: [string] The image or snapshot UUID / name. May also be an image alias. It is required if `licence_type` is not provided.
         :param pulumi.Input[_builtins.str] boot_volume: The associated boot volume.
+        :param pulumi.Input[_builtins.bool] confidential: [bool] Whether the server is a Confidential Computing (SEV-SNP) VM. Derived on read from the server's enabled features; normally `false` for VCPU servers, which are not Confidential Computing VMs.
         :param pulumi.Input[_builtins.int] cores: [integer] Number of server CPU cores.
         :param pulumi.Input[_builtins.str] datacenter_id: [string] The ID of a Virtual Data Center.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] enabled_features: [list] Features enabled on the server, e.g. `SEV-SNP` for a Confidential Computing VM.
         :param pulumi.Input[_builtins.str] firewallrule_id: The associated firewall rule.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] firewallrule_ids: The associated firewall rules.
         :param pulumi.Input[_builtins.str] hostname: (Computed)[string] The hostname of the resource. Allowed characters are a-z, 0-9 and - (minus). Hostname should not start with minus and should not be longer than 63 characters. If no value provided explicitly, it will be populated with the name of the server
@@ -414,12 +418,16 @@ class _VCPUServerState:
             pulumi.set(__self__, "boot_image", boot_image)
         if boot_volume is not None:
             pulumi.set(__self__, "boot_volume", boot_volume)
+        if confidential is not None:
+            pulumi.set(__self__, "confidential", confidential)
         if cores is not None:
             pulumi.set(__self__, "cores", cores)
         if cpu_family is not None:
             pulumi.set(__self__, "cpu_family", cpu_family)
         if datacenter_id is not None:
             pulumi.set(__self__, "datacenter_id", datacenter_id)
+        if enabled_features is not None:
+            pulumi.set(__self__, "enabled_features", enabled_features)
         if firewallrule_id is not None:
             pulumi.set(__self__, "firewallrule_id", firewallrule_id)
         if firewallrule_ids is not None:
@@ -510,6 +518,18 @@ class _VCPUServerState:
 
     @_builtins.property
     @pulumi.getter
+    def confidential(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        """
+        [bool] Whether the server is a Confidential Computing (SEV-SNP) VM. Derived on read from the server's enabled features; normally `false` for VCPU servers, which are not Confidential Computing VMs.
+        """
+        return pulumi.get(self, "confidential")
+
+    @confidential.setter
+    def confidential(self, value: pulumi.Input[Optional[_builtins.bool]]):
+        pulumi.set(self, "confidential", value)
+
+    @_builtins.property
+    @pulumi.getter
     def cores(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         [integer] Number of server CPU cores.
@@ -540,6 +560,18 @@ class _VCPUServerState:
     @datacenter_id.setter
     def datacenter_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "datacenter_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="enabledFeatures")
+    def enabled_features(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
+        """
+        [list] Features enabled on the server, e.g. `SEV-SNP` for a Confidential Computing VM.
+        """
+        return pulumi.get(self, "enabled_features")
+
+    @enabled_features.setter
+    def enabled_features(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "enabled_features", value)
 
     @_builtins.property
     @pulumi.getter(name="firewallruleId")
@@ -1112,7 +1144,9 @@ class VCPUServer(pulumi.CustomResource):
                 raise TypeError("Missing required property 'volume'")
             __props__.__dict__["volume"] = volume
             __props__.__dict__["boot_volume"] = None
+            __props__.__dict__["confidential"] = None
             __props__.__dict__["cpu_family"] = None
+            __props__.__dict__["enabled_features"] = None
             __props__.__dict__["firewallrule_id"] = None
             __props__.__dict__["inline_volume_ids"] = None
             __props__.__dict__["primary_ip"] = None
@@ -1134,9 +1168,11 @@ class VCPUServer(pulumi.CustomResource):
             boot_cdrom: pulumi.Input[Optional[_builtins.str]] = None,
             boot_image: pulumi.Input[Optional[_builtins.str]] = None,
             boot_volume: pulumi.Input[Optional[_builtins.str]] = None,
+            confidential: pulumi.Input[Optional[_builtins.bool]] = None,
             cores: pulumi.Input[Optional[_builtins.int]] = None,
             cpu_family: pulumi.Input[Optional[_builtins.str]] = None,
             datacenter_id: pulumi.Input[Optional[_builtins.str]] = None,
+            enabled_features: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
             firewallrule_id: pulumi.Input[Optional[_builtins.str]] = None,
             firewallrule_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
             hostname: pulumi.Input[Optional[_builtins.str]] = None,
@@ -1167,8 +1203,10 @@ class VCPUServer(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] boot_cdrom: ***DEPRECATED*** Please refer to compute.BootDeviceSelection (Optional)[string] The associated boot drive, if any. Must be the UUID of a bootable CDROM image that can be retrieved using the compute_get_image data source.
         :param pulumi.Input[_builtins.str] boot_image: [string] The image or snapshot UUID / name. May also be an image alias. It is required if `licence_type` is not provided.
         :param pulumi.Input[_builtins.str] boot_volume: The associated boot volume.
+        :param pulumi.Input[_builtins.bool] confidential: [bool] Whether the server is a Confidential Computing (SEV-SNP) VM. Derived on read from the server's enabled features; normally `false` for VCPU servers, which are not Confidential Computing VMs.
         :param pulumi.Input[_builtins.int] cores: [integer] Number of server CPU cores.
         :param pulumi.Input[_builtins.str] datacenter_id: [string] The ID of a Virtual Data Center.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] enabled_features: [list] Features enabled on the server, e.g. `SEV-SNP` for a Confidential Computing VM.
         :param pulumi.Input[_builtins.str] firewallrule_id: The associated firewall rule.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] firewallrule_ids: The associated firewall rules.
         :param pulumi.Input[_builtins.str] hostname: (Computed)[string] The hostname of the resource. Allowed characters are a-z, 0-9 and - (minus). Hostname should not start with minus and should not be longer than 63 characters. If no value provided explicitly, it will be populated with the name of the server
@@ -1201,9 +1239,11 @@ class VCPUServer(pulumi.CustomResource):
         __props__.__dict__["boot_cdrom"] = boot_cdrom
         __props__.__dict__["boot_image"] = boot_image
         __props__.__dict__["boot_volume"] = boot_volume
+        __props__.__dict__["confidential"] = confidential
         __props__.__dict__["cores"] = cores
         __props__.__dict__["cpu_family"] = cpu_family
         __props__.__dict__["datacenter_id"] = datacenter_id
+        __props__.__dict__["enabled_features"] = enabled_features
         __props__.__dict__["firewallrule_id"] = firewallrule_id
         __props__.__dict__["firewallrule_ids"] = firewallrule_ids
         __props__.__dict__["hostname"] = hostname
@@ -1260,6 +1300,14 @@ class VCPUServer(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter
+    def confidential(self) -> pulumi.Output[_builtins.bool]:
+        """
+        [bool] Whether the server is a Confidential Computing (SEV-SNP) VM. Derived on read from the server's enabled features; normally `false` for VCPU servers, which are not Confidential Computing VMs.
+        """
+        return pulumi.get(self, "confidential")
+
+    @_builtins.property
+    @pulumi.getter
     def cores(self) -> pulumi.Output[_builtins.int]:
         """
         [integer] Number of server CPU cores.
@@ -1278,6 +1326,14 @@ class VCPUServer(pulumi.CustomResource):
         [string] The ID of a Virtual Data Center.
         """
         return pulumi.get(self, "datacenter_id")
+
+    @_builtins.property
+    @pulumi.getter(name="enabledFeatures")
+    def enabled_features(self) -> pulumi.Output[Sequence[_builtins.str]]:
+        """
+        [list] Features enabled on the server, e.g. `SEV-SNP` for a Confidential Computing VM.
+        """
+        return pulumi.get(self, "enabled_features")
 
     @_builtins.property
     @pulumi.getter(name="firewallruleId")

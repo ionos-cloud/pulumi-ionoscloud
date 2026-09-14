@@ -213,6 +213,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Objectstorage
                 AdditionalSecretOutputs =
                 {
                     "serverSideEncryptionContext",
+                    "serverSideEncryptionCustomerKey",
                 },
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
@@ -367,11 +368,21 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Objectstorage
         [Input("serverSideEncryptionCustomerAlgorithm")]
         public Input<string>? ServerSideEncryptionCustomerAlgorithm { get; set; }
 
+        [Input("serverSideEncryptionCustomerKey")]
+        private Input<string>? _serverSideEncryptionCustomerKey;
+
         /// <summary>
         /// [string] Specifies the 256-bit, base64-encoded encryption key to use to encrypt and decrypt your data.
         /// </summary>
-        [Input("serverSideEncryptionCustomerKey")]
-        public Input<string>? ServerSideEncryptionCustomerKey { get; set; }
+        public Input<string>? ServerSideEncryptionCustomerKey
+        {
+            get => _serverSideEncryptionCustomerKey;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _serverSideEncryptionCustomerKey = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// [string] Specifies the 128-bit MD5 digest of the encryption key.
@@ -553,11 +564,21 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Objectstorage
         [Input("serverSideEncryptionCustomerAlgorithm")]
         public Input<string>? ServerSideEncryptionCustomerAlgorithm { get; set; }
 
+        [Input("serverSideEncryptionCustomerKey")]
+        private Input<string>? _serverSideEncryptionCustomerKey;
+
         /// <summary>
         /// [string] Specifies the 256-bit, base64-encoded encryption key to use to encrypt and decrypt your data.
         /// </summary>
-        [Input("serverSideEncryptionCustomerKey")]
-        public Input<string>? ServerSideEncryptionCustomerKey { get; set; }
+        public Input<string>? ServerSideEncryptionCustomerKey
+        {
+            get => _serverSideEncryptionCustomerKey;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _serverSideEncryptionCustomerKey = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// [string] Specifies the 128-bit MD5 digest of the encryption key.

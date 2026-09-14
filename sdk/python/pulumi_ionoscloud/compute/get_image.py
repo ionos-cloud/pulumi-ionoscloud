@@ -26,7 +26,7 @@ class GetImageResult:
     """
     A collection of values returned by getImage.
     """
-    def __init__(__self__, cloud_init=None, cpu_hot_plug=None, cpu_hot_unplug=None, description=None, disc_scsi_hot_plug=None, disc_scsi_hot_unplug=None, disc_virtio_hot_plug=None, disc_virtio_hot_unplug=None, expose_serial=None, id=None, image_alias=None, image_aliases=None, licence_type=None, location=None, name=None, nic_hot_plug=None, nic_hot_unplug=None, public=None, ram_hot_plug=None, ram_hot_unplug=None, require_legacy_bios=None, size=None, type=None, version=None):
+    def __init__(__self__, cloud_init=None, cpu_hot_plug=None, cpu_hot_unplug=None, description=None, disc_scsi_hot_plug=None, disc_scsi_hot_unplug=None, disc_virtio_hot_plug=None, disc_virtio_hot_unplug=None, expose_serial=None, id=None, image_alias=None, image_aliases=None, licence_type=None, location=None, name=None, nic_hot_plug=None, nic_hot_unplug=None, public=None, ram_hot_plug=None, ram_hot_unplug=None, require_legacy_bios=None, required_features=None, size=None, type=None, version=None):
         if cloud_init and not isinstance(cloud_init, str):
             raise TypeError("Expected argument 'cloud_init' to be a str")
         pulumi.set(__self__, "cloud_init", cloud_init)
@@ -90,6 +90,9 @@ class GetImageResult:
         if require_legacy_bios and not isinstance(require_legacy_bios, bool):
             raise TypeError("Expected argument 'require_legacy_bios' to be a bool")
         pulumi.set(__self__, "require_legacy_bios", require_legacy_bios)
+        if required_features and not isinstance(required_features, list):
+            raise TypeError("Expected argument 'required_features' to be a list")
+        pulumi.set(__self__, "required_features", required_features)
         if size and not isinstance(size, float):
             raise TypeError("Expected argument 'size' to be a float")
         pulumi.set(__self__, "size", size)
@@ -266,6 +269,14 @@ class GetImageResult:
         return pulumi.get(self, "require_legacy_bios")
 
     @_builtins.property
+    @pulumi.getter(name="requiredFeatures")
+    def required_features(self) -> Sequence[_builtins.str]:
+        """
+        Features required to run this image, e.g. `SEV-SNP` for a Confidential Computing boot image.
+        """
+        return pulumi.get(self, "required_features")
+
+    @_builtins.property
     @pulumi.getter
     def size(self) -> _builtins.float:
         """
@@ -314,6 +325,7 @@ class AwaitableGetImageResult(GetImageResult):
             ram_hot_plug=self.ram_hot_plug,
             ram_hot_unplug=self.ram_hot_unplug,
             require_legacy_bios=self.require_legacy_bios,
+            required_features=self.required_features,
             size=self.size,
             type=self.type,
             version=self.version)
@@ -414,6 +426,7 @@ def get_image(cloud_init: Optional[_builtins.str] = None,
         ram_hot_plug=pulumi.get(__ret__, 'ram_hot_plug'),
         ram_hot_unplug=pulumi.get(__ret__, 'ram_hot_unplug'),
         require_legacy_bios=pulumi.get(__ret__, 'require_legacy_bios'),
+        required_features=pulumi.get(__ret__, 'required_features'),
         size=pulumi.get(__ret__, 'size'),
         type=pulumi.get(__ret__, 'type'),
         version=pulumi.get(__ret__, 'version'))
@@ -511,6 +524,7 @@ def get_image_output(cloud_init: pulumi.Input[Optional[Optional[_builtins.str]]]
         ram_hot_plug=pulumi.get(__response__, 'ram_hot_plug'),
         ram_hot_unplug=pulumi.get(__response__, 'ram_hot_unplug'),
         require_legacy_bios=pulumi.get(__response__, 'require_legacy_bios'),
+        required_features=pulumi.get(__response__, 'required_features'),
         size=pulumi.get(__response__, 'size'),
         type=pulumi.get(__response__, 'type'),
         version=pulumi.get(__response__, 'version')))

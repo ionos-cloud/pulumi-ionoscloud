@@ -46,7 +46,7 @@ class IpsecTunnelArgs:
                tunnel. Specify "0.0.0.0/0" or "::/0" for all addresses. Minimum items: 1. Maximum items: 20.
         :param pulumi.Input[_builtins.str] remote_host: [string] The remote peer host fully qualified domain name or public IPV4 IP to connect to.
         :param pulumi.Input[_builtins.str] description: [string] The human-readable description of your IPSec Gateway Tunnel.
-        :param pulumi.Input[_builtins.str] location: [string] The location of the IPSec Gateway Tunnel. Supported locations: de/fra, de/fra/2, de/txl, es/vit, gb/lhr, us/ewr, us/las, us/mci, fr/par.
+        :param pulumi.Input[_builtins.str] location: [string] The location of the IPSec Gateway Tunnel. Supported locations: de/fra, de/fra/1, de/fra/2, de/txl, es/vit, gb/lhr, us/ewr, us/las, us/mci, fr/par.
         :param pulumi.Input[_builtins.str] name: [string] The name of the IPSec Gateway Tunnel.
         """
         pulumi.set(__self__, "auth", auth)
@@ -167,7 +167,7 @@ class IpsecTunnelArgs:
     @pulumi.getter
     def location(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        [string] The location of the IPSec Gateway Tunnel. Supported locations: de/fra, de/fra/2, de/txl, es/vit, gb/lhr, us/ewr, us/las, us/mci, fr/par.
+        [string] The location of the IPSec Gateway Tunnel. Supported locations: de/fra, de/fra/1, de/fra/2, de/txl, es/vit, gb/lhr, us/ewr, us/las, us/mci, fr/par.
         """
         return pulumi.get(self, "location")
 
@@ -213,7 +213,7 @@ class _IpsecTunnelState:
         :param pulumi.Input[Sequence[pulumi.Input['IpsecTunnelEspArgs']]] esps: [list] Settings for the IPSec SA (ESP) phase. Minimum items: 1. Maximum items: 1.
         :param pulumi.Input[_builtins.str] gateway_id: [string] The ID of the IPSec Gateway that the tunnel belongs to.
         :param pulumi.Input['IpsecTunnelIkeArgs'] ike: [list] Settings for the initial security exchange phase. Minimum items: 1. Maximum items: 1.
-        :param pulumi.Input[_builtins.str] location: [string] The location of the IPSec Gateway Tunnel. Supported locations: de/fra, de/fra/2, de/txl, es/vit, gb/lhr, us/ewr, us/las, us/mci, fr/par.
+        :param pulumi.Input[_builtins.str] location: [string] The location of the IPSec Gateway Tunnel. Supported locations: de/fra, de/fra/1, de/fra/2, de/txl, es/vit, gb/lhr, us/ewr, us/las, us/mci, fr/par.
         :param pulumi.Input[_builtins.str] name: [string] The name of the IPSec Gateway Tunnel.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] peer_network_cidrs: [list] The network CIDRs on the "Right" side that are allowed to connect to the IPSec
                tunnel. Specify "0.0.0.0/0" or "::/0" for all addresses. Minimum items: 1. Maximum items: 20.
@@ -319,7 +319,7 @@ class _IpsecTunnelState:
     @pulumi.getter
     def location(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        [string] The location of the IPSec Gateway Tunnel. Supported locations: de/fra, de/fra/2, de/txl, es/vit, gb/lhr, us/ewr, us/las, us/mci, fr/par.
+        [string] The location of the IPSec Gateway Tunnel. Supported locations: de/fra, de/fra/1, de/fra/2, de/txl, es/vit, gb/lhr, us/ewr, us/las, us/mci, fr/par.
         """
         return pulumi.get(self, "location")
 
@@ -462,7 +462,7 @@ class IpsecTunnel(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[Union['IpsecTunnelEspArgs', 'IpsecTunnelEspArgsDict']]]] esps: [list] Settings for the IPSec SA (ESP) phase. Minimum items: 1. Maximum items: 1.
         :param pulumi.Input[_builtins.str] gateway_id: [string] The ID of the IPSec Gateway that the tunnel belongs to.
         :param pulumi.Input[Union['IpsecTunnelIkeArgs', 'IpsecTunnelIkeArgsDict']] ike: [list] Settings for the initial security exchange phase. Minimum items: 1. Maximum items: 1.
-        :param pulumi.Input[_builtins.str] location: [string] The location of the IPSec Gateway Tunnel. Supported locations: de/fra, de/fra/2, de/txl, es/vit, gb/lhr, us/ewr, us/las, us/mci, fr/par.
+        :param pulumi.Input[_builtins.str] location: [string] The location of the IPSec Gateway Tunnel. Supported locations: de/fra, de/fra/1, de/fra/2, de/txl, es/vit, gb/lhr, us/ewr, us/las, us/mci, fr/par.
         :param pulumi.Input[_builtins.str] name: [string] The name of the IPSec Gateway Tunnel.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] peer_network_cidrs: [list] The network CIDRs on the "Right" side that are allowed to connect to the IPSec
                tunnel. Specify "0.0.0.0/0" or "::/0" for all addresses. Minimum items: 1. Maximum items: 20.
@@ -637,7 +637,7 @@ class IpsecTunnel(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[Union['IpsecTunnelEspArgs', 'IpsecTunnelEspArgsDict']]]] esps: [list] Settings for the IPSec SA (ESP) phase. Minimum items: 1. Maximum items: 1.
         :param pulumi.Input[_builtins.str] gateway_id: [string] The ID of the IPSec Gateway that the tunnel belongs to.
         :param pulumi.Input[Union['IpsecTunnelIkeArgs', 'IpsecTunnelIkeArgsDict']] ike: [list] Settings for the initial security exchange phase. Minimum items: 1. Maximum items: 1.
-        :param pulumi.Input[_builtins.str] location: [string] The location of the IPSec Gateway Tunnel. Supported locations: de/fra, de/fra/2, de/txl, es/vit, gb/lhr, us/ewr, us/las, us/mci, fr/par.
+        :param pulumi.Input[_builtins.str] location: [string] The location of the IPSec Gateway Tunnel. Supported locations: de/fra, de/fra/1, de/fra/2, de/txl, es/vit, gb/lhr, us/ewr, us/las, us/mci, fr/par.
         :param pulumi.Input[_builtins.str] name: [string] The name of the IPSec Gateway Tunnel.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] peer_network_cidrs: [list] The network CIDRs on the "Right" side that are allowed to connect to the IPSec
                tunnel. Specify "0.0.0.0/0" or "::/0" for all addresses. Minimum items: 1. Maximum items: 20.
@@ -714,7 +714,7 @@ class IpsecTunnel(pulumi.CustomResource):
     @pulumi.getter
     def location(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
-        [string] The location of the IPSec Gateway Tunnel. Supported locations: de/fra, de/fra/2, de/txl, es/vit, gb/lhr, us/ewr, us/las, us/mci, fr/par.
+        [string] The location of the IPSec Gateway Tunnel. Supported locations: de/fra, de/fra/1, de/fra/2, de/txl, es/vit, gb/lhr, us/ewr, us/las, us/mci, fr/par.
         """
         return pulumi.get(self, "location")
 

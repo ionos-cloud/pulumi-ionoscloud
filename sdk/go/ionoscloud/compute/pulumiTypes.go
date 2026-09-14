@@ -1396,6 +1396,8 @@ func (o CubeServerVolumePtrOutput) UserData() pulumi.StringPtrOutput {
 type DatacenterCpuArchitecture struct {
 	// A valid CPU family name
 	CpuFamily *string `pulumi:"cpuFamily"`
+	// Features enabled for this CPU architecture, e.g. `SEV-SNP` for Confidential Computing
+	EnabledFeatures []string `pulumi:"enabledFeatures"`
 	// The maximum number of cores available
 	MaxCores *int `pulumi:"maxCores"`
 	// The maximum number of RAM in MB
@@ -1418,6 +1420,8 @@ type DatacenterCpuArchitectureInput interface {
 type DatacenterCpuArchitectureArgs struct {
 	// A valid CPU family name
 	CpuFamily pulumi.StringPtrInput `pulumi:"cpuFamily"`
+	// Features enabled for this CPU architecture, e.g. `SEV-SNP` for Confidential Computing
+	EnabledFeatures pulumi.StringArrayInput `pulumi:"enabledFeatures"`
 	// The maximum number of cores available
 	MaxCores pulumi.IntPtrInput `pulumi:"maxCores"`
 	// The maximum number of RAM in MB
@@ -1482,6 +1486,11 @@ func (o DatacenterCpuArchitectureOutput) CpuFamily() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DatacenterCpuArchitecture) *string { return v.CpuFamily }).(pulumi.StringPtrOutput)
 }
 
+// Features enabled for this CPU architecture, e.g. `SEV-SNP` for Confidential Computing
+func (o DatacenterCpuArchitectureOutput) EnabledFeatures() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v DatacenterCpuArchitecture) []string { return v.EnabledFeatures }).(pulumi.StringArrayOutput)
+}
+
 // The maximum number of cores available
 func (o DatacenterCpuArchitectureOutput) MaxCores() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v DatacenterCpuArchitecture) *int { return v.MaxCores }).(pulumi.IntPtrOutput)
@@ -1515,6 +1524,112 @@ func (o DatacenterCpuArchitectureArrayOutput) Index(i pulumi.IntInput) Datacente
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) DatacenterCpuArchitecture {
 		return vs[0].([]DatacenterCpuArchitecture)[vs[1].(int)]
 	}).(DatacenterCpuArchitectureOutput)
+}
+
+type DatacenterFilter struct {
+	// The name of the field to filter on.
+	FieldName string `pulumi:"fieldName"`
+	// The value to match against.
+	FieldValue string `pulumi:"fieldValue"`
+}
+
+// DatacenterFilterInput is an input type that accepts DatacenterFilterArgs and DatacenterFilterOutput values.
+// You can construct a concrete instance of `DatacenterFilterInput` via:
+//
+//	DatacenterFilterArgs{...}
+type DatacenterFilterInput interface {
+	pulumi.Input
+
+	ToDatacenterFilterOutput() DatacenterFilterOutput
+	ToDatacenterFilterOutputWithContext(context.Context) DatacenterFilterOutput
+}
+
+type DatacenterFilterArgs struct {
+	// The name of the field to filter on.
+	FieldName pulumi.StringInput `pulumi:"fieldName"`
+	// The value to match against.
+	FieldValue pulumi.StringInput `pulumi:"fieldValue"`
+}
+
+func (DatacenterFilterArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*DatacenterFilter)(nil)).Elem()
+}
+
+func (i DatacenterFilterArgs) ToDatacenterFilterOutput() DatacenterFilterOutput {
+	return i.ToDatacenterFilterOutputWithContext(context.Background())
+}
+
+func (i DatacenterFilterArgs) ToDatacenterFilterOutputWithContext(ctx context.Context) DatacenterFilterOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DatacenterFilterOutput)
+}
+
+// DatacenterFilterArrayInput is an input type that accepts DatacenterFilterArray and DatacenterFilterArrayOutput values.
+// You can construct a concrete instance of `DatacenterFilterArrayInput` via:
+//
+//	DatacenterFilterArray{ DatacenterFilterArgs{...} }
+type DatacenterFilterArrayInput interface {
+	pulumi.Input
+
+	ToDatacenterFilterArrayOutput() DatacenterFilterArrayOutput
+	ToDatacenterFilterArrayOutputWithContext(context.Context) DatacenterFilterArrayOutput
+}
+
+type DatacenterFilterArray []DatacenterFilterInput
+
+func (DatacenterFilterArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]DatacenterFilter)(nil)).Elem()
+}
+
+func (i DatacenterFilterArray) ToDatacenterFilterArrayOutput() DatacenterFilterArrayOutput {
+	return i.ToDatacenterFilterArrayOutputWithContext(context.Background())
+}
+
+func (i DatacenterFilterArray) ToDatacenterFilterArrayOutputWithContext(ctx context.Context) DatacenterFilterArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DatacenterFilterArrayOutput)
+}
+
+type DatacenterFilterOutput struct{ *pulumi.OutputState }
+
+func (DatacenterFilterOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*DatacenterFilter)(nil)).Elem()
+}
+
+func (o DatacenterFilterOutput) ToDatacenterFilterOutput() DatacenterFilterOutput {
+	return o
+}
+
+func (o DatacenterFilterOutput) ToDatacenterFilterOutputWithContext(ctx context.Context) DatacenterFilterOutput {
+	return o
+}
+
+// The name of the field to filter on.
+func (o DatacenterFilterOutput) FieldName() pulumi.StringOutput {
+	return o.ApplyT(func(v DatacenterFilter) string { return v.FieldName }).(pulumi.StringOutput)
+}
+
+// The value to match against.
+func (o DatacenterFilterOutput) FieldValue() pulumi.StringOutput {
+	return o.ApplyT(func(v DatacenterFilter) string { return v.FieldValue }).(pulumi.StringOutput)
+}
+
+type DatacenterFilterArrayOutput struct{ *pulumi.OutputState }
+
+func (DatacenterFilterArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]DatacenterFilter)(nil)).Elem()
+}
+
+func (o DatacenterFilterArrayOutput) ToDatacenterFilterArrayOutput() DatacenterFilterArrayOutput {
+	return o
+}
+
+func (o DatacenterFilterArrayOutput) ToDatacenterFilterArrayOutputWithContext(ctx context.Context) DatacenterFilterArrayOutput {
+	return o
+}
+
+func (o DatacenterFilterArrayOutput) Index(i pulumi.IntInput) DatacenterFilterOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) DatacenterFilter {
+		return vs[0].([]DatacenterFilter)[vs[1].(int)]
+	}).(DatacenterFilterOutput)
 }
 
 type GPUServerNic struct {
@@ -7433,6 +7548,8 @@ func (o GetCubeServerVolumeArrayOutput) Index(i pulumi.IntInput) GetCubeServerVo
 type GetDatacenterCpuArchitecture struct {
 	// A valid CPU family name
 	CpuFamily string `pulumi:"cpuFamily"`
+	// Features enabled for this CPU architecture, e.g. `SEV-SNP` for Confidential Computing
+	EnabledFeatures []string `pulumi:"enabledFeatures"`
 	// The maximum number of cores available
 	MaxCores int `pulumi:"maxCores"`
 	// The maximum number of RAM in MB
@@ -7455,6 +7572,8 @@ type GetDatacenterCpuArchitectureInput interface {
 type GetDatacenterCpuArchitectureArgs struct {
 	// A valid CPU family name
 	CpuFamily pulumi.StringInput `pulumi:"cpuFamily"`
+	// Features enabled for this CPU architecture, e.g. `SEV-SNP` for Confidential Computing
+	EnabledFeatures pulumi.StringArrayInput `pulumi:"enabledFeatures"`
 	// The maximum number of cores available
 	MaxCores pulumi.IntInput `pulumi:"maxCores"`
 	// The maximum number of RAM in MB
@@ -7517,6 +7636,11 @@ func (o GetDatacenterCpuArchitectureOutput) ToGetDatacenterCpuArchitectureOutput
 // A valid CPU family name
 func (o GetDatacenterCpuArchitectureOutput) CpuFamily() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDatacenterCpuArchitecture) string { return v.CpuFamily }).(pulumi.StringOutput)
+}
+
+// Features enabled for this CPU architecture, e.g. `SEV-SNP` for Confidential Computing
+func (o GetDatacenterCpuArchitectureOutput) EnabledFeatures() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetDatacenterCpuArchitecture) []string { return v.EnabledFeatures }).(pulumi.StringArrayOutput)
 }
 
 // The maximum number of cores available
@@ -8972,6 +9096,8 @@ func (o GetLanIpFailoverArrayOutput) Index(i pulumi.IntInput) GetLanIpFailoverOu
 type GetLocationCpuArchitecture struct {
 	// A valid CPU family name.
 	CpuFamily string `pulumi:"cpuFamily"`
+	// Features enabled for this CPU architecture, e.g. `SEV-SNP` for Confidential Computing.
+	EnabledFeatures []string `pulumi:"enabledFeatures"`
 	// The maximum number of cores available.
 	MaxCores int `pulumi:"maxCores"`
 	// The maximum number of RAM in MB.
@@ -8994,6 +9120,8 @@ type GetLocationCpuArchitectureInput interface {
 type GetLocationCpuArchitectureArgs struct {
 	// A valid CPU family name.
 	CpuFamily pulumi.StringInput `pulumi:"cpuFamily"`
+	// Features enabled for this CPU architecture, e.g. `SEV-SNP` for Confidential Computing.
+	EnabledFeatures pulumi.StringArrayInput `pulumi:"enabledFeatures"`
 	// The maximum number of cores available.
 	MaxCores pulumi.IntInput `pulumi:"maxCores"`
 	// The maximum number of RAM in MB.
@@ -9056,6 +9184,11 @@ func (o GetLocationCpuArchitectureOutput) ToGetLocationCpuArchitectureOutputWith
 // A valid CPU family name.
 func (o GetLocationCpuArchitectureOutput) CpuFamily() pulumi.StringOutput {
 	return o.ApplyT(func(v GetLocationCpuArchitecture) string { return v.CpuFamily }).(pulumi.StringOutput)
+}
+
+// Features enabled for this CPU architecture, e.g. `SEV-SNP` for Confidential Computing.
+func (o GetLocationCpuArchitectureOutput) EnabledFeatures() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetLocationCpuArchitecture) []string { return v.EnabledFeatures }).(pulumi.StringArrayOutput)
 }
 
 // The maximum number of cores available.
@@ -10667,7 +10800,9 @@ type GetServersServer struct {
 	Cdroms           []GetServersServerCdrom `pulumi:"cdroms"`
 	Cores            int                     `pulumi:"cores"`
 	CpuFamily        string                  `pulumi:"cpuFamily"`
-	Hostname         string                  `pulumi:"hostname"`
+	// Features enabled on the server, e.g. SEV-SNP for a Confidential Computing VM.
+	EnabledFeatures []string `pulumi:"enabledFeatures"`
+	Hostname        string   `pulumi:"hostname"`
 	// The unique ID of the server.
 	Id            string                   `pulumi:"id"`
 	Labels        []GetServersServerLabel  `pulumi:"labels"`
@@ -10701,7 +10836,9 @@ type GetServersServerArgs struct {
 	Cdroms           GetServersServerCdromArrayInput `pulumi:"cdroms"`
 	Cores            pulumi.IntInput                 `pulumi:"cores"`
 	CpuFamily        pulumi.StringInput              `pulumi:"cpuFamily"`
-	Hostname         pulumi.StringInput              `pulumi:"hostname"`
+	// Features enabled on the server, e.g. SEV-SNP for a Confidential Computing VM.
+	EnabledFeatures pulumi.StringArrayInput `pulumi:"enabledFeatures"`
+	Hostname        pulumi.StringInput      `pulumi:"hostname"`
 	// The unique ID of the server.
 	Id            pulumi.StringInput               `pulumi:"id"`
 	Labels        GetServersServerLabelArrayInput  `pulumi:"labels"`
@@ -10793,6 +10930,11 @@ func (o GetServersServerOutput) Cores() pulumi.IntOutput {
 
 func (o GetServersServerOutput) CpuFamily() pulumi.StringOutput {
 	return o.ApplyT(func(v GetServersServer) string { return v.CpuFamily }).(pulumi.StringOutput)
+}
+
+// Features enabled on the server, e.g. SEV-SNP for a Confidential Computing VM.
+func (o GetServersServerOutput) EnabledFeatures() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetServersServer) []string { return v.EnabledFeatures }).(pulumi.StringArrayOutput)
 }
 
 func (o GetServersServerOutput) Hostname() pulumi.StringOutput {
@@ -13487,6 +13629,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*CubeServerVolumePtrInput)(nil)).Elem(), CubeServerVolumeArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DatacenterCpuArchitectureInput)(nil)).Elem(), DatacenterCpuArchitectureArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DatacenterCpuArchitectureArrayInput)(nil)).Elem(), DatacenterCpuArchitectureArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DatacenterFilterInput)(nil)).Elem(), DatacenterFilterArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DatacenterFilterArrayInput)(nil)).Elem(), DatacenterFilterArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GPUServerNicInput)(nil)).Elem(), GPUServerNicArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GPUServerNicPtrInput)(nil)).Elem(), GPUServerNicArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GPUServerNicFirewallInput)(nil)).Elem(), GPUServerNicFirewallArgs{})
@@ -13621,6 +13765,8 @@ func init() {
 	pulumi.RegisterOutputType(CubeServerVolumePtrOutput{})
 	pulumi.RegisterOutputType(DatacenterCpuArchitectureOutput{})
 	pulumi.RegisterOutputType(DatacenterCpuArchitectureArrayOutput{})
+	pulumi.RegisterOutputType(DatacenterFilterOutput{})
+	pulumi.RegisterOutputType(DatacenterFilterArrayOutput{})
 	pulumi.RegisterOutputType(GPUServerNicOutput{})
 	pulumi.RegisterOutputType(GPUServerNicPtrOutput{})
 	pulumi.RegisterOutputType(GPUServerNicFirewallOutput{})

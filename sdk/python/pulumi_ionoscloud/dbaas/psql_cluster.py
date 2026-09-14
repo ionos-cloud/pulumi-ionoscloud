@@ -44,7 +44,7 @@ class PSQLClusterArgs:
         :param pulumi.Input['PSQLClusterCredentialsArgs'] credentials: [string] Credentials for the database user to be created. This attribute is immutable(disallowed in update requests).
         :param pulumi.Input[_builtins.str] display_name: [string] The friendly name of your cluster.
         :param pulumi.Input[_builtins.int] instances: [int] The total number of instances in the cluster (one master and n-1 standbys)
-        :param pulumi.Input[_builtins.str] location: [string] The physical location where the cluster will be created. This will be where all of your instances live. Property cannot be modified after datacenter creation. Available locations: `de/fra`, `us/las`, `us/ewr`, `de/txl`, `gb/lhr`, `gb/bhx`, `es/vit`, `fr/par`, `us/mci`, `de/fra/2`. This attribute is immutable (disallowed in update requests).
+        :param pulumi.Input[_builtins.str] location: [string] The physical location where the cluster will be created. This will be where all of your instances live. Property cannot be modified after datacenter creation. Available locations: `de/fra`, `us/las`, `us/ewr`, `de/txl`, `gb/lhr`, `gb/bhx`, `es/vit`, `fr/par`, `us/mci`, `de/fra/1`, `de/fra/2`. This attribute is immutable (disallowed in update requests).
         :param pulumi.Input[_builtins.str] postgres_version: [string] The PostgreSQL version of your cluster.
         :param pulumi.Input[_builtins.int] ram: [int] The amount of memory per instance in megabytes. Has to be a multiple of 1024.
         :param pulumi.Input[_builtins.int] storage_size: [int] The amount of storage per instance in MB. Has to be a multiple of 2048.
@@ -134,7 +134,7 @@ class PSQLClusterArgs:
     @pulumi.getter
     def location(self) -> pulumi.Input[_builtins.str]:
         """
-        [string] The physical location where the cluster will be created. This will be where all of your instances live. Property cannot be modified after datacenter creation. Available locations: `de/fra`, `us/las`, `us/ewr`, `de/txl`, `gb/lhr`, `gb/bhx`, `es/vit`, `fr/par`, `us/mci`, `de/fra/2`. This attribute is immutable (disallowed in update requests).
+        [string] The physical location where the cluster will be created. This will be where all of your instances live. Property cannot be modified after datacenter creation. Available locations: `de/fra`, `us/las`, `us/ewr`, `de/txl`, `gb/lhr`, `gb/bhx`, `es/vit`, `fr/par`, `us/mci`, `de/fra/1`, `de/fra/2`. This attribute is immutable (disallowed in update requests).
         """
         return pulumi.get(self, "location")
 
@@ -312,7 +312,7 @@ class _PSQLClusterState:
         :param pulumi.Input[_builtins.str] dns_name: [string] The DNS name pointing to your cluster.
         :param pulumi.Input['PSQLClusterFromBackupArgs'] from_backup: [string] The unique ID of the backup you want to restore. This attribute is immutable(disallowed in update requests).
         :param pulumi.Input[_builtins.int] instances: [int] The total number of instances in the cluster (one master and n-1 standbys)
-        :param pulumi.Input[_builtins.str] location: [string] The physical location where the cluster will be created. This will be where all of your instances live. Property cannot be modified after datacenter creation. Available locations: `de/fra`, `us/las`, `us/ewr`, `de/txl`, `gb/lhr`, `gb/bhx`, `es/vit`, `fr/par`, `us/mci`, `de/fra/2`. This attribute is immutable (disallowed in update requests).
+        :param pulumi.Input[_builtins.str] location: [string] The physical location where the cluster will be created. This will be where all of your instances live. Property cannot be modified after datacenter creation. Available locations: `de/fra`, `us/las`, `us/ewr`, `de/txl`, `gb/lhr`, `gb/bhx`, `es/vit`, `fr/par`, `us/mci`, `de/fra/1`, `de/fra/2`. This attribute is immutable (disallowed in update requests).
         :param pulumi.Input['PSQLClusterMaintenanceWindowArgs'] maintenance_window: (Computed) A weekly 4 hour-long window, during which maintenance might occur
         :param pulumi.Input[_builtins.str] postgres_version: [string] The PostgreSQL version of your cluster.
         :param pulumi.Input[_builtins.int] ram: [int] The amount of memory per instance in megabytes. Has to be a multiple of 1024.
@@ -481,7 +481,7 @@ class _PSQLClusterState:
     @pulumi.getter
     def location(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        [string] The physical location where the cluster will be created. This will be where all of your instances live. Property cannot be modified after datacenter creation. Available locations: `de/fra`, `us/las`, `us/ewr`, `de/txl`, `gb/lhr`, `gb/bhx`, `es/vit`, `fr/par`, `us/mci`, `de/fra/2`. This attribute is immutable (disallowed in update requests).
+        [string] The physical location where the cluster will be created. This will be where all of your instances live. Property cannot be modified after datacenter creation. Available locations: `de/fra`, `us/las`, `us/ewr`, `de/txl`, `gb/lhr`, `gb/bhx`, `es/vit`, `fr/par`, `us/mci`, `de/fra/1`, `de/fra/2`. This attribute is immutable (disallowed in update requests).
         """
         return pulumi.get(self, "location")
 
@@ -654,7 +654,7 @@ class PSQLCluster(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] display_name: [string] The friendly name of your cluster.
         :param pulumi.Input[Union['PSQLClusterFromBackupArgs', 'PSQLClusterFromBackupArgsDict']] from_backup: [string] The unique ID of the backup you want to restore. This attribute is immutable(disallowed in update requests).
         :param pulumi.Input[_builtins.int] instances: [int] The total number of instances in the cluster (one master and n-1 standbys)
-        :param pulumi.Input[_builtins.str] location: [string] The physical location where the cluster will be created. This will be where all of your instances live. Property cannot be modified after datacenter creation. Available locations: `de/fra`, `us/las`, `us/ewr`, `de/txl`, `gb/lhr`, `gb/bhx`, `es/vit`, `fr/par`, `us/mci`, `de/fra/2`. This attribute is immutable (disallowed in update requests).
+        :param pulumi.Input[_builtins.str] location: [string] The physical location where the cluster will be created. This will be where all of your instances live. Property cannot be modified after datacenter creation. Available locations: `de/fra`, `us/las`, `us/ewr`, `de/txl`, `gb/lhr`, `gb/bhx`, `es/vit`, `fr/par`, `us/mci`, `de/fra/1`, `de/fra/2`. This attribute is immutable (disallowed in update requests).
         :param pulumi.Input[Union['PSQLClusterMaintenanceWindowArgs', 'PSQLClusterMaintenanceWindowArgsDict']] maintenance_window: (Computed) A weekly 4 hour-long window, during which maintenance might occur
         :param pulumi.Input[_builtins.str] postgres_version: [string] The PostgreSQL version of your cluster.
         :param pulumi.Input[_builtins.int] ram: [int] The amount of memory per instance in megabytes. Has to be a multiple of 1024.
@@ -847,7 +847,7 @@ class PSQLCluster(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] dns_name: [string] The DNS name pointing to your cluster.
         :param pulumi.Input[Union['PSQLClusterFromBackupArgs', 'PSQLClusterFromBackupArgsDict']] from_backup: [string] The unique ID of the backup you want to restore. This attribute is immutable(disallowed in update requests).
         :param pulumi.Input[_builtins.int] instances: [int] The total number of instances in the cluster (one master and n-1 standbys)
-        :param pulumi.Input[_builtins.str] location: [string] The physical location where the cluster will be created. This will be where all of your instances live. Property cannot be modified after datacenter creation. Available locations: `de/fra`, `us/las`, `us/ewr`, `de/txl`, `gb/lhr`, `gb/bhx`, `es/vit`, `fr/par`, `us/mci`, `de/fra/2`. This attribute is immutable (disallowed in update requests).
+        :param pulumi.Input[_builtins.str] location: [string] The physical location where the cluster will be created. This will be where all of your instances live. Property cannot be modified after datacenter creation. Available locations: `de/fra`, `us/las`, `us/ewr`, `de/txl`, `gb/lhr`, `gb/bhx`, `es/vit`, `fr/par`, `us/mci`, `de/fra/1`, `de/fra/2`. This attribute is immutable (disallowed in update requests).
         :param pulumi.Input[Union['PSQLClusterMaintenanceWindowArgs', 'PSQLClusterMaintenanceWindowArgsDict']] maintenance_window: (Computed) A weekly 4 hour-long window, during which maintenance might occur
         :param pulumi.Input[_builtins.str] postgres_version: [string] The PostgreSQL version of your cluster.
         :param pulumi.Input[_builtins.int] ram: [int] The amount of memory per instance in megabytes. Has to be a multiple of 1024.
@@ -964,7 +964,7 @@ class PSQLCluster(pulumi.CustomResource):
     @pulumi.getter
     def location(self) -> pulumi.Output[_builtins.str]:
         """
-        [string] The physical location where the cluster will be created. This will be where all of your instances live. Property cannot be modified after datacenter creation. Available locations: `de/fra`, `us/las`, `us/ewr`, `de/txl`, `gb/lhr`, `gb/bhx`, `es/vit`, `fr/par`, `us/mci`, `de/fra/2`. This attribute is immutable (disallowed in update requests).
+        [string] The physical location where the cluster will be created. This will be where all of your instances live. Property cannot be modified after datacenter creation. Available locations: `de/fra`, `us/las`, `us/ewr`, `de/txl`, `gb/lhr`, `gb/bhx`, `es/vit`, `fr/par`, `us/mci`, `de/fra/1`, `de/fra/2`. This attribute is immutable (disallowed in update requests).
         """
         return pulumi.get(self, "location")
 

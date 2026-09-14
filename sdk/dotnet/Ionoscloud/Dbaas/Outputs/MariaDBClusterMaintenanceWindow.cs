@@ -19,7 +19,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Dbaas.Outputs
         /// </summary>
         public readonly string DayOfTheWeek;
         /// <summary>
-        /// [string] Start of the maintenance window in UTC time.
+        /// [string] Start of the maintenance window in UTC time. Format: HH:MM:SS.
         /// </summary>
         public readonly string Time;
 

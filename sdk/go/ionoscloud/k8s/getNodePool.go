@@ -148,6 +148,8 @@ type LookupNodePoolResult struct {
 	StorageSize int `pulumi:"storageSize"`
 	// HDD or SDD
 	StorageType string `pulumi:"storageType"`
+	// A list of taints applied to the nodes in this pool. Each taint has the following attributes:
+	Taints []GetNodePoolTaint `pulumi:"taints"`
 }
 
 func LookupNodePoolOutput(ctx *pulumi.Context, args LookupNodePoolOutputArgs, opts ...pulumi.InvokeOption) LookupNodePoolResultOutput {
@@ -310,6 +312,11 @@ func (o LookupNodePoolResultOutput) StorageSize() pulumi.IntOutput {
 // HDD or SDD
 func (o LookupNodePoolResultOutput) StorageType() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupNodePoolResult) string { return v.StorageType }).(pulumi.StringOutput)
+}
+
+// A list of taints applied to the nodes in this pool. Each taint has the following attributes:
+func (o LookupNodePoolResultOutput) Taints() GetNodePoolTaintArrayOutput {
+	return o.ApplyT(func(v LookupNodePoolResult) []GetNodePoolTaint { return v.Taints }).(GetNodePoolTaintArrayOutput)
 }
 
 func init() {

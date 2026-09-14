@@ -163,14 +163,14 @@ public final class PSQLClusterArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * [string] The physical location where the cluster will be created. This will be where all of your instances live. Property cannot be modified after datacenter creation. Available locations: `de/fra`, `us/las`, `us/ewr`, `de/txl`, `gb/lhr`, `gb/bhx`, `es/vit`, `fr/par`, `us/mci`, `de/fra/2`. This attribute is immutable (disallowed in update requests).
+     * [string] The physical location where the cluster will be created. This will be where all of your instances live. Property cannot be modified after datacenter creation. Available locations: `de/fra`, `us/las`, `us/ewr`, `de/txl`, `gb/lhr`, `gb/bhx`, `es/vit`, `fr/par`, `us/mci`, `de/fra/1`, `de/fra/2`. This attribute is immutable (disallowed in update requests).
      * 
      */
     @Import(name="location", required=true)
     private Output<String> location;
 
     /**
-     * @return [string] The physical location where the cluster will be created. This will be where all of your instances live. Property cannot be modified after datacenter creation. Available locations: `de/fra`, `us/las`, `us/ewr`, `de/txl`, `gb/lhr`, `gb/bhx`, `es/vit`, `fr/par`, `us/mci`, `de/fra/2`. This attribute is immutable (disallowed in update requests).
+     * @return [string] The physical location where the cluster will be created. This will be where all of your instances live. Property cannot be modified after datacenter creation. Available locations: `de/fra`, `us/las`, `us/ewr`, `de/txl`, `gb/lhr`, `gb/bhx`, `es/vit`, `fr/par`, `us/mci`, `de/fra/1`, `de/fra/2`. This attribute is immutable (disallowed in update requests).
      * 
      */
     public Output<String> location() {
@@ -500,7 +500,7 @@ public final class PSQLClusterArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param location [string] The physical location where the cluster will be created. This will be where all of your instances live. Property cannot be modified after datacenter creation. Available locations: `de/fra`, `us/las`, `us/ewr`, `de/txl`, `gb/lhr`, `gb/bhx`, `es/vit`, `fr/par`, `us/mci`, `de/fra/2`. This attribute is immutable (disallowed in update requests).
+         * @param location [string] The physical location where the cluster will be created. This will be where all of your instances live. Property cannot be modified after datacenter creation. Available locations: `de/fra`, `us/las`, `us/ewr`, `de/txl`, `gb/lhr`, `gb/bhx`, `es/vit`, `fr/par`, `us/mci`, `de/fra/1`, `de/fra/2`. This attribute is immutable (disallowed in update requests).
          * 
          * @return builder
          * 
@@ -511,7 +511,7 @@ public final class PSQLClusterArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param location [string] The physical location where the cluster will be created. This will be where all of your instances live. Property cannot be modified after datacenter creation. Available locations: `de/fra`, `us/las`, `us/ewr`, `de/txl`, `gb/lhr`, `gb/bhx`, `es/vit`, `fr/par`, `us/mci`, `de/fra/2`. This attribute is immutable (disallowed in update requests).
+         * @param location [string] The physical location where the cluster will be created. This will be where all of your instances live. Property cannot be modified after datacenter creation. Available locations: `de/fra`, `us/las`, `us/ewr`, `de/txl`, `gb/lhr`, `gb/bhx`, `es/vit`, `fr/par`, `us/mci`, `de/fra/1`, `de/fra/2`. This attribute is immutable (disallowed in update requests).
          * 
          * @return builder
          * 

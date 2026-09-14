@@ -82,6 +82,8 @@ type NodePool struct {
 	StorageSize pulumi.IntOutput `pulumi:"storageSize"`
 	// [string] - The desired storage type - SSD/HDD. *This attribute is immutable*.
 	StorageType pulumi.StringOutput `pulumi:"storageType"`
+	// [set] Taints applied to the nodes in this pool. A taint repels pods that do not have a matching toleration. Maximum 50 taints per node pool.
+	Taints NodePoolTaintArrayOutput `pulumi:"taints"`
 }
 
 // NewNodePool registers a new resource with the given unique name, arguments, and options.
@@ -192,6 +194,8 @@ type nodePoolState struct {
 	StorageSize *int `pulumi:"storageSize"`
 	// [string] - The desired storage type - SSD/HDD. *This attribute is immutable*.
 	StorageType *string `pulumi:"storageType"`
+	// [set] Taints applied to the nodes in this pool. A taint repels pods that do not have a matching toleration. Maximum 50 taints per node pool.
+	Taints []NodePoolTaint `pulumi:"taints"`
 }
 
 type NodePoolState struct {
@@ -246,6 +250,8 @@ type NodePoolState struct {
 	StorageSize pulumi.IntPtrInput
 	// [string] - The desired storage type - SSD/HDD. *This attribute is immutable*.
 	StorageType pulumi.StringPtrInput
+	// [set] Taints applied to the nodes in this pool. A taint repels pods that do not have a matching toleration. Maximum 50 taints per node pool.
+	Taints NodePoolTaintArrayInput
 }
 
 func (NodePoolState) ElementType() reflect.Type {
@@ -304,6 +310,8 @@ type nodePoolArgs struct {
 	StorageSize int `pulumi:"storageSize"`
 	// [string] - The desired storage type - SSD/HDD. *This attribute is immutable*.
 	StorageType string `pulumi:"storageType"`
+	// [set] Taints applied to the nodes in this pool. A taint repels pods that do not have a matching toleration. Maximum 50 taints per node pool.
+	Taints []NodePoolTaint `pulumi:"taints"`
 }
 
 // The set of arguments for constructing a NodePool resource.
@@ -359,6 +367,8 @@ type NodePoolArgs struct {
 	StorageSize pulumi.IntInput
 	// [string] - The desired storage type - SSD/HDD. *This attribute is immutable*.
 	StorageType pulumi.StringInput
+	// [set] Taints applied to the nodes in this pool. A taint repels pods that do not have a matching toleration. Maximum 50 taints per node pool.
+	Taints NodePoolTaintArrayInput
 }
 
 func (NodePoolArgs) ElementType() reflect.Type {
@@ -557,6 +567,11 @@ func (o NodePoolOutput) StorageSize() pulumi.IntOutput {
 // [string] - The desired storage type - SSD/HDD. *This attribute is immutable*.
 func (o NodePoolOutput) StorageType() pulumi.StringOutput {
 	return o.ApplyT(func(v *NodePool) pulumi.StringOutput { return v.StorageType }).(pulumi.StringOutput)
+}
+
+// [set] Taints applied to the nodes in this pool. A taint repels pods that do not have a matching toleration. Maximum 50 taints per node pool.
+func (o NodePoolOutput) Taints() NodePoolTaintArrayOutput {
+	return o.ApplyT(func(v *NodePool) NodePoolTaintArrayOutput { return v.Taints }).(NodePoolTaintArrayOutput)
 }
 
 type NodePoolArrayOutput struct{ *pulumi.OutputState }

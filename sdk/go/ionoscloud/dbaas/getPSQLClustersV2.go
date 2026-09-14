@@ -78,7 +78,7 @@ func GetPSQLClustersV2(ctx *pulumi.Context, args *GetPSQLClustersV2Args, opts ..
 
 // A collection of arguments for invoking getPSQLClustersV2.
 type GetPSQLClustersV2Args struct {
-	// [string] The region in which to look up clusters. Available locations: `de/fra`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
+	// [string] The region in which to look up clusters. Available locations: `de/fra`, `de/fra/1`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
 	Location string `pulumi:"location"`
 	// [string] Filters clusters by name. Matches cluster names that contain the provided string.
 	Name *string `pulumi:"name"`
@@ -107,7 +107,7 @@ func GetPSQLClustersV2Output(ctx *pulumi.Context, args GetPSQLClustersV2OutputAr
 
 // A collection of arguments for invoking getPSQLClustersV2.
 type GetPSQLClustersV2OutputArgs struct {
-	// [string] The region in which to look up clusters. Available locations: `de/fra`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
+	// [string] The region in which to look up clusters. Available locations: `de/fra`, `de/fra/1`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
 	Location pulumi.StringInput `pulumi:"location"`
 	// [string] Filters clusters by name. Matches cluster names that contain the provided string.
 	Name pulumi.StringPtrInput `pulumi:"name"`

@@ -51,7 +51,7 @@ public final class GetPSQLClustersV2Cluster {
      */
     private GetPSQLClustersV2ClusterInstances instances;
     /**
-     * @return [string] The region in which to look up clusters. Available locations: `de/fra`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
+     * @return [string] The region in which to look up clusters. Available locations: `de/fra`, `de/fra/1`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
      * 
      */
     private String location;
@@ -137,7 +137,7 @@ public final class GetPSQLClustersV2Cluster {
         return this.instances;
     }
     /**
-     * @return [string] The region in which to look up clusters. Available locations: `de/fra`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
+     * @return [string] The region in which to look up clusters. Available locations: `de/fra`, `de/fra/1`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
      * 
      */
     public String location() {

@@ -49,6 +49,20 @@ __all__ = [
     'MariaDBClusterCredentialsArgsDict',
     'MariaDBClusterMaintenanceWindowArgs',
     'MariaDBClusterMaintenanceWindowArgsDict',
+    'MariaDBClusterV2BackupArgs',
+    'MariaDBClusterV2BackupArgsDict',
+    'MariaDBClusterV2ConnectionsArgs',
+    'MariaDBClusterV2ConnectionsArgsDict',
+    'MariaDBClusterV2CredentialsArgs',
+    'MariaDBClusterV2CredentialsArgsDict',
+    'MariaDBClusterV2InstancesArgs',
+    'MariaDBClusterV2InstancesArgsDict',
+    'MariaDBClusterV2MaintenanceWindowArgs',
+    'MariaDBClusterV2MaintenanceWindowArgsDict',
+    'MariaDBClusterV2RestoreFromBackupArgs',
+    'MariaDBClusterV2RestoreFromBackupArgsDict',
+    'MariaDBClusterV2TimeoutsArgs',
+    'MariaDBClusterV2TimeoutsArgsDict',
     'MongoClusterBackupArgs',
     'MongoClusterBackupArgsDict',
     'MongoClusterBiConnectorArgs',
@@ -942,11 +956,11 @@ class MariaDBClusterConnectionsArgs:
 class MariaDBClusterCredentialsArgsDict(TypedDict):
     password: pulumi.Input[_builtins.str]
     """
-    [string] The password for a MariaDB user.
+    [string] The password for a MariaDB user. Length: 10-63 characters.
     """
     username: pulumi.Input[_builtins.str]
     """
-    [string] The username for the initial MariaDB user. Some system usernames are restricted (e.g 'mariadb', 'admin', 'standby').
+    [string] The username for the initial MariaDB user. Some system usernames are restricted (e.g 'mariadb', 'admin', 'standby'). Length: 1-16 characters. Must start with a letter, end with a letter or number, and contain only letters, numbers, or underscores (underscores only between alphanumeric groups).
     """
 
 @pulumi.input_type
@@ -955,8 +969,8 @@ class MariaDBClusterCredentialsArgs:
                  password: pulumi.Input[_builtins.str],
                  username: pulumi.Input[_builtins.str]):
         """
-        :param pulumi.Input[_builtins.str] password: [string] The password for a MariaDB user.
-        :param pulumi.Input[_builtins.str] username: [string] The username for the initial MariaDB user. Some system usernames are restricted (e.g 'mariadb', 'admin', 'standby').
+        :param pulumi.Input[_builtins.str] password: [string] The password for a MariaDB user. Length: 10-63 characters.
+        :param pulumi.Input[_builtins.str] username: [string] The username for the initial MariaDB user. Some system usernames are restricted (e.g 'mariadb', 'admin', 'standby'). Length: 1-16 characters. Must start with a letter, end with a letter or number, and contain only letters, numbers, or underscores (underscores only between alphanumeric groups).
         """
         pulumi.set(__self__, "password", password)
         pulumi.set(__self__, "username", username)
@@ -965,7 +979,7 @@ class MariaDBClusterCredentialsArgs:
     @pulumi.getter
     def password(self) -> pulumi.Input[_builtins.str]:
         """
-        [string] The password for a MariaDB user.
+        [string] The password for a MariaDB user. Length: 10-63 characters.
         """
         return pulumi.get(self, "password")
 
@@ -977,7 +991,7 @@ class MariaDBClusterCredentialsArgs:
     @pulumi.getter
     def username(self) -> pulumi.Input[_builtins.str]:
         """
-        [string] The username for the initial MariaDB user. Some system usernames are restricted (e.g 'mariadb', 'admin', 'standby').
+        [string] The username for the initial MariaDB user. Some system usernames are restricted (e.g 'mariadb', 'admin', 'standby'). Length: 1-16 characters. Must start with a letter, end with a letter or number, and contain only letters, numbers, or underscores (underscores only between alphanumeric groups).
         """
         return pulumi.get(self, "username")
 
@@ -993,7 +1007,7 @@ class MariaDBClusterMaintenanceWindowArgsDict(TypedDict):
     """
     time: pulumi.Input[_builtins.str]
     """
-    [string] Start of the maintenance window in UTC time.
+    [string] Start of the maintenance window in UTC time. Format: HH:MM:SS.
     """
 
 @pulumi.input_type
@@ -1003,7 +1017,7 @@ class MariaDBClusterMaintenanceWindowArgs:
                  time: pulumi.Input[_builtins.str]):
         """
         :param pulumi.Input[_builtins.str] day_of_the_week: [string] The name of the week day.
-        :param pulumi.Input[_builtins.str] time: [string] Start of the maintenance window in UTC time.
+        :param pulumi.Input[_builtins.str] time: [string] Start of the maintenance window in UTC time. Format: HH:MM:SS.
         """
         pulumi.set(__self__, "day_of_the_week", day_of_the_week)
         pulumi.set(__self__, "time", time)
@@ -1024,13 +1038,448 @@ class MariaDBClusterMaintenanceWindowArgs:
     @pulumi.getter
     def time(self) -> pulumi.Input[_builtins.str]:
         """
-        [string] Start of the maintenance window in UTC time.
+        [string] Start of the maintenance window in UTC time. Format: HH:MM:SS.
         """
         return pulumi.get(self, "time")
 
     @time.setter
     def time(self, value: pulumi.Input[_builtins.str]):
         pulumi.set(self, "time", value)
+
+
+class MariaDBClusterV2BackupArgsDict(TypedDict):
+    location: pulumi.Input[_builtins.str]
+    """
+    [string] The Object Storage location where the backup will be created. Changing this forces re-creation of the cluster.
+    """
+    retention_days: pulumi.Input[_builtins.int]
+    """
+    [int] Configures how many days cluster backups are retained.
+    """
+
+@pulumi.input_type
+class MariaDBClusterV2BackupArgs:
+    def __init__(__self__, *,
+                 location: pulumi.Input[_builtins.str],
+                 retention_days: pulumi.Input[_builtins.int]):
+        """
+        :param pulumi.Input[_builtins.str] location: [string] The Object Storage location where the backup will be created. Changing this forces re-creation of the cluster.
+        :param pulumi.Input[_builtins.int] retention_days: [int] Configures how many days cluster backups are retained.
+        """
+        pulumi.set(__self__, "location", location)
+        pulumi.set(__self__, "retention_days", retention_days)
+
+    @_builtins.property
+    @pulumi.getter
+    def location(self) -> pulumi.Input[_builtins.str]:
+        """
+        [string] The Object Storage location where the backup will be created. Changing this forces re-creation of the cluster.
+        """
+        return pulumi.get(self, "location")
+
+    @location.setter
+    def location(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "location", value)
+
+    @_builtins.property
+    @pulumi.getter(name="retentionDays")
+    def retention_days(self) -> pulumi.Input[_builtins.int]:
+        """
+        [int] Configures how many days cluster backups are retained.
+        """
+        return pulumi.get(self, "retention_days")
+
+    @retention_days.setter
+    def retention_days(self, value: pulumi.Input[_builtins.int]):
+        pulumi.set(self, "retention_days", value)
+
+
+class MariaDBClusterV2ConnectionsArgsDict(TypedDict):
+    datacenter_id: pulumi.Input[_builtins.str]
+    """
+    [string] The datacenter to connect your instance to.
+    """
+    lan_id: pulumi.Input[_builtins.str]
+    """
+    [string] The numeric LAN ID to connect your instance to.
+    """
+    primary_instance_address: pulumi.Input[_builtins.str]
+    """
+    [string] The IP address and netmask of the cluster's primary instance, in CIDR notation.
+    """
+
+@pulumi.input_type
+class MariaDBClusterV2ConnectionsArgs:
+    def __init__(__self__, *,
+                 datacenter_id: pulumi.Input[_builtins.str],
+                 lan_id: pulumi.Input[_builtins.str],
+                 primary_instance_address: pulumi.Input[_builtins.str]):
+        """
+        :param pulumi.Input[_builtins.str] datacenter_id: [string] The datacenter to connect your instance to.
+        :param pulumi.Input[_builtins.str] lan_id: [string] The numeric LAN ID to connect your instance to.
+        :param pulumi.Input[_builtins.str] primary_instance_address: [string] The IP address and netmask of the cluster's primary instance, in CIDR notation.
+        """
+        pulumi.set(__self__, "datacenter_id", datacenter_id)
+        pulumi.set(__self__, "lan_id", lan_id)
+        pulumi.set(__self__, "primary_instance_address", primary_instance_address)
+
+    @_builtins.property
+    @pulumi.getter(name="datacenterId")
+    def datacenter_id(self) -> pulumi.Input[_builtins.str]:
+        """
+        [string] The datacenter to connect your instance to.
+        """
+        return pulumi.get(self, "datacenter_id")
+
+    @datacenter_id.setter
+    def datacenter_id(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "datacenter_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="lanId")
+    def lan_id(self) -> pulumi.Input[_builtins.str]:
+        """
+        [string] The numeric LAN ID to connect your instance to.
+        """
+        return pulumi.get(self, "lan_id")
+
+    @lan_id.setter
+    def lan_id(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "lan_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="primaryInstanceAddress")
+    def primary_instance_address(self) -> pulumi.Input[_builtins.str]:
+        """
+        [string] The IP address and netmask of the cluster's primary instance, in CIDR notation.
+        """
+        return pulumi.get(self, "primary_instance_address")
+
+    @primary_instance_address.setter
+    def primary_instance_address(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "primary_instance_address", value)
+
+
+class MariaDBClusterV2CredentialsArgsDict(TypedDict):
+    database: pulumi.Input[_builtins.str]
+    """
+    [string] The name of the initial database to be created.
+    """
+    password: pulumi.Input[_builtins.str]
+    """
+    [string] **Sensitive.** The password for the initial MariaDB user. Not returned by the API — will be null in state after `pulumi import`.
+    """
+    username: pulumi.Input[_builtins.str]
+    """
+    [string] The username of the initial MariaDB user.
+    """
+
+@pulumi.input_type
+class MariaDBClusterV2CredentialsArgs:
+    def __init__(__self__, *,
+                 database: pulumi.Input[_builtins.str],
+                 password: pulumi.Input[_builtins.str],
+                 username: pulumi.Input[_builtins.str]):
+        """
+        :param pulumi.Input[_builtins.str] database: [string] The name of the initial database to be created.
+        :param pulumi.Input[_builtins.str] password: [string] **Sensitive.** The password for the initial MariaDB user. Not returned by the API — will be null in state after `pulumi import`.
+        :param pulumi.Input[_builtins.str] username: [string] The username of the initial MariaDB user.
+        """
+        pulumi.set(__self__, "database", database)
+        pulumi.set(__self__, "password", password)
+        pulumi.set(__self__, "username", username)
+
+    @_builtins.property
+    @pulumi.getter
+    def database(self) -> pulumi.Input[_builtins.str]:
+        """
+        [string] The name of the initial database to be created.
+        """
+        return pulumi.get(self, "database")
+
+    @database.setter
+    def database(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "database", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def password(self) -> pulumi.Input[_builtins.str]:
+        """
+        [string] **Sensitive.** The password for the initial MariaDB user. Not returned by the API — will be null in state after `pulumi import`.
+        """
+        return pulumi.get(self, "password")
+
+    @password.setter
+    def password(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "password", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def username(self) -> pulumi.Input[_builtins.str]:
+        """
+        [string] The username of the initial MariaDB user.
+        """
+        return pulumi.get(self, "username")
+
+    @username.setter
+    def username(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "username", value)
+
+
+class MariaDBClusterV2InstancesArgsDict(TypedDict):
+    cores: pulumi.Input[_builtins.int]
+    """
+    [int] The number of CPU cores per instance.
+    """
+    count: pulumi.Input[_builtins.int]
+    """
+    [int] The total number of instances in the cluster (one primary and n-1 secondary).
+    """
+    ram: pulumi.Input[_builtins.int]
+    """
+    [int] The amount of memory per instance in gigabytes (GB).
+    """
+    storage_size: pulumi.Input[_builtins.int]
+    """
+    [int] The amount of storage per instance in gigabytes (GB).
+    """
+
+@pulumi.input_type
+class MariaDBClusterV2InstancesArgs:
+    def __init__(__self__, *,
+                 cores: pulumi.Input[_builtins.int],
+                 count: pulumi.Input[_builtins.int],
+                 ram: pulumi.Input[_builtins.int],
+                 storage_size: pulumi.Input[_builtins.int]):
+        """
+        :param pulumi.Input[_builtins.int] cores: [int] The number of CPU cores per instance.
+        :param pulumi.Input[_builtins.int] count: [int] The total number of instances in the cluster (one primary and n-1 secondary).
+        :param pulumi.Input[_builtins.int] ram: [int] The amount of memory per instance in gigabytes (GB).
+        :param pulumi.Input[_builtins.int] storage_size: [int] The amount of storage per instance in gigabytes (GB).
+        """
+        pulumi.set(__self__, "cores", cores)
+        pulumi.set(__self__, "count", count)
+        pulumi.set(__self__, "ram", ram)
+        pulumi.set(__self__, "storage_size", storage_size)
+
+    @_builtins.property
+    @pulumi.getter
+    def cores(self) -> pulumi.Input[_builtins.int]:
+        """
+        [int] The number of CPU cores per instance.
+        """
+        return pulumi.get(self, "cores")
+
+    @cores.setter
+    def cores(self, value: pulumi.Input[_builtins.int]):
+        pulumi.set(self, "cores", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def count(self) -> pulumi.Input[_builtins.int]:
+        """
+        [int] The total number of instances in the cluster (one primary and n-1 secondary).
+        """
+        return pulumi.get(self, "count")
+
+    @count.setter
+    def count(self, value: pulumi.Input[_builtins.int]):
+        pulumi.set(self, "count", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def ram(self) -> pulumi.Input[_builtins.int]:
+        """
+        [int] The amount of memory per instance in gigabytes (GB).
+        """
+        return pulumi.get(self, "ram")
+
+    @ram.setter
+    def ram(self, value: pulumi.Input[_builtins.int]):
+        pulumi.set(self, "ram", value)
+
+    @_builtins.property
+    @pulumi.getter(name="storageSize")
+    def storage_size(self) -> pulumi.Input[_builtins.int]:
+        """
+        [int] The amount of storage per instance in gigabytes (GB).
+        """
+        return pulumi.get(self, "storage_size")
+
+    @storage_size.setter
+    def storage_size(self, value: pulumi.Input[_builtins.int]):
+        pulumi.set(self, "storage_size", value)
+
+
+class MariaDBClusterV2MaintenanceWindowArgsDict(TypedDict):
+    day_of_the_week: pulumi.Input[_builtins.str]
+    """
+    [string] The name of the week day.
+    """
+    time: pulumi.Input[_builtins.str]
+    """
+    [string] Start of the maintenance window in UTC time (`HH:MM:SS`).
+    """
+
+@pulumi.input_type
+class MariaDBClusterV2MaintenanceWindowArgs:
+    def __init__(__self__, *,
+                 day_of_the_week: pulumi.Input[_builtins.str],
+                 time: pulumi.Input[_builtins.str]):
+        """
+        :param pulumi.Input[_builtins.str] day_of_the_week: [string] The name of the week day.
+        :param pulumi.Input[_builtins.str] time: [string] Start of the maintenance window in UTC time (`HH:MM:SS`).
+        """
+        pulumi.set(__self__, "day_of_the_week", day_of_the_week)
+        pulumi.set(__self__, "time", time)
+
+    @_builtins.property
+    @pulumi.getter(name="dayOfTheWeek")
+    def day_of_the_week(self) -> pulumi.Input[_builtins.str]:
+        """
+        [string] The name of the week day.
+        """
+        return pulumi.get(self, "day_of_the_week")
+
+    @day_of_the_week.setter
+    def day_of_the_week(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "day_of_the_week", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def time(self) -> pulumi.Input[_builtins.str]:
+        """
+        [string] Start of the maintenance window in UTC time (`HH:MM:SS`).
+        """
+        return pulumi.get(self, "time")
+
+    @time.setter
+    def time(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "time", value)
+
+
+class MariaDBClusterV2RestoreFromBackupArgsDict(TypedDict):
+    recovery_target_datetime: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    """
+    [string] ISO 8601 timestamp causing the system to replay backups up to the specified time. Optional for create-time restore; required for in-place restore during an update.
+
+    > **Note:** `restore_from_backup` is not returned by the API. The values are stored in state as configured but will be null after `pulumi import`.
+    """
+    source_backup_id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    """
+    [string] UUID of the backup to restore from. Required when `restore_from_backup` is set during cluster creation; not valid for in-place restore during an update.
+    """
+
+@pulumi.input_type
+class MariaDBClusterV2RestoreFromBackupArgs:
+    def __init__(__self__, *,
+                 recovery_target_datetime: pulumi.Input[Optional[_builtins.str]] = None,
+                 source_backup_id: pulumi.Input[Optional[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] recovery_target_datetime: [string] ISO 8601 timestamp causing the system to replay backups up to the specified time. Optional for create-time restore; required for in-place restore during an update.
+               
+               > **Note:** `restore_from_backup` is not returned by the API. The values are stored in state as configured but will be null after `pulumi import`.
+        :param pulumi.Input[_builtins.str] source_backup_id: [string] UUID of the backup to restore from. Required when `restore_from_backup` is set during cluster creation; not valid for in-place restore during an update.
+        """
+        if recovery_target_datetime is not None:
+            pulumi.set(__self__, "recovery_target_datetime", recovery_target_datetime)
+        if source_backup_id is not None:
+            pulumi.set(__self__, "source_backup_id", source_backup_id)
+
+    @_builtins.property
+    @pulumi.getter(name="recoveryTargetDatetime")
+    def recovery_target_datetime(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        [string] ISO 8601 timestamp causing the system to replay backups up to the specified time. Optional for create-time restore; required for in-place restore during an update.
+
+        > **Note:** `restore_from_backup` is not returned by the API. The values are stored in state as configured but will be null after `pulumi import`.
+        """
+        return pulumi.get(self, "recovery_target_datetime")
+
+    @recovery_target_datetime.setter
+    def recovery_target_datetime(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "recovery_target_datetime", value)
+
+    @_builtins.property
+    @pulumi.getter(name="sourceBackupId")
+    def source_backup_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        [string] UUID of the backup to restore from. Required when `restore_from_backup` is set during cluster creation; not valid for in-place restore during an update.
+        """
+        return pulumi.get(self, "source_backup_id")
+
+    @source_backup_id.setter
+    def source_backup_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "source_backup_id", value)
+
+
+class MariaDBClusterV2TimeoutsArgsDict(TypedDict):
+    create: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    """
+    A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+    """
+    delete: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    """
+    A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs.
+    """
+    update: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    """
+    A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+    """
+
+@pulumi.input_type
+class MariaDBClusterV2TimeoutsArgs:
+    def __init__(__self__, *,
+                 create: pulumi.Input[Optional[_builtins.str]] = None,
+                 delete: pulumi.Input[Optional[_builtins.str]] = None,
+                 update: pulumi.Input[Optional[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] create: A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+        :param pulumi.Input[_builtins.str] delete: A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs.
+        :param pulumi.Input[_builtins.str] update: A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+        """
+        if create is not None:
+            pulumi.set(__self__, "create", create)
+        if delete is not None:
+            pulumi.set(__self__, "delete", delete)
+        if update is not None:
+            pulumi.set(__self__, "update", update)
+
+    @_builtins.property
+    @pulumi.getter
+    def create(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+        """
+        return pulumi.get(self, "create")
+
+    @create.setter
+    def create(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "create", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def delete(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs.
+        """
+        return pulumi.get(self, "delete")
+
+    @delete.setter
+    def delete(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "delete", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def update(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+        """
+        return pulumi.get(self, "update")
+
+    @update.setter
+    def update(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "update", value)
 
 
 class MongoClusterBackupArgsDict(TypedDict):

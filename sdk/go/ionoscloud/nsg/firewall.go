@@ -91,7 +91,7 @@ type Firewall struct {
 	PortRangeEnd pulumi.IntPtrOutput `pulumi:"portRangeEnd"`
 	// [int] Defines the start range of the allowed port (from 1 to 65534) if protocol TCP or UDP is chosen. Leave portRangeStart and portRangeEnd null to allow all ports.
 	PortRangeStart pulumi.IntPtrOutput `pulumi:"portRangeStart"`
-	// [string] The protocol for the rule: TCP, UDP, ICMP, ANY. Property cannot be modified after creation (disallowed in update requests).
+	// [string] The protocol for the rule: TCP, UDP, ICMP, ANY. Property cannot be modified after creation (disallowed in update requests); changing it forces a new resource to be created.
 	Protocol pulumi.StringOutput `pulumi:"protocol"`
 	// (computed)[string] Only traffic originating from the respective IPv4 address is allowed. Value null allows all source IPs.
 	SourceIp pulumi.StringOutput `pulumi:"sourceIp"`
@@ -158,7 +158,7 @@ type firewallState struct {
 	PortRangeEnd *int `pulumi:"portRangeEnd"`
 	// [int] Defines the start range of the allowed port (from 1 to 65534) if protocol TCP or UDP is chosen. Leave portRangeStart and portRangeEnd null to allow all ports.
 	PortRangeStart *int `pulumi:"portRangeStart"`
-	// [string] The protocol for the rule: TCP, UDP, ICMP, ANY. Property cannot be modified after creation (disallowed in update requests).
+	// [string] The protocol for the rule: TCP, UDP, ICMP, ANY. Property cannot be modified after creation (disallowed in update requests); changing it forces a new resource to be created.
 	Protocol *string `pulumi:"protocol"`
 	// (computed)[string] Only traffic originating from the respective IPv4 address is allowed. Value null allows all source IPs.
 	SourceIp *string `pulumi:"sourceIp"`
@@ -187,7 +187,7 @@ type FirewallState struct {
 	PortRangeEnd pulumi.IntPtrInput
 	// [int] Defines the start range of the allowed port (from 1 to 65534) if protocol TCP or UDP is chosen. Leave portRangeStart and portRangeEnd null to allow all ports.
 	PortRangeStart pulumi.IntPtrInput
-	// [string] The protocol for the rule: TCP, UDP, ICMP, ANY. Property cannot be modified after creation (disallowed in update requests).
+	// [string] The protocol for the rule: TCP, UDP, ICMP, ANY. Property cannot be modified after creation (disallowed in update requests); changing it forces a new resource to be created.
 	Protocol pulumi.StringPtrInput
 	// (computed)[string] Only traffic originating from the respective IPv4 address is allowed. Value null allows all source IPs.
 	SourceIp pulumi.StringPtrInput
@@ -220,7 +220,7 @@ type firewallArgs struct {
 	PortRangeEnd *int `pulumi:"portRangeEnd"`
 	// [int] Defines the start range of the allowed port (from 1 to 65534) if protocol TCP or UDP is chosen. Leave portRangeStart and portRangeEnd null to allow all ports.
 	PortRangeStart *int `pulumi:"portRangeStart"`
-	// [string] The protocol for the rule: TCP, UDP, ICMP, ANY. Property cannot be modified after creation (disallowed in update requests).
+	// [string] The protocol for the rule: TCP, UDP, ICMP, ANY. Property cannot be modified after creation (disallowed in update requests); changing it forces a new resource to be created.
 	Protocol string `pulumi:"protocol"`
 	// (computed)[string] Only traffic originating from the respective IPv4 address is allowed. Value null allows all source IPs.
 	SourceIp *string `pulumi:"sourceIp"`
@@ -250,7 +250,7 @@ type FirewallArgs struct {
 	PortRangeEnd pulumi.IntPtrInput
 	// [int] Defines the start range of the allowed port (from 1 to 65534) if protocol TCP or UDP is chosen. Leave portRangeStart and portRangeEnd null to allow all ports.
 	PortRangeStart pulumi.IntPtrInput
-	// [string] The protocol for the rule: TCP, UDP, ICMP, ANY. Property cannot be modified after creation (disallowed in update requests).
+	// [string] The protocol for the rule: TCP, UDP, ICMP, ANY. Property cannot be modified after creation (disallowed in update requests); changing it forces a new resource to be created.
 	Protocol pulumi.StringInput
 	// (computed)[string] Only traffic originating from the respective IPv4 address is allowed. Value null allows all source IPs.
 	SourceIp pulumi.StringPtrInput
@@ -389,7 +389,7 @@ func (o FirewallOutput) PortRangeStart() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *Firewall) pulumi.IntPtrOutput { return v.PortRangeStart }).(pulumi.IntPtrOutput)
 }
 
-// [string] The protocol for the rule: TCP, UDP, ICMP, ANY. Property cannot be modified after creation (disallowed in update requests).
+// [string] The protocol for the rule: TCP, UDP, ICMP, ANY. Property cannot be modified after creation (disallowed in update requests); changing it forces a new resource to be created.
 func (o FirewallOutput) Protocol() pulumi.StringOutput {
 	return o.ApplyT(func(v *Firewall) pulumi.StringOutput { return v.Protocol }).(pulumi.StringOutput)
 }

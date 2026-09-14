@@ -794,6 +794,8 @@ class DatacenterCpuArchitecture(dict):
         suggest = None
         if key == "cpuFamily":
             suggest = "cpu_family"
+        elif key == "enabledFeatures":
+            suggest = "enabled_features"
         elif key == "maxCores":
             suggest = "max_cores"
         elif key == "maxRam":
@@ -812,17 +814,21 @@ class DatacenterCpuArchitecture(dict):
 
     def __init__(__self__, *,
                  cpu_family: Optional[_builtins.str] = None,
+                 enabled_features: Optional[Sequence[_builtins.str]] = None,
                  max_cores: Optional[_builtins.int] = None,
                  max_ram: Optional[_builtins.int] = None,
                  vendor: Optional[_builtins.str] = None):
         """
         :param _builtins.str cpu_family: A valid CPU family name
+        :param Sequence[_builtins.str] enabled_features: Features enabled for this CPU architecture, e.g. `SEV-SNP` for Confidential Computing
         :param _builtins.int max_cores: The maximum number of cores available
         :param _builtins.int max_ram: The maximum number of RAM in MB
         :param _builtins.str vendor: A valid CPU vendor name
         """
         if cpu_family is not None:
             pulumi.set(__self__, "cpu_family", cpu_family)
+        if enabled_features is not None:
+            pulumi.set(__self__, "enabled_features", enabled_features)
         if max_cores is not None:
             pulumi.set(__self__, "max_cores", max_cores)
         if max_ram is not None:
@@ -837,6 +843,14 @@ class DatacenterCpuArchitecture(dict):
         A valid CPU family name
         """
         return pulumi.get(self, "cpu_family")
+
+    @_builtins.property
+    @pulumi.getter(name="enabledFeatures")
+    def enabled_features(self) -> Optional[Sequence[_builtins.str]]:
+        """
+        Features enabled for this CPU architecture, e.g. `SEV-SNP` for Confidential Computing
+        """
+        return pulumi.get(self, "enabled_features")
 
     @_builtins.property
     @pulumi.getter(name="maxCores")
@@ -4091,16 +4105,19 @@ class GetCubeServerVolumeResult(dict):
 class GetDatacenterCpuArchitectureResult(dict):
     def __init__(__self__, *,
                  cpu_family: _builtins.str,
+                 enabled_features: Sequence[_builtins.str],
                  max_cores: _builtins.int,
                  max_ram: _builtins.int,
                  vendor: _builtins.str):
         """
         :param _builtins.str cpu_family: A valid CPU family name
+        :param Sequence[_builtins.str] enabled_features: Features enabled for this CPU architecture, e.g. `SEV-SNP` for Confidential Computing
         :param _builtins.int max_cores: The maximum number of cores available
         :param _builtins.int max_ram: The maximum number of RAM in MB
         :param _builtins.str vendor: A valid CPU vendor name
         """
         pulumi.set(__self__, "cpu_family", cpu_family)
+        pulumi.set(__self__, "enabled_features", enabled_features)
         pulumi.set(__self__, "max_cores", max_cores)
         pulumi.set(__self__, "max_ram", max_ram)
         pulumi.set(__self__, "vendor", vendor)
@@ -4112,6 +4129,14 @@ class GetDatacenterCpuArchitectureResult(dict):
         A valid CPU family name
         """
         return pulumi.get(self, "cpu_family")
+
+    @_builtins.property
+    @pulumi.getter(name="enabledFeatures")
+    def enabled_features(self) -> Sequence[_builtins.str]:
+        """
+        Features enabled for this CPU architecture, e.g. `SEV-SNP` for Confidential Computing
+        """
+        return pulumi.get(self, "enabled_features")
 
     @_builtins.property
     @pulumi.getter(name="maxCores")
@@ -5039,16 +5064,19 @@ class GetLanIpFailoverResult(dict):
 class GetLocationCpuArchitectureResult(dict):
     def __init__(__self__, *,
                  cpu_family: _builtins.str,
+                 enabled_features: Sequence[_builtins.str],
                  max_cores: _builtins.int,
                  max_ram: _builtins.int,
                  vendor: _builtins.str):
         """
         :param _builtins.str cpu_family: A valid CPU family name.
+        :param Sequence[_builtins.str] enabled_features: Features enabled for this CPU architecture, e.g. `SEV-SNP` for Confidential Computing.
         :param _builtins.int max_cores: The maximum number of cores available.
         :param _builtins.int max_ram: The maximum number of RAM in MB.
         :param _builtins.str vendor: A valid CPU vendor name.
         """
         pulumi.set(__self__, "cpu_family", cpu_family)
+        pulumi.set(__self__, "enabled_features", enabled_features)
         pulumi.set(__self__, "max_cores", max_cores)
         pulumi.set(__self__, "max_ram", max_ram)
         pulumi.set(__self__, "vendor", vendor)
@@ -5060,6 +5088,14 @@ class GetLocationCpuArchitectureResult(dict):
         A valid CPU family name.
         """
         return pulumi.get(self, "cpu_family")
+
+    @_builtins.property
+    @pulumi.getter(name="enabledFeatures")
+    def enabled_features(self) -> Sequence[_builtins.str]:
+        """
+        Features enabled for this CPU architecture, e.g. `SEV-SNP` for Confidential Computing.
+        """
+        return pulumi.get(self, "enabled_features")
 
     @_builtins.property
     @pulumi.getter(name="maxCores")
@@ -6078,6 +6114,7 @@ class GetServersServerResult(dict):
                  cdroms: Sequence['outputs.GetServersServerCdromResult'],
                  cores: _builtins.int,
                  cpu_family: _builtins.str,
+                 enabled_features: Sequence[_builtins.str],
                  hostname: _builtins.str,
                  id: _builtins.str,
                  labels: Sequence['outputs.GetServersServerLabelResult'],
@@ -6091,6 +6128,7 @@ class GetServersServerResult(dict):
                  name: Optional[_builtins.str] = None,
                  template_uuid: Optional[_builtins.str] = None):
         """
+        :param Sequence[_builtins.str] enabled_features: Features enabled on the server, e.g. SEV-SNP for a Confidential Computing VM.
         :param _builtins.str id: The unique ID of the server.
         """
         pulumi.set(__self__, "availability_zone", availability_zone)
@@ -6100,6 +6138,7 @@ class GetServersServerResult(dict):
         pulumi.set(__self__, "cdroms", cdroms)
         pulumi.set(__self__, "cores", cores)
         pulumi.set(__self__, "cpu_family", cpu_family)
+        pulumi.set(__self__, "enabled_features", enabled_features)
         pulumi.set(__self__, "hostname", hostname)
         pulumi.set(__self__, "id", id)
         pulumi.set(__self__, "labels", labels)
@@ -6149,6 +6188,14 @@ class GetServersServerResult(dict):
     @pulumi.getter(name="cpuFamily")
     def cpu_family(self) -> _builtins.str:
         return pulumi.get(self, "cpu_family")
+
+    @_builtins.property
+    @pulumi.getter(name="enabledFeatures")
+    def enabled_features(self) -> Sequence[_builtins.str]:
+        """
+        Features enabled on the server, e.g. SEV-SNP for a Confidential Computing VM.
+        """
+        return pulumi.get(self, "enabled_features")
 
     @_builtins.property
     @pulumi.getter

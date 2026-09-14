@@ -2603,9 +2603,9 @@ func (o MariaDBClusterConnectionsPtrOutput) LanId() pulumi.StringPtrOutput {
 }
 
 type MariaDBClusterCredentials struct {
-	// [string] The password for a MariaDB user.
+	// [string] The password for a MariaDB user. Length: 10-63 characters.
 	Password string `pulumi:"password"`
-	// [string] The username for the initial MariaDB user. Some system usernames are restricted (e.g 'mariadb', 'admin', 'standby').
+	// [string] The username for the initial MariaDB user. Some system usernames are restricted (e.g 'mariadb', 'admin', 'standby'). Length: 1-16 characters. Must start with a letter, end with a letter or number, and contain only letters, numbers, or underscores (underscores only between alphanumeric groups).
 	Username string `pulumi:"username"`
 }
 
@@ -2621,9 +2621,9 @@ type MariaDBClusterCredentialsInput interface {
 }
 
 type MariaDBClusterCredentialsArgs struct {
-	// [string] The password for a MariaDB user.
+	// [string] The password for a MariaDB user. Length: 10-63 characters.
 	Password pulumi.StringInput `pulumi:"password"`
-	// [string] The username for the initial MariaDB user. Some system usernames are restricted (e.g 'mariadb', 'admin', 'standby').
+	// [string] The username for the initial MariaDB user. Some system usernames are restricted (e.g 'mariadb', 'admin', 'standby'). Length: 1-16 characters. Must start with a letter, end with a letter or number, and contain only letters, numbers, or underscores (underscores only between alphanumeric groups).
 	Username pulumi.StringInput `pulumi:"username"`
 }
 
@@ -2704,12 +2704,12 @@ func (o MariaDBClusterCredentialsOutput) ToMariaDBClusterCredentialsPtrOutputWit
 	}).(MariaDBClusterCredentialsPtrOutput)
 }
 
-// [string] The password for a MariaDB user.
+// [string] The password for a MariaDB user. Length: 10-63 characters.
 func (o MariaDBClusterCredentialsOutput) Password() pulumi.StringOutput {
 	return o.ApplyT(func(v MariaDBClusterCredentials) string { return v.Password }).(pulumi.StringOutput)
 }
 
-// [string] The username for the initial MariaDB user. Some system usernames are restricted (e.g 'mariadb', 'admin', 'standby').
+// [string] The username for the initial MariaDB user. Some system usernames are restricted (e.g 'mariadb', 'admin', 'standby'). Length: 1-16 characters. Must start with a letter, end with a letter or number, and contain only letters, numbers, or underscores (underscores only between alphanumeric groups).
 func (o MariaDBClusterCredentialsOutput) Username() pulumi.StringOutput {
 	return o.ApplyT(func(v MariaDBClusterCredentials) string { return v.Username }).(pulumi.StringOutput)
 }
@@ -2738,7 +2738,7 @@ func (o MariaDBClusterCredentialsPtrOutput) Elem() MariaDBClusterCredentialsOutp
 	}).(MariaDBClusterCredentialsOutput)
 }
 
-// [string] The password for a MariaDB user.
+// [string] The password for a MariaDB user. Length: 10-63 characters.
 func (o MariaDBClusterCredentialsPtrOutput) Password() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *MariaDBClusterCredentials) *string {
 		if v == nil {
@@ -2748,7 +2748,7 @@ func (o MariaDBClusterCredentialsPtrOutput) Password() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// [string] The username for the initial MariaDB user. Some system usernames are restricted (e.g 'mariadb', 'admin', 'standby').
+// [string] The username for the initial MariaDB user. Some system usernames are restricted (e.g 'mariadb', 'admin', 'standby'). Length: 1-16 characters. Must start with a letter, end with a letter or number, and contain only letters, numbers, or underscores (underscores only between alphanumeric groups).
 func (o MariaDBClusterCredentialsPtrOutput) Username() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *MariaDBClusterCredentials) *string {
 		if v == nil {
@@ -2761,7 +2761,7 @@ func (o MariaDBClusterCredentialsPtrOutput) Username() pulumi.StringPtrOutput {
 type MariaDBClusterMaintenanceWindow struct {
 	// [string] The name of the week day.
 	DayOfTheWeek string `pulumi:"dayOfTheWeek"`
-	// [string] Start of the maintenance window in UTC time.
+	// [string] Start of the maintenance window in UTC time. Format: HH:MM:SS.
 	Time string `pulumi:"time"`
 }
 
@@ -2779,7 +2779,7 @@ type MariaDBClusterMaintenanceWindowInput interface {
 type MariaDBClusterMaintenanceWindowArgs struct {
 	// [string] The name of the week day.
 	DayOfTheWeek pulumi.StringInput `pulumi:"dayOfTheWeek"`
-	// [string] Start of the maintenance window in UTC time.
+	// [string] Start of the maintenance window in UTC time. Format: HH:MM:SS.
 	Time pulumi.StringInput `pulumi:"time"`
 }
 
@@ -2865,7 +2865,7 @@ func (o MariaDBClusterMaintenanceWindowOutput) DayOfTheWeek() pulumi.StringOutpu
 	return o.ApplyT(func(v MariaDBClusterMaintenanceWindow) string { return v.DayOfTheWeek }).(pulumi.StringOutput)
 }
 
-// [string] Start of the maintenance window in UTC time.
+// [string] Start of the maintenance window in UTC time. Format: HH:MM:SS.
 func (o MariaDBClusterMaintenanceWindowOutput) Time() pulumi.StringOutput {
 	return o.ApplyT(func(v MariaDBClusterMaintenanceWindow) string { return v.Time }).(pulumi.StringOutput)
 }
@@ -2904,13 +2904,1314 @@ func (o MariaDBClusterMaintenanceWindowPtrOutput) DayOfTheWeek() pulumi.StringPt
 	}).(pulumi.StringPtrOutput)
 }
 
-// [string] Start of the maintenance window in UTC time.
+// [string] Start of the maintenance window in UTC time. Format: HH:MM:SS.
 func (o MariaDBClusterMaintenanceWindowPtrOutput) Time() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *MariaDBClusterMaintenanceWindow) *string {
 		if v == nil {
 			return nil
 		}
 		return &v.Time
+	}).(pulumi.StringPtrOutput)
+}
+
+type MariaDBClusterV2Backup struct {
+	// [string] The Object Storage location where the backup will be created. Changing this forces re-creation of the cluster.
+	Location string `pulumi:"location"`
+	// [int] Configures how many days cluster backups are retained.
+	RetentionDays int `pulumi:"retentionDays"`
+}
+
+// MariaDBClusterV2BackupInput is an input type that accepts MariaDBClusterV2BackupArgs and MariaDBClusterV2BackupOutput values.
+// You can construct a concrete instance of `MariaDBClusterV2BackupInput` via:
+//
+//	MariaDBClusterV2BackupArgs{...}
+type MariaDBClusterV2BackupInput interface {
+	pulumi.Input
+
+	ToMariaDBClusterV2BackupOutput() MariaDBClusterV2BackupOutput
+	ToMariaDBClusterV2BackupOutputWithContext(context.Context) MariaDBClusterV2BackupOutput
+}
+
+type MariaDBClusterV2BackupArgs struct {
+	// [string] The Object Storage location where the backup will be created. Changing this forces re-creation of the cluster.
+	Location pulumi.StringInput `pulumi:"location"`
+	// [int] Configures how many days cluster backups are retained.
+	RetentionDays pulumi.IntInput `pulumi:"retentionDays"`
+}
+
+func (MariaDBClusterV2BackupArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*MariaDBClusterV2Backup)(nil)).Elem()
+}
+
+func (i MariaDBClusterV2BackupArgs) ToMariaDBClusterV2BackupOutput() MariaDBClusterV2BackupOutput {
+	return i.ToMariaDBClusterV2BackupOutputWithContext(context.Background())
+}
+
+func (i MariaDBClusterV2BackupArgs) ToMariaDBClusterV2BackupOutputWithContext(ctx context.Context) MariaDBClusterV2BackupOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(MariaDBClusterV2BackupOutput)
+}
+
+func (i MariaDBClusterV2BackupArgs) ToMariaDBClusterV2BackupPtrOutput() MariaDBClusterV2BackupPtrOutput {
+	return i.ToMariaDBClusterV2BackupPtrOutputWithContext(context.Background())
+}
+
+func (i MariaDBClusterV2BackupArgs) ToMariaDBClusterV2BackupPtrOutputWithContext(ctx context.Context) MariaDBClusterV2BackupPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(MariaDBClusterV2BackupOutput).ToMariaDBClusterV2BackupPtrOutputWithContext(ctx)
+}
+
+// MariaDBClusterV2BackupPtrInput is an input type that accepts MariaDBClusterV2BackupArgs, MariaDBClusterV2BackupPtr and MariaDBClusterV2BackupPtrOutput values.
+// You can construct a concrete instance of `MariaDBClusterV2BackupPtrInput` via:
+//
+//	        MariaDBClusterV2BackupArgs{...}
+//
+//	or:
+//
+//	        nil
+type MariaDBClusterV2BackupPtrInput interface {
+	pulumi.Input
+
+	ToMariaDBClusterV2BackupPtrOutput() MariaDBClusterV2BackupPtrOutput
+	ToMariaDBClusterV2BackupPtrOutputWithContext(context.Context) MariaDBClusterV2BackupPtrOutput
+}
+
+type mariaDBClusterV2BackupPtrType MariaDBClusterV2BackupArgs
+
+func MariaDBClusterV2BackupPtr(v *MariaDBClusterV2BackupArgs) MariaDBClusterV2BackupPtrInput {
+	return (*mariaDBClusterV2BackupPtrType)(v)
+}
+
+func (*mariaDBClusterV2BackupPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**MariaDBClusterV2Backup)(nil)).Elem()
+}
+
+func (i *mariaDBClusterV2BackupPtrType) ToMariaDBClusterV2BackupPtrOutput() MariaDBClusterV2BackupPtrOutput {
+	return i.ToMariaDBClusterV2BackupPtrOutputWithContext(context.Background())
+}
+
+func (i *mariaDBClusterV2BackupPtrType) ToMariaDBClusterV2BackupPtrOutputWithContext(ctx context.Context) MariaDBClusterV2BackupPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(MariaDBClusterV2BackupPtrOutput)
+}
+
+type MariaDBClusterV2BackupOutput struct{ *pulumi.OutputState }
+
+func (MariaDBClusterV2BackupOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*MariaDBClusterV2Backup)(nil)).Elem()
+}
+
+func (o MariaDBClusterV2BackupOutput) ToMariaDBClusterV2BackupOutput() MariaDBClusterV2BackupOutput {
+	return o
+}
+
+func (o MariaDBClusterV2BackupOutput) ToMariaDBClusterV2BackupOutputWithContext(ctx context.Context) MariaDBClusterV2BackupOutput {
+	return o
+}
+
+func (o MariaDBClusterV2BackupOutput) ToMariaDBClusterV2BackupPtrOutput() MariaDBClusterV2BackupPtrOutput {
+	return o.ToMariaDBClusterV2BackupPtrOutputWithContext(context.Background())
+}
+
+func (o MariaDBClusterV2BackupOutput) ToMariaDBClusterV2BackupPtrOutputWithContext(ctx context.Context) MariaDBClusterV2BackupPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v MariaDBClusterV2Backup) *MariaDBClusterV2Backup {
+		return &v
+	}).(MariaDBClusterV2BackupPtrOutput)
+}
+
+// [string] The Object Storage location where the backup will be created. Changing this forces re-creation of the cluster.
+func (o MariaDBClusterV2BackupOutput) Location() pulumi.StringOutput {
+	return o.ApplyT(func(v MariaDBClusterV2Backup) string { return v.Location }).(pulumi.StringOutput)
+}
+
+// [int] Configures how many days cluster backups are retained.
+func (o MariaDBClusterV2BackupOutput) RetentionDays() pulumi.IntOutput {
+	return o.ApplyT(func(v MariaDBClusterV2Backup) int { return v.RetentionDays }).(pulumi.IntOutput)
+}
+
+type MariaDBClusterV2BackupPtrOutput struct{ *pulumi.OutputState }
+
+func (MariaDBClusterV2BackupPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**MariaDBClusterV2Backup)(nil)).Elem()
+}
+
+func (o MariaDBClusterV2BackupPtrOutput) ToMariaDBClusterV2BackupPtrOutput() MariaDBClusterV2BackupPtrOutput {
+	return o
+}
+
+func (o MariaDBClusterV2BackupPtrOutput) ToMariaDBClusterV2BackupPtrOutputWithContext(ctx context.Context) MariaDBClusterV2BackupPtrOutput {
+	return o
+}
+
+func (o MariaDBClusterV2BackupPtrOutput) Elem() MariaDBClusterV2BackupOutput {
+	return o.ApplyT(func(v *MariaDBClusterV2Backup) MariaDBClusterV2Backup {
+		if v != nil {
+			return *v
+		}
+		var ret MariaDBClusterV2Backup
+		return ret
+	}).(MariaDBClusterV2BackupOutput)
+}
+
+// [string] The Object Storage location where the backup will be created. Changing this forces re-creation of the cluster.
+func (o MariaDBClusterV2BackupPtrOutput) Location() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *MariaDBClusterV2Backup) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Location
+	}).(pulumi.StringPtrOutput)
+}
+
+// [int] Configures how many days cluster backups are retained.
+func (o MariaDBClusterV2BackupPtrOutput) RetentionDays() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *MariaDBClusterV2Backup) *int {
+		if v == nil {
+			return nil
+		}
+		return &v.RetentionDays
+	}).(pulumi.IntPtrOutput)
+}
+
+type MariaDBClusterV2Connections struct {
+	// [string] The datacenter to connect your instance to.
+	DatacenterId string `pulumi:"datacenterId"`
+	// [string] The numeric LAN ID to connect your instance to.
+	LanId string `pulumi:"lanId"`
+	// [string] The IP address and netmask of the cluster's primary instance, in CIDR notation.
+	PrimaryInstanceAddress string `pulumi:"primaryInstanceAddress"`
+}
+
+// MariaDBClusterV2ConnectionsInput is an input type that accepts MariaDBClusterV2ConnectionsArgs and MariaDBClusterV2ConnectionsOutput values.
+// You can construct a concrete instance of `MariaDBClusterV2ConnectionsInput` via:
+//
+//	MariaDBClusterV2ConnectionsArgs{...}
+type MariaDBClusterV2ConnectionsInput interface {
+	pulumi.Input
+
+	ToMariaDBClusterV2ConnectionsOutput() MariaDBClusterV2ConnectionsOutput
+	ToMariaDBClusterV2ConnectionsOutputWithContext(context.Context) MariaDBClusterV2ConnectionsOutput
+}
+
+type MariaDBClusterV2ConnectionsArgs struct {
+	// [string] The datacenter to connect your instance to.
+	DatacenterId pulumi.StringInput `pulumi:"datacenterId"`
+	// [string] The numeric LAN ID to connect your instance to.
+	LanId pulumi.StringInput `pulumi:"lanId"`
+	// [string] The IP address and netmask of the cluster's primary instance, in CIDR notation.
+	PrimaryInstanceAddress pulumi.StringInput `pulumi:"primaryInstanceAddress"`
+}
+
+func (MariaDBClusterV2ConnectionsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*MariaDBClusterV2Connections)(nil)).Elem()
+}
+
+func (i MariaDBClusterV2ConnectionsArgs) ToMariaDBClusterV2ConnectionsOutput() MariaDBClusterV2ConnectionsOutput {
+	return i.ToMariaDBClusterV2ConnectionsOutputWithContext(context.Background())
+}
+
+func (i MariaDBClusterV2ConnectionsArgs) ToMariaDBClusterV2ConnectionsOutputWithContext(ctx context.Context) MariaDBClusterV2ConnectionsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(MariaDBClusterV2ConnectionsOutput)
+}
+
+func (i MariaDBClusterV2ConnectionsArgs) ToMariaDBClusterV2ConnectionsPtrOutput() MariaDBClusterV2ConnectionsPtrOutput {
+	return i.ToMariaDBClusterV2ConnectionsPtrOutputWithContext(context.Background())
+}
+
+func (i MariaDBClusterV2ConnectionsArgs) ToMariaDBClusterV2ConnectionsPtrOutputWithContext(ctx context.Context) MariaDBClusterV2ConnectionsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(MariaDBClusterV2ConnectionsOutput).ToMariaDBClusterV2ConnectionsPtrOutputWithContext(ctx)
+}
+
+// MariaDBClusterV2ConnectionsPtrInput is an input type that accepts MariaDBClusterV2ConnectionsArgs, MariaDBClusterV2ConnectionsPtr and MariaDBClusterV2ConnectionsPtrOutput values.
+// You can construct a concrete instance of `MariaDBClusterV2ConnectionsPtrInput` via:
+//
+//	        MariaDBClusterV2ConnectionsArgs{...}
+//
+//	or:
+//
+//	        nil
+type MariaDBClusterV2ConnectionsPtrInput interface {
+	pulumi.Input
+
+	ToMariaDBClusterV2ConnectionsPtrOutput() MariaDBClusterV2ConnectionsPtrOutput
+	ToMariaDBClusterV2ConnectionsPtrOutputWithContext(context.Context) MariaDBClusterV2ConnectionsPtrOutput
+}
+
+type mariaDBClusterV2ConnectionsPtrType MariaDBClusterV2ConnectionsArgs
+
+func MariaDBClusterV2ConnectionsPtr(v *MariaDBClusterV2ConnectionsArgs) MariaDBClusterV2ConnectionsPtrInput {
+	return (*mariaDBClusterV2ConnectionsPtrType)(v)
+}
+
+func (*mariaDBClusterV2ConnectionsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**MariaDBClusterV2Connections)(nil)).Elem()
+}
+
+func (i *mariaDBClusterV2ConnectionsPtrType) ToMariaDBClusterV2ConnectionsPtrOutput() MariaDBClusterV2ConnectionsPtrOutput {
+	return i.ToMariaDBClusterV2ConnectionsPtrOutputWithContext(context.Background())
+}
+
+func (i *mariaDBClusterV2ConnectionsPtrType) ToMariaDBClusterV2ConnectionsPtrOutputWithContext(ctx context.Context) MariaDBClusterV2ConnectionsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(MariaDBClusterV2ConnectionsPtrOutput)
+}
+
+type MariaDBClusterV2ConnectionsOutput struct{ *pulumi.OutputState }
+
+func (MariaDBClusterV2ConnectionsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*MariaDBClusterV2Connections)(nil)).Elem()
+}
+
+func (o MariaDBClusterV2ConnectionsOutput) ToMariaDBClusterV2ConnectionsOutput() MariaDBClusterV2ConnectionsOutput {
+	return o
+}
+
+func (o MariaDBClusterV2ConnectionsOutput) ToMariaDBClusterV2ConnectionsOutputWithContext(ctx context.Context) MariaDBClusterV2ConnectionsOutput {
+	return o
+}
+
+func (o MariaDBClusterV2ConnectionsOutput) ToMariaDBClusterV2ConnectionsPtrOutput() MariaDBClusterV2ConnectionsPtrOutput {
+	return o.ToMariaDBClusterV2ConnectionsPtrOutputWithContext(context.Background())
+}
+
+func (o MariaDBClusterV2ConnectionsOutput) ToMariaDBClusterV2ConnectionsPtrOutputWithContext(ctx context.Context) MariaDBClusterV2ConnectionsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v MariaDBClusterV2Connections) *MariaDBClusterV2Connections {
+		return &v
+	}).(MariaDBClusterV2ConnectionsPtrOutput)
+}
+
+// [string] The datacenter to connect your instance to.
+func (o MariaDBClusterV2ConnectionsOutput) DatacenterId() pulumi.StringOutput {
+	return o.ApplyT(func(v MariaDBClusterV2Connections) string { return v.DatacenterId }).(pulumi.StringOutput)
+}
+
+// [string] The numeric LAN ID to connect your instance to.
+func (o MariaDBClusterV2ConnectionsOutput) LanId() pulumi.StringOutput {
+	return o.ApplyT(func(v MariaDBClusterV2Connections) string { return v.LanId }).(pulumi.StringOutput)
+}
+
+// [string] The IP address and netmask of the cluster's primary instance, in CIDR notation.
+func (o MariaDBClusterV2ConnectionsOutput) PrimaryInstanceAddress() pulumi.StringOutput {
+	return o.ApplyT(func(v MariaDBClusterV2Connections) string { return v.PrimaryInstanceAddress }).(pulumi.StringOutput)
+}
+
+type MariaDBClusterV2ConnectionsPtrOutput struct{ *pulumi.OutputState }
+
+func (MariaDBClusterV2ConnectionsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**MariaDBClusterV2Connections)(nil)).Elem()
+}
+
+func (o MariaDBClusterV2ConnectionsPtrOutput) ToMariaDBClusterV2ConnectionsPtrOutput() MariaDBClusterV2ConnectionsPtrOutput {
+	return o
+}
+
+func (o MariaDBClusterV2ConnectionsPtrOutput) ToMariaDBClusterV2ConnectionsPtrOutputWithContext(ctx context.Context) MariaDBClusterV2ConnectionsPtrOutput {
+	return o
+}
+
+func (o MariaDBClusterV2ConnectionsPtrOutput) Elem() MariaDBClusterV2ConnectionsOutput {
+	return o.ApplyT(func(v *MariaDBClusterV2Connections) MariaDBClusterV2Connections {
+		if v != nil {
+			return *v
+		}
+		var ret MariaDBClusterV2Connections
+		return ret
+	}).(MariaDBClusterV2ConnectionsOutput)
+}
+
+// [string] The datacenter to connect your instance to.
+func (o MariaDBClusterV2ConnectionsPtrOutput) DatacenterId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *MariaDBClusterV2Connections) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.DatacenterId
+	}).(pulumi.StringPtrOutput)
+}
+
+// [string] The numeric LAN ID to connect your instance to.
+func (o MariaDBClusterV2ConnectionsPtrOutput) LanId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *MariaDBClusterV2Connections) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.LanId
+	}).(pulumi.StringPtrOutput)
+}
+
+// [string] The IP address and netmask of the cluster's primary instance, in CIDR notation.
+func (o MariaDBClusterV2ConnectionsPtrOutput) PrimaryInstanceAddress() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *MariaDBClusterV2Connections) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.PrimaryInstanceAddress
+	}).(pulumi.StringPtrOutput)
+}
+
+type MariaDBClusterV2Credentials struct {
+	// [string] The name of the initial database to be created.
+	Database string `pulumi:"database"`
+	// [string] **Sensitive.** The password for the initial MariaDB user. Not returned by the API — will be null in state after `pulumi import`.
+	Password string `pulumi:"password"`
+	// [string] The username of the initial MariaDB user.
+	Username string `pulumi:"username"`
+}
+
+// MariaDBClusterV2CredentialsInput is an input type that accepts MariaDBClusterV2CredentialsArgs and MariaDBClusterV2CredentialsOutput values.
+// You can construct a concrete instance of `MariaDBClusterV2CredentialsInput` via:
+//
+//	MariaDBClusterV2CredentialsArgs{...}
+type MariaDBClusterV2CredentialsInput interface {
+	pulumi.Input
+
+	ToMariaDBClusterV2CredentialsOutput() MariaDBClusterV2CredentialsOutput
+	ToMariaDBClusterV2CredentialsOutputWithContext(context.Context) MariaDBClusterV2CredentialsOutput
+}
+
+type MariaDBClusterV2CredentialsArgs struct {
+	// [string] The name of the initial database to be created.
+	Database pulumi.StringInput `pulumi:"database"`
+	// [string] **Sensitive.** The password for the initial MariaDB user. Not returned by the API — will be null in state after `pulumi import`.
+	Password pulumi.StringInput `pulumi:"password"`
+	// [string] The username of the initial MariaDB user.
+	Username pulumi.StringInput `pulumi:"username"`
+}
+
+func (MariaDBClusterV2CredentialsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*MariaDBClusterV2Credentials)(nil)).Elem()
+}
+
+func (i MariaDBClusterV2CredentialsArgs) ToMariaDBClusterV2CredentialsOutput() MariaDBClusterV2CredentialsOutput {
+	return i.ToMariaDBClusterV2CredentialsOutputWithContext(context.Background())
+}
+
+func (i MariaDBClusterV2CredentialsArgs) ToMariaDBClusterV2CredentialsOutputWithContext(ctx context.Context) MariaDBClusterV2CredentialsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(MariaDBClusterV2CredentialsOutput)
+}
+
+func (i MariaDBClusterV2CredentialsArgs) ToMariaDBClusterV2CredentialsPtrOutput() MariaDBClusterV2CredentialsPtrOutput {
+	return i.ToMariaDBClusterV2CredentialsPtrOutputWithContext(context.Background())
+}
+
+func (i MariaDBClusterV2CredentialsArgs) ToMariaDBClusterV2CredentialsPtrOutputWithContext(ctx context.Context) MariaDBClusterV2CredentialsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(MariaDBClusterV2CredentialsOutput).ToMariaDBClusterV2CredentialsPtrOutputWithContext(ctx)
+}
+
+// MariaDBClusterV2CredentialsPtrInput is an input type that accepts MariaDBClusterV2CredentialsArgs, MariaDBClusterV2CredentialsPtr and MariaDBClusterV2CredentialsPtrOutput values.
+// You can construct a concrete instance of `MariaDBClusterV2CredentialsPtrInput` via:
+//
+//	        MariaDBClusterV2CredentialsArgs{...}
+//
+//	or:
+//
+//	        nil
+type MariaDBClusterV2CredentialsPtrInput interface {
+	pulumi.Input
+
+	ToMariaDBClusterV2CredentialsPtrOutput() MariaDBClusterV2CredentialsPtrOutput
+	ToMariaDBClusterV2CredentialsPtrOutputWithContext(context.Context) MariaDBClusterV2CredentialsPtrOutput
+}
+
+type mariaDBClusterV2CredentialsPtrType MariaDBClusterV2CredentialsArgs
+
+func MariaDBClusterV2CredentialsPtr(v *MariaDBClusterV2CredentialsArgs) MariaDBClusterV2CredentialsPtrInput {
+	return (*mariaDBClusterV2CredentialsPtrType)(v)
+}
+
+func (*mariaDBClusterV2CredentialsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**MariaDBClusterV2Credentials)(nil)).Elem()
+}
+
+func (i *mariaDBClusterV2CredentialsPtrType) ToMariaDBClusterV2CredentialsPtrOutput() MariaDBClusterV2CredentialsPtrOutput {
+	return i.ToMariaDBClusterV2CredentialsPtrOutputWithContext(context.Background())
+}
+
+func (i *mariaDBClusterV2CredentialsPtrType) ToMariaDBClusterV2CredentialsPtrOutputWithContext(ctx context.Context) MariaDBClusterV2CredentialsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(MariaDBClusterV2CredentialsPtrOutput)
+}
+
+type MariaDBClusterV2CredentialsOutput struct{ *pulumi.OutputState }
+
+func (MariaDBClusterV2CredentialsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*MariaDBClusterV2Credentials)(nil)).Elem()
+}
+
+func (o MariaDBClusterV2CredentialsOutput) ToMariaDBClusterV2CredentialsOutput() MariaDBClusterV2CredentialsOutput {
+	return o
+}
+
+func (o MariaDBClusterV2CredentialsOutput) ToMariaDBClusterV2CredentialsOutputWithContext(ctx context.Context) MariaDBClusterV2CredentialsOutput {
+	return o
+}
+
+func (o MariaDBClusterV2CredentialsOutput) ToMariaDBClusterV2CredentialsPtrOutput() MariaDBClusterV2CredentialsPtrOutput {
+	return o.ToMariaDBClusterV2CredentialsPtrOutputWithContext(context.Background())
+}
+
+func (o MariaDBClusterV2CredentialsOutput) ToMariaDBClusterV2CredentialsPtrOutputWithContext(ctx context.Context) MariaDBClusterV2CredentialsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v MariaDBClusterV2Credentials) *MariaDBClusterV2Credentials {
+		return &v
+	}).(MariaDBClusterV2CredentialsPtrOutput)
+}
+
+// [string] The name of the initial database to be created.
+func (o MariaDBClusterV2CredentialsOutput) Database() pulumi.StringOutput {
+	return o.ApplyT(func(v MariaDBClusterV2Credentials) string { return v.Database }).(pulumi.StringOutput)
+}
+
+// [string] **Sensitive.** The password for the initial MariaDB user. Not returned by the API — will be null in state after `pulumi import`.
+func (o MariaDBClusterV2CredentialsOutput) Password() pulumi.StringOutput {
+	return o.ApplyT(func(v MariaDBClusterV2Credentials) string { return v.Password }).(pulumi.StringOutput)
+}
+
+// [string] The username of the initial MariaDB user.
+func (o MariaDBClusterV2CredentialsOutput) Username() pulumi.StringOutput {
+	return o.ApplyT(func(v MariaDBClusterV2Credentials) string { return v.Username }).(pulumi.StringOutput)
+}
+
+type MariaDBClusterV2CredentialsPtrOutput struct{ *pulumi.OutputState }
+
+func (MariaDBClusterV2CredentialsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**MariaDBClusterV2Credentials)(nil)).Elem()
+}
+
+func (o MariaDBClusterV2CredentialsPtrOutput) ToMariaDBClusterV2CredentialsPtrOutput() MariaDBClusterV2CredentialsPtrOutput {
+	return o
+}
+
+func (o MariaDBClusterV2CredentialsPtrOutput) ToMariaDBClusterV2CredentialsPtrOutputWithContext(ctx context.Context) MariaDBClusterV2CredentialsPtrOutput {
+	return o
+}
+
+func (o MariaDBClusterV2CredentialsPtrOutput) Elem() MariaDBClusterV2CredentialsOutput {
+	return o.ApplyT(func(v *MariaDBClusterV2Credentials) MariaDBClusterV2Credentials {
+		if v != nil {
+			return *v
+		}
+		var ret MariaDBClusterV2Credentials
+		return ret
+	}).(MariaDBClusterV2CredentialsOutput)
+}
+
+// [string] The name of the initial database to be created.
+func (o MariaDBClusterV2CredentialsPtrOutput) Database() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *MariaDBClusterV2Credentials) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Database
+	}).(pulumi.StringPtrOutput)
+}
+
+// [string] **Sensitive.** The password for the initial MariaDB user. Not returned by the API — will be null in state after `pulumi import`.
+func (o MariaDBClusterV2CredentialsPtrOutput) Password() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *MariaDBClusterV2Credentials) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Password
+	}).(pulumi.StringPtrOutput)
+}
+
+// [string] The username of the initial MariaDB user.
+func (o MariaDBClusterV2CredentialsPtrOutput) Username() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *MariaDBClusterV2Credentials) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Username
+	}).(pulumi.StringPtrOutput)
+}
+
+type MariaDBClusterV2Filter struct {
+	// The name of the field to filter on.
+	FieldName string `pulumi:"fieldName"`
+	// The value to match against.
+	FieldValue string `pulumi:"fieldValue"`
+}
+
+// MariaDBClusterV2FilterInput is an input type that accepts MariaDBClusterV2FilterArgs and MariaDBClusterV2FilterOutput values.
+// You can construct a concrete instance of `MariaDBClusterV2FilterInput` via:
+//
+//	MariaDBClusterV2FilterArgs{...}
+type MariaDBClusterV2FilterInput interface {
+	pulumi.Input
+
+	ToMariaDBClusterV2FilterOutput() MariaDBClusterV2FilterOutput
+	ToMariaDBClusterV2FilterOutputWithContext(context.Context) MariaDBClusterV2FilterOutput
+}
+
+type MariaDBClusterV2FilterArgs struct {
+	// The name of the field to filter on.
+	FieldName pulumi.StringInput `pulumi:"fieldName"`
+	// The value to match against.
+	FieldValue pulumi.StringInput `pulumi:"fieldValue"`
+}
+
+func (MariaDBClusterV2FilterArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*MariaDBClusterV2Filter)(nil)).Elem()
+}
+
+func (i MariaDBClusterV2FilterArgs) ToMariaDBClusterV2FilterOutput() MariaDBClusterV2FilterOutput {
+	return i.ToMariaDBClusterV2FilterOutputWithContext(context.Background())
+}
+
+func (i MariaDBClusterV2FilterArgs) ToMariaDBClusterV2FilterOutputWithContext(ctx context.Context) MariaDBClusterV2FilterOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(MariaDBClusterV2FilterOutput)
+}
+
+// MariaDBClusterV2FilterArrayInput is an input type that accepts MariaDBClusterV2FilterArray and MariaDBClusterV2FilterArrayOutput values.
+// You can construct a concrete instance of `MariaDBClusterV2FilterArrayInput` via:
+//
+//	MariaDBClusterV2FilterArray{ MariaDBClusterV2FilterArgs{...} }
+type MariaDBClusterV2FilterArrayInput interface {
+	pulumi.Input
+
+	ToMariaDBClusterV2FilterArrayOutput() MariaDBClusterV2FilterArrayOutput
+	ToMariaDBClusterV2FilterArrayOutputWithContext(context.Context) MariaDBClusterV2FilterArrayOutput
+}
+
+type MariaDBClusterV2FilterArray []MariaDBClusterV2FilterInput
+
+func (MariaDBClusterV2FilterArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]MariaDBClusterV2Filter)(nil)).Elem()
+}
+
+func (i MariaDBClusterV2FilterArray) ToMariaDBClusterV2FilterArrayOutput() MariaDBClusterV2FilterArrayOutput {
+	return i.ToMariaDBClusterV2FilterArrayOutputWithContext(context.Background())
+}
+
+func (i MariaDBClusterV2FilterArray) ToMariaDBClusterV2FilterArrayOutputWithContext(ctx context.Context) MariaDBClusterV2FilterArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(MariaDBClusterV2FilterArrayOutput)
+}
+
+type MariaDBClusterV2FilterOutput struct{ *pulumi.OutputState }
+
+func (MariaDBClusterV2FilterOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*MariaDBClusterV2Filter)(nil)).Elem()
+}
+
+func (o MariaDBClusterV2FilterOutput) ToMariaDBClusterV2FilterOutput() MariaDBClusterV2FilterOutput {
+	return o
+}
+
+func (o MariaDBClusterV2FilterOutput) ToMariaDBClusterV2FilterOutputWithContext(ctx context.Context) MariaDBClusterV2FilterOutput {
+	return o
+}
+
+// The name of the field to filter on.
+func (o MariaDBClusterV2FilterOutput) FieldName() pulumi.StringOutput {
+	return o.ApplyT(func(v MariaDBClusterV2Filter) string { return v.FieldName }).(pulumi.StringOutput)
+}
+
+// The value to match against.
+func (o MariaDBClusterV2FilterOutput) FieldValue() pulumi.StringOutput {
+	return o.ApplyT(func(v MariaDBClusterV2Filter) string { return v.FieldValue }).(pulumi.StringOutput)
+}
+
+type MariaDBClusterV2FilterArrayOutput struct{ *pulumi.OutputState }
+
+func (MariaDBClusterV2FilterArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]MariaDBClusterV2Filter)(nil)).Elem()
+}
+
+func (o MariaDBClusterV2FilterArrayOutput) ToMariaDBClusterV2FilterArrayOutput() MariaDBClusterV2FilterArrayOutput {
+	return o
+}
+
+func (o MariaDBClusterV2FilterArrayOutput) ToMariaDBClusterV2FilterArrayOutputWithContext(ctx context.Context) MariaDBClusterV2FilterArrayOutput {
+	return o
+}
+
+func (o MariaDBClusterV2FilterArrayOutput) Index(i pulumi.IntInput) MariaDBClusterV2FilterOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) MariaDBClusterV2Filter {
+		return vs[0].([]MariaDBClusterV2Filter)[vs[1].(int)]
+	}).(MariaDBClusterV2FilterOutput)
+}
+
+type MariaDBClusterV2Instances struct {
+	// [int] The number of CPU cores per instance.
+	Cores int `pulumi:"cores"`
+	// [int] The total number of instances in the cluster (one primary and n-1 secondary).
+	Count int `pulumi:"count"`
+	// [int] The amount of memory per instance in gigabytes (GB).
+	Ram int `pulumi:"ram"`
+	// [int] The amount of storage per instance in gigabytes (GB).
+	StorageSize int `pulumi:"storageSize"`
+}
+
+// MariaDBClusterV2InstancesInput is an input type that accepts MariaDBClusterV2InstancesArgs and MariaDBClusterV2InstancesOutput values.
+// You can construct a concrete instance of `MariaDBClusterV2InstancesInput` via:
+//
+//	MariaDBClusterV2InstancesArgs{...}
+type MariaDBClusterV2InstancesInput interface {
+	pulumi.Input
+
+	ToMariaDBClusterV2InstancesOutput() MariaDBClusterV2InstancesOutput
+	ToMariaDBClusterV2InstancesOutputWithContext(context.Context) MariaDBClusterV2InstancesOutput
+}
+
+type MariaDBClusterV2InstancesArgs struct {
+	// [int] The number of CPU cores per instance.
+	Cores pulumi.IntInput `pulumi:"cores"`
+	// [int] The total number of instances in the cluster (one primary and n-1 secondary).
+	Count pulumi.IntInput `pulumi:"count"`
+	// [int] The amount of memory per instance in gigabytes (GB).
+	Ram pulumi.IntInput `pulumi:"ram"`
+	// [int] The amount of storage per instance in gigabytes (GB).
+	StorageSize pulumi.IntInput `pulumi:"storageSize"`
+}
+
+func (MariaDBClusterV2InstancesArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*MariaDBClusterV2Instances)(nil)).Elem()
+}
+
+func (i MariaDBClusterV2InstancesArgs) ToMariaDBClusterV2InstancesOutput() MariaDBClusterV2InstancesOutput {
+	return i.ToMariaDBClusterV2InstancesOutputWithContext(context.Background())
+}
+
+func (i MariaDBClusterV2InstancesArgs) ToMariaDBClusterV2InstancesOutputWithContext(ctx context.Context) MariaDBClusterV2InstancesOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(MariaDBClusterV2InstancesOutput)
+}
+
+func (i MariaDBClusterV2InstancesArgs) ToMariaDBClusterV2InstancesPtrOutput() MariaDBClusterV2InstancesPtrOutput {
+	return i.ToMariaDBClusterV2InstancesPtrOutputWithContext(context.Background())
+}
+
+func (i MariaDBClusterV2InstancesArgs) ToMariaDBClusterV2InstancesPtrOutputWithContext(ctx context.Context) MariaDBClusterV2InstancesPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(MariaDBClusterV2InstancesOutput).ToMariaDBClusterV2InstancesPtrOutputWithContext(ctx)
+}
+
+// MariaDBClusterV2InstancesPtrInput is an input type that accepts MariaDBClusterV2InstancesArgs, MariaDBClusterV2InstancesPtr and MariaDBClusterV2InstancesPtrOutput values.
+// You can construct a concrete instance of `MariaDBClusterV2InstancesPtrInput` via:
+//
+//	        MariaDBClusterV2InstancesArgs{...}
+//
+//	or:
+//
+//	        nil
+type MariaDBClusterV2InstancesPtrInput interface {
+	pulumi.Input
+
+	ToMariaDBClusterV2InstancesPtrOutput() MariaDBClusterV2InstancesPtrOutput
+	ToMariaDBClusterV2InstancesPtrOutputWithContext(context.Context) MariaDBClusterV2InstancesPtrOutput
+}
+
+type mariaDBClusterV2InstancesPtrType MariaDBClusterV2InstancesArgs
+
+func MariaDBClusterV2InstancesPtr(v *MariaDBClusterV2InstancesArgs) MariaDBClusterV2InstancesPtrInput {
+	return (*mariaDBClusterV2InstancesPtrType)(v)
+}
+
+func (*mariaDBClusterV2InstancesPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**MariaDBClusterV2Instances)(nil)).Elem()
+}
+
+func (i *mariaDBClusterV2InstancesPtrType) ToMariaDBClusterV2InstancesPtrOutput() MariaDBClusterV2InstancesPtrOutput {
+	return i.ToMariaDBClusterV2InstancesPtrOutputWithContext(context.Background())
+}
+
+func (i *mariaDBClusterV2InstancesPtrType) ToMariaDBClusterV2InstancesPtrOutputWithContext(ctx context.Context) MariaDBClusterV2InstancesPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(MariaDBClusterV2InstancesPtrOutput)
+}
+
+type MariaDBClusterV2InstancesOutput struct{ *pulumi.OutputState }
+
+func (MariaDBClusterV2InstancesOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*MariaDBClusterV2Instances)(nil)).Elem()
+}
+
+func (o MariaDBClusterV2InstancesOutput) ToMariaDBClusterV2InstancesOutput() MariaDBClusterV2InstancesOutput {
+	return o
+}
+
+func (o MariaDBClusterV2InstancesOutput) ToMariaDBClusterV2InstancesOutputWithContext(ctx context.Context) MariaDBClusterV2InstancesOutput {
+	return o
+}
+
+func (o MariaDBClusterV2InstancesOutput) ToMariaDBClusterV2InstancesPtrOutput() MariaDBClusterV2InstancesPtrOutput {
+	return o.ToMariaDBClusterV2InstancesPtrOutputWithContext(context.Background())
+}
+
+func (o MariaDBClusterV2InstancesOutput) ToMariaDBClusterV2InstancesPtrOutputWithContext(ctx context.Context) MariaDBClusterV2InstancesPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v MariaDBClusterV2Instances) *MariaDBClusterV2Instances {
+		return &v
+	}).(MariaDBClusterV2InstancesPtrOutput)
+}
+
+// [int] The number of CPU cores per instance.
+func (o MariaDBClusterV2InstancesOutput) Cores() pulumi.IntOutput {
+	return o.ApplyT(func(v MariaDBClusterV2Instances) int { return v.Cores }).(pulumi.IntOutput)
+}
+
+// [int] The total number of instances in the cluster (one primary and n-1 secondary).
+func (o MariaDBClusterV2InstancesOutput) Count() pulumi.IntOutput {
+	return o.ApplyT(func(v MariaDBClusterV2Instances) int { return v.Count }).(pulumi.IntOutput)
+}
+
+// [int] The amount of memory per instance in gigabytes (GB).
+func (o MariaDBClusterV2InstancesOutput) Ram() pulumi.IntOutput {
+	return o.ApplyT(func(v MariaDBClusterV2Instances) int { return v.Ram }).(pulumi.IntOutput)
+}
+
+// [int] The amount of storage per instance in gigabytes (GB).
+func (o MariaDBClusterV2InstancesOutput) StorageSize() pulumi.IntOutput {
+	return o.ApplyT(func(v MariaDBClusterV2Instances) int { return v.StorageSize }).(pulumi.IntOutput)
+}
+
+type MariaDBClusterV2InstancesPtrOutput struct{ *pulumi.OutputState }
+
+func (MariaDBClusterV2InstancesPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**MariaDBClusterV2Instances)(nil)).Elem()
+}
+
+func (o MariaDBClusterV2InstancesPtrOutput) ToMariaDBClusterV2InstancesPtrOutput() MariaDBClusterV2InstancesPtrOutput {
+	return o
+}
+
+func (o MariaDBClusterV2InstancesPtrOutput) ToMariaDBClusterV2InstancesPtrOutputWithContext(ctx context.Context) MariaDBClusterV2InstancesPtrOutput {
+	return o
+}
+
+func (o MariaDBClusterV2InstancesPtrOutput) Elem() MariaDBClusterV2InstancesOutput {
+	return o.ApplyT(func(v *MariaDBClusterV2Instances) MariaDBClusterV2Instances {
+		if v != nil {
+			return *v
+		}
+		var ret MariaDBClusterV2Instances
+		return ret
+	}).(MariaDBClusterV2InstancesOutput)
+}
+
+// [int] The number of CPU cores per instance.
+func (o MariaDBClusterV2InstancesPtrOutput) Cores() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *MariaDBClusterV2Instances) *int {
+		if v == nil {
+			return nil
+		}
+		return &v.Cores
+	}).(pulumi.IntPtrOutput)
+}
+
+// [int] The total number of instances in the cluster (one primary and n-1 secondary).
+func (o MariaDBClusterV2InstancesPtrOutput) Count() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *MariaDBClusterV2Instances) *int {
+		if v == nil {
+			return nil
+		}
+		return &v.Count
+	}).(pulumi.IntPtrOutput)
+}
+
+// [int] The amount of memory per instance in gigabytes (GB).
+func (o MariaDBClusterV2InstancesPtrOutput) Ram() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *MariaDBClusterV2Instances) *int {
+		if v == nil {
+			return nil
+		}
+		return &v.Ram
+	}).(pulumi.IntPtrOutput)
+}
+
+// [int] The amount of storage per instance in gigabytes (GB).
+func (o MariaDBClusterV2InstancesPtrOutput) StorageSize() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *MariaDBClusterV2Instances) *int {
+		if v == nil {
+			return nil
+		}
+		return &v.StorageSize
+	}).(pulumi.IntPtrOutput)
+}
+
+type MariaDBClusterV2MaintenanceWindow struct {
+	// [string] The name of the week day.
+	DayOfTheWeek string `pulumi:"dayOfTheWeek"`
+	// [string] Start of the maintenance window in UTC time (`HH:MM:SS`).
+	Time string `pulumi:"time"`
+}
+
+// MariaDBClusterV2MaintenanceWindowInput is an input type that accepts MariaDBClusterV2MaintenanceWindowArgs and MariaDBClusterV2MaintenanceWindowOutput values.
+// You can construct a concrete instance of `MariaDBClusterV2MaintenanceWindowInput` via:
+//
+//	MariaDBClusterV2MaintenanceWindowArgs{...}
+type MariaDBClusterV2MaintenanceWindowInput interface {
+	pulumi.Input
+
+	ToMariaDBClusterV2MaintenanceWindowOutput() MariaDBClusterV2MaintenanceWindowOutput
+	ToMariaDBClusterV2MaintenanceWindowOutputWithContext(context.Context) MariaDBClusterV2MaintenanceWindowOutput
+}
+
+type MariaDBClusterV2MaintenanceWindowArgs struct {
+	// [string] The name of the week day.
+	DayOfTheWeek pulumi.StringInput `pulumi:"dayOfTheWeek"`
+	// [string] Start of the maintenance window in UTC time (`HH:MM:SS`).
+	Time pulumi.StringInput `pulumi:"time"`
+}
+
+func (MariaDBClusterV2MaintenanceWindowArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*MariaDBClusterV2MaintenanceWindow)(nil)).Elem()
+}
+
+func (i MariaDBClusterV2MaintenanceWindowArgs) ToMariaDBClusterV2MaintenanceWindowOutput() MariaDBClusterV2MaintenanceWindowOutput {
+	return i.ToMariaDBClusterV2MaintenanceWindowOutputWithContext(context.Background())
+}
+
+func (i MariaDBClusterV2MaintenanceWindowArgs) ToMariaDBClusterV2MaintenanceWindowOutputWithContext(ctx context.Context) MariaDBClusterV2MaintenanceWindowOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(MariaDBClusterV2MaintenanceWindowOutput)
+}
+
+func (i MariaDBClusterV2MaintenanceWindowArgs) ToMariaDBClusterV2MaintenanceWindowPtrOutput() MariaDBClusterV2MaintenanceWindowPtrOutput {
+	return i.ToMariaDBClusterV2MaintenanceWindowPtrOutputWithContext(context.Background())
+}
+
+func (i MariaDBClusterV2MaintenanceWindowArgs) ToMariaDBClusterV2MaintenanceWindowPtrOutputWithContext(ctx context.Context) MariaDBClusterV2MaintenanceWindowPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(MariaDBClusterV2MaintenanceWindowOutput).ToMariaDBClusterV2MaintenanceWindowPtrOutputWithContext(ctx)
+}
+
+// MariaDBClusterV2MaintenanceWindowPtrInput is an input type that accepts MariaDBClusterV2MaintenanceWindowArgs, MariaDBClusterV2MaintenanceWindowPtr and MariaDBClusterV2MaintenanceWindowPtrOutput values.
+// You can construct a concrete instance of `MariaDBClusterV2MaintenanceWindowPtrInput` via:
+//
+//	        MariaDBClusterV2MaintenanceWindowArgs{...}
+//
+//	or:
+//
+//	        nil
+type MariaDBClusterV2MaintenanceWindowPtrInput interface {
+	pulumi.Input
+
+	ToMariaDBClusterV2MaintenanceWindowPtrOutput() MariaDBClusterV2MaintenanceWindowPtrOutput
+	ToMariaDBClusterV2MaintenanceWindowPtrOutputWithContext(context.Context) MariaDBClusterV2MaintenanceWindowPtrOutput
+}
+
+type mariaDBClusterV2MaintenanceWindowPtrType MariaDBClusterV2MaintenanceWindowArgs
+
+func MariaDBClusterV2MaintenanceWindowPtr(v *MariaDBClusterV2MaintenanceWindowArgs) MariaDBClusterV2MaintenanceWindowPtrInput {
+	return (*mariaDBClusterV2MaintenanceWindowPtrType)(v)
+}
+
+func (*mariaDBClusterV2MaintenanceWindowPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**MariaDBClusterV2MaintenanceWindow)(nil)).Elem()
+}
+
+func (i *mariaDBClusterV2MaintenanceWindowPtrType) ToMariaDBClusterV2MaintenanceWindowPtrOutput() MariaDBClusterV2MaintenanceWindowPtrOutput {
+	return i.ToMariaDBClusterV2MaintenanceWindowPtrOutputWithContext(context.Background())
+}
+
+func (i *mariaDBClusterV2MaintenanceWindowPtrType) ToMariaDBClusterV2MaintenanceWindowPtrOutputWithContext(ctx context.Context) MariaDBClusterV2MaintenanceWindowPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(MariaDBClusterV2MaintenanceWindowPtrOutput)
+}
+
+type MariaDBClusterV2MaintenanceWindowOutput struct{ *pulumi.OutputState }
+
+func (MariaDBClusterV2MaintenanceWindowOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*MariaDBClusterV2MaintenanceWindow)(nil)).Elem()
+}
+
+func (o MariaDBClusterV2MaintenanceWindowOutput) ToMariaDBClusterV2MaintenanceWindowOutput() MariaDBClusterV2MaintenanceWindowOutput {
+	return o
+}
+
+func (o MariaDBClusterV2MaintenanceWindowOutput) ToMariaDBClusterV2MaintenanceWindowOutputWithContext(ctx context.Context) MariaDBClusterV2MaintenanceWindowOutput {
+	return o
+}
+
+func (o MariaDBClusterV2MaintenanceWindowOutput) ToMariaDBClusterV2MaintenanceWindowPtrOutput() MariaDBClusterV2MaintenanceWindowPtrOutput {
+	return o.ToMariaDBClusterV2MaintenanceWindowPtrOutputWithContext(context.Background())
+}
+
+func (o MariaDBClusterV2MaintenanceWindowOutput) ToMariaDBClusterV2MaintenanceWindowPtrOutputWithContext(ctx context.Context) MariaDBClusterV2MaintenanceWindowPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v MariaDBClusterV2MaintenanceWindow) *MariaDBClusterV2MaintenanceWindow {
+		return &v
+	}).(MariaDBClusterV2MaintenanceWindowPtrOutput)
+}
+
+// [string] The name of the week day.
+func (o MariaDBClusterV2MaintenanceWindowOutput) DayOfTheWeek() pulumi.StringOutput {
+	return o.ApplyT(func(v MariaDBClusterV2MaintenanceWindow) string { return v.DayOfTheWeek }).(pulumi.StringOutput)
+}
+
+// [string] Start of the maintenance window in UTC time (`HH:MM:SS`).
+func (o MariaDBClusterV2MaintenanceWindowOutput) Time() pulumi.StringOutput {
+	return o.ApplyT(func(v MariaDBClusterV2MaintenanceWindow) string { return v.Time }).(pulumi.StringOutput)
+}
+
+type MariaDBClusterV2MaintenanceWindowPtrOutput struct{ *pulumi.OutputState }
+
+func (MariaDBClusterV2MaintenanceWindowPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**MariaDBClusterV2MaintenanceWindow)(nil)).Elem()
+}
+
+func (o MariaDBClusterV2MaintenanceWindowPtrOutput) ToMariaDBClusterV2MaintenanceWindowPtrOutput() MariaDBClusterV2MaintenanceWindowPtrOutput {
+	return o
+}
+
+func (o MariaDBClusterV2MaintenanceWindowPtrOutput) ToMariaDBClusterV2MaintenanceWindowPtrOutputWithContext(ctx context.Context) MariaDBClusterV2MaintenanceWindowPtrOutput {
+	return o
+}
+
+func (o MariaDBClusterV2MaintenanceWindowPtrOutput) Elem() MariaDBClusterV2MaintenanceWindowOutput {
+	return o.ApplyT(func(v *MariaDBClusterV2MaintenanceWindow) MariaDBClusterV2MaintenanceWindow {
+		if v != nil {
+			return *v
+		}
+		var ret MariaDBClusterV2MaintenanceWindow
+		return ret
+	}).(MariaDBClusterV2MaintenanceWindowOutput)
+}
+
+// [string] The name of the week day.
+func (o MariaDBClusterV2MaintenanceWindowPtrOutput) DayOfTheWeek() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *MariaDBClusterV2MaintenanceWindow) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.DayOfTheWeek
+	}).(pulumi.StringPtrOutput)
+}
+
+// [string] Start of the maintenance window in UTC time (`HH:MM:SS`).
+func (o MariaDBClusterV2MaintenanceWindowPtrOutput) Time() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *MariaDBClusterV2MaintenanceWindow) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Time
+	}).(pulumi.StringPtrOutput)
+}
+
+type MariaDBClusterV2RestoreFromBackup struct {
+	// [string] ISO 8601 timestamp causing the system to replay backups up to the specified time. Optional for create-time restore; required for in-place restore during an update.
+	//
+	// > **Note:** `restoreFromBackup` is not returned by the API. The values are stored in state as configured but will be null after `pulumi import`.
+	RecoveryTargetDatetime *string `pulumi:"recoveryTargetDatetime"`
+	// [string] UUID of the backup to restore from. Required when `restoreFromBackup` is set during cluster creation; not valid for in-place restore during an update.
+	SourceBackupId *string `pulumi:"sourceBackupId"`
+}
+
+// MariaDBClusterV2RestoreFromBackupInput is an input type that accepts MariaDBClusterV2RestoreFromBackupArgs and MariaDBClusterV2RestoreFromBackupOutput values.
+// You can construct a concrete instance of `MariaDBClusterV2RestoreFromBackupInput` via:
+//
+//	MariaDBClusterV2RestoreFromBackupArgs{...}
+type MariaDBClusterV2RestoreFromBackupInput interface {
+	pulumi.Input
+
+	ToMariaDBClusterV2RestoreFromBackupOutput() MariaDBClusterV2RestoreFromBackupOutput
+	ToMariaDBClusterV2RestoreFromBackupOutputWithContext(context.Context) MariaDBClusterV2RestoreFromBackupOutput
+}
+
+type MariaDBClusterV2RestoreFromBackupArgs struct {
+	// [string] ISO 8601 timestamp causing the system to replay backups up to the specified time. Optional for create-time restore; required for in-place restore during an update.
+	//
+	// > **Note:** `restoreFromBackup` is not returned by the API. The values are stored in state as configured but will be null after `pulumi import`.
+	RecoveryTargetDatetime pulumi.StringPtrInput `pulumi:"recoveryTargetDatetime"`
+	// [string] UUID of the backup to restore from. Required when `restoreFromBackup` is set during cluster creation; not valid for in-place restore during an update.
+	SourceBackupId pulumi.StringPtrInput `pulumi:"sourceBackupId"`
+}
+
+func (MariaDBClusterV2RestoreFromBackupArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*MariaDBClusterV2RestoreFromBackup)(nil)).Elem()
+}
+
+func (i MariaDBClusterV2RestoreFromBackupArgs) ToMariaDBClusterV2RestoreFromBackupOutput() MariaDBClusterV2RestoreFromBackupOutput {
+	return i.ToMariaDBClusterV2RestoreFromBackupOutputWithContext(context.Background())
+}
+
+func (i MariaDBClusterV2RestoreFromBackupArgs) ToMariaDBClusterV2RestoreFromBackupOutputWithContext(ctx context.Context) MariaDBClusterV2RestoreFromBackupOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(MariaDBClusterV2RestoreFromBackupOutput)
+}
+
+func (i MariaDBClusterV2RestoreFromBackupArgs) ToMariaDBClusterV2RestoreFromBackupPtrOutput() MariaDBClusterV2RestoreFromBackupPtrOutput {
+	return i.ToMariaDBClusterV2RestoreFromBackupPtrOutputWithContext(context.Background())
+}
+
+func (i MariaDBClusterV2RestoreFromBackupArgs) ToMariaDBClusterV2RestoreFromBackupPtrOutputWithContext(ctx context.Context) MariaDBClusterV2RestoreFromBackupPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(MariaDBClusterV2RestoreFromBackupOutput).ToMariaDBClusterV2RestoreFromBackupPtrOutputWithContext(ctx)
+}
+
+// MariaDBClusterV2RestoreFromBackupPtrInput is an input type that accepts MariaDBClusterV2RestoreFromBackupArgs, MariaDBClusterV2RestoreFromBackupPtr and MariaDBClusterV2RestoreFromBackupPtrOutput values.
+// You can construct a concrete instance of `MariaDBClusterV2RestoreFromBackupPtrInput` via:
+//
+//	        MariaDBClusterV2RestoreFromBackupArgs{...}
+//
+//	or:
+//
+//	        nil
+type MariaDBClusterV2RestoreFromBackupPtrInput interface {
+	pulumi.Input
+
+	ToMariaDBClusterV2RestoreFromBackupPtrOutput() MariaDBClusterV2RestoreFromBackupPtrOutput
+	ToMariaDBClusterV2RestoreFromBackupPtrOutputWithContext(context.Context) MariaDBClusterV2RestoreFromBackupPtrOutput
+}
+
+type mariaDBClusterV2RestoreFromBackupPtrType MariaDBClusterV2RestoreFromBackupArgs
+
+func MariaDBClusterV2RestoreFromBackupPtr(v *MariaDBClusterV2RestoreFromBackupArgs) MariaDBClusterV2RestoreFromBackupPtrInput {
+	return (*mariaDBClusterV2RestoreFromBackupPtrType)(v)
+}
+
+func (*mariaDBClusterV2RestoreFromBackupPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**MariaDBClusterV2RestoreFromBackup)(nil)).Elem()
+}
+
+func (i *mariaDBClusterV2RestoreFromBackupPtrType) ToMariaDBClusterV2RestoreFromBackupPtrOutput() MariaDBClusterV2RestoreFromBackupPtrOutput {
+	return i.ToMariaDBClusterV2RestoreFromBackupPtrOutputWithContext(context.Background())
+}
+
+func (i *mariaDBClusterV2RestoreFromBackupPtrType) ToMariaDBClusterV2RestoreFromBackupPtrOutputWithContext(ctx context.Context) MariaDBClusterV2RestoreFromBackupPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(MariaDBClusterV2RestoreFromBackupPtrOutput)
+}
+
+type MariaDBClusterV2RestoreFromBackupOutput struct{ *pulumi.OutputState }
+
+func (MariaDBClusterV2RestoreFromBackupOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*MariaDBClusterV2RestoreFromBackup)(nil)).Elem()
+}
+
+func (o MariaDBClusterV2RestoreFromBackupOutput) ToMariaDBClusterV2RestoreFromBackupOutput() MariaDBClusterV2RestoreFromBackupOutput {
+	return o
+}
+
+func (o MariaDBClusterV2RestoreFromBackupOutput) ToMariaDBClusterV2RestoreFromBackupOutputWithContext(ctx context.Context) MariaDBClusterV2RestoreFromBackupOutput {
+	return o
+}
+
+func (o MariaDBClusterV2RestoreFromBackupOutput) ToMariaDBClusterV2RestoreFromBackupPtrOutput() MariaDBClusterV2RestoreFromBackupPtrOutput {
+	return o.ToMariaDBClusterV2RestoreFromBackupPtrOutputWithContext(context.Background())
+}
+
+func (o MariaDBClusterV2RestoreFromBackupOutput) ToMariaDBClusterV2RestoreFromBackupPtrOutputWithContext(ctx context.Context) MariaDBClusterV2RestoreFromBackupPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v MariaDBClusterV2RestoreFromBackup) *MariaDBClusterV2RestoreFromBackup {
+		return &v
+	}).(MariaDBClusterV2RestoreFromBackupPtrOutput)
+}
+
+// [string] ISO 8601 timestamp causing the system to replay backups up to the specified time. Optional for create-time restore; required for in-place restore during an update.
+//
+// > **Note:** `restoreFromBackup` is not returned by the API. The values are stored in state as configured but will be null after `pulumi import`.
+func (o MariaDBClusterV2RestoreFromBackupOutput) RecoveryTargetDatetime() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v MariaDBClusterV2RestoreFromBackup) *string { return v.RecoveryTargetDatetime }).(pulumi.StringPtrOutput)
+}
+
+// [string] UUID of the backup to restore from. Required when `restoreFromBackup` is set during cluster creation; not valid for in-place restore during an update.
+func (o MariaDBClusterV2RestoreFromBackupOutput) SourceBackupId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v MariaDBClusterV2RestoreFromBackup) *string { return v.SourceBackupId }).(pulumi.StringPtrOutput)
+}
+
+type MariaDBClusterV2RestoreFromBackupPtrOutput struct{ *pulumi.OutputState }
+
+func (MariaDBClusterV2RestoreFromBackupPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**MariaDBClusterV2RestoreFromBackup)(nil)).Elem()
+}
+
+func (o MariaDBClusterV2RestoreFromBackupPtrOutput) ToMariaDBClusterV2RestoreFromBackupPtrOutput() MariaDBClusterV2RestoreFromBackupPtrOutput {
+	return o
+}
+
+func (o MariaDBClusterV2RestoreFromBackupPtrOutput) ToMariaDBClusterV2RestoreFromBackupPtrOutputWithContext(ctx context.Context) MariaDBClusterV2RestoreFromBackupPtrOutput {
+	return o
+}
+
+func (o MariaDBClusterV2RestoreFromBackupPtrOutput) Elem() MariaDBClusterV2RestoreFromBackupOutput {
+	return o.ApplyT(func(v *MariaDBClusterV2RestoreFromBackup) MariaDBClusterV2RestoreFromBackup {
+		if v != nil {
+			return *v
+		}
+		var ret MariaDBClusterV2RestoreFromBackup
+		return ret
+	}).(MariaDBClusterV2RestoreFromBackupOutput)
+}
+
+// [string] ISO 8601 timestamp causing the system to replay backups up to the specified time. Optional for create-time restore; required for in-place restore during an update.
+//
+// > **Note:** `restoreFromBackup` is not returned by the API. The values are stored in state as configured but will be null after `pulumi import`.
+func (o MariaDBClusterV2RestoreFromBackupPtrOutput) RecoveryTargetDatetime() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *MariaDBClusterV2RestoreFromBackup) *string {
+		if v == nil {
+			return nil
+		}
+		return v.RecoveryTargetDatetime
+	}).(pulumi.StringPtrOutput)
+}
+
+// [string] UUID of the backup to restore from. Required when `restoreFromBackup` is set during cluster creation; not valid for in-place restore during an update.
+func (o MariaDBClusterV2RestoreFromBackupPtrOutput) SourceBackupId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *MariaDBClusterV2RestoreFromBackup) *string {
+		if v == nil {
+			return nil
+		}
+		return v.SourceBackupId
+	}).(pulumi.StringPtrOutput)
+}
+
+type MariaDBClusterV2Timeouts struct {
+	// A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+	Create *string `pulumi:"create"`
+	// A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs.
+	Delete *string `pulumi:"delete"`
+	// A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+	Update *string `pulumi:"update"`
+}
+
+// MariaDBClusterV2TimeoutsInput is an input type that accepts MariaDBClusterV2TimeoutsArgs and MariaDBClusterV2TimeoutsOutput values.
+// You can construct a concrete instance of `MariaDBClusterV2TimeoutsInput` via:
+//
+//	MariaDBClusterV2TimeoutsArgs{...}
+type MariaDBClusterV2TimeoutsInput interface {
+	pulumi.Input
+
+	ToMariaDBClusterV2TimeoutsOutput() MariaDBClusterV2TimeoutsOutput
+	ToMariaDBClusterV2TimeoutsOutputWithContext(context.Context) MariaDBClusterV2TimeoutsOutput
+}
+
+type MariaDBClusterV2TimeoutsArgs struct {
+	// A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+	Create pulumi.StringPtrInput `pulumi:"create"`
+	// A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs.
+	Delete pulumi.StringPtrInput `pulumi:"delete"`
+	// A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+	Update pulumi.StringPtrInput `pulumi:"update"`
+}
+
+func (MariaDBClusterV2TimeoutsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*MariaDBClusterV2Timeouts)(nil)).Elem()
+}
+
+func (i MariaDBClusterV2TimeoutsArgs) ToMariaDBClusterV2TimeoutsOutput() MariaDBClusterV2TimeoutsOutput {
+	return i.ToMariaDBClusterV2TimeoutsOutputWithContext(context.Background())
+}
+
+func (i MariaDBClusterV2TimeoutsArgs) ToMariaDBClusterV2TimeoutsOutputWithContext(ctx context.Context) MariaDBClusterV2TimeoutsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(MariaDBClusterV2TimeoutsOutput)
+}
+
+func (i MariaDBClusterV2TimeoutsArgs) ToMariaDBClusterV2TimeoutsPtrOutput() MariaDBClusterV2TimeoutsPtrOutput {
+	return i.ToMariaDBClusterV2TimeoutsPtrOutputWithContext(context.Background())
+}
+
+func (i MariaDBClusterV2TimeoutsArgs) ToMariaDBClusterV2TimeoutsPtrOutputWithContext(ctx context.Context) MariaDBClusterV2TimeoutsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(MariaDBClusterV2TimeoutsOutput).ToMariaDBClusterV2TimeoutsPtrOutputWithContext(ctx)
+}
+
+// MariaDBClusterV2TimeoutsPtrInput is an input type that accepts MariaDBClusterV2TimeoutsArgs, MariaDBClusterV2TimeoutsPtr and MariaDBClusterV2TimeoutsPtrOutput values.
+// You can construct a concrete instance of `MariaDBClusterV2TimeoutsPtrInput` via:
+//
+//	        MariaDBClusterV2TimeoutsArgs{...}
+//
+//	or:
+//
+//	        nil
+type MariaDBClusterV2TimeoutsPtrInput interface {
+	pulumi.Input
+
+	ToMariaDBClusterV2TimeoutsPtrOutput() MariaDBClusterV2TimeoutsPtrOutput
+	ToMariaDBClusterV2TimeoutsPtrOutputWithContext(context.Context) MariaDBClusterV2TimeoutsPtrOutput
+}
+
+type mariaDBClusterV2TimeoutsPtrType MariaDBClusterV2TimeoutsArgs
+
+func MariaDBClusterV2TimeoutsPtr(v *MariaDBClusterV2TimeoutsArgs) MariaDBClusterV2TimeoutsPtrInput {
+	return (*mariaDBClusterV2TimeoutsPtrType)(v)
+}
+
+func (*mariaDBClusterV2TimeoutsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**MariaDBClusterV2Timeouts)(nil)).Elem()
+}
+
+func (i *mariaDBClusterV2TimeoutsPtrType) ToMariaDBClusterV2TimeoutsPtrOutput() MariaDBClusterV2TimeoutsPtrOutput {
+	return i.ToMariaDBClusterV2TimeoutsPtrOutputWithContext(context.Background())
+}
+
+func (i *mariaDBClusterV2TimeoutsPtrType) ToMariaDBClusterV2TimeoutsPtrOutputWithContext(ctx context.Context) MariaDBClusterV2TimeoutsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(MariaDBClusterV2TimeoutsPtrOutput)
+}
+
+type MariaDBClusterV2TimeoutsOutput struct{ *pulumi.OutputState }
+
+func (MariaDBClusterV2TimeoutsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*MariaDBClusterV2Timeouts)(nil)).Elem()
+}
+
+func (o MariaDBClusterV2TimeoutsOutput) ToMariaDBClusterV2TimeoutsOutput() MariaDBClusterV2TimeoutsOutput {
+	return o
+}
+
+func (o MariaDBClusterV2TimeoutsOutput) ToMariaDBClusterV2TimeoutsOutputWithContext(ctx context.Context) MariaDBClusterV2TimeoutsOutput {
+	return o
+}
+
+func (o MariaDBClusterV2TimeoutsOutput) ToMariaDBClusterV2TimeoutsPtrOutput() MariaDBClusterV2TimeoutsPtrOutput {
+	return o.ToMariaDBClusterV2TimeoutsPtrOutputWithContext(context.Background())
+}
+
+func (o MariaDBClusterV2TimeoutsOutput) ToMariaDBClusterV2TimeoutsPtrOutputWithContext(ctx context.Context) MariaDBClusterV2TimeoutsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v MariaDBClusterV2Timeouts) *MariaDBClusterV2Timeouts {
+		return &v
+	}).(MariaDBClusterV2TimeoutsPtrOutput)
+}
+
+// A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+func (o MariaDBClusterV2TimeoutsOutput) Create() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v MariaDBClusterV2Timeouts) *string { return v.Create }).(pulumi.StringPtrOutput)
+}
+
+// A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs.
+func (o MariaDBClusterV2TimeoutsOutput) Delete() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v MariaDBClusterV2Timeouts) *string { return v.Delete }).(pulumi.StringPtrOutput)
+}
+
+// A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+func (o MariaDBClusterV2TimeoutsOutput) Update() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v MariaDBClusterV2Timeouts) *string { return v.Update }).(pulumi.StringPtrOutput)
+}
+
+type MariaDBClusterV2TimeoutsPtrOutput struct{ *pulumi.OutputState }
+
+func (MariaDBClusterV2TimeoutsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**MariaDBClusterV2Timeouts)(nil)).Elem()
+}
+
+func (o MariaDBClusterV2TimeoutsPtrOutput) ToMariaDBClusterV2TimeoutsPtrOutput() MariaDBClusterV2TimeoutsPtrOutput {
+	return o
+}
+
+func (o MariaDBClusterV2TimeoutsPtrOutput) ToMariaDBClusterV2TimeoutsPtrOutputWithContext(ctx context.Context) MariaDBClusterV2TimeoutsPtrOutput {
+	return o
+}
+
+func (o MariaDBClusterV2TimeoutsPtrOutput) Elem() MariaDBClusterV2TimeoutsOutput {
+	return o.ApplyT(func(v *MariaDBClusterV2Timeouts) MariaDBClusterV2Timeouts {
+		if v != nil {
+			return *v
+		}
+		var ret MariaDBClusterV2Timeouts
+		return ret
+	}).(MariaDBClusterV2TimeoutsOutput)
+}
+
+// A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+func (o MariaDBClusterV2TimeoutsPtrOutput) Create() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *MariaDBClusterV2Timeouts) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Create
+	}).(pulumi.StringPtrOutput)
+}
+
+// A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs.
+func (o MariaDBClusterV2TimeoutsPtrOutput) Delete() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *MariaDBClusterV2Timeouts) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Delete
+	}).(pulumi.StringPtrOutput)
+}
+
+// A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+func (o MariaDBClusterV2TimeoutsPtrOutput) Update() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *MariaDBClusterV2Timeouts) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Update
 	}).(pulumi.StringPtrOutput)
 }
 
@@ -7691,6 +8992,112 @@ func (o GetInmemorydbSnapshotMetadataArrayOutput) Index(i pulumi.IntInput) GetIn
 	}).(GetInmemorydbSnapshotMetadataOutput)
 }
 
+type GetMariaDBBackupLocationsV2Item struct {
+	// The ID (UUID) of the backup location.
+	Id string `pulumi:"id"`
+	// [string] The location to query. Requests are routed to the corresponding regional MariaDB endpoint. Available locations: `de/fra`, `de/fra/1`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
+	Location string `pulumi:"location"`
+}
+
+// GetMariaDBBackupLocationsV2ItemInput is an input type that accepts GetMariaDBBackupLocationsV2ItemArgs and GetMariaDBBackupLocationsV2ItemOutput values.
+// You can construct a concrete instance of `GetMariaDBBackupLocationsV2ItemInput` via:
+//
+//	GetMariaDBBackupLocationsV2ItemArgs{...}
+type GetMariaDBBackupLocationsV2ItemInput interface {
+	pulumi.Input
+
+	ToGetMariaDBBackupLocationsV2ItemOutput() GetMariaDBBackupLocationsV2ItemOutput
+	ToGetMariaDBBackupLocationsV2ItemOutputWithContext(context.Context) GetMariaDBBackupLocationsV2ItemOutput
+}
+
+type GetMariaDBBackupLocationsV2ItemArgs struct {
+	// The ID (UUID) of the backup location.
+	Id pulumi.StringInput `pulumi:"id"`
+	// [string] The location to query. Requests are routed to the corresponding regional MariaDB endpoint. Available locations: `de/fra`, `de/fra/1`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
+	Location pulumi.StringInput `pulumi:"location"`
+}
+
+func (GetMariaDBBackupLocationsV2ItemArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetMariaDBBackupLocationsV2Item)(nil)).Elem()
+}
+
+func (i GetMariaDBBackupLocationsV2ItemArgs) ToGetMariaDBBackupLocationsV2ItemOutput() GetMariaDBBackupLocationsV2ItemOutput {
+	return i.ToGetMariaDBBackupLocationsV2ItemOutputWithContext(context.Background())
+}
+
+func (i GetMariaDBBackupLocationsV2ItemArgs) ToGetMariaDBBackupLocationsV2ItemOutputWithContext(ctx context.Context) GetMariaDBBackupLocationsV2ItemOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetMariaDBBackupLocationsV2ItemOutput)
+}
+
+// GetMariaDBBackupLocationsV2ItemArrayInput is an input type that accepts GetMariaDBBackupLocationsV2ItemArray and GetMariaDBBackupLocationsV2ItemArrayOutput values.
+// You can construct a concrete instance of `GetMariaDBBackupLocationsV2ItemArrayInput` via:
+//
+//	GetMariaDBBackupLocationsV2ItemArray{ GetMariaDBBackupLocationsV2ItemArgs{...} }
+type GetMariaDBBackupLocationsV2ItemArrayInput interface {
+	pulumi.Input
+
+	ToGetMariaDBBackupLocationsV2ItemArrayOutput() GetMariaDBBackupLocationsV2ItemArrayOutput
+	ToGetMariaDBBackupLocationsV2ItemArrayOutputWithContext(context.Context) GetMariaDBBackupLocationsV2ItemArrayOutput
+}
+
+type GetMariaDBBackupLocationsV2ItemArray []GetMariaDBBackupLocationsV2ItemInput
+
+func (GetMariaDBBackupLocationsV2ItemArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetMariaDBBackupLocationsV2Item)(nil)).Elem()
+}
+
+func (i GetMariaDBBackupLocationsV2ItemArray) ToGetMariaDBBackupLocationsV2ItemArrayOutput() GetMariaDBBackupLocationsV2ItemArrayOutput {
+	return i.ToGetMariaDBBackupLocationsV2ItemArrayOutputWithContext(context.Background())
+}
+
+func (i GetMariaDBBackupLocationsV2ItemArray) ToGetMariaDBBackupLocationsV2ItemArrayOutputWithContext(ctx context.Context) GetMariaDBBackupLocationsV2ItemArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetMariaDBBackupLocationsV2ItemArrayOutput)
+}
+
+type GetMariaDBBackupLocationsV2ItemOutput struct{ *pulumi.OutputState }
+
+func (GetMariaDBBackupLocationsV2ItemOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetMariaDBBackupLocationsV2Item)(nil)).Elem()
+}
+
+func (o GetMariaDBBackupLocationsV2ItemOutput) ToGetMariaDBBackupLocationsV2ItemOutput() GetMariaDBBackupLocationsV2ItemOutput {
+	return o
+}
+
+func (o GetMariaDBBackupLocationsV2ItemOutput) ToGetMariaDBBackupLocationsV2ItemOutputWithContext(ctx context.Context) GetMariaDBBackupLocationsV2ItemOutput {
+	return o
+}
+
+// The ID (UUID) of the backup location.
+func (o GetMariaDBBackupLocationsV2ItemOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetMariaDBBackupLocationsV2Item) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// [string] The location to query. Requests are routed to the corresponding regional MariaDB endpoint. Available locations: `de/fra`, `de/fra/1`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
+func (o GetMariaDBBackupLocationsV2ItemOutput) Location() pulumi.StringOutput {
+	return o.ApplyT(func(v GetMariaDBBackupLocationsV2Item) string { return v.Location }).(pulumi.StringOutput)
+}
+
+type GetMariaDBBackupLocationsV2ItemArrayOutput struct{ *pulumi.OutputState }
+
+func (GetMariaDBBackupLocationsV2ItemArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetMariaDBBackupLocationsV2Item)(nil)).Elem()
+}
+
+func (o GetMariaDBBackupLocationsV2ItemArrayOutput) ToGetMariaDBBackupLocationsV2ItemArrayOutput() GetMariaDBBackupLocationsV2ItemArrayOutput {
+	return o
+}
+
+func (o GetMariaDBBackupLocationsV2ItemArrayOutput) ToGetMariaDBBackupLocationsV2ItemArrayOutputWithContext(ctx context.Context) GetMariaDBBackupLocationsV2ItemArrayOutput {
+	return o
+}
+
+func (o GetMariaDBBackupLocationsV2ItemArrayOutput) Index(i pulumi.IntInput) GetMariaDBBackupLocationsV2ItemOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetMariaDBBackupLocationsV2Item {
+		return vs[0].([]GetMariaDBBackupLocationsV2Item)[vs[1].(int)]
+	}).(GetMariaDBBackupLocationsV2ItemOutput)
+}
+
 type GetMariaDBBackupsBackup struct {
 	// The list of backups for the specified cluster
 	BaseBackups []GetMariaDBBackupsBackupBaseBackup `pulumi:"baseBackups"`
@@ -7919,6 +9326,157 @@ func (o GetMariaDBBackupsBackupBaseBackupArrayOutput) Index(i pulumi.IntInput) G
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetMariaDBBackupsBackupBaseBackup {
 		return vs[0].([]GetMariaDBBackupsBackupBaseBackup)[vs[1].(int)]
 	}).(GetMariaDBBackupsBackupBaseBackupOutput)
+}
+
+type GetMariaDBBackupsV2Item struct {
+	// [string] Filter backups by the cluster they belong to.
+	ClusterId string `pulumi:"clusterId"`
+	// The name of the cluster this backup belongs to.
+	ClusterName string `pulumi:"clusterName"`
+	// The earliest point in time to which the cluster can be restored from this backup (RFC3339).
+	EarliestRecoveryTargetTime string `pulumi:"earliestRecoveryTargetTime"`
+	// The ID (UUID) of the backup.
+	Id string `pulumi:"id"`
+	// The latest point in time to which the cluster can be restored (RFC3339). Empty if the backup can be restored up to the current time.
+	LatestRecoveryTargetTime string `pulumi:"latestRecoveryTargetTime"`
+	// [string] The location to query. Available locations: `de/fra`, `de/fra/1`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
+	Location string `pulumi:"location"`
+	// The MariaDB version of the cluster at backup time.
+	MariadbClusterVersion string `pulumi:"mariadbClusterVersion"`
+}
+
+// GetMariaDBBackupsV2ItemInput is an input type that accepts GetMariaDBBackupsV2ItemArgs and GetMariaDBBackupsV2ItemOutput values.
+// You can construct a concrete instance of `GetMariaDBBackupsV2ItemInput` via:
+//
+//	GetMariaDBBackupsV2ItemArgs{...}
+type GetMariaDBBackupsV2ItemInput interface {
+	pulumi.Input
+
+	ToGetMariaDBBackupsV2ItemOutput() GetMariaDBBackupsV2ItemOutput
+	ToGetMariaDBBackupsV2ItemOutputWithContext(context.Context) GetMariaDBBackupsV2ItemOutput
+}
+
+type GetMariaDBBackupsV2ItemArgs struct {
+	// [string] Filter backups by the cluster they belong to.
+	ClusterId pulumi.StringInput `pulumi:"clusterId"`
+	// The name of the cluster this backup belongs to.
+	ClusterName pulumi.StringInput `pulumi:"clusterName"`
+	// The earliest point in time to which the cluster can be restored from this backup (RFC3339).
+	EarliestRecoveryTargetTime pulumi.StringInput `pulumi:"earliestRecoveryTargetTime"`
+	// The ID (UUID) of the backup.
+	Id pulumi.StringInput `pulumi:"id"`
+	// The latest point in time to which the cluster can be restored (RFC3339). Empty if the backup can be restored up to the current time.
+	LatestRecoveryTargetTime pulumi.StringInput `pulumi:"latestRecoveryTargetTime"`
+	// [string] The location to query. Available locations: `de/fra`, `de/fra/1`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
+	Location pulumi.StringInput `pulumi:"location"`
+	// The MariaDB version of the cluster at backup time.
+	MariadbClusterVersion pulumi.StringInput `pulumi:"mariadbClusterVersion"`
+}
+
+func (GetMariaDBBackupsV2ItemArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetMariaDBBackupsV2Item)(nil)).Elem()
+}
+
+func (i GetMariaDBBackupsV2ItemArgs) ToGetMariaDBBackupsV2ItemOutput() GetMariaDBBackupsV2ItemOutput {
+	return i.ToGetMariaDBBackupsV2ItemOutputWithContext(context.Background())
+}
+
+func (i GetMariaDBBackupsV2ItemArgs) ToGetMariaDBBackupsV2ItemOutputWithContext(ctx context.Context) GetMariaDBBackupsV2ItemOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetMariaDBBackupsV2ItemOutput)
+}
+
+// GetMariaDBBackupsV2ItemArrayInput is an input type that accepts GetMariaDBBackupsV2ItemArray and GetMariaDBBackupsV2ItemArrayOutput values.
+// You can construct a concrete instance of `GetMariaDBBackupsV2ItemArrayInput` via:
+//
+//	GetMariaDBBackupsV2ItemArray{ GetMariaDBBackupsV2ItemArgs{...} }
+type GetMariaDBBackupsV2ItemArrayInput interface {
+	pulumi.Input
+
+	ToGetMariaDBBackupsV2ItemArrayOutput() GetMariaDBBackupsV2ItemArrayOutput
+	ToGetMariaDBBackupsV2ItemArrayOutputWithContext(context.Context) GetMariaDBBackupsV2ItemArrayOutput
+}
+
+type GetMariaDBBackupsV2ItemArray []GetMariaDBBackupsV2ItemInput
+
+func (GetMariaDBBackupsV2ItemArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetMariaDBBackupsV2Item)(nil)).Elem()
+}
+
+func (i GetMariaDBBackupsV2ItemArray) ToGetMariaDBBackupsV2ItemArrayOutput() GetMariaDBBackupsV2ItemArrayOutput {
+	return i.ToGetMariaDBBackupsV2ItemArrayOutputWithContext(context.Background())
+}
+
+func (i GetMariaDBBackupsV2ItemArray) ToGetMariaDBBackupsV2ItemArrayOutputWithContext(ctx context.Context) GetMariaDBBackupsV2ItemArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetMariaDBBackupsV2ItemArrayOutput)
+}
+
+type GetMariaDBBackupsV2ItemOutput struct{ *pulumi.OutputState }
+
+func (GetMariaDBBackupsV2ItemOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetMariaDBBackupsV2Item)(nil)).Elem()
+}
+
+func (o GetMariaDBBackupsV2ItemOutput) ToGetMariaDBBackupsV2ItemOutput() GetMariaDBBackupsV2ItemOutput {
+	return o
+}
+
+func (o GetMariaDBBackupsV2ItemOutput) ToGetMariaDBBackupsV2ItemOutputWithContext(ctx context.Context) GetMariaDBBackupsV2ItemOutput {
+	return o
+}
+
+// [string] Filter backups by the cluster they belong to.
+func (o GetMariaDBBackupsV2ItemOutput) ClusterId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetMariaDBBackupsV2Item) string { return v.ClusterId }).(pulumi.StringOutput)
+}
+
+// The name of the cluster this backup belongs to.
+func (o GetMariaDBBackupsV2ItemOutput) ClusterName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetMariaDBBackupsV2Item) string { return v.ClusterName }).(pulumi.StringOutput)
+}
+
+// The earliest point in time to which the cluster can be restored from this backup (RFC3339).
+func (o GetMariaDBBackupsV2ItemOutput) EarliestRecoveryTargetTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetMariaDBBackupsV2Item) string { return v.EarliestRecoveryTargetTime }).(pulumi.StringOutput)
+}
+
+// The ID (UUID) of the backup.
+func (o GetMariaDBBackupsV2ItemOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetMariaDBBackupsV2Item) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// The latest point in time to which the cluster can be restored (RFC3339). Empty if the backup can be restored up to the current time.
+func (o GetMariaDBBackupsV2ItemOutput) LatestRecoveryTargetTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetMariaDBBackupsV2Item) string { return v.LatestRecoveryTargetTime }).(pulumi.StringOutput)
+}
+
+// [string] The location to query. Available locations: `de/fra`, `de/fra/1`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
+func (o GetMariaDBBackupsV2ItemOutput) Location() pulumi.StringOutput {
+	return o.ApplyT(func(v GetMariaDBBackupsV2Item) string { return v.Location }).(pulumi.StringOutput)
+}
+
+// The MariaDB version of the cluster at backup time.
+func (o GetMariaDBBackupsV2ItemOutput) MariadbClusterVersion() pulumi.StringOutput {
+	return o.ApplyT(func(v GetMariaDBBackupsV2Item) string { return v.MariadbClusterVersion }).(pulumi.StringOutput)
+}
+
+type GetMariaDBBackupsV2ItemArrayOutput struct{ *pulumi.OutputState }
+
+func (GetMariaDBBackupsV2ItemArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetMariaDBBackupsV2Item)(nil)).Elem()
+}
+
+func (o GetMariaDBBackupsV2ItemArrayOutput) ToGetMariaDBBackupsV2ItemArrayOutput() GetMariaDBBackupsV2ItemArrayOutput {
+	return o
+}
+
+func (o GetMariaDBBackupsV2ItemArrayOutput) ToGetMariaDBBackupsV2ItemArrayOutputWithContext(ctx context.Context) GetMariaDBBackupsV2ItemArrayOutput {
+	return o
+}
+
+func (o GetMariaDBBackupsV2ItemArrayOutput) Index(i pulumi.IntInput) GetMariaDBBackupsV2ItemOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetMariaDBBackupsV2Item {
+		return vs[0].([]GetMariaDBBackupsV2Item)[vs[1].(int)]
+	}).(GetMariaDBBackupsV2ItemOutput)
 }
 
 type GetMariaDBClusterBackup struct {
@@ -8249,6 +9807,1014 @@ func (o GetMariaDBClusterMaintenanceWindowArrayOutput) Index(i pulumi.IntInput) 
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetMariaDBClusterMaintenanceWindow {
 		return vs[0].([]GetMariaDBClusterMaintenanceWindow)[vs[1].(int)]
 	}).(GetMariaDBClusterMaintenanceWindowOutput)
+}
+
+type GetMariaDBClusterV2Backup struct {
+	// [string] The location to query. Available locations: `de/fra`, `de/fra/1`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
+	//
+	// > **Note:** Either `id` or `name` must be provided. If none, or both are provided, the datasource will return an error.
+	Location string `pulumi:"location"`
+	// The number of days cluster backups are retained.
+	RetentionDays int `pulumi:"retentionDays"`
+}
+
+// GetMariaDBClusterV2BackupInput is an input type that accepts GetMariaDBClusterV2BackupArgs and GetMariaDBClusterV2BackupOutput values.
+// You can construct a concrete instance of `GetMariaDBClusterV2BackupInput` via:
+//
+//	GetMariaDBClusterV2BackupArgs{...}
+type GetMariaDBClusterV2BackupInput interface {
+	pulumi.Input
+
+	ToGetMariaDBClusterV2BackupOutput() GetMariaDBClusterV2BackupOutput
+	ToGetMariaDBClusterV2BackupOutputWithContext(context.Context) GetMariaDBClusterV2BackupOutput
+}
+
+type GetMariaDBClusterV2BackupArgs struct {
+	// [string] The location to query. Available locations: `de/fra`, `de/fra/1`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
+	//
+	// > **Note:** Either `id` or `name` must be provided. If none, or both are provided, the datasource will return an error.
+	Location pulumi.StringInput `pulumi:"location"`
+	// The number of days cluster backups are retained.
+	RetentionDays pulumi.IntInput `pulumi:"retentionDays"`
+}
+
+func (GetMariaDBClusterV2BackupArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetMariaDBClusterV2Backup)(nil)).Elem()
+}
+
+func (i GetMariaDBClusterV2BackupArgs) ToGetMariaDBClusterV2BackupOutput() GetMariaDBClusterV2BackupOutput {
+	return i.ToGetMariaDBClusterV2BackupOutputWithContext(context.Background())
+}
+
+func (i GetMariaDBClusterV2BackupArgs) ToGetMariaDBClusterV2BackupOutputWithContext(ctx context.Context) GetMariaDBClusterV2BackupOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetMariaDBClusterV2BackupOutput)
+}
+
+type GetMariaDBClusterV2BackupOutput struct{ *pulumi.OutputState }
+
+func (GetMariaDBClusterV2BackupOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetMariaDBClusterV2Backup)(nil)).Elem()
+}
+
+func (o GetMariaDBClusterV2BackupOutput) ToGetMariaDBClusterV2BackupOutput() GetMariaDBClusterV2BackupOutput {
+	return o
+}
+
+func (o GetMariaDBClusterV2BackupOutput) ToGetMariaDBClusterV2BackupOutputWithContext(ctx context.Context) GetMariaDBClusterV2BackupOutput {
+	return o
+}
+
+// [string] The location to query. Available locations: `de/fra`, `de/fra/1`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
+//
+// > **Note:** Either `id` or `name` must be provided. If none, or both are provided, the datasource will return an error.
+func (o GetMariaDBClusterV2BackupOutput) Location() pulumi.StringOutput {
+	return o.ApplyT(func(v GetMariaDBClusterV2Backup) string { return v.Location }).(pulumi.StringOutput)
+}
+
+// The number of days cluster backups are retained.
+func (o GetMariaDBClusterV2BackupOutput) RetentionDays() pulumi.IntOutput {
+	return o.ApplyT(func(v GetMariaDBClusterV2Backup) int { return v.RetentionDays }).(pulumi.IntOutput)
+}
+
+type GetMariaDBClusterV2Connections struct {
+	// The ID of the Virtual Data Center the cluster is connected to.
+	DatacenterId string `pulumi:"datacenterId"`
+	// The numeric LAN ID the cluster is connected to.
+	LanId string `pulumi:"lanId"`
+	// The IP address and netmask of the cluster's primary instance, in CIDR notation.
+	PrimaryInstanceAddress string `pulumi:"primaryInstanceAddress"`
+}
+
+// GetMariaDBClusterV2ConnectionsInput is an input type that accepts GetMariaDBClusterV2ConnectionsArgs and GetMariaDBClusterV2ConnectionsOutput values.
+// You can construct a concrete instance of `GetMariaDBClusterV2ConnectionsInput` via:
+//
+//	GetMariaDBClusterV2ConnectionsArgs{...}
+type GetMariaDBClusterV2ConnectionsInput interface {
+	pulumi.Input
+
+	ToGetMariaDBClusterV2ConnectionsOutput() GetMariaDBClusterV2ConnectionsOutput
+	ToGetMariaDBClusterV2ConnectionsOutputWithContext(context.Context) GetMariaDBClusterV2ConnectionsOutput
+}
+
+type GetMariaDBClusterV2ConnectionsArgs struct {
+	// The ID of the Virtual Data Center the cluster is connected to.
+	DatacenterId pulumi.StringInput `pulumi:"datacenterId"`
+	// The numeric LAN ID the cluster is connected to.
+	LanId pulumi.StringInput `pulumi:"lanId"`
+	// The IP address and netmask of the cluster's primary instance, in CIDR notation.
+	PrimaryInstanceAddress pulumi.StringInput `pulumi:"primaryInstanceAddress"`
+}
+
+func (GetMariaDBClusterV2ConnectionsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetMariaDBClusterV2Connections)(nil)).Elem()
+}
+
+func (i GetMariaDBClusterV2ConnectionsArgs) ToGetMariaDBClusterV2ConnectionsOutput() GetMariaDBClusterV2ConnectionsOutput {
+	return i.ToGetMariaDBClusterV2ConnectionsOutputWithContext(context.Background())
+}
+
+func (i GetMariaDBClusterV2ConnectionsArgs) ToGetMariaDBClusterV2ConnectionsOutputWithContext(ctx context.Context) GetMariaDBClusterV2ConnectionsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetMariaDBClusterV2ConnectionsOutput)
+}
+
+type GetMariaDBClusterV2ConnectionsOutput struct{ *pulumi.OutputState }
+
+func (GetMariaDBClusterV2ConnectionsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetMariaDBClusterV2Connections)(nil)).Elem()
+}
+
+func (o GetMariaDBClusterV2ConnectionsOutput) ToGetMariaDBClusterV2ConnectionsOutput() GetMariaDBClusterV2ConnectionsOutput {
+	return o
+}
+
+func (o GetMariaDBClusterV2ConnectionsOutput) ToGetMariaDBClusterV2ConnectionsOutputWithContext(ctx context.Context) GetMariaDBClusterV2ConnectionsOutput {
+	return o
+}
+
+// The ID of the Virtual Data Center the cluster is connected to.
+func (o GetMariaDBClusterV2ConnectionsOutput) DatacenterId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetMariaDBClusterV2Connections) string { return v.DatacenterId }).(pulumi.StringOutput)
+}
+
+// The numeric LAN ID the cluster is connected to.
+func (o GetMariaDBClusterV2ConnectionsOutput) LanId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetMariaDBClusterV2Connections) string { return v.LanId }).(pulumi.StringOutput)
+}
+
+// The IP address and netmask of the cluster's primary instance, in CIDR notation.
+func (o GetMariaDBClusterV2ConnectionsOutput) PrimaryInstanceAddress() pulumi.StringOutput {
+	return o.ApplyT(func(v GetMariaDBClusterV2Connections) string { return v.PrimaryInstanceAddress }).(pulumi.StringOutput)
+}
+
+type GetMariaDBClusterV2Credentials struct {
+	// The name of the initial database.
+	Database string `pulumi:"database"`
+	// The username of the initial MariaDB user.
+	Username string `pulumi:"username"`
+}
+
+// GetMariaDBClusterV2CredentialsInput is an input type that accepts GetMariaDBClusterV2CredentialsArgs and GetMariaDBClusterV2CredentialsOutput values.
+// You can construct a concrete instance of `GetMariaDBClusterV2CredentialsInput` via:
+//
+//	GetMariaDBClusterV2CredentialsArgs{...}
+type GetMariaDBClusterV2CredentialsInput interface {
+	pulumi.Input
+
+	ToGetMariaDBClusterV2CredentialsOutput() GetMariaDBClusterV2CredentialsOutput
+	ToGetMariaDBClusterV2CredentialsOutputWithContext(context.Context) GetMariaDBClusterV2CredentialsOutput
+}
+
+type GetMariaDBClusterV2CredentialsArgs struct {
+	// The name of the initial database.
+	Database pulumi.StringInput `pulumi:"database"`
+	// The username of the initial MariaDB user.
+	Username pulumi.StringInput `pulumi:"username"`
+}
+
+func (GetMariaDBClusterV2CredentialsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetMariaDBClusterV2Credentials)(nil)).Elem()
+}
+
+func (i GetMariaDBClusterV2CredentialsArgs) ToGetMariaDBClusterV2CredentialsOutput() GetMariaDBClusterV2CredentialsOutput {
+	return i.ToGetMariaDBClusterV2CredentialsOutputWithContext(context.Background())
+}
+
+func (i GetMariaDBClusterV2CredentialsArgs) ToGetMariaDBClusterV2CredentialsOutputWithContext(ctx context.Context) GetMariaDBClusterV2CredentialsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetMariaDBClusterV2CredentialsOutput)
+}
+
+type GetMariaDBClusterV2CredentialsOutput struct{ *pulumi.OutputState }
+
+func (GetMariaDBClusterV2CredentialsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetMariaDBClusterV2Credentials)(nil)).Elem()
+}
+
+func (o GetMariaDBClusterV2CredentialsOutput) ToGetMariaDBClusterV2CredentialsOutput() GetMariaDBClusterV2CredentialsOutput {
+	return o
+}
+
+func (o GetMariaDBClusterV2CredentialsOutput) ToGetMariaDBClusterV2CredentialsOutputWithContext(ctx context.Context) GetMariaDBClusterV2CredentialsOutput {
+	return o
+}
+
+// The name of the initial database.
+func (o GetMariaDBClusterV2CredentialsOutput) Database() pulumi.StringOutput {
+	return o.ApplyT(func(v GetMariaDBClusterV2Credentials) string { return v.Database }).(pulumi.StringOutput)
+}
+
+// The username of the initial MariaDB user.
+func (o GetMariaDBClusterV2CredentialsOutput) Username() pulumi.StringOutput {
+	return o.ApplyT(func(v GetMariaDBClusterV2Credentials) string { return v.Username }).(pulumi.StringOutput)
+}
+
+type GetMariaDBClusterV2Instances struct {
+	// The number of CPU cores per instance.
+	Cores int `pulumi:"cores"`
+	// The total number of instances in the cluster.
+	Count int `pulumi:"count"`
+	// The amount of memory per instance in gigabytes (GB).
+	Ram int `pulumi:"ram"`
+	// The amount of storage per instance in gigabytes (GB).
+	StorageSize int `pulumi:"storageSize"`
+}
+
+// GetMariaDBClusterV2InstancesInput is an input type that accepts GetMariaDBClusterV2InstancesArgs and GetMariaDBClusterV2InstancesOutput values.
+// You can construct a concrete instance of `GetMariaDBClusterV2InstancesInput` via:
+//
+//	GetMariaDBClusterV2InstancesArgs{...}
+type GetMariaDBClusterV2InstancesInput interface {
+	pulumi.Input
+
+	ToGetMariaDBClusterV2InstancesOutput() GetMariaDBClusterV2InstancesOutput
+	ToGetMariaDBClusterV2InstancesOutputWithContext(context.Context) GetMariaDBClusterV2InstancesOutput
+}
+
+type GetMariaDBClusterV2InstancesArgs struct {
+	// The number of CPU cores per instance.
+	Cores pulumi.IntInput `pulumi:"cores"`
+	// The total number of instances in the cluster.
+	Count pulumi.IntInput `pulumi:"count"`
+	// The amount of memory per instance in gigabytes (GB).
+	Ram pulumi.IntInput `pulumi:"ram"`
+	// The amount of storage per instance in gigabytes (GB).
+	StorageSize pulumi.IntInput `pulumi:"storageSize"`
+}
+
+func (GetMariaDBClusterV2InstancesArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetMariaDBClusterV2Instances)(nil)).Elem()
+}
+
+func (i GetMariaDBClusterV2InstancesArgs) ToGetMariaDBClusterV2InstancesOutput() GetMariaDBClusterV2InstancesOutput {
+	return i.ToGetMariaDBClusterV2InstancesOutputWithContext(context.Background())
+}
+
+func (i GetMariaDBClusterV2InstancesArgs) ToGetMariaDBClusterV2InstancesOutputWithContext(ctx context.Context) GetMariaDBClusterV2InstancesOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetMariaDBClusterV2InstancesOutput)
+}
+
+type GetMariaDBClusterV2InstancesOutput struct{ *pulumi.OutputState }
+
+func (GetMariaDBClusterV2InstancesOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetMariaDBClusterV2Instances)(nil)).Elem()
+}
+
+func (o GetMariaDBClusterV2InstancesOutput) ToGetMariaDBClusterV2InstancesOutput() GetMariaDBClusterV2InstancesOutput {
+	return o
+}
+
+func (o GetMariaDBClusterV2InstancesOutput) ToGetMariaDBClusterV2InstancesOutputWithContext(ctx context.Context) GetMariaDBClusterV2InstancesOutput {
+	return o
+}
+
+// The number of CPU cores per instance.
+func (o GetMariaDBClusterV2InstancesOutput) Cores() pulumi.IntOutput {
+	return o.ApplyT(func(v GetMariaDBClusterV2Instances) int { return v.Cores }).(pulumi.IntOutput)
+}
+
+// The total number of instances in the cluster.
+func (o GetMariaDBClusterV2InstancesOutput) Count() pulumi.IntOutput {
+	return o.ApplyT(func(v GetMariaDBClusterV2Instances) int { return v.Count }).(pulumi.IntOutput)
+}
+
+// The amount of memory per instance in gigabytes (GB).
+func (o GetMariaDBClusterV2InstancesOutput) Ram() pulumi.IntOutput {
+	return o.ApplyT(func(v GetMariaDBClusterV2Instances) int { return v.Ram }).(pulumi.IntOutput)
+}
+
+// The amount of storage per instance in gigabytes (GB).
+func (o GetMariaDBClusterV2InstancesOutput) StorageSize() pulumi.IntOutput {
+	return o.ApplyT(func(v GetMariaDBClusterV2Instances) int { return v.StorageSize }).(pulumi.IntOutput)
+}
+
+type GetMariaDBClusterV2MaintenanceWindow struct {
+	// The name of the week day.
+	DayOfTheWeek string `pulumi:"dayOfTheWeek"`
+	// Start of the maintenance window in UTC time.
+	Time string `pulumi:"time"`
+}
+
+// GetMariaDBClusterV2MaintenanceWindowInput is an input type that accepts GetMariaDBClusterV2MaintenanceWindowArgs and GetMariaDBClusterV2MaintenanceWindowOutput values.
+// You can construct a concrete instance of `GetMariaDBClusterV2MaintenanceWindowInput` via:
+//
+//	GetMariaDBClusterV2MaintenanceWindowArgs{...}
+type GetMariaDBClusterV2MaintenanceWindowInput interface {
+	pulumi.Input
+
+	ToGetMariaDBClusterV2MaintenanceWindowOutput() GetMariaDBClusterV2MaintenanceWindowOutput
+	ToGetMariaDBClusterV2MaintenanceWindowOutputWithContext(context.Context) GetMariaDBClusterV2MaintenanceWindowOutput
+}
+
+type GetMariaDBClusterV2MaintenanceWindowArgs struct {
+	// The name of the week day.
+	DayOfTheWeek pulumi.StringInput `pulumi:"dayOfTheWeek"`
+	// Start of the maintenance window in UTC time.
+	Time pulumi.StringInput `pulumi:"time"`
+}
+
+func (GetMariaDBClusterV2MaintenanceWindowArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetMariaDBClusterV2MaintenanceWindow)(nil)).Elem()
+}
+
+func (i GetMariaDBClusterV2MaintenanceWindowArgs) ToGetMariaDBClusterV2MaintenanceWindowOutput() GetMariaDBClusterV2MaintenanceWindowOutput {
+	return i.ToGetMariaDBClusterV2MaintenanceWindowOutputWithContext(context.Background())
+}
+
+func (i GetMariaDBClusterV2MaintenanceWindowArgs) ToGetMariaDBClusterV2MaintenanceWindowOutputWithContext(ctx context.Context) GetMariaDBClusterV2MaintenanceWindowOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetMariaDBClusterV2MaintenanceWindowOutput)
+}
+
+type GetMariaDBClusterV2MaintenanceWindowOutput struct{ *pulumi.OutputState }
+
+func (GetMariaDBClusterV2MaintenanceWindowOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetMariaDBClusterV2MaintenanceWindow)(nil)).Elem()
+}
+
+func (o GetMariaDBClusterV2MaintenanceWindowOutput) ToGetMariaDBClusterV2MaintenanceWindowOutput() GetMariaDBClusterV2MaintenanceWindowOutput {
+	return o
+}
+
+func (o GetMariaDBClusterV2MaintenanceWindowOutput) ToGetMariaDBClusterV2MaintenanceWindowOutputWithContext(ctx context.Context) GetMariaDBClusterV2MaintenanceWindowOutput {
+	return o
+}
+
+// The name of the week day.
+func (o GetMariaDBClusterV2MaintenanceWindowOutput) DayOfTheWeek() pulumi.StringOutput {
+	return o.ApplyT(func(v GetMariaDBClusterV2MaintenanceWindow) string { return v.DayOfTheWeek }).(pulumi.StringOutput)
+}
+
+// Start of the maintenance window in UTC time.
+func (o GetMariaDBClusterV2MaintenanceWindowOutput) Time() pulumi.StringOutput {
+	return o.ApplyT(func(v GetMariaDBClusterV2MaintenanceWindow) string { return v.Time }).(pulumi.StringOutput)
+}
+
+type GetMariaDBClustersV2Item struct {
+	// Backup location and retention configuration.
+	Backup GetMariaDBClustersV2ItemBackup `pulumi:"backup"`
+	// Connection information of the MariaDB cluster.
+	Connections GetMariaDBClustersV2ItemConnections `pulumi:"connections"`
+	// Credentials for the initial database user.
+	Credentials GetMariaDBClustersV2ItemCredentials `pulumi:"credentials"`
+	// Human-readable description for the cluster.
+	Description string `pulumi:"description"`
+	// The DNS name used to access the cluster.
+	DnsName string `pulumi:"dnsName"`
+	// The ID (UUID) of the cluster.
+	Id string `pulumi:"id"`
+	// Compute and storage configuration for each instance in the cluster.
+	Instances GetMariaDBClustersV2ItemInstances `pulumi:"instances"`
+	// [string] The location to query. Available locations: `de/fra`, `de/fra/1`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
+	Location string `pulumi:"location"`
+	// Whether log collection and reporting is enabled for this cluster's observability.
+	LogsEnabled bool `pulumi:"logsEnabled"`
+	// A weekly 4 hour-long window, during which maintenance might occur.
+	MaintenanceWindow GetMariaDBClustersV2ItemMaintenanceWindow `pulumi:"maintenanceWindow"`
+	// Whether metrics collection and reporting is enabled for this cluster's observability.
+	MetricsEnabled bool `pulumi:"metricsEnabled"`
+	// [string] Filter clusters by name (**partial match** — the value is passed directly to the API's name filter, so it matches any cluster name containing the given string, not only an exact match).
+	Name string `pulumi:"name"`
+	// The MariaDB version for the cluster.
+	Version string `pulumi:"version"`
+}
+
+// GetMariaDBClustersV2ItemInput is an input type that accepts GetMariaDBClustersV2ItemArgs and GetMariaDBClustersV2ItemOutput values.
+// You can construct a concrete instance of `GetMariaDBClustersV2ItemInput` via:
+//
+//	GetMariaDBClustersV2ItemArgs{...}
+type GetMariaDBClustersV2ItemInput interface {
+	pulumi.Input
+
+	ToGetMariaDBClustersV2ItemOutput() GetMariaDBClustersV2ItemOutput
+	ToGetMariaDBClustersV2ItemOutputWithContext(context.Context) GetMariaDBClustersV2ItemOutput
+}
+
+type GetMariaDBClustersV2ItemArgs struct {
+	// Backup location and retention configuration.
+	Backup GetMariaDBClustersV2ItemBackupInput `pulumi:"backup"`
+	// Connection information of the MariaDB cluster.
+	Connections GetMariaDBClustersV2ItemConnectionsInput `pulumi:"connections"`
+	// Credentials for the initial database user.
+	Credentials GetMariaDBClustersV2ItemCredentialsInput `pulumi:"credentials"`
+	// Human-readable description for the cluster.
+	Description pulumi.StringInput `pulumi:"description"`
+	// The DNS name used to access the cluster.
+	DnsName pulumi.StringInput `pulumi:"dnsName"`
+	// The ID (UUID) of the cluster.
+	Id pulumi.StringInput `pulumi:"id"`
+	// Compute and storage configuration for each instance in the cluster.
+	Instances GetMariaDBClustersV2ItemInstancesInput `pulumi:"instances"`
+	// [string] The location to query. Available locations: `de/fra`, `de/fra/1`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
+	Location pulumi.StringInput `pulumi:"location"`
+	// Whether log collection and reporting is enabled for this cluster's observability.
+	LogsEnabled pulumi.BoolInput `pulumi:"logsEnabled"`
+	// A weekly 4 hour-long window, during which maintenance might occur.
+	MaintenanceWindow GetMariaDBClustersV2ItemMaintenanceWindowInput `pulumi:"maintenanceWindow"`
+	// Whether metrics collection and reporting is enabled for this cluster's observability.
+	MetricsEnabled pulumi.BoolInput `pulumi:"metricsEnabled"`
+	// [string] Filter clusters by name (**partial match** — the value is passed directly to the API's name filter, so it matches any cluster name containing the given string, not only an exact match).
+	Name pulumi.StringInput `pulumi:"name"`
+	// The MariaDB version for the cluster.
+	Version pulumi.StringInput `pulumi:"version"`
+}
+
+func (GetMariaDBClustersV2ItemArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetMariaDBClustersV2Item)(nil)).Elem()
+}
+
+func (i GetMariaDBClustersV2ItemArgs) ToGetMariaDBClustersV2ItemOutput() GetMariaDBClustersV2ItemOutput {
+	return i.ToGetMariaDBClustersV2ItemOutputWithContext(context.Background())
+}
+
+func (i GetMariaDBClustersV2ItemArgs) ToGetMariaDBClustersV2ItemOutputWithContext(ctx context.Context) GetMariaDBClustersV2ItemOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetMariaDBClustersV2ItemOutput)
+}
+
+// GetMariaDBClustersV2ItemArrayInput is an input type that accepts GetMariaDBClustersV2ItemArray and GetMariaDBClustersV2ItemArrayOutput values.
+// You can construct a concrete instance of `GetMariaDBClustersV2ItemArrayInput` via:
+//
+//	GetMariaDBClustersV2ItemArray{ GetMariaDBClustersV2ItemArgs{...} }
+type GetMariaDBClustersV2ItemArrayInput interface {
+	pulumi.Input
+
+	ToGetMariaDBClustersV2ItemArrayOutput() GetMariaDBClustersV2ItemArrayOutput
+	ToGetMariaDBClustersV2ItemArrayOutputWithContext(context.Context) GetMariaDBClustersV2ItemArrayOutput
+}
+
+type GetMariaDBClustersV2ItemArray []GetMariaDBClustersV2ItemInput
+
+func (GetMariaDBClustersV2ItemArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetMariaDBClustersV2Item)(nil)).Elem()
+}
+
+func (i GetMariaDBClustersV2ItemArray) ToGetMariaDBClustersV2ItemArrayOutput() GetMariaDBClustersV2ItemArrayOutput {
+	return i.ToGetMariaDBClustersV2ItemArrayOutputWithContext(context.Background())
+}
+
+func (i GetMariaDBClustersV2ItemArray) ToGetMariaDBClustersV2ItemArrayOutputWithContext(ctx context.Context) GetMariaDBClustersV2ItemArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetMariaDBClustersV2ItemArrayOutput)
+}
+
+type GetMariaDBClustersV2ItemOutput struct{ *pulumi.OutputState }
+
+func (GetMariaDBClustersV2ItemOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetMariaDBClustersV2Item)(nil)).Elem()
+}
+
+func (o GetMariaDBClustersV2ItemOutput) ToGetMariaDBClustersV2ItemOutput() GetMariaDBClustersV2ItemOutput {
+	return o
+}
+
+func (o GetMariaDBClustersV2ItemOutput) ToGetMariaDBClustersV2ItemOutputWithContext(ctx context.Context) GetMariaDBClustersV2ItemOutput {
+	return o
+}
+
+// Backup location and retention configuration.
+func (o GetMariaDBClustersV2ItemOutput) Backup() GetMariaDBClustersV2ItemBackupOutput {
+	return o.ApplyT(func(v GetMariaDBClustersV2Item) GetMariaDBClustersV2ItemBackup { return v.Backup }).(GetMariaDBClustersV2ItemBackupOutput)
+}
+
+// Connection information of the MariaDB cluster.
+func (o GetMariaDBClustersV2ItemOutput) Connections() GetMariaDBClustersV2ItemConnectionsOutput {
+	return o.ApplyT(func(v GetMariaDBClustersV2Item) GetMariaDBClustersV2ItemConnections { return v.Connections }).(GetMariaDBClustersV2ItemConnectionsOutput)
+}
+
+// Credentials for the initial database user.
+func (o GetMariaDBClustersV2ItemOutput) Credentials() GetMariaDBClustersV2ItemCredentialsOutput {
+	return o.ApplyT(func(v GetMariaDBClustersV2Item) GetMariaDBClustersV2ItemCredentials { return v.Credentials }).(GetMariaDBClustersV2ItemCredentialsOutput)
+}
+
+// Human-readable description for the cluster.
+func (o GetMariaDBClustersV2ItemOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v GetMariaDBClustersV2Item) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// The DNS name used to access the cluster.
+func (o GetMariaDBClustersV2ItemOutput) DnsName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetMariaDBClustersV2Item) string { return v.DnsName }).(pulumi.StringOutput)
+}
+
+// The ID (UUID) of the cluster.
+func (o GetMariaDBClustersV2ItemOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetMariaDBClustersV2Item) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// Compute and storage configuration for each instance in the cluster.
+func (o GetMariaDBClustersV2ItemOutput) Instances() GetMariaDBClustersV2ItemInstancesOutput {
+	return o.ApplyT(func(v GetMariaDBClustersV2Item) GetMariaDBClustersV2ItemInstances { return v.Instances }).(GetMariaDBClustersV2ItemInstancesOutput)
+}
+
+// [string] The location to query. Available locations: `de/fra`, `de/fra/1`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
+func (o GetMariaDBClustersV2ItemOutput) Location() pulumi.StringOutput {
+	return o.ApplyT(func(v GetMariaDBClustersV2Item) string { return v.Location }).(pulumi.StringOutput)
+}
+
+// Whether log collection and reporting is enabled for this cluster's observability.
+func (o GetMariaDBClustersV2ItemOutput) LogsEnabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetMariaDBClustersV2Item) bool { return v.LogsEnabled }).(pulumi.BoolOutput)
+}
+
+// A weekly 4 hour-long window, during which maintenance might occur.
+func (o GetMariaDBClustersV2ItemOutput) MaintenanceWindow() GetMariaDBClustersV2ItemMaintenanceWindowOutput {
+	return o.ApplyT(func(v GetMariaDBClustersV2Item) GetMariaDBClustersV2ItemMaintenanceWindow { return v.MaintenanceWindow }).(GetMariaDBClustersV2ItemMaintenanceWindowOutput)
+}
+
+// Whether metrics collection and reporting is enabled for this cluster's observability.
+func (o GetMariaDBClustersV2ItemOutput) MetricsEnabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetMariaDBClustersV2Item) bool { return v.MetricsEnabled }).(pulumi.BoolOutput)
+}
+
+// [string] Filter clusters by name (**partial match** — the value is passed directly to the API's name filter, so it matches any cluster name containing the given string, not only an exact match).
+func (o GetMariaDBClustersV2ItemOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetMariaDBClustersV2Item) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// The MariaDB version for the cluster.
+func (o GetMariaDBClustersV2ItemOutput) Version() pulumi.StringOutput {
+	return o.ApplyT(func(v GetMariaDBClustersV2Item) string { return v.Version }).(pulumi.StringOutput)
+}
+
+type GetMariaDBClustersV2ItemArrayOutput struct{ *pulumi.OutputState }
+
+func (GetMariaDBClustersV2ItemArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetMariaDBClustersV2Item)(nil)).Elem()
+}
+
+func (o GetMariaDBClustersV2ItemArrayOutput) ToGetMariaDBClustersV2ItemArrayOutput() GetMariaDBClustersV2ItemArrayOutput {
+	return o
+}
+
+func (o GetMariaDBClustersV2ItemArrayOutput) ToGetMariaDBClustersV2ItemArrayOutputWithContext(ctx context.Context) GetMariaDBClustersV2ItemArrayOutput {
+	return o
+}
+
+func (o GetMariaDBClustersV2ItemArrayOutput) Index(i pulumi.IntInput) GetMariaDBClustersV2ItemOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetMariaDBClustersV2Item {
+		return vs[0].([]GetMariaDBClustersV2Item)[vs[1].(int)]
+	}).(GetMariaDBClustersV2ItemOutput)
+}
+
+type GetMariaDBClustersV2ItemBackup struct {
+	// [string] The location to query. Available locations: `de/fra`, `de/fra/1`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
+	Location string `pulumi:"location"`
+	// The number of days cluster backups are retained.
+	RetentionDays int `pulumi:"retentionDays"`
+}
+
+// GetMariaDBClustersV2ItemBackupInput is an input type that accepts GetMariaDBClustersV2ItemBackupArgs and GetMariaDBClustersV2ItemBackupOutput values.
+// You can construct a concrete instance of `GetMariaDBClustersV2ItemBackupInput` via:
+//
+//	GetMariaDBClustersV2ItemBackupArgs{...}
+type GetMariaDBClustersV2ItemBackupInput interface {
+	pulumi.Input
+
+	ToGetMariaDBClustersV2ItemBackupOutput() GetMariaDBClustersV2ItemBackupOutput
+	ToGetMariaDBClustersV2ItemBackupOutputWithContext(context.Context) GetMariaDBClustersV2ItemBackupOutput
+}
+
+type GetMariaDBClustersV2ItemBackupArgs struct {
+	// [string] The location to query. Available locations: `de/fra`, `de/fra/1`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
+	Location pulumi.StringInput `pulumi:"location"`
+	// The number of days cluster backups are retained.
+	RetentionDays pulumi.IntInput `pulumi:"retentionDays"`
+}
+
+func (GetMariaDBClustersV2ItemBackupArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetMariaDBClustersV2ItemBackup)(nil)).Elem()
+}
+
+func (i GetMariaDBClustersV2ItemBackupArgs) ToGetMariaDBClustersV2ItemBackupOutput() GetMariaDBClustersV2ItemBackupOutput {
+	return i.ToGetMariaDBClustersV2ItemBackupOutputWithContext(context.Background())
+}
+
+func (i GetMariaDBClustersV2ItemBackupArgs) ToGetMariaDBClustersV2ItemBackupOutputWithContext(ctx context.Context) GetMariaDBClustersV2ItemBackupOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetMariaDBClustersV2ItemBackupOutput)
+}
+
+type GetMariaDBClustersV2ItemBackupOutput struct{ *pulumi.OutputState }
+
+func (GetMariaDBClustersV2ItemBackupOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetMariaDBClustersV2ItemBackup)(nil)).Elem()
+}
+
+func (o GetMariaDBClustersV2ItemBackupOutput) ToGetMariaDBClustersV2ItemBackupOutput() GetMariaDBClustersV2ItemBackupOutput {
+	return o
+}
+
+func (o GetMariaDBClustersV2ItemBackupOutput) ToGetMariaDBClustersV2ItemBackupOutputWithContext(ctx context.Context) GetMariaDBClustersV2ItemBackupOutput {
+	return o
+}
+
+// [string] The location to query. Available locations: `de/fra`, `de/fra/1`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
+func (o GetMariaDBClustersV2ItemBackupOutput) Location() pulumi.StringOutput {
+	return o.ApplyT(func(v GetMariaDBClustersV2ItemBackup) string { return v.Location }).(pulumi.StringOutput)
+}
+
+// The number of days cluster backups are retained.
+func (o GetMariaDBClustersV2ItemBackupOutput) RetentionDays() pulumi.IntOutput {
+	return o.ApplyT(func(v GetMariaDBClustersV2ItemBackup) int { return v.RetentionDays }).(pulumi.IntOutput)
+}
+
+type GetMariaDBClustersV2ItemConnections struct {
+	// The ID of the Virtual Data Center the cluster is connected to.
+	DatacenterId string `pulumi:"datacenterId"`
+	// The numeric LAN ID the cluster is connected to.
+	LanId string `pulumi:"lanId"`
+	// The IP address and netmask of the cluster's primary instance, in CIDR notation.
+	PrimaryInstanceAddress string `pulumi:"primaryInstanceAddress"`
+}
+
+// GetMariaDBClustersV2ItemConnectionsInput is an input type that accepts GetMariaDBClustersV2ItemConnectionsArgs and GetMariaDBClustersV2ItemConnectionsOutput values.
+// You can construct a concrete instance of `GetMariaDBClustersV2ItemConnectionsInput` via:
+//
+//	GetMariaDBClustersV2ItemConnectionsArgs{...}
+type GetMariaDBClustersV2ItemConnectionsInput interface {
+	pulumi.Input
+
+	ToGetMariaDBClustersV2ItemConnectionsOutput() GetMariaDBClustersV2ItemConnectionsOutput
+	ToGetMariaDBClustersV2ItemConnectionsOutputWithContext(context.Context) GetMariaDBClustersV2ItemConnectionsOutput
+}
+
+type GetMariaDBClustersV2ItemConnectionsArgs struct {
+	// The ID of the Virtual Data Center the cluster is connected to.
+	DatacenterId pulumi.StringInput `pulumi:"datacenterId"`
+	// The numeric LAN ID the cluster is connected to.
+	LanId pulumi.StringInput `pulumi:"lanId"`
+	// The IP address and netmask of the cluster's primary instance, in CIDR notation.
+	PrimaryInstanceAddress pulumi.StringInput `pulumi:"primaryInstanceAddress"`
+}
+
+func (GetMariaDBClustersV2ItemConnectionsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetMariaDBClustersV2ItemConnections)(nil)).Elem()
+}
+
+func (i GetMariaDBClustersV2ItemConnectionsArgs) ToGetMariaDBClustersV2ItemConnectionsOutput() GetMariaDBClustersV2ItemConnectionsOutput {
+	return i.ToGetMariaDBClustersV2ItemConnectionsOutputWithContext(context.Background())
+}
+
+func (i GetMariaDBClustersV2ItemConnectionsArgs) ToGetMariaDBClustersV2ItemConnectionsOutputWithContext(ctx context.Context) GetMariaDBClustersV2ItemConnectionsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetMariaDBClustersV2ItemConnectionsOutput)
+}
+
+type GetMariaDBClustersV2ItemConnectionsOutput struct{ *pulumi.OutputState }
+
+func (GetMariaDBClustersV2ItemConnectionsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetMariaDBClustersV2ItemConnections)(nil)).Elem()
+}
+
+func (o GetMariaDBClustersV2ItemConnectionsOutput) ToGetMariaDBClustersV2ItemConnectionsOutput() GetMariaDBClustersV2ItemConnectionsOutput {
+	return o
+}
+
+func (o GetMariaDBClustersV2ItemConnectionsOutput) ToGetMariaDBClustersV2ItemConnectionsOutputWithContext(ctx context.Context) GetMariaDBClustersV2ItemConnectionsOutput {
+	return o
+}
+
+// The ID of the Virtual Data Center the cluster is connected to.
+func (o GetMariaDBClustersV2ItemConnectionsOutput) DatacenterId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetMariaDBClustersV2ItemConnections) string { return v.DatacenterId }).(pulumi.StringOutput)
+}
+
+// The numeric LAN ID the cluster is connected to.
+func (o GetMariaDBClustersV2ItemConnectionsOutput) LanId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetMariaDBClustersV2ItemConnections) string { return v.LanId }).(pulumi.StringOutput)
+}
+
+// The IP address and netmask of the cluster's primary instance, in CIDR notation.
+func (o GetMariaDBClustersV2ItemConnectionsOutput) PrimaryInstanceAddress() pulumi.StringOutput {
+	return o.ApplyT(func(v GetMariaDBClustersV2ItemConnections) string { return v.PrimaryInstanceAddress }).(pulumi.StringOutput)
+}
+
+type GetMariaDBClustersV2ItemCredentials struct {
+	// The name of the initial database.
+	Database string `pulumi:"database"`
+	// The username of the initial MariaDB user.
+	Username string `pulumi:"username"`
+}
+
+// GetMariaDBClustersV2ItemCredentialsInput is an input type that accepts GetMariaDBClustersV2ItemCredentialsArgs and GetMariaDBClustersV2ItemCredentialsOutput values.
+// You can construct a concrete instance of `GetMariaDBClustersV2ItemCredentialsInput` via:
+//
+//	GetMariaDBClustersV2ItemCredentialsArgs{...}
+type GetMariaDBClustersV2ItemCredentialsInput interface {
+	pulumi.Input
+
+	ToGetMariaDBClustersV2ItemCredentialsOutput() GetMariaDBClustersV2ItemCredentialsOutput
+	ToGetMariaDBClustersV2ItemCredentialsOutputWithContext(context.Context) GetMariaDBClustersV2ItemCredentialsOutput
+}
+
+type GetMariaDBClustersV2ItemCredentialsArgs struct {
+	// The name of the initial database.
+	Database pulumi.StringInput `pulumi:"database"`
+	// The username of the initial MariaDB user.
+	Username pulumi.StringInput `pulumi:"username"`
+}
+
+func (GetMariaDBClustersV2ItemCredentialsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetMariaDBClustersV2ItemCredentials)(nil)).Elem()
+}
+
+func (i GetMariaDBClustersV2ItemCredentialsArgs) ToGetMariaDBClustersV2ItemCredentialsOutput() GetMariaDBClustersV2ItemCredentialsOutput {
+	return i.ToGetMariaDBClustersV2ItemCredentialsOutputWithContext(context.Background())
+}
+
+func (i GetMariaDBClustersV2ItemCredentialsArgs) ToGetMariaDBClustersV2ItemCredentialsOutputWithContext(ctx context.Context) GetMariaDBClustersV2ItemCredentialsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetMariaDBClustersV2ItemCredentialsOutput)
+}
+
+type GetMariaDBClustersV2ItemCredentialsOutput struct{ *pulumi.OutputState }
+
+func (GetMariaDBClustersV2ItemCredentialsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetMariaDBClustersV2ItemCredentials)(nil)).Elem()
+}
+
+func (o GetMariaDBClustersV2ItemCredentialsOutput) ToGetMariaDBClustersV2ItemCredentialsOutput() GetMariaDBClustersV2ItemCredentialsOutput {
+	return o
+}
+
+func (o GetMariaDBClustersV2ItemCredentialsOutput) ToGetMariaDBClustersV2ItemCredentialsOutputWithContext(ctx context.Context) GetMariaDBClustersV2ItemCredentialsOutput {
+	return o
+}
+
+// The name of the initial database.
+func (o GetMariaDBClustersV2ItemCredentialsOutput) Database() pulumi.StringOutput {
+	return o.ApplyT(func(v GetMariaDBClustersV2ItemCredentials) string { return v.Database }).(pulumi.StringOutput)
+}
+
+// The username of the initial MariaDB user.
+func (o GetMariaDBClustersV2ItemCredentialsOutput) Username() pulumi.StringOutput {
+	return o.ApplyT(func(v GetMariaDBClustersV2ItemCredentials) string { return v.Username }).(pulumi.StringOutput)
+}
+
+type GetMariaDBClustersV2ItemInstances struct {
+	// The number of CPU cores per instance.
+	Cores int `pulumi:"cores"`
+	// The total number of instances in the cluster (one primary and n-1 secondary).
+	Count int `pulumi:"count"`
+	// The amount of memory per instance in gigabytes (GB).
+	Ram int `pulumi:"ram"`
+	// The amount of storage per instance in gigabytes (GB).
+	StorageSize int `pulumi:"storageSize"`
+}
+
+// GetMariaDBClustersV2ItemInstancesInput is an input type that accepts GetMariaDBClustersV2ItemInstancesArgs and GetMariaDBClustersV2ItemInstancesOutput values.
+// You can construct a concrete instance of `GetMariaDBClustersV2ItemInstancesInput` via:
+//
+//	GetMariaDBClustersV2ItemInstancesArgs{...}
+type GetMariaDBClustersV2ItemInstancesInput interface {
+	pulumi.Input
+
+	ToGetMariaDBClustersV2ItemInstancesOutput() GetMariaDBClustersV2ItemInstancesOutput
+	ToGetMariaDBClustersV2ItemInstancesOutputWithContext(context.Context) GetMariaDBClustersV2ItemInstancesOutput
+}
+
+type GetMariaDBClustersV2ItemInstancesArgs struct {
+	// The number of CPU cores per instance.
+	Cores pulumi.IntInput `pulumi:"cores"`
+	// The total number of instances in the cluster (one primary and n-1 secondary).
+	Count pulumi.IntInput `pulumi:"count"`
+	// The amount of memory per instance in gigabytes (GB).
+	Ram pulumi.IntInput `pulumi:"ram"`
+	// The amount of storage per instance in gigabytes (GB).
+	StorageSize pulumi.IntInput `pulumi:"storageSize"`
+}
+
+func (GetMariaDBClustersV2ItemInstancesArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetMariaDBClustersV2ItemInstances)(nil)).Elem()
+}
+
+func (i GetMariaDBClustersV2ItemInstancesArgs) ToGetMariaDBClustersV2ItemInstancesOutput() GetMariaDBClustersV2ItemInstancesOutput {
+	return i.ToGetMariaDBClustersV2ItemInstancesOutputWithContext(context.Background())
+}
+
+func (i GetMariaDBClustersV2ItemInstancesArgs) ToGetMariaDBClustersV2ItemInstancesOutputWithContext(ctx context.Context) GetMariaDBClustersV2ItemInstancesOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetMariaDBClustersV2ItemInstancesOutput)
+}
+
+type GetMariaDBClustersV2ItemInstancesOutput struct{ *pulumi.OutputState }
+
+func (GetMariaDBClustersV2ItemInstancesOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetMariaDBClustersV2ItemInstances)(nil)).Elem()
+}
+
+func (o GetMariaDBClustersV2ItemInstancesOutput) ToGetMariaDBClustersV2ItemInstancesOutput() GetMariaDBClustersV2ItemInstancesOutput {
+	return o
+}
+
+func (o GetMariaDBClustersV2ItemInstancesOutput) ToGetMariaDBClustersV2ItemInstancesOutputWithContext(ctx context.Context) GetMariaDBClustersV2ItemInstancesOutput {
+	return o
+}
+
+// The number of CPU cores per instance.
+func (o GetMariaDBClustersV2ItemInstancesOutput) Cores() pulumi.IntOutput {
+	return o.ApplyT(func(v GetMariaDBClustersV2ItemInstances) int { return v.Cores }).(pulumi.IntOutput)
+}
+
+// The total number of instances in the cluster (one primary and n-1 secondary).
+func (o GetMariaDBClustersV2ItemInstancesOutput) Count() pulumi.IntOutput {
+	return o.ApplyT(func(v GetMariaDBClustersV2ItemInstances) int { return v.Count }).(pulumi.IntOutput)
+}
+
+// The amount of memory per instance in gigabytes (GB).
+func (o GetMariaDBClustersV2ItemInstancesOutput) Ram() pulumi.IntOutput {
+	return o.ApplyT(func(v GetMariaDBClustersV2ItemInstances) int { return v.Ram }).(pulumi.IntOutput)
+}
+
+// The amount of storage per instance in gigabytes (GB).
+func (o GetMariaDBClustersV2ItemInstancesOutput) StorageSize() pulumi.IntOutput {
+	return o.ApplyT(func(v GetMariaDBClustersV2ItemInstances) int { return v.StorageSize }).(pulumi.IntOutput)
+}
+
+type GetMariaDBClustersV2ItemMaintenanceWindow struct {
+	// The name of the week day.
+	DayOfTheWeek string `pulumi:"dayOfTheWeek"`
+	// Start of the maintenance window in UTC time.
+	Time string `pulumi:"time"`
+}
+
+// GetMariaDBClustersV2ItemMaintenanceWindowInput is an input type that accepts GetMariaDBClustersV2ItemMaintenanceWindowArgs and GetMariaDBClustersV2ItemMaintenanceWindowOutput values.
+// You can construct a concrete instance of `GetMariaDBClustersV2ItemMaintenanceWindowInput` via:
+//
+//	GetMariaDBClustersV2ItemMaintenanceWindowArgs{...}
+type GetMariaDBClustersV2ItemMaintenanceWindowInput interface {
+	pulumi.Input
+
+	ToGetMariaDBClustersV2ItemMaintenanceWindowOutput() GetMariaDBClustersV2ItemMaintenanceWindowOutput
+	ToGetMariaDBClustersV2ItemMaintenanceWindowOutputWithContext(context.Context) GetMariaDBClustersV2ItemMaintenanceWindowOutput
+}
+
+type GetMariaDBClustersV2ItemMaintenanceWindowArgs struct {
+	// The name of the week day.
+	DayOfTheWeek pulumi.StringInput `pulumi:"dayOfTheWeek"`
+	// Start of the maintenance window in UTC time.
+	Time pulumi.StringInput `pulumi:"time"`
+}
+
+func (GetMariaDBClustersV2ItemMaintenanceWindowArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetMariaDBClustersV2ItemMaintenanceWindow)(nil)).Elem()
+}
+
+func (i GetMariaDBClustersV2ItemMaintenanceWindowArgs) ToGetMariaDBClustersV2ItemMaintenanceWindowOutput() GetMariaDBClustersV2ItemMaintenanceWindowOutput {
+	return i.ToGetMariaDBClustersV2ItemMaintenanceWindowOutputWithContext(context.Background())
+}
+
+func (i GetMariaDBClustersV2ItemMaintenanceWindowArgs) ToGetMariaDBClustersV2ItemMaintenanceWindowOutputWithContext(ctx context.Context) GetMariaDBClustersV2ItemMaintenanceWindowOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetMariaDBClustersV2ItemMaintenanceWindowOutput)
+}
+
+type GetMariaDBClustersV2ItemMaintenanceWindowOutput struct{ *pulumi.OutputState }
+
+func (GetMariaDBClustersV2ItemMaintenanceWindowOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetMariaDBClustersV2ItemMaintenanceWindow)(nil)).Elem()
+}
+
+func (o GetMariaDBClustersV2ItemMaintenanceWindowOutput) ToGetMariaDBClustersV2ItemMaintenanceWindowOutput() GetMariaDBClustersV2ItemMaintenanceWindowOutput {
+	return o
+}
+
+func (o GetMariaDBClustersV2ItemMaintenanceWindowOutput) ToGetMariaDBClustersV2ItemMaintenanceWindowOutputWithContext(ctx context.Context) GetMariaDBClustersV2ItemMaintenanceWindowOutput {
+	return o
+}
+
+// The name of the week day.
+func (o GetMariaDBClustersV2ItemMaintenanceWindowOutput) DayOfTheWeek() pulumi.StringOutput {
+	return o.ApplyT(func(v GetMariaDBClustersV2ItemMaintenanceWindow) string { return v.DayOfTheWeek }).(pulumi.StringOutput)
+}
+
+// Start of the maintenance window in UTC time.
+func (o GetMariaDBClustersV2ItemMaintenanceWindowOutput) Time() pulumi.StringOutput {
+	return o.ApplyT(func(v GetMariaDBClustersV2ItemMaintenanceWindow) string { return v.Time }).(pulumi.StringOutput)
+}
+
+type GetMariaDBVersionsV2Item struct {
+	// List of versions that a cluster running this version can be upgraded to.
+	CanUpgradeTos []string `pulumi:"canUpgradeTos"`
+	// Additional human-readable information about the version lifecycle.
+	Comment string `pulumi:"comment"`
+	// The ID (UUID) of the version.
+	Id string `pulumi:"id"`
+	// The support status of the version.
+	Status string `pulumi:"status"`
+	// The MariaDB version string (e.g. `11.4`).
+	Version string `pulumi:"version"`
+}
+
+// GetMariaDBVersionsV2ItemInput is an input type that accepts GetMariaDBVersionsV2ItemArgs and GetMariaDBVersionsV2ItemOutput values.
+// You can construct a concrete instance of `GetMariaDBVersionsV2ItemInput` via:
+//
+//	GetMariaDBVersionsV2ItemArgs{...}
+type GetMariaDBVersionsV2ItemInput interface {
+	pulumi.Input
+
+	ToGetMariaDBVersionsV2ItemOutput() GetMariaDBVersionsV2ItemOutput
+	ToGetMariaDBVersionsV2ItemOutputWithContext(context.Context) GetMariaDBVersionsV2ItemOutput
+}
+
+type GetMariaDBVersionsV2ItemArgs struct {
+	// List of versions that a cluster running this version can be upgraded to.
+	CanUpgradeTos pulumi.StringArrayInput `pulumi:"canUpgradeTos"`
+	// Additional human-readable information about the version lifecycle.
+	Comment pulumi.StringInput `pulumi:"comment"`
+	// The ID (UUID) of the version.
+	Id pulumi.StringInput `pulumi:"id"`
+	// The support status of the version.
+	Status pulumi.StringInput `pulumi:"status"`
+	// The MariaDB version string (e.g. `11.4`).
+	Version pulumi.StringInput `pulumi:"version"`
+}
+
+func (GetMariaDBVersionsV2ItemArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetMariaDBVersionsV2Item)(nil)).Elem()
+}
+
+func (i GetMariaDBVersionsV2ItemArgs) ToGetMariaDBVersionsV2ItemOutput() GetMariaDBVersionsV2ItemOutput {
+	return i.ToGetMariaDBVersionsV2ItemOutputWithContext(context.Background())
+}
+
+func (i GetMariaDBVersionsV2ItemArgs) ToGetMariaDBVersionsV2ItemOutputWithContext(ctx context.Context) GetMariaDBVersionsV2ItemOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetMariaDBVersionsV2ItemOutput)
+}
+
+// GetMariaDBVersionsV2ItemArrayInput is an input type that accepts GetMariaDBVersionsV2ItemArray and GetMariaDBVersionsV2ItemArrayOutput values.
+// You can construct a concrete instance of `GetMariaDBVersionsV2ItemArrayInput` via:
+//
+//	GetMariaDBVersionsV2ItemArray{ GetMariaDBVersionsV2ItemArgs{...} }
+type GetMariaDBVersionsV2ItemArrayInput interface {
+	pulumi.Input
+
+	ToGetMariaDBVersionsV2ItemArrayOutput() GetMariaDBVersionsV2ItemArrayOutput
+	ToGetMariaDBVersionsV2ItemArrayOutputWithContext(context.Context) GetMariaDBVersionsV2ItemArrayOutput
+}
+
+type GetMariaDBVersionsV2ItemArray []GetMariaDBVersionsV2ItemInput
+
+func (GetMariaDBVersionsV2ItemArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetMariaDBVersionsV2Item)(nil)).Elem()
+}
+
+func (i GetMariaDBVersionsV2ItemArray) ToGetMariaDBVersionsV2ItemArrayOutput() GetMariaDBVersionsV2ItemArrayOutput {
+	return i.ToGetMariaDBVersionsV2ItemArrayOutputWithContext(context.Background())
+}
+
+func (i GetMariaDBVersionsV2ItemArray) ToGetMariaDBVersionsV2ItemArrayOutputWithContext(ctx context.Context) GetMariaDBVersionsV2ItemArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetMariaDBVersionsV2ItemArrayOutput)
+}
+
+type GetMariaDBVersionsV2ItemOutput struct{ *pulumi.OutputState }
+
+func (GetMariaDBVersionsV2ItemOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetMariaDBVersionsV2Item)(nil)).Elem()
+}
+
+func (o GetMariaDBVersionsV2ItemOutput) ToGetMariaDBVersionsV2ItemOutput() GetMariaDBVersionsV2ItemOutput {
+	return o
+}
+
+func (o GetMariaDBVersionsV2ItemOutput) ToGetMariaDBVersionsV2ItemOutputWithContext(ctx context.Context) GetMariaDBVersionsV2ItemOutput {
+	return o
+}
+
+// List of versions that a cluster running this version can be upgraded to.
+func (o GetMariaDBVersionsV2ItemOutput) CanUpgradeTos() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetMariaDBVersionsV2Item) []string { return v.CanUpgradeTos }).(pulumi.StringArrayOutput)
+}
+
+// Additional human-readable information about the version lifecycle.
+func (o GetMariaDBVersionsV2ItemOutput) Comment() pulumi.StringOutput {
+	return o.ApplyT(func(v GetMariaDBVersionsV2Item) string { return v.Comment }).(pulumi.StringOutput)
+}
+
+// The ID (UUID) of the version.
+func (o GetMariaDBVersionsV2ItemOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetMariaDBVersionsV2Item) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// The support status of the version.
+func (o GetMariaDBVersionsV2ItemOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v GetMariaDBVersionsV2Item) string { return v.Status }).(pulumi.StringOutput)
+}
+
+// The MariaDB version string (e.g. `11.4`).
+func (o GetMariaDBVersionsV2ItemOutput) Version() pulumi.StringOutput {
+	return o.ApplyT(func(v GetMariaDBVersionsV2Item) string { return v.Version }).(pulumi.StringOutput)
+}
+
+type GetMariaDBVersionsV2ItemArrayOutput struct{ *pulumi.OutputState }
+
+func (GetMariaDBVersionsV2ItemArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetMariaDBVersionsV2Item)(nil)).Elem()
+}
+
+func (o GetMariaDBVersionsV2ItemArrayOutput) ToGetMariaDBVersionsV2ItemArrayOutput() GetMariaDBVersionsV2ItemArrayOutput {
+	return o
+}
+
+func (o GetMariaDBVersionsV2ItemArrayOutput) ToGetMariaDBVersionsV2ItemArrayOutputWithContext(ctx context.Context) GetMariaDBVersionsV2ItemArrayOutput {
+	return o
+}
+
+func (o GetMariaDBVersionsV2ItemArrayOutput) Index(i pulumi.IntInput) GetMariaDBVersionsV2ItemOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetMariaDBVersionsV2Item {
+		return vs[0].([]GetMariaDBVersionsV2Item)[vs[1].(int)]
+	}).(GetMariaDBVersionsV2ItemOutput)
 }
 
 type GetMongoClusterBackup struct {
@@ -8809,7 +11375,7 @@ func (o GetMongoUserRoleArrayOutput) Index(i pulumi.IntInput) GetMongoUserRoleOu
 type GetPSQLBackupLocationV2BackupLocation struct {
 	// The ID (UUID) of the backup location.
 	Id string `pulumi:"id"`
-	// [string] The region in which to look up backup locations. Available locations: `de/fra`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
+	// [string] The region in which to look up backup locations. Available locations: `de/fra`, `de/fra/1`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
 	Location string `pulumi:"location"`
 }
 
@@ -8827,7 +11393,7 @@ type GetPSQLBackupLocationV2BackupLocationInput interface {
 type GetPSQLBackupLocationV2BackupLocationArgs struct {
 	// The ID (UUID) of the backup location.
 	Id pulumi.StringInput `pulumi:"id"`
-	// [string] The region in which to look up backup locations. Available locations: `de/fra`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
+	// [string] The region in which to look up backup locations. Available locations: `de/fra`, `de/fra/1`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
 	Location pulumi.StringInput `pulumi:"location"`
 }
 
@@ -8887,7 +11453,7 @@ func (o GetPSQLBackupLocationV2BackupLocationOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetPSQLBackupLocationV2BackupLocation) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// [string] The region in which to look up backup locations. Available locations: `de/fra`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
+// [string] The region in which to look up backup locations. Available locations: `de/fra`, `de/fra/1`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
 func (o GetPSQLBackupLocationV2BackupLocationOutput) Location() pulumi.StringOutput {
 	return o.ApplyT(func(v GetPSQLBackupLocationV2BackupLocation) string { return v.Location }).(pulumi.StringOutput)
 }
@@ -9192,7 +11758,7 @@ type GetPSQLBackupsV2Backup struct {
 	IsActive bool `pulumi:"isActive"`
 	// The latest point in time to which the cluster can be restored. If the backup can be restored up to the current time, this field will be null.
 	LatestRecoveryTargetTime string `pulumi:"latestRecoveryTargetTime"`
-	// [string] The region in which to look up backups. Available locations: `de/fra`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
+	// [string] The region in which to look up backups. Available locations: `de/fra`, `de/fra/1`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
 	Location string `pulumi:"location"`
 	// The PostgreSQL version of the cluster when the backup was created.
 	PostgresClusterVersion string `pulumi:"postgresClusterVersion"`
@@ -9220,7 +11786,7 @@ type GetPSQLBackupsV2BackupArgs struct {
 	IsActive pulumi.BoolInput `pulumi:"isActive"`
 	// The latest point in time to which the cluster can be restored. If the backup can be restored up to the current time, this field will be null.
 	LatestRecoveryTargetTime pulumi.StringInput `pulumi:"latestRecoveryTargetTime"`
-	// [string] The region in which to look up backups. Available locations: `de/fra`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
+	// [string] The region in which to look up backups. Available locations: `de/fra`, `de/fra/1`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
 	Location pulumi.StringInput `pulumi:"location"`
 	// The PostgreSQL version of the cluster when the backup was created.
 	PostgresClusterVersion pulumi.StringInput `pulumi:"postgresClusterVersion"`
@@ -9302,7 +11868,7 @@ func (o GetPSQLBackupsV2BackupOutput) LatestRecoveryTargetTime() pulumi.StringOu
 	return o.ApplyT(func(v GetPSQLBackupsV2Backup) string { return v.LatestRecoveryTargetTime }).(pulumi.StringOutput)
 }
 
-// [string] The region in which to look up backups. Available locations: `de/fra`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
+// [string] The region in which to look up backups. Available locations: `de/fra`, `de/fra/1`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
 func (o GetPSQLBackupsV2BackupOutput) Location() pulumi.StringOutput {
 	return o.ApplyT(func(v GetPSQLBackupsV2Backup) string { return v.Location }).(pulumi.StringOutput)
 }
@@ -9757,7 +12323,7 @@ func (o GetPSQLClusterMaintenanceWindowArrayOutput) Index(i pulumi.IntInput) Get
 }
 
 type GetPSQLClusterV2Backup struct {
-	// [string] The region in which to look up the cluster. Available locations: `de/fra`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
+	// [string] The region in which to look up the cluster. Available locations: `de/fra`, `de/fra/1`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
 	//
 	// Either `id` or `name` must be provided. If none, or both are provided, the datasource will return an error.
 	Location string `pulumi:"location"`
@@ -9777,7 +12343,7 @@ type GetPSQLClusterV2BackupInput interface {
 }
 
 type GetPSQLClusterV2BackupArgs struct {
-	// [string] The region in which to look up the cluster. Available locations: `de/fra`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
+	// [string] The region in which to look up the cluster. Available locations: `de/fra`, `de/fra/1`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
 	//
 	// Either `id` or `name` must be provided. If none, or both are provided, the datasource will return an error.
 	Location pulumi.StringInput `pulumi:"location"`
@@ -9811,7 +12377,7 @@ func (o GetPSQLClusterV2BackupOutput) ToGetPSQLClusterV2BackupOutputWithContext(
 	return o
 }
 
-// [string] The region in which to look up the cluster. Available locations: `de/fra`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
+// [string] The region in which to look up the cluster. Available locations: `de/fra`, `de/fra/1`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
 //
 // Either `id` or `name` must be provided. If none, or both are provided, the datasource will return an error.
 func (o GetPSQLClusterV2BackupOutput) Location() pulumi.StringOutput {
@@ -10048,7 +12614,7 @@ type GetPSQLClustersV2Cluster struct {
 	Id string `pulumi:"id"`
 	// The instance configuration for the PostgreSQL cluster.
 	Instances GetPSQLClustersV2ClusterInstances `pulumi:"instances"`
-	// [string] The region in which to look up clusters. Available locations: `de/fra`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
+	// [string] The region in which to look up clusters. Available locations: `de/fra`, `de/fra/1`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
 	Location string `pulumi:"location"`
 	// Whether the collection and reporting of logs is enabled for this cluster.
 	LogsEnabled bool `pulumi:"logsEnabled"`
@@ -10090,7 +12656,7 @@ type GetPSQLClustersV2ClusterArgs struct {
 	Id pulumi.StringInput `pulumi:"id"`
 	// The instance configuration for the PostgreSQL cluster.
 	Instances GetPSQLClustersV2ClusterInstancesInput `pulumi:"instances"`
-	// [string] The region in which to look up clusters. Available locations: `de/fra`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
+	// [string] The region in which to look up clusters. Available locations: `de/fra`, `de/fra/1`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
 	Location pulumi.StringInput `pulumi:"location"`
 	// Whether the collection and reporting of logs is enabled for this cluster.
 	LogsEnabled pulumi.BoolInput `pulumi:"logsEnabled"`
@@ -10192,7 +12758,7 @@ func (o GetPSQLClustersV2ClusterOutput) Instances() GetPSQLClustersV2ClusterInst
 	return o.ApplyT(func(v GetPSQLClustersV2Cluster) GetPSQLClustersV2ClusterInstances { return v.Instances }).(GetPSQLClustersV2ClusterInstancesOutput)
 }
 
-// [string] The region in which to look up clusters. Available locations: `de/fra`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
+// [string] The region in which to look up clusters. Available locations: `de/fra`, `de/fra/1`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
 func (o GetPSQLClustersV2ClusterOutput) Location() pulumi.StringOutput {
 	return o.ApplyT(func(v GetPSQLClustersV2Cluster) string { return v.Location }).(pulumi.StringOutput)
 }
@@ -10248,7 +12814,7 @@ func (o GetPSQLClustersV2ClusterArrayOutput) Index(i pulumi.IntInput) GetPSQLClu
 }
 
 type GetPSQLClustersV2ClusterBackup struct {
-	// [string] The region in which to look up clusters. Available locations: `de/fra`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
+	// [string] The region in which to look up clusters. Available locations: `de/fra`, `de/fra/1`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
 	Location string `pulumi:"location"`
 	// How many days cluster backups are retained.
 	RetentionDays int `pulumi:"retentionDays"`
@@ -10266,7 +12832,7 @@ type GetPSQLClustersV2ClusterBackupInput interface {
 }
 
 type GetPSQLClustersV2ClusterBackupArgs struct {
-	// [string] The region in which to look up clusters. Available locations: `de/fra`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
+	// [string] The region in which to look up clusters. Available locations: `de/fra`, `de/fra/1`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
 	Location pulumi.StringInput `pulumi:"location"`
 	// How many days cluster backups are retained.
 	RetentionDays pulumi.IntInput `pulumi:"retentionDays"`
@@ -10298,7 +12864,7 @@ func (o GetPSQLClustersV2ClusterBackupOutput) ToGetPSQLClustersV2ClusterBackupOu
 	return o
 }
 
-// [string] The region in which to look up clusters. Available locations: `de/fra`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
+// [string] The region in which to look up clusters. Available locations: `de/fra`, `de/fra/1`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
 func (o GetPSQLClustersV2ClusterBackupOutput) Location() pulumi.StringOutput {
 	return o.ApplyT(func(v GetPSQLClustersV2ClusterBackup) string { return v.Location }).(pulumi.StringOutput)
 }
@@ -10803,6 +13369,22 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*MariaDBClusterCredentialsPtrInput)(nil)).Elem(), MariaDBClusterCredentialsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*MariaDBClusterMaintenanceWindowInput)(nil)).Elem(), MariaDBClusterMaintenanceWindowArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*MariaDBClusterMaintenanceWindowPtrInput)(nil)).Elem(), MariaDBClusterMaintenanceWindowArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*MariaDBClusterV2BackupInput)(nil)).Elem(), MariaDBClusterV2BackupArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*MariaDBClusterV2BackupPtrInput)(nil)).Elem(), MariaDBClusterV2BackupArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*MariaDBClusterV2ConnectionsInput)(nil)).Elem(), MariaDBClusterV2ConnectionsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*MariaDBClusterV2ConnectionsPtrInput)(nil)).Elem(), MariaDBClusterV2ConnectionsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*MariaDBClusterV2CredentialsInput)(nil)).Elem(), MariaDBClusterV2CredentialsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*MariaDBClusterV2CredentialsPtrInput)(nil)).Elem(), MariaDBClusterV2CredentialsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*MariaDBClusterV2FilterInput)(nil)).Elem(), MariaDBClusterV2FilterArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*MariaDBClusterV2FilterArrayInput)(nil)).Elem(), MariaDBClusterV2FilterArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*MariaDBClusterV2InstancesInput)(nil)).Elem(), MariaDBClusterV2InstancesArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*MariaDBClusterV2InstancesPtrInput)(nil)).Elem(), MariaDBClusterV2InstancesArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*MariaDBClusterV2MaintenanceWindowInput)(nil)).Elem(), MariaDBClusterV2MaintenanceWindowArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*MariaDBClusterV2MaintenanceWindowPtrInput)(nil)).Elem(), MariaDBClusterV2MaintenanceWindowArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*MariaDBClusterV2RestoreFromBackupInput)(nil)).Elem(), MariaDBClusterV2RestoreFromBackupArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*MariaDBClusterV2RestoreFromBackupPtrInput)(nil)).Elem(), MariaDBClusterV2RestoreFromBackupArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*MariaDBClusterV2TimeoutsInput)(nil)).Elem(), MariaDBClusterV2TimeoutsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*MariaDBClusterV2TimeoutsPtrInput)(nil)).Elem(), MariaDBClusterV2TimeoutsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*MongoClusterBackupInput)(nil)).Elem(), MongoClusterBackupArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*MongoClusterBackupPtrInput)(nil)).Elem(), MongoClusterBackupArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*MongoClusterBiConnectorInput)(nil)).Elem(), MongoClusterBiConnectorArgs{})
@@ -10867,16 +13449,34 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetInMemoryDBVersionsV2ItemArrayInput)(nil)).Elem(), GetInMemoryDBVersionsV2ItemArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetInmemorydbSnapshotMetadataInput)(nil)).Elem(), GetInmemorydbSnapshotMetadataArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetInmemorydbSnapshotMetadataArrayInput)(nil)).Elem(), GetInmemorydbSnapshotMetadataArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetMariaDBBackupLocationsV2ItemInput)(nil)).Elem(), GetMariaDBBackupLocationsV2ItemArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetMariaDBBackupLocationsV2ItemArrayInput)(nil)).Elem(), GetMariaDBBackupLocationsV2ItemArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetMariaDBBackupsBackupInput)(nil)).Elem(), GetMariaDBBackupsBackupArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetMariaDBBackupsBackupArrayInput)(nil)).Elem(), GetMariaDBBackupsBackupArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetMariaDBBackupsBackupBaseBackupInput)(nil)).Elem(), GetMariaDBBackupsBackupBaseBackupArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetMariaDBBackupsBackupBaseBackupArrayInput)(nil)).Elem(), GetMariaDBBackupsBackupBaseBackupArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetMariaDBBackupsV2ItemInput)(nil)).Elem(), GetMariaDBBackupsV2ItemArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetMariaDBBackupsV2ItemArrayInput)(nil)).Elem(), GetMariaDBBackupsV2ItemArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetMariaDBClusterBackupInput)(nil)).Elem(), GetMariaDBClusterBackupArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetMariaDBClusterBackupArrayInput)(nil)).Elem(), GetMariaDBClusterBackupArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetMariaDBClusterConnectionInput)(nil)).Elem(), GetMariaDBClusterConnectionArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetMariaDBClusterConnectionArrayInput)(nil)).Elem(), GetMariaDBClusterConnectionArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetMariaDBClusterMaintenanceWindowInput)(nil)).Elem(), GetMariaDBClusterMaintenanceWindowArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetMariaDBClusterMaintenanceWindowArrayInput)(nil)).Elem(), GetMariaDBClusterMaintenanceWindowArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetMariaDBClusterV2BackupInput)(nil)).Elem(), GetMariaDBClusterV2BackupArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetMariaDBClusterV2ConnectionsInput)(nil)).Elem(), GetMariaDBClusterV2ConnectionsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetMariaDBClusterV2CredentialsInput)(nil)).Elem(), GetMariaDBClusterV2CredentialsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetMariaDBClusterV2InstancesInput)(nil)).Elem(), GetMariaDBClusterV2InstancesArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetMariaDBClusterV2MaintenanceWindowInput)(nil)).Elem(), GetMariaDBClusterV2MaintenanceWindowArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetMariaDBClustersV2ItemInput)(nil)).Elem(), GetMariaDBClustersV2ItemArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetMariaDBClustersV2ItemArrayInput)(nil)).Elem(), GetMariaDBClustersV2ItemArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetMariaDBClustersV2ItemBackupInput)(nil)).Elem(), GetMariaDBClustersV2ItemBackupArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetMariaDBClustersV2ItemConnectionsInput)(nil)).Elem(), GetMariaDBClustersV2ItemConnectionsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetMariaDBClustersV2ItemCredentialsInput)(nil)).Elem(), GetMariaDBClustersV2ItemCredentialsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetMariaDBClustersV2ItemInstancesInput)(nil)).Elem(), GetMariaDBClustersV2ItemInstancesArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetMariaDBClustersV2ItemMaintenanceWindowInput)(nil)).Elem(), GetMariaDBClustersV2ItemMaintenanceWindowArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetMariaDBVersionsV2ItemInput)(nil)).Elem(), GetMariaDBVersionsV2ItemArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetMariaDBVersionsV2ItemArrayInput)(nil)).Elem(), GetMariaDBVersionsV2ItemArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetMongoClusterBackupInput)(nil)).Elem(), GetMongoClusterBackupArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetMongoClusterBackupArrayInput)(nil)).Elem(), GetMongoClusterBackupArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetMongoClusterBiConnectorInput)(nil)).Elem(), GetMongoClusterBiConnectorArgs{})
@@ -10953,6 +13553,22 @@ func init() {
 	pulumi.RegisterOutputType(MariaDBClusterCredentialsPtrOutput{})
 	pulumi.RegisterOutputType(MariaDBClusterMaintenanceWindowOutput{})
 	pulumi.RegisterOutputType(MariaDBClusterMaintenanceWindowPtrOutput{})
+	pulumi.RegisterOutputType(MariaDBClusterV2BackupOutput{})
+	pulumi.RegisterOutputType(MariaDBClusterV2BackupPtrOutput{})
+	pulumi.RegisterOutputType(MariaDBClusterV2ConnectionsOutput{})
+	pulumi.RegisterOutputType(MariaDBClusterV2ConnectionsPtrOutput{})
+	pulumi.RegisterOutputType(MariaDBClusterV2CredentialsOutput{})
+	pulumi.RegisterOutputType(MariaDBClusterV2CredentialsPtrOutput{})
+	pulumi.RegisterOutputType(MariaDBClusterV2FilterOutput{})
+	pulumi.RegisterOutputType(MariaDBClusterV2FilterArrayOutput{})
+	pulumi.RegisterOutputType(MariaDBClusterV2InstancesOutput{})
+	pulumi.RegisterOutputType(MariaDBClusterV2InstancesPtrOutput{})
+	pulumi.RegisterOutputType(MariaDBClusterV2MaintenanceWindowOutput{})
+	pulumi.RegisterOutputType(MariaDBClusterV2MaintenanceWindowPtrOutput{})
+	pulumi.RegisterOutputType(MariaDBClusterV2RestoreFromBackupOutput{})
+	pulumi.RegisterOutputType(MariaDBClusterV2RestoreFromBackupPtrOutput{})
+	pulumi.RegisterOutputType(MariaDBClusterV2TimeoutsOutput{})
+	pulumi.RegisterOutputType(MariaDBClusterV2TimeoutsPtrOutput{})
 	pulumi.RegisterOutputType(MongoClusterBackupOutput{})
 	pulumi.RegisterOutputType(MongoClusterBackupPtrOutput{})
 	pulumi.RegisterOutputType(MongoClusterBiConnectorOutput{})
@@ -11017,16 +13633,34 @@ func init() {
 	pulumi.RegisterOutputType(GetInMemoryDBVersionsV2ItemArrayOutput{})
 	pulumi.RegisterOutputType(GetInmemorydbSnapshotMetadataOutput{})
 	pulumi.RegisterOutputType(GetInmemorydbSnapshotMetadataArrayOutput{})
+	pulumi.RegisterOutputType(GetMariaDBBackupLocationsV2ItemOutput{})
+	pulumi.RegisterOutputType(GetMariaDBBackupLocationsV2ItemArrayOutput{})
 	pulumi.RegisterOutputType(GetMariaDBBackupsBackupOutput{})
 	pulumi.RegisterOutputType(GetMariaDBBackupsBackupArrayOutput{})
 	pulumi.RegisterOutputType(GetMariaDBBackupsBackupBaseBackupOutput{})
 	pulumi.RegisterOutputType(GetMariaDBBackupsBackupBaseBackupArrayOutput{})
+	pulumi.RegisterOutputType(GetMariaDBBackupsV2ItemOutput{})
+	pulumi.RegisterOutputType(GetMariaDBBackupsV2ItemArrayOutput{})
 	pulumi.RegisterOutputType(GetMariaDBClusterBackupOutput{})
 	pulumi.RegisterOutputType(GetMariaDBClusterBackupArrayOutput{})
 	pulumi.RegisterOutputType(GetMariaDBClusterConnectionOutput{})
 	pulumi.RegisterOutputType(GetMariaDBClusterConnectionArrayOutput{})
 	pulumi.RegisterOutputType(GetMariaDBClusterMaintenanceWindowOutput{})
 	pulumi.RegisterOutputType(GetMariaDBClusterMaintenanceWindowArrayOutput{})
+	pulumi.RegisterOutputType(GetMariaDBClusterV2BackupOutput{})
+	pulumi.RegisterOutputType(GetMariaDBClusterV2ConnectionsOutput{})
+	pulumi.RegisterOutputType(GetMariaDBClusterV2CredentialsOutput{})
+	pulumi.RegisterOutputType(GetMariaDBClusterV2InstancesOutput{})
+	pulumi.RegisterOutputType(GetMariaDBClusterV2MaintenanceWindowOutput{})
+	pulumi.RegisterOutputType(GetMariaDBClustersV2ItemOutput{})
+	pulumi.RegisterOutputType(GetMariaDBClustersV2ItemArrayOutput{})
+	pulumi.RegisterOutputType(GetMariaDBClustersV2ItemBackupOutput{})
+	pulumi.RegisterOutputType(GetMariaDBClustersV2ItemConnectionsOutput{})
+	pulumi.RegisterOutputType(GetMariaDBClustersV2ItemCredentialsOutput{})
+	pulumi.RegisterOutputType(GetMariaDBClustersV2ItemInstancesOutput{})
+	pulumi.RegisterOutputType(GetMariaDBClustersV2ItemMaintenanceWindowOutput{})
+	pulumi.RegisterOutputType(GetMariaDBVersionsV2ItemOutput{})
+	pulumi.RegisterOutputType(GetMariaDBVersionsV2ItemArrayOutput{})
 	pulumi.RegisterOutputType(GetMongoClusterBackupOutput{})
 	pulumi.RegisterOutputType(GetMongoClusterBackupArrayOutput{})
 	pulumi.RegisterOutputType(GetMongoClusterBiConnectorOutput{})

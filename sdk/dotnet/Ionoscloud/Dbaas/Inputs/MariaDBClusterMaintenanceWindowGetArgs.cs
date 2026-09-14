@@ -20,7 +20,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Dbaas.Inputs
         public Input<string> DayOfTheWeek { get; set; } = null!;
 
         /// <summary>
-        /// [string] Start of the maintenance window in UTC time.
+        /// [string] Start of the maintenance window in UTC time. Format: HH:MM:SS.
         /// </summary>
         [Input("time", required: true)]
         public Input<string> Time { get; set; } = null!;

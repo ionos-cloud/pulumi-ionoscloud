@@ -27,7 +27,7 @@ class GetServerResult:
     """
     A collection of values returned by getServer.
     """
-    def __init__(__self__, availability_zone=None, boot_cdrom=None, boot_image=None, boot_volume=None, cdroms=None, cores=None, cpu_family=None, datacenter_id=None, hostname=None, id=None, labels=None, location=None, name=None, nic_multi_queue=None, nics=None, ram=None, security_groups_ids=None, template_uuid=None, token=None, type=None, vm_state=None, volumes=None):
+    def __init__(__self__, availability_zone=None, boot_cdrom=None, boot_image=None, boot_volume=None, cdroms=None, cores=None, cpu_family=None, datacenter_id=None, enabled_features=None, hostname=None, id=None, labels=None, location=None, name=None, nic_multi_queue=None, nics=None, ram=None, security_groups_ids=None, template_uuid=None, token=None, type=None, vm_state=None, volumes=None):
         if availability_zone and not isinstance(availability_zone, str):
             raise TypeError("Expected argument 'availability_zone' to be a str")
         pulumi.set(__self__, "availability_zone", availability_zone)
@@ -52,6 +52,9 @@ class GetServerResult:
         if datacenter_id and not isinstance(datacenter_id, str):
             raise TypeError("Expected argument 'datacenter_id' to be a str")
         pulumi.set(__self__, "datacenter_id", datacenter_id)
+        if enabled_features and not isinstance(enabled_features, list):
+            raise TypeError("Expected argument 'enabled_features' to be a list")
+        pulumi.set(__self__, "enabled_features", enabled_features)
         if hostname and not isinstance(hostname, str):
             raise TypeError("Expected argument 'hostname' to be a str")
         pulumi.set(__self__, "hostname", hostname)
@@ -149,6 +152,14 @@ class GetServerResult:
         The id of the datacenter
         """
         return pulumi.get(self, "datacenter_id")
+
+    @_builtins.property
+    @pulumi.getter(name="enabledFeatures")
+    def enabled_features(self) -> Sequence[_builtins.str]:
+        """
+        Features enabled on the server, e.g. `SEV-SNP` for a Confidential Computing VM.
+        """
+        return pulumi.get(self, "enabled_features")
 
     @_builtins.property
     @pulumi.getter
@@ -274,6 +285,7 @@ class AwaitableGetServerResult(GetServerResult):
             cores=self.cores,
             cpu_family=self.cpu_family,
             datacenter_id=self.datacenter_id,
+            enabled_features=self.enabled_features,
             hostname=self.hostname,
             id=self.id,
             labels=self.labels,
@@ -351,6 +363,7 @@ def get_server(datacenter_id: Optional[_builtins.str] = None,
         cores=pulumi.get(__ret__, 'cores'),
         cpu_family=pulumi.get(__ret__, 'cpu_family'),
         datacenter_id=pulumi.get(__ret__, 'datacenter_id'),
+        enabled_features=pulumi.get(__ret__, 'enabled_features'),
         hostname=pulumi.get(__ret__, 'hostname'),
         id=pulumi.get(__ret__, 'id'),
         labels=pulumi.get(__ret__, 'labels'),
@@ -425,6 +438,7 @@ def get_server_output(datacenter_id: pulumi.Input[Optional[_builtins.str]] = Non
         cores=pulumi.get(__response__, 'cores'),
         cpu_family=pulumi.get(__response__, 'cpu_family'),
         datacenter_id=pulumi.get(__response__, 'datacenter_id'),
+        enabled_features=pulumi.get(__response__, 'enabled_features'),
         hostname=pulumi.get(__response__, 'hostname'),
         id=pulumi.get(__response__, 'id'),
         labels=pulumi.get(__response__, 'labels'),

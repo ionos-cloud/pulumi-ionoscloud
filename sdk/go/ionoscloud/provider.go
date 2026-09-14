@@ -43,6 +43,21 @@ func NewProvider(ctx *pulumi.Context,
 		args = &ProviderArgs{}
 	}
 
+	if args.Password != nil {
+		args.Password = pulumi.ToSecret(args.Password).(pulumi.StringPtrInput)
+	}
+	if args.S3SecretKey != nil {
+		args.S3SecretKey = pulumi.ToSecret(args.S3SecretKey).(pulumi.StringPtrInput)
+	}
+	if args.Token != nil {
+		args.Token = pulumi.ToSecret(args.Token).(pulumi.StringPtrInput)
+	}
+	secrets := pulumi.AdditionalSecretOutputs([]string{
+		"password",
+		"s3SecretKey",
+		"token",
+	})
+	opts = append(opts, secrets)
 	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Provider
 	err := ctx.RegisterResource("pulumi:providers:ionoscloud", name, args, &resource, opts...)

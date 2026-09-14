@@ -50,7 +50,7 @@ export interface GetPSQLBackupsV2Args {
      */
     clusterId?: string;
     /**
-     * [string] The region in which to look up backups. Available locations: `de/fra`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
+     * [string] The region in which to look up backups. Available locations: `de/fra`, `de/fra/1`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
      */
     location: string;
 }
@@ -120,7 +120,7 @@ export interface GetPSQLBackupsV2OutputArgs {
      */
     clusterId?: pulumi.Input<string | undefined>;
     /**
-     * [string] The region in which to look up backups. Available locations: `de/fra`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
+     * [string] The region in which to look up backups. Available locations: `de/fra`, `de/fra/1`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
      */
     location: pulumi.Input<string>;
 }

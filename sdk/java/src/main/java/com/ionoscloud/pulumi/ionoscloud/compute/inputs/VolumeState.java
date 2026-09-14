@@ -154,14 +154,14 @@ public final class VolumeState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * [string] The volume type: HDD or SSD. This property is immutable.
+     * [string] The volume type. Possible values: `HDD`, `SSD`, `SSD Standard`, `SSD Premium`, `DAS`, `ISO`, `ESSENTIAL`, `BALANCED`, `PERFORMANCE`. This property is immutable.
      * 
      */
     @Import(name="diskType")
     private @Nullable Output<String> diskType;
 
     /**
-     * @return [string] The volume type: HDD or SSD. This property is immutable.
+     * @return [string] The volume type. Possible values: `HDD`, `SSD`, `SSD Standard`, `SSD Premium`, `DAS`, `ISO`, `ESSENTIAL`, `BALANCED`, `PERFORMANCE`. This property is immutable.
      * 
      */
     public Optional<Output<String>> diskType() {
@@ -697,7 +697,7 @@ public final class VolumeState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param diskType [string] The volume type: HDD or SSD. This property is immutable.
+         * @param diskType [string] The volume type. Possible values: `HDD`, `SSD`, `SSD Standard`, `SSD Premium`, `DAS`, `ISO`, `ESSENTIAL`, `BALANCED`, `PERFORMANCE`. This property is immutable.
          * 
          * @return builder
          * 
@@ -708,7 +708,7 @@ public final class VolumeState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param diskType [string] The volume type: HDD or SSD. This property is immutable.
+         * @param diskType [string] The volume type. Possible values: `HDD`, `SSD`, `SSD Standard`, `SSD Premium`, `DAS`, `ISO`, `ESSENTIAL`, `BALANCED`, `PERFORMANCE`. This property is immutable.
          * 
          * @return builder
          * 

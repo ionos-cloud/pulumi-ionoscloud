@@ -17,7 +17,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Dbaas.Inputs
         private Input<string>? _password;
 
         /// <summary>
-        /// [string] The password for a MariaDB user.
+        /// [string] The password for a MariaDB user. Length: 10-63 characters.
         /// </summary>
         public Input<string>? Password
         {
@@ -30,7 +30,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Dbaas.Inputs
         }
 
         /// <summary>
-        /// [string] The username for the initial MariaDB user. Some system usernames are restricted (e.g 'mariadb', 'admin', 'standby').
+        /// [string] The username for the initial MariaDB user. Some system usernames are restricted (e.g 'mariadb', 'admin', 'standby'). Length: 1-16 characters. Must start with a letter, end with a letter or number, and contain only letters, numbers, or underscores (underscores only between alphanumeric groups).
         /// </summary>
         [Input("username", required: true)]
         public Input<string> Username { get; set; } = null!;

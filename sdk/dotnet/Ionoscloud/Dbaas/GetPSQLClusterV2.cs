@@ -161,7 +161,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Dbaas
         public string? Id { get; set; }
 
         /// <summary>
-        /// [string] The region in which to look up the cluster. Available locations: `de/fra`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
+        /// [string] The region in which to look up the cluster. Available locations: `de/fra`, `de/fra/1`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
         /// 
         /// Either `Id` or `Name` must be provided. If none, or both are provided, the datasource will return an error.
         /// </summary>
@@ -189,7 +189,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Dbaas
         public Input<string>? Id { get; set; }
 
         /// <summary>
-        /// [string] The region in which to look up the cluster. Available locations: `de/fra`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
+        /// [string] The region in which to look up the cluster. Available locations: `de/fra`, `de/fra/1`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
         /// 
         /// Either `Id` or `Name` must be provided. If none, or both are provided, the datasource will return an error.
         /// </summary>

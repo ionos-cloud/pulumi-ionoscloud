@@ -49,7 +49,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Dbaas
         public Output<Outputs.MariaDBClusterCredentials> Credentials { get; private set; } = null!;
 
         /// <summary>
-        /// [string] The friendly name of your cluster.
+        /// [string] The friendly name of your cluster. Maximum length: 63 characters. Must contain only word characters (letters, numbers, underscores), colons, hyphens, spaces, or dots.
         /// </summary>
         [Output("displayName")]
         public Output<string> DisplayName { get; private set; } = null!;
@@ -87,13 +87,13 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Dbaas
         public Output<string> MariadbVersion { get; private set; } = null!;
 
         /// <summary>
-        /// [int] The amount of memory per instance in gigabytes (GB).
+        /// [int] The amount of memory per instance in gigabytes (GB). Minimum: 4.
         /// </summary>
         [Output("ram")]
         public Output<int> Ram { get; private set; } = null!;
 
         /// <summary>
-        /// [int] The amount of storage per instance in gigabytes (GB).
+        /// [int] The amount of storage per instance in gigabytes (GB). Minimum: 10, Maximum: 2000.
         /// </summary>
         [Output("storageSize")]
         public Output<int> StorageSize { get; private set; } = null!;
@@ -170,7 +170,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Dbaas
         public Input<Inputs.MariaDBClusterCredentialsArgs> Credentials { get; set; } = null!;
 
         /// <summary>
-        /// [string] The friendly name of your cluster.
+        /// [string] The friendly name of your cluster. Maximum length: 63 characters. Must contain only word characters (letters, numbers, underscores), colons, hyphens, spaces, or dots.
         /// </summary>
         [Input("displayName", required: true)]
         public Input<string> DisplayName { get; set; } = null!;
@@ -200,13 +200,13 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Dbaas
         public Input<string> MariadbVersion { get; set; } = null!;
 
         /// <summary>
-        /// [int] The amount of memory per instance in gigabytes (GB).
+        /// [int] The amount of memory per instance in gigabytes (GB). Minimum: 4.
         /// </summary>
         [Input("ram", required: true)]
         public Input<int> Ram { get; set; } = null!;
 
         /// <summary>
-        /// [int] The amount of storage per instance in gigabytes (GB).
+        /// [int] The amount of storage per instance in gigabytes (GB). Minimum: 10, Maximum: 2000.
         /// </summary>
         [Input("storageSize", required: true)]
         public Input<int> StorageSize { get; set; } = null!;
@@ -244,7 +244,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Dbaas
         public Input<Inputs.MariaDBClusterCredentialsGetArgs>? Credentials { get; set; }
 
         /// <summary>
-        /// [string] The friendly name of your cluster.
+        /// [string] The friendly name of your cluster. Maximum length: 63 characters. Must contain only word characters (letters, numbers, underscores), colons, hyphens, spaces, or dots.
         /// </summary>
         [Input("displayName")]
         public Input<string>? DisplayName { get; set; }
@@ -282,13 +282,13 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Dbaas
         public Input<string>? MariadbVersion { get; set; }
 
         /// <summary>
-        /// [int] The amount of memory per instance in gigabytes (GB).
+        /// [int] The amount of memory per instance in gigabytes (GB). Minimum: 4.
         /// </summary>
         [Input("ram")]
         public Input<int>? Ram { get; set; }
 
         /// <summary>
-        /// [int] The amount of storage per instance in gigabytes (GB).
+        /// [int] The amount of storage per instance in gigabytes (GB). Minimum: 10, Maximum: 2000.
         /// </summary>
         [Input("storageSize")]
         public Input<int>? StorageSize { get; set; }

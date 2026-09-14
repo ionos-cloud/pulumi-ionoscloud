@@ -270,6 +270,8 @@ class Accesskey(pulumi.CustomResource):
             __props__.__dict__["canonical_user_id"] = None
             __props__.__dict__["contract_user_id"] = None
             __props__.__dict__["secretkey"] = None
+        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["secretkey"])
+        opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(Accesskey, __self__).__init__(
             'ionoscloud:objectstoragemanagement/accesskey:Accesskey',
             resource_name,

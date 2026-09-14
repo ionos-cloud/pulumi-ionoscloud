@@ -379,6 +379,26 @@ func Provider() tfbridge.ProviderInfo {
 				Tok:  tfbridge.MakeDataSource(mainPkg, dbaasModule, "getMariaDBBackups"),
 				Docs: &tfbridge.DocInfo{Source: "dbaas_mariadb_backups.md"},
 			},
+			"ionoscloud_mariadb_cluster_v2": {
+				Tok:  tfbridge.MakeDataSource(mainPkg, dbaasModule, "getMariaDBClusterV2"),
+				Docs: &tfbridge.DocInfo{Source: "mariadb_cluster_v2.md"},
+			},
+			"ionoscloud_mariadb_clusters_v2": {
+				Tok:  tfbridge.MakeDataSource(mainPkg, dbaasModule, "getMariaDBClustersV2"),
+				Docs: &tfbridge.DocInfo{Source: "mariadb_clusters_v2.md"},
+			},
+			"ionoscloud_mariadb_backups_v2": {
+				Tok:  tfbridge.MakeDataSource(mainPkg, dbaasModule, "getMariaDBBackupsV2"),
+				Docs: &tfbridge.DocInfo{Source: "mariadb_backups_v2.md"},
+			},
+			"ionoscloud_mariadb_backup_locations_v2": {
+				Tok:  tfbridge.MakeDataSource(mainPkg, dbaasModule, "getMariaDBBackupLocationsV2"),
+				Docs: &tfbridge.DocInfo{Source: "mariadb_backup_locations_v2.md"},
+			},
+			"ionoscloud_mariadb_versions_v2": {
+				Tok:  tfbridge.MakeDataSource(mainPkg, dbaasModule, "getMariaDBVersionsV2"),
+				Docs: &tfbridge.DocInfo{Source: "mariadb_versions_v2.md"},
+			},
 			"ionoscloud_inmemorydb_replicaset": {
 				Tok:  tfbridge.MakeDataSource(mainPkg, dbaasModule, "getInMemoryDBReplicaSet"),
 				Docs: &tfbridge.DocInfo{Source: "dbaas_inmemorydb_replica_set.md"},
@@ -612,6 +632,10 @@ func Provider() tfbridge.ProviderInfo {
 			"ionoscloud_mariadb_cluster": {
 				Tok:  tfbridge.MakeResource(mainPkg, dbaasModule, "MariaDBCluster"),
 				Docs: &tfbridge.DocInfo{Source: "dbaas_mariadb_cluster.md"},
+			},
+			"ionoscloud_mariadb_cluster_v2": {
+				Tok:  tfbridge.MakeResource(mainPkg, dbaasModule, "MariaDBClusterV2"),
+				Docs: &tfbridge.DocInfo{Source: "mariadb_cluster_v2.md"},
 			},
 			"ionoscloud_inmemorydb_replicaset": {
 				Tok:  tfbridge.MakeResource(mainPkg, dbaasModule, "InMemoryDBReplicaSet"),

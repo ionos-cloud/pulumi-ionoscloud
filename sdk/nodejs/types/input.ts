@@ -713,6 +713,10 @@ export namespace compute {
          */
         cpuFamily?: pulumi.Input<string | undefined>;
         /**
+         * Features enabled for this CPU architecture, e.g. `SEV-SNP` for Confidential Computing
+         */
+        enabledFeatures?: pulumi.Input<pulumi.Input<string>[] | undefined>;
+        /**
          * The maximum number of cores available
          */
         maxCores?: pulumi.Input<number | undefined>;
@@ -1540,11 +1544,11 @@ export namespace dbaas {
 
     export interface MariaDBClusterCredentials {
         /**
-         * [string] The password for a MariaDB user.
+         * [string] The password for a MariaDB user. Length: 10-63 characters.
          */
         password: pulumi.Input<string>;
         /**
-         * [string] The username for the initial MariaDB user. Some system usernames are restricted (e.g 'mariadb', 'admin', 'standby').
+         * [string] The username for the initial MariaDB user. Some system usernames are restricted (e.g 'mariadb', 'admin', 'standby'). Length: 1-16 characters. Must start with a letter, end with a letter or number, and contain only letters, numbers, or underscores (underscores only between alphanumeric groups).
          */
         username: pulumi.Input<string>;
     }
@@ -1555,9 +1559,108 @@ export namespace dbaas {
          */
         dayOfTheWeek: pulumi.Input<string>;
         /**
-         * [string] Start of the maintenance window in UTC time.
+         * [string] Start of the maintenance window in UTC time. Format: HH:MM:SS.
          */
         time: pulumi.Input<string>;
+    }
+
+    export interface MariaDBClusterV2Backup {
+        /**
+         * [string] The Object Storage location where the backup will be created. Changing this forces re-creation of the cluster.
+         */
+        location: pulumi.Input<string>;
+        /**
+         * [int] Configures how many days cluster backups are retained.
+         */
+        retentionDays: pulumi.Input<number>;
+    }
+
+    export interface MariaDBClusterV2Connections {
+        /**
+         * [string] The datacenter to connect your instance to.
+         */
+        datacenterId: pulumi.Input<string>;
+        /**
+         * [string] The numeric LAN ID to connect your instance to.
+         */
+        lanId: pulumi.Input<string>;
+        /**
+         * [string] The IP address and netmask of the cluster's primary instance, in CIDR notation.
+         */
+        primaryInstanceAddress: pulumi.Input<string>;
+    }
+
+    export interface MariaDBClusterV2Credentials {
+        /**
+         * [string] The name of the initial database to be created.
+         */
+        database: pulumi.Input<string>;
+        /**
+         * [string] **Sensitive.** The password for the initial MariaDB user. Not returned by the API — will be null in state after `pulumi import`.
+         */
+        password: pulumi.Input<string>;
+        /**
+         * [string] The username of the initial MariaDB user.
+         */
+        username: pulumi.Input<string>;
+    }
+
+    export interface MariaDBClusterV2Instances {
+        /**
+         * [int] The number of CPU cores per instance.
+         */
+        cores: pulumi.Input<number>;
+        /**
+         * [int] The total number of instances in the cluster (one primary and n-1 secondary).
+         */
+        count: pulumi.Input<number>;
+        /**
+         * [int] The amount of memory per instance in gigabytes (GB).
+         */
+        ram: pulumi.Input<number>;
+        /**
+         * [int] The amount of storage per instance in gigabytes (GB).
+         */
+        storageSize: pulumi.Input<number>;
+    }
+
+    export interface MariaDBClusterV2MaintenanceWindow {
+        /**
+         * [string] The name of the week day.
+         */
+        dayOfTheWeek: pulumi.Input<string>;
+        /**
+         * [string] Start of the maintenance window in UTC time (`HH:MM:SS`).
+         */
+        time: pulumi.Input<string>;
+    }
+
+    export interface MariaDBClusterV2RestoreFromBackup {
+        /**
+         * [string] ISO 8601 timestamp causing the system to replay backups up to the specified time. Optional for create-time restore; required for in-place restore during an update.
+         *
+         * > **Note:** `restoreFromBackup` is not returned by the API. The values are stored in state as configured but will be null after `pulumi import`.
+         */
+        recoveryTargetDatetime?: pulumi.Input<string | undefined>;
+        /**
+         * [string] UUID of the backup to restore from. Required when `restoreFromBackup` is set during cluster creation; not valid for in-place restore during an update.
+         */
+        sourceBackupId?: pulumi.Input<string | undefined>;
+    }
+
+    export interface MariaDBClusterV2Timeouts {
+        /**
+         * A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+         */
+        create?: pulumi.Input<string | undefined>;
+        /**
+         * A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs.
+         */
+        delete?: pulumi.Input<string | undefined>;
+        /**
+         * A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+         */
+        update?: pulumi.Input<string | undefined>;
     }
 
     export interface MongoClusterBackup {
@@ -1866,6 +1969,21 @@ export namespace k8s {
          * [string] A clock time in the day when maintenance is allowed
          */
         time: pulumi.Input<string>;
+    }
+
+    export interface NodePoolTaint {
+        /**
+         * [string] Taint effect determines how a taint repels pods. One of: `NoSchedule`, `NoExecute`, `PreferNoSchedule`.
+         */
+        effect: pulumi.Input<string>;
+        /**
+         * [string] Taint key. Must be a valid Kubernetes label key format. May include an optional prefix (DNS subdomain) followed by a slash.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * [string] Taint value. Must be a valid Kubernetes label value format.
+         */
+        value?: pulumi.Input<string | undefined>;
     }
 }
 

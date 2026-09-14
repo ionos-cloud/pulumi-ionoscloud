@@ -26,6 +26,11 @@ public final class GetServersServer {
     private List<GetServersServerCdrom> cdroms;
     private Integer cores;
     private String cpuFamily;
+    /**
+     * @return Features enabled on the server, e.g. SEV-SNP for a Confidential Computing VM.
+     * 
+     */
+    private List<String> enabledFeatures;
     private String hostname;
     /**
      * @return The unique ID of the server.
@@ -64,6 +69,13 @@ public final class GetServersServer {
     }
     public String cpuFamily() {
         return this.cpuFamily;
+    }
+    /**
+     * @return Features enabled on the server, e.g. SEV-SNP for a Confidential Computing VM.
+     * 
+     */
+    public List<String> enabledFeatures() {
+        return this.enabledFeatures;
     }
     public String hostname() {
         return this.hostname;
@@ -122,6 +134,7 @@ public final class GetServersServer {
         private List<GetServersServerCdrom> cdroms;
         private Integer cores;
         private String cpuFamily;
+        private List<String> enabledFeatures;
         private String hostname;
         private String id;
         private List<GetServersServerLabel> labels;
@@ -144,6 +157,7 @@ public final class GetServersServer {
     	      this.cdroms = defaults.cdroms;
     	      this.cores = defaults.cores;
     	      this.cpuFamily = defaults.cpuFamily;
+    	      this.enabledFeatures = defaults.enabledFeatures;
     	      this.hostname = defaults.hostname;
     	      this.id = defaults.id;
     	      this.labels = defaults.labels;
@@ -216,6 +230,17 @@ public final class GetServersServer {
             }
             this.cpuFamily = cpuFamily;
             return this;
+        }
+        @CustomType.Setter
+        public Builder enabledFeatures(List<String> enabledFeatures) {
+            if (enabledFeatures == null) {
+              throw new MissingRequiredPropertyException("GetServersServer", "enabledFeatures");
+            }
+            this.enabledFeatures = enabledFeatures;
+            return this;
+        }
+        public Builder enabledFeatures(String... enabledFeatures) {
+            return enabledFeatures(List.of(enabledFeatures));
         }
         @CustomType.Setter
         public Builder hostname(String hostname) {
@@ -327,6 +352,7 @@ public final class GetServersServer {
             _resultValue.cdroms = cdroms;
             _resultValue.cores = cores;
             _resultValue.cpuFamily = cpuFamily;
+            _resultValue.enabledFeatures = enabledFeatures;
             _resultValue.hostname = hostname;
             _resultValue.id = id;
             _resultValue.labels = labels;

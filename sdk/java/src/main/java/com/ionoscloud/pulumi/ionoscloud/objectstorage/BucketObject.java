@@ -451,7 +451,8 @@ public class BucketObject extends com.pulumi.resources.CustomResource {
             .version(Utilities.getVersion())
             .pluginDownloadURL("github://api.github.com/ionos-cloud/pulumi-ionoscloud")
             .additionalSecretOutputs(List.of(
-                "serverSideEncryptionContext"
+                "serverSideEncryptionContext",
+                "serverSideEncryptionCustomerKey"
             ))
             .build();
         return com.pulumi.resources.CustomResourceOptions.merge(defaultOptions, options, id);

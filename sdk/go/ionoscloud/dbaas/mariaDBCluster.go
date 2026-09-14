@@ -32,7 +32,7 @@ type MariaDBCluster struct {
 	Cores pulumi.IntOutput `pulumi:"cores"`
 	// Credentials for the database user to be created.
 	Credentials MariaDBClusterCredentialsOutput `pulumi:"credentials"`
-	// [string] The friendly name of your cluster.
+	// [string] The friendly name of your cluster. Maximum length: 63 characters. Must contain only word characters (letters, numbers, underscores), colons, hyphens, spaces, or dots.
 	DisplayName pulumi.StringOutput `pulumi:"displayName"`
 	// [string] The DNS name pointing to your cluster.
 	//
@@ -46,9 +46,9 @@ type MariaDBCluster struct {
 	MaintenanceWindow MariaDBClusterMaintenanceWindowOutput `pulumi:"maintenanceWindow"`
 	// [string] The MariaDB version of your cluster. Cannot be downgraded.
 	MariadbVersion pulumi.StringOutput `pulumi:"mariadbVersion"`
-	// [int] The amount of memory per instance in gigabytes (GB).
+	// [int] The amount of memory per instance in gigabytes (GB). Minimum: 4.
 	Ram pulumi.IntOutput `pulumi:"ram"`
-	// [int] The amount of storage per instance in gigabytes (GB).
+	// [int] The amount of storage per instance in gigabytes (GB). Minimum: 10, Maximum: 2000.
 	StorageSize pulumi.IntOutput `pulumi:"storageSize"`
 }
 
@@ -114,7 +114,7 @@ type mariaDBClusterState struct {
 	Cores *int `pulumi:"cores"`
 	// Credentials for the database user to be created.
 	Credentials *MariaDBClusterCredentials `pulumi:"credentials"`
-	// [string] The friendly name of your cluster.
+	// [string] The friendly name of your cluster. Maximum length: 63 characters. Must contain only word characters (letters, numbers, underscores), colons, hyphens, spaces, or dots.
 	DisplayName *string `pulumi:"displayName"`
 	// [string] The DNS name pointing to your cluster.
 	//
@@ -128,9 +128,9 @@ type mariaDBClusterState struct {
 	MaintenanceWindow *MariaDBClusterMaintenanceWindow `pulumi:"maintenanceWindow"`
 	// [string] The MariaDB version of your cluster. Cannot be downgraded.
 	MariadbVersion *string `pulumi:"mariadbVersion"`
-	// [int] The amount of memory per instance in gigabytes (GB).
+	// [int] The amount of memory per instance in gigabytes (GB). Minimum: 4.
 	Ram *int `pulumi:"ram"`
-	// [int] The amount of storage per instance in gigabytes (GB).
+	// [int] The amount of storage per instance in gigabytes (GB). Minimum: 10, Maximum: 2000.
 	StorageSize *int `pulumi:"storageSize"`
 }
 
@@ -143,7 +143,7 @@ type MariaDBClusterState struct {
 	Cores pulumi.IntPtrInput
 	// Credentials for the database user to be created.
 	Credentials MariaDBClusterCredentialsPtrInput
-	// [string] The friendly name of your cluster.
+	// [string] The friendly name of your cluster. Maximum length: 63 characters. Must contain only word characters (letters, numbers, underscores), colons, hyphens, spaces, or dots.
 	DisplayName pulumi.StringPtrInput
 	// [string] The DNS name pointing to your cluster.
 	//
@@ -157,9 +157,9 @@ type MariaDBClusterState struct {
 	MaintenanceWindow MariaDBClusterMaintenanceWindowPtrInput
 	// [string] The MariaDB version of your cluster. Cannot be downgraded.
 	MariadbVersion pulumi.StringPtrInput
-	// [int] The amount of memory per instance in gigabytes (GB).
+	// [int] The amount of memory per instance in gigabytes (GB). Minimum: 4.
 	Ram pulumi.IntPtrInput
-	// [int] The amount of storage per instance in gigabytes (GB).
+	// [int] The amount of storage per instance in gigabytes (GB). Minimum: 10, Maximum: 2000.
 	StorageSize pulumi.IntPtrInput
 }
 
@@ -176,7 +176,7 @@ type mariaDBClusterArgs struct {
 	Cores int `pulumi:"cores"`
 	// Credentials for the database user to be created.
 	Credentials MariaDBClusterCredentials `pulumi:"credentials"`
-	// [string] The friendly name of your cluster.
+	// [string] The friendly name of your cluster. Maximum length: 63 characters. Must contain only word characters (letters, numbers, underscores), colons, hyphens, spaces, or dots.
 	DisplayName string `pulumi:"displayName"`
 	// [int] The total number of instances in the cluster (one primary and n-1 secondary).
 	Instances int `pulumi:"instances"`
@@ -186,9 +186,9 @@ type mariaDBClusterArgs struct {
 	MaintenanceWindow *MariaDBClusterMaintenanceWindow `pulumi:"maintenanceWindow"`
 	// [string] The MariaDB version of your cluster. Cannot be downgraded.
 	MariadbVersion string `pulumi:"mariadbVersion"`
-	// [int] The amount of memory per instance in gigabytes (GB).
+	// [int] The amount of memory per instance in gigabytes (GB). Minimum: 4.
 	Ram int `pulumi:"ram"`
-	// [int] The amount of storage per instance in gigabytes (GB).
+	// [int] The amount of storage per instance in gigabytes (GB). Minimum: 10, Maximum: 2000.
 	StorageSize int `pulumi:"storageSize"`
 }
 
@@ -202,7 +202,7 @@ type MariaDBClusterArgs struct {
 	Cores pulumi.IntInput
 	// Credentials for the database user to be created.
 	Credentials MariaDBClusterCredentialsInput
-	// [string] The friendly name of your cluster.
+	// [string] The friendly name of your cluster. Maximum length: 63 characters. Must contain only word characters (letters, numbers, underscores), colons, hyphens, spaces, or dots.
 	DisplayName pulumi.StringInput
 	// [int] The total number of instances in the cluster (one primary and n-1 secondary).
 	Instances pulumi.IntInput
@@ -212,9 +212,9 @@ type MariaDBClusterArgs struct {
 	MaintenanceWindow MariaDBClusterMaintenanceWindowPtrInput
 	// [string] The MariaDB version of your cluster. Cannot be downgraded.
 	MariadbVersion pulumi.StringInput
-	// [int] The amount of memory per instance in gigabytes (GB).
+	// [int] The amount of memory per instance in gigabytes (GB). Minimum: 4.
 	Ram pulumi.IntInput
-	// [int] The amount of storage per instance in gigabytes (GB).
+	// [int] The amount of storage per instance in gigabytes (GB). Minimum: 10, Maximum: 2000.
 	StorageSize pulumi.IntInput
 }
 
@@ -325,7 +325,7 @@ func (o MariaDBClusterOutput) Credentials() MariaDBClusterCredentialsOutput {
 	return o.ApplyT(func(v *MariaDBCluster) MariaDBClusterCredentialsOutput { return v.Credentials }).(MariaDBClusterCredentialsOutput)
 }
 
-// [string] The friendly name of your cluster.
+// [string] The friendly name of your cluster. Maximum length: 63 characters. Must contain only word characters (letters, numbers, underscores), colons, hyphens, spaces, or dots.
 func (o MariaDBClusterOutput) DisplayName() pulumi.StringOutput {
 	return o.ApplyT(func(v *MariaDBCluster) pulumi.StringOutput { return v.DisplayName }).(pulumi.StringOutput)
 }
@@ -357,12 +357,12 @@ func (o MariaDBClusterOutput) MariadbVersion() pulumi.StringOutput {
 	return o.ApplyT(func(v *MariaDBCluster) pulumi.StringOutput { return v.MariadbVersion }).(pulumi.StringOutput)
 }
 
-// [int] The amount of memory per instance in gigabytes (GB).
+// [int] The amount of memory per instance in gigabytes (GB). Minimum: 4.
 func (o MariaDBClusterOutput) Ram() pulumi.IntOutput {
 	return o.ApplyT(func(v *MariaDBCluster) pulumi.IntOutput { return v.Ram }).(pulumi.IntOutput)
 }
 
-// [int] The amount of storage per instance in gigabytes (GB).
+// [int] The amount of storage per instance in gigabytes (GB). Minimum: 10, Maximum: 2000.
 func (o MariaDBClusterOutput) StorageSize() pulumi.IntOutput {
 	return o.ApplyT(func(v *MariaDBCluster) pulumi.IntOutput { return v.StorageSize }).(pulumi.IntOutput)
 }

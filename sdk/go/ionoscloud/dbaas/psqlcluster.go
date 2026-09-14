@@ -115,7 +115,7 @@ type PSQLCluster struct {
 	FromBackup PSQLClusterFromBackupPtrOutput `pulumi:"fromBackup"`
 	// [int] The total number of instances in the cluster (one master and n-1 standbys)
 	Instances pulumi.IntOutput `pulumi:"instances"`
-	// [string] The physical location where the cluster will be created. This will be where all of your instances live. Property cannot be modified after datacenter creation. Available locations: `de/fra`, `us/las`, `us/ewr`, `de/txl`, `gb/lhr`, `gb/bhx`, `es/vit`, `fr/par`, `us/mci`, `de/fra/2`. This attribute is immutable (disallowed in update requests).
+	// [string] The physical location where the cluster will be created. This will be where all of your instances live. Property cannot be modified after datacenter creation. Available locations: `de/fra`, `us/las`, `us/ewr`, `de/txl`, `gb/lhr`, `gb/bhx`, `es/vit`, `fr/par`, `us/mci`, `de/fra/1`, `de/fra/2`. This attribute is immutable (disallowed in update requests).
 	Location pulumi.StringOutput `pulumi:"location"`
 	// (Computed) A weekly 4 hour-long window, during which maintenance might occur
 	MaintenanceWindow PSQLClusterMaintenanceWindowOutput `pulumi:"maintenanceWindow"`
@@ -213,7 +213,7 @@ type psqlclusterState struct {
 	FromBackup *PSQLClusterFromBackup `pulumi:"fromBackup"`
 	// [int] The total number of instances in the cluster (one master and n-1 standbys)
 	Instances *int `pulumi:"instances"`
-	// [string] The physical location where the cluster will be created. This will be where all of your instances live. Property cannot be modified after datacenter creation. Available locations: `de/fra`, `us/las`, `us/ewr`, `de/txl`, `gb/lhr`, `gb/bhx`, `es/vit`, `fr/par`, `us/mci`, `de/fra/2`. This attribute is immutable (disallowed in update requests).
+	// [string] The physical location where the cluster will be created. This will be where all of your instances live. Property cannot be modified after datacenter creation. Available locations: `de/fra`, `us/las`, `us/ewr`, `de/txl`, `gb/lhr`, `gb/bhx`, `es/vit`, `fr/par`, `us/mci`, `de/fra/1`, `de/fra/2`. This attribute is immutable (disallowed in update requests).
 	Location *string `pulumi:"location"`
 	// (Computed) A weekly 4 hour-long window, during which maintenance might occur
 	MaintenanceWindow *PSQLClusterMaintenanceWindow `pulumi:"maintenanceWindow"`
@@ -252,7 +252,7 @@ type PSQLClusterState struct {
 	FromBackup PSQLClusterFromBackupPtrInput
 	// [int] The total number of instances in the cluster (one master and n-1 standbys)
 	Instances pulumi.IntPtrInput
-	// [string] The physical location where the cluster will be created. This will be where all of your instances live. Property cannot be modified after datacenter creation. Available locations: `de/fra`, `us/las`, `us/ewr`, `de/txl`, `gb/lhr`, `gb/bhx`, `es/vit`, `fr/par`, `us/mci`, `de/fra/2`. This attribute is immutable (disallowed in update requests).
+	// [string] The physical location where the cluster will be created. This will be where all of your instances live. Property cannot be modified after datacenter creation. Available locations: `de/fra`, `us/las`, `us/ewr`, `de/txl`, `gb/lhr`, `gb/bhx`, `es/vit`, `fr/par`, `us/mci`, `de/fra/1`, `de/fra/2`. This attribute is immutable (disallowed in update requests).
 	Location pulumi.StringPtrInput
 	// (Computed) A weekly 4 hour-long window, during which maintenance might occur
 	MaintenanceWindow PSQLClusterMaintenanceWindowPtrInput
@@ -293,7 +293,7 @@ type psqlclusterArgs struct {
 	FromBackup *PSQLClusterFromBackup `pulumi:"fromBackup"`
 	// [int] The total number of instances in the cluster (one master and n-1 standbys)
 	Instances int `pulumi:"instances"`
-	// [string] The physical location where the cluster will be created. This will be where all of your instances live. Property cannot be modified after datacenter creation. Available locations: `de/fra`, `us/las`, `us/ewr`, `de/txl`, `gb/lhr`, `gb/bhx`, `es/vit`, `fr/par`, `us/mci`, `de/fra/2`. This attribute is immutable (disallowed in update requests).
+	// [string] The physical location where the cluster will be created. This will be where all of your instances live. Property cannot be modified after datacenter creation. Available locations: `de/fra`, `us/las`, `us/ewr`, `de/txl`, `gb/lhr`, `gb/bhx`, `es/vit`, `fr/par`, `us/mci`, `de/fra/1`, `de/fra/2`. This attribute is immutable (disallowed in update requests).
 	Location string `pulumi:"location"`
 	// (Computed) A weekly 4 hour-long window, during which maintenance might occur
 	MaintenanceWindow *PSQLClusterMaintenanceWindow `pulumi:"maintenanceWindow"`
@@ -331,7 +331,7 @@ type PSQLClusterArgs struct {
 	FromBackup PSQLClusterFromBackupPtrInput
 	// [int] The total number of instances in the cluster (one master and n-1 standbys)
 	Instances pulumi.IntInput
-	// [string] The physical location where the cluster will be created. This will be where all of your instances live. Property cannot be modified after datacenter creation. Available locations: `de/fra`, `us/las`, `us/ewr`, `de/txl`, `gb/lhr`, `gb/bhx`, `es/vit`, `fr/par`, `us/mci`, `de/fra/2`. This attribute is immutable (disallowed in update requests).
+	// [string] The physical location where the cluster will be created. This will be where all of your instances live. Property cannot be modified after datacenter creation. Available locations: `de/fra`, `us/las`, `us/ewr`, `de/txl`, `gb/lhr`, `gb/bhx`, `es/vit`, `fr/par`, `us/mci`, `de/fra/1`, `de/fra/2`. This attribute is immutable (disallowed in update requests).
 	Location pulumi.StringInput
 	// (Computed) A weekly 4 hour-long window, during which maintenance might occur
 	MaintenanceWindow PSQLClusterMaintenanceWindowPtrInput
@@ -486,7 +486,7 @@ func (o PSQLClusterOutput) Instances() pulumi.IntOutput {
 	return o.ApplyT(func(v *PSQLCluster) pulumi.IntOutput { return v.Instances }).(pulumi.IntOutput)
 }
 
-// [string] The physical location where the cluster will be created. This will be where all of your instances live. Property cannot be modified after datacenter creation. Available locations: `de/fra`, `us/las`, `us/ewr`, `de/txl`, `gb/lhr`, `gb/bhx`, `es/vit`, `fr/par`, `us/mci`, `de/fra/2`. This attribute is immutable (disallowed in update requests).
+// [string] The physical location where the cluster will be created. This will be where all of your instances live. Property cannot be modified after datacenter creation. Available locations: `de/fra`, `us/las`, `us/ewr`, `de/txl`, `gb/lhr`, `gb/bhx`, `es/vit`, `fr/par`, `us/mci`, `de/fra/1`, `de/fra/2`. This attribute is immutable (disallowed in update requests).
 func (o PSQLClusterOutput) Location() pulumi.StringOutput {
 	return o.ApplyT(func(v *PSQLCluster) pulumi.StringOutput { return v.Location }).(pulumi.StringOutput)
 }

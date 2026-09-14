@@ -126,14 +126,14 @@ public class AutoCertificate extends com.pulumi.resources.CustomResource {
         return this.lastIssuedCertificateId;
     }
     /**
-     * [string] The location of the auto-certificate. Available locations: `de/fra`, `de/fra/2`.
+     * [string] The location of the auto-certificate. Available locations: `de/fra`, `de/fra/1`, `de/fra/2`.
      * 
      */
     @Export(name="location", refs={String.class}, tree="[0]")
     private Output<String> location;
 
     /**
-     * @return [string] The location of the auto-certificate. Available locations: `de/fra`, `de/fra/2`.
+     * @return [string] The location of the auto-certificate. Available locations: `de/fra`, `de/fra/1`, `de/fra/2`.
      * 
      */
     public Output<String> location() {

@@ -27,6 +27,8 @@ __all__ = [
     'NodePoolLanRouteArgsDict',
     'NodePoolMaintenanceWindowArgs',
     'NodePoolMaintenanceWindowArgsDict',
+    'NodePoolTaintArgs',
+    'NodePoolTaintArgsDict',
     'GetClustersFilterArgs',
     'GetClustersFilterArgsDict',
 ]
@@ -314,6 +316,73 @@ class NodePoolMaintenanceWindowArgs:
     @time.setter
     def time(self, value: pulumi.Input[_builtins.str]):
         pulumi.set(self, "time", value)
+
+
+class NodePoolTaintArgsDict(TypedDict):
+    effect: pulumi.Input[_builtins.str]
+    """
+    [string] Taint effect determines how a taint repels pods. One of: `NoSchedule`, `NoExecute`, `PreferNoSchedule`.
+    """
+    key: pulumi.Input[_builtins.str]
+    """
+    [string] Taint key. Must be a valid Kubernetes label key format. May include an optional prefix (DNS subdomain) followed by a slash.
+    """
+    value: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    """
+    [string] Taint value. Must be a valid Kubernetes label value format.
+    """
+
+@pulumi.input_type
+class NodePoolTaintArgs:
+    def __init__(__self__, *,
+                 effect: pulumi.Input[_builtins.str],
+                 key: pulumi.Input[_builtins.str],
+                 value: pulumi.Input[Optional[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] effect: [string] Taint effect determines how a taint repels pods. One of: `NoSchedule`, `NoExecute`, `PreferNoSchedule`.
+        :param pulumi.Input[_builtins.str] key: [string] Taint key. Must be a valid Kubernetes label key format. May include an optional prefix (DNS subdomain) followed by a slash.
+        :param pulumi.Input[_builtins.str] value: [string] Taint value. Must be a valid Kubernetes label value format.
+        """
+        pulumi.set(__self__, "effect", effect)
+        pulumi.set(__self__, "key", key)
+        if value is not None:
+            pulumi.set(__self__, "value", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def effect(self) -> pulumi.Input[_builtins.str]:
+        """
+        [string] Taint effect determines how a taint repels pods. One of: `NoSchedule`, `NoExecute`, `PreferNoSchedule`.
+        """
+        return pulumi.get(self, "effect")
+
+    @effect.setter
+    def effect(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "effect", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> pulumi.Input[_builtins.str]:
+        """
+        [string] Taint key. Must be a valid Kubernetes label key format. May include an optional prefix (DNS subdomain) followed by a slash.
+        """
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "key", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def value(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        [string] Taint value. Must be a valid Kubernetes label value format.
+        """
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "value", value)
 
 
 class GetClustersFilterArgsDict(TypedDict):

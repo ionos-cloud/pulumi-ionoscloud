@@ -214,14 +214,14 @@ public class InMemoryDBClusterV2 extends com.pulumi.resources.CustomResource {
         return this.instances;
     }
     /**
-     * [string] The location of the cluster. Changing this forces a new resource. Available: `de/fra`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
+     * [string] The location of the cluster. Changing this forces a new resource. Available: `de/fra`, `de/fra/1`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
      * 
      */
     @Export(name="location", refs={String.class}, tree="[0]")
     private Output<String> location;
 
     /**
-     * @return [string] The location of the cluster. Changing this forces a new resource. Available: `de/fra`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
+     * @return [string] The location of the cluster. Changing this forces a new resource. Available: `de/fra`, `de/fra/1`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
      * 
      */
     public Output<String> location() {

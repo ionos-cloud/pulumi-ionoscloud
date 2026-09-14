@@ -72,7 +72,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Dbaas
         public Output<Outputs.PSQLClusterV2Instances> Instances { get; private set; } = null!;
 
         /// <summary>
-        /// [string] The location of the PostgreSQL cluster. This is used for routing to the regional API endpoint. Changing this value will destroy the existing cluster and create a new one in the specified location. Available locations: `de/fra`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
+        /// [string] The location of the PostgreSQL cluster. This is used for routing to the regional API endpoint. Changing this value will destroy the existing cluster and create a new one in the specified location. Available locations: `de/fra`, `de/fra/1`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
         /// </summary>
         [Output("location")]
         public Output<string> Location { get; private set; } = null!;
@@ -206,7 +206,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Dbaas
         public Input<Inputs.PSQLClusterV2InstancesArgs> Instances { get; set; } = null!;
 
         /// <summary>
-        /// [string] The location of the PostgreSQL cluster. This is used for routing to the regional API endpoint. Changing this value will destroy the existing cluster and create a new one in the specified location. Available locations: `de/fra`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
+        /// [string] The location of the PostgreSQL cluster. This is used for routing to the regional API endpoint. Changing this value will destroy the existing cluster and create a new one in the specified location. Available locations: `de/fra`, `de/fra/1`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
         /// </summary>
         [Input("location", required: true)]
         public Input<string> Location { get; set; } = null!;
@@ -307,7 +307,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Dbaas
         public Input<Inputs.PSQLClusterV2InstancesGetArgs>? Instances { get; set; }
 
         /// <summary>
-        /// [string] The location of the PostgreSQL cluster. This is used for routing to the regional API endpoint. Changing this value will destroy the existing cluster and create a new one in the specified location. Available locations: `de/fra`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
+        /// [string] The location of the PostgreSQL cluster. This is used for routing to the regional API endpoint. Changing this value will destroy the existing cluster and create a new one in the specified location. Available locations: `de/fra`, `de/fra/1`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
         /// </summary>
         [Input("location")]
         public Input<string>? Location { get; set; }

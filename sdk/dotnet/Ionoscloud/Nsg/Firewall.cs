@@ -113,7 +113,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Nsg
         public Output<int?> PortRangeStart { get; private set; } = null!;
 
         /// <summary>
-        /// [string] The protocol for the rule: TCP, UDP, ICMP, ANY. Property cannot be modified after creation (disallowed in update requests).
+        /// [string] The protocol for the rule: TCP, UDP, ICMP, ANY. Property cannot be modified after creation (disallowed in update requests); changing it forces a new resource to be created.
         /// </summary>
         [Output("protocol")]
         public Output<string> Protocol { get; private set; } = null!;
@@ -238,7 +238,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Nsg
         public Input<int>? PortRangeStart { get; set; }
 
         /// <summary>
-        /// [string] The protocol for the rule: TCP, UDP, ICMP, ANY. Property cannot be modified after creation (disallowed in update requests).
+        /// [string] The protocol for the rule: TCP, UDP, ICMP, ANY. Property cannot be modified after creation (disallowed in update requests); changing it forces a new resource to be created.
         /// </summary>
         [Input("protocol", required: true)]
         public Input<string> Protocol { get; set; } = null!;
@@ -324,7 +324,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Nsg
         public Input<int>? PortRangeStart { get; set; }
 
         /// <summary>
-        /// [string] The protocol for the rule: TCP, UDP, ICMP, ANY. Property cannot be modified after creation (disallowed in update requests).
+        /// [string] The protocol for the rule: TCP, UDP, ICMP, ANY. Property cannot be modified after creation (disallowed in update requests); changing it forces a new resource to be created.
         /// </summary>
         [Input("protocol")]
         public Input<string>? Protocol { get; set; }

@@ -9,6 +9,7 @@ import com.ionoscloud.pulumi.ionoscloud.k8s.inputs.NodePoolState;
 import com.ionoscloud.pulumi.ionoscloud.k8s.outputs.NodePoolAutoScaling;
 import com.ionoscloud.pulumi.ionoscloud.k8s.outputs.NodePoolLan;
 import com.ionoscloud.pulumi.ionoscloud.k8s.outputs.NodePoolMaintenanceWindow;
+import com.ionoscloud.pulumi.ionoscloud.k8s.outputs.NodePoolTaint;
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Export;
 import com.pulumi.core.annotations.ResourceType;
@@ -343,6 +344,20 @@ public class NodePool extends com.pulumi.resources.CustomResource {
      */
     public Output<String> storageType() {
         return this.storageType;
+    }
+    /**
+     * [set] Taints applied to the nodes in this pool. A taint repels pods that do not have a matching toleration. Maximum 50 taints per node pool.
+     * 
+     */
+    @Export(name="taints", refs={List.class,NodePoolTaint.class}, tree="[0,1]")
+    private Output</* @Nullable */ List<NodePoolTaint>> taints;
+
+    /**
+     * @return [set] Taints applied to the nodes in this pool. A taint repels pods that do not have a matching toleration. Maximum 50 taints per node pool.
+     * 
+     */
+    public Output<Optional<List<NodePoolTaint>>> taints() {
+        return Codegen.optional(this.taints);
     }
 
     /**

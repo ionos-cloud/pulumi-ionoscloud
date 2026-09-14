@@ -30,7 +30,7 @@ class AutoCertificateArgs:
 
         :param pulumi.Input[_builtins.str] common_name: [string] The common name (DNS) of the certificate to issue. The common name needs to be part of a zone in IONOS CLOUD DNS.
         :param pulumi.Input[_builtins.str] key_algorithm: [string] The key algorithm used to generate the certificate.
-        :param pulumi.Input[_builtins.str] location: [string] The location of the auto-certificate. Available locations: `de/fra`, `de/fra/2`.
+        :param pulumi.Input[_builtins.str] location: [string] The location of the auto-certificate. Available locations: `de/fra`, `de/fra/1`, `de/fra/2`.
         :param pulumi.Input[_builtins.str] provider_id: [string] The certificate provider used to issue the certificates.
         :param pulumi.Input[_builtins.str] name: [string] A certificate name used for management purposes.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] subject_alternative_names: [list][string] Optional additional names to be added to the issued certificate. The additional names needs to be part of a zone in IONOS CLOUD DNS.
@@ -72,7 +72,7 @@ class AutoCertificateArgs:
     @pulumi.getter
     def location(self) -> pulumi.Input[_builtins.str]:
         """
-        [string] The location of the auto-certificate. Available locations: `de/fra`, `de/fra/2`.
+        [string] The location of the auto-certificate. Available locations: `de/fra`, `de/fra/1`, `de/fra/2`.
         """
         return pulumi.get(self, "location")
 
@@ -133,7 +133,7 @@ class _AutoCertificateState:
         :param pulumi.Input[_builtins.str] common_name: [string] The common name (DNS) of the certificate to issue. The common name needs to be part of a zone in IONOS CLOUD DNS.
         :param pulumi.Input[_builtins.str] key_algorithm: [string] The key algorithm used to generate the certificate.
         :param pulumi.Input[_builtins.str] last_issued_certificate_id: [string] The ID of the last certificate that was issued.
-        :param pulumi.Input[_builtins.str] location: [string] The location of the auto-certificate. Available locations: `de/fra`, `de/fra/2`.
+        :param pulumi.Input[_builtins.str] location: [string] The location of the auto-certificate. Available locations: `de/fra`, `de/fra/1`, `de/fra/2`.
         :param pulumi.Input[_builtins.str] name: [string] A certificate name used for management purposes.
         :param pulumi.Input[_builtins.str] provider_id: [string] The certificate provider used to issue the certificates.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] subject_alternative_names: [list][string] Optional additional names to be added to the issued certificate. The additional names needs to be part of a zone in IONOS CLOUD DNS.
@@ -193,7 +193,7 @@ class _AutoCertificateState:
     @pulumi.getter
     def location(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        [string] The location of the auto-certificate. Available locations: `de/fra`, `de/fra/2`.
+        [string] The location of the auto-certificate. Available locations: `de/fra`, `de/fra/1`, `de/fra/2`.
         """
         return pulumi.get(self, "location")
 
@@ -291,7 +291,7 @@ class AutoCertificate(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] common_name: [string] The common name (DNS) of the certificate to issue. The common name needs to be part of a zone in IONOS CLOUD DNS.
         :param pulumi.Input[_builtins.str] key_algorithm: [string] The key algorithm used to generate the certificate.
-        :param pulumi.Input[_builtins.str] location: [string] The location of the auto-certificate. Available locations: `de/fra`, `de/fra/2`.
+        :param pulumi.Input[_builtins.str] location: [string] The location of the auto-certificate. Available locations: `de/fra`, `de/fra/1`, `de/fra/2`.
         :param pulumi.Input[_builtins.str] name: [string] A certificate name used for management purposes.
         :param pulumi.Input[_builtins.str] provider_id: [string] The certificate provider used to issue the certificates.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] subject_alternative_names: [list][string] Optional additional names to be added to the issued certificate. The additional names needs to be part of a zone in IONOS CLOUD DNS.
@@ -410,7 +410,7 @@ class AutoCertificate(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] common_name: [string] The common name (DNS) of the certificate to issue. The common name needs to be part of a zone in IONOS CLOUD DNS.
         :param pulumi.Input[_builtins.str] key_algorithm: [string] The key algorithm used to generate the certificate.
         :param pulumi.Input[_builtins.str] last_issued_certificate_id: [string] The ID of the last certificate that was issued.
-        :param pulumi.Input[_builtins.str] location: [string] The location of the auto-certificate. Available locations: `de/fra`, `de/fra/2`.
+        :param pulumi.Input[_builtins.str] location: [string] The location of the auto-certificate. Available locations: `de/fra`, `de/fra/1`, `de/fra/2`.
         :param pulumi.Input[_builtins.str] name: [string] A certificate name used for management purposes.
         :param pulumi.Input[_builtins.str] provider_id: [string] The certificate provider used to issue the certificates.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] subject_alternative_names: [list][string] Optional additional names to be added to the issued certificate. The additional names needs to be part of a zone in IONOS CLOUD DNS.
@@ -456,7 +456,7 @@ class AutoCertificate(pulumi.CustomResource):
     @pulumi.getter
     def location(self) -> pulumi.Output[_builtins.str]:
         """
-        [string] The location of the auto-certificate. Available locations: `de/fra`, `de/fra/2`.
+        [string] The location of the auto-certificate. Available locations: `de/fra`, `de/fra/1`, `de/fra/2`.
         """
         return pulumi.get(self, "location")
 

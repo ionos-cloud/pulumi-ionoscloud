@@ -122,14 +122,14 @@ public class InMemoryDBReplicaSet extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.initialSnapshotId);
     }
     /**
-     * [string] The location of your replica set. Updates to the value of the field force the replica set to be re-created. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default &lt;span pulumi-lang-nodejs=&#34;`location`&#34; pulumi-lang-dotnet=&#34;`Location`&#34; pulumi-lang-go=&#34;`location`&#34; pulumi-lang-python=&#34;`location`&#34; pulumi-lang-yaml=&#34;`location`&#34; pulumi-lang-java=&#34;`location`&#34; pulumi-lang-hcl=&#34;`location`&#34;&gt;`location`&lt;/span&gt; will be: `de/fra`, other available locations are: `de/fra/2`, `de/txl`, `es/vit`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`, `fr/par`
+     * [string] The location of your replica set. Updates to the value of the field force the replica set to be re-created. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default &lt;span pulumi-lang-nodejs=&#34;`location`&#34; pulumi-lang-dotnet=&#34;`Location`&#34; pulumi-lang-go=&#34;`location`&#34; pulumi-lang-python=&#34;`location`&#34; pulumi-lang-yaml=&#34;`location`&#34; pulumi-lang-java=&#34;`location`&#34; pulumi-lang-hcl=&#34;`location`&#34;&gt;`location`&lt;/span&gt; will be: `de/fra`, other available locations are: `de/fra/1`, `de/fra/2`, `de/txl`, `es/vit`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`, `fr/par`
      * 
      */
     @Export(name="location", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> location;
 
     /**
-     * @return [string] The location of your replica set. Updates to the value of the field force the replica set to be re-created. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default &lt;span pulumi-lang-nodejs=&#34;`location`&#34; pulumi-lang-dotnet=&#34;`Location`&#34; pulumi-lang-go=&#34;`location`&#34; pulumi-lang-python=&#34;`location`&#34; pulumi-lang-yaml=&#34;`location`&#34; pulumi-lang-java=&#34;`location`&#34; pulumi-lang-hcl=&#34;`location`&#34;&gt;`location`&lt;/span&gt; will be: `de/fra`, other available locations are: `de/fra/2`, `de/txl`, `es/vit`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`, `fr/par`
+     * @return [string] The location of your replica set. Updates to the value of the field force the replica set to be re-created. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default &lt;span pulumi-lang-nodejs=&#34;`location`&#34; pulumi-lang-dotnet=&#34;`Location`&#34; pulumi-lang-go=&#34;`location`&#34; pulumi-lang-python=&#34;`location`&#34; pulumi-lang-yaml=&#34;`location`&#34; pulumi-lang-java=&#34;`location`&#34; pulumi-lang-hcl=&#34;`location`&#34;&gt;`location`&lt;/span&gt; will be: `de/fra`, other available locations are: `de/fra/1`, `de/fra/2`, `de/txl`, `es/vit`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`, `fr/par`
      * 
      */
     public Output<Optional<String>> location() {

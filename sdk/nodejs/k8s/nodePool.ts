@@ -143,6 +143,10 @@ export class NodePool extends pulumi.CustomResource {
      * [string] - The desired storage type - SSD/HDD. *This attribute is immutable*.
      */
     declare public readonly storageType: pulumi.Output<string>;
+    /**
+     * [set] Taints applied to the nodes in this pool. A taint repels pods that do not have a matching toleration. Maximum 50 taints per node pool.
+     */
+    declare public readonly taints: pulumi.Output<outputs.k8s.NodePoolTaint[] | undefined>;
 
     /**
      * Create a NodePool resource with the given unique name, arguments, and options.
@@ -177,6 +181,7 @@ export class NodePool extends pulumi.CustomResource {
             resourceInputs["serverType"] = state?.serverType;
             resourceInputs["storageSize"] = state?.storageSize;
             resourceInputs["storageType"] = state?.storageType;
+            resourceInputs["taints"] = state?.taints;
         } else {
             const args = argsOrState as NodePoolArgs | undefined;
             if (args?.availabilityZone === undefined && !opts.urn) {
@@ -226,6 +231,7 @@ export class NodePool extends pulumi.CustomResource {
             resourceInputs["serverType"] = args?.serverType;
             resourceInputs["storageSize"] = args?.storageSize;
             resourceInputs["storageType"] = args?.storageType;
+            resourceInputs["taints"] = args?.taints;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(NodePool.__pulumiType, name, resourceInputs, opts);
@@ -327,6 +333,10 @@ export interface NodePoolState {
      * [string] - The desired storage type - SSD/HDD. *This attribute is immutable*.
      */
     storageType?: pulumi.Input<string | undefined>;
+    /**
+     * [set] Taints applied to the nodes in this pool. A taint repels pods that do not have a matching toleration. Maximum 50 taints per node pool.
+     */
+    taints?: pulumi.Input<pulumi.Input<inputs.k8s.NodePoolTaint>[] | undefined>;
 }
 
 /**
@@ -424,4 +434,8 @@ export interface NodePoolArgs {
      * [string] - The desired storage type - SSD/HDD. *This attribute is immutable*.
      */
     storageType: pulumi.Input<string>;
+    /**
+     * [set] Taints applied to the nodes in this pool. A taint repels pods that do not have a matching toleration. Maximum 50 taints per node pool.
+     */
+    taints?: pulumi.Input<pulumi.Input<inputs.k8s.NodePoolTaint>[] | undefined>;
 }

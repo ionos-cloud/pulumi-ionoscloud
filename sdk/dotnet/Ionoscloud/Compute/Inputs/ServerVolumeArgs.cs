@@ -55,11 +55,22 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute.Inputs
         [Input("exposeSerial")]
         public Input<bool>? ExposeSerial { get; set; }
 
+        [Input("imagePassword")]
+        private Input<string>? _imagePassword;
+
         /// <summary>
         /// [string] Required if `SshKeyPath` is not provided.
         /// </summary>
-        [Input("imagePassword")]
-        public Input<string>? ImagePassword { get; set; }
+        [Obsolete(@"Please use ImagePassword under server level")]
+        public Input<string>? ImagePassword
+        {
+            get => _imagePassword;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _imagePassword = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// [string] Sets the OS type of the server.

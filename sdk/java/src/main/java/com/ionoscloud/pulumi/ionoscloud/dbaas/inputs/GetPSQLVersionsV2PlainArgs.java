@@ -14,14 +14,14 @@ public final class GetPSQLVersionsV2PlainArgs extends com.pulumi.resources.Invok
     public static final GetPSQLVersionsV2PlainArgs Empty = new GetPSQLVersionsV2PlainArgs();
 
     /**
-     * [string] The region in which to look up available versions. Available locations: `de/fra`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
+     * [string] The region in which to look up available versions. Available locations: `de/fra`, `de/fra/1`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
      * 
      */
     @Import(name="location", required=true)
     private String location;
 
     /**
-     * @return [string] The region in which to look up available versions. Available locations: `de/fra`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
+     * @return [string] The region in which to look up available versions. Available locations: `de/fra`, `de/fra/1`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
      * 
      */
     public String location() {
@@ -53,7 +53,7 @@ public final class GetPSQLVersionsV2PlainArgs extends com.pulumi.resources.Invok
         }
 
         /**
-         * @param location [string] The region in which to look up available versions. Available locations: `de/fra`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
+         * @param location [string] The region in which to look up available versions. Available locations: `de/fra`, `de/fra/1`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
          * 
          * @return builder
          * 

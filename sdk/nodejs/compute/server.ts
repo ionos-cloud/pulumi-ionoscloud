@@ -350,6 +350,24 @@ export class Server extends pulumi.CustomResource {
      */
     declare public /*out*/ readonly bootVolume: pulumi.Output<string>;
     /**
+     * (Computed)[bool] If set, creates a Confidential Computing (SEV-SNP) VM from a confidential boot image. Requires `type = "ENTERPRISE"`, a `volume` block, and a private SEV-SNP `imageName`. `cores` and `cpuFamily` must not be set - both are derived from the image. This property is immutable (changing it re-creates the server; use `allowReplace = true`). It is computed on read from the server's enabled features, so imported servers reflect their real state instead of forcing a spurious re-creation. Only available in confidential-computing enabled locations.
+     *
+     * ⚠️ **_Warning: `allowReplace` - lets you update immutable fields, but it first destroys and then re-creates the server in order to do it. This field should be used with care, understanding the risks._**
+     *
+     * > **⚠ WARNING**
+     * >
+     * > Image_name under volume level is deprecated, please use imageName under server level
+     * > sshKeyPath and sshKeys fields are immutable.
+     *
+     *
+     * > **⚠ WARNING**
+     * >
+     * > If you want to create a **CUBE** server, you have to provide the `templateUuid`. In this case you can not set `cores`, `ram` and `volume.size` arguments, these being mutually exclusive with `templateUuid`.
+     * >
+     * > In all the other cases (**ENTERPRISE** servers) you have to provide values for `cores`, `ram` and `volume size`.
+     */
+    declare public readonly confidential: pulumi.Output<boolean>;
+    /**
      * (Computed)[integer] Number of server CPU cores.
      */
     declare public readonly cores: pulumi.Output<number>;
@@ -361,6 +379,10 @@ export class Server extends pulumi.CustomResource {
      * [string] The ID of a Virtual Data Center.
      */
     declare public readonly datacenterId: pulumi.Output<string>;
+    /**
+     * Features enabled on the server, e.g. `SEV-SNP` for a Confidential Computing VM.
+     */
+    declare public /*out*/ readonly enabledFeatures: pulumi.Output<string[]>;
     /**
      * The associated firewall rule.
      */
@@ -403,20 +425,6 @@ export class Server extends pulumi.CustomResource {
     declare public readonly nic: pulumi.Output<outputs.compute.ServerNic | undefined>;
     /**
      * [bool] Activate or deactivate the Multi Queue feature on all NICs of the server. This feature is beneficial to enable when the NICs are experiencing performance issues (e.g. low throughput). Toggling this feature will also initiate a restart of the server. If the specified value is `true`, the feature will be activated; if it is not specified or set to `false`, the feature will be deactivated. The feature cannot be activated for `CUBE` servers.
-     *
-     * ⚠️ **_Warning: `allowReplace` - lets you update immutable fields, but it first destroys and then re-creates the server in order to do it. This field should be used with care, understanding the risks._**
-     *
-     * > **⚠ WARNING**
-     * >
-     * > Image_name under volume level is deprecated, please use imageName under server level
-     * > sshKeyPath and sshKeys fields are immutable.
-     *
-     *
-     * > **⚠ WARNING**
-     * >
-     * > If you want to create a **CUBE** server, you have to provide the `templateUuid`. In this case you can not set `cores`, `ram` and `volume.size` arguments, these being mutually exclusive with `templateUuid`.
-     * >
-     * > In all the other cases (**ENTERPRISE** servers) you have to provide values for `cores`, `ram` and `volume size`.
      */
     declare public readonly nicMultiQueue: pulumi.Output<boolean | undefined>;
     /**
@@ -480,9 +488,11 @@ export class Server extends pulumi.CustomResource {
             resourceInputs["bootCdrom"] = state?.bootCdrom;
             resourceInputs["bootImage"] = state?.bootImage;
             resourceInputs["bootVolume"] = state?.bootVolume;
+            resourceInputs["confidential"] = state?.confidential;
             resourceInputs["cores"] = state?.cores;
             resourceInputs["cpuFamily"] = state?.cpuFamily;
             resourceInputs["datacenterId"] = state?.datacenterId;
+            resourceInputs["enabledFeatures"] = state?.enabledFeatures;
             resourceInputs["firewallruleId"] = state?.firewallruleId;
             resourceInputs["firewallruleIds"] = state?.firewallruleIds;
             resourceInputs["hostname"] = state?.hostname;
@@ -513,6 +523,7 @@ export class Server extends pulumi.CustomResource {
             resourceInputs["availabilityZone"] = args?.availabilityZone;
             resourceInputs["bootCdrom"] = args?.bootCdrom;
             resourceInputs["bootImage"] = args?.bootImage;
+            resourceInputs["confidential"] = args?.confidential;
             resourceInputs["cores"] = args?.cores;
             resourceInputs["cpuFamily"] = args?.cpuFamily;
             resourceInputs["datacenterId"] = args?.datacenterId;
@@ -534,6 +545,7 @@ export class Server extends pulumi.CustomResource {
             resourceInputs["vmState"] = args?.vmState;
             resourceInputs["volume"] = args?.volume;
             resourceInputs["bootVolume"] = undefined /*out*/;
+            resourceInputs["enabledFeatures"] = undefined /*out*/;
             resourceInputs["firewallruleId"] = undefined /*out*/;
             resourceInputs["inlineVolumeIds"] = undefined /*out*/;
             resourceInputs["primaryIp"] = undefined /*out*/;
@@ -573,6 +585,24 @@ export interface ServerState {
      */
     bootVolume?: pulumi.Input<string | undefined>;
     /**
+     * (Computed)[bool] If set, creates a Confidential Computing (SEV-SNP) VM from a confidential boot image. Requires `type = "ENTERPRISE"`, a `volume` block, and a private SEV-SNP `imageName`. `cores` and `cpuFamily` must not be set - both are derived from the image. This property is immutable (changing it re-creates the server; use `allowReplace = true`). It is computed on read from the server's enabled features, so imported servers reflect their real state instead of forcing a spurious re-creation. Only available in confidential-computing enabled locations.
+     *
+     * ⚠️ **_Warning: `allowReplace` - lets you update immutable fields, but it first destroys and then re-creates the server in order to do it. This field should be used with care, understanding the risks._**
+     *
+     * > **⚠ WARNING**
+     * >
+     * > Image_name under volume level is deprecated, please use imageName under server level
+     * > sshKeyPath and sshKeys fields are immutable.
+     *
+     *
+     * > **⚠ WARNING**
+     * >
+     * > If you want to create a **CUBE** server, you have to provide the `templateUuid`. In this case you can not set `cores`, `ram` and `volume.size` arguments, these being mutually exclusive with `templateUuid`.
+     * >
+     * > In all the other cases (**ENTERPRISE** servers) you have to provide values for `cores`, `ram` and `volume size`.
+     */
+    confidential?: pulumi.Input<boolean | undefined>;
+    /**
      * (Computed)[integer] Number of server CPU cores.
      */
     cores?: pulumi.Input<number | undefined>;
@@ -584,6 +614,10 @@ export interface ServerState {
      * [string] The ID of a Virtual Data Center.
      */
     datacenterId?: pulumi.Input<string | undefined>;
+    /**
+     * Features enabled on the server, e.g. `SEV-SNP` for a Confidential Computing VM.
+     */
+    enabledFeatures?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The associated firewall rule.
      */
@@ -626,20 +660,6 @@ export interface ServerState {
     nic?: pulumi.Input<inputs.compute.ServerNic | undefined>;
     /**
      * [bool] Activate or deactivate the Multi Queue feature on all NICs of the server. This feature is beneficial to enable when the NICs are experiencing performance issues (e.g. low throughput). Toggling this feature will also initiate a restart of the server. If the specified value is `true`, the feature will be activated; if it is not specified or set to `false`, the feature will be deactivated. The feature cannot be activated for `CUBE` servers.
-     *
-     * ⚠️ **_Warning: `allowReplace` - lets you update immutable fields, but it first destroys and then re-creates the server in order to do it. This field should be used with care, understanding the risks._**
-     *
-     * > **⚠ WARNING**
-     * >
-     * > Image_name under volume level is deprecated, please use imageName under server level
-     * > sshKeyPath and sshKeys fields are immutable.
-     *
-     *
-     * > **⚠ WARNING**
-     * >
-     * > If you want to create a **CUBE** server, you have to provide the `templateUuid`. In this case you can not set `cores`, `ram` and `volume.size` arguments, these being mutually exclusive with `templateUuid`.
-     * >
-     * > In all the other cases (**ENTERPRISE** servers) you have to provide values for `cores`, `ram` and `volume size`.
      */
     nicMultiQueue?: pulumi.Input<boolean | undefined>;
     /**
@@ -709,6 +729,24 @@ export interface ServerArgs {
      */
     bootImage?: pulumi.Input<string | undefined>;
     /**
+     * (Computed)[bool] If set, creates a Confidential Computing (SEV-SNP) VM from a confidential boot image. Requires `type = "ENTERPRISE"`, a `volume` block, and a private SEV-SNP `imageName`. `cores` and `cpuFamily` must not be set - both are derived from the image. This property is immutable (changing it re-creates the server; use `allowReplace = true`). It is computed on read from the server's enabled features, so imported servers reflect their real state instead of forcing a spurious re-creation. Only available in confidential-computing enabled locations.
+     *
+     * ⚠️ **_Warning: `allowReplace` - lets you update immutable fields, but it first destroys and then re-creates the server in order to do it. This field should be used with care, understanding the risks._**
+     *
+     * > **⚠ WARNING**
+     * >
+     * > Image_name under volume level is deprecated, please use imageName under server level
+     * > sshKeyPath and sshKeys fields are immutable.
+     *
+     *
+     * > **⚠ WARNING**
+     * >
+     * > If you want to create a **CUBE** server, you have to provide the `templateUuid`. In this case you can not set `cores`, `ram` and `volume.size` arguments, these being mutually exclusive with `templateUuid`.
+     * >
+     * > In all the other cases (**ENTERPRISE** servers) you have to provide values for `cores`, `ram` and `volume size`.
+     */
+    confidential?: pulumi.Input<boolean | undefined>;
+    /**
      * (Computed)[integer] Number of server CPU cores.
      */
     cores?: pulumi.Input<number | undefined>;
@@ -754,20 +792,6 @@ export interface ServerArgs {
     nic?: pulumi.Input<inputs.compute.ServerNic | undefined>;
     /**
      * [bool] Activate or deactivate the Multi Queue feature on all NICs of the server. This feature is beneficial to enable when the NICs are experiencing performance issues (e.g. low throughput). Toggling this feature will also initiate a restart of the server. If the specified value is `true`, the feature will be activated; if it is not specified or set to `false`, the feature will be deactivated. The feature cannot be activated for `CUBE` servers.
-     *
-     * ⚠️ **_Warning: `allowReplace` - lets you update immutable fields, but it first destroys and then re-creates the server in order to do it. This field should be used with care, understanding the risks._**
-     *
-     * > **⚠ WARNING**
-     * >
-     * > Image_name under volume level is deprecated, please use imageName under server level
-     * > sshKeyPath and sshKeys fields are immutable.
-     *
-     *
-     * > **⚠ WARNING**
-     * >
-     * > If you want to create a **CUBE** server, you have to provide the `templateUuid`. In this case you can not set `cores`, `ram` and `volume.size` arguments, these being mutually exclusive with `templateUuid`.
-     * >
-     * > In all the other cases (**ENTERPRISE** servers) you have to provide values for `cores`, `ram` and `volume size`.
      */
     nicMultiQueue?: pulumi.Input<boolean | undefined>;
     /**

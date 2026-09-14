@@ -6,6 +6,7 @@ package com.ionoscloud.pulumi.ionoscloud.compute.outputs;
 import com.pulumi.core.annotations.CustomType;
 import java.lang.Integer;
 import java.lang.String;
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import javax.annotation.Nullable;
@@ -17,6 +18,11 @@ public final class DatacenterCpuArchitecture {
      * 
      */
     private @Nullable String cpuFamily;
+    /**
+     * @return Features enabled for this CPU architecture, e.g. `SEV-SNP` for Confidential Computing
+     * 
+     */
+    private @Nullable List<String> enabledFeatures;
     /**
      * @return The maximum number of cores available
      * 
@@ -40,6 +46,13 @@ public final class DatacenterCpuArchitecture {
      */
     public Optional<String> cpuFamily() {
         return Optional.ofNullable(this.cpuFamily);
+    }
+    /**
+     * @return Features enabled for this CPU architecture, e.g. `SEV-SNP` for Confidential Computing
+     * 
+     */
+    public List<String> enabledFeatures() {
+        return this.enabledFeatures == null ? List.of() : this.enabledFeatures;
     }
     /**
      * @return The maximum number of cores available
@@ -73,6 +86,7 @@ public final class DatacenterCpuArchitecture {
     @CustomType.Builder
     public static final class Builder {
         private @Nullable String cpuFamily;
+        private @Nullable List<String> enabledFeatures;
         private @Nullable Integer maxCores;
         private @Nullable Integer maxRam;
         private @Nullable String vendor;
@@ -80,6 +94,7 @@ public final class DatacenterCpuArchitecture {
         public Builder(DatacenterCpuArchitecture defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.cpuFamily = defaults.cpuFamily;
+    	      this.enabledFeatures = defaults.enabledFeatures;
     	      this.maxCores = defaults.maxCores;
     	      this.maxRam = defaults.maxRam;
     	      this.vendor = defaults.vendor;
@@ -90,6 +105,15 @@ public final class DatacenterCpuArchitecture {
 
             this.cpuFamily = cpuFamily;
             return this;
+        }
+        @CustomType.Setter
+        public Builder enabledFeatures(@Nullable List<String> enabledFeatures) {
+
+            this.enabledFeatures = enabledFeatures;
+            return this;
+        }
+        public Builder enabledFeatures(String... enabledFeatures) {
+            return enabledFeatures(List.of(enabledFeatures));
         }
         @CustomType.Setter
         public Builder maxCores(@Nullable Integer maxCores) {
@@ -112,6 +136,7 @@ public final class DatacenterCpuArchitecture {
         public DatacenterCpuArchitecture build() {
             final var _resultValue = new DatacenterCpuArchitecture();
             _resultValue.cpuFamily = cpuFamily;
+            _resultValue.enabledFeatures = enabledFeatures;
             _resultValue.maxCores = maxCores;
             _resultValue.maxRam = maxRam;
             _resultValue.vendor = vendor;

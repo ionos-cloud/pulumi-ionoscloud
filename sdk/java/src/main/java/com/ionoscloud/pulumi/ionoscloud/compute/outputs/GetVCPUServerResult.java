@@ -47,6 +47,7 @@ public final class GetVCPUServerResult {
      * 
      */
     private String datacenterId;
+    private List<String> enabledFeatures;
     /**
      * @return The hostname of the server
      * 
@@ -154,6 +155,9 @@ public final class GetVCPUServerResult {
     public String datacenterId() {
         return this.datacenterId;
     }
+    public List<String> enabledFeatures() {
+        return this.enabledFeatures;
+    }
     /**
      * @return The hostname of the server
      * 
@@ -259,6 +263,7 @@ public final class GetVCPUServerResult {
         private Integer cores;
         private String cpuFamily;
         private String datacenterId;
+        private List<String> enabledFeatures;
         private String hostname;
         private String id;
         private List<GetVCPUServerLabel> labels;
@@ -283,6 +288,7 @@ public final class GetVCPUServerResult {
     	      this.cores = defaults.cores;
     	      this.cpuFamily = defaults.cpuFamily;
     	      this.datacenterId = defaults.datacenterId;
+    	      this.enabledFeatures = defaults.enabledFeatures;
     	      this.hostname = defaults.hostname;
     	      this.id = defaults.id;
     	      this.labels = defaults.labels;
@@ -364,6 +370,17 @@ public final class GetVCPUServerResult {
             }
             this.datacenterId = datacenterId;
             return this;
+        }
+        @CustomType.Setter
+        public Builder enabledFeatures(List<String> enabledFeatures) {
+            if (enabledFeatures == null) {
+              throw new MissingRequiredPropertyException("GetVCPUServerResult", "enabledFeatures");
+            }
+            this.enabledFeatures = enabledFeatures;
+            return this;
+        }
+        public Builder enabledFeatures(String... enabledFeatures) {
+            return enabledFeatures(List.of(enabledFeatures));
         }
         @CustomType.Setter
         public Builder hostname(String hostname) {
@@ -489,6 +506,7 @@ public final class GetVCPUServerResult {
             _resultValue.cores = cores;
             _resultValue.cpuFamily = cpuFamily;
             _resultValue.datacenterId = datacenterId;
+            _resultValue.enabledFeatures = enabledFeatures;
             _resultValue.hostname = hostname;
             _resultValue.id = id;
             _resultValue.labels = labels;

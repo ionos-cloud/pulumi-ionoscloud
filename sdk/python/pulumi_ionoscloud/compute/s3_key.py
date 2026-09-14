@@ -238,6 +238,8 @@ class S3Key(pulumi.CustomResource):
                 raise TypeError("Missing required property 'user_id'")
             __props__.__dict__["user_id"] = user_id
             __props__.__dict__["secret_key"] = None
+        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["secretKey"])
+        opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(S3Key, __self__).__init__(
             'ionoscloud:compute/s3Key:S3Key',
             resource_name,

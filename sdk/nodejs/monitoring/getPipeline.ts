@@ -53,7 +53,7 @@ export interface GetPipelineArgs {
      */
     id?: string;
     /**
-     * [string] The location of the Monitoring pipeline. Default is `de/fra`. It can be one of `de/fra`, `de/txl`, `gb/lhr`, `es/vit`, `fr/par`. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
+     * [string] The location of the Monitoring pipeline. Default is `de/fra`. It can be one of `de/fra`, `de/fra/1`, `de/fra/2`, `de/txl`, `gb/lhr`, `es/vit`, `fr/par`. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
      */
     location?: string;
     /**
@@ -132,7 +132,7 @@ export interface GetPipelineOutputArgs {
      */
     id?: pulumi.Input<string | undefined>;
     /**
-     * [string] The location of the Monitoring pipeline. Default is `de/fra`. It can be one of `de/fra`, `de/txl`, `gb/lhr`, `es/vit`, `fr/par`. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
+     * [string] The location of the Monitoring pipeline. Default is `de/fra`. It can be one of `de/fra`, `de/fra/1`, `de/fra/2`, `de/txl`, `gb/lhr`, `es/vit`, `fr/par`. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
      */
     location?: pulumi.Input<string | undefined>;
     /**

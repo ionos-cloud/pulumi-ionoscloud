@@ -82,7 +82,7 @@ export class AutoCertificate extends pulumi.CustomResource {
      */
     declare public /*out*/ readonly lastIssuedCertificateId: pulumi.Output<string>;
     /**
-     * [string] The location of the auto-certificate. Available locations: `de/fra`, `de/fra/2`.
+     * [string] The location of the auto-certificate. Available locations: `de/fra`, `de/fra/1`, `de/fra/2`.
      */
     declare public readonly location: pulumi.Output<string>;
     /**
@@ -162,7 +162,7 @@ export interface AutoCertificateState {
      */
     lastIssuedCertificateId?: pulumi.Input<string | undefined>;
     /**
-     * [string] The location of the auto-certificate. Available locations: `de/fra`, `de/fra/2`.
+     * [string] The location of the auto-certificate. Available locations: `de/fra`, `de/fra/1`, `de/fra/2`.
      */
     location?: pulumi.Input<string | undefined>;
     /**
@@ -192,7 +192,7 @@ export interface AutoCertificateArgs {
      */
     keyAlgorithm: pulumi.Input<string>;
     /**
-     * [string] The location of the auto-certificate. Available locations: `de/fra`, `de/fra/2`.
+     * [string] The location of the auto-certificate. Available locations: `de/fra`, `de/fra/1`, `de/fra/2`.
      */
     location: pulumi.Input<string>;
     /**

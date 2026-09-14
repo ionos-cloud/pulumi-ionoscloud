@@ -40,7 +40,7 @@ class VolumeArgs:
         The set of arguments for constructing a Volume resource.
 
         :param pulumi.Input[_builtins.str] datacenter_id: [string] The ID of a Virtual Data Center.
-        :param pulumi.Input[_builtins.str] disk_type: [string] The volume type: HDD or SSD. This property is immutable.
+        :param pulumi.Input[_builtins.str] disk_type: [string] The volume type. Possible values: `HDD`, `SSD`, `SSD Standard`, `SSD Premium`, `DAS`, `ISO`, `ESSENTIAL`, `BALANCED`, `PERFORMANCE`. This property is immutable.
         :param pulumi.Input[_builtins.str] server_id: [string] The ID of a server.
         :param pulumi.Input[_builtins.int] size: [integer] The size of the volume in GB.
         :param pulumi.Input[_builtins.str] availability_zone: [string] The storage availability zone assigned to the volume: AUTO, ZONE_1, ZONE_2, or ZONE_3. This property is immutable
@@ -109,7 +109,7 @@ class VolumeArgs:
     @pulumi.getter(name="diskType")
     def disk_type(self) -> pulumi.Input[_builtins.str]:
         """
-        [string] The volume type: HDD or SSD. This property is immutable.
+        [string] The volume type. Possible values: `HDD`, `SSD`, `SSD Standard`, `SSD Premium`, `DAS`, `ISO`, `ESSENTIAL`, `BALANCED`, `PERFORMANCE`. This property is immutable.
         """
         return pulumi.get(self, "disk_type")
 
@@ -347,7 +347,7 @@ class _VolumeState:
         :param pulumi.Input[_builtins.int] device_number: The Logical Unit Number of the storage volume. Null for volumes not mounted to any VM.
         :param pulumi.Input[_builtins.bool] disc_virtio_hot_plug: [string] Is capable of Virt-IO drive hot plug (no reboot required)
         :param pulumi.Input[_builtins.bool] disc_virtio_hot_unplug: [string] Is capable of Virt-IO drive hot unplug (no reboot required). This works only for non-Windows virtual Machines.
-        :param pulumi.Input[_builtins.str] disk_type: [string] The volume type: HDD or SSD. This property is immutable.
+        :param pulumi.Input[_builtins.str] disk_type: [string] The volume type. Possible values: `HDD`, `SSD`, `SSD Standard`, `SSD Premium`, `DAS`, `ISO`, `ESSENTIAL`, `BALANCED`, `PERFORMANCE`. This property is immutable.
         :param pulumi.Input[_builtins.bool] expose_serial: (Computed) [boolean] Defaults to `false` if not previously set by the image used to create the volume. If set to `true` will expose the serial id of the disk attached to the server. If set to `false` will not expose the serial id. Some operating systems or software solutions require the serial id to be exposed to work properly. Exposing the serial can influence licensed software (e.g. Windows) behavior
         :param pulumi.Input[_builtins.str] image: The image or snapshot UUID.
         :param pulumi.Input[_builtins.str] image_name: [string] The name, ID or alias of the image. May also be a snapshot ID. It is required if `licence_type` is not provided. Attribute is immutable.
@@ -543,7 +543,7 @@ class _VolumeState:
     @pulumi.getter(name="diskType")
     def disk_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        [string] The volume type: HDD or SSD. This property is immutable.
+        [string] The volume type. Possible values: `HDD`, `SSD`, `SSD Standard`, `SSD Premium`, `DAS`, `ISO`, `ESSENTIAL`, `BALANCED`, `PERFORMANCE`. This property is immutable.
         """
         return pulumi.get(self, "disk_type")
 
@@ -915,7 +915,7 @@ class Volume(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] backup_unit_id: [string] The uuid of the Backup Unit that user has access to. The property is immutable and is only allowed to be set on a new volume creation. It is mandatory to provide either 'public image' or 'imageAlias' in conjunction with this property.
         :param pulumi.Input[_builtins.str] bus: [Boolean] The bus type of the volume: VIRTIO or IDE.
         :param pulumi.Input[_builtins.str] datacenter_id: [string] The ID of a Virtual Data Center.
-        :param pulumi.Input[_builtins.str] disk_type: [string] The volume type: HDD or SSD. This property is immutable.
+        :param pulumi.Input[_builtins.str] disk_type: [string] The volume type. Possible values: `HDD`, `SSD`, `SSD Standard`, `SSD Premium`, `DAS`, `ISO`, `ESSENTIAL`, `BALANCED`, `PERFORMANCE`. This property is immutable.
         :param pulumi.Input[_builtins.bool] expose_serial: (Computed) [boolean] Defaults to `false` if not previously set by the image used to create the volume. If set to `true` will expose the serial id of the disk attached to the server. If set to `false` will not expose the serial id. Some operating systems or software solutions require the serial id to be exposed to work properly. Exposing the serial can influence licensed software (e.g. Windows) behavior
         :param pulumi.Input[_builtins.str] image_name: [string] The name, ID or alias of the image. May also be a snapshot ID. It is required if `licence_type` is not provided. Attribute is immutable.
         :param pulumi.Input[_builtins.str] image_password: [string] Required if `sshkey_path` is not provided.
@@ -1095,7 +1095,7 @@ class Volume(pulumi.CustomResource):
             __props__.__dict__["disk_type"] = disk_type
             __props__.__dict__["expose_serial"] = expose_serial
             __props__.__dict__["image_name"] = image_name
-            __props__.__dict__["image_password"] = image_password
+            __props__.__dict__["image_password"] = None if image_password is None else pulumi.Output.secret(image_password)
             __props__.__dict__["licence_type"] = licence_type
             __props__.__dict__["location"] = location
             __props__.__dict__["name"] = name
@@ -1121,6 +1121,8 @@ class Volume(pulumi.CustomResource):
             __props__.__dict__["pci_slot"] = None
             __props__.__dict__["ram_hot_plug"] = None
             __props__.__dict__["sshkey"] = None
+        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["imagePassword"])
+        opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(Volume, __self__).__init__(
             'ionoscloud:compute/volume:Volume',
             resource_name,
@@ -1176,7 +1178,7 @@ class Volume(pulumi.CustomResource):
         :param pulumi.Input[_builtins.int] device_number: The Logical Unit Number of the storage volume. Null for volumes not mounted to any VM.
         :param pulumi.Input[_builtins.bool] disc_virtio_hot_plug: [string] Is capable of Virt-IO drive hot plug (no reboot required)
         :param pulumi.Input[_builtins.bool] disc_virtio_hot_unplug: [string] Is capable of Virt-IO drive hot unplug (no reboot required). This works only for non-Windows virtual Machines.
-        :param pulumi.Input[_builtins.str] disk_type: [string] The volume type: HDD or SSD. This property is immutable.
+        :param pulumi.Input[_builtins.str] disk_type: [string] The volume type. Possible values: `HDD`, `SSD`, `SSD Standard`, `SSD Premium`, `DAS`, `ISO`, `ESSENTIAL`, `BALANCED`, `PERFORMANCE`. This property is immutable.
         :param pulumi.Input[_builtins.bool] expose_serial: (Computed) [boolean] Defaults to `false` if not previously set by the image used to create the volume. If set to `true` will expose the serial id of the disk attached to the server. If set to `false` will not expose the serial id. Some operating systems or software solutions require the serial id to be exposed to work properly. Exposing the serial can influence licensed software (e.g. Windows) behavior
         :param pulumi.Input[_builtins.str] image: The image or snapshot UUID.
         :param pulumi.Input[_builtins.str] image_name: [string] The name, ID or alias of the image. May also be a snapshot ID. It is required if `licence_type` is not provided. Attribute is immutable.
@@ -1312,7 +1314,7 @@ class Volume(pulumi.CustomResource):
     @pulumi.getter(name="diskType")
     def disk_type(self) -> pulumi.Output[_builtins.str]:
         """
-        [string] The volume type: HDD or SSD. This property is immutable.
+        [string] The volume type. Possible values: `HDD`, `SSD`, `SSD Standard`, `SSD Premium`, `DAS`, `ISO`, `ESSENTIAL`, `BALANCED`, `PERFORMANCE`. This property is immutable.
         """
         return pulumi.get(self, "disk_type")
 

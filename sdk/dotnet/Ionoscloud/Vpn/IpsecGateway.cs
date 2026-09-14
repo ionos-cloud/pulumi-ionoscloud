@@ -99,7 +99,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Vpn
         public Output<string> GatewayIp { get; private set; } = null!;
 
         /// <summary>
-        /// [string] The location of the IPSec Gateway. Supported locations: de/fra, de/fra/2, de/txl, es/vit, gb/bhx, gb/lhr, us/ewr, us/las, us/mci, fr/par.
+        /// [string] The location of the IPSec Gateway. Supported locations: de/fra, de/fra/1, de/fra/2, de/txl, es/vit, gb/bhx, gb/lhr, us/ewr, us/las, us/mci, fr/par.
         /// </summary>
         [Output("location")]
         public Output<string?> Location { get; private set; } = null!;
@@ -203,7 +203,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Vpn
         public Input<string> GatewayIp { get; set; } = null!;
 
         /// <summary>
-        /// [string] The location of the IPSec Gateway. Supported locations: de/fra, de/fra/2, de/txl, es/vit, gb/bhx, gb/lhr, us/ewr, us/las, us/mci, fr/par.
+        /// [string] The location of the IPSec Gateway. Supported locations: de/fra, de/fra/1, de/fra/2, de/txl, es/vit, gb/bhx, gb/lhr, us/ewr, us/las, us/mci, fr/par.
         /// </summary>
         [Input("location")]
         public Input<string>? Location { get; set; }
@@ -268,7 +268,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Vpn
         public Input<string>? GatewayIp { get; set; }
 
         /// <summary>
-        /// [string] The location of the IPSec Gateway. Supported locations: de/fra, de/fra/2, de/txl, es/vit, gb/bhx, gb/lhr, us/ewr, us/las, us/mci, fr/par.
+        /// [string] The location of the IPSec Gateway. Supported locations: de/fra, de/fra/1, de/fra/2, de/txl, es/vit, gb/bhx, gb/lhr, us/ewr, us/las, us/mci, fr/par.
         /// </summary>
         [Input("location")]
         public Input<string>? Location { get; set; }

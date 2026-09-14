@@ -235,6 +235,20 @@ public class VCPUServer extends com.pulumi.resources.CustomResource {
         return this.bootVolume;
     }
     /**
+     * [bool] Whether the server is a Confidential Computing (SEV-SNP) VM. Derived on read from the server&#39;s enabled features; normally &lt;span pulumi-lang-nodejs=&#34;`false`&#34; pulumi-lang-dotnet=&#34;`False`&#34; pulumi-lang-go=&#34;`false`&#34; pulumi-lang-python=&#34;`false`&#34; pulumi-lang-yaml=&#34;`false`&#34; pulumi-lang-java=&#34;`false`&#34; pulumi-lang-hcl=&#34;`false`&#34;&gt;`false`&lt;/span&gt; for VCPU servers, which are not Confidential Computing VMs.
+     * 
+     */
+    @Export(name="confidential", refs={Boolean.class}, tree="[0]")
+    private Output<Boolean> confidential;
+
+    /**
+     * @return [bool] Whether the server is a Confidential Computing (SEV-SNP) VM. Derived on read from the server&#39;s enabled features; normally &lt;span pulumi-lang-nodejs=&#34;`false`&#34; pulumi-lang-dotnet=&#34;`False`&#34; pulumi-lang-go=&#34;`false`&#34; pulumi-lang-python=&#34;`false`&#34; pulumi-lang-yaml=&#34;`false`&#34; pulumi-lang-java=&#34;`false`&#34; pulumi-lang-hcl=&#34;`false`&#34;&gt;`false`&lt;/span&gt; for VCPU servers, which are not Confidential Computing VMs.
+     * 
+     */
+    public Output<Boolean> confidential() {
+        return this.confidential;
+    }
+    /**
      * [integer] Number of server CPU cores.
      * 
      */
@@ -267,6 +281,20 @@ public class VCPUServer extends com.pulumi.resources.CustomResource {
      */
     public Output<String> datacenterId() {
         return this.datacenterId;
+    }
+    /**
+     * [list] Features enabled on the server, e.g. `SEV-SNP` for a Confidential Computing VM.
+     * 
+     */
+    @Export(name="enabledFeatures", refs={List.class,String.class}, tree="[0,1]")
+    private Output<List<String>> enabledFeatures;
+
+    /**
+     * @return [list] Features enabled on the server, e.g. `SEV-SNP` for a Confidential Computing VM.
+     * 
+     */
+    public Output<List<String>> enabledFeatures() {
+        return this.enabledFeatures;
     }
     /**
      * The associated firewall rule.

@@ -55,7 +55,7 @@ export interface GetPipelineArgs {
      */
     id?: string;
     /**
-     * [string] The location of the Logging pipeline. Default: `de/txl`, other available locations: `de/fra`, `de/fra/2`, `de/txl`, `es/vit`, `gb/bhx`, `gb/lhr`,  `fr/par`, `us/mci`.
+     * [string] The location of the Logging pipeline. Default: `de/txl`, other available locations: `de/fra`, `de/fra/1`, `de/fra/2`, `de/txl`, `es/vit`, `gb/lhr`, `fr/par`.
      */
     location?: string;
     /**
@@ -145,7 +145,7 @@ export interface GetPipelineOutputArgs {
      */
     id?: pulumi.Input<string | undefined>;
     /**
-     * [string] The location of the Logging pipeline. Default: `de/txl`, other available locations: `de/fra`, `de/fra/2`, `de/txl`, `es/vit`, `gb/bhx`, `gb/lhr`,  `fr/par`, `us/mci`.
+     * [string] The location of the Logging pipeline. Default: `de/txl`, other available locations: `de/fra`, `de/fra/1`, `de/fra/2`, `de/txl`, `es/vit`, `gb/lhr`, `fr/par`.
      */
     location?: pulumi.Input<string | undefined>;
     /**

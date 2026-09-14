@@ -46,7 +46,7 @@ export interface GetWireguardGatewayArgs {
      */
     id?: string;
     /**
-     * [String] The location of the WireGuard Gateway. Supported locations: de/fra, de/fra/2, de/txl, es/vit, gb/bhx, gb/lhr, us/ewr, us/las, us/mci, fr/par.
+     * [String] The location of the WireGuard Gateway. Supported locations: de/fra, de/fra/1, de/fra/2, de/txl, es/vit, gb/bhx, gb/lhr, us/ewr, us/las, us/mci, fr/par.
      */
     location?: string;
     /**
@@ -140,7 +140,7 @@ export interface GetWireguardGatewayOutputArgs {
      */
     id?: pulumi.Input<string | undefined>;
     /**
-     * [String] The location of the WireGuard Gateway. Supported locations: de/fra, de/fra/2, de/txl, es/vit, gb/bhx, gb/lhr, us/ewr, us/las, us/mci, fr/par.
+     * [String] The location of the WireGuard Gateway. Supported locations: de/fra, de/fra/1, de/fra/2, de/txl, es/vit, gb/bhx, gb/lhr, us/ewr, us/las, us/mci, fr/par.
      */
     location?: pulumi.Input<string | undefined>;
     /**

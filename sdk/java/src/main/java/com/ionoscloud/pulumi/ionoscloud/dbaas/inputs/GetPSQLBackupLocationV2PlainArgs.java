@@ -14,14 +14,14 @@ public final class GetPSQLBackupLocationV2PlainArgs extends com.pulumi.resources
     public static final GetPSQLBackupLocationV2PlainArgs Empty = new GetPSQLBackupLocationV2PlainArgs();
 
     /**
-     * [string] The region in which to look up backup locations. Available locations: `de/fra`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
+     * [string] The region in which to look up backup locations. Available locations: `de/fra`, `de/fra/1`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
      * 
      */
     @Import(name="location", required=true)
     private String location;
 
     /**
-     * @return [string] The region in which to look up backup locations. Available locations: `de/fra`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
+     * @return [string] The region in which to look up backup locations. Available locations: `de/fra`, `de/fra/1`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
      * 
      */
     public String location() {
@@ -53,7 +53,7 @@ public final class GetPSQLBackupLocationV2PlainArgs extends com.pulumi.resources
         }
 
         /**
-         * @param location [string] The region in which to look up backup locations. Available locations: `de/fra`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
+         * @param location [string] The region in which to look up backup locations. Available locations: `de/fra`, `de/fra/1`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
          * 
          * @return builder
          * 

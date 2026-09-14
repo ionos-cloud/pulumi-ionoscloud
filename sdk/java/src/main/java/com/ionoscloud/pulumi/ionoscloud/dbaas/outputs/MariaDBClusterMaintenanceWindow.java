@@ -16,7 +16,7 @@ public final class MariaDBClusterMaintenanceWindow {
      */
     private String dayOfTheWeek;
     /**
-     * @return [string] Start of the maintenance window in UTC time.
+     * @return [string] Start of the maintenance window in UTC time. Format: HH:MM:SS.
      * 
      */
     private String time;
@@ -30,7 +30,7 @@ public final class MariaDBClusterMaintenanceWindow {
         return this.dayOfTheWeek;
     }
     /**
-     * @return [string] Start of the maintenance window in UTC time.
+     * @return [string] Start of the maintenance window in UTC time. Format: HH:MM:SS.
      * 
      */
     public String time() {

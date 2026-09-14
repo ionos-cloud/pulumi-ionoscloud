@@ -88,6 +88,16 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
     /// ```sh
     /// terraform import ionoscloud_datacenter.mydc datacenter uuid
     /// ```
+    /// 
+    /// ### Identity Schema
+    /// 
+    /// #### Required
+    /// 
+    /// * `Id` (String) The UUID of the datacenter.
+    /// 
+    /// #### Optional
+    /// 
+    /// * `Location` (String) The location the datacenter lives in (e.g. `de/txl`). Only needed when the Cloud API endpoint is overridden per location.
     /// </summary>
     [IonoscloudResourceType("ionoscloud:compute/datacenter:Datacenter")]
     public partial class Datacenter : global::Pulumi.CustomResource
@@ -117,7 +127,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
         public Output<string> Ipv6CidrBlock { get; private set; } = null!;
 
         /// <summary>
-        /// [string] The regional location where the Virtual Data Center will be created. This argument is immutable. Available locations: `de/fra`, `us/las`, `us/ewr`, `de/txl`, `gb/lhr`, `gb/bhx`, `es/vit`, `fr/par`, `us/mci`, `de/fra/2`
+        /// [string] The regional location where the Virtual Data Center will be created. This argument is immutable. Available locations: `de/fra`, `us/las`, `us/ewr`, `de/txl`, `gb/lhr`, `gb/bhx`, `es/vit`, `fr/par`, `us/mci`, `de/fra/1`, `de/fra/2`
         /// </summary>
         [Output("location")]
         public Output<string> Location { get; private set; } = null!;
@@ -194,7 +204,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
         public Input<string>? Description { get; set; }
 
         /// <summary>
-        /// [string] The regional location where the Virtual Data Center will be created. This argument is immutable. Available locations: `de/fra`, `us/las`, `us/ewr`, `de/txl`, `gb/lhr`, `gb/bhx`, `es/vit`, `fr/par`, `us/mci`, `de/fra/2`
+        /// [string] The regional location where the Virtual Data Center will be created. This argument is immutable. Available locations: `de/fra`, `us/las`, `us/ewr`, `de/txl`, `gb/lhr`, `gb/bhx`, `es/vit`, `fr/par`, `us/mci`, `de/fra/1`, `de/fra/2`
         /// </summary>
         [Input("location", required: true)]
         public Input<string> Location { get; set; } = null!;
@@ -256,7 +266,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
         public Input<string>? Ipv6CidrBlock { get; set; }
 
         /// <summary>
-        /// [string] The regional location where the Virtual Data Center will be created. This argument is immutable. Available locations: `de/fra`, `us/las`, `us/ewr`, `de/txl`, `gb/lhr`, `gb/bhx`, `es/vit`, `fr/par`, `us/mci`, `de/fra/2`
+        /// [string] The regional location where the Virtual Data Center will be created. This argument is immutable. Available locations: `de/fra`, `us/las`, `us/ewr`, `de/txl`, `gb/lhr`, `gb/bhx`, `es/vit`, `fr/par`, `us/mci`, `de/fra/1`, `de/fra/2`
         /// </summary>
         [Input("location")]
         public Input<string>? Location { get; set; }

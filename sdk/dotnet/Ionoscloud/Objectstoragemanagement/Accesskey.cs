@@ -108,6 +108,10 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Objectstoragemanagement
             {
                 Version = Utilities.Version,
                 PluginDownloadURL = "github://api.github.com/ionos-cloud/pulumi-ionoscloud",
+                AdditionalSecretOutputs =
+                {
+                    "secretkey",
+                },
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.
@@ -175,11 +179,21 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Objectstoragemanagement
         [Input("description")]
         public Input<string>? Description { get; set; }
 
+        [Input("secretkey")]
+        private Input<string>? _secretkey;
+
         /// <summary>
         /// The secret key of the Access key.
         /// </summary>
-        [Input("secretkey")]
-        public Input<string>? Secretkey { get; set; }
+        public Input<string>? Secretkey
+        {
+            get => _secretkey;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _secretkey = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// Timeouts for this resource.

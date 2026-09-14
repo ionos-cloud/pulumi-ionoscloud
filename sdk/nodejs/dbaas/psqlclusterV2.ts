@@ -79,7 +79,7 @@ export class PSQLClusterV2 extends pulumi.CustomResource {
      */
     declare public readonly instances: pulumi.Output<outputs.dbaas.PSQLClusterV2Instances>;
     /**
-     * [string] The location of the PostgreSQL cluster. This is used for routing to the regional API endpoint. Changing this value will destroy the existing cluster and create a new one in the specified location. Available locations: `de/fra`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
+     * [string] The location of the PostgreSQL cluster. This is used for routing to the regional API endpoint. Changing this value will destroy the existing cluster and create a new one in the specified location. Available locations: `de/fra`, `de/fra/1`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
      */
     declare public readonly location: pulumi.Output<string>;
     /**
@@ -222,7 +222,7 @@ export interface PSQLClusterV2State {
      */
     instances?: pulumi.Input<inputs.dbaas.PSQLClusterV2Instances | undefined>;
     /**
-     * [string] The location of the PostgreSQL cluster. This is used for routing to the regional API endpoint. Changing this value will destroy the existing cluster and create a new one in the specified location. Available locations: `de/fra`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
+     * [string] The location of the PostgreSQL cluster. This is used for routing to the regional API endpoint. Changing this value will destroy the existing cluster and create a new one in the specified location. Available locations: `de/fra`, `de/fra/1`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
      */
     location?: pulumi.Input<string | undefined>;
     /**
@@ -285,7 +285,7 @@ export interface PSQLClusterV2Args {
      */
     instances: pulumi.Input<inputs.dbaas.PSQLClusterV2Instances>;
     /**
-     * [string] The location of the PostgreSQL cluster. This is used for routing to the regional API endpoint. Changing this value will destroy the existing cluster and create a new one in the specified location. Available locations: `de/fra`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
+     * [string] The location of the PostgreSQL cluster. This is used for routing to the regional API endpoint. Changing this value will destroy the existing cluster and create a new one in the specified location. Available locations: `de/fra`, `de/fra/1`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
      */
     location: pulumi.Input<string>;
     /**

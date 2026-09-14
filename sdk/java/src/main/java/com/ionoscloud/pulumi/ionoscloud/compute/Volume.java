@@ -304,14 +304,14 @@ public class Volume extends com.pulumi.resources.CustomResource {
         return this.discVirtioHotUnplug;
     }
     /**
-     * [string] The volume type: HDD or SSD. This property is immutable.
+     * [string] The volume type. Possible values: `HDD`, `SSD`, `SSD Standard`, `SSD Premium`, `DAS`, `ISO`, `ESSENTIAL`, `BALANCED`, `PERFORMANCE`. This property is immutable.
      * 
      */
     @Export(name="diskType", refs={String.class}, tree="[0]")
     private Output<String> diskType;
 
     /**
-     * @return [string] The volume type: HDD or SSD. This property is immutable.
+     * @return [string] The volume type. Possible values: `HDD`, `SSD`, `SSD Standard`, `SSD Premium`, `DAS`, `ISO`, `ESSENTIAL`, `BALANCED`, `PERFORMANCE`. This property is immutable.
      * 
      */
     public Output<String> diskType() {
@@ -626,6 +626,9 @@ public class Volume extends com.pulumi.resources.CustomResource {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
             .pluginDownloadURL("github://api.github.com/ionos-cloud/pulumi-ionoscloud")
+            .additionalSecretOutputs(List.of(
+                "imagePassword"
+            ))
             .build();
         return com.pulumi.resources.CustomResourceOptions.merge(defaultOptions, options, id);
     }

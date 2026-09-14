@@ -106,7 +106,8 @@ type LookupVCPUServerResult struct {
 	// CPU architecture on which server gets provisioned; not all CPU architectures are available in all datacenter regions; available CPU architectures can be retrieved from the datacenter resource.
 	CpuFamily string `pulumi:"cpuFamily"`
 	// The id of the datacenter
-	DatacenterId string `pulumi:"datacenterId"`
+	DatacenterId    string   `pulumi:"datacenterId"`
+	EnabledFeatures []string `pulumi:"enabledFeatures"`
 	// The hostname of the server
 	Hostname string `pulumi:"hostname"`
 	// The Id of the label
@@ -211,6 +212,10 @@ func (o LookupVCPUServerResultOutput) CpuFamily() pulumi.StringOutput {
 // The id of the datacenter
 func (o LookupVCPUServerResultOutput) DatacenterId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupVCPUServerResult) string { return v.DatacenterId }).(pulumi.StringOutput)
+}
+
+func (o LookupVCPUServerResultOutput) EnabledFeatures() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v LookupVCPUServerResult) []string { return v.EnabledFeatures }).(pulumi.StringArrayOutput)
 }
 
 // The hostname of the server

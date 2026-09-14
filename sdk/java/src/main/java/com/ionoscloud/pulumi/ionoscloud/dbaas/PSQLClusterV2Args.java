@@ -115,14 +115,14 @@ public final class PSQLClusterV2Args extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * [string] The location of the PostgreSQL cluster. This is used for routing to the regional API endpoint. Changing this value will destroy the existing cluster and create a new one in the specified location. Available locations: `de/fra`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
+     * [string] The location of the PostgreSQL cluster. This is used for routing to the regional API endpoint. Changing this value will destroy the existing cluster and create a new one in the specified location. Available locations: `de/fra`, `de/fra/1`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
      * 
      */
     @Import(name="location", required=true)
     private Output<String> location;
 
     /**
-     * @return [string] The location of the PostgreSQL cluster. This is used for routing to the regional API endpoint. Changing this value will destroy the existing cluster and create a new one in the specified location. Available locations: `de/fra`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
+     * @return [string] The location of the PostgreSQL cluster. This is used for routing to the regional API endpoint. Changing this value will destroy the existing cluster and create a new one in the specified location. Available locations: `de/fra`, `de/fra/1`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
      * 
      */
     public Output<String> location() {
@@ -406,7 +406,7 @@ public final class PSQLClusterV2Args extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param location [string] The location of the PostgreSQL cluster. This is used for routing to the regional API endpoint. Changing this value will destroy the existing cluster and create a new one in the specified location. Available locations: `de/fra`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
+         * @param location [string] The location of the PostgreSQL cluster. This is used for routing to the regional API endpoint. Changing this value will destroy the existing cluster and create a new one in the specified location. Available locations: `de/fra`, `de/fra/1`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
          * 
          * @return builder
          * 
@@ -417,7 +417,7 @@ public final class PSQLClusterV2Args extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param location [string] The location of the PostgreSQL cluster. This is used for routing to the regional API endpoint. Changing this value will destroy the existing cluster and create a new one in the specified location. Available locations: `de/fra`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
+         * @param location [string] The location of the PostgreSQL cluster. This is used for routing to the regional API endpoint. Changing this value will destroy the existing cluster and create a new one in the specified location. Available locations: `de/fra`, `de/fra/1`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
          * 
          * @return builder
          * 

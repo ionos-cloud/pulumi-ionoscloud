@@ -366,6 +366,14 @@ _utilities.register(
  },
  {
   "pkg": "ionoscloud",
+  "mod": "dbaas/mariaDBClusterV2",
+  "fqn": "pulumi_ionoscloud.dbaas",
+  "classes": {
+   "ionoscloud:dbaas/mariaDBClusterV2:MariaDBClusterV2": "MariaDBClusterV2"
+  }
+ },
+ {
+  "pkg": "ionoscloud",
   "mod": "dbaas/mongoCluster",
   "fqn": "pulumi_ionoscloud.dbaas",
   "classes": {

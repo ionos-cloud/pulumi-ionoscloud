@@ -139,7 +139,7 @@ type IpsecTunnel struct {
 	GatewayId pulumi.StringOutput `pulumi:"gatewayId"`
 	// [list] Settings for the initial security exchange phase. Minimum items: 1. Maximum items: 1.
 	Ike IpsecTunnelIkeOutput `pulumi:"ike"`
-	// [string] The location of the IPSec Gateway Tunnel. Supported locations: de/fra, de/fra/2, de/txl, es/vit, gb/lhr, us/ewr, us/las, us/mci, fr/par.
+	// [string] The location of the IPSec Gateway Tunnel. Supported locations: de/fra, de/fra/1, de/fra/2, de/txl, es/vit, gb/lhr, us/ewr, us/las, us/mci, fr/par.
 	Location pulumi.StringPtrOutput `pulumi:"location"`
 	// [string] The name of the IPSec Gateway Tunnel.
 	Name pulumi.StringOutput `pulumi:"name"`
@@ -216,7 +216,7 @@ type ipsecTunnelState struct {
 	GatewayId *string `pulumi:"gatewayId"`
 	// [list] Settings for the initial security exchange phase. Minimum items: 1. Maximum items: 1.
 	Ike *IpsecTunnelIke `pulumi:"ike"`
-	// [string] The location of the IPSec Gateway Tunnel. Supported locations: de/fra, de/fra/2, de/txl, es/vit, gb/lhr, us/ewr, us/las, us/mci, fr/par.
+	// [string] The location of the IPSec Gateway Tunnel. Supported locations: de/fra, de/fra/1, de/fra/2, de/txl, es/vit, gb/lhr, us/ewr, us/las, us/mci, fr/par.
 	Location *string `pulumi:"location"`
 	// [string] The name of the IPSec Gateway Tunnel.
 	Name *string `pulumi:"name"`
@@ -243,7 +243,7 @@ type IpsecTunnelState struct {
 	GatewayId pulumi.StringPtrInput
 	// [list] Settings for the initial security exchange phase. Minimum items: 1. Maximum items: 1.
 	Ike IpsecTunnelIkePtrInput
-	// [string] The location of the IPSec Gateway Tunnel. Supported locations: de/fra, de/fra/2, de/txl, es/vit, gb/lhr, us/ewr, us/las, us/mci, fr/par.
+	// [string] The location of the IPSec Gateway Tunnel. Supported locations: de/fra, de/fra/1, de/fra/2, de/txl, es/vit, gb/lhr, us/ewr, us/las, us/mci, fr/par.
 	Location pulumi.StringPtrInput
 	// [string] The name of the IPSec Gateway Tunnel.
 	Name pulumi.StringPtrInput
@@ -274,7 +274,7 @@ type ipsecTunnelArgs struct {
 	GatewayId string `pulumi:"gatewayId"`
 	// [list] Settings for the initial security exchange phase. Minimum items: 1. Maximum items: 1.
 	Ike IpsecTunnelIke `pulumi:"ike"`
-	// [string] The location of the IPSec Gateway Tunnel. Supported locations: de/fra, de/fra/2, de/txl, es/vit, gb/lhr, us/ewr, us/las, us/mci, fr/par.
+	// [string] The location of the IPSec Gateway Tunnel. Supported locations: de/fra, de/fra/1, de/fra/2, de/txl, es/vit, gb/lhr, us/ewr, us/las, us/mci, fr/par.
 	Location *string `pulumi:"location"`
 	// [string] The name of the IPSec Gateway Tunnel.
 	Name *string `pulumi:"name"`
@@ -302,7 +302,7 @@ type IpsecTunnelArgs struct {
 	GatewayId pulumi.StringInput
 	// [list] Settings for the initial security exchange phase. Minimum items: 1. Maximum items: 1.
 	Ike IpsecTunnelIkeInput
-	// [string] The location of the IPSec Gateway Tunnel. Supported locations: de/fra, de/fra/2, de/txl, es/vit, gb/lhr, us/ewr, us/las, us/mci, fr/par.
+	// [string] The location of the IPSec Gateway Tunnel. Supported locations: de/fra, de/fra/1, de/fra/2, de/txl, es/vit, gb/lhr, us/ewr, us/las, us/mci, fr/par.
 	Location pulumi.StringPtrInput
 	// [string] The name of the IPSec Gateway Tunnel.
 	Name pulumi.StringPtrInput
@@ -433,7 +433,7 @@ func (o IpsecTunnelOutput) Ike() IpsecTunnelIkeOutput {
 	return o.ApplyT(func(v *IpsecTunnel) IpsecTunnelIkeOutput { return v.Ike }).(IpsecTunnelIkeOutput)
 }
 
-// [string] The location of the IPSec Gateway Tunnel. Supported locations: de/fra, de/fra/2, de/txl, es/vit, gb/lhr, us/ewr, us/las, us/mci, fr/par.
+// [string] The location of the IPSec Gateway Tunnel. Supported locations: de/fra, de/fra/1, de/fra/2, de/txl, es/vit, gb/lhr, us/ewr, us/las, us/mci, fr/par.
 func (o IpsecTunnelOutput) Location() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *IpsecTunnel) pulumi.StringPtrOutput { return v.Location }).(pulumi.StringPtrOutput)
 }

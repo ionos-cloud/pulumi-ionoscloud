@@ -18,10 +18,20 @@ import com.ionoscloud.pulumi.ionoscloud.dbaas.inputs.GetInMemoryDBVersionsV2Args
 import com.ionoscloud.pulumi.ionoscloud.dbaas.inputs.GetInMemoryDBVersionsV2PlainArgs;
 import com.ionoscloud.pulumi.ionoscloud.dbaas.inputs.GetInmemorydbSnapshotArgs;
 import com.ionoscloud.pulumi.ionoscloud.dbaas.inputs.GetInmemorydbSnapshotPlainArgs;
+import com.ionoscloud.pulumi.ionoscloud.dbaas.inputs.GetMariaDBBackupLocationsV2Args;
+import com.ionoscloud.pulumi.ionoscloud.dbaas.inputs.GetMariaDBBackupLocationsV2PlainArgs;
 import com.ionoscloud.pulumi.ionoscloud.dbaas.inputs.GetMariaDBBackupsArgs;
 import com.ionoscloud.pulumi.ionoscloud.dbaas.inputs.GetMariaDBBackupsPlainArgs;
+import com.ionoscloud.pulumi.ionoscloud.dbaas.inputs.GetMariaDBBackupsV2Args;
+import com.ionoscloud.pulumi.ionoscloud.dbaas.inputs.GetMariaDBBackupsV2PlainArgs;
 import com.ionoscloud.pulumi.ionoscloud.dbaas.inputs.GetMariaDBClusterArgs;
 import com.ionoscloud.pulumi.ionoscloud.dbaas.inputs.GetMariaDBClusterPlainArgs;
+import com.ionoscloud.pulumi.ionoscloud.dbaas.inputs.GetMariaDBClusterV2Args;
+import com.ionoscloud.pulumi.ionoscloud.dbaas.inputs.GetMariaDBClusterV2PlainArgs;
+import com.ionoscloud.pulumi.ionoscloud.dbaas.inputs.GetMariaDBClustersV2Args;
+import com.ionoscloud.pulumi.ionoscloud.dbaas.inputs.GetMariaDBClustersV2PlainArgs;
+import com.ionoscloud.pulumi.ionoscloud.dbaas.inputs.GetMariaDBVersionsV2Args;
+import com.ionoscloud.pulumi.ionoscloud.dbaas.inputs.GetMariaDBVersionsV2PlainArgs;
 import com.ionoscloud.pulumi.ionoscloud.dbaas.inputs.GetMongoClusterArgs;
 import com.ionoscloud.pulumi.ionoscloud.dbaas.inputs.GetMongoClusterPlainArgs;
 import com.ionoscloud.pulumi.ionoscloud.dbaas.inputs.GetMongoTemplateArgs;
@@ -57,8 +67,13 @@ import com.ionoscloud.pulumi.ionoscloud.dbaas.outputs.GetInMemoryDBSnapshotLocat
 import com.ionoscloud.pulumi.ionoscloud.dbaas.outputs.GetInMemoryDBSnapshotsV2Result;
 import com.ionoscloud.pulumi.ionoscloud.dbaas.outputs.GetInMemoryDBVersionsV2Result;
 import com.ionoscloud.pulumi.ionoscloud.dbaas.outputs.GetInmemorydbSnapshotResult;
+import com.ionoscloud.pulumi.ionoscloud.dbaas.outputs.GetMariaDBBackupLocationsV2Result;
 import com.ionoscloud.pulumi.ionoscloud.dbaas.outputs.GetMariaDBBackupsResult;
+import com.ionoscloud.pulumi.ionoscloud.dbaas.outputs.GetMariaDBBackupsV2Result;
 import com.ionoscloud.pulumi.ionoscloud.dbaas.outputs.GetMariaDBClusterResult;
+import com.ionoscloud.pulumi.ionoscloud.dbaas.outputs.GetMariaDBClusterV2Result;
+import com.ionoscloud.pulumi.ionoscloud.dbaas.outputs.GetMariaDBClustersV2Result;
+import com.ionoscloud.pulumi.ionoscloud.dbaas.outputs.GetMariaDBVersionsV2Result;
 import com.ionoscloud.pulumi.ionoscloud.dbaas.outputs.GetMongoClusterResult;
 import com.ionoscloud.pulumi.ionoscloud.dbaas.outputs.GetMongoTemplateResult;
 import com.ionoscloud.pulumi.ionoscloud.dbaas.outputs.GetMongoUserResult;
@@ -1988,6 +2003,216 @@ public final class DbaasFunctions {
         return Deployment.getInstance().invokeAsync("ionoscloud:dbaas/getInmemorydbSnapshot:getInmemorydbSnapshot", TypeShape.of(GetInmemorydbSnapshotResult.class), args, Utilities.withVersion(options));
     }
     /**
+     * The &lt;span pulumi-lang-nodejs=&#34;`ionoscloud.dbaas.getMariaDBBackupLocationsV2`&#34; pulumi-lang-dotnet=&#34;`ionoscloud.dbaas.getMariaDBBackupLocationsV2`&#34; pulumi-lang-go=&#34;`dbaas.getMariaDBBackupLocationsV2`&#34; pulumi-lang-python=&#34;`dbaas_get_maria_db_backup_locations_v2`&#34; pulumi-lang-yaml=&#34;`ionoscloud.dbaas.getMariaDBBackupLocationsV2`&#34; pulumi-lang-java=&#34;`ionoscloud.dbaas.getMariaDBBackupLocationsV2`&#34; pulumi-lang-hcl=&#34;`data.ionoscloud_mariadb_backup_locations_v2`&#34;&gt;`ionoscloud.dbaas.getMariaDBBackupLocationsV2`&lt;/span&gt; data source can be used to retrieve the supported MariaDB V2 backup locations for a given API endpoint.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.dbaas.DbaasFunctions;
+     * import com.pulumi.ionoscloud.dbaas.inputs.GetMariaDBBackupLocationsV2Args;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = DbaasFunctions.getMariaDBBackupLocationsV2(GetMariaDBBackupLocationsV2Args.builder()
+     *             .location("de/txl")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetMariaDBBackupLocationsV2Result> getMariaDBBackupLocationsV2(GetMariaDBBackupLocationsV2Args args) {
+        return getMariaDBBackupLocationsV2(args, InvokeOptions.Empty);
+    }
+    /**
+     * The &lt;span pulumi-lang-nodejs=&#34;`ionoscloud.dbaas.getMariaDBBackupLocationsV2`&#34; pulumi-lang-dotnet=&#34;`ionoscloud.dbaas.getMariaDBBackupLocationsV2`&#34; pulumi-lang-go=&#34;`dbaas.getMariaDBBackupLocationsV2`&#34; pulumi-lang-python=&#34;`dbaas_get_maria_db_backup_locations_v2`&#34; pulumi-lang-yaml=&#34;`ionoscloud.dbaas.getMariaDBBackupLocationsV2`&#34; pulumi-lang-java=&#34;`ionoscloud.dbaas.getMariaDBBackupLocationsV2`&#34; pulumi-lang-hcl=&#34;`data.ionoscloud_mariadb_backup_locations_v2`&#34;&gt;`ionoscloud.dbaas.getMariaDBBackupLocationsV2`&lt;/span&gt; data source can be used to retrieve the supported MariaDB V2 backup locations for a given API endpoint.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.dbaas.DbaasFunctions;
+     * import com.pulumi.ionoscloud.dbaas.inputs.GetMariaDBBackupLocationsV2Args;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = DbaasFunctions.getMariaDBBackupLocationsV2(GetMariaDBBackupLocationsV2Args.builder()
+     *             .location("de/txl")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static CompletableFuture<GetMariaDBBackupLocationsV2Result> getMariaDBBackupLocationsV2Plain(GetMariaDBBackupLocationsV2PlainArgs args) {
+        return getMariaDBBackupLocationsV2Plain(args, InvokeOptions.Empty);
+    }
+    /**
+     * The &lt;span pulumi-lang-nodejs=&#34;`ionoscloud.dbaas.getMariaDBBackupLocationsV2`&#34; pulumi-lang-dotnet=&#34;`ionoscloud.dbaas.getMariaDBBackupLocationsV2`&#34; pulumi-lang-go=&#34;`dbaas.getMariaDBBackupLocationsV2`&#34; pulumi-lang-python=&#34;`dbaas_get_maria_db_backup_locations_v2`&#34; pulumi-lang-yaml=&#34;`ionoscloud.dbaas.getMariaDBBackupLocationsV2`&#34; pulumi-lang-java=&#34;`ionoscloud.dbaas.getMariaDBBackupLocationsV2`&#34; pulumi-lang-hcl=&#34;`data.ionoscloud_mariadb_backup_locations_v2`&#34;&gt;`ionoscloud.dbaas.getMariaDBBackupLocationsV2`&lt;/span&gt; data source can be used to retrieve the supported MariaDB V2 backup locations for a given API endpoint.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.dbaas.DbaasFunctions;
+     * import com.pulumi.ionoscloud.dbaas.inputs.GetMariaDBBackupLocationsV2Args;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = DbaasFunctions.getMariaDBBackupLocationsV2(GetMariaDBBackupLocationsV2Args.builder()
+     *             .location("de/txl")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetMariaDBBackupLocationsV2Result> getMariaDBBackupLocationsV2(GetMariaDBBackupLocationsV2Args args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("ionoscloud:dbaas/getMariaDBBackupLocationsV2:getMariaDBBackupLocationsV2", TypeShape.of(GetMariaDBBackupLocationsV2Result.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * The &lt;span pulumi-lang-nodejs=&#34;`ionoscloud.dbaas.getMariaDBBackupLocationsV2`&#34; pulumi-lang-dotnet=&#34;`ionoscloud.dbaas.getMariaDBBackupLocationsV2`&#34; pulumi-lang-go=&#34;`dbaas.getMariaDBBackupLocationsV2`&#34; pulumi-lang-python=&#34;`dbaas_get_maria_db_backup_locations_v2`&#34; pulumi-lang-yaml=&#34;`ionoscloud.dbaas.getMariaDBBackupLocationsV2`&#34; pulumi-lang-java=&#34;`ionoscloud.dbaas.getMariaDBBackupLocationsV2`&#34; pulumi-lang-hcl=&#34;`data.ionoscloud_mariadb_backup_locations_v2`&#34;&gt;`ionoscloud.dbaas.getMariaDBBackupLocationsV2`&lt;/span&gt; data source can be used to retrieve the supported MariaDB V2 backup locations for a given API endpoint.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.dbaas.DbaasFunctions;
+     * import com.pulumi.ionoscloud.dbaas.inputs.GetMariaDBBackupLocationsV2Args;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = DbaasFunctions.getMariaDBBackupLocationsV2(GetMariaDBBackupLocationsV2Args.builder()
+     *             .location("de/txl")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetMariaDBBackupLocationsV2Result> getMariaDBBackupLocationsV2(GetMariaDBBackupLocationsV2Args args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("ionoscloud:dbaas/getMariaDBBackupLocationsV2:getMariaDBBackupLocationsV2", TypeShape.of(GetMariaDBBackupLocationsV2Result.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * The &lt;span pulumi-lang-nodejs=&#34;`ionoscloud.dbaas.getMariaDBBackupLocationsV2`&#34; pulumi-lang-dotnet=&#34;`ionoscloud.dbaas.getMariaDBBackupLocationsV2`&#34; pulumi-lang-go=&#34;`dbaas.getMariaDBBackupLocationsV2`&#34; pulumi-lang-python=&#34;`dbaas_get_maria_db_backup_locations_v2`&#34; pulumi-lang-yaml=&#34;`ionoscloud.dbaas.getMariaDBBackupLocationsV2`&#34; pulumi-lang-java=&#34;`ionoscloud.dbaas.getMariaDBBackupLocationsV2`&#34; pulumi-lang-hcl=&#34;`data.ionoscloud_mariadb_backup_locations_v2`&#34;&gt;`ionoscloud.dbaas.getMariaDBBackupLocationsV2`&lt;/span&gt; data source can be used to retrieve the supported MariaDB V2 backup locations for a given API endpoint.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.dbaas.DbaasFunctions;
+     * import com.pulumi.ionoscloud.dbaas.inputs.GetMariaDBBackupLocationsV2Args;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = DbaasFunctions.getMariaDBBackupLocationsV2(GetMariaDBBackupLocationsV2Args.builder()
+     *             .location("de/txl")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static CompletableFuture<GetMariaDBBackupLocationsV2Result> getMariaDBBackupLocationsV2Plain(GetMariaDBBackupLocationsV2PlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("ionoscloud:dbaas/getMariaDBBackupLocationsV2:getMariaDBBackupLocationsV2", TypeShape.of(GetMariaDBBackupLocationsV2Result.class), args, Utilities.withVersion(options));
+    }
+    /**
      * The **DBaaS MariaDB Backups data source** can be used to search for and return existing DBaaS MariaDB Backups for a specific cluster.
      * 
      * ## Example Usage
@@ -2539,6 +2764,241 @@ public final class DbaasFunctions {
      */
     public static CompletableFuture<GetMariaDBBackupsResult> getMariaDBBackupsPlain(GetMariaDBBackupsPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("ionoscloud:dbaas/getMariaDBBackups:getMariaDBBackups", TypeShape.of(GetMariaDBBackupsResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * The &lt;span pulumi-lang-nodejs=&#34;`ionoscloud.dbaas.getMariaDBBackupsV2`&#34; pulumi-lang-dotnet=&#34;`ionoscloud.dbaas.getMariaDBBackupsV2`&#34; pulumi-lang-go=&#34;`dbaas.getMariaDBBackupsV2`&#34; pulumi-lang-python=&#34;`dbaas_get_maria_db_backups_v2`&#34; pulumi-lang-yaml=&#34;`ionoscloud.dbaas.getMariaDBBackupsV2`&#34; pulumi-lang-java=&#34;`ionoscloud.dbaas.getMariaDBBackupsV2`&#34; pulumi-lang-hcl=&#34;`data.ionoscloud_mariadb_backups_v2`&#34;&gt;`ionoscloud.dbaas.getMariaDBBackupsV2`&lt;/span&gt; data source can be used to retrieve information about existing MariaDB V2 backups, with an optional cluster ID filter.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.dbaas.DbaasFunctions;
+     * import com.pulumi.ionoscloud.dbaas.inputs.GetMariaDBBackupsV2Args;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var all = DbaasFunctions.getMariaDBBackupsV2(GetMariaDBBackupsV2Args.builder()
+     *             .location("de/txl")
+     *             .build());
+     * 
+     *         final var forCluster = DbaasFunctions.getMariaDBBackupsV2(GetMariaDBBackupsV2Args.builder()
+     *             .location("de/txl")
+     *             .clusterId("example-id")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetMariaDBBackupsV2Result> getMariaDBBackupsV2(GetMariaDBBackupsV2Args args) {
+        return getMariaDBBackupsV2(args, InvokeOptions.Empty);
+    }
+    /**
+     * The &lt;span pulumi-lang-nodejs=&#34;`ionoscloud.dbaas.getMariaDBBackupsV2`&#34; pulumi-lang-dotnet=&#34;`ionoscloud.dbaas.getMariaDBBackupsV2`&#34; pulumi-lang-go=&#34;`dbaas.getMariaDBBackupsV2`&#34; pulumi-lang-python=&#34;`dbaas_get_maria_db_backups_v2`&#34; pulumi-lang-yaml=&#34;`ionoscloud.dbaas.getMariaDBBackupsV2`&#34; pulumi-lang-java=&#34;`ionoscloud.dbaas.getMariaDBBackupsV2`&#34; pulumi-lang-hcl=&#34;`data.ionoscloud_mariadb_backups_v2`&#34;&gt;`ionoscloud.dbaas.getMariaDBBackupsV2`&lt;/span&gt; data source can be used to retrieve information about existing MariaDB V2 backups, with an optional cluster ID filter.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.dbaas.DbaasFunctions;
+     * import com.pulumi.ionoscloud.dbaas.inputs.GetMariaDBBackupsV2Args;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var all = DbaasFunctions.getMariaDBBackupsV2(GetMariaDBBackupsV2Args.builder()
+     *             .location("de/txl")
+     *             .build());
+     * 
+     *         final var forCluster = DbaasFunctions.getMariaDBBackupsV2(GetMariaDBBackupsV2Args.builder()
+     *             .location("de/txl")
+     *             .clusterId("example-id")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static CompletableFuture<GetMariaDBBackupsV2Result> getMariaDBBackupsV2Plain(GetMariaDBBackupsV2PlainArgs args) {
+        return getMariaDBBackupsV2Plain(args, InvokeOptions.Empty);
+    }
+    /**
+     * The &lt;span pulumi-lang-nodejs=&#34;`ionoscloud.dbaas.getMariaDBBackupsV2`&#34; pulumi-lang-dotnet=&#34;`ionoscloud.dbaas.getMariaDBBackupsV2`&#34; pulumi-lang-go=&#34;`dbaas.getMariaDBBackupsV2`&#34; pulumi-lang-python=&#34;`dbaas_get_maria_db_backups_v2`&#34; pulumi-lang-yaml=&#34;`ionoscloud.dbaas.getMariaDBBackupsV2`&#34; pulumi-lang-java=&#34;`ionoscloud.dbaas.getMariaDBBackupsV2`&#34; pulumi-lang-hcl=&#34;`data.ionoscloud_mariadb_backups_v2`&#34;&gt;`ionoscloud.dbaas.getMariaDBBackupsV2`&lt;/span&gt; data source can be used to retrieve information about existing MariaDB V2 backups, with an optional cluster ID filter.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.dbaas.DbaasFunctions;
+     * import com.pulumi.ionoscloud.dbaas.inputs.GetMariaDBBackupsV2Args;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var all = DbaasFunctions.getMariaDBBackupsV2(GetMariaDBBackupsV2Args.builder()
+     *             .location("de/txl")
+     *             .build());
+     * 
+     *         final var forCluster = DbaasFunctions.getMariaDBBackupsV2(GetMariaDBBackupsV2Args.builder()
+     *             .location("de/txl")
+     *             .clusterId("example-id")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetMariaDBBackupsV2Result> getMariaDBBackupsV2(GetMariaDBBackupsV2Args args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("ionoscloud:dbaas/getMariaDBBackupsV2:getMariaDBBackupsV2", TypeShape.of(GetMariaDBBackupsV2Result.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * The &lt;span pulumi-lang-nodejs=&#34;`ionoscloud.dbaas.getMariaDBBackupsV2`&#34; pulumi-lang-dotnet=&#34;`ionoscloud.dbaas.getMariaDBBackupsV2`&#34; pulumi-lang-go=&#34;`dbaas.getMariaDBBackupsV2`&#34; pulumi-lang-python=&#34;`dbaas_get_maria_db_backups_v2`&#34; pulumi-lang-yaml=&#34;`ionoscloud.dbaas.getMariaDBBackupsV2`&#34; pulumi-lang-java=&#34;`ionoscloud.dbaas.getMariaDBBackupsV2`&#34; pulumi-lang-hcl=&#34;`data.ionoscloud_mariadb_backups_v2`&#34;&gt;`ionoscloud.dbaas.getMariaDBBackupsV2`&lt;/span&gt; data source can be used to retrieve information about existing MariaDB V2 backups, with an optional cluster ID filter.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.dbaas.DbaasFunctions;
+     * import com.pulumi.ionoscloud.dbaas.inputs.GetMariaDBBackupsV2Args;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var all = DbaasFunctions.getMariaDBBackupsV2(GetMariaDBBackupsV2Args.builder()
+     *             .location("de/txl")
+     *             .build());
+     * 
+     *         final var forCluster = DbaasFunctions.getMariaDBBackupsV2(GetMariaDBBackupsV2Args.builder()
+     *             .location("de/txl")
+     *             .clusterId("example-id")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetMariaDBBackupsV2Result> getMariaDBBackupsV2(GetMariaDBBackupsV2Args args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("ionoscloud:dbaas/getMariaDBBackupsV2:getMariaDBBackupsV2", TypeShape.of(GetMariaDBBackupsV2Result.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * The &lt;span pulumi-lang-nodejs=&#34;`ionoscloud.dbaas.getMariaDBBackupsV2`&#34; pulumi-lang-dotnet=&#34;`ionoscloud.dbaas.getMariaDBBackupsV2`&#34; pulumi-lang-go=&#34;`dbaas.getMariaDBBackupsV2`&#34; pulumi-lang-python=&#34;`dbaas_get_maria_db_backups_v2`&#34; pulumi-lang-yaml=&#34;`ionoscloud.dbaas.getMariaDBBackupsV2`&#34; pulumi-lang-java=&#34;`ionoscloud.dbaas.getMariaDBBackupsV2`&#34; pulumi-lang-hcl=&#34;`data.ionoscloud_mariadb_backups_v2`&#34;&gt;`ionoscloud.dbaas.getMariaDBBackupsV2`&lt;/span&gt; data source can be used to retrieve information about existing MariaDB V2 backups, with an optional cluster ID filter.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.dbaas.DbaasFunctions;
+     * import com.pulumi.ionoscloud.dbaas.inputs.GetMariaDBBackupsV2Args;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var all = DbaasFunctions.getMariaDBBackupsV2(GetMariaDBBackupsV2Args.builder()
+     *             .location("de/txl")
+     *             .build());
+     * 
+     *         final var forCluster = DbaasFunctions.getMariaDBBackupsV2(GetMariaDBBackupsV2Args.builder()
+     *             .location("de/txl")
+     *             .clusterId("example-id")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static CompletableFuture<GetMariaDBBackupsV2Result> getMariaDBBackupsV2Plain(GetMariaDBBackupsV2PlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("ionoscloud:dbaas/getMariaDBBackupsV2:getMariaDBBackupsV2", TypeShape.of(GetMariaDBBackupsV2Result.class), args, Utilities.withVersion(options));
     }
     /**
      * The **DBaaS MariaDB Cluster data source** can be used to search for and return an existing DBaaS MariaDB Cluster.
@@ -3099,6 +3559,846 @@ public final class DbaasFunctions {
      */
     public static CompletableFuture<GetMariaDBClusterResult> getMariaDBClusterPlain(GetMariaDBClusterPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("ionoscloud:dbaas/getMariaDBCluster:getMariaDBCluster", TypeShape.of(GetMariaDBClusterResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * The &lt;span pulumi-lang-nodejs=&#34;`ionoscloud.dbaas.MariaDBClusterV2`&#34; pulumi-lang-dotnet=&#34;`ionoscloud.dbaas.MariaDBClusterV2`&#34; pulumi-lang-go=&#34;`dbaas.MariaDBClusterV2`&#34; pulumi-lang-python=&#34;`dbaas.MariaDBClusterV2`&#34; pulumi-lang-yaml=&#34;`ionoscloud.dbaas.MariaDBClusterV2`&#34; pulumi-lang-java=&#34;`ionoscloud.dbaas.MariaDBClusterV2`&#34; pulumi-lang-hcl=&#34;`ionoscloud_mariadb_cluster_v2`&#34;&gt;`ionoscloud.dbaas.MariaDBClusterV2`&lt;/span&gt; data source can be used to retrieve information about an existing MariaDB V2 cluster.
+     * 
+     * ## Example Usage
+     * 
+     * ### By id
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.dbaas.DbaasFunctions;
+     * import com.pulumi.ionoscloud.dbaas.inputs.GetMariaDBClusterV2Args;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var byId = DbaasFunctions.getMariaDBClusterV2(GetMariaDBClusterV2Args.builder()
+     *             .id("example-id")
+     *             .location("de/txl")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * ### By name
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.dbaas.DbaasFunctions;
+     * import com.pulumi.ionoscloud.dbaas.inputs.GetMariaDBClusterV2Args;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var byName = DbaasFunctions.getMariaDBClusterV2(GetMariaDBClusterV2Args.builder()
+     *             .name("my-mariadb-cluster")
+     *             .location("de/txl")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetMariaDBClusterV2Result> getMariaDBClusterV2(GetMariaDBClusterV2Args args) {
+        return getMariaDBClusterV2(args, InvokeOptions.Empty);
+    }
+    /**
+     * The &lt;span pulumi-lang-nodejs=&#34;`ionoscloud.dbaas.MariaDBClusterV2`&#34; pulumi-lang-dotnet=&#34;`ionoscloud.dbaas.MariaDBClusterV2`&#34; pulumi-lang-go=&#34;`dbaas.MariaDBClusterV2`&#34; pulumi-lang-python=&#34;`dbaas.MariaDBClusterV2`&#34; pulumi-lang-yaml=&#34;`ionoscloud.dbaas.MariaDBClusterV2`&#34; pulumi-lang-java=&#34;`ionoscloud.dbaas.MariaDBClusterV2`&#34; pulumi-lang-hcl=&#34;`ionoscloud_mariadb_cluster_v2`&#34;&gt;`ionoscloud.dbaas.MariaDBClusterV2`&lt;/span&gt; data source can be used to retrieve information about an existing MariaDB V2 cluster.
+     * 
+     * ## Example Usage
+     * 
+     * ### By id
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.dbaas.DbaasFunctions;
+     * import com.pulumi.ionoscloud.dbaas.inputs.GetMariaDBClusterV2Args;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var byId = DbaasFunctions.getMariaDBClusterV2(GetMariaDBClusterV2Args.builder()
+     *             .id("example-id")
+     *             .location("de/txl")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * ### By name
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.dbaas.DbaasFunctions;
+     * import com.pulumi.ionoscloud.dbaas.inputs.GetMariaDBClusterV2Args;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var byName = DbaasFunctions.getMariaDBClusterV2(GetMariaDBClusterV2Args.builder()
+     *             .name("my-mariadb-cluster")
+     *             .location("de/txl")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static CompletableFuture<GetMariaDBClusterV2Result> getMariaDBClusterV2Plain(GetMariaDBClusterV2PlainArgs args) {
+        return getMariaDBClusterV2Plain(args, InvokeOptions.Empty);
+    }
+    /**
+     * The &lt;span pulumi-lang-nodejs=&#34;`ionoscloud.dbaas.MariaDBClusterV2`&#34; pulumi-lang-dotnet=&#34;`ionoscloud.dbaas.MariaDBClusterV2`&#34; pulumi-lang-go=&#34;`dbaas.MariaDBClusterV2`&#34; pulumi-lang-python=&#34;`dbaas.MariaDBClusterV2`&#34; pulumi-lang-yaml=&#34;`ionoscloud.dbaas.MariaDBClusterV2`&#34; pulumi-lang-java=&#34;`ionoscloud.dbaas.MariaDBClusterV2`&#34; pulumi-lang-hcl=&#34;`ionoscloud_mariadb_cluster_v2`&#34;&gt;`ionoscloud.dbaas.MariaDBClusterV2`&lt;/span&gt; data source can be used to retrieve information about an existing MariaDB V2 cluster.
+     * 
+     * ## Example Usage
+     * 
+     * ### By id
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.dbaas.DbaasFunctions;
+     * import com.pulumi.ionoscloud.dbaas.inputs.GetMariaDBClusterV2Args;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var byId = DbaasFunctions.getMariaDBClusterV2(GetMariaDBClusterV2Args.builder()
+     *             .id("example-id")
+     *             .location("de/txl")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * ### By name
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.dbaas.DbaasFunctions;
+     * import com.pulumi.ionoscloud.dbaas.inputs.GetMariaDBClusterV2Args;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var byName = DbaasFunctions.getMariaDBClusterV2(GetMariaDBClusterV2Args.builder()
+     *             .name("my-mariadb-cluster")
+     *             .location("de/txl")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetMariaDBClusterV2Result> getMariaDBClusterV2(GetMariaDBClusterV2Args args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("ionoscloud:dbaas/getMariaDBClusterV2:getMariaDBClusterV2", TypeShape.of(GetMariaDBClusterV2Result.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * The &lt;span pulumi-lang-nodejs=&#34;`ionoscloud.dbaas.MariaDBClusterV2`&#34; pulumi-lang-dotnet=&#34;`ionoscloud.dbaas.MariaDBClusterV2`&#34; pulumi-lang-go=&#34;`dbaas.MariaDBClusterV2`&#34; pulumi-lang-python=&#34;`dbaas.MariaDBClusterV2`&#34; pulumi-lang-yaml=&#34;`ionoscloud.dbaas.MariaDBClusterV2`&#34; pulumi-lang-java=&#34;`ionoscloud.dbaas.MariaDBClusterV2`&#34; pulumi-lang-hcl=&#34;`ionoscloud_mariadb_cluster_v2`&#34;&gt;`ionoscloud.dbaas.MariaDBClusterV2`&lt;/span&gt; data source can be used to retrieve information about an existing MariaDB V2 cluster.
+     * 
+     * ## Example Usage
+     * 
+     * ### By id
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.dbaas.DbaasFunctions;
+     * import com.pulumi.ionoscloud.dbaas.inputs.GetMariaDBClusterV2Args;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var byId = DbaasFunctions.getMariaDBClusterV2(GetMariaDBClusterV2Args.builder()
+     *             .id("example-id")
+     *             .location("de/txl")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * ### By name
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.dbaas.DbaasFunctions;
+     * import com.pulumi.ionoscloud.dbaas.inputs.GetMariaDBClusterV2Args;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var byName = DbaasFunctions.getMariaDBClusterV2(GetMariaDBClusterV2Args.builder()
+     *             .name("my-mariadb-cluster")
+     *             .location("de/txl")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetMariaDBClusterV2Result> getMariaDBClusterV2(GetMariaDBClusterV2Args args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("ionoscloud:dbaas/getMariaDBClusterV2:getMariaDBClusterV2", TypeShape.of(GetMariaDBClusterV2Result.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * The &lt;span pulumi-lang-nodejs=&#34;`ionoscloud.dbaas.MariaDBClusterV2`&#34; pulumi-lang-dotnet=&#34;`ionoscloud.dbaas.MariaDBClusterV2`&#34; pulumi-lang-go=&#34;`dbaas.MariaDBClusterV2`&#34; pulumi-lang-python=&#34;`dbaas.MariaDBClusterV2`&#34; pulumi-lang-yaml=&#34;`ionoscloud.dbaas.MariaDBClusterV2`&#34; pulumi-lang-java=&#34;`ionoscloud.dbaas.MariaDBClusterV2`&#34; pulumi-lang-hcl=&#34;`ionoscloud_mariadb_cluster_v2`&#34;&gt;`ionoscloud.dbaas.MariaDBClusterV2`&lt;/span&gt; data source can be used to retrieve information about an existing MariaDB V2 cluster.
+     * 
+     * ## Example Usage
+     * 
+     * ### By id
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.dbaas.DbaasFunctions;
+     * import com.pulumi.ionoscloud.dbaas.inputs.GetMariaDBClusterV2Args;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var byId = DbaasFunctions.getMariaDBClusterV2(GetMariaDBClusterV2Args.builder()
+     *             .id("example-id")
+     *             .location("de/txl")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * ### By name
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.dbaas.DbaasFunctions;
+     * import com.pulumi.ionoscloud.dbaas.inputs.GetMariaDBClusterV2Args;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var byName = DbaasFunctions.getMariaDBClusterV2(GetMariaDBClusterV2Args.builder()
+     *             .name("my-mariadb-cluster")
+     *             .location("de/txl")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static CompletableFuture<GetMariaDBClusterV2Result> getMariaDBClusterV2Plain(GetMariaDBClusterV2PlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("ionoscloud:dbaas/getMariaDBClusterV2:getMariaDBClusterV2", TypeShape.of(GetMariaDBClusterV2Result.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * The &lt;span pulumi-lang-nodejs=&#34;`ionoscloud.dbaas.getMariaDBClustersV2`&#34; pulumi-lang-dotnet=&#34;`ionoscloud.dbaas.getMariaDBClustersV2`&#34; pulumi-lang-go=&#34;`dbaas.getMariaDBClustersV2`&#34; pulumi-lang-python=&#34;`dbaas_get_maria_db_clusters_v2`&#34; pulumi-lang-yaml=&#34;`ionoscloud.dbaas.getMariaDBClustersV2`&#34; pulumi-lang-java=&#34;`ionoscloud.dbaas.getMariaDBClustersV2`&#34; pulumi-lang-hcl=&#34;`data.ionoscloud_mariadb_clusters_v2`&#34;&gt;`ionoscloud.dbaas.getMariaDBClustersV2`&lt;/span&gt; data source can be used to retrieve information about existing MariaDB V2 clusters in a given location, with an optional name filter.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.dbaas.DbaasFunctions;
+     * import com.pulumi.ionoscloud.dbaas.inputs.GetMariaDBClustersV2Args;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var all = DbaasFunctions.getMariaDBClustersV2(GetMariaDBClustersV2Args.builder()
+     *             .location("de/txl")
+     *             .build());
+     * 
+     *         final var filtered = DbaasFunctions.getMariaDBClustersV2(GetMariaDBClustersV2Args.builder()
+     *             .location("de/txl")
+     *             .name("my-cluster")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetMariaDBClustersV2Result> getMariaDBClustersV2(GetMariaDBClustersV2Args args) {
+        return getMariaDBClustersV2(args, InvokeOptions.Empty);
+    }
+    /**
+     * The &lt;span pulumi-lang-nodejs=&#34;`ionoscloud.dbaas.getMariaDBClustersV2`&#34; pulumi-lang-dotnet=&#34;`ionoscloud.dbaas.getMariaDBClustersV2`&#34; pulumi-lang-go=&#34;`dbaas.getMariaDBClustersV2`&#34; pulumi-lang-python=&#34;`dbaas_get_maria_db_clusters_v2`&#34; pulumi-lang-yaml=&#34;`ionoscloud.dbaas.getMariaDBClustersV2`&#34; pulumi-lang-java=&#34;`ionoscloud.dbaas.getMariaDBClustersV2`&#34; pulumi-lang-hcl=&#34;`data.ionoscloud_mariadb_clusters_v2`&#34;&gt;`ionoscloud.dbaas.getMariaDBClustersV2`&lt;/span&gt; data source can be used to retrieve information about existing MariaDB V2 clusters in a given location, with an optional name filter.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.dbaas.DbaasFunctions;
+     * import com.pulumi.ionoscloud.dbaas.inputs.GetMariaDBClustersV2Args;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var all = DbaasFunctions.getMariaDBClustersV2(GetMariaDBClustersV2Args.builder()
+     *             .location("de/txl")
+     *             .build());
+     * 
+     *         final var filtered = DbaasFunctions.getMariaDBClustersV2(GetMariaDBClustersV2Args.builder()
+     *             .location("de/txl")
+     *             .name("my-cluster")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static CompletableFuture<GetMariaDBClustersV2Result> getMariaDBClustersV2Plain(GetMariaDBClustersV2PlainArgs args) {
+        return getMariaDBClustersV2Plain(args, InvokeOptions.Empty);
+    }
+    /**
+     * The &lt;span pulumi-lang-nodejs=&#34;`ionoscloud.dbaas.getMariaDBClustersV2`&#34; pulumi-lang-dotnet=&#34;`ionoscloud.dbaas.getMariaDBClustersV2`&#34; pulumi-lang-go=&#34;`dbaas.getMariaDBClustersV2`&#34; pulumi-lang-python=&#34;`dbaas_get_maria_db_clusters_v2`&#34; pulumi-lang-yaml=&#34;`ionoscloud.dbaas.getMariaDBClustersV2`&#34; pulumi-lang-java=&#34;`ionoscloud.dbaas.getMariaDBClustersV2`&#34; pulumi-lang-hcl=&#34;`data.ionoscloud_mariadb_clusters_v2`&#34;&gt;`ionoscloud.dbaas.getMariaDBClustersV2`&lt;/span&gt; data source can be used to retrieve information about existing MariaDB V2 clusters in a given location, with an optional name filter.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.dbaas.DbaasFunctions;
+     * import com.pulumi.ionoscloud.dbaas.inputs.GetMariaDBClustersV2Args;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var all = DbaasFunctions.getMariaDBClustersV2(GetMariaDBClustersV2Args.builder()
+     *             .location("de/txl")
+     *             .build());
+     * 
+     *         final var filtered = DbaasFunctions.getMariaDBClustersV2(GetMariaDBClustersV2Args.builder()
+     *             .location("de/txl")
+     *             .name("my-cluster")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetMariaDBClustersV2Result> getMariaDBClustersV2(GetMariaDBClustersV2Args args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("ionoscloud:dbaas/getMariaDBClustersV2:getMariaDBClustersV2", TypeShape.of(GetMariaDBClustersV2Result.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * The &lt;span pulumi-lang-nodejs=&#34;`ionoscloud.dbaas.getMariaDBClustersV2`&#34; pulumi-lang-dotnet=&#34;`ionoscloud.dbaas.getMariaDBClustersV2`&#34; pulumi-lang-go=&#34;`dbaas.getMariaDBClustersV2`&#34; pulumi-lang-python=&#34;`dbaas_get_maria_db_clusters_v2`&#34; pulumi-lang-yaml=&#34;`ionoscloud.dbaas.getMariaDBClustersV2`&#34; pulumi-lang-java=&#34;`ionoscloud.dbaas.getMariaDBClustersV2`&#34; pulumi-lang-hcl=&#34;`data.ionoscloud_mariadb_clusters_v2`&#34;&gt;`ionoscloud.dbaas.getMariaDBClustersV2`&lt;/span&gt; data source can be used to retrieve information about existing MariaDB V2 clusters in a given location, with an optional name filter.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.dbaas.DbaasFunctions;
+     * import com.pulumi.ionoscloud.dbaas.inputs.GetMariaDBClustersV2Args;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var all = DbaasFunctions.getMariaDBClustersV2(GetMariaDBClustersV2Args.builder()
+     *             .location("de/txl")
+     *             .build());
+     * 
+     *         final var filtered = DbaasFunctions.getMariaDBClustersV2(GetMariaDBClustersV2Args.builder()
+     *             .location("de/txl")
+     *             .name("my-cluster")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetMariaDBClustersV2Result> getMariaDBClustersV2(GetMariaDBClustersV2Args args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("ionoscloud:dbaas/getMariaDBClustersV2:getMariaDBClustersV2", TypeShape.of(GetMariaDBClustersV2Result.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * The &lt;span pulumi-lang-nodejs=&#34;`ionoscloud.dbaas.getMariaDBClustersV2`&#34; pulumi-lang-dotnet=&#34;`ionoscloud.dbaas.getMariaDBClustersV2`&#34; pulumi-lang-go=&#34;`dbaas.getMariaDBClustersV2`&#34; pulumi-lang-python=&#34;`dbaas_get_maria_db_clusters_v2`&#34; pulumi-lang-yaml=&#34;`ionoscloud.dbaas.getMariaDBClustersV2`&#34; pulumi-lang-java=&#34;`ionoscloud.dbaas.getMariaDBClustersV2`&#34; pulumi-lang-hcl=&#34;`data.ionoscloud_mariadb_clusters_v2`&#34;&gt;`ionoscloud.dbaas.getMariaDBClustersV2`&lt;/span&gt; data source can be used to retrieve information about existing MariaDB V2 clusters in a given location, with an optional name filter.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.dbaas.DbaasFunctions;
+     * import com.pulumi.ionoscloud.dbaas.inputs.GetMariaDBClustersV2Args;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var all = DbaasFunctions.getMariaDBClustersV2(GetMariaDBClustersV2Args.builder()
+     *             .location("de/txl")
+     *             .build());
+     * 
+     *         final var filtered = DbaasFunctions.getMariaDBClustersV2(GetMariaDBClustersV2Args.builder()
+     *             .location("de/txl")
+     *             .name("my-cluster")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static CompletableFuture<GetMariaDBClustersV2Result> getMariaDBClustersV2Plain(GetMariaDBClustersV2PlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("ionoscloud:dbaas/getMariaDBClustersV2:getMariaDBClustersV2", TypeShape.of(GetMariaDBClustersV2Result.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * The &lt;span pulumi-lang-nodejs=&#34;`ionoscloud.dbaas.getMariaDBVersionsV2`&#34; pulumi-lang-dotnet=&#34;`ionoscloud.dbaas.getMariaDBVersionsV2`&#34; pulumi-lang-go=&#34;`dbaas.getMariaDBVersionsV2`&#34; pulumi-lang-python=&#34;`dbaas_get_maria_db_versions_v2`&#34; pulumi-lang-yaml=&#34;`ionoscloud.dbaas.getMariaDBVersionsV2`&#34; pulumi-lang-java=&#34;`ionoscloud.dbaas.getMariaDBVersionsV2`&#34; pulumi-lang-hcl=&#34;`data.ionoscloud_mariadb_versions_v2`&#34;&gt;`ionoscloud.dbaas.getMariaDBVersionsV2`&lt;/span&gt; data source can be used to retrieve the supported MariaDB V2 versions in a given location.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.dbaas.DbaasFunctions;
+     * import com.pulumi.ionoscloud.dbaas.inputs.GetMariaDBVersionsV2Args;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = DbaasFunctions.getMariaDBVersionsV2(GetMariaDBVersionsV2Args.builder()
+     *             .location("de/txl")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetMariaDBVersionsV2Result> getMariaDBVersionsV2(GetMariaDBVersionsV2Args args) {
+        return getMariaDBVersionsV2(args, InvokeOptions.Empty);
+    }
+    /**
+     * The &lt;span pulumi-lang-nodejs=&#34;`ionoscloud.dbaas.getMariaDBVersionsV2`&#34; pulumi-lang-dotnet=&#34;`ionoscloud.dbaas.getMariaDBVersionsV2`&#34; pulumi-lang-go=&#34;`dbaas.getMariaDBVersionsV2`&#34; pulumi-lang-python=&#34;`dbaas_get_maria_db_versions_v2`&#34; pulumi-lang-yaml=&#34;`ionoscloud.dbaas.getMariaDBVersionsV2`&#34; pulumi-lang-java=&#34;`ionoscloud.dbaas.getMariaDBVersionsV2`&#34; pulumi-lang-hcl=&#34;`data.ionoscloud_mariadb_versions_v2`&#34;&gt;`ionoscloud.dbaas.getMariaDBVersionsV2`&lt;/span&gt; data source can be used to retrieve the supported MariaDB V2 versions in a given location.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.dbaas.DbaasFunctions;
+     * import com.pulumi.ionoscloud.dbaas.inputs.GetMariaDBVersionsV2Args;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = DbaasFunctions.getMariaDBVersionsV2(GetMariaDBVersionsV2Args.builder()
+     *             .location("de/txl")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static CompletableFuture<GetMariaDBVersionsV2Result> getMariaDBVersionsV2Plain(GetMariaDBVersionsV2PlainArgs args) {
+        return getMariaDBVersionsV2Plain(args, InvokeOptions.Empty);
+    }
+    /**
+     * The &lt;span pulumi-lang-nodejs=&#34;`ionoscloud.dbaas.getMariaDBVersionsV2`&#34; pulumi-lang-dotnet=&#34;`ionoscloud.dbaas.getMariaDBVersionsV2`&#34; pulumi-lang-go=&#34;`dbaas.getMariaDBVersionsV2`&#34; pulumi-lang-python=&#34;`dbaas_get_maria_db_versions_v2`&#34; pulumi-lang-yaml=&#34;`ionoscloud.dbaas.getMariaDBVersionsV2`&#34; pulumi-lang-java=&#34;`ionoscloud.dbaas.getMariaDBVersionsV2`&#34; pulumi-lang-hcl=&#34;`data.ionoscloud_mariadb_versions_v2`&#34;&gt;`ionoscloud.dbaas.getMariaDBVersionsV2`&lt;/span&gt; data source can be used to retrieve the supported MariaDB V2 versions in a given location.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.dbaas.DbaasFunctions;
+     * import com.pulumi.ionoscloud.dbaas.inputs.GetMariaDBVersionsV2Args;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = DbaasFunctions.getMariaDBVersionsV2(GetMariaDBVersionsV2Args.builder()
+     *             .location("de/txl")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetMariaDBVersionsV2Result> getMariaDBVersionsV2(GetMariaDBVersionsV2Args args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("ionoscloud:dbaas/getMariaDBVersionsV2:getMariaDBVersionsV2", TypeShape.of(GetMariaDBVersionsV2Result.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * The &lt;span pulumi-lang-nodejs=&#34;`ionoscloud.dbaas.getMariaDBVersionsV2`&#34; pulumi-lang-dotnet=&#34;`ionoscloud.dbaas.getMariaDBVersionsV2`&#34; pulumi-lang-go=&#34;`dbaas.getMariaDBVersionsV2`&#34; pulumi-lang-python=&#34;`dbaas_get_maria_db_versions_v2`&#34; pulumi-lang-yaml=&#34;`ionoscloud.dbaas.getMariaDBVersionsV2`&#34; pulumi-lang-java=&#34;`ionoscloud.dbaas.getMariaDBVersionsV2`&#34; pulumi-lang-hcl=&#34;`data.ionoscloud_mariadb_versions_v2`&#34;&gt;`ionoscloud.dbaas.getMariaDBVersionsV2`&lt;/span&gt; data source can be used to retrieve the supported MariaDB V2 versions in a given location.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.dbaas.DbaasFunctions;
+     * import com.pulumi.ionoscloud.dbaas.inputs.GetMariaDBVersionsV2Args;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = DbaasFunctions.getMariaDBVersionsV2(GetMariaDBVersionsV2Args.builder()
+     *             .location("de/txl")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetMariaDBVersionsV2Result> getMariaDBVersionsV2(GetMariaDBVersionsV2Args args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("ionoscloud:dbaas/getMariaDBVersionsV2:getMariaDBVersionsV2", TypeShape.of(GetMariaDBVersionsV2Result.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * The &lt;span pulumi-lang-nodejs=&#34;`ionoscloud.dbaas.getMariaDBVersionsV2`&#34; pulumi-lang-dotnet=&#34;`ionoscloud.dbaas.getMariaDBVersionsV2`&#34; pulumi-lang-go=&#34;`dbaas.getMariaDBVersionsV2`&#34; pulumi-lang-python=&#34;`dbaas_get_maria_db_versions_v2`&#34; pulumi-lang-yaml=&#34;`ionoscloud.dbaas.getMariaDBVersionsV2`&#34; pulumi-lang-java=&#34;`ionoscloud.dbaas.getMariaDBVersionsV2`&#34; pulumi-lang-hcl=&#34;`data.ionoscloud_mariadb_versions_v2`&#34;&gt;`ionoscloud.dbaas.getMariaDBVersionsV2`&lt;/span&gt; data source can be used to retrieve the supported MariaDB V2 versions in a given location.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ionoscloud.dbaas.DbaasFunctions;
+     * import com.pulumi.ionoscloud.dbaas.inputs.GetMariaDBVersionsV2Args;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = DbaasFunctions.getMariaDBVersionsV2(GetMariaDBVersionsV2Args.builder()
+     *             .location("de/txl")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static CompletableFuture<GetMariaDBVersionsV2Result> getMariaDBVersionsV2Plain(GetMariaDBVersionsV2PlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("ionoscloud:dbaas/getMariaDBVersionsV2:getMariaDBVersionsV2", TypeShape.of(GetMariaDBVersionsV2Result.class), args, Utilities.withVersion(options));
     }
     /**
      * The **DbaaS Mongo Cluster data source** can be used to search for and return an existing DbaaS MongoDB Cluster.

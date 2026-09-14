@@ -98,7 +98,7 @@ type IpsecGateway struct {
 	// [string] Public IP address to be assigned to the gateway. Note: This must be an IP address in
 	// the same datacenter as the connections.
 	GatewayIp pulumi.StringOutput `pulumi:"gatewayIp"`
-	// [string] The location of the IPSec Gateway. Supported locations: de/fra, de/fra/2, de/txl, es/vit, gb/bhx, gb/lhr, us/ewr, us/las, us/mci, fr/par.
+	// [string] The location of the IPSec Gateway. Supported locations: de/fra, de/fra/1, de/fra/2, de/txl, es/vit, gb/bhx, gb/lhr, us/ewr, us/las, us/mci, fr/par.
 	Location pulumi.StringPtrOutput `pulumi:"location"`
 	// (Computed) A weekly 4 hour-long window, during which maintenance might occur.
 	MaintenanceWindow IpsecGatewayMaintenanceWindowOutput `pulumi:"maintenanceWindow"`
@@ -155,7 +155,7 @@ type ipsecGatewayState struct {
 	// [string] Public IP address to be assigned to the gateway. Note: This must be an IP address in
 	// the same datacenter as the connections.
 	GatewayIp *string `pulumi:"gatewayIp"`
-	// [string] The location of the IPSec Gateway. Supported locations: de/fra, de/fra/2, de/txl, es/vit, gb/bhx, gb/lhr, us/ewr, us/las, us/mci, fr/par.
+	// [string] The location of the IPSec Gateway. Supported locations: de/fra, de/fra/1, de/fra/2, de/txl, es/vit, gb/bhx, gb/lhr, us/ewr, us/las, us/mci, fr/par.
 	Location *string `pulumi:"location"`
 	// (Computed) A weekly 4 hour-long window, during which maintenance might occur.
 	MaintenanceWindow *IpsecGatewayMaintenanceWindow `pulumi:"maintenanceWindow"`
@@ -177,7 +177,7 @@ type IpsecGatewayState struct {
 	// [string] Public IP address to be assigned to the gateway. Note: This must be an IP address in
 	// the same datacenter as the connections.
 	GatewayIp pulumi.StringPtrInput
-	// [string] The location of the IPSec Gateway. Supported locations: de/fra, de/fra/2, de/txl, es/vit, gb/bhx, gb/lhr, us/ewr, us/las, us/mci, fr/par.
+	// [string] The location of the IPSec Gateway. Supported locations: de/fra, de/fra/1, de/fra/2, de/txl, es/vit, gb/bhx, gb/lhr, us/ewr, us/las, us/mci, fr/par.
 	Location pulumi.StringPtrInput
 	// (Computed) A weekly 4 hour-long window, during which maintenance might occur.
 	MaintenanceWindow IpsecGatewayMaintenanceWindowPtrInput
@@ -203,7 +203,7 @@ type ipsecGatewayArgs struct {
 	// [string] Public IP address to be assigned to the gateway. Note: This must be an IP address in
 	// the same datacenter as the connections.
 	GatewayIp string `pulumi:"gatewayIp"`
-	// [string] The location of the IPSec Gateway. Supported locations: de/fra, de/fra/2, de/txl, es/vit, gb/bhx, gb/lhr, us/ewr, us/las, us/mci, fr/par.
+	// [string] The location of the IPSec Gateway. Supported locations: de/fra, de/fra/1, de/fra/2, de/txl, es/vit, gb/bhx, gb/lhr, us/ewr, us/las, us/mci, fr/par.
 	Location *string `pulumi:"location"`
 	// (Computed) A weekly 4 hour-long window, during which maintenance might occur.
 	MaintenanceWindow *IpsecGatewayMaintenanceWindow `pulumi:"maintenanceWindow"`
@@ -226,7 +226,7 @@ type IpsecGatewayArgs struct {
 	// [string] Public IP address to be assigned to the gateway. Note: This must be an IP address in
 	// the same datacenter as the connections.
 	GatewayIp pulumi.StringInput
-	// [string] The location of the IPSec Gateway. Supported locations: de/fra, de/fra/2, de/txl, es/vit, gb/bhx, gb/lhr, us/ewr, us/las, us/mci, fr/par.
+	// [string] The location of the IPSec Gateway. Supported locations: de/fra, de/fra/1, de/fra/2, de/txl, es/vit, gb/bhx, gb/lhr, us/ewr, us/las, us/mci, fr/par.
 	Location pulumi.StringPtrInput
 	// (Computed) A weekly 4 hour-long window, during which maintenance might occur.
 	MaintenanceWindow IpsecGatewayMaintenanceWindowPtrInput
@@ -343,7 +343,7 @@ func (o IpsecGatewayOutput) GatewayIp() pulumi.StringOutput {
 	return o.ApplyT(func(v *IpsecGateway) pulumi.StringOutput { return v.GatewayIp }).(pulumi.StringOutput)
 }
 
-// [string] The location of the IPSec Gateway. Supported locations: de/fra, de/fra/2, de/txl, es/vit, gb/bhx, gb/lhr, us/ewr, us/las, us/mci, fr/par.
+// [string] The location of the IPSec Gateway. Supported locations: de/fra, de/fra/1, de/fra/2, de/txl, es/vit, gb/bhx, gb/lhr, us/ewr, us/las, us/mci, fr/par.
 func (o IpsecGatewayOutput) Location() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *IpsecGateway) pulumi.StringPtrOutput { return v.Location }).(pulumi.StringPtrOutput)
 }

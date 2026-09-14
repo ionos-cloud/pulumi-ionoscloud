@@ -164,6 +164,10 @@ export class VCPUServer extends pulumi.CustomResource {
      */
     declare public /*out*/ readonly bootVolume: pulumi.Output<string>;
     /**
+     * [bool] Whether the server is a Confidential Computing (SEV-SNP) VM. Derived on read from the server's enabled features; normally `false` for VCPU servers, which are not Confidential Computing VMs.
+     */
+    declare public /*out*/ readonly confidential: pulumi.Output<boolean>;
+    /**
      * [integer] Number of server CPU cores.
      */
     declare public readonly cores: pulumi.Output<number>;
@@ -172,6 +176,10 @@ export class VCPUServer extends pulumi.CustomResource {
      * [string] The ID of a Virtual Data Center.
      */
     declare public readonly datacenterId: pulumi.Output<string>;
+    /**
+     * [list] Features enabled on the server, e.g. `SEV-SNP` for a Confidential Computing VM.
+     */
+    declare public /*out*/ readonly enabledFeatures: pulumi.Output<string[]>;
     /**
      * The associated firewall rule.
      */
@@ -268,9 +276,11 @@ export class VCPUServer extends pulumi.CustomResource {
             resourceInputs["bootCdrom"] = state?.bootCdrom;
             resourceInputs["bootImage"] = state?.bootImage;
             resourceInputs["bootVolume"] = state?.bootVolume;
+            resourceInputs["confidential"] = state?.confidential;
             resourceInputs["cores"] = state?.cores;
             resourceInputs["cpuFamily"] = state?.cpuFamily;
             resourceInputs["datacenterId"] = state?.datacenterId;
+            resourceInputs["enabledFeatures"] = state?.enabledFeatures;
             resourceInputs["firewallruleId"] = state?.firewallruleId;
             resourceInputs["firewallruleIds"] = state?.firewallruleIds;
             resourceInputs["hostname"] = state?.hostname;
@@ -324,7 +334,9 @@ export class VCPUServer extends pulumi.CustomResource {
             resourceInputs["vmState"] = args?.vmState;
             resourceInputs["volume"] = args?.volume;
             resourceInputs["bootVolume"] = undefined /*out*/;
+            resourceInputs["confidential"] = undefined /*out*/;
             resourceInputs["cpuFamily"] = undefined /*out*/;
+            resourceInputs["enabledFeatures"] = undefined /*out*/;
             resourceInputs["firewallruleId"] = undefined /*out*/;
             resourceInputs["inlineVolumeIds"] = undefined /*out*/;
             resourceInputs["primaryIp"] = undefined /*out*/;
@@ -361,6 +373,10 @@ export interface VCPUServerState {
      */
     bootVolume?: pulumi.Input<string | undefined>;
     /**
+     * [bool] Whether the server is a Confidential Computing (SEV-SNP) VM. Derived on read from the server's enabled features; normally `false` for VCPU servers, which are not Confidential Computing VMs.
+     */
+    confidential?: pulumi.Input<boolean | undefined>;
+    /**
      * [integer] Number of server CPU cores.
      */
     cores?: pulumi.Input<number | undefined>;
@@ -369,6 +385,10 @@ export interface VCPUServerState {
      * [string] The ID of a Virtual Data Center.
      */
     datacenterId?: pulumi.Input<string | undefined>;
+    /**
+     * [list] Features enabled on the server, e.g. `SEV-SNP` for a Confidential Computing VM.
+     */
+    enabledFeatures?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The associated firewall rule.
      */

@@ -37,7 +37,7 @@ class FirewallArgs:
 
         :param pulumi.Input[_builtins.str] datacenter_id: [string] The ID of a Virtual Data Center.
         :param pulumi.Input[_builtins.str] nsg_id: [string] The ID of a Network Security Group.
-        :param pulumi.Input[_builtins.str] protocol: [string] The protocol for the rule: TCP, UDP, ICMP, ANY. Property cannot be modified after creation (disallowed in update requests).
+        :param pulumi.Input[_builtins.str] protocol: [string] The protocol for the rule: TCP, UDP, ICMP, ANY. Property cannot be modified after creation (disallowed in update requests); changing it forces a new resource to be created.
         :param pulumi.Input[_builtins.str] icmp_code: [int] Defines the allowed code (from 0 to 254) if protocol ICMP is chosen.
         :param pulumi.Input[_builtins.str] icmp_type: [string] Defines the allowed code (from 0 to 254) if protocol ICMP is chosen. Value null allows all codes.
         :param pulumi.Input[_builtins.str] location: The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
@@ -101,7 +101,7 @@ class FirewallArgs:
     @pulumi.getter
     def protocol(self) -> pulumi.Input[_builtins.str]:
         """
-        [string] The protocol for the rule: TCP, UDP, ICMP, ANY. Property cannot be modified after creation (disallowed in update requests).
+        [string] The protocol for the rule: TCP, UDP, ICMP, ANY. Property cannot be modified after creation (disallowed in update requests); changing it forces a new resource to be created.
         """
         return pulumi.get(self, "protocol")
 
@@ -257,7 +257,7 @@ class _FirewallState:
         :param pulumi.Input[_builtins.str] nsg_id: [string] The ID of a Network Security Group.
         :param pulumi.Input[_builtins.int] port_range_end: [int] Defines the end range of the allowed port (from 1 to 65534) if the protocol TCP or UDP is chosen. Leave portRangeStart and portRangeEnd null to allow all ports.
         :param pulumi.Input[_builtins.int] port_range_start: [int] Defines the start range of the allowed port (from 1 to 65534) if protocol TCP or UDP is chosen. Leave portRangeStart and portRangeEnd null to allow all ports.
-        :param pulumi.Input[_builtins.str] protocol: [string] The protocol for the rule: TCP, UDP, ICMP, ANY. Property cannot be modified after creation (disallowed in update requests).
+        :param pulumi.Input[_builtins.str] protocol: [string] The protocol for the rule: TCP, UDP, ICMP, ANY. Property cannot be modified after creation (disallowed in update requests); changing it forces a new resource to be created.
         :param pulumi.Input[_builtins.str] source_ip: (computed)[string] Only traffic originating from the respective IPv4 address is allowed. Value null allows all source IPs.
         :param pulumi.Input[_builtins.str] source_mac: [string] Only traffic originating from the respective MAC address is allowed. Valid format: aa:bb:cc:dd:ee:ff. Value null allows all source MAC address. Valid format: aa:bb:cc:dd:ee:ff.
         :param pulumi.Input[_builtins.str] target_ip: (Computed)[string] In case the target NIC has multiple IP addresses, only traffic directed to the respective IP address of the NIC is allowed. Value null allows all target IPs.
@@ -390,7 +390,7 @@ class _FirewallState:
     @pulumi.getter
     def protocol(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        [string] The protocol for the rule: TCP, UDP, ICMP, ANY. Property cannot be modified after creation (disallowed in update requests).
+        [string] The protocol for the rule: TCP, UDP, ICMP, ANY. Property cannot be modified after creation (disallowed in update requests); changing it forces a new resource to be created.
         """
         return pulumi.get(self, "protocol")
 
@@ -515,7 +515,7 @@ class Firewall(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] nsg_id: [string] The ID of a Network Security Group.
         :param pulumi.Input[_builtins.int] port_range_end: [int] Defines the end range of the allowed port (from 1 to 65534) if the protocol TCP or UDP is chosen. Leave portRangeStart and portRangeEnd null to allow all ports.
         :param pulumi.Input[_builtins.int] port_range_start: [int] Defines the start range of the allowed port (from 1 to 65534) if protocol TCP or UDP is chosen. Leave portRangeStart and portRangeEnd null to allow all ports.
-        :param pulumi.Input[_builtins.str] protocol: [string] The protocol for the rule: TCP, UDP, ICMP, ANY. Property cannot be modified after creation (disallowed in update requests).
+        :param pulumi.Input[_builtins.str] protocol: [string] The protocol for the rule: TCP, UDP, ICMP, ANY. Property cannot be modified after creation (disallowed in update requests); changing it forces a new resource to be created.
         :param pulumi.Input[_builtins.str] source_ip: (computed)[string] Only traffic originating from the respective IPv4 address is allowed. Value null allows all source IPs.
         :param pulumi.Input[_builtins.str] source_mac: [string] Only traffic originating from the respective MAC address is allowed. Valid format: aa:bb:cc:dd:ee:ff. Value null allows all source MAC address. Valid format: aa:bb:cc:dd:ee:ff.
         :param pulumi.Input[_builtins.str] target_ip: (Computed)[string] In case the target NIC has multiple IP addresses, only traffic directed to the respective IP address of the NIC is allowed. Value null allows all target IPs.
@@ -659,7 +659,7 @@ class Firewall(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] nsg_id: [string] The ID of a Network Security Group.
         :param pulumi.Input[_builtins.int] port_range_end: [int] Defines the end range of the allowed port (from 1 to 65534) if the protocol TCP or UDP is chosen. Leave portRangeStart and portRangeEnd null to allow all ports.
         :param pulumi.Input[_builtins.int] port_range_start: [int] Defines the start range of the allowed port (from 1 to 65534) if protocol TCP or UDP is chosen. Leave portRangeStart and portRangeEnd null to allow all ports.
-        :param pulumi.Input[_builtins.str] protocol: [string] The protocol for the rule: TCP, UDP, ICMP, ANY. Property cannot be modified after creation (disallowed in update requests).
+        :param pulumi.Input[_builtins.str] protocol: [string] The protocol for the rule: TCP, UDP, ICMP, ANY. Property cannot be modified after creation (disallowed in update requests); changing it forces a new resource to be created.
         :param pulumi.Input[_builtins.str] source_ip: (computed)[string] Only traffic originating from the respective IPv4 address is allowed. Value null allows all source IPs.
         :param pulumi.Input[_builtins.str] source_mac: [string] Only traffic originating from the respective MAC address is allowed. Valid format: aa:bb:cc:dd:ee:ff. Value null allows all source MAC address. Valid format: aa:bb:cc:dd:ee:ff.
         :param pulumi.Input[_builtins.str] target_ip: (Computed)[string] In case the target NIC has multiple IP addresses, only traffic directed to the respective IP address of the NIC is allowed. Value null allows all target IPs.
@@ -752,7 +752,7 @@ class Firewall(pulumi.CustomResource):
     @pulumi.getter
     def protocol(self) -> pulumi.Output[_builtins.str]:
         """
-        [string] The protocol for the rule: TCP, UDP, ICMP, ANY. Property cannot be modified after creation (disallowed in update requests).
+        [string] The protocol for the rule: TCP, UDP, ICMP, ANY. Property cannot be modified after creation (disallowed in update requests); changing it forces a new resource to be created.
         """
         return pulumi.get(self, "protocol")
 

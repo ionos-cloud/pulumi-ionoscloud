@@ -174,11 +174,15 @@ type VCPUServer struct {
 	BootImage pulumi.StringOutput `pulumi:"bootImage"`
 	// The associated boot volume.
 	BootVolume pulumi.StringOutput `pulumi:"bootVolume"`
+	// [bool] Whether the server is a Confidential Computing (SEV-SNP) VM. Derived on read from the server's enabled features; normally `false` for VCPU servers, which are not Confidential Computing VMs.
+	Confidential pulumi.BoolOutput `pulumi:"confidential"`
 	// [integer] Number of server CPU cores.
 	Cores     pulumi.IntOutput    `pulumi:"cores"`
 	CpuFamily pulumi.StringOutput `pulumi:"cpuFamily"`
 	// [string] The ID of a Virtual Data Center.
 	DatacenterId pulumi.StringOutput `pulumi:"datacenterId"`
+	// [list] Features enabled on the server, e.g. `SEV-SNP` for a Confidential Computing VM.
+	EnabledFeatures pulumi.StringArrayOutput `pulumi:"enabledFeatures"`
 	// The associated firewall rule.
 	FirewallruleId pulumi.StringOutput `pulumi:"firewallruleId"`
 	// The associated firewall rules.
@@ -281,11 +285,15 @@ type vcpuserverState struct {
 	BootImage *string `pulumi:"bootImage"`
 	// The associated boot volume.
 	BootVolume *string `pulumi:"bootVolume"`
+	// [bool] Whether the server is a Confidential Computing (SEV-SNP) VM. Derived on read from the server's enabled features; normally `false` for VCPU servers, which are not Confidential Computing VMs.
+	Confidential *bool `pulumi:"confidential"`
 	// [integer] Number of server CPU cores.
 	Cores     *int    `pulumi:"cores"`
 	CpuFamily *string `pulumi:"cpuFamily"`
 	// [string] The ID of a Virtual Data Center.
 	DatacenterId *string `pulumi:"datacenterId"`
+	// [list] Features enabled on the server, e.g. `SEV-SNP` for a Confidential Computing VM.
+	EnabledFeatures []string `pulumi:"enabledFeatures"`
 	// The associated firewall rule.
 	FirewallruleId *string `pulumi:"firewallruleId"`
 	// The associated firewall rules.
@@ -340,11 +348,15 @@ type VCPUServerState struct {
 	BootImage pulumi.StringPtrInput
 	// The associated boot volume.
 	BootVolume pulumi.StringPtrInput
+	// [bool] Whether the server is a Confidential Computing (SEV-SNP) VM. Derived on read from the server's enabled features; normally `false` for VCPU servers, which are not Confidential Computing VMs.
+	Confidential pulumi.BoolPtrInput
 	// [integer] Number of server CPU cores.
 	Cores     pulumi.IntPtrInput
 	CpuFamily pulumi.StringPtrInput
 	// [string] The ID of a Virtual Data Center.
 	DatacenterId pulumi.StringPtrInput
+	// [list] Features enabled on the server, e.g. `SEV-SNP` for a Confidential Computing VM.
+	EnabledFeatures pulumi.StringArrayInput
 	// The associated firewall rule.
 	FirewallruleId pulumi.StringPtrInput
 	// The associated firewall rules.
@@ -596,6 +608,11 @@ func (o VCPUServerOutput) BootVolume() pulumi.StringOutput {
 	return o.ApplyT(func(v *VCPUServer) pulumi.StringOutput { return v.BootVolume }).(pulumi.StringOutput)
 }
 
+// [bool] Whether the server is a Confidential Computing (SEV-SNP) VM. Derived on read from the server's enabled features; normally `false` for VCPU servers, which are not Confidential Computing VMs.
+func (o VCPUServerOutput) Confidential() pulumi.BoolOutput {
+	return o.ApplyT(func(v *VCPUServer) pulumi.BoolOutput { return v.Confidential }).(pulumi.BoolOutput)
+}
+
 // [integer] Number of server CPU cores.
 func (o VCPUServerOutput) Cores() pulumi.IntOutput {
 	return o.ApplyT(func(v *VCPUServer) pulumi.IntOutput { return v.Cores }).(pulumi.IntOutput)
@@ -608,6 +625,11 @@ func (o VCPUServerOutput) CpuFamily() pulumi.StringOutput {
 // [string] The ID of a Virtual Data Center.
 func (o VCPUServerOutput) DatacenterId() pulumi.StringOutput {
 	return o.ApplyT(func(v *VCPUServer) pulumi.StringOutput { return v.DatacenterId }).(pulumi.StringOutput)
+}
+
+// [list] Features enabled on the server, e.g. `SEV-SNP` for a Confidential Computing VM.
+func (o VCPUServerOutput) EnabledFeatures() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *VCPUServer) pulumi.StringArrayOutput { return v.EnabledFeatures }).(pulumi.StringArrayOutput)
 }
 
 // The associated firewall rule.

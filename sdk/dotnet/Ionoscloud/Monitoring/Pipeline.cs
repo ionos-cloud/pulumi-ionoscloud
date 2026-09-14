@@ -100,7 +100,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Monitoring
         public Output<string> Key { get; private set; } = null!;
 
         /// <summary>
-        /// [string] The location of the Monitoring pipeline. Default is `de/fra`. It can be one of `de/fra`, `de/fra/2`, `de/txl`, `es/vit`, `gb/bhx`, `gb/lhr`,`fr/par`, `us/mci`. If this is not set and if no value is provided for the `IONOS_API_URL_MONITORING` env var, the default `Location` will be: `de/fra`.
+        /// [string] The location of the Monitoring pipeline. Default is `de/fra`. It can be one of `de/fra`, `de/fra/1`, `de/fra/2`, `de/txl`, `es/vit`, `gb/lhr`, `fr/par`. If this is not set and if no value is provided for the `IONOS_API_URL_MONITORING` env var, the default `Location` will be: `de/fra`.
         /// </summary>
         [Output("location")]
         public Output<string?> Location { get; private set; } = null!;
@@ -166,7 +166,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Monitoring
     public sealed class PipelineArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// [string] The location of the Monitoring pipeline. Default is `de/fra`. It can be one of `de/fra`, `de/fra/2`, `de/txl`, `es/vit`, `gb/bhx`, `gb/lhr`,`fr/par`, `us/mci`. If this is not set and if no value is provided for the `IONOS_API_URL_MONITORING` env var, the default `Location` will be: `de/fra`.
+        /// [string] The location of the Monitoring pipeline. Default is `de/fra`. It can be one of `de/fra`, `de/fra/1`, `de/fra/2`, `de/txl`, `es/vit`, `gb/lhr`, `fr/par`. If this is not set and if no value is provided for the `IONOS_API_URL_MONITORING` env var, the default `Location` will be: `de/fra`.
         /// </summary>
         [Input("location")]
         public Input<string>? Location { get; set; }
@@ -219,7 +219,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Monitoring
         }
 
         /// <summary>
-        /// [string] The location of the Monitoring pipeline. Default is `de/fra`. It can be one of `de/fra`, `de/fra/2`, `de/txl`, `es/vit`, `gb/bhx`, `gb/lhr`,`fr/par`, `us/mci`. If this is not set and if no value is provided for the `IONOS_API_URL_MONITORING` env var, the default `Location` will be: `de/fra`.
+        /// [string] The location of the Monitoring pipeline. Default is `de/fra`. It can be one of `de/fra`, `de/fra/1`, `de/fra/2`, `de/txl`, `es/vit`, `gb/lhr`, `fr/par`. If this is not set and if no value is provided for the `IONOS_API_URL_MONITORING` env var, the default `Location` will be: `de/fra`.
         /// </summary>
         [Input("location")]
         public Input<string>? Location { get; set; }

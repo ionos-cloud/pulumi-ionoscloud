@@ -201,14 +201,14 @@ public class Firewall extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.portRangeStart);
     }
     /**
-     * [string] The protocol for the rule: TCP, UDP, ICMP, ANY. Property cannot be modified after creation (disallowed in update requests).
+     * [string] The protocol for the rule: TCP, UDP, ICMP, ANY. Property cannot be modified after creation (disallowed in update requests); changing it forces a new resource to be created.
      * 
      */
     @Export(name="protocol", refs={String.class}, tree="[0]")
     private Output<String> protocol;
 
     /**
-     * @return [string] The protocol for the rule: TCP, UDP, ICMP, ANY. Property cannot be modified after creation (disallowed in update requests).
+     * @return [string] The protocol for the rule: TCP, UDP, ICMP, ANY. Property cannot be modified after creation (disallowed in update requests); changing it forces a new resource to be created.
      * 
      */
     public Output<String> protocol() {

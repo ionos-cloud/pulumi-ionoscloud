@@ -13,8 +13,13 @@ from .get_in_memory_db_snapshot_locations_v2 import *
 from .get_in_memory_db_snapshots_v2 import *
 from .get_in_memory_db_versions_v2 import *
 from .get_inmemorydb_snapshot import *
+from .get_maria_db_backup_locations_v2 import *
 from .get_maria_db_backups import *
+from .get_maria_db_backups_v2 import *
 from .get_maria_db_cluster import *
+from .get_maria_db_cluster_v2 import *
+from .get_maria_db_clusters_v2 import *
+from .get_maria_db_versions_v2 import *
 from .get_mongo_cluster import *
 from .get_mongo_template import *
 from .get_mongo_user import *
@@ -32,6 +37,7 @@ from .get_psqluser import *
 from .in_memory_db_cluster_v2 import *
 from .in_memory_db_replica_set import *
 from .maria_db_cluster import *
+from .maria_db_cluster_v2 import *
 from .mongo_cluster import *
 from .mongo_user import *
 from .psql_cluster import *

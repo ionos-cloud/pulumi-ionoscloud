@@ -93,7 +93,7 @@ export class Topic extends pulumi.CustomResource {
      */
     declare public readonly clusterId: pulumi.Output<string>;
     /**
-     * [string] The location of the Kafka Cluster Topic. Possible values: `de/fra`, `de/fra/2`, `de/txl`, `fr/par`, `es/vit`, `gb/lhr`, `gb/bhx`, `us/las`, `us/mci`, `us/ewr`. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
+     * [string] The location of the Kafka Cluster Topic. Possible values: `de/fra`, `de/fra/1`, `de/fra/2`, `de/txl`, `fr/par`, `es/vit`, `gb/lhr`, `gb/bhx`, `us/las`, `us/mci`, `us/ewr`. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
      */
     declare public readonly location: pulumi.Output<string | undefined>;
     /**
@@ -172,7 +172,7 @@ export interface TopicState {
      */
     clusterId?: pulumi.Input<string | undefined>;
     /**
-     * [string] The location of the Kafka Cluster Topic. Possible values: `de/fra`, `de/fra/2`, `de/txl`, `fr/par`, `es/vit`, `gb/lhr`, `gb/bhx`, `us/las`, `us/mci`, `us/ewr`. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
+     * [string] The location of the Kafka Cluster Topic. Possible values: `de/fra`, `de/fra/1`, `de/fra/2`, `de/txl`, `fr/par`, `es/vit`, `gb/lhr`, `gb/bhx`, `us/las`, `us/mci`, `us/ewr`. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
      */
     location?: pulumi.Input<string | undefined>;
     /**
@@ -214,7 +214,7 @@ export interface TopicArgs {
      */
     clusterId: pulumi.Input<string>;
     /**
-     * [string] The location of the Kafka Cluster Topic. Possible values: `de/fra`, `de/fra/2`, `de/txl`, `fr/par`, `es/vit`, `gb/lhr`, `gb/bhx`, `us/las`, `us/mci`, `us/ewr`. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
+     * [string] The location of the Kafka Cluster Topic. Possible values: `de/fra`, `de/fra/1`, `de/fra/2`, `de/txl`, `fr/par`, `es/vit`, `gb/lhr`, `gb/bhx`, `us/las`, `us/mci`, `us/ewr`. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
      */
     location?: pulumi.Input<string | undefined>;
     /**

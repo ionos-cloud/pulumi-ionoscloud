@@ -135,7 +135,7 @@ export class PSQLCluster extends pulumi.CustomResource {
      */
     declare public readonly instances: pulumi.Output<number>;
     /**
-     * [string] The physical location where the cluster will be created. This will be where all of your instances live. Property cannot be modified after datacenter creation. Available locations: `de/fra`, `us/las`, `us/ewr`, `de/txl`, `gb/lhr`, `gb/bhx`, `es/vit`, `fr/par`, `us/mci`, `de/fra/2`. This attribute is immutable (disallowed in update requests).
+     * [string] The physical location where the cluster will be created. This will be where all of your instances live. Property cannot be modified after datacenter creation. Available locations: `de/fra`, `us/las`, `us/ewr`, `de/txl`, `gb/lhr`, `gb/bhx`, `es/vit`, `fr/par`, `us/mci`, `de/fra/1`, `de/fra/2`. This attribute is immutable (disallowed in update requests).
      */
     declare public readonly location: pulumi.Output<string>;
     /**
@@ -295,7 +295,7 @@ export interface PSQLClusterState {
      */
     instances?: pulumi.Input<number | undefined>;
     /**
-     * [string] The physical location where the cluster will be created. This will be where all of your instances live. Property cannot be modified after datacenter creation. Available locations: `de/fra`, `us/las`, `us/ewr`, `de/txl`, `gb/lhr`, `gb/bhx`, `es/vit`, `fr/par`, `us/mci`, `de/fra/2`. This attribute is immutable (disallowed in update requests).
+     * [string] The physical location where the cluster will be created. This will be where all of your instances live. Property cannot be modified after datacenter creation. Available locations: `de/fra`, `us/las`, `us/ewr`, `de/txl`, `gb/lhr`, `gb/bhx`, `es/vit`, `fr/par`, `us/mci`, `de/fra/1`, `de/fra/2`. This attribute is immutable (disallowed in update requests).
      */
     location?: pulumi.Input<string | undefined>;
     /**
@@ -367,7 +367,7 @@ export interface PSQLClusterArgs {
      */
     instances: pulumi.Input<number>;
     /**
-     * [string] The physical location where the cluster will be created. This will be where all of your instances live. Property cannot be modified after datacenter creation. Available locations: `de/fra`, `us/las`, `us/ewr`, `de/txl`, `gb/lhr`, `gb/bhx`, `es/vit`, `fr/par`, `us/mci`, `de/fra/2`. This attribute is immutable (disallowed in update requests).
+     * [string] The physical location where the cluster will be created. This will be where all of your instances live. Property cannot be modified after datacenter creation. Available locations: `de/fra`, `us/las`, `us/ewr`, `de/txl`, `gb/lhr`, `gb/bhx`, `es/vit`, `fr/par`, `us/mci`, `de/fra/1`, `de/fra/2`. This attribute is immutable (disallowed in update requests).
      */
     location: pulumi.Input<string>;
     /**

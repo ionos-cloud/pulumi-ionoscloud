@@ -271,13 +271,15 @@ class Provider(pulumi.ProviderResource):
             __props__.__dict__["contract_number"] = contract_number
             __props__.__dict__["endpoint"] = endpoint
             __props__.__dict__["insecure"] = pulumi.Output.from_input(insecure).apply(pulumi.runtime.to_json) if insecure is not None else None
-            __props__.__dict__["password"] = password
+            __props__.__dict__["password"] = None if password is None else pulumi.Output.secret(password)
             __props__.__dict__["retries"] = pulumi.Output.from_input(retries).apply(pulumi.runtime.to_json) if retries is not None else None
             __props__.__dict__["s3_access_key"] = s3_access_key
             __props__.__dict__["s3_region"] = s3_region
-            __props__.__dict__["s3_secret_key"] = s3_secret_key
-            __props__.__dict__["token"] = token
+            __props__.__dict__["s3_secret_key"] = None if s3_secret_key is None else pulumi.Output.secret(s3_secret_key)
+            __props__.__dict__["token"] = None if token is None else pulumi.Output.secret(token)
             __props__.__dict__["username"] = username
+        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["password", "s3SecretKey", "token"])
+        opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(Provider, __self__).__init__(
             'ionoscloud',
             resource_name,

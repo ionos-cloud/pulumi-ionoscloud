@@ -186,7 +186,7 @@ type MongoCluster struct {
 	Edition pulumi.StringOutput `pulumi:"edition"`
 	// [int] The total number of instances in the cluster (one master and n-1 standbys). Example: 1, 3, 5, 7. Updates to the value of the field force the cluster to be re-created.
 	Instances pulumi.IntOutput `pulumi:"instances"`
-	// [string] The physical location where the cluster will be created. Property cannot be modified after datacenter creation (disallowed in update requests). Available locations: `de/fra`, `us/las`, `us/ewr`, `de/txl`, `gb/lhr`, `gb/bhx`, `es/vit`, `fr/par`, `us/mci`, `de/fra/2`. Update forces cluster re-creation.
+	// [string] The physical location where the cluster will be created. Property cannot be modified after datacenter creation (disallowed in update requests). Available locations: `de/fra`, `us/las`, `us/ewr`, `de/txl`, `gb/lhr`, `gb/bhx`, `es/vit`, `fr/par`, `us/mci`, `de/fra/1`, `de/fra/2`. Update forces cluster re-creation.
 	Location pulumi.StringOutput `pulumi:"location"`
 	// (Computed) A weekly 4 hour-long window, during which maintenance might occur.  Updates to the value of the field force the cluster to be re-created.
 	MaintenanceWindow MongoClusterMaintenanceWindowOutput `pulumi:"maintenanceWindow"`
@@ -267,7 +267,7 @@ type mongoClusterState struct {
 	Edition *string `pulumi:"edition"`
 	// [int] The total number of instances in the cluster (one master and n-1 standbys). Example: 1, 3, 5, 7. Updates to the value of the field force the cluster to be re-created.
 	Instances *int `pulumi:"instances"`
-	// [string] The physical location where the cluster will be created. Property cannot be modified after datacenter creation (disallowed in update requests). Available locations: `de/fra`, `us/las`, `us/ewr`, `de/txl`, `gb/lhr`, `gb/bhx`, `es/vit`, `fr/par`, `us/mci`, `de/fra/2`. Update forces cluster re-creation.
+	// [string] The physical location where the cluster will be created. Property cannot be modified after datacenter creation (disallowed in update requests). Available locations: `de/fra`, `us/las`, `us/ewr`, `de/txl`, `gb/lhr`, `gb/bhx`, `es/vit`, `fr/par`, `us/mci`, `de/fra/1`, `de/fra/2`. Update forces cluster re-creation.
 	Location *string `pulumi:"location"`
 	// (Computed) A weekly 4 hour-long window, during which maintenance might occur.  Updates to the value of the field force the cluster to be re-created.
 	MaintenanceWindow *MongoClusterMaintenanceWindow `pulumi:"maintenanceWindow"`
@@ -304,7 +304,7 @@ type MongoClusterState struct {
 	Edition pulumi.StringPtrInput
 	// [int] The total number of instances in the cluster (one master and n-1 standbys). Example: 1, 3, 5, 7. Updates to the value of the field force the cluster to be re-created.
 	Instances pulumi.IntPtrInput
-	// [string] The physical location where the cluster will be created. Property cannot be modified after datacenter creation (disallowed in update requests). Available locations: `de/fra`, `us/las`, `us/ewr`, `de/txl`, `gb/lhr`, `gb/bhx`, `es/vit`, `fr/par`, `us/mci`, `de/fra/2`. Update forces cluster re-creation.
+	// [string] The physical location where the cluster will be created. Property cannot be modified after datacenter creation (disallowed in update requests). Available locations: `de/fra`, `us/las`, `us/ewr`, `de/txl`, `gb/lhr`, `gb/bhx`, `es/vit`, `fr/par`, `us/mci`, `de/fra/1`, `de/fra/2`. Update forces cluster re-creation.
 	Location pulumi.StringPtrInput
 	// (Computed) A weekly 4 hour-long window, during which maintenance might occur.  Updates to the value of the field force the cluster to be re-created.
 	MaintenanceWindow MongoClusterMaintenanceWindowPtrInput
@@ -343,7 +343,7 @@ type mongoClusterArgs struct {
 	Edition *string `pulumi:"edition"`
 	// [int] The total number of instances in the cluster (one master and n-1 standbys). Example: 1, 3, 5, 7. Updates to the value of the field force the cluster to be re-created.
 	Instances int `pulumi:"instances"`
-	// [string] The physical location where the cluster will be created. Property cannot be modified after datacenter creation (disallowed in update requests). Available locations: `de/fra`, `us/las`, `us/ewr`, `de/txl`, `gb/lhr`, `gb/bhx`, `es/vit`, `fr/par`, `us/mci`, `de/fra/2`. Update forces cluster re-creation.
+	// [string] The physical location where the cluster will be created. Property cannot be modified after datacenter creation (disallowed in update requests). Available locations: `de/fra`, `us/las`, `us/ewr`, `de/txl`, `gb/lhr`, `gb/bhx`, `es/vit`, `fr/par`, `us/mci`, `de/fra/1`, `de/fra/2`. Update forces cluster re-creation.
 	Location string `pulumi:"location"`
 	// (Computed) A weekly 4 hour-long window, during which maintenance might occur.  Updates to the value of the field force the cluster to be re-created.
 	MaintenanceWindow *MongoClusterMaintenanceWindow `pulumi:"maintenanceWindow"`
@@ -379,7 +379,7 @@ type MongoClusterArgs struct {
 	Edition pulumi.StringPtrInput
 	// [int] The total number of instances in the cluster (one master and n-1 standbys). Example: 1, 3, 5, 7. Updates to the value of the field force the cluster to be re-created.
 	Instances pulumi.IntInput
-	// [string] The physical location where the cluster will be created. Property cannot be modified after datacenter creation (disallowed in update requests). Available locations: `de/fra`, `us/las`, `us/ewr`, `de/txl`, `gb/lhr`, `gb/bhx`, `es/vit`, `fr/par`, `us/mci`, `de/fra/2`. Update forces cluster re-creation.
+	// [string] The physical location where the cluster will be created. Property cannot be modified after datacenter creation (disallowed in update requests). Available locations: `de/fra`, `us/las`, `us/ewr`, `de/txl`, `gb/lhr`, `gb/bhx`, `es/vit`, `fr/par`, `us/mci`, `de/fra/1`, `de/fra/2`. Update forces cluster re-creation.
 	Location pulumi.StringInput
 	// (Computed) A weekly 4 hour-long window, during which maintenance might occur.  Updates to the value of the field force the cluster to be re-created.
 	MaintenanceWindow MongoClusterMaintenanceWindowPtrInput
@@ -526,7 +526,7 @@ func (o MongoClusterOutput) Instances() pulumi.IntOutput {
 	return o.ApplyT(func(v *MongoCluster) pulumi.IntOutput { return v.Instances }).(pulumi.IntOutput)
 }
 
-// [string] The physical location where the cluster will be created. Property cannot be modified after datacenter creation (disallowed in update requests). Available locations: `de/fra`, `us/las`, `us/ewr`, `de/txl`, `gb/lhr`, `gb/bhx`, `es/vit`, `fr/par`, `us/mci`, `de/fra/2`. Update forces cluster re-creation.
+// [string] The physical location where the cluster will be created. Property cannot be modified after datacenter creation (disallowed in update requests). Available locations: `de/fra`, `us/las`, `us/ewr`, `de/txl`, `gb/lhr`, `gb/bhx`, `es/vit`, `fr/par`, `us/mci`, `de/fra/1`, `de/fra/2`. Update forces cluster re-creation.
 func (o MongoClusterOutput) Location() pulumi.StringOutput {
 	return o.ApplyT(func(v *MongoCluster) pulumi.StringOutput { return v.Location }).(pulumi.StringOutput)
 }

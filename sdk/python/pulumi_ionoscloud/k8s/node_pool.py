@@ -40,7 +40,8 @@ class NodePoolArgs:
                  maintenance_window: pulumi.Input[Optional['NodePoolMaintenanceWindowArgs']] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  public_ips: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 server_type: pulumi.Input[Optional[_builtins.str]] = None):
+                 server_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 taints: pulumi.Input[Optional[Sequence[pulumi.Input['NodePoolTaintArgs']]]] = None):
         """
         The set of arguments for constructing a NodePool resource.
 
@@ -75,6 +76,7 @@ class NodePoolArgs:
         :param pulumi.Input[_builtins.str] name: [string] The name of the Kubernetes Cluster. *This attribute is immutable*.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] public_ips: [list] A list of public IPs associated with the node pool; must have at least `node_count + 1` elements
         :param pulumi.Input[_builtins.str] server_type: [string] The server type for the compute engine - See the API documentation for more information. Possible values: `DedicatedCore`, `VCPU`
+        :param pulumi.Input[Sequence[pulumi.Input['NodePoolTaintArgs']]] taints: [set] Taints applied to the nodes in this pool. A taint repels pods that do not have a matching toleration. Maximum 50 taints per node pool.
         """
         pulumi.set(__self__, "availability_zone", availability_zone)
         pulumi.set(__self__, "cores_count", cores_count)
@@ -107,6 +109,8 @@ class NodePoolArgs:
             pulumi.set(__self__, "public_ips", public_ips)
         if server_type is not None:
             pulumi.set(__self__, "server_type", server_type)
+        if taints is not None:
+            pulumi.set(__self__, "taints", taints)
 
     @_builtins.property
     @pulumi.getter(name="availabilityZone")
@@ -359,6 +363,18 @@ class NodePoolArgs:
     def server_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "server_type", value)
 
+    @_builtins.property
+    @pulumi.getter
+    def taints(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['NodePoolTaintArgs']]]]:
+        """
+        [set] Taints applied to the nodes in this pool. A taint repels pods that do not have a matching toleration. Maximum 50 taints per node pool.
+        """
+        return pulumi.get(self, "taints")
+
+    @taints.setter
+    def taints(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['NodePoolTaintArgs']]]]):
+        pulumi.set(self, "taints", value)
+
 
 @pulumi.input_type
 class _NodePoolState:
@@ -382,7 +398,8 @@ class _NodePoolState:
                  ram_size: pulumi.Input[Optional[_builtins.int]] = None,
                  server_type: pulumi.Input[Optional[_builtins.str]] = None,
                  storage_size: pulumi.Input[Optional[_builtins.int]] = None,
-                 storage_type: pulumi.Input[Optional[_builtins.str]] = None):
+                 storage_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 taints: pulumi.Input[Optional[Sequence[pulumi.Input['NodePoolTaintArgs']]]] = None):
         """
         Input properties used for looking up and filtering NodePool resources.
 
@@ -417,6 +434,7 @@ class _NodePoolState:
         :param pulumi.Input[_builtins.str] server_type: [string] The server type for the compute engine - See the API documentation for more information. Possible values: `DedicatedCore`, `VCPU`
         :param pulumi.Input[_builtins.int] storage_size: [int] - The size of the volume in GB. The size should be greater than 10GB. *This attribute is immutable*.
         :param pulumi.Input[_builtins.str] storage_type: [string] - The desired storage type - SSD/HDD. *This attribute is immutable*.
+        :param pulumi.Input[Sequence[pulumi.Input['NodePoolTaintArgs']]] taints: [set] Taints applied to the nodes in this pool. A taint repels pods that do not have a matching toleration. Maximum 50 taints per node pool.
         """
         if allow_replace is not None:
             pulumi.set(__self__, "allow_replace", allow_replace)
@@ -458,6 +476,8 @@ class _NodePoolState:
             pulumi.set(__self__, "storage_size", storage_size)
         if storage_type is not None:
             pulumi.set(__self__, "storage_type", storage_type)
+        if taints is not None:
+            pulumi.set(__self__, "taints", taints)
 
     @_builtins.property
     @pulumi.getter(name="allowReplace")
@@ -710,6 +730,18 @@ class _NodePoolState:
     def storage_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "storage_type", value)
 
+    @_builtins.property
+    @pulumi.getter
+    def taints(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['NodePoolTaintArgs']]]]:
+        """
+        [set] Taints applied to the nodes in this pool. A taint repels pods that do not have a matching toleration. Maximum 50 taints per node pool.
+        """
+        return pulumi.get(self, "taints")
+
+    @taints.setter
+    def taints(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['NodePoolTaintArgs']]]]):
+        pulumi.set(self, "taints", value)
+
 
 @pulumi.type_token("ionoscloud:k8s/nodePool:NodePool")
 class NodePool(pulumi.CustomResource):
@@ -737,6 +769,7 @@ class NodePool(pulumi.CustomResource):
                  server_type: pulumi.Input[Optional[_builtins.str]] = None,
                  storage_size: pulumi.Input[Optional[_builtins.int]] = None,
                  storage_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 taints: pulumi.Input[Optional[Sequence[pulumi.Input[Union['NodePoolTaintArgs', 'NodePoolTaintArgsDict']]]]] = None,
                  __props__=None):
         """
         Manages a **Managed Kubernetes Node Pool**, part of a managed Kubernetes cluster on IONOS CLOUD.
@@ -790,6 +823,7 @@ class NodePool(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] server_type: [string] The server type for the compute engine - See the API documentation for more information. Possible values: `DedicatedCore`, `VCPU`
         :param pulumi.Input[_builtins.int] storage_size: [int] - The size of the volume in GB. The size should be greater than 10GB. *This attribute is immutable*.
         :param pulumi.Input[_builtins.str] storage_type: [string] - The desired storage type - SSD/HDD. *This attribute is immutable*.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['NodePoolTaintArgs', 'NodePoolTaintArgsDict']]]] taints: [set] Taints applied to the nodes in this pool. A taint repels pods that do not have a matching toleration. Maximum 50 taints per node pool.
         """
         ...
     @overload
@@ -851,6 +885,7 @@ class NodePool(pulumi.CustomResource):
                  server_type: pulumi.Input[Optional[_builtins.str]] = None,
                  storage_size: pulumi.Input[Optional[_builtins.int]] = None,
                  storage_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 taints: pulumi.Input[Optional[Sequence[pulumi.Input[Union['NodePoolTaintArgs', 'NodePoolTaintArgsDict']]]]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -898,6 +933,7 @@ class NodePool(pulumi.CustomResource):
             if storage_type is None and not opts.urn:
                 raise TypeError("Missing required property 'storage_type'")
             __props__.__dict__["storage_type"] = storage_type
+            __props__.__dict__["taints"] = taints
         super(NodePool, __self__).__init__(
             'ionoscloud:k8s/nodePool:NodePool',
             resource_name,
@@ -927,7 +963,8 @@ class NodePool(pulumi.CustomResource):
             ram_size: pulumi.Input[Optional[_builtins.int]] = None,
             server_type: pulumi.Input[Optional[_builtins.str]] = None,
             storage_size: pulumi.Input[Optional[_builtins.int]] = None,
-            storage_type: pulumi.Input[Optional[_builtins.str]] = None) -> 'NodePool':
+            storage_type: pulumi.Input[Optional[_builtins.str]] = None,
+            taints: pulumi.Input[Optional[Sequence[pulumi.Input[Union['NodePoolTaintArgs', 'NodePoolTaintArgsDict']]]]] = None) -> 'NodePool':
         """
         Get an existing NodePool resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -966,6 +1003,7 @@ class NodePool(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] server_type: [string] The server type for the compute engine - See the API documentation for more information. Possible values: `DedicatedCore`, `VCPU`
         :param pulumi.Input[_builtins.int] storage_size: [int] - The size of the volume in GB. The size should be greater than 10GB. *This attribute is immutable*.
         :param pulumi.Input[_builtins.str] storage_type: [string] - The desired storage type - SSD/HDD. *This attribute is immutable*.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['NodePoolTaintArgs', 'NodePoolTaintArgsDict']]]] taints: [set] Taints applied to the nodes in this pool. A taint repels pods that do not have a matching toleration. Maximum 50 taints per node pool.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -991,6 +1029,7 @@ class NodePool(pulumi.CustomResource):
         __props__.__dict__["server_type"] = server_type
         __props__.__dict__["storage_size"] = storage_size
         __props__.__dict__["storage_type"] = storage_type
+        __props__.__dict__["taints"] = taints
         return NodePool(resource_name, opts=opts, __props__=__props__)
 
     @_builtins.property
@@ -1163,4 +1202,12 @@ class NodePool(pulumi.CustomResource):
         [string] - The desired storage type - SSD/HDD. *This attribute is immutable*.
         """
         return pulumi.get(self, "storage_type")
+
+    @_builtins.property
+    @pulumi.getter
+    def taints(self) -> pulumi.Output[Optional[Sequence['outputs.NodePoolTaint']]]:
+        """
+        [set] Taints applied to the nodes in this pool. A taint repels pods that do not have a matching toleration. Maximum 50 taints per node pool.
+        """
+        return pulumi.get(self, "taints")
 

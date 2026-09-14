@@ -111,6 +111,8 @@ type LookupServerResult struct {
 	CpuFamily string `pulumi:"cpuFamily"`
 	// The id of the datacenter
 	DatacenterId string `pulumi:"datacenterId"`
+	// Features enabled on the server, e.g. `SEV-SNP` for a Confidential Computing VM.
+	EnabledFeatures []string `pulumi:"enabledFeatures"`
 	// The hostname of the resource.
 	Hostname string `pulumi:"hostname"`
 	// The Id of the label
@@ -221,6 +223,11 @@ func (o LookupServerResultOutput) CpuFamily() pulumi.StringOutput {
 // The id of the datacenter
 func (o LookupServerResultOutput) DatacenterId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupServerResult) string { return v.DatacenterId }).(pulumi.StringOutput)
+}
+
+// Features enabled on the server, e.g. `SEV-SNP` for a Confidential Computing VM.
+func (o LookupServerResultOutput) EnabledFeatures() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v LookupServerResult) []string { return v.EnabledFeatures }).(pulumi.StringArrayOutput)
 }
 
 // The hostname of the resource.

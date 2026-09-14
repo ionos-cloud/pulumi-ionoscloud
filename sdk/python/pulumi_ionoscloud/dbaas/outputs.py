@@ -33,6 +33,13 @@ __all__ = [
     'MariaDBClusterConnections',
     'MariaDBClusterCredentials',
     'MariaDBClusterMaintenanceWindow',
+    'MariaDBClusterV2Backup',
+    'MariaDBClusterV2Connections',
+    'MariaDBClusterV2Credentials',
+    'MariaDBClusterV2Instances',
+    'MariaDBClusterV2MaintenanceWindow',
+    'MariaDBClusterV2RestoreFromBackup',
+    'MariaDBClusterV2Timeouts',
     'MongoClusterBackup',
     'MongoClusterBiConnector',
     'MongoClusterConnections',
@@ -69,11 +76,25 @@ __all__ = [
     'GetInMemoryDBSnapshotsV2ItemResult',
     'GetInMemoryDBVersionsV2ItemResult',
     'GetInmemorydbSnapshotMetadataResult',
+    'GetMariaDBBackupLocationsV2ItemResult',
     'GetMariaDBBackupsBackupResult',
     'GetMariaDBBackupsBackupBaseBackupResult',
+    'GetMariaDBBackupsV2ItemResult',
     'GetMariaDBClusterBackupResult',
     'GetMariaDBClusterConnectionResult',
     'GetMariaDBClusterMaintenanceWindowResult',
+    'GetMariaDBClusterV2BackupResult',
+    'GetMariaDBClusterV2ConnectionsResult',
+    'GetMariaDBClusterV2CredentialsResult',
+    'GetMariaDBClusterV2InstancesResult',
+    'GetMariaDBClusterV2MaintenanceWindowResult',
+    'GetMariaDBClustersV2ItemResult',
+    'GetMariaDBClustersV2ItemBackupResult',
+    'GetMariaDBClustersV2ItemConnectionsResult',
+    'GetMariaDBClustersV2ItemCredentialsResult',
+    'GetMariaDBClustersV2ItemInstancesResult',
+    'GetMariaDBClustersV2ItemMaintenanceWindowResult',
+    'GetMariaDBVersionsV2ItemResult',
     'GetMongoClusterBackupResult',
     'GetMongoClusterBiConnectorResult',
     'GetMongoClusterConnectionResult',
@@ -780,8 +801,8 @@ class MariaDBClusterCredentials(dict):
                  password: _builtins.str,
                  username: _builtins.str):
         """
-        :param _builtins.str password: [string] The password for a MariaDB user.
-        :param _builtins.str username: [string] The username for the initial MariaDB user. Some system usernames are restricted (e.g 'mariadb', 'admin', 'standby').
+        :param _builtins.str password: [string] The password for a MariaDB user. Length: 10-63 characters.
+        :param _builtins.str username: [string] The username for the initial MariaDB user. Some system usernames are restricted (e.g 'mariadb', 'admin', 'standby'). Length: 1-16 characters. Must start with a letter, end with a letter or number, and contain only letters, numbers, or underscores (underscores only between alphanumeric groups).
         """
         pulumi.set(__self__, "password", password)
         pulumi.set(__self__, "username", username)
@@ -790,7 +811,7 @@ class MariaDBClusterCredentials(dict):
     @pulumi.getter
     def password(self) -> _builtins.str:
         """
-        [string] The password for a MariaDB user.
+        [string] The password for a MariaDB user. Length: 10-63 characters.
         """
         return pulumi.get(self, "password")
 
@@ -798,7 +819,7 @@ class MariaDBClusterCredentials(dict):
     @pulumi.getter
     def username(self) -> _builtins.str:
         """
-        [string] The username for the initial MariaDB user. Some system usernames are restricted (e.g 'mariadb', 'admin', 'standby').
+        [string] The username for the initial MariaDB user. Some system usernames are restricted (e.g 'mariadb', 'admin', 'standby'). Length: 1-16 characters. Must start with a letter, end with a letter or number, and contain only letters, numbers, or underscores (underscores only between alphanumeric groups).
         """
         return pulumi.get(self, "username")
 
@@ -827,7 +848,7 @@ class MariaDBClusterMaintenanceWindow(dict):
                  time: _builtins.str):
         """
         :param _builtins.str day_of_the_week: [string] The name of the week day.
-        :param _builtins.str time: [string] Start of the maintenance window in UTC time.
+        :param _builtins.str time: [string] Start of the maintenance window in UTC time. Format: HH:MM:SS.
         """
         pulumi.set(__self__, "day_of_the_week", day_of_the_week)
         pulumi.set(__self__, "time", time)
@@ -844,9 +865,367 @@ class MariaDBClusterMaintenanceWindow(dict):
     @pulumi.getter
     def time(self) -> _builtins.str:
         """
-        [string] Start of the maintenance window in UTC time.
+        [string] Start of the maintenance window in UTC time. Format: HH:MM:SS.
         """
         return pulumi.get(self, "time")
+
+
+@pulumi.output_type
+class MariaDBClusterV2Backup(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "retentionDays":
+            suggest = "retention_days"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in MariaDBClusterV2Backup. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        MariaDBClusterV2Backup.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        MariaDBClusterV2Backup.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 location: _builtins.str,
+                 retention_days: _builtins.int):
+        """
+        :param _builtins.str location: [string] The Object Storage location where the backup will be created. Changing this forces re-creation of the cluster.
+        :param _builtins.int retention_days: [int] Configures how many days cluster backups are retained.
+        """
+        pulumi.set(__self__, "location", location)
+        pulumi.set(__self__, "retention_days", retention_days)
+
+    @_builtins.property
+    @pulumi.getter
+    def location(self) -> _builtins.str:
+        """
+        [string] The Object Storage location where the backup will be created. Changing this forces re-creation of the cluster.
+        """
+        return pulumi.get(self, "location")
+
+    @_builtins.property
+    @pulumi.getter(name="retentionDays")
+    def retention_days(self) -> _builtins.int:
+        """
+        [int] Configures how many days cluster backups are retained.
+        """
+        return pulumi.get(self, "retention_days")
+
+
+@pulumi.output_type
+class MariaDBClusterV2Connections(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "datacenterId":
+            suggest = "datacenter_id"
+        elif key == "lanId":
+            suggest = "lan_id"
+        elif key == "primaryInstanceAddress":
+            suggest = "primary_instance_address"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in MariaDBClusterV2Connections. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        MariaDBClusterV2Connections.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        MariaDBClusterV2Connections.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 datacenter_id: _builtins.str,
+                 lan_id: _builtins.str,
+                 primary_instance_address: _builtins.str):
+        """
+        :param _builtins.str datacenter_id: [string] The datacenter to connect your instance to.
+        :param _builtins.str lan_id: [string] The numeric LAN ID to connect your instance to.
+        :param _builtins.str primary_instance_address: [string] The IP address and netmask of the cluster's primary instance, in CIDR notation.
+        """
+        pulumi.set(__self__, "datacenter_id", datacenter_id)
+        pulumi.set(__self__, "lan_id", lan_id)
+        pulumi.set(__self__, "primary_instance_address", primary_instance_address)
+
+    @_builtins.property
+    @pulumi.getter(name="datacenterId")
+    def datacenter_id(self) -> _builtins.str:
+        """
+        [string] The datacenter to connect your instance to.
+        """
+        return pulumi.get(self, "datacenter_id")
+
+    @_builtins.property
+    @pulumi.getter(name="lanId")
+    def lan_id(self) -> _builtins.str:
+        """
+        [string] The numeric LAN ID to connect your instance to.
+        """
+        return pulumi.get(self, "lan_id")
+
+    @_builtins.property
+    @pulumi.getter(name="primaryInstanceAddress")
+    def primary_instance_address(self) -> _builtins.str:
+        """
+        [string] The IP address and netmask of the cluster's primary instance, in CIDR notation.
+        """
+        return pulumi.get(self, "primary_instance_address")
+
+
+@pulumi.output_type
+class MariaDBClusterV2Credentials(dict):
+    def __init__(__self__, *,
+                 database: _builtins.str,
+                 password: _builtins.str,
+                 username: _builtins.str):
+        """
+        :param _builtins.str database: [string] The name of the initial database to be created.
+        :param _builtins.str password: [string] **Sensitive.** The password for the initial MariaDB user. Not returned by the API — will be null in state after `pulumi import`.
+        :param _builtins.str username: [string] The username of the initial MariaDB user.
+        """
+        pulumi.set(__self__, "database", database)
+        pulumi.set(__self__, "password", password)
+        pulumi.set(__self__, "username", username)
+
+    @_builtins.property
+    @pulumi.getter
+    def database(self) -> _builtins.str:
+        """
+        [string] The name of the initial database to be created.
+        """
+        return pulumi.get(self, "database")
+
+    @_builtins.property
+    @pulumi.getter
+    def password(self) -> _builtins.str:
+        """
+        [string] **Sensitive.** The password for the initial MariaDB user. Not returned by the API — will be null in state after `pulumi import`.
+        """
+        return pulumi.get(self, "password")
+
+    @_builtins.property
+    @pulumi.getter
+    def username(self) -> _builtins.str:
+        """
+        [string] The username of the initial MariaDB user.
+        """
+        return pulumi.get(self, "username")
+
+
+@pulumi.output_type
+class MariaDBClusterV2Instances(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "storageSize":
+            suggest = "storage_size"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in MariaDBClusterV2Instances. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        MariaDBClusterV2Instances.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        MariaDBClusterV2Instances.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 cores: _builtins.int,
+                 count: _builtins.int,
+                 ram: _builtins.int,
+                 storage_size: _builtins.int):
+        """
+        :param _builtins.int cores: [int] The number of CPU cores per instance.
+        :param _builtins.int count: [int] The total number of instances in the cluster (one primary and n-1 secondary).
+        :param _builtins.int ram: [int] The amount of memory per instance in gigabytes (GB).
+        :param _builtins.int storage_size: [int] The amount of storage per instance in gigabytes (GB).
+        """
+        pulumi.set(__self__, "cores", cores)
+        pulumi.set(__self__, "count", count)
+        pulumi.set(__self__, "ram", ram)
+        pulumi.set(__self__, "storage_size", storage_size)
+
+    @_builtins.property
+    @pulumi.getter
+    def cores(self) -> _builtins.int:
+        """
+        [int] The number of CPU cores per instance.
+        """
+        return pulumi.get(self, "cores")
+
+    @_builtins.property
+    @pulumi.getter
+    def count(self) -> _builtins.int:
+        """
+        [int] The total number of instances in the cluster (one primary and n-1 secondary).
+        """
+        return pulumi.get(self, "count")
+
+    @_builtins.property
+    @pulumi.getter
+    def ram(self) -> _builtins.int:
+        """
+        [int] The amount of memory per instance in gigabytes (GB).
+        """
+        return pulumi.get(self, "ram")
+
+    @_builtins.property
+    @pulumi.getter(name="storageSize")
+    def storage_size(self) -> _builtins.int:
+        """
+        [int] The amount of storage per instance in gigabytes (GB).
+        """
+        return pulumi.get(self, "storage_size")
+
+
+@pulumi.output_type
+class MariaDBClusterV2MaintenanceWindow(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "dayOfTheWeek":
+            suggest = "day_of_the_week"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in MariaDBClusterV2MaintenanceWindow. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        MariaDBClusterV2MaintenanceWindow.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        MariaDBClusterV2MaintenanceWindow.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 day_of_the_week: _builtins.str,
+                 time: _builtins.str):
+        """
+        :param _builtins.str day_of_the_week: [string] The name of the week day.
+        :param _builtins.str time: [string] Start of the maintenance window in UTC time (`HH:MM:SS`).
+        """
+        pulumi.set(__self__, "day_of_the_week", day_of_the_week)
+        pulumi.set(__self__, "time", time)
+
+    @_builtins.property
+    @pulumi.getter(name="dayOfTheWeek")
+    def day_of_the_week(self) -> _builtins.str:
+        """
+        [string] The name of the week day.
+        """
+        return pulumi.get(self, "day_of_the_week")
+
+    @_builtins.property
+    @pulumi.getter
+    def time(self) -> _builtins.str:
+        """
+        [string] Start of the maintenance window in UTC time (`HH:MM:SS`).
+        """
+        return pulumi.get(self, "time")
+
+
+@pulumi.output_type
+class MariaDBClusterV2RestoreFromBackup(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "recoveryTargetDatetime":
+            suggest = "recovery_target_datetime"
+        elif key == "sourceBackupId":
+            suggest = "source_backup_id"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in MariaDBClusterV2RestoreFromBackup. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        MariaDBClusterV2RestoreFromBackup.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        MariaDBClusterV2RestoreFromBackup.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 recovery_target_datetime: Optional[_builtins.str] = None,
+                 source_backup_id: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str recovery_target_datetime: [string] ISO 8601 timestamp causing the system to replay backups up to the specified time. Optional for create-time restore; required for in-place restore during an update.
+               
+               > **Note:** `restore_from_backup` is not returned by the API. The values are stored in state as configured but will be null after `pulumi import`.
+        :param _builtins.str source_backup_id: [string] UUID of the backup to restore from. Required when `restore_from_backup` is set during cluster creation; not valid for in-place restore during an update.
+        """
+        if recovery_target_datetime is not None:
+            pulumi.set(__self__, "recovery_target_datetime", recovery_target_datetime)
+        if source_backup_id is not None:
+            pulumi.set(__self__, "source_backup_id", source_backup_id)
+
+    @_builtins.property
+    @pulumi.getter(name="recoveryTargetDatetime")
+    def recovery_target_datetime(self) -> Optional[_builtins.str]:
+        """
+        [string] ISO 8601 timestamp causing the system to replay backups up to the specified time. Optional for create-time restore; required for in-place restore during an update.
+
+        > **Note:** `restore_from_backup` is not returned by the API. The values are stored in state as configured but will be null after `pulumi import`.
+        """
+        return pulumi.get(self, "recovery_target_datetime")
+
+    @_builtins.property
+    @pulumi.getter(name="sourceBackupId")
+    def source_backup_id(self) -> Optional[_builtins.str]:
+        """
+        [string] UUID of the backup to restore from. Required when `restore_from_backup` is set during cluster creation; not valid for in-place restore during an update.
+        """
+        return pulumi.get(self, "source_backup_id")
+
+
+@pulumi.output_type
+class MariaDBClusterV2Timeouts(dict):
+    def __init__(__self__, *,
+                 create: Optional[_builtins.str] = None,
+                 delete: Optional[_builtins.str] = None,
+                 update: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str create: A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+        :param _builtins.str delete: A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs.
+        :param _builtins.str update: A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+        """
+        if create is not None:
+            pulumi.set(__self__, "create", create)
+        if delete is not None:
+            pulumi.set(__self__, "delete", delete)
+        if update is not None:
+            pulumi.set(__self__, "update", update)
+
+    @_builtins.property
+    @pulumi.getter
+    def create(self) -> Optional[_builtins.str]:
+        """
+        A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+        """
+        return pulumi.get(self, "create")
+
+    @_builtins.property
+    @pulumi.getter
+    def delete(self) -> Optional[_builtins.str]:
+        """
+        A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs.
+        """
+        return pulumi.get(self, "delete")
+
+    @_builtins.property
+    @pulumi.getter
+    def update(self) -> Optional[_builtins.str]:
+        """
+        A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+        """
+        return pulumi.get(self, "update")
 
 
 @pulumi.output_type
@@ -2627,6 +3006,35 @@ class GetInmemorydbSnapshotMetadataResult(dict):
 
 
 @pulumi.output_type
+class GetMariaDBBackupLocationsV2ItemResult(dict):
+    def __init__(__self__, *,
+                 id: _builtins.str,
+                 location: _builtins.str):
+        """
+        :param _builtins.str id: The ID (UUID) of the backup location.
+        :param _builtins.str location: [string] The location to query. Requests are routed to the corresponding regional MariaDB endpoint. Available locations: `de/fra`, `de/fra/1`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
+        """
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "location", location)
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        The ID (UUID) of the backup location.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter
+    def location(self) -> _builtins.str:
+        """
+        [string] The location to query. Requests are routed to the corresponding regional MariaDB endpoint. Available locations: `de/fra`, `de/fra/1`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
+        """
+        return pulumi.get(self, "location")
+
+
+@pulumi.output_type
 class GetMariaDBBackupsBackupResult(dict):
     def __init__(__self__, *,
                  base_backups: Sequence['outputs.GetMariaDBBackupsBackupBaseBackupResult'],
@@ -2704,6 +3112,90 @@ class GetMariaDBBackupsBackupBaseBackupResult(dict):
         The size of the backup in Mebibytes (MiB). This is the size of the binary backup file that was stored
         """
         return pulumi.get(self, "size")
+
+
+@pulumi.output_type
+class GetMariaDBBackupsV2ItemResult(dict):
+    def __init__(__self__, *,
+                 cluster_id: _builtins.str,
+                 cluster_name: _builtins.str,
+                 earliest_recovery_target_time: _builtins.str,
+                 id: _builtins.str,
+                 latest_recovery_target_time: _builtins.str,
+                 location: _builtins.str,
+                 mariadb_cluster_version: _builtins.str):
+        """
+        :param _builtins.str cluster_id: [string] Filter backups by the cluster they belong to.
+        :param _builtins.str cluster_name: The name of the cluster this backup belongs to.
+        :param _builtins.str earliest_recovery_target_time: The earliest point in time to which the cluster can be restored from this backup (RFC3339).
+        :param _builtins.str id: The ID (UUID) of the backup.
+        :param _builtins.str latest_recovery_target_time: The latest point in time to which the cluster can be restored (RFC3339). Empty if the backup can be restored up to the current time.
+        :param _builtins.str location: [string] The location to query. Available locations: `de/fra`, `de/fra/1`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
+        :param _builtins.str mariadb_cluster_version: The MariaDB version of the cluster at backup time.
+        """
+        pulumi.set(__self__, "cluster_id", cluster_id)
+        pulumi.set(__self__, "cluster_name", cluster_name)
+        pulumi.set(__self__, "earliest_recovery_target_time", earliest_recovery_target_time)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "latest_recovery_target_time", latest_recovery_target_time)
+        pulumi.set(__self__, "location", location)
+        pulumi.set(__self__, "mariadb_cluster_version", mariadb_cluster_version)
+
+    @_builtins.property
+    @pulumi.getter(name="clusterId")
+    def cluster_id(self) -> _builtins.str:
+        """
+        [string] Filter backups by the cluster they belong to.
+        """
+        return pulumi.get(self, "cluster_id")
+
+    @_builtins.property
+    @pulumi.getter(name="clusterName")
+    def cluster_name(self) -> _builtins.str:
+        """
+        The name of the cluster this backup belongs to.
+        """
+        return pulumi.get(self, "cluster_name")
+
+    @_builtins.property
+    @pulumi.getter(name="earliestRecoveryTargetTime")
+    def earliest_recovery_target_time(self) -> _builtins.str:
+        """
+        The earliest point in time to which the cluster can be restored from this backup (RFC3339).
+        """
+        return pulumi.get(self, "earliest_recovery_target_time")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        The ID (UUID) of the backup.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter(name="latestRecoveryTargetTime")
+    def latest_recovery_target_time(self) -> _builtins.str:
+        """
+        The latest point in time to which the cluster can be restored (RFC3339). Empty if the backup can be restored up to the current time.
+        """
+        return pulumi.get(self, "latest_recovery_target_time")
+
+    @_builtins.property
+    @pulumi.getter
+    def location(self) -> _builtins.str:
+        """
+        [string] The location to query. Available locations: `de/fra`, `de/fra/1`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
+        """
+        return pulumi.get(self, "location")
+
+    @_builtins.property
+    @pulumi.getter(name="mariadbClusterVersion")
+    def mariadb_cluster_version(self) -> _builtins.str:
+        """
+        The MariaDB version of the cluster at backup time.
+        """
+        return pulumi.get(self, "mariadb_cluster_version")
 
 
 @pulumi.output_type
@@ -2799,6 +3291,578 @@ class GetMariaDBClusterMaintenanceWindowResult(dict):
         [string] Start of the maintenance window in UTC time.
         """
         return pulumi.get(self, "time")
+
+
+@pulumi.output_type
+class GetMariaDBClusterV2BackupResult(dict):
+    def __init__(__self__, *,
+                 location: _builtins.str,
+                 retention_days: _builtins.int):
+        """
+        :param _builtins.str location: [string] The location to query. Available locations: `de/fra`, `de/fra/1`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
+               
+               > **Note:** Either `id` or `name` must be provided. If none, or both are provided, the datasource will return an error.
+        :param _builtins.int retention_days: The number of days cluster backups are retained.
+        """
+        pulumi.set(__self__, "location", location)
+        pulumi.set(__self__, "retention_days", retention_days)
+
+    @_builtins.property
+    @pulumi.getter
+    def location(self) -> _builtins.str:
+        """
+        [string] The location to query. Available locations: `de/fra`, `de/fra/1`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
+
+        > **Note:** Either `id` or `name` must be provided. If none, or both are provided, the datasource will return an error.
+        """
+        return pulumi.get(self, "location")
+
+    @_builtins.property
+    @pulumi.getter(name="retentionDays")
+    def retention_days(self) -> _builtins.int:
+        """
+        The number of days cluster backups are retained.
+        """
+        return pulumi.get(self, "retention_days")
+
+
+@pulumi.output_type
+class GetMariaDBClusterV2ConnectionsResult(dict):
+    def __init__(__self__, *,
+                 datacenter_id: _builtins.str,
+                 lan_id: _builtins.str,
+                 primary_instance_address: _builtins.str):
+        """
+        :param _builtins.str datacenter_id: The ID of the Virtual Data Center the cluster is connected to.
+        :param _builtins.str lan_id: The numeric LAN ID the cluster is connected to.
+        :param _builtins.str primary_instance_address: The IP address and netmask of the cluster's primary instance, in CIDR notation.
+        """
+        pulumi.set(__self__, "datacenter_id", datacenter_id)
+        pulumi.set(__self__, "lan_id", lan_id)
+        pulumi.set(__self__, "primary_instance_address", primary_instance_address)
+
+    @_builtins.property
+    @pulumi.getter(name="datacenterId")
+    def datacenter_id(self) -> _builtins.str:
+        """
+        The ID of the Virtual Data Center the cluster is connected to.
+        """
+        return pulumi.get(self, "datacenter_id")
+
+    @_builtins.property
+    @pulumi.getter(name="lanId")
+    def lan_id(self) -> _builtins.str:
+        """
+        The numeric LAN ID the cluster is connected to.
+        """
+        return pulumi.get(self, "lan_id")
+
+    @_builtins.property
+    @pulumi.getter(name="primaryInstanceAddress")
+    def primary_instance_address(self) -> _builtins.str:
+        """
+        The IP address and netmask of the cluster's primary instance, in CIDR notation.
+        """
+        return pulumi.get(self, "primary_instance_address")
+
+
+@pulumi.output_type
+class GetMariaDBClusterV2CredentialsResult(dict):
+    def __init__(__self__, *,
+                 database: _builtins.str,
+                 username: _builtins.str):
+        """
+        :param _builtins.str database: The name of the initial database.
+        :param _builtins.str username: The username of the initial MariaDB user.
+        """
+        pulumi.set(__self__, "database", database)
+        pulumi.set(__self__, "username", username)
+
+    @_builtins.property
+    @pulumi.getter
+    def database(self) -> _builtins.str:
+        """
+        The name of the initial database.
+        """
+        return pulumi.get(self, "database")
+
+    @_builtins.property
+    @pulumi.getter
+    def username(self) -> _builtins.str:
+        """
+        The username of the initial MariaDB user.
+        """
+        return pulumi.get(self, "username")
+
+
+@pulumi.output_type
+class GetMariaDBClusterV2InstancesResult(dict):
+    def __init__(__self__, *,
+                 cores: _builtins.int,
+                 count: _builtins.int,
+                 ram: _builtins.int,
+                 storage_size: _builtins.int):
+        """
+        :param _builtins.int cores: The number of CPU cores per instance.
+        :param _builtins.int count: The total number of instances in the cluster.
+        :param _builtins.int ram: The amount of memory per instance in gigabytes (GB).
+        :param _builtins.int storage_size: The amount of storage per instance in gigabytes (GB).
+        """
+        pulumi.set(__self__, "cores", cores)
+        pulumi.set(__self__, "count", count)
+        pulumi.set(__self__, "ram", ram)
+        pulumi.set(__self__, "storage_size", storage_size)
+
+    @_builtins.property
+    @pulumi.getter
+    def cores(self) -> _builtins.int:
+        """
+        The number of CPU cores per instance.
+        """
+        return pulumi.get(self, "cores")
+
+    @_builtins.property
+    @pulumi.getter
+    def count(self) -> _builtins.int:
+        """
+        The total number of instances in the cluster.
+        """
+        return pulumi.get(self, "count")
+
+    @_builtins.property
+    @pulumi.getter
+    def ram(self) -> _builtins.int:
+        """
+        The amount of memory per instance in gigabytes (GB).
+        """
+        return pulumi.get(self, "ram")
+
+    @_builtins.property
+    @pulumi.getter(name="storageSize")
+    def storage_size(self) -> _builtins.int:
+        """
+        The amount of storage per instance in gigabytes (GB).
+        """
+        return pulumi.get(self, "storage_size")
+
+
+@pulumi.output_type
+class GetMariaDBClusterV2MaintenanceWindowResult(dict):
+    def __init__(__self__, *,
+                 day_of_the_week: _builtins.str,
+                 time: _builtins.str):
+        """
+        :param _builtins.str day_of_the_week: The name of the week day.
+        :param _builtins.str time: Start of the maintenance window in UTC time.
+        """
+        pulumi.set(__self__, "day_of_the_week", day_of_the_week)
+        pulumi.set(__self__, "time", time)
+
+    @_builtins.property
+    @pulumi.getter(name="dayOfTheWeek")
+    def day_of_the_week(self) -> _builtins.str:
+        """
+        The name of the week day.
+        """
+        return pulumi.get(self, "day_of_the_week")
+
+    @_builtins.property
+    @pulumi.getter
+    def time(self) -> _builtins.str:
+        """
+        Start of the maintenance window in UTC time.
+        """
+        return pulumi.get(self, "time")
+
+
+@pulumi.output_type
+class GetMariaDBClustersV2ItemResult(dict):
+    def __init__(__self__, *,
+                 backup: 'outputs.GetMariaDBClustersV2ItemBackupResult',
+                 connections: 'outputs.GetMariaDBClustersV2ItemConnectionsResult',
+                 credentials: 'outputs.GetMariaDBClustersV2ItemCredentialsResult',
+                 description: _builtins.str,
+                 dns_name: _builtins.str,
+                 id: _builtins.str,
+                 instances: 'outputs.GetMariaDBClustersV2ItemInstancesResult',
+                 location: _builtins.str,
+                 logs_enabled: _builtins.bool,
+                 maintenance_window: 'outputs.GetMariaDBClustersV2ItemMaintenanceWindowResult',
+                 metrics_enabled: _builtins.bool,
+                 name: _builtins.str,
+                 version: _builtins.str):
+        """
+        :param 'GetMariaDBClustersV2ItemBackupArgs' backup: Backup location and retention configuration.
+        :param 'GetMariaDBClustersV2ItemConnectionsArgs' connections: Connection information of the MariaDB cluster.
+        :param 'GetMariaDBClustersV2ItemCredentialsArgs' credentials: Credentials for the initial database user.
+        :param _builtins.str description: Human-readable description for the cluster.
+        :param _builtins.str dns_name: The DNS name used to access the cluster.
+        :param _builtins.str id: The ID (UUID) of the cluster.
+        :param 'GetMariaDBClustersV2ItemInstancesArgs' instances: Compute and storage configuration for each instance in the cluster.
+        :param _builtins.str location: [string] The location to query. Available locations: `de/fra`, `de/fra/1`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
+        :param _builtins.bool logs_enabled: Whether log collection and reporting is enabled for this cluster's observability.
+        :param 'GetMariaDBClustersV2ItemMaintenanceWindowArgs' maintenance_window: A weekly 4 hour-long window, during which maintenance might occur.
+        :param _builtins.bool metrics_enabled: Whether metrics collection and reporting is enabled for this cluster's observability.
+        :param _builtins.str name: [string] Filter clusters by name (**partial match** — the value is passed directly to the API's name filter, so it matches any cluster name containing the given string, not only an exact match).
+        :param _builtins.str version: The MariaDB version for the cluster.
+        """
+        pulumi.set(__self__, "backup", backup)
+        pulumi.set(__self__, "connections", connections)
+        pulumi.set(__self__, "credentials", credentials)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "dns_name", dns_name)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "instances", instances)
+        pulumi.set(__self__, "location", location)
+        pulumi.set(__self__, "logs_enabled", logs_enabled)
+        pulumi.set(__self__, "maintenance_window", maintenance_window)
+        pulumi.set(__self__, "metrics_enabled", metrics_enabled)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "version", version)
+
+    @_builtins.property
+    @pulumi.getter
+    def backup(self) -> 'outputs.GetMariaDBClustersV2ItemBackupResult':
+        """
+        Backup location and retention configuration.
+        """
+        return pulumi.get(self, "backup")
+
+    @_builtins.property
+    @pulumi.getter
+    def connections(self) -> 'outputs.GetMariaDBClustersV2ItemConnectionsResult':
+        """
+        Connection information of the MariaDB cluster.
+        """
+        return pulumi.get(self, "connections")
+
+    @_builtins.property
+    @pulumi.getter
+    def credentials(self) -> 'outputs.GetMariaDBClustersV2ItemCredentialsResult':
+        """
+        Credentials for the initial database user.
+        """
+        return pulumi.get(self, "credentials")
+
+    @_builtins.property
+    @pulumi.getter
+    def description(self) -> _builtins.str:
+        """
+        Human-readable description for the cluster.
+        """
+        return pulumi.get(self, "description")
+
+    @_builtins.property
+    @pulumi.getter(name="dnsName")
+    def dns_name(self) -> _builtins.str:
+        """
+        The DNS name used to access the cluster.
+        """
+        return pulumi.get(self, "dns_name")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        The ID (UUID) of the cluster.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter
+    def instances(self) -> 'outputs.GetMariaDBClustersV2ItemInstancesResult':
+        """
+        Compute and storage configuration for each instance in the cluster.
+        """
+        return pulumi.get(self, "instances")
+
+    @_builtins.property
+    @pulumi.getter
+    def location(self) -> _builtins.str:
+        """
+        [string] The location to query. Available locations: `de/fra`, `de/fra/1`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
+        """
+        return pulumi.get(self, "location")
+
+    @_builtins.property
+    @pulumi.getter(name="logsEnabled")
+    def logs_enabled(self) -> _builtins.bool:
+        """
+        Whether log collection and reporting is enabled for this cluster's observability.
+        """
+        return pulumi.get(self, "logs_enabled")
+
+    @_builtins.property
+    @pulumi.getter(name="maintenanceWindow")
+    def maintenance_window(self) -> 'outputs.GetMariaDBClustersV2ItemMaintenanceWindowResult':
+        """
+        A weekly 4 hour-long window, during which maintenance might occur.
+        """
+        return pulumi.get(self, "maintenance_window")
+
+    @_builtins.property
+    @pulumi.getter(name="metricsEnabled")
+    def metrics_enabled(self) -> _builtins.bool:
+        """
+        Whether metrics collection and reporting is enabled for this cluster's observability.
+        """
+        return pulumi.get(self, "metrics_enabled")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        [string] Filter clusters by name (**partial match** — the value is passed directly to the API's name filter, so it matches any cluster name containing the given string, not only an exact match).
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter
+    def version(self) -> _builtins.str:
+        """
+        The MariaDB version for the cluster.
+        """
+        return pulumi.get(self, "version")
+
+
+@pulumi.output_type
+class GetMariaDBClustersV2ItemBackupResult(dict):
+    def __init__(__self__, *,
+                 location: _builtins.str,
+                 retention_days: _builtins.int):
+        """
+        :param _builtins.str location: [string] The location to query. Available locations: `de/fra`, `de/fra/1`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
+        :param _builtins.int retention_days: The number of days cluster backups are retained.
+        """
+        pulumi.set(__self__, "location", location)
+        pulumi.set(__self__, "retention_days", retention_days)
+
+    @_builtins.property
+    @pulumi.getter
+    def location(self) -> _builtins.str:
+        """
+        [string] The location to query. Available locations: `de/fra`, `de/fra/1`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
+        """
+        return pulumi.get(self, "location")
+
+    @_builtins.property
+    @pulumi.getter(name="retentionDays")
+    def retention_days(self) -> _builtins.int:
+        """
+        The number of days cluster backups are retained.
+        """
+        return pulumi.get(self, "retention_days")
+
+
+@pulumi.output_type
+class GetMariaDBClustersV2ItemConnectionsResult(dict):
+    def __init__(__self__, *,
+                 datacenter_id: _builtins.str,
+                 lan_id: _builtins.str,
+                 primary_instance_address: _builtins.str):
+        """
+        :param _builtins.str datacenter_id: The ID of the Virtual Data Center the cluster is connected to.
+        :param _builtins.str lan_id: The numeric LAN ID the cluster is connected to.
+        :param _builtins.str primary_instance_address: The IP address and netmask of the cluster's primary instance, in CIDR notation.
+        """
+        pulumi.set(__self__, "datacenter_id", datacenter_id)
+        pulumi.set(__self__, "lan_id", lan_id)
+        pulumi.set(__self__, "primary_instance_address", primary_instance_address)
+
+    @_builtins.property
+    @pulumi.getter(name="datacenterId")
+    def datacenter_id(self) -> _builtins.str:
+        """
+        The ID of the Virtual Data Center the cluster is connected to.
+        """
+        return pulumi.get(self, "datacenter_id")
+
+    @_builtins.property
+    @pulumi.getter(name="lanId")
+    def lan_id(self) -> _builtins.str:
+        """
+        The numeric LAN ID the cluster is connected to.
+        """
+        return pulumi.get(self, "lan_id")
+
+    @_builtins.property
+    @pulumi.getter(name="primaryInstanceAddress")
+    def primary_instance_address(self) -> _builtins.str:
+        """
+        The IP address and netmask of the cluster's primary instance, in CIDR notation.
+        """
+        return pulumi.get(self, "primary_instance_address")
+
+
+@pulumi.output_type
+class GetMariaDBClustersV2ItemCredentialsResult(dict):
+    def __init__(__self__, *,
+                 database: _builtins.str,
+                 username: _builtins.str):
+        """
+        :param _builtins.str database: The name of the initial database.
+        :param _builtins.str username: The username of the initial MariaDB user.
+        """
+        pulumi.set(__self__, "database", database)
+        pulumi.set(__self__, "username", username)
+
+    @_builtins.property
+    @pulumi.getter
+    def database(self) -> _builtins.str:
+        """
+        The name of the initial database.
+        """
+        return pulumi.get(self, "database")
+
+    @_builtins.property
+    @pulumi.getter
+    def username(self) -> _builtins.str:
+        """
+        The username of the initial MariaDB user.
+        """
+        return pulumi.get(self, "username")
+
+
+@pulumi.output_type
+class GetMariaDBClustersV2ItemInstancesResult(dict):
+    def __init__(__self__, *,
+                 cores: _builtins.int,
+                 count: _builtins.int,
+                 ram: _builtins.int,
+                 storage_size: _builtins.int):
+        """
+        :param _builtins.int cores: The number of CPU cores per instance.
+        :param _builtins.int count: The total number of instances in the cluster (one primary and n-1 secondary).
+        :param _builtins.int ram: The amount of memory per instance in gigabytes (GB).
+        :param _builtins.int storage_size: The amount of storage per instance in gigabytes (GB).
+        """
+        pulumi.set(__self__, "cores", cores)
+        pulumi.set(__self__, "count", count)
+        pulumi.set(__self__, "ram", ram)
+        pulumi.set(__self__, "storage_size", storage_size)
+
+    @_builtins.property
+    @pulumi.getter
+    def cores(self) -> _builtins.int:
+        """
+        The number of CPU cores per instance.
+        """
+        return pulumi.get(self, "cores")
+
+    @_builtins.property
+    @pulumi.getter
+    def count(self) -> _builtins.int:
+        """
+        The total number of instances in the cluster (one primary and n-1 secondary).
+        """
+        return pulumi.get(self, "count")
+
+    @_builtins.property
+    @pulumi.getter
+    def ram(self) -> _builtins.int:
+        """
+        The amount of memory per instance in gigabytes (GB).
+        """
+        return pulumi.get(self, "ram")
+
+    @_builtins.property
+    @pulumi.getter(name="storageSize")
+    def storage_size(self) -> _builtins.int:
+        """
+        The amount of storage per instance in gigabytes (GB).
+        """
+        return pulumi.get(self, "storage_size")
+
+
+@pulumi.output_type
+class GetMariaDBClustersV2ItemMaintenanceWindowResult(dict):
+    def __init__(__self__, *,
+                 day_of_the_week: _builtins.str,
+                 time: _builtins.str):
+        """
+        :param _builtins.str day_of_the_week: The name of the week day.
+        :param _builtins.str time: Start of the maintenance window in UTC time.
+        """
+        pulumi.set(__self__, "day_of_the_week", day_of_the_week)
+        pulumi.set(__self__, "time", time)
+
+    @_builtins.property
+    @pulumi.getter(name="dayOfTheWeek")
+    def day_of_the_week(self) -> _builtins.str:
+        """
+        The name of the week day.
+        """
+        return pulumi.get(self, "day_of_the_week")
+
+    @_builtins.property
+    @pulumi.getter
+    def time(self) -> _builtins.str:
+        """
+        Start of the maintenance window in UTC time.
+        """
+        return pulumi.get(self, "time")
+
+
+@pulumi.output_type
+class GetMariaDBVersionsV2ItemResult(dict):
+    def __init__(__self__, *,
+                 can_upgrade_tos: Sequence[_builtins.str],
+                 comment: _builtins.str,
+                 id: _builtins.str,
+                 status: _builtins.str,
+                 version: _builtins.str):
+        """
+        :param Sequence[_builtins.str] can_upgrade_tos: List of versions that a cluster running this version can be upgraded to.
+        :param _builtins.str comment: Additional human-readable information about the version lifecycle.
+        :param _builtins.str id: The ID (UUID) of the version.
+        :param _builtins.str status: The support status of the version.
+        :param _builtins.str version: The MariaDB version string (e.g. `11.4`).
+        """
+        pulumi.set(__self__, "can_upgrade_tos", can_upgrade_tos)
+        pulumi.set(__self__, "comment", comment)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "status", status)
+        pulumi.set(__self__, "version", version)
+
+    @_builtins.property
+    @pulumi.getter(name="canUpgradeTos")
+    def can_upgrade_tos(self) -> Sequence[_builtins.str]:
+        """
+        List of versions that a cluster running this version can be upgraded to.
+        """
+        return pulumi.get(self, "can_upgrade_tos")
+
+    @_builtins.property
+    @pulumi.getter
+    def comment(self) -> _builtins.str:
+        """
+        Additional human-readable information about the version lifecycle.
+        """
+        return pulumi.get(self, "comment")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        The ID (UUID) of the version.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter
+    def status(self) -> _builtins.str:
+        """
+        The support status of the version.
+        """
+        return pulumi.get(self, "status")
+
+    @_builtins.property
+    @pulumi.getter
+    def version(self) -> _builtins.str:
+        """
+        The MariaDB version string (e.g. `11.4`).
+        """
+        return pulumi.get(self, "version")
 
 
 @pulumi.output_type
@@ -2968,7 +4032,7 @@ class GetPSQLBackupLocationV2BackupLocationResult(dict):
                  location: _builtins.str):
         """
         :param _builtins.str id: The ID (UUID) of the backup location.
-        :param _builtins.str location: [string] The region in which to look up backup locations. Available locations: `de/fra`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
+        :param _builtins.str location: [string] The region in which to look up backup locations. Available locations: `de/fra`, `de/fra/1`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
         """
         pulumi.set(__self__, "id", id)
         pulumi.set(__self__, "location", location)
@@ -2985,7 +4049,7 @@ class GetPSQLBackupLocationV2BackupLocationResult(dict):
     @pulumi.getter
     def location(self) -> _builtins.str:
         """
-        [string] The region in which to look up backup locations. Available locations: `de/fra`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
+        [string] The region in which to look up backup locations. Available locations: `de/fra`, `de/fra/1`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
         """
         return pulumi.get(self, "location")
 
@@ -3130,7 +4194,7 @@ class GetPSQLBackupsV2BackupResult(dict):
         :param _builtins.str id: The ID (UUID) of the backup.
         :param _builtins.bool is_active: Whether the backup is active.
         :param _builtins.str latest_recovery_target_time: The latest point in time to which the cluster can be restored. If the backup can be restored up to the current time, this field will be null.
-        :param _builtins.str location: [string] The region in which to look up backups. Available locations: `de/fra`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
+        :param _builtins.str location: [string] The region in which to look up backups. Available locations: `de/fra`, `de/fra/1`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
         :param _builtins.str postgres_cluster_version: The PostgreSQL version of the cluster when the backup was created.
         """
         pulumi.set(__self__, "cluster_id", cluster_id)
@@ -3185,7 +4249,7 @@ class GetPSQLBackupsV2BackupResult(dict):
     @pulumi.getter
     def location(self) -> _builtins.str:
         """
-        [string] The region in which to look up backups. Available locations: `de/fra`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
+        [string] The region in which to look up backups. Available locations: `de/fra`, `de/fra/1`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
         """
         return pulumi.get(self, "location")
 
@@ -3317,7 +4381,7 @@ class GetPSQLClusterV2BackupResult(dict):
                  location: _builtins.str,
                  retention_days: _builtins.int):
         """
-        :param _builtins.str location: [string] The region in which to look up the cluster. Available locations: `de/fra`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
+        :param _builtins.str location: [string] The region in which to look up the cluster. Available locations: `de/fra`, `de/fra/1`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
                
                Either `id` or `name` must be provided. If none, or both are provided, the datasource will return an error.
         :param _builtins.int retention_days: How many days cluster backups are retained.
@@ -3329,7 +4393,7 @@ class GetPSQLClusterV2BackupResult(dict):
     @pulumi.getter
     def location(self) -> _builtins.str:
         """
-        [string] The region in which to look up the cluster. Available locations: `de/fra`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
+        [string] The region in which to look up the cluster. Available locations: `de/fra`, `de/fra/1`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
 
         Either `id` or `name` must be provided. If none, or both are provided, the datasource will return an error.
         """
@@ -3489,7 +4553,7 @@ class GetPSQLClustersV2ClusterResult(dict):
         :param _builtins.str dns_name: The DNS name used to access the cluster.
         :param _builtins.str id: The ID (UUID) of the cluster.
         :param 'GetPSQLClustersV2ClusterInstancesArgs' instances: The instance configuration for the PostgreSQL cluster.
-        :param _builtins.str location: [string] The region in which to look up clusters. Available locations: `de/fra`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
+        :param _builtins.str location: [string] The region in which to look up clusters. Available locations: `de/fra`, `de/fra/1`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
         :param _builtins.bool logs_enabled: Whether the collection and reporting of logs is enabled for this cluster.
         :param 'GetPSQLClustersV2ClusterMaintenanceWindowArgs' maintenance_window: A weekly 4 hour-long window, during which maintenance might occur.
         :param _builtins.bool metrics_enabled: Whether the collection and reporting of metrics is enabled for this cluster.
@@ -3572,7 +4636,7 @@ class GetPSQLClustersV2ClusterResult(dict):
     @pulumi.getter
     def location(self) -> _builtins.str:
         """
-        [string] The region in which to look up clusters. Available locations: `de/fra`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
+        [string] The region in which to look up clusters. Available locations: `de/fra`, `de/fra/1`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
         """
         return pulumi.get(self, "location")
 
@@ -3631,7 +4695,7 @@ class GetPSQLClustersV2ClusterBackupResult(dict):
                  location: _builtins.str,
                  retention_days: _builtins.int):
         """
-        :param _builtins.str location: [string] The region in which to look up clusters. Available locations: `de/fra`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
+        :param _builtins.str location: [string] The region in which to look up clusters. Available locations: `de/fra`, `de/fra/1`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
         :param _builtins.int retention_days: How many days cluster backups are retained.
         """
         pulumi.set(__self__, "location", location)
@@ -3641,7 +4705,7 @@ class GetPSQLClustersV2ClusterBackupResult(dict):
     @pulumi.getter
     def location(self) -> _builtins.str:
         """
-        [string] The region in which to look up clusters. Available locations: `de/fra`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
+        [string] The region in which to look up clusters. Available locations: `de/fra`, `de/fra/1`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
         """
         return pulumi.get(self, "location")
 

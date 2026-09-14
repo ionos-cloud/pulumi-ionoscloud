@@ -32,14 +32,14 @@ public final class GetClusterPlainArgs extends com.pulumi.resources.InvokeArgs {
     }
 
     /**
-     * The location where the Network File Storage cluster is located. Available locations: `de/fra`, `de/fra/2`, `de/txl`, `fr/par`, `gb/lhr`, `es/vit`, `us/las`, `us/ewr`, `us/mci`.
+     * The location where the Network File Storage cluster is located. Available locations: `de/fra`, `de/fra/1`, `de/fra/2`, `de/txl`, `fr/par`, `gb/lhr`, `es/vit`, `us/las`, `us/ewr`, `us/mci`.
      * 
      */
     @Import(name="location", required=true)
     private String location;
 
     /**
-     * @return The location where the Network File Storage cluster is located. Available locations: `de/fra`, `de/fra/2`, `de/txl`, `fr/par`, `gb/lhr`, `es/vit`, `us/las`, `us/ewr`, `us/mci`.
+     * @return The location where the Network File Storage cluster is located. Available locations: `de/fra`, `de/fra/1`, `de/fra/2`, `de/txl`, `fr/par`, `gb/lhr`, `es/vit`, `us/las`, `us/ewr`, `us/mci`.
      * 
      */
     public String location() {
@@ -115,7 +115,7 @@ public final class GetClusterPlainArgs extends com.pulumi.resources.InvokeArgs {
         }
 
         /**
-         * @param location The location where the Network File Storage cluster is located. Available locations: `de/fra`, `de/fra/2`, `de/txl`, `fr/par`, `gb/lhr`, `es/vit`, `us/las`, `us/ewr`, `us/mci`.
+         * @param location The location where the Network File Storage cluster is located. Available locations: `de/fra`, `de/fra/1`, `de/fra/2`, `de/txl`, `fr/par`, `gb/lhr`, `es/vit`, `us/las`, `us/ewr`, `us/mci`.
          * 
          * @return builder
          * 

@@ -26,6 +26,7 @@ class ServerArgs:
                  availability_zone: pulumi.Input[Optional[_builtins.str]] = None,
                  boot_cdrom: pulumi.Input[Optional[_builtins.str]] = None,
                  boot_image: pulumi.Input[Optional[_builtins.str]] = None,
+                 confidential: pulumi.Input[Optional[_builtins.bool]] = None,
                  cores: pulumi.Input[Optional[_builtins.int]] = None,
                  cpu_family: pulumi.Input[Optional[_builtins.str]] = None,
                  firewallrule_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
@@ -53,17 +54,7 @@ class ServerArgs:
         :param pulumi.Input[_builtins.str] availability_zone: [string] The availability zone in which the server should exist. E.g: `AUTO`, `ZONE_1`, `ZONE_2`. This property is immutable.
         :param pulumi.Input[_builtins.str] boot_cdrom: ***DEPRECATED*** Please refer to compute.BootDeviceSelection (Optional)(Computed)[string] The associated boot drive, if any. Must be the UUID of a bootable CDROM image that can be retrieved using the compute_get_image data source.
         :param pulumi.Input[_builtins.str] boot_image: [string] The image or snapshot UUID / name. May also be an image alias. It is required if `licence_type` is not provided.
-        :param pulumi.Input[_builtins.int] cores: (Computed)[integer] Number of server CPU cores.
-        :param pulumi.Input[_builtins.str] cpu_family: [string] CPU architecture on which server gets provisioned; not all CPU architectures are available in all datacenter regions; available CPU architectures can be retrieved from the datacenter resource. E.g.: "INTEL_SKYLAKE" or "INTEL_XEON".
-        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] firewallrule_ids: The associated firewall rules.
-        :param pulumi.Input[_builtins.str] hostname: (Computed)[string] The hostname of the resource. Allowed characters are a-z, 0-9 and - (minus). Hostname should not start with minus and should not be longer than 63 characters. If no value provided explicitly, it will be populated with the name of the server
-        :param pulumi.Input[_builtins.str] image_name: [string] The name, ID or alias of the image. May also be a snapshot ID. It is required if `licence_type` is not provided. Attribute is immutable.
-        :param pulumi.Input[_builtins.str] image_password: [string] Required if `ssh_key_path` is not provided.
-        :param pulumi.Input[Sequence[pulumi.Input['ServerLabelArgs']]] labels: [set] A label can be seen as an object with only two required fields: `key` and `value`, both of the `string` type. Please check the example presented above to see how a `label` can be used in the plan. A server can have multiple labels.
-        :param pulumi.Input[_builtins.str] location: The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
-        :param pulumi.Input[_builtins.str] name: [string] The name of the server.
-        :param pulumi.Input['ServerNicArgs'] nic: See the Nic section.
-        :param pulumi.Input[_builtins.bool] nic_multi_queue: [bool] Activate or deactivate the Multi Queue feature on all NICs of the server. This feature is beneficial to enable when the NICs are experiencing performance issues (e.g. low throughput). Toggling this feature will also initiate a restart of the server. If the specified value is `true`, the feature will be activated; if it is not specified or set to `false`, the feature will be deactivated. The feature cannot be activated for `CUBE` servers.
+        :param pulumi.Input[_builtins.bool] confidential: (Computed)[bool] If set, creates a Confidential Computing (SEV-SNP) VM from a confidential boot image. Requires `type = "ENTERPRISE"`, a `volume` block, and a private SEV-SNP `image_name`. `cores` and `cpu_family` must not be set - both are derived from the image. This property is immutable (changing it re-creates the server; use `allow_replace = true`). It is computed on read from the server's enabled features, so imported servers reflect their real state instead of forcing a spurious re-creation. Only available in confidential-computing enabled locations.
                
                ⚠️ **_Warning: `allow_replace` - lets you update immutable fields, but it first destroys and then re-creates the server in order to do it. This field should be used with care, understanding the risks._**
                
@@ -78,6 +69,17 @@ class ServerArgs:
                > If you want to create a **CUBE** server, you have to provide the `template_uuid`. In this case you can not set `cores`, `ram` and `volume.size` arguments, these being mutually exclusive with `template_uuid`.
                >
                > In all the other cases (**ENTERPRISE** servers) you have to provide values for `cores`, `ram` and `volume size`.
+        :param pulumi.Input[_builtins.int] cores: (Computed)[integer] Number of server CPU cores.
+        :param pulumi.Input[_builtins.str] cpu_family: [string] CPU architecture on which server gets provisioned; not all CPU architectures are available in all datacenter regions; available CPU architectures can be retrieved from the datacenter resource. E.g.: "INTEL_SKYLAKE" or "INTEL_XEON".
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] firewallrule_ids: The associated firewall rules.
+        :param pulumi.Input[_builtins.str] hostname: (Computed)[string] The hostname of the resource. Allowed characters are a-z, 0-9 and - (minus). Hostname should not start with minus and should not be longer than 63 characters. If no value provided explicitly, it will be populated with the name of the server
+        :param pulumi.Input[_builtins.str] image_name: [string] The name, ID or alias of the image. May also be a snapshot ID. It is required if `licence_type` is not provided. Attribute is immutable.
+        :param pulumi.Input[_builtins.str] image_password: [string] Required if `ssh_key_path` is not provided.
+        :param pulumi.Input[Sequence[pulumi.Input['ServerLabelArgs']]] labels: [set] A label can be seen as an object with only two required fields: `key` and `value`, both of the `string` type. Please check the example presented above to see how a `label` can be used in the plan. A server can have multiple labels.
+        :param pulumi.Input[_builtins.str] location: The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+        :param pulumi.Input[_builtins.str] name: [string] The name of the server.
+        :param pulumi.Input['ServerNicArgs'] nic: See the Nic section.
+        :param pulumi.Input[_builtins.bool] nic_multi_queue: [bool] Activate or deactivate the Multi Queue feature on all NICs of the server. This feature is beneficial to enable when the NICs are experiencing performance issues (e.g. low throughput). Toggling this feature will also initiate a restart of the server. If the specified value is `true`, the feature will be activated; if it is not specified or set to `false`, the feature will be deactivated. The feature cannot be activated for `CUBE` servers.
         :param pulumi.Input[_builtins.int] ram: (Computed)[integer] The amount of memory for the server in MB.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] security_groups_ids: The list of Security Group IDs for the
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ssh_key_paths: [list] List of absolute paths to files containing a public SSH key that will be injected into IONOS CLOUD provided Linux images.  Also accepts ssh keys directly. Required for IONOS CLOUD Linux images. Required if `image_password` is not provided. Does not support `~` expansion to homedir in the given path. This property is immutable.
@@ -99,6 +101,8 @@ class ServerArgs:
             pulumi.set(__self__, "boot_cdrom", boot_cdrom)
         if boot_image is not None:
             pulumi.set(__self__, "boot_image", boot_image)
+        if confidential is not None:
+            pulumi.set(__self__, "confidential", confidential)
         if cores is not None:
             pulumi.set(__self__, "cores", cores)
         if cpu_family is not None:
@@ -201,6 +205,32 @@ class ServerArgs:
     @boot_image.setter
     def boot_image(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "boot_image", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def confidential(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        """
+        (Computed)[bool] If set, creates a Confidential Computing (SEV-SNP) VM from a confidential boot image. Requires `type = "ENTERPRISE"`, a `volume` block, and a private SEV-SNP `image_name`. `cores` and `cpu_family` must not be set - both are derived from the image. This property is immutable (changing it re-creates the server; use `allow_replace = true`). It is computed on read from the server's enabled features, so imported servers reflect their real state instead of forcing a spurious re-creation. Only available in confidential-computing enabled locations.
+
+        ⚠️ **_Warning: `allow_replace` - lets you update immutable fields, but it first destroys and then re-creates the server in order to do it. This field should be used with care, understanding the risks._**
+
+        > **⚠ WARNING**
+        >
+        > Image_name under volume level is deprecated, please use image_name under server level
+        > ssh_key_path and ssh_keys fields are immutable.
+
+
+        > **⚠ WARNING**
+        >
+        > If you want to create a **CUBE** server, you have to provide the `template_uuid`. In this case you can not set `cores`, `ram` and `volume.size` arguments, these being mutually exclusive with `template_uuid`.
+        >
+        > In all the other cases (**ENTERPRISE** servers) you have to provide values for `cores`, `ram` and `volume size`.
+        """
+        return pulumi.get(self, "confidential")
+
+    @confidential.setter
+    def confidential(self, value: pulumi.Input[Optional[_builtins.bool]]):
+        pulumi.set(self, "confidential", value)
 
     @_builtins.property
     @pulumi.getter
@@ -327,20 +357,6 @@ class ServerArgs:
     def nic_multi_queue(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         [bool] Activate or deactivate the Multi Queue feature on all NICs of the server. This feature is beneficial to enable when the NICs are experiencing performance issues (e.g. low throughput). Toggling this feature will also initiate a restart of the server. If the specified value is `true`, the feature will be activated; if it is not specified or set to `false`, the feature will be deactivated. The feature cannot be activated for `CUBE` servers.
-
-        ⚠️ **_Warning: `allow_replace` - lets you update immutable fields, but it first destroys and then re-creates the server in order to do it. This field should be used with care, understanding the risks._**
-
-        > **⚠ WARNING**
-        >
-        > Image_name under volume level is deprecated, please use image_name under server level
-        > ssh_key_path and ssh_keys fields are immutable.
-
-
-        > **⚠ WARNING**
-        >
-        > If you want to create a **CUBE** server, you have to provide the `template_uuid`. In this case you can not set `cores`, `ram` and `volume.size` arguments, these being mutually exclusive with `template_uuid`.
-        >
-        > In all the other cases (**ENTERPRISE** servers) you have to provide values for `cores`, `ram` and `volume size`.
         """
         return pulumi.get(self, "nic_multi_queue")
 
@@ -454,9 +470,11 @@ class _ServerState:
                  boot_cdrom: pulumi.Input[Optional[_builtins.str]] = None,
                  boot_image: pulumi.Input[Optional[_builtins.str]] = None,
                  boot_volume: pulumi.Input[Optional[_builtins.str]] = None,
+                 confidential: pulumi.Input[Optional[_builtins.bool]] = None,
                  cores: pulumi.Input[Optional[_builtins.int]] = None,
                  cpu_family: pulumi.Input[Optional[_builtins.str]] = None,
                  datacenter_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 enabled_features: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  firewallrule_id: pulumi.Input[Optional[_builtins.str]] = None,
                  firewallrule_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  hostname: pulumi.Input[Optional[_builtins.str]] = None,
@@ -486,20 +504,7 @@ class _ServerState:
         :param pulumi.Input[_builtins.str] boot_cdrom: ***DEPRECATED*** Please refer to compute.BootDeviceSelection (Optional)(Computed)[string] The associated boot drive, if any. Must be the UUID of a bootable CDROM image that can be retrieved using the compute_get_image data source.
         :param pulumi.Input[_builtins.str] boot_image: [string] The image or snapshot UUID / name. May also be an image alias. It is required if `licence_type` is not provided.
         :param pulumi.Input[_builtins.str] boot_volume: The associated boot volume.
-        :param pulumi.Input[_builtins.int] cores: (Computed)[integer] Number of server CPU cores.
-        :param pulumi.Input[_builtins.str] cpu_family: [string] CPU architecture on which server gets provisioned; not all CPU architectures are available in all datacenter regions; available CPU architectures can be retrieved from the datacenter resource. E.g.: "INTEL_SKYLAKE" or "INTEL_XEON".
-        :param pulumi.Input[_builtins.str] datacenter_id: [string] The ID of a Virtual Data Center.
-        :param pulumi.Input[_builtins.str] firewallrule_id: The associated firewall rule.
-        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] firewallrule_ids: The associated firewall rules.
-        :param pulumi.Input[_builtins.str] hostname: (Computed)[string] The hostname of the resource. Allowed characters are a-z, 0-9 and - (minus). Hostname should not start with minus and should not be longer than 63 characters. If no value provided explicitly, it will be populated with the name of the server
-        :param pulumi.Input[_builtins.str] image_name: [string] The name, ID or alias of the image. May also be a snapshot ID. It is required if `licence_type` is not provided. Attribute is immutable.
-        :param pulumi.Input[_builtins.str] image_password: [string] Required if `ssh_key_path` is not provided.
-        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] inline_volume_ids: A list with the IDs for the volumes that are defined inside the server resource.
-        :param pulumi.Input[Sequence[pulumi.Input['ServerLabelArgs']]] labels: [set] A label can be seen as an object with only two required fields: `key` and `value`, both of the `string` type. Please check the example presented above to see how a `label` can be used in the plan. A server can have multiple labels.
-        :param pulumi.Input[_builtins.str] location: The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
-        :param pulumi.Input[_builtins.str] name: [string] The name of the server.
-        :param pulumi.Input['ServerNicArgs'] nic: See the Nic section.
-        :param pulumi.Input[_builtins.bool] nic_multi_queue: [bool] Activate or deactivate the Multi Queue feature on all NICs of the server. This feature is beneficial to enable when the NICs are experiencing performance issues (e.g. low throughput). Toggling this feature will also initiate a restart of the server. If the specified value is `true`, the feature will be activated; if it is not specified or set to `false`, the feature will be deactivated. The feature cannot be activated for `CUBE` servers.
+        :param pulumi.Input[_builtins.bool] confidential: (Computed)[bool] If set, creates a Confidential Computing (SEV-SNP) VM from a confidential boot image. Requires `type = "ENTERPRISE"`, a `volume` block, and a private SEV-SNP `image_name`. `cores` and `cpu_family` must not be set - both are derived from the image. This property is immutable (changing it re-creates the server; use `allow_replace = true`). It is computed on read from the server's enabled features, so imported servers reflect their real state instead of forcing a spurious re-creation. Only available in confidential-computing enabled locations.
                
                ⚠️ **_Warning: `allow_replace` - lets you update immutable fields, but it first destroys and then re-creates the server in order to do it. This field should be used with care, understanding the risks._**
                
@@ -514,6 +519,21 @@ class _ServerState:
                > If you want to create a **CUBE** server, you have to provide the `template_uuid`. In this case you can not set `cores`, `ram` and `volume.size` arguments, these being mutually exclusive with `template_uuid`.
                >
                > In all the other cases (**ENTERPRISE** servers) you have to provide values for `cores`, `ram` and `volume size`.
+        :param pulumi.Input[_builtins.int] cores: (Computed)[integer] Number of server CPU cores.
+        :param pulumi.Input[_builtins.str] cpu_family: [string] CPU architecture on which server gets provisioned; not all CPU architectures are available in all datacenter regions; available CPU architectures can be retrieved from the datacenter resource. E.g.: "INTEL_SKYLAKE" or "INTEL_XEON".
+        :param pulumi.Input[_builtins.str] datacenter_id: [string] The ID of a Virtual Data Center.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] enabled_features: Features enabled on the server, e.g. `SEV-SNP` for a Confidential Computing VM.
+        :param pulumi.Input[_builtins.str] firewallrule_id: The associated firewall rule.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] firewallrule_ids: The associated firewall rules.
+        :param pulumi.Input[_builtins.str] hostname: (Computed)[string] The hostname of the resource. Allowed characters are a-z, 0-9 and - (minus). Hostname should not start with minus and should not be longer than 63 characters. If no value provided explicitly, it will be populated with the name of the server
+        :param pulumi.Input[_builtins.str] image_name: [string] The name, ID or alias of the image. May also be a snapshot ID. It is required if `licence_type` is not provided. Attribute is immutable.
+        :param pulumi.Input[_builtins.str] image_password: [string] Required if `ssh_key_path` is not provided.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] inline_volume_ids: A list with the IDs for the volumes that are defined inside the server resource.
+        :param pulumi.Input[Sequence[pulumi.Input['ServerLabelArgs']]] labels: [set] A label can be seen as an object with only two required fields: `key` and `value`, both of the `string` type. Please check the example presented above to see how a `label` can be used in the plan. A server can have multiple labels.
+        :param pulumi.Input[_builtins.str] location: The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+        :param pulumi.Input[_builtins.str] name: [string] The name of the server.
+        :param pulumi.Input['ServerNicArgs'] nic: See the Nic section.
+        :param pulumi.Input[_builtins.bool] nic_multi_queue: [bool] Activate or deactivate the Multi Queue feature on all NICs of the server. This feature is beneficial to enable when the NICs are experiencing performance issues (e.g. low throughput). Toggling this feature will also initiate a restart of the server. If the specified value is `true`, the feature will be activated; if it is not specified or set to `false`, the feature will be deactivated. The feature cannot be activated for `CUBE` servers.
         :param pulumi.Input[_builtins.str] primary_ip: The associated IP address.
         :param pulumi.Input[_builtins.str] primary_nic: The associated NIC.
         :param pulumi.Input[_builtins.int] ram: (Computed)[integer] The amount of memory for the server in MB.
@@ -538,12 +558,16 @@ class _ServerState:
             pulumi.set(__self__, "boot_image", boot_image)
         if boot_volume is not None:
             pulumi.set(__self__, "boot_volume", boot_volume)
+        if confidential is not None:
+            pulumi.set(__self__, "confidential", confidential)
         if cores is not None:
             pulumi.set(__self__, "cores", cores)
         if cpu_family is not None:
             pulumi.set(__self__, "cpu_family", cpu_family)
         if datacenter_id is not None:
             pulumi.set(__self__, "datacenter_id", datacenter_id)
+        if enabled_features is not None:
+            pulumi.set(__self__, "enabled_features", enabled_features)
         if firewallrule_id is not None:
             pulumi.set(__self__, "firewallrule_id", firewallrule_id)
         if firewallrule_ids is not None:
@@ -653,6 +677,32 @@ class _ServerState:
 
     @_builtins.property
     @pulumi.getter
+    def confidential(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        """
+        (Computed)[bool] If set, creates a Confidential Computing (SEV-SNP) VM from a confidential boot image. Requires `type = "ENTERPRISE"`, a `volume` block, and a private SEV-SNP `image_name`. `cores` and `cpu_family` must not be set - both are derived from the image. This property is immutable (changing it re-creates the server; use `allow_replace = true`). It is computed on read from the server's enabled features, so imported servers reflect their real state instead of forcing a spurious re-creation. Only available in confidential-computing enabled locations.
+
+        ⚠️ **_Warning: `allow_replace` - lets you update immutable fields, but it first destroys and then re-creates the server in order to do it. This field should be used with care, understanding the risks._**
+
+        > **⚠ WARNING**
+        >
+        > Image_name under volume level is deprecated, please use image_name under server level
+        > ssh_key_path and ssh_keys fields are immutable.
+
+
+        > **⚠ WARNING**
+        >
+        > If you want to create a **CUBE** server, you have to provide the `template_uuid`. In this case you can not set `cores`, `ram` and `volume.size` arguments, these being mutually exclusive with `template_uuid`.
+        >
+        > In all the other cases (**ENTERPRISE** servers) you have to provide values for `cores`, `ram` and `volume size`.
+        """
+        return pulumi.get(self, "confidential")
+
+    @confidential.setter
+    def confidential(self, value: pulumi.Input[Optional[_builtins.bool]]):
+        pulumi.set(self, "confidential", value)
+
+    @_builtins.property
+    @pulumi.getter
     def cores(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         (Computed)[integer] Number of server CPU cores.
@@ -686,6 +736,18 @@ class _ServerState:
     @datacenter_id.setter
     def datacenter_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "datacenter_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="enabledFeatures")
+    def enabled_features(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
+        """
+        Features enabled on the server, e.g. `SEV-SNP` for a Confidential Computing VM.
+        """
+        return pulumi.get(self, "enabled_features")
+
+    @enabled_features.setter
+    def enabled_features(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "enabled_features", value)
 
     @_builtins.property
     @pulumi.getter(name="firewallruleId")
@@ -812,20 +874,6 @@ class _ServerState:
     def nic_multi_queue(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         [bool] Activate or deactivate the Multi Queue feature on all NICs of the server. This feature is beneficial to enable when the NICs are experiencing performance issues (e.g. low throughput). Toggling this feature will also initiate a restart of the server. If the specified value is `true`, the feature will be activated; if it is not specified or set to `false`, the feature will be deactivated. The feature cannot be activated for `CUBE` servers.
-
-        ⚠️ **_Warning: `allow_replace` - lets you update immutable fields, but it first destroys and then re-creates the server in order to do it. This field should be used with care, understanding the risks._**
-
-        > **⚠ WARNING**
-        >
-        > Image_name under volume level is deprecated, please use image_name under server level
-        > ssh_key_path and ssh_keys fields are immutable.
-
-
-        > **⚠ WARNING**
-        >
-        > If you want to create a **CUBE** server, you have to provide the `template_uuid`. In this case you can not set `cores`, `ram` and `volume.size` arguments, these being mutually exclusive with `template_uuid`.
-        >
-        > In all the other cases (**ENTERPRISE** servers) you have to provide values for `cores`, `ram` and `volume size`.
         """
         return pulumi.get(self, "nic_multi_queue")
 
@@ -965,6 +1013,7 @@ class Server(pulumi.CustomResource):
                  availability_zone: pulumi.Input[Optional[_builtins.str]] = None,
                  boot_cdrom: pulumi.Input[Optional[_builtins.str]] = None,
                  boot_image: pulumi.Input[Optional[_builtins.str]] = None,
+                 confidential: pulumi.Input[Optional[_builtins.bool]] = None,
                  cores: pulumi.Input[Optional[_builtins.int]] = None,
                  cpu_family: pulumi.Input[Optional[_builtins.str]] = None,
                  datacenter_id: pulumi.Input[Optional[_builtins.str]] = None,
@@ -1247,18 +1296,7 @@ class Server(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] availability_zone: [string] The availability zone in which the server should exist. E.g: `AUTO`, `ZONE_1`, `ZONE_2`. This property is immutable.
         :param pulumi.Input[_builtins.str] boot_cdrom: ***DEPRECATED*** Please refer to compute.BootDeviceSelection (Optional)(Computed)[string] The associated boot drive, if any. Must be the UUID of a bootable CDROM image that can be retrieved using the compute_get_image data source.
         :param pulumi.Input[_builtins.str] boot_image: [string] The image or snapshot UUID / name. May also be an image alias. It is required if `licence_type` is not provided.
-        :param pulumi.Input[_builtins.int] cores: (Computed)[integer] Number of server CPU cores.
-        :param pulumi.Input[_builtins.str] cpu_family: [string] CPU architecture on which server gets provisioned; not all CPU architectures are available in all datacenter regions; available CPU architectures can be retrieved from the datacenter resource. E.g.: "INTEL_SKYLAKE" or "INTEL_XEON".
-        :param pulumi.Input[_builtins.str] datacenter_id: [string] The ID of a Virtual Data Center.
-        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] firewallrule_ids: The associated firewall rules.
-        :param pulumi.Input[_builtins.str] hostname: (Computed)[string] The hostname of the resource. Allowed characters are a-z, 0-9 and - (minus). Hostname should not start with minus and should not be longer than 63 characters. If no value provided explicitly, it will be populated with the name of the server
-        :param pulumi.Input[_builtins.str] image_name: [string] The name, ID or alias of the image. May also be a snapshot ID. It is required if `licence_type` is not provided. Attribute is immutable.
-        :param pulumi.Input[_builtins.str] image_password: [string] Required if `ssh_key_path` is not provided.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['ServerLabelArgs', 'ServerLabelArgsDict']]]] labels: [set] A label can be seen as an object with only two required fields: `key` and `value`, both of the `string` type. Please check the example presented above to see how a `label` can be used in the plan. A server can have multiple labels.
-        :param pulumi.Input[_builtins.str] location: The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
-        :param pulumi.Input[_builtins.str] name: [string] The name of the server.
-        :param pulumi.Input[Union['ServerNicArgs', 'ServerNicArgsDict']] nic: See the Nic section.
-        :param pulumi.Input[_builtins.bool] nic_multi_queue: [bool] Activate or deactivate the Multi Queue feature on all NICs of the server. This feature is beneficial to enable when the NICs are experiencing performance issues (e.g. low throughput). Toggling this feature will also initiate a restart of the server. If the specified value is `true`, the feature will be activated; if it is not specified or set to `false`, the feature will be deactivated. The feature cannot be activated for `CUBE` servers.
+        :param pulumi.Input[_builtins.bool] confidential: (Computed)[bool] If set, creates a Confidential Computing (SEV-SNP) VM from a confidential boot image. Requires `type = "ENTERPRISE"`, a `volume` block, and a private SEV-SNP `image_name`. `cores` and `cpu_family` must not be set - both are derived from the image. This property is immutable (changing it re-creates the server; use `allow_replace = true`). It is computed on read from the server's enabled features, so imported servers reflect their real state instead of forcing a spurious re-creation. Only available in confidential-computing enabled locations.
                
                ⚠️ **_Warning: `allow_replace` - lets you update immutable fields, but it first destroys and then re-creates the server in order to do it. This field should be used with care, understanding the risks._**
                
@@ -1273,6 +1311,18 @@ class Server(pulumi.CustomResource):
                > If you want to create a **CUBE** server, you have to provide the `template_uuid`. In this case you can not set `cores`, `ram` and `volume.size` arguments, these being mutually exclusive with `template_uuid`.
                >
                > In all the other cases (**ENTERPRISE** servers) you have to provide values for `cores`, `ram` and `volume size`.
+        :param pulumi.Input[_builtins.int] cores: (Computed)[integer] Number of server CPU cores.
+        :param pulumi.Input[_builtins.str] cpu_family: [string] CPU architecture on which server gets provisioned; not all CPU architectures are available in all datacenter regions; available CPU architectures can be retrieved from the datacenter resource. E.g.: "INTEL_SKYLAKE" or "INTEL_XEON".
+        :param pulumi.Input[_builtins.str] datacenter_id: [string] The ID of a Virtual Data Center.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] firewallrule_ids: The associated firewall rules.
+        :param pulumi.Input[_builtins.str] hostname: (Computed)[string] The hostname of the resource. Allowed characters are a-z, 0-9 and - (minus). Hostname should not start with minus and should not be longer than 63 characters. If no value provided explicitly, it will be populated with the name of the server
+        :param pulumi.Input[_builtins.str] image_name: [string] The name, ID or alias of the image. May also be a snapshot ID. It is required if `licence_type` is not provided. Attribute is immutable.
+        :param pulumi.Input[_builtins.str] image_password: [string] Required if `ssh_key_path` is not provided.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ServerLabelArgs', 'ServerLabelArgsDict']]]] labels: [set] A label can be seen as an object with only two required fields: `key` and `value`, both of the `string` type. Please check the example presented above to see how a `label` can be used in the plan. A server can have multiple labels.
+        :param pulumi.Input[_builtins.str] location: The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+        :param pulumi.Input[_builtins.str] name: [string] The name of the server.
+        :param pulumi.Input[Union['ServerNicArgs', 'ServerNicArgsDict']] nic: See the Nic section.
+        :param pulumi.Input[_builtins.bool] nic_multi_queue: [bool] Activate or deactivate the Multi Queue feature on all NICs of the server. This feature is beneficial to enable when the NICs are experiencing performance issues (e.g. low throughput). Toggling this feature will also initiate a restart of the server. If the specified value is `true`, the feature will be activated; if it is not specified or set to `false`, the feature will be deactivated. The feature cannot be activated for `CUBE` servers.
         :param pulumi.Input[_builtins.int] ram: (Computed)[integer] The amount of memory for the server in MB.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] security_groups_ids: The list of Security Group IDs for the
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ssh_key_paths: [list] List of absolute paths to files containing a public SSH key that will be injected into IONOS CLOUD provided Linux images.  Also accepts ssh keys directly. Required for IONOS CLOUD Linux images. Required if `image_password` is not provided. Does not support `~` expansion to homedir in the given path. This property is immutable.
@@ -1562,6 +1612,7 @@ class Server(pulumi.CustomResource):
                  availability_zone: pulumi.Input[Optional[_builtins.str]] = None,
                  boot_cdrom: pulumi.Input[Optional[_builtins.str]] = None,
                  boot_image: pulumi.Input[Optional[_builtins.str]] = None,
+                 confidential: pulumi.Input[Optional[_builtins.bool]] = None,
                  cores: pulumi.Input[Optional[_builtins.int]] = None,
                  cpu_family: pulumi.Input[Optional[_builtins.str]] = None,
                  datacenter_id: pulumi.Input[Optional[_builtins.str]] = None,
@@ -1595,6 +1646,7 @@ class Server(pulumi.CustomResource):
             __props__.__dict__["availability_zone"] = availability_zone
             __props__.__dict__["boot_cdrom"] = boot_cdrom
             __props__.__dict__["boot_image"] = boot_image
+            __props__.__dict__["confidential"] = confidential
             __props__.__dict__["cores"] = cores
             __props__.__dict__["cpu_family"] = cpu_family
             if datacenter_id is None and not opts.urn:
@@ -1618,6 +1670,7 @@ class Server(pulumi.CustomResource):
             __props__.__dict__["vm_state"] = vm_state
             __props__.__dict__["volume"] = volume
             __props__.__dict__["boot_volume"] = None
+            __props__.__dict__["enabled_features"] = None
             __props__.__dict__["firewallrule_id"] = None
             __props__.__dict__["inline_volume_ids"] = None
             __props__.__dict__["primary_ip"] = None
@@ -1639,9 +1692,11 @@ class Server(pulumi.CustomResource):
             boot_cdrom: pulumi.Input[Optional[_builtins.str]] = None,
             boot_image: pulumi.Input[Optional[_builtins.str]] = None,
             boot_volume: pulumi.Input[Optional[_builtins.str]] = None,
+            confidential: pulumi.Input[Optional[_builtins.bool]] = None,
             cores: pulumi.Input[Optional[_builtins.int]] = None,
             cpu_family: pulumi.Input[Optional[_builtins.str]] = None,
             datacenter_id: pulumi.Input[Optional[_builtins.str]] = None,
+            enabled_features: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
             firewallrule_id: pulumi.Input[Optional[_builtins.str]] = None,
             firewallrule_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
             hostname: pulumi.Input[Optional[_builtins.str]] = None,
@@ -1675,20 +1730,7 @@ class Server(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] boot_cdrom: ***DEPRECATED*** Please refer to compute.BootDeviceSelection (Optional)(Computed)[string] The associated boot drive, if any. Must be the UUID of a bootable CDROM image that can be retrieved using the compute_get_image data source.
         :param pulumi.Input[_builtins.str] boot_image: [string] The image or snapshot UUID / name. May also be an image alias. It is required if `licence_type` is not provided.
         :param pulumi.Input[_builtins.str] boot_volume: The associated boot volume.
-        :param pulumi.Input[_builtins.int] cores: (Computed)[integer] Number of server CPU cores.
-        :param pulumi.Input[_builtins.str] cpu_family: [string] CPU architecture on which server gets provisioned; not all CPU architectures are available in all datacenter regions; available CPU architectures can be retrieved from the datacenter resource. E.g.: "INTEL_SKYLAKE" or "INTEL_XEON".
-        :param pulumi.Input[_builtins.str] datacenter_id: [string] The ID of a Virtual Data Center.
-        :param pulumi.Input[_builtins.str] firewallrule_id: The associated firewall rule.
-        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] firewallrule_ids: The associated firewall rules.
-        :param pulumi.Input[_builtins.str] hostname: (Computed)[string] The hostname of the resource. Allowed characters are a-z, 0-9 and - (minus). Hostname should not start with minus and should not be longer than 63 characters. If no value provided explicitly, it will be populated with the name of the server
-        :param pulumi.Input[_builtins.str] image_name: [string] The name, ID or alias of the image. May also be a snapshot ID. It is required if `licence_type` is not provided. Attribute is immutable.
-        :param pulumi.Input[_builtins.str] image_password: [string] Required if `ssh_key_path` is not provided.
-        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] inline_volume_ids: A list with the IDs for the volumes that are defined inside the server resource.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['ServerLabelArgs', 'ServerLabelArgsDict']]]] labels: [set] A label can be seen as an object with only two required fields: `key` and `value`, both of the `string` type. Please check the example presented above to see how a `label` can be used in the plan. A server can have multiple labels.
-        :param pulumi.Input[_builtins.str] location: The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
-        :param pulumi.Input[_builtins.str] name: [string] The name of the server.
-        :param pulumi.Input[Union['ServerNicArgs', 'ServerNicArgsDict']] nic: See the Nic section.
-        :param pulumi.Input[_builtins.bool] nic_multi_queue: [bool] Activate or deactivate the Multi Queue feature on all NICs of the server. This feature is beneficial to enable when the NICs are experiencing performance issues (e.g. low throughput). Toggling this feature will also initiate a restart of the server. If the specified value is `true`, the feature will be activated; if it is not specified or set to `false`, the feature will be deactivated. The feature cannot be activated for `CUBE` servers.
+        :param pulumi.Input[_builtins.bool] confidential: (Computed)[bool] If set, creates a Confidential Computing (SEV-SNP) VM from a confidential boot image. Requires `type = "ENTERPRISE"`, a `volume` block, and a private SEV-SNP `image_name`. `cores` and `cpu_family` must not be set - both are derived from the image. This property is immutable (changing it re-creates the server; use `allow_replace = true`). It is computed on read from the server's enabled features, so imported servers reflect their real state instead of forcing a spurious re-creation. Only available in confidential-computing enabled locations.
                
                ⚠️ **_Warning: `allow_replace` - lets you update immutable fields, but it first destroys and then re-creates the server in order to do it. This field should be used with care, understanding the risks._**
                
@@ -1703,6 +1745,21 @@ class Server(pulumi.CustomResource):
                > If you want to create a **CUBE** server, you have to provide the `template_uuid`. In this case you can not set `cores`, `ram` and `volume.size` arguments, these being mutually exclusive with `template_uuid`.
                >
                > In all the other cases (**ENTERPRISE** servers) you have to provide values for `cores`, `ram` and `volume size`.
+        :param pulumi.Input[_builtins.int] cores: (Computed)[integer] Number of server CPU cores.
+        :param pulumi.Input[_builtins.str] cpu_family: [string] CPU architecture on which server gets provisioned; not all CPU architectures are available in all datacenter regions; available CPU architectures can be retrieved from the datacenter resource. E.g.: "INTEL_SKYLAKE" or "INTEL_XEON".
+        :param pulumi.Input[_builtins.str] datacenter_id: [string] The ID of a Virtual Data Center.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] enabled_features: Features enabled on the server, e.g. `SEV-SNP` for a Confidential Computing VM.
+        :param pulumi.Input[_builtins.str] firewallrule_id: The associated firewall rule.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] firewallrule_ids: The associated firewall rules.
+        :param pulumi.Input[_builtins.str] hostname: (Computed)[string] The hostname of the resource. Allowed characters are a-z, 0-9 and - (minus). Hostname should not start with minus and should not be longer than 63 characters. If no value provided explicitly, it will be populated with the name of the server
+        :param pulumi.Input[_builtins.str] image_name: [string] The name, ID or alias of the image. May also be a snapshot ID. It is required if `licence_type` is not provided. Attribute is immutable.
+        :param pulumi.Input[_builtins.str] image_password: [string] Required if `ssh_key_path` is not provided.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] inline_volume_ids: A list with the IDs for the volumes that are defined inside the server resource.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ServerLabelArgs', 'ServerLabelArgsDict']]]] labels: [set] A label can be seen as an object with only two required fields: `key` and `value`, both of the `string` type. Please check the example presented above to see how a `label` can be used in the plan. A server can have multiple labels.
+        :param pulumi.Input[_builtins.str] location: The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
+        :param pulumi.Input[_builtins.str] name: [string] The name of the server.
+        :param pulumi.Input[Union['ServerNicArgs', 'ServerNicArgsDict']] nic: See the Nic section.
+        :param pulumi.Input[_builtins.bool] nic_multi_queue: [bool] Activate or deactivate the Multi Queue feature on all NICs of the server. This feature is beneficial to enable when the NICs are experiencing performance issues (e.g. low throughput). Toggling this feature will also initiate a restart of the server. If the specified value is `true`, the feature will be activated; if it is not specified or set to `false`, the feature will be deactivated. The feature cannot be activated for `CUBE` servers.
         :param pulumi.Input[_builtins.str] primary_ip: The associated IP address.
         :param pulumi.Input[_builtins.str] primary_nic: The associated NIC.
         :param pulumi.Input[_builtins.int] ram: (Computed)[integer] The amount of memory for the server in MB.
@@ -1723,9 +1780,11 @@ class Server(pulumi.CustomResource):
         __props__.__dict__["boot_cdrom"] = boot_cdrom
         __props__.__dict__["boot_image"] = boot_image
         __props__.__dict__["boot_volume"] = boot_volume
+        __props__.__dict__["confidential"] = confidential
         __props__.__dict__["cores"] = cores
         __props__.__dict__["cpu_family"] = cpu_family
         __props__.__dict__["datacenter_id"] = datacenter_id
+        __props__.__dict__["enabled_features"] = enabled_features
         __props__.__dict__["firewallrule_id"] = firewallrule_id
         __props__.__dict__["firewallrule_ids"] = firewallrule_ids
         __props__.__dict__["hostname"] = hostname
@@ -1792,6 +1851,28 @@ class Server(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter
+    def confidential(self) -> pulumi.Output[_builtins.bool]:
+        """
+        (Computed)[bool] If set, creates a Confidential Computing (SEV-SNP) VM from a confidential boot image. Requires `type = "ENTERPRISE"`, a `volume` block, and a private SEV-SNP `image_name`. `cores` and `cpu_family` must not be set - both are derived from the image. This property is immutable (changing it re-creates the server; use `allow_replace = true`). It is computed on read from the server's enabled features, so imported servers reflect their real state instead of forcing a spurious re-creation. Only available in confidential-computing enabled locations.
+
+        ⚠️ **_Warning: `allow_replace` - lets you update immutable fields, but it first destroys and then re-creates the server in order to do it. This field should be used with care, understanding the risks._**
+
+        > **⚠ WARNING**
+        >
+        > Image_name under volume level is deprecated, please use image_name under server level
+        > ssh_key_path and ssh_keys fields are immutable.
+
+
+        > **⚠ WARNING**
+        >
+        > If you want to create a **CUBE** server, you have to provide the `template_uuid`. In this case you can not set `cores`, `ram` and `volume.size` arguments, these being mutually exclusive with `template_uuid`.
+        >
+        > In all the other cases (**ENTERPRISE** servers) you have to provide values for `cores`, `ram` and `volume size`.
+        """
+        return pulumi.get(self, "confidential")
+
+    @_builtins.property
+    @pulumi.getter
     def cores(self) -> pulumi.Output[_builtins.int]:
         """
         (Computed)[integer] Number of server CPU cores.
@@ -1813,6 +1894,14 @@ class Server(pulumi.CustomResource):
         [string] The ID of a Virtual Data Center.
         """
         return pulumi.get(self, "datacenter_id")
+
+    @_builtins.property
+    @pulumi.getter(name="enabledFeatures")
+    def enabled_features(self) -> pulumi.Output[Sequence[_builtins.str]]:
+        """
+        Features enabled on the server, e.g. `SEV-SNP` for a Confidential Computing VM.
+        """
+        return pulumi.get(self, "enabled_features")
 
     @_builtins.property
     @pulumi.getter(name="firewallruleId")
@@ -1899,20 +1988,6 @@ class Server(pulumi.CustomResource):
     def nic_multi_queue(self) -> pulumi.Output[Optional[_builtins.bool]]:
         """
         [bool] Activate or deactivate the Multi Queue feature on all NICs of the server. This feature is beneficial to enable when the NICs are experiencing performance issues (e.g. low throughput). Toggling this feature will also initiate a restart of the server. If the specified value is `true`, the feature will be activated; if it is not specified or set to `false`, the feature will be deactivated. The feature cannot be activated for `CUBE` servers.
-
-        ⚠️ **_Warning: `allow_replace` - lets you update immutable fields, but it first destroys and then re-creates the server in order to do it. This field should be used with care, understanding the risks._**
-
-        > **⚠ WARNING**
-        >
-        > Image_name under volume level is deprecated, please use image_name under server level
-        > ssh_key_path and ssh_keys fields are immutable.
-
-
-        > **⚠ WARNING**
-        >
-        > If you want to create a **CUBE** server, you have to provide the `template_uuid`. In this case you can not set `cores`, `ram` and `volume.size` arguments, these being mutually exclusive with `template_uuid`.
-        >
-        > In all the other cases (**ENTERPRISE** servers) you have to provide values for `cores`, `ram` and `volume size`.
         """
         return pulumi.get(self, "nic_multi_queue")
 

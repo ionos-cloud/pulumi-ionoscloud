@@ -90,14 +90,14 @@ public class MariaDBCluster extends com.pulumi.resources.CustomResource {
         return this.credentials;
     }
     /**
-     * [string] The friendly name of your cluster.
+     * [string] The friendly name of your cluster. Maximum length: 63 characters. Must contain only word characters (letters, numbers, underscores), colons, hyphens, spaces, or dots.
      * 
      */
     @Export(name="displayName", refs={String.class}, tree="[0]")
     private Output<String> displayName;
 
     /**
-     * @return [string] The friendly name of your cluster.
+     * @return [string] The friendly name of your cluster. Maximum length: 63 characters. Must contain only word characters (letters, numbers, underscores), colons, hyphens, spaces, or dots.
      * 
      */
     public Output<String> displayName() {
@@ -178,28 +178,28 @@ public class MariaDBCluster extends com.pulumi.resources.CustomResource {
         return this.mariadbVersion;
     }
     /**
-     * [int] The amount of memory per instance in gigabytes (GB).
+     * [int] The amount of memory per instance in gigabytes (GB). Minimum: 4.
      * 
      */
     @Export(name="ram", refs={Integer.class}, tree="[0]")
     private Output<Integer> ram;
 
     /**
-     * @return [int] The amount of memory per instance in gigabytes (GB).
+     * @return [int] The amount of memory per instance in gigabytes (GB). Minimum: 4.
      * 
      */
     public Output<Integer> ram() {
         return this.ram;
     }
     /**
-     * [int] The amount of storage per instance in gigabytes (GB).
+     * [int] The amount of storage per instance in gigabytes (GB). Minimum: 10, Maximum: 2000.
      * 
      */
     @Export(name="storageSize", refs={Integer.class}, tree="[0]")
     private Output<Integer> storageSize;
 
     /**
-     * @return [int] The amount of storage per instance in gigabytes (GB).
+     * @return [int] The amount of storage per instance in gigabytes (GB). Minimum: 10, Maximum: 2000.
      * 
      */
     public Output<Integer> storageSize() {

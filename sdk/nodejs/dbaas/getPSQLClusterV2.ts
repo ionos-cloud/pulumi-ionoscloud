@@ -53,7 +53,7 @@ export interface GetPSQLClusterV2Args {
      */
     id?: string;
     /**
-     * [string] The region in which to look up the cluster. Available locations: `de/fra`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
+     * [string] The region in which to look up the cluster. Available locations: `de/fra`, `de/fra/1`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
      *
      * Either `id` or `name` must be provided. If none, or both are provided, the datasource will return an error.
      */
@@ -172,7 +172,7 @@ export interface GetPSQLClusterV2OutputArgs {
      */
     id?: pulumi.Input<string | undefined>;
     /**
-     * [string] The region in which to look up the cluster. Available locations: `de/fra`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
+     * [string] The region in which to look up the cluster. Available locations: `de/fra`, `de/fra/1`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
      *
      * Either `id` or `name` must be provided. If none, or both are provided, the datasource will return an error.
      */

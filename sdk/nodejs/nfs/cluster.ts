@@ -84,7 +84,7 @@ export class Cluster extends pulumi.CustomResource {
      */
     declare public readonly connections: pulumi.Output<outputs.nfs.ClusterConnections>;
     /**
-     * The location where the Network File Storage cluster is located. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`. Other available locations are: `de/fra/2`, `de/txl`, `fr/par`, `gb/lhr`, `es/vit`, `us/las`, `us/ewr`, `us/mci`.
+     * The location where the Network File Storage cluster is located. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`. Other available locations are: `de/fra/1`, `de/fra/2`, `de/txl`, `fr/par`, `gb/lhr`, `es/vit`, `us/las`, `us/ewr`, `us/mci`.
      * - `de/fra` - Frankfurt
      * - `de/txl` - Berlin
      */
@@ -151,7 +151,7 @@ export interface ClusterState {
      */
     connections?: pulumi.Input<inputs.nfs.ClusterConnections | undefined>;
     /**
-     * The location where the Network File Storage cluster is located. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`. Other available locations are: `de/fra/2`, `de/txl`, `fr/par`, `gb/lhr`, `es/vit`, `us/las`, `us/ewr`, `us/mci`.
+     * The location where the Network File Storage cluster is located. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`. Other available locations are: `de/fra/1`, `de/fra/2`, `de/txl`, `fr/par`, `gb/lhr`, `es/vit`, `us/las`, `us/ewr`, `us/mci`.
      * - `de/fra` - Frankfurt
      * - `de/txl` - Berlin
      */
@@ -180,7 +180,7 @@ export interface ClusterArgs {
      */
     connections: pulumi.Input<inputs.nfs.ClusterConnections>;
     /**
-     * The location where the Network File Storage cluster is located. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`. Other available locations are: `de/fra/2`, `de/txl`, `fr/par`, `gb/lhr`, `es/vit`, `us/las`, `us/ewr`, `us/mci`.
+     * The location where the Network File Storage cluster is located. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`. Other available locations are: `de/fra/1`, `de/fra/2`, `de/txl`, `fr/par`, `gb/lhr`, `es/vit`, `us/las`, `us/ewr`, `us/mci`.
      * - `de/fra` - Frankfurt
      * - `de/txl` - Berlin
      */

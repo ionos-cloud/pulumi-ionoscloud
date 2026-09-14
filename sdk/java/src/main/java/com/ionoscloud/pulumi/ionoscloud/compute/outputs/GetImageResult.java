@@ -115,6 +115,11 @@ public final class GetImageResult {
      */
     private Boolean requireLegacyBios;
     /**
+     * @return Features required to run this image, e.g. `SEV-SNP` for a Confidential Computing boot image.
+     * 
+     */
+    private List<String> requiredFeatures;
+    /**
      * @return The size of the image in GB
      * 
      */
@@ -271,6 +276,13 @@ public final class GetImageResult {
         return this.requireLegacyBios;
     }
     /**
+     * @return Features required to run this image, e.g. `SEV-SNP` for a Confidential Computing boot image.
+     * 
+     */
+    public List<String> requiredFeatures() {
+        return this.requiredFeatures;
+    }
+    /**
      * @return The size of the image in GB
      * 
      */
@@ -318,6 +330,7 @@ public final class GetImageResult {
         private Boolean ramHotPlug;
         private Boolean ramHotUnplug;
         private Boolean requireLegacyBios;
+        private List<String> requiredFeatures;
         private Double size;
         private String type;
         private String version;
@@ -345,6 +358,7 @@ public final class GetImageResult {
     	      this.ramHotPlug = defaults.ramHotPlug;
     	      this.ramHotUnplug = defaults.ramHotUnplug;
     	      this.requireLegacyBios = defaults.requireLegacyBios;
+    	      this.requiredFeatures = defaults.requiredFeatures;
     	      this.size = defaults.size;
     	      this.type = defaults.type;
     	      this.version = defaults.version;
@@ -522,6 +536,17 @@ public final class GetImageResult {
             return this;
         }
         @CustomType.Setter
+        public Builder requiredFeatures(List<String> requiredFeatures) {
+            if (requiredFeatures == null) {
+              throw new MissingRequiredPropertyException("GetImageResult", "requiredFeatures");
+            }
+            this.requiredFeatures = requiredFeatures;
+            return this;
+        }
+        public Builder requiredFeatures(String... requiredFeatures) {
+            return requiredFeatures(List.of(requiredFeatures));
+        }
+        @CustomType.Setter
         public Builder size(Double size) {
             if (size == null) {
               throw new MissingRequiredPropertyException("GetImageResult", "size");
@@ -568,6 +593,7 @@ public final class GetImageResult {
             _resultValue.ramHotPlug = ramHotPlug;
             _resultValue.ramHotUnplug = ramHotUnplug;
             _resultValue.requireLegacyBios = requireLegacyBios;
+            _resultValue.requiredFeatures = requiredFeatures;
             _resultValue.size = size;
             _resultValue.type = type;
             _resultValue.version = version;

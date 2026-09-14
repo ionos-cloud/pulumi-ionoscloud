@@ -90,6 +90,21 @@ public final class VCPUServerState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
+     * [bool] Whether the server is a Confidential Computing (SEV-SNP) VM. Derived on read from the server&#39;s enabled features; normally &lt;span pulumi-lang-nodejs=&#34;`false`&#34; pulumi-lang-dotnet=&#34;`False`&#34; pulumi-lang-go=&#34;`false`&#34; pulumi-lang-python=&#34;`false`&#34; pulumi-lang-yaml=&#34;`false`&#34; pulumi-lang-java=&#34;`false`&#34; pulumi-lang-hcl=&#34;`false`&#34;&gt;`false`&lt;/span&gt; for VCPU servers, which are not Confidential Computing VMs.
+     * 
+     */
+    @Import(name="confidential")
+    private @Nullable Output<Boolean> confidential;
+
+    /**
+     * @return [bool] Whether the server is a Confidential Computing (SEV-SNP) VM. Derived on read from the server&#39;s enabled features; normally &lt;span pulumi-lang-nodejs=&#34;`false`&#34; pulumi-lang-dotnet=&#34;`False`&#34; pulumi-lang-go=&#34;`false`&#34; pulumi-lang-python=&#34;`false`&#34; pulumi-lang-yaml=&#34;`false`&#34; pulumi-lang-java=&#34;`false`&#34; pulumi-lang-hcl=&#34;`false`&#34;&gt;`false`&lt;/span&gt; for VCPU servers, which are not Confidential Computing VMs.
+     * 
+     */
+    public Optional<Output<Boolean>> confidential() {
+        return Optional.ofNullable(this.confidential);
+    }
+
+    /**
      * [integer] Number of server CPU cores.
      * 
      */
@@ -124,6 +139,21 @@ public final class VCPUServerState extends com.pulumi.resources.ResourceArgs {
      */
     public Optional<Output<String>> datacenterId() {
         return Optional.ofNullable(this.datacenterId);
+    }
+
+    /**
+     * [list] Features enabled on the server, e.g. `SEV-SNP` for a Confidential Computing VM.
+     * 
+     */
+    @Import(name="enabledFeatures")
+    private @Nullable Output<List<String>> enabledFeatures;
+
+    /**
+     * @return [list] Features enabled on the server, e.g. `SEV-SNP` for a Confidential Computing VM.
+     * 
+     */
+    public Optional<Output<List<String>>> enabledFeatures() {
+        return Optional.ofNullable(this.enabledFeatures);
     }
 
     /**
@@ -418,9 +448,11 @@ public final class VCPUServerState extends com.pulumi.resources.ResourceArgs {
         this.bootCdrom = $.bootCdrom;
         this.bootImage = $.bootImage;
         this.bootVolume = $.bootVolume;
+        this.confidential = $.confidential;
         this.cores = $.cores;
         this.cpuFamily = $.cpuFamily;
         this.datacenterId = $.datacenterId;
+        this.enabledFeatures = $.enabledFeatures;
         this.firewallruleId = $.firewallruleId;
         this.firewallruleIds = $.firewallruleIds;
         this.hostname = $.hostname;
@@ -553,6 +585,27 @@ public final class VCPUServerState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
+         * @param confidential [bool] Whether the server is a Confidential Computing (SEV-SNP) VM. Derived on read from the server&#39;s enabled features; normally &lt;span pulumi-lang-nodejs=&#34;`false`&#34; pulumi-lang-dotnet=&#34;`False`&#34; pulumi-lang-go=&#34;`false`&#34; pulumi-lang-python=&#34;`false`&#34; pulumi-lang-yaml=&#34;`false`&#34; pulumi-lang-java=&#34;`false`&#34; pulumi-lang-hcl=&#34;`false`&#34;&gt;`false`&lt;/span&gt; for VCPU servers, which are not Confidential Computing VMs.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder confidential(@Nullable Output<Boolean> confidential) {
+            $.confidential = confidential;
+            return this;
+        }
+
+        /**
+         * @param confidential [bool] Whether the server is a Confidential Computing (SEV-SNP) VM. Derived on read from the server&#39;s enabled features; normally &lt;span pulumi-lang-nodejs=&#34;`false`&#34; pulumi-lang-dotnet=&#34;`False`&#34; pulumi-lang-go=&#34;`false`&#34; pulumi-lang-python=&#34;`false`&#34; pulumi-lang-yaml=&#34;`false`&#34; pulumi-lang-java=&#34;`false`&#34; pulumi-lang-hcl=&#34;`false`&#34;&gt;`false`&lt;/span&gt; for VCPU servers, which are not Confidential Computing VMs.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder confidential(Boolean confidential) {
+            return confidential(Output.of(confidential));
+        }
+
+        /**
          * @param cores [integer] Number of server CPU cores.
          * 
          * @return builder
@@ -601,6 +654,37 @@ public final class VCPUServerState extends com.pulumi.resources.ResourceArgs {
          */
         public Builder datacenterId(String datacenterId) {
             return datacenterId(Output.of(datacenterId));
+        }
+
+        /**
+         * @param enabledFeatures [list] Features enabled on the server, e.g. `SEV-SNP` for a Confidential Computing VM.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder enabledFeatures(@Nullable Output<List<String>> enabledFeatures) {
+            $.enabledFeatures = enabledFeatures;
+            return this;
+        }
+
+        /**
+         * @param enabledFeatures [list] Features enabled on the server, e.g. `SEV-SNP` for a Confidential Computing VM.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder enabledFeatures(List<String> enabledFeatures) {
+            return enabledFeatures(Output.of(enabledFeatures));
+        }
+
+        /**
+         * @param enabledFeatures [list] Features enabled on the server, e.g. `SEV-SNP` for a Confidential Computing VM.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder enabledFeatures(String... enabledFeatures) {
+            return enabledFeatures(List.of(enabledFeatures));
         }
 
         /**

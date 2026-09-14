@@ -799,6 +799,121 @@ func (o NodePoolMaintenanceWindowPtrOutput) Time() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
+type NodePoolTaint struct {
+	// [string] Taint effect determines how a taint repels pods. One of: `NoSchedule`, `NoExecute`, `PreferNoSchedule`.
+	Effect string `pulumi:"effect"`
+	// [string] Taint key. Must be a valid Kubernetes label key format. May include an optional prefix (DNS subdomain) followed by a slash.
+	Key string `pulumi:"key"`
+	// [string] Taint value. Must be a valid Kubernetes label value format.
+	Value *string `pulumi:"value"`
+}
+
+// NodePoolTaintInput is an input type that accepts NodePoolTaintArgs and NodePoolTaintOutput values.
+// You can construct a concrete instance of `NodePoolTaintInput` via:
+//
+//	NodePoolTaintArgs{...}
+type NodePoolTaintInput interface {
+	pulumi.Input
+
+	ToNodePoolTaintOutput() NodePoolTaintOutput
+	ToNodePoolTaintOutputWithContext(context.Context) NodePoolTaintOutput
+}
+
+type NodePoolTaintArgs struct {
+	// [string] Taint effect determines how a taint repels pods. One of: `NoSchedule`, `NoExecute`, `PreferNoSchedule`.
+	Effect pulumi.StringInput `pulumi:"effect"`
+	// [string] Taint key. Must be a valid Kubernetes label key format. May include an optional prefix (DNS subdomain) followed by a slash.
+	Key pulumi.StringInput `pulumi:"key"`
+	// [string] Taint value. Must be a valid Kubernetes label value format.
+	Value pulumi.StringPtrInput `pulumi:"value"`
+}
+
+func (NodePoolTaintArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*NodePoolTaint)(nil)).Elem()
+}
+
+func (i NodePoolTaintArgs) ToNodePoolTaintOutput() NodePoolTaintOutput {
+	return i.ToNodePoolTaintOutputWithContext(context.Background())
+}
+
+func (i NodePoolTaintArgs) ToNodePoolTaintOutputWithContext(ctx context.Context) NodePoolTaintOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NodePoolTaintOutput)
+}
+
+// NodePoolTaintArrayInput is an input type that accepts NodePoolTaintArray and NodePoolTaintArrayOutput values.
+// You can construct a concrete instance of `NodePoolTaintArrayInput` via:
+//
+//	NodePoolTaintArray{ NodePoolTaintArgs{...} }
+type NodePoolTaintArrayInput interface {
+	pulumi.Input
+
+	ToNodePoolTaintArrayOutput() NodePoolTaintArrayOutput
+	ToNodePoolTaintArrayOutputWithContext(context.Context) NodePoolTaintArrayOutput
+}
+
+type NodePoolTaintArray []NodePoolTaintInput
+
+func (NodePoolTaintArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]NodePoolTaint)(nil)).Elem()
+}
+
+func (i NodePoolTaintArray) ToNodePoolTaintArrayOutput() NodePoolTaintArrayOutput {
+	return i.ToNodePoolTaintArrayOutputWithContext(context.Background())
+}
+
+func (i NodePoolTaintArray) ToNodePoolTaintArrayOutputWithContext(ctx context.Context) NodePoolTaintArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NodePoolTaintArrayOutput)
+}
+
+type NodePoolTaintOutput struct{ *pulumi.OutputState }
+
+func (NodePoolTaintOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*NodePoolTaint)(nil)).Elem()
+}
+
+func (o NodePoolTaintOutput) ToNodePoolTaintOutput() NodePoolTaintOutput {
+	return o
+}
+
+func (o NodePoolTaintOutput) ToNodePoolTaintOutputWithContext(ctx context.Context) NodePoolTaintOutput {
+	return o
+}
+
+// [string] Taint effect determines how a taint repels pods. One of: `NoSchedule`, `NoExecute`, `PreferNoSchedule`.
+func (o NodePoolTaintOutput) Effect() pulumi.StringOutput {
+	return o.ApplyT(func(v NodePoolTaint) string { return v.Effect }).(pulumi.StringOutput)
+}
+
+// [string] Taint key. Must be a valid Kubernetes label key format. May include an optional prefix (DNS subdomain) followed by a slash.
+func (o NodePoolTaintOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v NodePoolTaint) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// [string] Taint value. Must be a valid Kubernetes label value format.
+func (o NodePoolTaintOutput) Value() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v NodePoolTaint) *string { return v.Value }).(pulumi.StringPtrOutput)
+}
+
+type NodePoolTaintArrayOutput struct{ *pulumi.OutputState }
+
+func (NodePoolTaintArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]NodePoolTaint)(nil)).Elem()
+}
+
+func (o NodePoolTaintArrayOutput) ToNodePoolTaintArrayOutput() NodePoolTaintArrayOutput {
+	return o
+}
+
+func (o NodePoolTaintArrayOutput) ToNodePoolTaintArrayOutputWithContext(ctx context.Context) NodePoolTaintArrayOutput {
+	return o
+}
+
+func (o NodePoolTaintArrayOutput) Index(i pulumi.IntInput) NodePoolTaintOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) NodePoolTaint {
+		return vs[0].([]NodePoolTaint)[vs[1].(int)]
+	}).(NodePoolTaintOutput)
+}
+
 type GetClusterConfig struct {
 	ApiVersion     string                    `pulumi:"apiVersion"`
 	Clusters       []GetClusterConfigCluster `pulumi:"clusters"`
@@ -2969,6 +3084,121 @@ func (o GetNodePoolNodesNodeArrayOutput) Index(i pulumi.IntInput) GetNodePoolNod
 	}).(GetNodePoolNodesNodeOutput)
 }
 
+type GetNodePoolTaint struct {
+	// Taint effect: `NoSchedule`, `NoExecute`, or `PreferNoSchedule`
+	Effect string `pulumi:"effect"`
+	// Taint key
+	Key string `pulumi:"key"`
+	// Taint value
+	Value string `pulumi:"value"`
+}
+
+// GetNodePoolTaintInput is an input type that accepts GetNodePoolTaintArgs and GetNodePoolTaintOutput values.
+// You can construct a concrete instance of `GetNodePoolTaintInput` via:
+//
+//	GetNodePoolTaintArgs{...}
+type GetNodePoolTaintInput interface {
+	pulumi.Input
+
+	ToGetNodePoolTaintOutput() GetNodePoolTaintOutput
+	ToGetNodePoolTaintOutputWithContext(context.Context) GetNodePoolTaintOutput
+}
+
+type GetNodePoolTaintArgs struct {
+	// Taint effect: `NoSchedule`, `NoExecute`, or `PreferNoSchedule`
+	Effect pulumi.StringInput `pulumi:"effect"`
+	// Taint key
+	Key pulumi.StringInput `pulumi:"key"`
+	// Taint value
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (GetNodePoolTaintArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetNodePoolTaint)(nil)).Elem()
+}
+
+func (i GetNodePoolTaintArgs) ToGetNodePoolTaintOutput() GetNodePoolTaintOutput {
+	return i.ToGetNodePoolTaintOutputWithContext(context.Background())
+}
+
+func (i GetNodePoolTaintArgs) ToGetNodePoolTaintOutputWithContext(ctx context.Context) GetNodePoolTaintOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetNodePoolTaintOutput)
+}
+
+// GetNodePoolTaintArrayInput is an input type that accepts GetNodePoolTaintArray and GetNodePoolTaintArrayOutput values.
+// You can construct a concrete instance of `GetNodePoolTaintArrayInput` via:
+//
+//	GetNodePoolTaintArray{ GetNodePoolTaintArgs{...} }
+type GetNodePoolTaintArrayInput interface {
+	pulumi.Input
+
+	ToGetNodePoolTaintArrayOutput() GetNodePoolTaintArrayOutput
+	ToGetNodePoolTaintArrayOutputWithContext(context.Context) GetNodePoolTaintArrayOutput
+}
+
+type GetNodePoolTaintArray []GetNodePoolTaintInput
+
+func (GetNodePoolTaintArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetNodePoolTaint)(nil)).Elem()
+}
+
+func (i GetNodePoolTaintArray) ToGetNodePoolTaintArrayOutput() GetNodePoolTaintArrayOutput {
+	return i.ToGetNodePoolTaintArrayOutputWithContext(context.Background())
+}
+
+func (i GetNodePoolTaintArray) ToGetNodePoolTaintArrayOutputWithContext(ctx context.Context) GetNodePoolTaintArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetNodePoolTaintArrayOutput)
+}
+
+type GetNodePoolTaintOutput struct{ *pulumi.OutputState }
+
+func (GetNodePoolTaintOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetNodePoolTaint)(nil)).Elem()
+}
+
+func (o GetNodePoolTaintOutput) ToGetNodePoolTaintOutput() GetNodePoolTaintOutput {
+	return o
+}
+
+func (o GetNodePoolTaintOutput) ToGetNodePoolTaintOutputWithContext(ctx context.Context) GetNodePoolTaintOutput {
+	return o
+}
+
+// Taint effect: `NoSchedule`, `NoExecute`, or `PreferNoSchedule`
+func (o GetNodePoolTaintOutput) Effect() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNodePoolTaint) string { return v.Effect }).(pulumi.StringOutput)
+}
+
+// Taint key
+func (o GetNodePoolTaintOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNodePoolTaint) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// Taint value
+func (o GetNodePoolTaintOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNodePoolTaint) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type GetNodePoolTaintArrayOutput struct{ *pulumi.OutputState }
+
+func (GetNodePoolTaintArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetNodePoolTaint)(nil)).Elem()
+}
+
+func (o GetNodePoolTaintArrayOutput) ToGetNodePoolTaintArrayOutput() GetNodePoolTaintArrayOutput {
+	return o
+}
+
+func (o GetNodePoolTaintArrayOutput) ToGetNodePoolTaintArrayOutputWithContext(ctx context.Context) GetNodePoolTaintArrayOutput {
+	return o
+}
+
+func (o GetNodePoolTaintArrayOutput) Index(i pulumi.IntInput) GetNodePoolTaintOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetNodePoolTaint {
+		return vs[0].([]GetNodePoolTaint)[vs[1].(int)]
+	}).(GetNodePoolTaintOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*ClusterMaintenanceWindowInput)(nil)).Elem(), ClusterMaintenanceWindowArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ClusterMaintenanceWindowPtrInput)(nil)).Elem(), ClusterMaintenanceWindowArgs{})
@@ -2982,6 +3212,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*NodePoolLanRouteArrayInput)(nil)).Elem(), NodePoolLanRouteArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*NodePoolMaintenanceWindowInput)(nil)).Elem(), NodePoolMaintenanceWindowArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*NodePoolMaintenanceWindowPtrInput)(nil)).Elem(), NodePoolMaintenanceWindowArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NodePoolTaintInput)(nil)).Elem(), NodePoolTaintArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NodePoolTaintArrayInput)(nil)).Elem(), NodePoolTaintArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetClusterConfigInput)(nil)).Elem(), GetClusterConfigArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetClusterConfigArrayInput)(nil)).Elem(), GetClusterConfigArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetClusterConfigClusterInput)(nil)).Elem(), GetClusterConfigClusterArgs{})
@@ -3020,6 +3252,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetNodePoolMaintenanceWindowArrayInput)(nil)).Elem(), GetNodePoolMaintenanceWindowArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetNodePoolNodesNodeInput)(nil)).Elem(), GetNodePoolNodesNodeArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetNodePoolNodesNodeArrayInput)(nil)).Elem(), GetNodePoolNodesNodeArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetNodePoolTaintInput)(nil)).Elem(), GetNodePoolTaintArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetNodePoolTaintArrayInput)(nil)).Elem(), GetNodePoolTaintArray{})
 	pulumi.RegisterOutputType(ClusterMaintenanceWindowOutput{})
 	pulumi.RegisterOutputType(ClusterMaintenanceWindowPtrOutput{})
 	pulumi.RegisterOutputType(ClusterS3BucketOutput{})
@@ -3032,6 +3266,8 @@ func init() {
 	pulumi.RegisterOutputType(NodePoolLanRouteArrayOutput{})
 	pulumi.RegisterOutputType(NodePoolMaintenanceWindowOutput{})
 	pulumi.RegisterOutputType(NodePoolMaintenanceWindowPtrOutput{})
+	pulumi.RegisterOutputType(NodePoolTaintOutput{})
+	pulumi.RegisterOutputType(NodePoolTaintArrayOutput{})
 	pulumi.RegisterOutputType(GetClusterConfigOutput{})
 	pulumi.RegisterOutputType(GetClusterConfigArrayOutput{})
 	pulumi.RegisterOutputType(GetClusterConfigClusterOutput{})
@@ -3070,4 +3306,6 @@ func init() {
 	pulumi.RegisterOutputType(GetNodePoolMaintenanceWindowArrayOutput{})
 	pulumi.RegisterOutputType(GetNodePoolNodesNodeOutput{})
 	pulumi.RegisterOutputType(GetNodePoolNodesNodeArrayOutput{})
+	pulumi.RegisterOutputType(GetNodePoolTaintOutput{})
+	pulumi.RegisterOutputType(GetNodePoolTaintArrayOutput{})
 }

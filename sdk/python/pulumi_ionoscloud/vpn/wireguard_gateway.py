@@ -41,7 +41,7 @@ class WireguardGatewayArgs:
         :param pulumi.Input[_builtins.str] description: [String] A description of the WireGuard Gateway.
         :param pulumi.Input[_builtins.str] interface_ipv4_cidr: [String] The IPv4 CIDR for the WireGuard Gateway interface.
         :param pulumi.Input[_builtins.str] interface_ipv6_cidr: [String] The IPv6 CIDR for the WireGuard Gateway interface.
-        :param pulumi.Input[_builtins.str] location: [String] The location of the WireGuard Gateway. Supported locations: de/fra, de/fra/2, de/txl, es/vit, gb/bhx, gb/lhr, us/ewr, us/las, us/mci, fr/par.
+        :param pulumi.Input[_builtins.str] location: [String] The location of the WireGuard Gateway. Supported locations: de/fra, de/fra/1, de/fra/2, de/txl, es/vit, gb/bhx, gb/lhr, us/ewr, us/las, us/mci, fr/par.
         :param pulumi.Input['WireguardGatewayMaintenanceWindowArgs'] maintenance_window: (Computed) A weekly 4 hour-long window, during which maintenance might occur.
         :param pulumi.Input[_builtins.str] name: [String] The name of the WireGuard Gateway.
         :param pulumi.Input[_builtins.str] tier: (Computed)[string] Gateway performance options.  See product documentation for full details. Options: STANDARD, STANDARD_HA, ENHANCED, ENHANCED_HA, PREMIUM, PREMIUM_HA.
@@ -151,7 +151,7 @@ class WireguardGatewayArgs:
     @pulumi.getter
     def location(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        [String] The location of the WireGuard Gateway. Supported locations: de/fra, de/fra/2, de/txl, es/vit, gb/bhx, gb/lhr, us/ewr, us/las, us/mci, fr/par.
+        [String] The location of the WireGuard Gateway. Supported locations: de/fra, de/fra/1, de/fra/2, de/txl, es/vit, gb/bhx, gb/lhr, us/ewr, us/las, us/mci, fr/par.
         """
         return pulumi.get(self, "location")
 
@@ -220,7 +220,7 @@ class _WireguardGatewayState:
         :param pulumi.Input[_builtins.str] gateway_ip: [String] The IP address of the WireGuard Gateway.
         :param pulumi.Input[_builtins.str] interface_ipv4_cidr: [String] The IPv4 CIDR for the WireGuard Gateway interface.
         :param pulumi.Input[_builtins.str] interface_ipv6_cidr: [String] The IPv6 CIDR for the WireGuard Gateway interface.
-        :param pulumi.Input[_builtins.str] location: [String] The location of the WireGuard Gateway. Supported locations: de/fra, de/fra/2, de/txl, es/vit, gb/bhx, gb/lhr, us/ewr, us/las, us/mci, fr/par.
+        :param pulumi.Input[_builtins.str] location: [String] The location of the WireGuard Gateway. Supported locations: de/fra, de/fra/1, de/fra/2, de/txl, es/vit, gb/bhx, gb/lhr, us/ewr, us/las, us/mci, fr/par.
         :param pulumi.Input['WireguardGatewayMaintenanceWindowArgs'] maintenance_window: (Computed) A weekly 4 hour-long window, during which maintenance might occur.
         :param pulumi.Input[_builtins.str] name: [String] The name of the WireGuard Gateway.
         :param pulumi.Input[_builtins.str] private_key: [String] The private key for the WireGuard Gateway. To be created with the wg utility.
@@ -330,7 +330,7 @@ class _WireguardGatewayState:
     @pulumi.getter
     def location(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        [String] The location of the WireGuard Gateway. Supported locations: de/fra, de/fra/2, de/txl, es/vit, gb/bhx, gb/lhr, us/ewr, us/las, us/mci, fr/par.
+        [String] The location of the WireGuard Gateway. Supported locations: de/fra, de/fra/1, de/fra/2, de/txl, es/vit, gb/bhx, gb/lhr, us/ewr, us/las, us/mci, fr/par.
         """
         return pulumi.get(self, "location")
 
@@ -488,7 +488,7 @@ class WireguardGateway(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] gateway_ip: [String] The IP address of the WireGuard Gateway.
         :param pulumi.Input[_builtins.str] interface_ipv4_cidr: [String] The IPv4 CIDR for the WireGuard Gateway interface.
         :param pulumi.Input[_builtins.str] interface_ipv6_cidr: [String] The IPv6 CIDR for the WireGuard Gateway interface.
-        :param pulumi.Input[_builtins.str] location: [String] The location of the WireGuard Gateway. Supported locations: de/fra, de/fra/2, de/txl, es/vit, gb/bhx, gb/lhr, us/ewr, us/las, us/mci, fr/par.
+        :param pulumi.Input[_builtins.str] location: [String] The location of the WireGuard Gateway. Supported locations: de/fra, de/fra/1, de/fra/2, de/txl, es/vit, gb/bhx, gb/lhr, us/ewr, us/las, us/mci, fr/par.
         :param pulumi.Input[Union['WireguardGatewayMaintenanceWindowArgs', 'WireguardGatewayMaintenanceWindowArgsDict']] maintenance_window: (Computed) A weekly 4 hour-long window, during which maintenance might occur.
         :param pulumi.Input[_builtins.str] name: [String] The name of the WireGuard Gateway.
         :param pulumi.Input[_builtins.str] private_key: [String] The private key for the WireGuard Gateway. To be created with the wg utility.
@@ -641,7 +641,7 @@ class WireguardGateway(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] gateway_ip: [String] The IP address of the WireGuard Gateway.
         :param pulumi.Input[_builtins.str] interface_ipv4_cidr: [String] The IPv4 CIDR for the WireGuard Gateway interface.
         :param pulumi.Input[_builtins.str] interface_ipv6_cidr: [String] The IPv6 CIDR for the WireGuard Gateway interface.
-        :param pulumi.Input[_builtins.str] location: [String] The location of the WireGuard Gateway. Supported locations: de/fra, de/fra/2, de/txl, es/vit, gb/bhx, gb/lhr, us/ewr, us/las, us/mci, fr/par.
+        :param pulumi.Input[_builtins.str] location: [String] The location of the WireGuard Gateway. Supported locations: de/fra, de/fra/1, de/fra/2, de/txl, es/vit, gb/bhx, gb/lhr, us/ewr, us/las, us/mci, fr/par.
         :param pulumi.Input[Union['WireguardGatewayMaintenanceWindowArgs', 'WireguardGatewayMaintenanceWindowArgsDict']] maintenance_window: (Computed) A weekly 4 hour-long window, during which maintenance might occur.
         :param pulumi.Input[_builtins.str] name: [String] The name of the WireGuard Gateway.
         :param pulumi.Input[_builtins.str] private_key: [String] The private key for the WireGuard Gateway. To be created with the wg utility.
@@ -719,7 +719,7 @@ class WireguardGateway(pulumi.CustomResource):
     @pulumi.getter
     def location(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
-        [String] The location of the WireGuard Gateway. Supported locations: de/fra, de/fra/2, de/txl, es/vit, gb/bhx, gb/lhr, us/ewr, us/las, us/mci, fr/par.
+        [String] The location of the WireGuard Gateway. Supported locations: de/fra, de/fra/1, de/fra/2, de/txl, es/vit, gb/bhx, gb/lhr, us/ewr, us/las, us/mci, fr/par.
         """
         return pulumi.get(self, "location")
 

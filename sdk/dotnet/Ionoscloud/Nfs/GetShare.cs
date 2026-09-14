@@ -125,7 +125,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Nfs
         public string? Id { get; set; }
 
         /// <summary>
-        /// The location where the Network File Storage share is located. Available locations: `de/fra`, `de/fra/2`, `de/txl`, `fr/par`, `gb/lhr`, `es/vit`, `us/las`, `us/ewr`, `us/mci`.
+        /// The location where the Network File Storage share is located. Available locations: `de/fra`, `de/fra/1`, `de/fra/2`, `de/txl`, `fr/par`, `gb/lhr`, `es/vit`, `us/las`, `us/ewr`, `us/mci`.
         /// </summary>
         [Input("location")]
         public string? Location { get; set; }
@@ -193,7 +193,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Nfs
         public Input<string>? Id { get; set; }
 
         /// <summary>
-        /// The location where the Network File Storage share is located. Available locations: `de/fra`, `de/fra/2`, `de/txl`, `fr/par`, `gb/lhr`, `es/vit`, `us/las`, `us/ewr`, `us/mci`.
+        /// The location where the Network File Storage share is located. Available locations: `de/fra`, `de/fra/1`, `de/fra/2`, `de/txl`, `fr/par`, `gb/lhr`, `es/vit`, `us/las`, `us/ewr`, `us/mci`.
         /// </summary>
         [Input("location")]
         public Input<string>? Location { get; set; }

@@ -11,26 +11,26 @@ import java.util.Objects;
 @CustomType
 public final class MariaDBClusterCredentials {
     /**
-     * @return [string] The password for a MariaDB user.
+     * @return [string] The password for a MariaDB user. Length: 10-63 characters.
      * 
      */
     private String password;
     /**
-     * @return [string] The username for the initial MariaDB user. Some system usernames are restricted (e.g &#39;mariadb&#39;, &#39;admin&#39;, &#39;standby&#39;).
+     * @return [string] The username for the initial MariaDB user. Some system usernames are restricted (e.g &#39;mariadb&#39;, &#39;admin&#39;, &#39;standby&#39;). Length: 1-16 characters. Must start with a letter, end with a letter or number, and contain only letters, numbers, or underscores (underscores only between alphanumeric groups).
      * 
      */
     private String username;
 
     private MariaDBClusterCredentials() {}
     /**
-     * @return [string] The password for a MariaDB user.
+     * @return [string] The password for a MariaDB user. Length: 10-63 characters.
      * 
      */
     public String password() {
         return this.password;
     }
     /**
-     * @return [string] The username for the initial MariaDB user. Some system usernames are restricted (e.g &#39;mariadb&#39;, &#39;admin&#39;, &#39;standby&#39;).
+     * @return [string] The username for the initial MariaDB user. Some system usernames are restricted (e.g &#39;mariadb&#39;, &#39;admin&#39;, &#39;standby&#39;). Length: 1-16 characters. Must start with a letter, end with a letter or number, and contain only letters, numbers, or underscores (underscores only between alphanumeric groups).
      * 
      */
     public String username() {

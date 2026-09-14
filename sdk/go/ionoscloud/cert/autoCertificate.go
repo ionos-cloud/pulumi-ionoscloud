@@ -76,7 +76,7 @@ type AutoCertificate struct {
 	KeyAlgorithm pulumi.StringOutput `pulumi:"keyAlgorithm"`
 	// [string] The ID of the last certificate that was issued.
 	LastIssuedCertificateId pulumi.StringOutput `pulumi:"lastIssuedCertificateId"`
-	// [string] The location of the auto-certificate. Available locations: `de/fra`, `de/fra/2`.
+	// [string] The location of the auto-certificate. Available locations: `de/fra`, `de/fra/1`, `de/fra/2`.
 	Location pulumi.StringOutput `pulumi:"location"`
 	// [string] A certificate name used for management purposes.
 	Name pulumi.StringOutput `pulumi:"name"`
@@ -134,7 +134,7 @@ type autoCertificateState struct {
 	KeyAlgorithm *string `pulumi:"keyAlgorithm"`
 	// [string] The ID of the last certificate that was issued.
 	LastIssuedCertificateId *string `pulumi:"lastIssuedCertificateId"`
-	// [string] The location of the auto-certificate. Available locations: `de/fra`, `de/fra/2`.
+	// [string] The location of the auto-certificate. Available locations: `de/fra`, `de/fra/1`, `de/fra/2`.
 	Location *string `pulumi:"location"`
 	// [string] A certificate name used for management purposes.
 	Name *string `pulumi:"name"`
@@ -151,7 +151,7 @@ type AutoCertificateState struct {
 	KeyAlgorithm pulumi.StringPtrInput
 	// [string] The ID of the last certificate that was issued.
 	LastIssuedCertificateId pulumi.StringPtrInput
-	// [string] The location of the auto-certificate. Available locations: `de/fra`, `de/fra/2`.
+	// [string] The location of the auto-certificate. Available locations: `de/fra`, `de/fra/1`, `de/fra/2`.
 	Location pulumi.StringPtrInput
 	// [string] A certificate name used for management purposes.
 	Name pulumi.StringPtrInput
@@ -170,7 +170,7 @@ type autoCertificateArgs struct {
 	CommonName string `pulumi:"commonName"`
 	// [string] The key algorithm used to generate the certificate.
 	KeyAlgorithm string `pulumi:"keyAlgorithm"`
-	// [string] The location of the auto-certificate. Available locations: `de/fra`, `de/fra/2`.
+	// [string] The location of the auto-certificate. Available locations: `de/fra`, `de/fra/1`, `de/fra/2`.
 	Location string `pulumi:"location"`
 	// [string] A certificate name used for management purposes.
 	Name *string `pulumi:"name"`
@@ -186,7 +186,7 @@ type AutoCertificateArgs struct {
 	CommonName pulumi.StringInput
 	// [string] The key algorithm used to generate the certificate.
 	KeyAlgorithm pulumi.StringInput
-	// [string] The location of the auto-certificate. Available locations: `de/fra`, `de/fra/2`.
+	// [string] The location of the auto-certificate. Available locations: `de/fra`, `de/fra/1`, `de/fra/2`.
 	Location pulumi.StringInput
 	// [string] A certificate name used for management purposes.
 	Name pulumi.StringPtrInput
@@ -298,7 +298,7 @@ func (o AutoCertificateOutput) LastIssuedCertificateId() pulumi.StringOutput {
 	return o.ApplyT(func(v *AutoCertificate) pulumi.StringOutput { return v.LastIssuedCertificateId }).(pulumi.StringOutput)
 }
 
-// [string] The location of the auto-certificate. Available locations: `de/fra`, `de/fra/2`.
+// [string] The location of the auto-certificate. Available locations: `de/fra`, `de/fra/1`, `de/fra/2`.
 func (o AutoCertificateOutput) Location() pulumi.StringOutput {
 	return o.ApplyT(func(v *AutoCertificate) pulumi.StringOutput { return v.Location }).(pulumi.StringOutput)
 }

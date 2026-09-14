@@ -83,7 +83,7 @@ func LookupPipeline(ctx *pulumi.Context, args *LookupPipelineArgs, opts ...pulum
 type LookupPipelineArgs struct {
 	// [string] The ID of the Logging pipeline you want to search for.
 	Id *string `pulumi:"id"`
-	// [string] The location of the Logging pipeline. Default: `de/txl`, other available locations: `de/fra`, `de/fra/2`, `de/txl`, `es/vit`, `gb/bhx`, `gb/lhr`,  `fr/par`, `us/mci`.
+	// [string] The location of the Logging pipeline. Default: `de/txl`, other available locations: `de/fra`, `de/fra/1`, `de/fra/2`, `de/txl`, `es/vit`, `gb/lhr`, `fr/par`.
 	Location *string `pulumi:"location"`
 	// [string] The name of the Logging pipeline you want to search for.
 	//
@@ -121,7 +121,7 @@ func LookupPipelineOutput(ctx *pulumi.Context, args LookupPipelineOutputArgs, op
 type LookupPipelineOutputArgs struct {
 	// [string] The ID of the Logging pipeline you want to search for.
 	Id pulumi.StringPtrInput `pulumi:"id"`
-	// [string] The location of the Logging pipeline. Default: `de/txl`, other available locations: `de/fra`, `de/fra/2`, `de/txl`, `es/vit`, `gb/bhx`, `gb/lhr`,  `fr/par`, `us/mci`.
+	// [string] The location of the Logging pipeline. Default: `de/txl`, other available locations: `de/fra`, `de/fra/1`, `de/fra/2`, `de/txl`, `es/vit`, `gb/lhr`, `fr/par`.
 	Location pulumi.StringPtrInput `pulumi:"location"`
 	// [string] The name of the Logging pipeline you want to search for.
 	//

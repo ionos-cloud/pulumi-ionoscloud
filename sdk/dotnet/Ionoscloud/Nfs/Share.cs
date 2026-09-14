@@ -119,7 +119,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Nfs
         public Output<int?> Gid { get; private set; } = null!;
 
         /// <summary>
-        /// The location of the Network File Storage Cluster. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `Location` will be: `de/fra`. Other available locations are: `de/fra/2`, `de/txl`, `fr/par`, `gb/lhr`, `es/vit`, `us/las`, `us/ewr`, `us/mci`.
+        /// The location of the Network File Storage Cluster. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `Location` will be: `de/fra`. Other available locations are: `de/fra/1`, `de/fra/2`, `de/txl`, `fr/par`, `gb/lhr`, `es/vit`, `us/las`, `us/ewr`, `us/mci`.
         /// </summary>
         [Output("location")]
         public Output<string?> Location { get; private set; } = null!;
@@ -220,7 +220,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Nfs
         public Input<int>? Gid { get; set; }
 
         /// <summary>
-        /// The location of the Network File Storage Cluster. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `Location` will be: `de/fra`. Other available locations are: `de/fra/2`, `de/txl`, `fr/par`, `gb/lhr`, `es/vit`, `us/las`, `us/ewr`, `us/mci`.
+        /// The location of the Network File Storage Cluster. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `Location` will be: `de/fra`. Other available locations are: `de/fra/1`, `de/fra/2`, `de/txl`, `fr/par`, `gb/lhr`, `es/vit`, `us/las`, `us/ewr`, `us/mci`.
         /// </summary>
         [Input("location")]
         public Input<string>? Location { get; set; }
@@ -276,7 +276,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Nfs
         public Input<int>? Gid { get; set; }
 
         /// <summary>
-        /// The location of the Network File Storage Cluster. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `Location` will be: `de/fra`. Other available locations are: `de/fra/2`, `de/txl`, `fr/par`, `gb/lhr`, `es/vit`, `us/las`, `us/ewr`, `us/mci`.
+        /// The location of the Network File Storage Cluster. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `Location` will be: `de/fra`. Other available locations are: `de/fra/1`, `de/fra/2`, `de/txl`, `fr/par`, `gb/lhr`, `es/vit`, `us/las`, `us/ewr`, `us/mci`.
         /// </summary>
         [Input("location")]
         public Input<string>? Location { get; set; }
