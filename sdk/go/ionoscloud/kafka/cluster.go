@@ -87,7 +87,7 @@ type Cluster struct {
 	BrokerAddresses pulumi.StringArrayOutput `pulumi:"brokerAddresses"`
 	// Connection information of the Kafka Cluster. Minimum items: 1, maximum items: 1.
 	Connections ClusterConnectionsOutput `pulumi:"connections"`
-	// [string] The location of the Kafka Cluster. Possible values: `de/fra`, `de/fra/2`, `de/txl`, `fr/par`, `es/vit`, `gb/lhr`, `gb/bhx`, `us/las`, `us/mci`, `us/ewr`. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
+	// [string] The location of the Kafka Cluster. Possible values: `de/fra`, `de/fra/1`, `de/fra/2`, `de/txl`, `fr/par`, `es/vit`, `gb/lhr`, `gb/bhx`, `us/las`, `us/mci`, `us/ewr`. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
 	Location pulumi.StringPtrOutput `pulumi:"location"`
 	// [string] Name of the Kafka Cluster.
 	Name pulumi.StringOutput `pulumi:"name"`
@@ -142,7 +142,7 @@ type clusterState struct {
 	BrokerAddresses []string `pulumi:"brokerAddresses"`
 	// Connection information of the Kafka Cluster. Minimum items: 1, maximum items: 1.
 	Connections *ClusterConnections `pulumi:"connections"`
-	// [string] The location of the Kafka Cluster. Possible values: `de/fra`, `de/fra/2`, `de/txl`, `fr/par`, `es/vit`, `gb/lhr`, `gb/bhx`, `us/las`, `us/mci`, `us/ewr`. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
+	// [string] The location of the Kafka Cluster. Possible values: `de/fra`, `de/fra/1`, `de/fra/2`, `de/txl`, `fr/par`, `es/vit`, `gb/lhr`, `gb/bhx`, `us/las`, `us/mci`, `us/ewr`. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
 	Location *string `pulumi:"location"`
 	// [string] Name of the Kafka Cluster.
 	Name *string `pulumi:"name"`
@@ -159,7 +159,7 @@ type ClusterState struct {
 	BrokerAddresses pulumi.StringArrayInput
 	// Connection information of the Kafka Cluster. Minimum items: 1, maximum items: 1.
 	Connections ClusterConnectionsPtrInput
-	// [string] The location of the Kafka Cluster. Possible values: `de/fra`, `de/fra/2`, `de/txl`, `fr/par`, `es/vit`, `gb/lhr`, `gb/bhx`, `us/las`, `us/mci`, `us/ewr`. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
+	// [string] The location of the Kafka Cluster. Possible values: `de/fra`, `de/fra/1`, `de/fra/2`, `de/txl`, `fr/par`, `es/vit`, `gb/lhr`, `gb/bhx`, `us/las`, `us/mci`, `us/ewr`. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
 	Location pulumi.StringPtrInput
 	// [string] Name of the Kafka Cluster.
 	Name pulumi.StringPtrInput
@@ -176,7 +176,7 @@ func (ClusterState) ElementType() reflect.Type {
 type clusterArgs struct {
 	// Connection information of the Kafka Cluster. Minimum items: 1, maximum items: 1.
 	Connections ClusterConnections `pulumi:"connections"`
-	// [string] The location of the Kafka Cluster. Possible values: `de/fra`, `de/fra/2`, `de/txl`, `fr/par`, `es/vit`, `gb/lhr`, `gb/bhx`, `us/las`, `us/mci`, `us/ewr`. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
+	// [string] The location of the Kafka Cluster. Possible values: `de/fra`, `de/fra/1`, `de/fra/2`, `de/txl`, `fr/par`, `es/vit`, `gb/lhr`, `gb/bhx`, `us/las`, `us/mci`, `us/ewr`. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
 	Location *string `pulumi:"location"`
 	// [string] Name of the Kafka Cluster.
 	Name *string `pulumi:"name"`
@@ -190,7 +190,7 @@ type clusterArgs struct {
 type ClusterArgs struct {
 	// Connection information of the Kafka Cluster. Minimum items: 1, maximum items: 1.
 	Connections ClusterConnectionsInput
-	// [string] The location of the Kafka Cluster. Possible values: `de/fra`, `de/fra/2`, `de/txl`, `fr/par`, `es/vit`, `gb/lhr`, `gb/bhx`, `us/las`, `us/mci`, `us/ewr`. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
+	// [string] The location of the Kafka Cluster. Possible values: `de/fra`, `de/fra/1`, `de/fra/2`, `de/txl`, `fr/par`, `es/vit`, `gb/lhr`, `gb/bhx`, `us/las`, `us/mci`, `us/ewr`. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
 	Location pulumi.StringPtrInput
 	// [string] Name of the Kafka Cluster.
 	Name pulumi.StringPtrInput
@@ -299,7 +299,7 @@ func (o ClusterOutput) Connections() ClusterConnectionsOutput {
 	return o.ApplyT(func(v *Cluster) ClusterConnectionsOutput { return v.Connections }).(ClusterConnectionsOutput)
 }
 
-// [string] The location of the Kafka Cluster. Possible values: `de/fra`, `de/fra/2`, `de/txl`, `fr/par`, `es/vit`, `gb/lhr`, `gb/bhx`, `us/las`, `us/mci`, `us/ewr`. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
+// [string] The location of the Kafka Cluster. Possible values: `de/fra`, `de/fra/1`, `de/fra/2`, `de/txl`, `fr/par`, `es/vit`, `gb/lhr`, `gb/bhx`, `us/las`, `us/mci`, `us/ewr`. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
 func (o ClusterOutput) Location() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Cluster) pulumi.StringPtrOutput { return v.Location }).(pulumi.StringPtrOutput)
 }

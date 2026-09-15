@@ -72,15 +72,17 @@ export class Provider extends pulumi.ProviderResource {
             resourceInputs["contractNumber"] = args?.contractNumber;
             resourceInputs["endpoint"] = args?.endpoint;
             resourceInputs["insecure"] = pulumi.output(args?.insecure).apply(JSON.stringify);
-            resourceInputs["password"] = args?.password;
+            resourceInputs["password"] = args?.password ? pulumi.secret(args.password) : undefined;
             resourceInputs["retries"] = pulumi.output(args?.retries).apply(JSON.stringify);
             resourceInputs["s3AccessKey"] = args?.s3AccessKey;
             resourceInputs["s3Region"] = args?.s3Region;
-            resourceInputs["s3SecretKey"] = args?.s3SecretKey;
-            resourceInputs["token"] = args?.token;
+            resourceInputs["s3SecretKey"] = args?.s3SecretKey ? pulumi.secret(args.s3SecretKey) : undefined;
+            resourceInputs["token"] = args?.token ? pulumi.secret(args.token) : undefined;
             resourceInputs["username"] = args?.username;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        const secretOpts = { additionalSecretOutputs: ["password", "s3SecretKey", "token"] };
+        opts = pulumi.mergeOptions(opts, secretOpts);
         super(Provider.__pulumiType, name, resourceInputs, opts);
     }
 

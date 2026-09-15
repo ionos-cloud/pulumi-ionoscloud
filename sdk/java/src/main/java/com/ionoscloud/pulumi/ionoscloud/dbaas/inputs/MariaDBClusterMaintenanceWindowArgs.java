@@ -30,14 +30,14 @@ public final class MariaDBClusterMaintenanceWindowArgs extends com.pulumi.resour
     }
 
     /**
-     * [string] Start of the maintenance window in UTC time.
+     * [string] Start of the maintenance window in UTC time. Format: HH:MM:SS.
      * 
      */
     @Import(name="time", required=true)
     private Output<String> time;
 
     /**
-     * @return [string] Start of the maintenance window in UTC time.
+     * @return [string] Start of the maintenance window in UTC time. Format: HH:MM:SS.
      * 
      */
     public Output<String> time() {
@@ -91,7 +91,7 @@ public final class MariaDBClusterMaintenanceWindowArgs extends com.pulumi.resour
         }
 
         /**
-         * @param time [string] Start of the maintenance window in UTC time.
+         * @param time [string] Start of the maintenance window in UTC time. Format: HH:MM:SS.
          * 
          * @return builder
          * 
@@ -102,7 +102,7 @@ public final class MariaDBClusterMaintenanceWindowArgs extends com.pulumi.resour
         }
 
         /**
-         * @param time [string] Start of the maintenance window in UTC time.
+         * @param time [string] Start of the maintenance window in UTC time. Format: HH:MM:SS.
          * 
          * @return builder
          * 

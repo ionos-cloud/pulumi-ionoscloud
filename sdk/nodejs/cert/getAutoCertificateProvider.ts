@@ -57,7 +57,7 @@ export interface GetAutoCertificateProviderArgs {
      */
     id?: string;
     /**
-     * [string] The location of the provider. Available locations: `de/fra`, `de/fra/2`
+     * [string] The location of the provider. Available locations: `de/fra`, `de/fra/1`, `de/fra/2`
      */
     location?: string;
     /**
@@ -137,7 +137,7 @@ export interface GetAutoCertificateProviderOutputArgs {
      */
     id?: pulumi.Input<string | undefined>;
     /**
-     * [string] The location of the provider. Available locations: `de/fra`, `de/fra/2`
+     * [string] The location of the provider. Available locations: `de/fra`, `de/fra/1`, `de/fra/2`
      */
     location?: pulumi.Input<string | undefined>;
     /**

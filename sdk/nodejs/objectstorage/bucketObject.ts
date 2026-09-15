@@ -219,7 +219,7 @@ export class BucketObject extends pulumi.CustomResource {
             resourceInputs["serverSideEncryption"] = args?.serverSideEncryption;
             resourceInputs["serverSideEncryptionContext"] = args?.serverSideEncryptionContext ? pulumi.secret(args.serverSideEncryptionContext) : undefined;
             resourceInputs["serverSideEncryptionCustomerAlgorithm"] = args?.serverSideEncryptionCustomerAlgorithm;
-            resourceInputs["serverSideEncryptionCustomerKey"] = args?.serverSideEncryptionCustomerKey;
+            resourceInputs["serverSideEncryptionCustomerKey"] = args?.serverSideEncryptionCustomerKey ? pulumi.secret(args.serverSideEncryptionCustomerKey) : undefined;
             resourceInputs["serverSideEncryptionCustomerKeyMd5"] = args?.serverSideEncryptionCustomerKeyMd5;
             resourceInputs["source"] = args?.source;
             resourceInputs["storageClass"] = args?.storageClass;
@@ -229,7 +229,7 @@ export class BucketObject extends pulumi.CustomResource {
             resourceInputs["versionId"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-        const secretOpts = { additionalSecretOutputs: ["serverSideEncryptionContext"] };
+        const secretOpts = { additionalSecretOutputs: ["serverSideEncryptionContext", "serverSideEncryptionCustomerKey"] };
         opts = pulumi.mergeOptions(opts, secretOpts);
         super(BucketObject.__pulumiType, name, resourceInputs, opts);
     }

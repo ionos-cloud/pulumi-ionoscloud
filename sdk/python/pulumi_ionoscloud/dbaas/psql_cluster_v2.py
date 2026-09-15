@@ -43,7 +43,7 @@ class PSQLClusterV2Args:
         :param pulumi.Input['PSQLClusterV2ConnectionsArgs'] connections: [object] Connection information of the PostgreSQL cluster.
         :param pulumi.Input['PSQLClusterV2CredentialsArgs'] credentials: [object] Credentials for the master database user to be created.
         :param pulumi.Input['PSQLClusterV2InstancesArgs'] instances: [object] The instance configuration for the PostgreSQL cluster.
-        :param pulumi.Input[_builtins.str] location: [string] The location of the PostgreSQL cluster. This is used for routing to the regional API endpoint. Changing this value will destroy the existing cluster and create a new one in the specified location. Available locations: `de/fra`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
+        :param pulumi.Input[_builtins.str] location: [string] The location of the PostgreSQL cluster. This is used for routing to the regional API endpoint. Changing this value will destroy the existing cluster and create a new one in the specified location. Available locations: `de/fra`, `de/fra/1`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
         :param pulumi.Input['PSQLClusterV2MaintenanceWindowArgs'] maintenance_window: [object] A weekly 4 hour-long window, during which maintenance might occur.
         :param pulumi.Input[_builtins.str] replication_mode: [string] Replication mode across the instances. Possible values: `ASYNCHRONOUS`, `STRICTLY_SYNCHRONOUS`.
         :param pulumi.Input[_builtins.str] version: [string] The PostgreSQL version of the cluster.
@@ -129,7 +129,7 @@ class PSQLClusterV2Args:
     @pulumi.getter
     def location(self) -> pulumi.Input[_builtins.str]:
         """
-        [string] The location of the PostgreSQL cluster. This is used for routing to the regional API endpoint. Changing this value will destroy the existing cluster and create a new one in the specified location. Available locations: `de/fra`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
+        [string] The location of the PostgreSQL cluster. This is used for routing to the regional API endpoint. Changing this value will destroy the existing cluster and create a new one in the specified location. Available locations: `de/fra`, `de/fra/1`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
         """
         return pulumi.get(self, "location")
 
@@ -284,7 +284,7 @@ class _PSQLClusterV2State:
         :param pulumi.Input[_builtins.str] description: [string] Human-readable description for the cluster.
         :param pulumi.Input[_builtins.str] dns_name: [string] The DNS name used to access the cluster.
         :param pulumi.Input['PSQLClusterV2InstancesArgs'] instances: [object] The instance configuration for the PostgreSQL cluster.
-        :param pulumi.Input[_builtins.str] location: [string] The location of the PostgreSQL cluster. This is used for routing to the regional API endpoint. Changing this value will destroy the existing cluster and create a new one in the specified location. Available locations: `de/fra`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
+        :param pulumi.Input[_builtins.str] location: [string] The location of the PostgreSQL cluster. This is used for routing to the regional API endpoint. Changing this value will destroy the existing cluster and create a new one in the specified location. Available locations: `de/fra`, `de/fra/1`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
         :param pulumi.Input[_builtins.bool] logs_enabled: (Computed)[bool] Enables or disables the collection and reporting of logs for observability of this cluster.
         :param pulumi.Input['PSQLClusterV2MaintenanceWindowArgs'] maintenance_window: [object] A weekly 4 hour-long window, during which maintenance might occur.
         :param pulumi.Input[_builtins.bool] metrics_enabled: (Computed)[bool] Enables or disables the collection and reporting of metrics for observability of this cluster.
@@ -414,7 +414,7 @@ class _PSQLClusterV2State:
     @pulumi.getter
     def location(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        [string] The location of the PostgreSQL cluster. This is used for routing to the regional API endpoint. Changing this value will destroy the existing cluster and create a new one in the specified location. Available locations: `de/fra`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
+        [string] The location of the PostgreSQL cluster. This is used for routing to the regional API endpoint. Changing this value will destroy the existing cluster and create a new one in the specified location. Available locations: `de/fra`, `de/fra/1`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
         """
         return pulumi.get(self, "location")
 
@@ -563,7 +563,7 @@ class PSQLClusterV2(pulumi.CustomResource):
         :param pulumi.Input[Union['PSQLClusterV2CredentialsArgs', 'PSQLClusterV2CredentialsArgsDict']] credentials: [object] Credentials for the master database user to be created.
         :param pulumi.Input[_builtins.str] description: [string] Human-readable description for the cluster.
         :param pulumi.Input[Union['PSQLClusterV2InstancesArgs', 'PSQLClusterV2InstancesArgsDict']] instances: [object] The instance configuration for the PostgreSQL cluster.
-        :param pulumi.Input[_builtins.str] location: [string] The location of the PostgreSQL cluster. This is used for routing to the regional API endpoint. Changing this value will destroy the existing cluster and create a new one in the specified location. Available locations: `de/fra`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
+        :param pulumi.Input[_builtins.str] location: [string] The location of the PostgreSQL cluster. This is used for routing to the regional API endpoint. Changing this value will destroy the existing cluster and create a new one in the specified location. Available locations: `de/fra`, `de/fra/1`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
         :param pulumi.Input[_builtins.bool] logs_enabled: (Computed)[bool] Enables or disables the collection and reporting of logs for observability of this cluster.
         :param pulumi.Input[Union['PSQLClusterV2MaintenanceWindowArgs', 'PSQLClusterV2MaintenanceWindowArgsDict']] maintenance_window: [object] A weekly 4 hour-long window, during which maintenance might occur.
         :param pulumi.Input[_builtins.bool] metrics_enabled: (Computed)[bool] Enables or disables the collection and reporting of metrics for observability of this cluster.
@@ -706,7 +706,7 @@ class PSQLClusterV2(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] description: [string] Human-readable description for the cluster.
         :param pulumi.Input[_builtins.str] dns_name: [string] The DNS name used to access the cluster.
         :param pulumi.Input[Union['PSQLClusterV2InstancesArgs', 'PSQLClusterV2InstancesArgsDict']] instances: [object] The instance configuration for the PostgreSQL cluster.
-        :param pulumi.Input[_builtins.str] location: [string] The location of the PostgreSQL cluster. This is used for routing to the regional API endpoint. Changing this value will destroy the existing cluster and create a new one in the specified location. Available locations: `de/fra`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
+        :param pulumi.Input[_builtins.str] location: [string] The location of the PostgreSQL cluster. This is used for routing to the regional API endpoint. Changing this value will destroy the existing cluster and create a new one in the specified location. Available locations: `de/fra`, `de/fra/1`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
         :param pulumi.Input[_builtins.bool] logs_enabled: (Computed)[bool] Enables or disables the collection and reporting of logs for observability of this cluster.
         :param pulumi.Input[Union['PSQLClusterV2MaintenanceWindowArgs', 'PSQLClusterV2MaintenanceWindowArgsDict']] maintenance_window: [object] A weekly 4 hour-long window, during which maintenance might occur.
         :param pulumi.Input[_builtins.bool] metrics_enabled: (Computed)[bool] Enables or disables the collection and reporting of metrics for observability of this cluster.
@@ -797,7 +797,7 @@ class PSQLClusterV2(pulumi.CustomResource):
     @pulumi.getter
     def location(self) -> pulumi.Output[_builtins.str]:
         """
-        [string] The location of the PostgreSQL cluster. This is used for routing to the regional API endpoint. Changing this value will destroy the existing cluster and create a new one in the specified location. Available locations: `de/fra`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
+        [string] The location of the PostgreSQL cluster. This is used for routing to the regional API endpoint. Changing this value will destroy the existing cluster and create a new one in the specified location. Available locations: `de/fra`, `de/fra/1`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
         """
         return pulumi.get(self, "location")
 

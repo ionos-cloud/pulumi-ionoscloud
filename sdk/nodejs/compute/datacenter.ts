@@ -66,6 +66,16 @@ import * as utilities from "../utilities";
  * ```sh
  * terraform import ionoscloud_datacenter.mydc datacenter uuid
  * ```
+ *
+ * ### Identity Schema
+ *
+ * #### Required
+ *
+ * * `id` (String) The UUID of the datacenter.
+ *
+ * #### Optional
+ *
+ * * `location` (String) The location the datacenter lives in (e.g. `de/txl`). Only needed when the Cloud API endpoint is overridden per location.
  */
 export class Datacenter extends pulumi.CustomResource {
     /**
@@ -112,7 +122,7 @@ export class Datacenter extends pulumi.CustomResource {
      */
     declare public /*out*/ readonly ipv6CidrBlock: pulumi.Output<string>;
     /**
-     * [string] The regional location where the Virtual Data Center will be created. This argument is immutable. Available locations: `de/fra`, `us/las`, `us/ewr`, `de/txl`, `gb/lhr`, `gb/bhx`, `es/vit`, `fr/par`, `us/mci`, `de/fra/2`
+     * [string] The regional location where the Virtual Data Center will be created. This argument is immutable. Available locations: `de/fra`, `us/las`, `us/ewr`, `de/txl`, `gb/lhr`, `gb/bhx`, `es/vit`, `fr/par`, `us/mci`, `de/fra/1`, `de/fra/2`
      */
     declare public readonly location: pulumi.Output<string>;
     /**
@@ -189,7 +199,7 @@ export interface DatacenterState {
      */
     ipv6CidrBlock?: pulumi.Input<string | undefined>;
     /**
-     * [string] The regional location where the Virtual Data Center will be created. This argument is immutable. Available locations: `de/fra`, `us/las`, `us/ewr`, `de/txl`, `gb/lhr`, `gb/bhx`, `es/vit`, `fr/par`, `us/mci`, `de/fra/2`
+     * [string] The regional location where the Virtual Data Center will be created. This argument is immutable. Available locations: `de/fra`, `us/las`, `us/ewr`, `de/txl`, `gb/lhr`, `gb/bhx`, `es/vit`, `fr/par`, `us/mci`, `de/fra/1`, `de/fra/2`
      */
     location?: pulumi.Input<string | undefined>;
     /**
@@ -215,7 +225,7 @@ export interface DatacenterArgs {
      */
     description?: pulumi.Input<string | undefined>;
     /**
-     * [string] The regional location where the Virtual Data Center will be created. This argument is immutable. Available locations: `de/fra`, `us/las`, `us/ewr`, `de/txl`, `gb/lhr`, `gb/bhx`, `es/vit`, `fr/par`, `us/mci`, `de/fra/2`
+     * [string] The regional location where the Virtual Data Center will be created. This argument is immutable. Available locations: `de/fra`, `us/las`, `us/ewr`, `de/txl`, `gb/lhr`, `gb/bhx`, `es/vit`, `fr/par`, `us/mci`, `de/fra/1`, `de/fra/2`
      */
     location: pulumi.Input<string>;
     /**

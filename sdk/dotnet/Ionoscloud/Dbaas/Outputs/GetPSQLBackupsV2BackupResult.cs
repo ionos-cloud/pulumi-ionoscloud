@@ -35,7 +35,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Dbaas.Outputs
         /// </summary>
         public readonly string LatestRecoveryTargetTime;
         /// <summary>
-        /// [string] The region in which to look up backups. Available locations: `de/fra`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
+        /// [string] The region in which to look up backups. Available locations: `de/fra`, `de/fra/1`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
         /// </summary>
         public readonly string Location;
         /// <summary>

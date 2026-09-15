@@ -15,11 +15,11 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Dbaas.Outputs
     public sealed class MariaDBClusterCredentials
     {
         /// <summary>
-        /// [string] The password for a MariaDB user.
+        /// [string] The password for a MariaDB user. Length: 10-63 characters.
         /// </summary>
         public readonly string Password;
         /// <summary>
-        /// [string] The username for the initial MariaDB user. Some system usernames are restricted (e.g 'mariadb', 'admin', 'standby').
+        /// [string] The username for the initial MariaDB user. Some system usernames are restricted (e.g 'mariadb', 'admin', 'standby'). Length: 1-16 characters. Must start with a letter, end with a letter or number, and contain only letters, numbers, or underscores (underscores only between alphanumeric groups).
         /// </summary>
         public readonly string Username;
 

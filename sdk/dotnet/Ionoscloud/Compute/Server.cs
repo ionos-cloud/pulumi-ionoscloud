@@ -427,6 +427,26 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
         public Output<string> BootVolume { get; private set; } = null!;
 
         /// <summary>
+        /// (Computed)[bool] If set, creates a Confidential Computing (SEV-SNP) VM from a confidential boot image. Requires `type = "ENTERPRISE"`, a `Volume` block, and a private SEV-SNP `ImageName`. `Cores` and `CpuFamily` must not be set - both are derived from the image. This property is immutable (changing it re-creates the server; use `AllowReplace = true`). It is computed on read from the server's enabled features, so imported servers reflect their real state instead of forcing a spurious re-creation. Only available in confidential-computing enabled locations.
+        /// 
+        /// ⚠️ **_Warning: `AllowReplace` - lets you update immutable fields, but it first destroys and then re-creates the server in order to do it. This field should be used with care, understanding the risks._**
+        /// 
+        /// &gt; **⚠ WARNING**
+        /// &gt;
+        /// &gt; Image_name under volume level is deprecated, please use ImageName under server level
+        /// &gt; SshKeyPath and SshKeys fields are immutable.
+        /// 
+        /// 
+        /// &gt; **⚠ WARNING**
+        /// &gt;
+        /// &gt; If you want to create a **CUBE** server, you have to provide the `TemplateUuid`. In this case you can not set `Cores`, `Ram` and `volume.size` arguments, these being mutually exclusive with `TemplateUuid`.
+        /// &gt;
+        /// &gt; In all the other cases (**ENTERPRISE** servers) you have to provide values for `Cores`, `Ram` and `volume size`.
+        /// </summary>
+        [Output("confidential")]
+        public Output<bool> Confidential { get; private set; } = null!;
+
+        /// <summary>
         /// (Computed)[integer] Number of server CPU cores.
         /// </summary>
         [Output("cores")]
@@ -443,6 +463,12 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
         /// </summary>
         [Output("datacenterId")]
         public Output<string> DatacenterId { get; private set; } = null!;
+
+        /// <summary>
+        /// Features enabled on the server, e.g. `SEV-SNP` for a Confidential Computing VM.
+        /// </summary>
+        [Output("enabledFeatures")]
+        public Output<ImmutableArray<string>> EnabledFeatures { get; private set; } = null!;
 
         /// <summary>
         /// The associated firewall rule.
@@ -506,20 +532,6 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
 
         /// <summary>
         /// [bool] Activate or deactivate the Multi Queue feature on all NICs of the server. This feature is beneficial to enable when the NICs are experiencing performance issues (e.g. low throughput). Toggling this feature will also initiate a restart of the server. If the specified value is `True`, the feature will be activated; if it is not specified or set to `False`, the feature will be deactivated. The feature cannot be activated for `CUBE` servers.
-        /// 
-        /// ⚠️ **_Warning: `AllowReplace` - lets you update immutable fields, but it first destroys and then re-creates the server in order to do it. This field should be used with care, understanding the risks._**
-        /// 
-        /// &gt; **⚠ WARNING**
-        /// &gt;
-        /// &gt; Image_name under volume level is deprecated, please use ImageName under server level
-        /// &gt; SshKeyPath and SshKeys fields are immutable.
-        /// 
-        /// 
-        /// &gt; **⚠ WARNING**
-        /// &gt;
-        /// &gt; If you want to create a **CUBE** server, you have to provide the `TemplateUuid`. In this case you can not set `Cores`, `Ram` and `volume.size` arguments, these being mutually exclusive with `TemplateUuid`.
-        /// &gt;
-        /// &gt; In all the other cases (**ENTERPRISE** servers) you have to provide values for `Cores`, `Ram` and `volume size`.
         /// </summary>
         [Output("nicMultiQueue")]
         public Output<bool?> NicMultiQueue { get; private set; } = null!;
@@ -660,6 +672,26 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
         public Input<string>? BootImage { get; set; }
 
         /// <summary>
+        /// (Computed)[bool] If set, creates a Confidential Computing (SEV-SNP) VM from a confidential boot image. Requires `type = "ENTERPRISE"`, a `Volume` block, and a private SEV-SNP `ImageName`. `Cores` and `CpuFamily` must not be set - both are derived from the image. This property is immutable (changing it re-creates the server; use `AllowReplace = true`). It is computed on read from the server's enabled features, so imported servers reflect their real state instead of forcing a spurious re-creation. Only available in confidential-computing enabled locations.
+        /// 
+        /// ⚠️ **_Warning: `AllowReplace` - lets you update immutable fields, but it first destroys and then re-creates the server in order to do it. This field should be used with care, understanding the risks._**
+        /// 
+        /// &gt; **⚠ WARNING**
+        /// &gt;
+        /// &gt; Image_name under volume level is deprecated, please use ImageName under server level
+        /// &gt; SshKeyPath and SshKeys fields are immutable.
+        /// 
+        /// 
+        /// &gt; **⚠ WARNING**
+        /// &gt;
+        /// &gt; If you want to create a **CUBE** server, you have to provide the `TemplateUuid`. In this case you can not set `Cores`, `Ram` and `volume.size` arguments, these being mutually exclusive with `TemplateUuid`.
+        /// &gt;
+        /// &gt; In all the other cases (**ENTERPRISE** servers) you have to provide values for `Cores`, `Ram` and `volume size`.
+        /// </summary>
+        [Input("confidential")]
+        public Input<bool>? Confidential { get; set; }
+
+        /// <summary>
         /// (Computed)[integer] Number of server CPU cores.
         /// </summary>
         [Input("cores")]
@@ -749,20 +781,6 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
 
         /// <summary>
         /// [bool] Activate or deactivate the Multi Queue feature on all NICs of the server. This feature is beneficial to enable when the NICs are experiencing performance issues (e.g. low throughput). Toggling this feature will also initiate a restart of the server. If the specified value is `True`, the feature will be activated; if it is not specified or set to `False`, the feature will be deactivated. The feature cannot be activated for `CUBE` servers.
-        /// 
-        /// ⚠️ **_Warning: `AllowReplace` - lets you update immutable fields, but it first destroys and then re-creates the server in order to do it. This field should be used with care, understanding the risks._**
-        /// 
-        /// &gt; **⚠ WARNING**
-        /// &gt;
-        /// &gt; Image_name under volume level is deprecated, please use ImageName under server level
-        /// &gt; SshKeyPath and SshKeys fields are immutable.
-        /// 
-        /// 
-        /// &gt; **⚠ WARNING**
-        /// &gt;
-        /// &gt; If you want to create a **CUBE** server, you have to provide the `TemplateUuid`. In this case you can not set `Cores`, `Ram` and `volume.size` arguments, these being mutually exclusive with `TemplateUuid`.
-        /// &gt;
-        /// &gt; In all the other cases (**ENTERPRISE** servers) you have to provide values for `Cores`, `Ram` and `volume size`.
         /// </summary>
         [Input("nicMultiQueue")]
         public Input<bool>? NicMultiQueue { get; set; }
@@ -873,6 +891,26 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
         public Input<string>? BootVolume { get; set; }
 
         /// <summary>
+        /// (Computed)[bool] If set, creates a Confidential Computing (SEV-SNP) VM from a confidential boot image. Requires `type = "ENTERPRISE"`, a `Volume` block, and a private SEV-SNP `ImageName`. `Cores` and `CpuFamily` must not be set - both are derived from the image. This property is immutable (changing it re-creates the server; use `AllowReplace = true`). It is computed on read from the server's enabled features, so imported servers reflect their real state instead of forcing a spurious re-creation. Only available in confidential-computing enabled locations.
+        /// 
+        /// ⚠️ **_Warning: `AllowReplace` - lets you update immutable fields, but it first destroys and then re-creates the server in order to do it. This field should be used with care, understanding the risks._**
+        /// 
+        /// &gt; **⚠ WARNING**
+        /// &gt;
+        /// &gt; Image_name under volume level is deprecated, please use ImageName under server level
+        /// &gt; SshKeyPath and SshKeys fields are immutable.
+        /// 
+        /// 
+        /// &gt; **⚠ WARNING**
+        /// &gt;
+        /// &gt; If you want to create a **CUBE** server, you have to provide the `TemplateUuid`. In this case you can not set `Cores`, `Ram` and `volume.size` arguments, these being mutually exclusive with `TemplateUuid`.
+        /// &gt;
+        /// &gt; In all the other cases (**ENTERPRISE** servers) you have to provide values for `Cores`, `Ram` and `volume size`.
+        /// </summary>
+        [Input("confidential")]
+        public Input<bool>? Confidential { get; set; }
+
+        /// <summary>
         /// (Computed)[integer] Number of server CPU cores.
         /// </summary>
         [Input("cores")]
@@ -889,6 +927,18 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
         /// </summary>
         [Input("datacenterId")]
         public Input<string>? DatacenterId { get; set; }
+
+        [Input("enabledFeatures")]
+        private InputList<string>? _enabledFeatures;
+
+        /// <summary>
+        /// Features enabled on the server, e.g. `SEV-SNP` for a Confidential Computing VM.
+        /// </summary>
+        public InputList<string> EnabledFeatures
+        {
+            get => _enabledFeatures ?? (_enabledFeatures = new InputList<string>());
+            set => _enabledFeatures = value;
+        }
 
         /// <summary>
         /// The associated firewall rule.
@@ -980,20 +1030,6 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
 
         /// <summary>
         /// [bool] Activate or deactivate the Multi Queue feature on all NICs of the server. This feature is beneficial to enable when the NICs are experiencing performance issues (e.g. low throughput). Toggling this feature will also initiate a restart of the server. If the specified value is `True`, the feature will be activated; if it is not specified or set to `False`, the feature will be deactivated. The feature cannot be activated for `CUBE` servers.
-        /// 
-        /// ⚠️ **_Warning: `AllowReplace` - lets you update immutable fields, but it first destroys and then re-creates the server in order to do it. This field should be used with care, understanding the risks._**
-        /// 
-        /// &gt; **⚠ WARNING**
-        /// &gt;
-        /// &gt; Image_name under volume level is deprecated, please use ImageName under server level
-        /// &gt; SshKeyPath and SshKeys fields are immutable.
-        /// 
-        /// 
-        /// &gt; **⚠ WARNING**
-        /// &gt;
-        /// &gt; If you want to create a **CUBE** server, you have to provide the `TemplateUuid`. In this case you can not set `Cores`, `Ram` and `volume.size` arguments, these being mutually exclusive with `TemplateUuid`.
-        /// &gt;
-        /// &gt; In all the other cases (**ENTERPRISE** servers) you have to provide values for `Cores`, `Ram` and `volume size`.
         /// </summary>
         [Input("nicMultiQueue")]
         public Input<bool>? NicMultiQueue { get; set; }

@@ -87,7 +87,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Kafka
         public Output<Outputs.ClusterConnections> Connections { get; private set; } = null!;
 
         /// <summary>
-        /// [string] The location of the Kafka Cluster. Possible values: `de/fra`, `de/fra/2`, `de/txl`, `fr/par`, `es/vit`, `gb/lhr`, `gb/bhx`, `us/las`, `us/mci`, `us/ewr`. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `Location` will be: `de/fra`.
+        /// [string] The location of the Kafka Cluster. Possible values: `de/fra`, `de/fra/1`, `de/fra/2`, `de/txl`, `fr/par`, `es/vit`, `gb/lhr`, `gb/bhx`, `us/las`, `us/mci`, `us/ewr`. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `Location` will be: `de/fra`.
         /// </summary>
         [Output("location")]
         public Output<string?> Location { get; private set; } = null!;
@@ -164,7 +164,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Kafka
         public Input<Inputs.ClusterConnectionsArgs> Connections { get; set; } = null!;
 
         /// <summary>
-        /// [string] The location of the Kafka Cluster. Possible values: `de/fra`, `de/fra/2`, `de/txl`, `fr/par`, `es/vit`, `gb/lhr`, `gb/bhx`, `us/las`, `us/mci`, `us/ewr`. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `Location` will be: `de/fra`.
+        /// [string] The location of the Kafka Cluster. Possible values: `de/fra`, `de/fra/1`, `de/fra/2`, `de/txl`, `fr/par`, `es/vit`, `gb/lhr`, `gb/bhx`, `us/las`, `us/mci`, `us/ewr`. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `Location` will be: `de/fra`.
         /// </summary>
         [Input("location")]
         public Input<string>? Location { get; set; }
@@ -216,7 +216,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Kafka
         public Input<Inputs.ClusterConnectionsGetArgs>? Connections { get; set; }
 
         /// <summary>
-        /// [string] The location of the Kafka Cluster. Possible values: `de/fra`, `de/fra/2`, `de/txl`, `fr/par`, `es/vit`, `gb/lhr`, `gb/bhx`, `us/las`, `us/mci`, `us/ewr`. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `Location` will be: `de/fra`.
+        /// [string] The location of the Kafka Cluster. Possible values: `de/fra`, `de/fra/1`, `de/fra/2`, `de/txl`, `fr/par`, `es/vit`, `gb/lhr`, `gb/bhx`, `us/las`, `us/mci`, `us/ewr`. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `Location` will be: `de/fra`.
         /// </summary>
         [Input("location")]
         public Input<string>? Location { get; set; }

@@ -176,6 +176,8 @@ type GetImageResult struct {
 	RamHotUnplug bool `pulumi:"ramHotUnplug"`
 	// Indicates if the image requires the legacy BIOS for compatibility or specific needs.
 	RequireLegacyBios bool `pulumi:"requireLegacyBios"`
+	// Features required to run this image, e.g. `SEV-SNP` for a Confidential Computing boot image.
+	RequiredFeatures []string `pulumi:"requiredFeatures"`
 	// The size of the image in GB
 	Size float64 `pulumi:"size"`
 	// This indicates the type of image
@@ -334,6 +336,11 @@ func (o GetImageResultOutput) RamHotUnplug() pulumi.BoolOutput {
 // Indicates if the image requires the legacy BIOS for compatibility or specific needs.
 func (o GetImageResultOutput) RequireLegacyBios() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetImageResult) bool { return v.RequireLegacyBios }).(pulumi.BoolOutput)
+}
+
+// Features required to run this image, e.g. `SEV-SNP` for a Confidential Computing boot image.
+func (o GetImageResultOutput) RequiredFeatures() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetImageResult) []string { return v.RequiredFeatures }).(pulumi.StringArrayOutput)
 }
 
 // The size of the image in GB

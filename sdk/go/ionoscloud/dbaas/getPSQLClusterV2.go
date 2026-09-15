@@ -82,7 +82,7 @@ func LookupPSQLClusterV2(ctx *pulumi.Context, args *LookupPSQLClusterV2Args, opt
 type LookupPSQLClusterV2Args struct {
 	// [string] ID of the cluster you want to search for.
 	Id *string `pulumi:"id"`
-	// [string] The region in which to look up the cluster. Available locations: `de/fra`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
+	// [string] The region in which to look up the cluster. Available locations: `de/fra`, `de/fra/1`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
 	//
 	// Either `id` or `name` must be provided. If none, or both are provided, the datasource will return an error.
 	Location string `pulumi:"location"`
@@ -135,7 +135,7 @@ func LookupPSQLClusterV2Output(ctx *pulumi.Context, args LookupPSQLClusterV2Outp
 type LookupPSQLClusterV2OutputArgs struct {
 	// [string] ID of the cluster you want to search for.
 	Id pulumi.StringPtrInput `pulumi:"id"`
-	// [string] The region in which to look up the cluster. Available locations: `de/fra`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
+	// [string] The region in which to look up the cluster. Available locations: `de/fra`, `de/fra/1`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
 	//
 	// Either `id` or `name` must be provided. If none, or both are provided, the datasource will return an error.
 	Location pulumi.StringInput `pulumi:"location"`

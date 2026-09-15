@@ -1026,7 +1026,7 @@ class BucketObject(pulumi.CustomResource):
             __props__.__dict__["server_side_encryption"] = server_side_encryption
             __props__.__dict__["server_side_encryption_context"] = None if server_side_encryption_context is None else pulumi.Output.secret(server_side_encryption_context)
             __props__.__dict__["server_side_encryption_customer_algorithm"] = server_side_encryption_customer_algorithm
-            __props__.__dict__["server_side_encryption_customer_key"] = server_side_encryption_customer_key
+            __props__.__dict__["server_side_encryption_customer_key"] = None if server_side_encryption_customer_key is None else pulumi.Output.secret(server_side_encryption_customer_key)
             __props__.__dict__["server_side_encryption_customer_key_md5"] = server_side_encryption_customer_key_md5
             __props__.__dict__["source"] = source
             __props__.__dict__["storage_class"] = storage_class
@@ -1034,7 +1034,7 @@ class BucketObject(pulumi.CustomResource):
             __props__.__dict__["website_redirect"] = website_redirect
             __props__.__dict__["etag"] = None
             __props__.__dict__["version_id"] = None
-        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["serverSideEncryptionContext"])
+        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["serverSideEncryptionContext", "serverSideEncryptionCustomerKey"])
         opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(BucketObject, __self__).__init__(
             'ionoscloud:objectstorage/bucketObject:BucketObject',

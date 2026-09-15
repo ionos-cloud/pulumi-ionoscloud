@@ -51,7 +51,7 @@ func GetPSQLBackupLocationV2(ctx *pulumi.Context, args *GetPSQLBackupLocationV2A
 
 // A collection of arguments for invoking getPSQLBackupLocationV2.
 type GetPSQLBackupLocationV2Args struct {
-	// [string] The region in which to look up backup locations. Available locations: `de/fra`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
+	// [string] The region in which to look up backup locations. Available locations: `de/fra`, `de/fra/1`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
 	Location string `pulumi:"location"`
 }
 
@@ -76,7 +76,7 @@ func GetPSQLBackupLocationV2Output(ctx *pulumi.Context, args GetPSQLBackupLocati
 
 // A collection of arguments for invoking getPSQLBackupLocationV2.
 type GetPSQLBackupLocationV2OutputArgs struct {
-	// [string] The region in which to look up backup locations. Available locations: `de/fra`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
+	// [string] The region in which to look up backup locations. Available locations: `de/fra`, `de/fra/1`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
 	Location pulumi.StringInput `pulumi:"location"`
 }
 

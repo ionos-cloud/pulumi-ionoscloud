@@ -163,7 +163,7 @@ def get_kafka_user_credentials(cluster_id: Optional[_builtins.str] = None,
 
     :param _builtins.str cluster_id: [string] the ID of the Kafka cluster;
     :param _builtins.str id: [string] the ID of the Kafka user, can be retrieved using `get_kafka_users` data source;
-    :param _builtins.str location: [string] the location of the Kafka cluster, can be one of: `de/fra`, `de/fra/2`, `de/txl`, `fr/par`, `es/vit`, `gb/lhr`, `gb/bhx`, `us/las`, `us/mci`, `us/ewr`. If omitted, the default location will be used: `de/fra`;
+    :param _builtins.str location: [string] the location of the Kafka cluster, can be one of: `de/fra`, `de/fra/1`, `de/fra/2`, `de/txl`, `fr/par`, `es/vit`, `gb/lhr`, `gb/bhx`, `us/las`, `us/mci`, `us/ewr`. If omitted, the default location will be used: `de/fra`;
     :param _builtins.str username: [string] the name of the Kafka user, can be retrieved using `get_kafka_users` data source;
     """
     __args__ = dict()
@@ -236,7 +236,7 @@ def get_kafka_user_credentials_output(cluster_id: pulumi.Input[Optional[_builtin
 
     :param _builtins.str cluster_id: [string] the ID of the Kafka cluster;
     :param _builtins.str id: [string] the ID of the Kafka user, can be retrieved using `get_kafka_users` data source;
-    :param _builtins.str location: [string] the location of the Kafka cluster, can be one of: `de/fra`, `de/fra/2`, `de/txl`, `fr/par`, `es/vit`, `gb/lhr`, `gb/bhx`, `us/las`, `us/mci`, `us/ewr`. If omitted, the default location will be used: `de/fra`;
+    :param _builtins.str location: [string] the location of the Kafka cluster, can be one of: `de/fra`, `de/fra/1`, `de/fra/2`, `de/txl`, `fr/par`, `es/vit`, `gb/lhr`, `gb/bhx`, `us/las`, `us/mci`, `us/ewr`. If omitted, the default location will be used: `de/fra`;
     :param _builtins.str username: [string] the name of the Kafka user, can be retrieved using `get_kafka_users` data source;
     """
     __args__ = dict()

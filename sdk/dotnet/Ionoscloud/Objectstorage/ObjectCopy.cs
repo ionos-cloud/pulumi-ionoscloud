@@ -289,6 +289,11 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Objectstorage
             {
                 Version = Utilities.Version,
                 PluginDownloadURL = "github://api.github.com/ionos-cloud/pulumi-ionoscloud",
+                AdditionalSecretOutputs =
+                {
+                    "serverSideEncryptionCustomerKey",
+                    "sourceCustomerKey",
+                },
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.
@@ -438,11 +443,21 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Objectstorage
         [Input("serverSideEncryptionCustomerAlgorithm")]
         public Input<string>? ServerSideEncryptionCustomerAlgorithm { get; set; }
 
+        [Input("serverSideEncryptionCustomerKey")]
+        private Input<string>? _serverSideEncryptionCustomerKey;
+
         /// <summary>
         /// [string] Specifies the 256-bit, base64-encoded encryption key to use to encrypt and decrypt your data.
         /// </summary>
-        [Input("serverSideEncryptionCustomerKey")]
-        public Input<string>? ServerSideEncryptionCustomerKey { get; set; }
+        public Input<string>? ServerSideEncryptionCustomerKey
+        {
+            get => _serverSideEncryptionCustomerKey;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _serverSideEncryptionCustomerKey = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// [string] Specifies the 128-bit MD5 digest of the encryption key.
@@ -462,11 +477,21 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Objectstorage
         [Input("sourceCustomerAlgorithm")]
         public Input<string>? SourceCustomerAlgorithm { get; set; }
 
+        [Input("sourceCustomerKey")]
+        private Input<string>? _sourceCustomerKey;
+
         /// <summary>
         /// [string] Specifies the 256-bit, base64-encoded encryption key for source object encryption.
         /// </summary>
-        [Input("sourceCustomerKey")]
-        public Input<string>? SourceCustomerKey { get; set; }
+        public Input<string>? SourceCustomerKey
+        {
+            get => _sourceCustomerKey;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _sourceCustomerKey = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// [string] Specifies the 128-bit MD5 digest of the encryption key for source object encryption.
@@ -650,11 +675,21 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Objectstorage
         [Input("serverSideEncryptionCustomerAlgorithm")]
         public Input<string>? ServerSideEncryptionCustomerAlgorithm { get; set; }
 
+        [Input("serverSideEncryptionCustomerKey")]
+        private Input<string>? _serverSideEncryptionCustomerKey;
+
         /// <summary>
         /// [string] Specifies the 256-bit, base64-encoded encryption key to use to encrypt and decrypt your data.
         /// </summary>
-        [Input("serverSideEncryptionCustomerKey")]
-        public Input<string>? ServerSideEncryptionCustomerKey { get; set; }
+        public Input<string>? ServerSideEncryptionCustomerKey
+        {
+            get => _serverSideEncryptionCustomerKey;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _serverSideEncryptionCustomerKey = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// [string] Specifies the 128-bit MD5 digest of the encryption key.
@@ -674,11 +709,21 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Objectstorage
         [Input("sourceCustomerAlgorithm")]
         public Input<string>? SourceCustomerAlgorithm { get; set; }
 
+        [Input("sourceCustomerKey")]
+        private Input<string>? _sourceCustomerKey;
+
         /// <summary>
         /// [string] Specifies the 256-bit, base64-encoded encryption key for source object encryption.
         /// </summary>
-        [Input("sourceCustomerKey")]
-        public Input<string>? SourceCustomerKey { get; set; }
+        public Input<string>? SourceCustomerKey
+        {
+            get => _sourceCustomerKey;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _sourceCustomerKey = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// [string] Specifies the 128-bit MD5 digest of the encryption key for source object encryption.

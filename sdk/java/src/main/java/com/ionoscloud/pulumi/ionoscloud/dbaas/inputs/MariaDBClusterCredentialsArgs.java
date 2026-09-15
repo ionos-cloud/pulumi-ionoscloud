@@ -15,14 +15,14 @@ public final class MariaDBClusterCredentialsArgs extends com.pulumi.resources.Re
     public static final MariaDBClusterCredentialsArgs Empty = new MariaDBClusterCredentialsArgs();
 
     /**
-     * [string] The password for a MariaDB user.
+     * [string] The password for a MariaDB user. Length: 10-63 characters.
      * 
      */
     @Import(name="password", required=true)
     private Output<String> password;
 
     /**
-     * @return [string] The password for a MariaDB user.
+     * @return [string] The password for a MariaDB user. Length: 10-63 characters.
      * 
      */
     public Output<String> password() {
@@ -30,14 +30,14 @@ public final class MariaDBClusterCredentialsArgs extends com.pulumi.resources.Re
     }
 
     /**
-     * [string] The username for the initial MariaDB user. Some system usernames are restricted (e.g &#39;mariadb&#39;, &#39;admin&#39;, &#39;standby&#39;).
+     * [string] The username for the initial MariaDB user. Some system usernames are restricted (e.g &#39;mariadb&#39;, &#39;admin&#39;, &#39;standby&#39;). Length: 1-16 characters. Must start with a letter, end with a letter or number, and contain only letters, numbers, or underscores (underscores only between alphanumeric groups).
      * 
      */
     @Import(name="username", required=true)
     private Output<String> username;
 
     /**
-     * @return [string] The username for the initial MariaDB user. Some system usernames are restricted (e.g &#39;mariadb&#39;, &#39;admin&#39;, &#39;standby&#39;).
+     * @return [string] The username for the initial MariaDB user. Some system usernames are restricted (e.g &#39;mariadb&#39;, &#39;admin&#39;, &#39;standby&#39;). Length: 1-16 characters. Must start with a letter, end with a letter or number, and contain only letters, numbers, or underscores (underscores only between alphanumeric groups).
      * 
      */
     public Output<String> username() {
@@ -70,7 +70,7 @@ public final class MariaDBClusterCredentialsArgs extends com.pulumi.resources.Re
         }
 
         /**
-         * @param password [string] The password for a MariaDB user.
+         * @param password [string] The password for a MariaDB user. Length: 10-63 characters.
          * 
          * @return builder
          * 
@@ -81,7 +81,7 @@ public final class MariaDBClusterCredentialsArgs extends com.pulumi.resources.Re
         }
 
         /**
-         * @param password [string] The password for a MariaDB user.
+         * @param password [string] The password for a MariaDB user. Length: 10-63 characters.
          * 
          * @return builder
          * 
@@ -91,7 +91,7 @@ public final class MariaDBClusterCredentialsArgs extends com.pulumi.resources.Re
         }
 
         /**
-         * @param username [string] The username for the initial MariaDB user. Some system usernames are restricted (e.g &#39;mariadb&#39;, &#39;admin&#39;, &#39;standby&#39;).
+         * @param username [string] The username for the initial MariaDB user. Some system usernames are restricted (e.g &#39;mariadb&#39;, &#39;admin&#39;, &#39;standby&#39;). Length: 1-16 characters. Must start with a letter, end with a letter or number, and contain only letters, numbers, or underscores (underscores only between alphanumeric groups).
          * 
          * @return builder
          * 
@@ -102,7 +102,7 @@ public final class MariaDBClusterCredentialsArgs extends com.pulumi.resources.Re
         }
 
         /**
-         * @param username [string] The username for the initial MariaDB user. Some system usernames are restricted (e.g &#39;mariadb&#39;, &#39;admin&#39;, &#39;standby&#39;).
+         * @param username [string] The username for the initial MariaDB user. Some system usernames are restricted (e.g &#39;mariadb&#39;, &#39;admin&#39;, &#39;standby&#39;). Length: 1-16 characters. Must start with a letter, end with a letter or number, and contain only letters, numbers, or underscores (underscores only between alphanumeric groups).
          * 
          * @return builder
          * 

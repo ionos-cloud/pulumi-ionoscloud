@@ -53,7 +53,7 @@ func LookupCluster(ctx *pulumi.Context, args *LookupClusterArgs, opts ...pulumi.
 type LookupClusterArgs struct {
 	// ID of the Network File Storage cluster.
 	Id *string `pulumi:"id"`
-	// The location where the Network File Storage cluster is located. Available locations: `de/fra`, `de/fra/2`, `de/txl`, `fr/par`, `gb/lhr`, `es/vit`, `us/las`, `us/ewr`, `us/mci`.
+	// The location where the Network File Storage cluster is located. Available locations: `de/fra`, `de/fra/1`, `de/fra/2`, `de/txl`, `fr/par`, `gb/lhr`, `es/vit`, `us/las`, `us/ewr`, `us/mci`.
 	Location string `pulumi:"location"`
 	// Name of the Network File Storage cluster.
 	Name *string `pulumi:"name"`
@@ -93,7 +93,7 @@ func LookupClusterOutput(ctx *pulumi.Context, args LookupClusterOutputArgs, opts
 type LookupClusterOutputArgs struct {
 	// ID of the Network File Storage cluster.
 	Id pulumi.StringPtrInput `pulumi:"id"`
-	// The location where the Network File Storage cluster is located. Available locations: `de/fra`, `de/fra/2`, `de/txl`, `fr/par`, `gb/lhr`, `es/vit`, `us/las`, `us/ewr`, `us/mci`.
+	// The location where the Network File Storage cluster is located. Available locations: `de/fra`, `de/fra/1`, `de/fra/2`, `de/txl`, `fr/par`, `gb/lhr`, `es/vit`, `us/las`, `us/ewr`, `us/mci`.
 	Location pulumi.StringInput `pulumi:"location"`
 	// Name of the Network File Storage cluster.
 	Name pulumi.StringPtrInput `pulumi:"name"`

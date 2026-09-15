@@ -60,7 +60,7 @@ type LookupShareArgs struct {
 	Gid *int `pulumi:"gid"`
 	// ID of the Network File Storage share.
 	Id *string `pulumi:"id"`
-	// The location where the Network File Storage share is located. Available locations: `de/fra`, `de/fra/2`, `de/txl`, `fr/par`, `gb/lhr`, `es/vit`, `us/las`, `us/ewr`, `us/mci`.
+	// The location where the Network File Storage share is located. Available locations: `de/fra`, `de/fra/1`, `de/fra/2`, `de/txl`, `fr/par`, `gb/lhr`, `es/vit`, `us/las`, `us/ewr`, `us/mci`.
 	Location *string `pulumi:"location"`
 	// Name of the Network File Storage share.
 	Name *string `pulumi:"name"`
@@ -114,7 +114,7 @@ type LookupShareOutputArgs struct {
 	Gid pulumi.IntPtrInput `pulumi:"gid"`
 	// ID of the Network File Storage share.
 	Id pulumi.StringPtrInput `pulumi:"id"`
-	// The location where the Network File Storage share is located. Available locations: `de/fra`, `de/fra/2`, `de/txl`, `fr/par`, `gb/lhr`, `es/vit`, `us/las`, `us/ewr`, `us/mci`.
+	// The location where the Network File Storage share is located. Available locations: `de/fra`, `de/fra/1`, `de/fra/2`, `de/txl`, `fr/par`, `gb/lhr`, `es/vit`, `us/las`, `us/ewr`, `us/mci`.
 	Location pulumi.StringPtrInput `pulumi:"location"`
 	// Name of the Network File Storage share.
 	Name pulumi.StringPtrInput `pulumi:"name"`

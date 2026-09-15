@@ -110,7 +110,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud
         public string ClusterId { get; set; } = null!;
 
         /// <summary>
-        /// [string] the location of the Kafka cluster, can be one of: `de/fra`, `de/fra/2`, `de/txl`, `fr/par`, `es/vit`, `gb/lhr`, `gb/bhx`, `us/las`, `us/mci`, `us/ewr`. If omitted, the default location will be used: `de/fra`;
+        /// [string] the location of the Kafka cluster, can be one of: `de/fra`, `de/fra/1`, `de/fra/2`, `de/txl`, `fr/par`, `es/vit`, `gb/lhr`, `gb/bhx`, `us/las`, `us/mci`, `us/ewr`. If omitted, the default location will be used: `de/fra`;
         /// </summary>
         [Input("location")]
         public string? Location { get; set; }
@@ -133,7 +133,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud
         public Input<string> ClusterId { get; set; } = null!;
 
         /// <summary>
-        /// [string] the location of the Kafka cluster, can be one of: `de/fra`, `de/fra/2`, `de/txl`, `fr/par`, `es/vit`, `gb/lhr`, `gb/bhx`, `us/las`, `us/mci`, `us/ewr`. If omitted, the default location will be used: `de/fra`;
+        /// [string] the location of the Kafka cluster, can be one of: `de/fra`, `de/fra/1`, `de/fra/2`, `de/txl`, `fr/par`, `es/vit`, `gb/lhr`, `gb/bhx`, `us/las`, `us/mci`, `us/ewr`. If omitted, the default location will be used: `de/fra`;
         /// </summary>
         [Input("location")]
         public Input<string>? Location { get; set; }

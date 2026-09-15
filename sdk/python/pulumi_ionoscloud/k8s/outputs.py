@@ -22,6 +22,7 @@ __all__ = [
     'NodePoolLan',
     'NodePoolLanRoute',
     'NodePoolMaintenanceWindow',
+    'NodePoolTaint',
     'GetClusterConfigResult',
     'GetClusterConfigClusterResult',
     'GetClusterConfigContextResult',
@@ -41,6 +42,7 @@ __all__ = [
     'GetNodePoolLanRouteResult',
     'GetNodePoolMaintenanceWindowResult',
     'GetNodePoolNodesNodeResult',
+    'GetNodePoolTaintResult',
 ]
 
 @pulumi.output_type
@@ -288,6 +290,47 @@ class NodePoolMaintenanceWindow(dict):
         [string] A clock time in the day when maintenance is allowed
         """
         return pulumi.get(self, "time")
+
+
+@pulumi.output_type
+class NodePoolTaint(dict):
+    def __init__(__self__, *,
+                 effect: _builtins.str,
+                 key: _builtins.str,
+                 value: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str effect: [string] Taint effect determines how a taint repels pods. One of: `NoSchedule`, `NoExecute`, `PreferNoSchedule`.
+        :param _builtins.str key: [string] Taint key. Must be a valid Kubernetes label key format. May include an optional prefix (DNS subdomain) followed by a slash.
+        :param _builtins.str value: [string] Taint value. Must be a valid Kubernetes label value format.
+        """
+        pulumi.set(__self__, "effect", effect)
+        pulumi.set(__self__, "key", key)
+        if value is not None:
+            pulumi.set(__self__, "value", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def effect(self) -> _builtins.str:
+        """
+        [string] Taint effect determines how a taint repels pods. One of: `NoSchedule`, `NoExecute`, `PreferNoSchedule`.
+        """
+        return pulumi.get(self, "effect")
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> _builtins.str:
+        """
+        [string] Taint key. Must be a valid Kubernetes label key format. May include an optional prefix (DNS subdomain) followed by a slash.
+        """
+        return pulumi.get(self, "key")
+
+    @_builtins.property
+    @pulumi.getter
+    def value(self) -> Optional[_builtins.str]:
+        """
+        [string] Taint value. Must be a valid Kubernetes label value format.
+        """
+        return pulumi.get(self, "value")
 
 
 @pulumi.output_type
@@ -1003,5 +1046,45 @@ class GetNodePoolNodesNodeResult(dict):
         public ip of the node. Only present if the k8s cluster is public
         """
         return pulumi.get(self, "public_ip")
+
+
+@pulumi.output_type
+class GetNodePoolTaintResult(dict):
+    def __init__(__self__, *,
+                 effect: _builtins.str,
+                 key: _builtins.str,
+                 value: _builtins.str):
+        """
+        :param _builtins.str effect: Taint effect: `NoSchedule`, `NoExecute`, or `PreferNoSchedule`
+        :param _builtins.str key: Taint key
+        :param _builtins.str value: Taint value
+        """
+        pulumi.set(__self__, "effect", effect)
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def effect(self) -> _builtins.str:
+        """
+        Taint effect: `NoSchedule`, `NoExecute`, or `PreferNoSchedule`
+        """
+        return pulumi.get(self, "effect")
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> _builtins.str:
+        """
+        Taint key
+        """
+        return pulumi.get(self, "key")
+
+    @_builtins.property
+    @pulumi.getter
+    def value(self) -> _builtins.str:
+        """
+        Taint value
+        """
+        return pulumi.get(self, "value")
 
 

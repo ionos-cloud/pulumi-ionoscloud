@@ -163,6 +163,17 @@ func NewObjectCopy(ctx *pulumi.Context,
 	if args.Source == nil {
 		return nil, errors.New("invalid value for required argument 'Source'")
 	}
+	if args.ServerSideEncryptionCustomerKey != nil {
+		args.ServerSideEncryptionCustomerKey = pulumi.ToSecret(args.ServerSideEncryptionCustomerKey).(pulumi.StringPtrInput)
+	}
+	if args.SourceCustomerKey != nil {
+		args.SourceCustomerKey = pulumi.ToSecret(args.SourceCustomerKey).(pulumi.StringPtrInput)
+	}
+	secrets := pulumi.AdditionalSecretOutputs([]string{
+		"serverSideEncryptionCustomerKey",
+		"sourceCustomerKey",
+	})
+	opts = append(opts, secrets)
 	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource ObjectCopy
 	err := ctx.RegisterResource("ionoscloud:objectstorage/objectCopy:ObjectCopy", name, args, &resource, opts...)

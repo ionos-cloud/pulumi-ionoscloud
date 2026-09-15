@@ -237,7 +237,7 @@ def get_psql_cluster_v2(id: Optional[_builtins.str] = None,
 
 
     :param _builtins.str id: [string] ID of the cluster you want to search for.
-    :param _builtins.str location: [string] The region in which to look up the cluster. Available locations: `de/fra`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
+    :param _builtins.str location: [string] The region in which to look up the cluster. Available locations: `de/fra`, `de/fra/1`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
            
            Either `id` or `name` must be provided. If none, or both are provided, the datasource will return an error.
     :param _builtins.str name: [string] The name of an existing cluster that you want to search for.
@@ -295,7 +295,7 @@ def get_psql_cluster_v2_output(id: pulumi.Input[Optional[Optional[_builtins.str]
 
 
     :param _builtins.str id: [string] ID of the cluster you want to search for.
-    :param _builtins.str location: [string] The region in which to look up the cluster. Available locations: `de/fra`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
+    :param _builtins.str location: [string] The region in which to look up the cluster. Available locations: `de/fra`, `de/fra/1`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
            
            Either `id` or `name` must be provided. If none, or both are provided, the datasource will return an error.
     :param _builtins.str name: [string] The name of an existing cluster that you want to search for.

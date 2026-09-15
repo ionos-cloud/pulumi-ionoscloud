@@ -133,6 +133,16 @@ import javax.annotation.Nullable;
  * terraform import ionoscloud_datacenter.mydc datacenter uuid
  * ```
  * 
+ * ### Identity Schema
+ * 
+ * #### Required
+ * 
+ * * &lt;span pulumi-lang-nodejs=&#34;`id`&#34; pulumi-lang-dotnet=&#34;`Id`&#34; pulumi-lang-go=&#34;`id`&#34; pulumi-lang-python=&#34;`id`&#34; pulumi-lang-yaml=&#34;`id`&#34; pulumi-lang-java=&#34;`id`&#34; pulumi-lang-hcl=&#34;`id`&#34;&gt;`id`&lt;/span&gt; (String) The UUID of the datacenter.
+ * 
+ * #### Optional
+ * 
+ * * &lt;span pulumi-lang-nodejs=&#34;`location`&#34; pulumi-lang-dotnet=&#34;`Location`&#34; pulumi-lang-go=&#34;`location`&#34; pulumi-lang-python=&#34;`location`&#34; pulumi-lang-yaml=&#34;`location`&#34; pulumi-lang-java=&#34;`location`&#34; pulumi-lang-hcl=&#34;`location`&#34;&gt;`location`&lt;/span&gt; (String) The location the datacenter lives in (e.g. `de/txl`). Only needed when the Cloud API endpoint is overridden per location.
+ * 
  */
 @ResourceType(type="ionoscloud:compute/datacenter:Datacenter")
 public class Datacenter extends com.pulumi.resources.CustomResource {
@@ -193,14 +203,14 @@ public class Datacenter extends com.pulumi.resources.CustomResource {
         return this.ipv6CidrBlock;
     }
     /**
-     * [string] The regional location where the Virtual Data Center will be created. This argument is immutable. Available locations: `de/fra`, `us/las`, `us/ewr`, `de/txl`, `gb/lhr`, `gb/bhx`, `es/vit`, `fr/par`, `us/mci`, `de/fra/2`
+     * [string] The regional location where the Virtual Data Center will be created. This argument is immutable. Available locations: `de/fra`, `us/las`, `us/ewr`, `de/txl`, `gb/lhr`, `gb/bhx`, `es/vit`, `fr/par`, `us/mci`, `de/fra/1`, `de/fra/2`
      * 
      */
     @Export(name="location", refs={String.class}, tree="[0]")
     private Output<String> location;
 
     /**
-     * @return [string] The regional location where the Virtual Data Center will be created. This argument is immutable. Available locations: `de/fra`, `us/las`, `us/ewr`, `de/txl`, `gb/lhr`, `gb/bhx`, `es/vit`, `fr/par`, `us/mci`, `de/fra/2`
+     * @return [string] The regional location where the Virtual Data Center will be created. This argument is immutable. Available locations: `de/fra`, `us/las`, `us/ewr`, `de/txl`, `gb/lhr`, `gb/bhx`, `es/vit`, `fr/par`, `us/mci`, `de/fra/1`, `de/fra/2`
      * 
      */
     public Output<String> location() {

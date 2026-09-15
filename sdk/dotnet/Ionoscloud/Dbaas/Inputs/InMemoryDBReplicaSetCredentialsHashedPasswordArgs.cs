@@ -19,11 +19,21 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Dbaas.Inputs
         [Input("algorithm", required: true)]
         public Input<string> Algorithm { get; set; } = null!;
 
+        [Input("hash", required: true)]
+        private Input<string>? _hash;
+
         /// <summary>
         /// [string] The hashed password.
         /// </summary>
-        [Input("hash", required: true)]
-        public Input<string> Hash { get; set; } = null!;
+        public Input<string>? Hash
+        {
+            get => _hash;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _hash = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         public InMemoryDBReplicaSetCredentialsHashedPasswordArgs()
         {

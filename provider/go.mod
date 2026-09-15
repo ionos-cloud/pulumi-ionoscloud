@@ -5,7 +5,7 @@ go 1.26.3
 replace github.com/hashicorp/terraform-plugin-sdk/v2 => github.com/pulumi/terraform-plugin-sdk/v2 v2.0.0-20260318212141-5525259d096b
 
 require (
-	github.com/ionos-cloud/terraform-provider-ionoscloud/v6 v6.7.30
+	github.com/ionos-cloud/terraform-provider-ionoscloud/v6 v6.7.37
 	github.com/pulumi/pulumi-terraform-bridge/v3 v3.132.0
 	github.com/pulumi/pulumi/sdk/v3 v3.245.0
 )
@@ -129,6 +129,7 @@ require (
 	github.com/hashicorp/terraform-plugin-framework-validators v0.19.0 // indirect
 	github.com/hashicorp/terraform-plugin-go v0.31.0 // indirect
 	github.com/hashicorp/terraform-plugin-log v0.10.0 // indirect
+	github.com/hashicorp/terraform-plugin-mux v0.23.1 // indirect
 	github.com/hashicorp/terraform-plugin-sdk/v2 v2.40.1 // indirect
 	github.com/hashicorp/terraform-plugin-testing v1.16.0 // indirect
 	github.com/hashicorp/terraform-registry-address v0.4.0 // indirect
@@ -144,6 +145,7 @@ require (
 	github.com/ionos-cloud/sdk-go-bundle/products/dbaas/inmemorydb/v2 v2.0.1 // indirect
 	github.com/ionos-cloud/sdk-go-bundle/products/dbaas/inmemorydb/v3 v3.0.0 // indirect
 	github.com/ionos-cloud/sdk-go-bundle/products/dbaas/mariadb/v2 v2.1.0 // indirect
+	github.com/ionos-cloud/sdk-go-bundle/products/dbaas/mariadb/v3 v3.0.0 // indirect
 	github.com/ionos-cloud/sdk-go-bundle/products/dbaas/mongo/v2 v2.1.1 // indirect
 	github.com/ionos-cloud/sdk-go-bundle/products/dbaas/psql/v2 v2.1.0 // indirect
 	github.com/ionos-cloud/sdk-go-bundle/products/dbaas/psql/v3 v3.1.0 // indirect
@@ -157,8 +159,8 @@ require (
 	github.com/ionos-cloud/sdk-go-bundle/products/userobjectstorage/v2 v2.0.5 // indirect
 	github.com/ionos-cloud/sdk-go-bundle/products/vmautoscaling/v2 v2.0.1 // indirect
 	github.com/ionos-cloud/sdk-go-bundle/products/vpn/v2 v2.0.2 // indirect
-	github.com/ionos-cloud/sdk-go-bundle/shared v0.1.11 // indirect
-	github.com/ionos-cloud/sdk-go/v6 v6.3.8 // indirect
+	github.com/ionos-cloud/sdk-go-bundle/shared v0.1.12 // indirect
+	github.com/ionos-cloud/sdk-go/v6 v6.3.11 // indirect
 	github.com/jbenet/go-context v0.0.0-20150711004518-d14ea06fba99 // indirect
 	github.com/jmespath/go-jmespath v0.4.0 // indirect
 	github.com/json-iterator/go v1.1.12 // indirect

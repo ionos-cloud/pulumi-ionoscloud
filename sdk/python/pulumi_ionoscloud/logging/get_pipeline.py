@@ -151,7 +151,7 @@ def get_pipeline(id: Optional[_builtins.str] = None,
 
 
     :param _builtins.str id: [string] The ID of the Logging pipeline you want to search for.
-    :param _builtins.str location: [string] The location of the Logging pipeline. Default: `de/txl`, other available locations: `de/fra`, `de/fra/2`, `de/txl`, `es/vit`, `gb/bhx`, `gb/lhr`,  `fr/par`, `us/mci`.
+    :param _builtins.str location: [string] The location of the Logging pipeline. Default: `de/txl`, other available locations: `de/fra`, `de/fra/1`, `de/fra/2`, `de/txl`, `es/vit`, `gb/lhr`, `fr/par`.
     :param _builtins.str name: [string] The name of the Logging pipeline you want to search for.
            
            Either `id` or `name` must be provided. If none, or both are provided, the datasource will return an error.
@@ -203,7 +203,7 @@ def get_pipeline_output(id: pulumi.Input[Optional[Optional[_builtins.str]]] = No
 
 
     :param _builtins.str id: [string] The ID of the Logging pipeline you want to search for.
-    :param _builtins.str location: [string] The location of the Logging pipeline. Default: `de/txl`, other available locations: `de/fra`, `de/fra/2`, `de/txl`, `es/vit`, `gb/bhx`, `gb/lhr`,  `fr/par`, `us/mci`.
+    :param _builtins.str location: [string] The location of the Logging pipeline. Default: `de/txl`, other available locations: `de/fra`, `de/fra/1`, `de/fra/2`, `de/txl`, `es/vit`, `gb/lhr`, `fr/par`.
     :param _builtins.str name: [string] The name of the Logging pipeline you want to search for.
            
            Either `id` or `name` must be provided. If none, or both are provided, the datasource will return an error.

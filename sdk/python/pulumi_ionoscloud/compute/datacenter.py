@@ -28,7 +28,7 @@ class DatacenterArgs:
         """
         The set of arguments for constructing a Datacenter resource.
 
-        :param pulumi.Input[_builtins.str] location: [string] The regional location where the Virtual Data Center will be created. This argument is immutable. Available locations: `de/fra`, `us/las`, `us/ewr`, `de/txl`, `gb/lhr`, `gb/bhx`, `es/vit`, `fr/par`, `us/mci`, `de/fra/2`
+        :param pulumi.Input[_builtins.str] location: [string] The regional location where the Virtual Data Center will be created. This argument is immutable. Available locations: `de/fra`, `us/las`, `us/ewr`, `de/txl`, `gb/lhr`, `gb/bhx`, `es/vit`, `fr/par`, `us/mci`, `de/fra/1`, `de/fra/2`
         :param pulumi.Input[_builtins.str] description: [string] Description for the Virtual Data Center.
         :param pulumi.Input[_builtins.str] name: [string] The name of the Virtual Data Center.
         :param pulumi.Input[_builtins.bool] sec_auth_protection: [bool] Boolean value representing if the data center requires extra protection e.g. two factor protection
@@ -45,7 +45,7 @@ class DatacenterArgs:
     @pulumi.getter
     def location(self) -> pulumi.Input[_builtins.str]:
         """
-        [string] The regional location where the Virtual Data Center will be created. This argument is immutable. Available locations: `de/fra`, `us/las`, `us/ewr`, `de/txl`, `gb/lhr`, `gb/bhx`, `es/vit`, `fr/par`, `us/mci`, `de/fra/2`
+        [string] The regional location where the Virtual Data Center will be created. This argument is immutable. Available locations: `de/fra`, `us/las`, `us/ewr`, `de/txl`, `gb/lhr`, `gb/bhx`, `es/vit`, `fr/par`, `us/mci`, `de/fra/1`, `de/fra/2`
         """
         return pulumi.get(self, "location")
 
@@ -108,7 +108,7 @@ class _DatacenterState:
         :param pulumi.Input[_builtins.str] description: [string] Description for the Virtual Data Center.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] features: List of features supported by the location this data center is part of
         :param pulumi.Input[_builtins.str] ipv6_cidr_block: The automatically-assigned /56 IPv6 CIDR block if IPv6 is enabled on this virtual data center
-        :param pulumi.Input[_builtins.str] location: [string] The regional location where the Virtual Data Center will be created. This argument is immutable. Available locations: `de/fra`, `us/las`, `us/ewr`, `de/txl`, `gb/lhr`, `gb/bhx`, `es/vit`, `fr/par`, `us/mci`, `de/fra/2`
+        :param pulumi.Input[_builtins.str] location: [string] The regional location where the Virtual Data Center will be created. This argument is immutable. Available locations: `de/fra`, `us/las`, `us/ewr`, `de/txl`, `gb/lhr`, `gb/bhx`, `es/vit`, `fr/par`, `us/mci`, `de/fra/1`, `de/fra/2`
         :param pulumi.Input[_builtins.str] name: [string] The name of the Virtual Data Center.
         :param pulumi.Input[_builtins.bool] sec_auth_protection: [bool] Boolean value representing if the data center requires extra protection e.g. two factor protection
         :param pulumi.Input[_builtins.int] version: The version of that Data Center. Gets incremented with every change
@@ -182,7 +182,7 @@ class _DatacenterState:
     @pulumi.getter
     def location(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        [string] The regional location where the Virtual Data Center will be created. This argument is immutable. Available locations: `de/fra`, `us/las`, `us/ewr`, `de/txl`, `gb/lhr`, `gb/bhx`, `es/vit`, `fr/par`, `us/mci`, `de/fra/2`
+        [string] The regional location where the Virtual Data Center will be created. This argument is immutable. Available locations: `de/fra`, `us/las`, `us/ewr`, `de/txl`, `gb/lhr`, `gb/bhx`, `es/vit`, `fr/par`, `us/mci`, `de/fra/1`, `de/fra/2`
         """
         return pulumi.get(self, "location")
 
@@ -295,11 +295,21 @@ class Datacenter(pulumi.CustomResource):
         terraform import ionoscloud_datacenter.mydc datacenter uuid
         ```
 
+        ### Identity Schema
+
+        #### Required
+
+        * `id` (String) The UUID of the datacenter.
+
+        #### Optional
+
+        * `location` (String) The location the datacenter lives in (e.g. `de/txl`). Only needed when the Cloud API endpoint is overridden per location.
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] description: [string] Description for the Virtual Data Center.
-        :param pulumi.Input[_builtins.str] location: [string] The regional location where the Virtual Data Center will be created. This argument is immutable. Available locations: `de/fra`, `us/las`, `us/ewr`, `de/txl`, `gb/lhr`, `gb/bhx`, `es/vit`, `fr/par`, `us/mci`, `de/fra/2`
+        :param pulumi.Input[_builtins.str] location: [string] The regional location where the Virtual Data Center will be created. This argument is immutable. Available locations: `de/fra`, `us/las`, `us/ewr`, `de/txl`, `gb/lhr`, `gb/bhx`, `es/vit`, `fr/par`, `us/mci`, `de/fra/1`, `de/fra/2`
         :param pulumi.Input[_builtins.str] name: [string] The name of the Virtual Data Center.
         :param pulumi.Input[_builtins.bool] sec_auth_protection: [bool] Boolean value representing if the data center requires extra protection e.g. two factor protection
         """
@@ -365,6 +375,16 @@ class Datacenter(pulumi.CustomResource):
         ```sh
         terraform import ionoscloud_datacenter.mydc datacenter uuid
         ```
+
+        ### Identity Schema
+
+        #### Required
+
+        * `id` (String) The UUID of the datacenter.
+
+        #### Optional
+
+        * `location` (String) The location the datacenter lives in (e.g. `de/txl`). Only needed when the Cloud API endpoint is overridden per location.
 
 
         :param str resource_name: The name of the resource.
@@ -434,7 +454,7 @@ class Datacenter(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] description: [string] Description for the Virtual Data Center.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] features: List of features supported by the location this data center is part of
         :param pulumi.Input[_builtins.str] ipv6_cidr_block: The automatically-assigned /56 IPv6 CIDR block if IPv6 is enabled on this virtual data center
-        :param pulumi.Input[_builtins.str] location: [string] The regional location where the Virtual Data Center will be created. This argument is immutable. Available locations: `de/fra`, `us/las`, `us/ewr`, `de/txl`, `gb/lhr`, `gb/bhx`, `es/vit`, `fr/par`, `us/mci`, `de/fra/2`
+        :param pulumi.Input[_builtins.str] location: [string] The regional location where the Virtual Data Center will be created. This argument is immutable. Available locations: `de/fra`, `us/las`, `us/ewr`, `de/txl`, `gb/lhr`, `gb/bhx`, `es/vit`, `fr/par`, `us/mci`, `de/fra/1`, `de/fra/2`
         :param pulumi.Input[_builtins.str] name: [string] The name of the Virtual Data Center.
         :param pulumi.Input[_builtins.bool] sec_auth_protection: [bool] Boolean value representing if the data center requires extra protection e.g. two factor protection
         :param pulumi.Input[_builtins.int] version: The version of that Data Center. Gets incremented with every change
@@ -489,7 +509,7 @@ class Datacenter(pulumi.CustomResource):
     @pulumi.getter
     def location(self) -> pulumi.Output[_builtins.str]:
         """
-        [string] The regional location where the Virtual Data Center will be created. This argument is immutable. Available locations: `de/fra`, `us/las`, `us/ewr`, `de/txl`, `gb/lhr`, `gb/bhx`, `es/vit`, `fr/par`, `us/mci`, `de/fra/2`
+        [string] The regional location where the Virtual Data Center will be created. This argument is immutable. Available locations: `de/fra`, `us/las`, `us/ewr`, `de/txl`, `gb/lhr`, `gb/bhx`, `es/vit`, `fr/par`, `us/mci`, `de/fra/1`, `de/fra/2`
         """
         return pulumi.get(self, "location")
 

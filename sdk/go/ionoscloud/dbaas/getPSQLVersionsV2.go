@@ -50,7 +50,7 @@ func GetPSQLVersionsV2(ctx *pulumi.Context, args *GetPSQLVersionsV2Args, opts ..
 
 // A collection of arguments for invoking getPSQLVersionsV2.
 type GetPSQLVersionsV2Args struct {
-	// [string] The region in which to look up available versions. Available locations: `de/fra`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
+	// [string] The region in which to look up available versions. Available locations: `de/fra`, `de/fra/1`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
 	Location string `pulumi:"location"`
 }
 
@@ -74,7 +74,7 @@ func GetPSQLVersionsV2Output(ctx *pulumi.Context, args GetPSQLVersionsV2OutputAr
 
 // A collection of arguments for invoking getPSQLVersionsV2.
 type GetPSQLVersionsV2OutputArgs struct {
-	// [string] The region in which to look up available versions. Available locations: `de/fra`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
+	// [string] The region in which to look up available versions. Available locations: `de/fra`, `de/fra/1`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
 	Location pulumi.StringInput `pulumi:"location"`
 }
 

@@ -11,7 +11,7 @@ using Pulumi;
 namespace Ionoscloud.Pulumi.Ionoscloud.Nsg
 {
     /// <summary>
-    /// Manages a [Network Security Group](https://docs.ionos.com/cloud/network-services/network-security-groups/overview) on IONOS CLOUD.
+    /// Manages a [Network Security Group](https://docs.ionos.com/cloud/security/network-security-groups) on IONOS CLOUD.
     /// 
     /// ## Example Usage
     /// 

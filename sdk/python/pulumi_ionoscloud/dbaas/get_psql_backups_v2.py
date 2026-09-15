@@ -114,7 +114,7 @@ def get_psql_backups_v2(cluster_id: Optional[_builtins.str] = None,
 
 
     :param _builtins.str cluster_id: [string] The ID (UUID) of the cluster to filter backups by.
-    :param _builtins.str location: [string] The region in which to look up backups. Available locations: `de/fra`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
+    :param _builtins.str location: [string] The region in which to look up backups. Available locations: `de/fra`, `de/fra/1`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
     """
     __args__ = dict()
     __args__['clusterId'] = cluster_id
@@ -155,7 +155,7 @@ def get_psql_backups_v2_output(cluster_id: pulumi.Input[Optional[Optional[_built
 
 
     :param _builtins.str cluster_id: [string] The ID (UUID) of the cluster to filter backups by.
-    :param _builtins.str location: [string] The region in which to look up backups. Available locations: `de/fra`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
+    :param _builtins.str location: [string] The region in which to look up backups. Available locations: `de/fra`, `de/fra/1`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
     """
     __args__ = dict()
     __args__['clusterId'] = cluster_id

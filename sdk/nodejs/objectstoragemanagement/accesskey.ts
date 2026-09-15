@@ -114,6 +114,8 @@ export class Accesskey extends pulumi.CustomResource {
             resourceInputs["secretkey"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        const secretOpts = { additionalSecretOutputs: ["secretkey"] };
+        opts = pulumi.mergeOptions(opts, secretOpts);
         super(Accesskey.__pulumiType, name, resourceInputs, opts);
     }
 }

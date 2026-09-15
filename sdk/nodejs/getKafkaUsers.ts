@@ -42,7 +42,7 @@ export interface GetKafkaUsersArgs {
      */
     clusterId: string;
     /**
-     * [string] the location of the Kafka cluster, can be one of: `de/fra`, `de/fra/2`, `de/txl`, `fr/par`, `es/vit`, `gb/lhr`, `gb/bhx`, `us/las`, `us/mci`, `us/ewr`. If omitted, the default location will be used: `de/fra`;
+     * [string] the location of the Kafka cluster, can be one of: `de/fra`, `de/fra/1`, `de/fra/2`, `de/txl`, `fr/par`, `es/vit`, `gb/lhr`, `gb/bhx`, `us/las`, `us/mci`, `us/ewr`. If omitted, the default location will be used: `de/fra`;
      */
     location?: string;
     timeouts?: inputs.GetKafkaUsersTimeouts;
@@ -100,7 +100,7 @@ export interface GetKafkaUsersOutputArgs {
      */
     clusterId: pulumi.Input<string>;
     /**
-     * [string] the location of the Kafka cluster, can be one of: `de/fra`, `de/fra/2`, `de/txl`, `fr/par`, `es/vit`, `gb/lhr`, `gb/bhx`, `us/las`, `us/mci`, `us/ewr`. If omitted, the default location will be used: `de/fra`;
+     * [string] the location of the Kafka cluster, can be one of: `de/fra`, `de/fra/1`, `de/fra/2`, `de/txl`, `fr/par`, `es/vit`, `gb/lhr`, `gb/bhx`, `us/las`, `us/mci`, `us/ewr`. If omitted, the default location will be used: `de/fra`;
      */
     location?: pulumi.Input<string | undefined>;
     timeouts?: pulumi.Input<inputs.GetKafkaUsersTimeoutsArgs | undefined>;

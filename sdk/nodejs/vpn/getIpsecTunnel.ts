@@ -91,7 +91,7 @@ export interface GetIpsecTunnelArgs {
      */
     id?: string;
     /**
-     * The location of the IPSec Gateway Tunnel. Supported locations: de/fra, de/fra/2, de/txl, es/vit, gb/lhr, us/ewr, us/las, us/mci, fr/par.
+     * The location of the IPSec Gateway Tunnel. Supported locations: de/fra, de/fra/1, de/fra/2, de/txl, es/vit, gb/lhr, us/ewr, us/las, us/mci, fr/par.
      */
     location?: string;
     /**
@@ -201,7 +201,7 @@ export interface GetIpsecTunnelOutputArgs {
      */
     id?: pulumi.Input<string | undefined>;
     /**
-     * The location of the IPSec Gateway Tunnel. Supported locations: de/fra, de/fra/2, de/txl, es/vit, gb/lhr, us/ewr, us/las, us/mci, fr/par.
+     * The location of the IPSec Gateway Tunnel. Supported locations: de/fra, de/fra/1, de/fra/2, de/txl, es/vit, gb/lhr, us/ewr, us/las, us/mci, fr/par.
      */
     location?: pulumi.Input<string | undefined>;
     /**

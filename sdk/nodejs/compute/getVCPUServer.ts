@@ -96,6 +96,7 @@ export interface GetVCPUServerResult {
      * The id of the datacenter
      */
     readonly datacenterId: string;
+    readonly enabledFeatures: string[];
     /**
      * The hostname of the server
      */

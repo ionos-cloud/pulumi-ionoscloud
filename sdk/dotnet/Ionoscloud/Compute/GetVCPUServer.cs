@@ -247,6 +247,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
         /// The id of the datacenter
         /// </summary>
         public readonly string DatacenterId;
+        public readonly ImmutableArray<string> EnabledFeatures;
         /// <summary>
         /// The hostname of the server
         /// </summary>
@@ -315,6 +316,8 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
 
             string datacenterId,
 
+            ImmutableArray<string> enabledFeatures,
+
             string hostname,
 
             string id,
@@ -349,6 +352,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
             Cores = cores;
             CpuFamily = cpuFamily;
             DatacenterId = datacenterId;
+            EnabledFeatures = enabledFeatures;
             Hostname = hostname;
             Id = id;
             Labels = labels;

@@ -272,6 +272,10 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
         /// </summary>
         public readonly string DatacenterId;
         /// <summary>
+        /// Features enabled on the server, e.g. `SEV-SNP` for a Confidential Computing VM.
+        /// </summary>
+        public readonly ImmutableArray<string> EnabledFeatures;
+        /// <summary>
         /// The hostname of the resource.
         /// </summary>
         public readonly string Hostname;
@@ -343,6 +347,8 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
 
             string datacenterId,
 
+            ImmutableArray<string> enabledFeatures,
+
             string hostname,
 
             string id,
@@ -379,6 +385,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
             Cores = cores;
             CpuFamily = cpuFamily;
             DatacenterId = datacenterId;
+            EnabledFeatures = enabledFeatures;
             Hostname = hostname;
             Id = id;
             Labels = labels;

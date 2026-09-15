@@ -82,7 +82,7 @@ type Cluster struct {
 
 	// The network connections for the Network File Storage Cluster.
 	Connections ClusterConnectionsOutput `pulumi:"connections"`
-	// The location where the Network File Storage cluster is located. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`. Other available locations are: `de/fra/2`, `de/txl`, `fr/par`, `gb/lhr`, `es/vit`, `us/las`, `us/ewr`, `us/mci`.
+	// The location where the Network File Storage cluster is located. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`. Other available locations are: `de/fra/1`, `de/fra/2`, `de/txl`, `fr/par`, `gb/lhr`, `es/vit`, `us/las`, `us/ewr`, `us/mci`.
 	// - `de/fra` - Frankfurt
 	// - `de/txl` - Berlin
 	Location pulumi.StringPtrOutput `pulumi:"location"`
@@ -133,7 +133,7 @@ func GetCluster(ctx *pulumi.Context,
 type clusterState struct {
 	// The network connections for the Network File Storage Cluster.
 	Connections *ClusterConnections `pulumi:"connections"`
-	// The location where the Network File Storage cluster is located. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`. Other available locations are: `de/fra/2`, `de/txl`, `fr/par`, `gb/lhr`, `es/vit`, `us/las`, `us/ewr`, `us/mci`.
+	// The location where the Network File Storage cluster is located. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`. Other available locations are: `de/fra/1`, `de/fra/2`, `de/txl`, `fr/par`, `gb/lhr`, `es/vit`, `us/las`, `us/ewr`, `us/mci`.
 	// - `de/fra` - Frankfurt
 	// - `de/txl` - Berlin
 	Location *string `pulumi:"location"`
@@ -149,7 +149,7 @@ type clusterState struct {
 type ClusterState struct {
 	// The network connections for the Network File Storage Cluster.
 	Connections ClusterConnectionsPtrInput
-	// The location where the Network File Storage cluster is located. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`. Other available locations are: `de/fra/2`, `de/txl`, `fr/par`, `gb/lhr`, `es/vit`, `us/las`, `us/ewr`, `us/mci`.
+	// The location where the Network File Storage cluster is located. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`. Other available locations are: `de/fra/1`, `de/fra/2`, `de/txl`, `fr/par`, `gb/lhr`, `es/vit`, `us/las`, `us/ewr`, `us/mci`.
 	// - `de/fra` - Frankfurt
 	// - `de/txl` - Berlin
 	Location pulumi.StringPtrInput
@@ -169,7 +169,7 @@ func (ClusterState) ElementType() reflect.Type {
 type clusterArgs struct {
 	// The network connections for the Network File Storage Cluster.
 	Connections ClusterConnections `pulumi:"connections"`
-	// The location where the Network File Storage cluster is located. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`. Other available locations are: `de/fra/2`, `de/txl`, `fr/par`, `gb/lhr`, `es/vit`, `us/las`, `us/ewr`, `us/mci`.
+	// The location where the Network File Storage cluster is located. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`. Other available locations are: `de/fra/1`, `de/fra/2`, `de/txl`, `fr/par`, `gb/lhr`, `es/vit`, `us/las`, `us/ewr`, `us/mci`.
 	// - `de/fra` - Frankfurt
 	// - `de/txl` - Berlin
 	Location *string `pulumi:"location"`
@@ -186,7 +186,7 @@ type clusterArgs struct {
 type ClusterArgs struct {
 	// The network connections for the Network File Storage Cluster.
 	Connections ClusterConnectionsInput
-	// The location where the Network File Storage cluster is located. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`. Other available locations are: `de/fra/2`, `de/txl`, `fr/par`, `gb/lhr`, `es/vit`, `us/las`, `us/ewr`, `us/mci`.
+	// The location where the Network File Storage cluster is located. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`. Other available locations are: `de/fra/1`, `de/fra/2`, `de/txl`, `fr/par`, `gb/lhr`, `es/vit`, `us/las`, `us/ewr`, `us/mci`.
 	// - `de/fra` - Frankfurt
 	// - `de/txl` - Berlin
 	Location pulumi.StringPtrInput
@@ -291,7 +291,7 @@ func (o ClusterOutput) Connections() ClusterConnectionsOutput {
 	return o.ApplyT(func(v *Cluster) ClusterConnectionsOutput { return v.Connections }).(ClusterConnectionsOutput)
 }
 
-// The location where the Network File Storage cluster is located. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`. Other available locations are: `de/fra/2`, `de/txl`, `fr/par`, `gb/lhr`, `es/vit`, `us/las`, `us/ewr`, `us/mci`.
+// The location where the Network File Storage cluster is located. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`. Other available locations are: `de/fra/1`, `de/fra/2`, `de/txl`, `fr/par`, `gb/lhr`, `es/vit`, `us/las`, `us/ewr`, `us/mci`.
 // - `de/fra` - Frankfurt
 // - `de/txl` - Berlin
 func (o ClusterOutput) Location() pulumi.StringPtrOutput {

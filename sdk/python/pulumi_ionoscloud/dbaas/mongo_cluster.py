@@ -43,7 +43,7 @@ class MongoClusterArgs:
         :param pulumi.Input['MongoClusterConnectionsArgs'] connections: [List] Details about the network connection for your cluster. Updates to the value of the field force the cluster to be re-created.
         :param pulumi.Input[_builtins.str] display_name: [string] The name of your cluster. Updates to the value of the field force the cluster to be re-created.
         :param pulumi.Input[_builtins.int] instances: [int] The total number of instances in the cluster (one master and n-1 standbys). Example: 1, 3, 5, 7. Updates to the value of the field force the cluster to be re-created.
-        :param pulumi.Input[_builtins.str] location: [string] The physical location where the cluster will be created. Property cannot be modified after datacenter creation (disallowed in update requests). Available locations: `de/fra`, `us/las`, `us/ewr`, `de/txl`, `gb/lhr`, `gb/bhx`, `es/vit`, `fr/par`, `us/mci`, `de/fra/2`. Update forces cluster re-creation.
+        :param pulumi.Input[_builtins.str] location: [string] The physical location where the cluster will be created. Property cannot be modified after datacenter creation (disallowed in update requests). Available locations: `de/fra`, `us/las`, `us/ewr`, `de/txl`, `gb/lhr`, `gb/bhx`, `es/vit`, `fr/par`, `us/mci`, `de/fra/1`, `de/fra/2`. Update forces cluster re-creation.
         :param pulumi.Input[_builtins.str] mongodb_version: [string] The MongoDB version of your cluster. Downgrade is not possible and will throw an error.
         :param pulumi.Input['MongoClusterBackupArgs'] backup: [list]
         :param pulumi.Input['MongoClusterBiConnectorArgs'] bi_connector: (Computed)The MongoDB Connector for Business Intelligence allows you to query a MongoDB database using SQL commands to aid in data analysis.
@@ -125,7 +125,7 @@ class MongoClusterArgs:
     @pulumi.getter
     def location(self) -> pulumi.Input[_builtins.str]:
         """
-        [string] The physical location where the cluster will be created. Property cannot be modified after datacenter creation (disallowed in update requests). Available locations: `de/fra`, `us/las`, `us/ewr`, `de/txl`, `gb/lhr`, `gb/bhx`, `es/vit`, `fr/par`, `us/mci`, `de/fra/2`. Update forces cluster re-creation.
+        [string] The physical location where the cluster will be created. Property cannot be modified after datacenter creation (disallowed in update requests). Available locations: `de/fra`, `us/las`, `us/ewr`, `de/txl`, `gb/lhr`, `gb/bhx`, `es/vit`, `fr/par`, `us/mci`, `de/fra/1`, `de/fra/2`. Update forces cluster re-creation.
         """
         return pulumi.get(self, "location")
 
@@ -309,7 +309,7 @@ class _MongoClusterState:
         :param pulumi.Input[_builtins.str] display_name: [string] The name of your cluster. Updates to the value of the field force the cluster to be re-created.
         :param pulumi.Input[_builtins.str] edition: (Computed)[string] Cluster edition. Playground, business or enterprise.
         :param pulumi.Input[_builtins.int] instances: [int] The total number of instances in the cluster (one master and n-1 standbys). Example: 1, 3, 5, 7. Updates to the value of the field force the cluster to be re-created.
-        :param pulumi.Input[_builtins.str] location: [string] The physical location where the cluster will be created. Property cannot be modified after datacenter creation (disallowed in update requests). Available locations: `de/fra`, `us/las`, `us/ewr`, `de/txl`, `gb/lhr`, `gb/bhx`, `es/vit`, `fr/par`, `us/mci`, `de/fra/2`. Update forces cluster re-creation.
+        :param pulumi.Input[_builtins.str] location: [string] The physical location where the cluster will be created. Property cannot be modified after datacenter creation (disallowed in update requests). Available locations: `de/fra`, `us/las`, `us/ewr`, `de/txl`, `gb/lhr`, `gb/bhx`, `es/vit`, `fr/par`, `us/mci`, `de/fra/1`, `de/fra/2`. Update forces cluster re-creation.
         :param pulumi.Input['MongoClusterMaintenanceWindowArgs'] maintenance_window: (Computed) A weekly 4 hour-long window, during which maintenance might occur.  Updates to the value of the field force the cluster to be re-created.
         :param pulumi.Input[_builtins.str] mongodb_version: [string] The MongoDB version of your cluster. Downgrade is not possible and will throw an error.
         :param pulumi.Input[_builtins.int] ram: (Computed)[int]The amount of memory per instance in megabytes. Required for enterprise edition.
@@ -454,7 +454,7 @@ class _MongoClusterState:
     @pulumi.getter
     def location(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        [string] The physical location where the cluster will be created. Property cannot be modified after datacenter creation (disallowed in update requests). Available locations: `de/fra`, `us/las`, `us/ewr`, `de/txl`, `gb/lhr`, `gb/bhx`, `es/vit`, `fr/par`, `us/mci`, `de/fra/2`. Update forces cluster re-creation.
+        [string] The physical location where the cluster will be created. Property cannot be modified after datacenter creation (disallowed in update requests). Available locations: `de/fra`, `us/las`, `us/ewr`, `de/txl`, `gb/lhr`, `gb/bhx`, `es/vit`, `fr/par`, `us/mci`, `de/fra/1`, `de/fra/2`. Update forces cluster re-creation.
         """
         return pulumi.get(self, "location")
 
@@ -689,7 +689,7 @@ class MongoCluster(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] display_name: [string] The name of your cluster. Updates to the value of the field force the cluster to be re-created.
         :param pulumi.Input[_builtins.str] edition: (Computed)[string] Cluster edition. Playground, business or enterprise.
         :param pulumi.Input[_builtins.int] instances: [int] The total number of instances in the cluster (one master and n-1 standbys). Example: 1, 3, 5, 7. Updates to the value of the field force the cluster to be re-created.
-        :param pulumi.Input[_builtins.str] location: [string] The physical location where the cluster will be created. Property cannot be modified after datacenter creation (disallowed in update requests). Available locations: `de/fra`, `us/las`, `us/ewr`, `de/txl`, `gb/lhr`, `gb/bhx`, `es/vit`, `fr/par`, `us/mci`, `de/fra/2`. Update forces cluster re-creation.
+        :param pulumi.Input[_builtins.str] location: [string] The physical location where the cluster will be created. Property cannot be modified after datacenter creation (disallowed in update requests). Available locations: `de/fra`, `us/las`, `us/ewr`, `de/txl`, `gb/lhr`, `gb/bhx`, `es/vit`, `fr/par`, `us/mci`, `de/fra/1`, `de/fra/2`. Update forces cluster re-creation.
         :param pulumi.Input[Union['MongoClusterMaintenanceWindowArgs', 'MongoClusterMaintenanceWindowArgsDict']] maintenance_window: (Computed) A weekly 4 hour-long window, during which maintenance might occur.  Updates to the value of the field force the cluster to be re-created.
         :param pulumi.Input[_builtins.str] mongodb_version: [string] The MongoDB version of your cluster. Downgrade is not possible and will throw an error.
         :param pulumi.Input[_builtins.int] ram: (Computed)[int]The amount of memory per instance in megabytes. Required for enterprise edition.
@@ -912,7 +912,7 @@ class MongoCluster(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] display_name: [string] The name of your cluster. Updates to the value of the field force the cluster to be re-created.
         :param pulumi.Input[_builtins.str] edition: (Computed)[string] Cluster edition. Playground, business or enterprise.
         :param pulumi.Input[_builtins.int] instances: [int] The total number of instances in the cluster (one master and n-1 standbys). Example: 1, 3, 5, 7. Updates to the value of the field force the cluster to be re-created.
-        :param pulumi.Input[_builtins.str] location: [string] The physical location where the cluster will be created. Property cannot be modified after datacenter creation (disallowed in update requests). Available locations: `de/fra`, `us/las`, `us/ewr`, `de/txl`, `gb/lhr`, `gb/bhx`, `es/vit`, `fr/par`, `us/mci`, `de/fra/2`. Update forces cluster re-creation.
+        :param pulumi.Input[_builtins.str] location: [string] The physical location where the cluster will be created. Property cannot be modified after datacenter creation (disallowed in update requests). Available locations: `de/fra`, `us/las`, `us/ewr`, `de/txl`, `gb/lhr`, `gb/bhx`, `es/vit`, `fr/par`, `us/mci`, `de/fra/1`, `de/fra/2`. Update forces cluster re-creation.
         :param pulumi.Input[Union['MongoClusterMaintenanceWindowArgs', 'MongoClusterMaintenanceWindowArgsDict']] maintenance_window: (Computed) A weekly 4 hour-long window, during which maintenance might occur.  Updates to the value of the field force the cluster to be re-created.
         :param pulumi.Input[_builtins.str] mongodb_version: [string] The MongoDB version of your cluster. Downgrade is not possible and will throw an error.
         :param pulumi.Input[_builtins.int] ram: (Computed)[int]The amount of memory per instance in megabytes. Required for enterprise edition.
@@ -1013,7 +1013,7 @@ class MongoCluster(pulumi.CustomResource):
     @pulumi.getter
     def location(self) -> pulumi.Output[_builtins.str]:
         """
-        [string] The physical location where the cluster will be created. Property cannot be modified after datacenter creation (disallowed in update requests). Available locations: `de/fra`, `us/las`, `us/ewr`, `de/txl`, `gb/lhr`, `gb/bhx`, `es/vit`, `fr/par`, `us/mci`, `de/fra/2`. Update forces cluster re-creation.
+        [string] The physical location where the cluster will be created. Property cannot be modified after datacenter creation (disallowed in update requests). Available locations: `de/fra`, `us/las`, `us/ewr`, `de/txl`, `gb/lhr`, `gb/bhx`, `es/vit`, `fr/par`, `us/mci`, `de/fra/1`, `de/fra/2`. Update forces cluster re-creation.
         """
         return pulumi.get(self, "location")
 

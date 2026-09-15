@@ -48,6 +48,11 @@ public final class GetServerResult {
      */
     private String datacenterId;
     /**
+     * @return Features enabled on the server, e.g. `SEV-SNP` for a Confidential Computing VM.
+     * 
+     */
+    private List<String> enabledFeatures;
+    /**
      * @return The hostname of the resource.
      * 
      */
@@ -158,6 +163,13 @@ public final class GetServerResult {
      */
     public String datacenterId() {
         return this.datacenterId;
+    }
+    /**
+     * @return Features enabled on the server, e.g. `SEV-SNP` for a Confidential Computing VM.
+     * 
+     */
+    public List<String> enabledFeatures() {
+        return this.enabledFeatures;
     }
     /**
      * @return The hostname of the resource.
@@ -271,6 +283,7 @@ public final class GetServerResult {
         private Integer cores;
         private String cpuFamily;
         private String datacenterId;
+        private List<String> enabledFeatures;
         private String hostname;
         private String id;
         private List<GetServerLabel> labels;
@@ -296,6 +309,7 @@ public final class GetServerResult {
     	      this.cores = defaults.cores;
     	      this.cpuFamily = defaults.cpuFamily;
     	      this.datacenterId = defaults.datacenterId;
+    	      this.enabledFeatures = defaults.enabledFeatures;
     	      this.hostname = defaults.hostname;
     	      this.id = defaults.id;
     	      this.labels = defaults.labels;
@@ -378,6 +392,17 @@ public final class GetServerResult {
             }
             this.datacenterId = datacenterId;
             return this;
+        }
+        @CustomType.Setter
+        public Builder enabledFeatures(List<String> enabledFeatures) {
+            if (enabledFeatures == null) {
+              throw new MissingRequiredPropertyException("GetServerResult", "enabledFeatures");
+            }
+            this.enabledFeatures = enabledFeatures;
+            return this;
+        }
+        public Builder enabledFeatures(String... enabledFeatures) {
+            return enabledFeatures(List.of(enabledFeatures));
         }
         @CustomType.Setter
         public Builder hostname(String hostname) {
@@ -509,6 +534,7 @@ public final class GetServerResult {
             _resultValue.cores = cores;
             _resultValue.cpuFamily = cpuFamily;
             _resultValue.datacenterId = datacenterId;
+            _resultValue.enabledFeatures = enabledFeatures;
             _resultValue.hostname = hostname;
             _resultValue.id = id;
             _resultValue.labels = labels;

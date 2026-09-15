@@ -210,7 +210,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
         public Output<bool> DiscVirtioHotUnplug { get; private set; } = null!;
 
         /// <summary>
-        /// [string] The volume type: HDD or SSD. This property is immutable.
+        /// [string] The volume type. Possible values: `HDD`, `SSD`, `SSD Standard`, `SSD Premium`, `DAS`, `ISO`, `ESSENTIAL`, `BALANCED`, `PERFORMANCE`. This property is immutable.
         /// </summary>
         [Output("diskType")]
         public Output<string> DiskType { get; private set; } = null!;
@@ -355,6 +355,10 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
             {
                 Version = Utilities.Version,
                 PluginDownloadURL = "github://api.github.com/ionos-cloud/pulumi-ionoscloud",
+                AdditionalSecretOutputs =
+                {
+                    "imagePassword",
+                },
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.
@@ -403,7 +407,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
         public Input<string> DatacenterId { get; set; } = null!;
 
         /// <summary>
-        /// [string] The volume type: HDD or SSD. This property is immutable.
+        /// [string] The volume type. Possible values: `HDD`, `SSD`, `SSD Standard`, `SSD Premium`, `DAS`, `ISO`, `ESSENTIAL`, `BALANCED`, `PERFORMANCE`. This property is immutable.
         /// </summary>
         [Input("diskType", required: true)]
         public Input<string> DiskType { get; set; } = null!;
@@ -420,11 +424,21 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
         [Input("imageName")]
         public Input<string>? ImageName { get; set; }
 
+        [Input("imagePassword")]
+        private Input<string>? _imagePassword;
+
         /// <summary>
         /// [string] Required if `SshkeyPath` is not provided.
         /// </summary>
-        [Input("imagePassword")]
-        public Input<string>? ImagePassword { get; set; }
+        public Input<string>? ImagePassword
+        {
+            get => _imagePassword;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _imagePassword = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// [string] Required if `ImageName` is not provided.
@@ -560,7 +574,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
         public Input<bool>? DiscVirtioHotUnplug { get; set; }
 
         /// <summary>
-        /// [string] The volume type: HDD or SSD. This property is immutable.
+        /// [string] The volume type. Possible values: `HDD`, `SSD`, `SSD Standard`, `SSD Premium`, `DAS`, `ISO`, `ESSENTIAL`, `BALANCED`, `PERFORMANCE`. This property is immutable.
         /// </summary>
         [Input("diskType")]
         public Input<string>? DiskType { get; set; }
@@ -586,11 +600,21 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
         [Input("imageName")]
         public Input<string>? ImageName { get; set; }
 
+        [Input("imagePassword")]
+        private Input<string>? _imagePassword;
+
         /// <summary>
         /// [string] Required if `SshkeyPath` is not provided.
         /// </summary>
-        [Input("imagePassword")]
-        public Input<string>? ImagePassword { get; set; }
+        public Input<string>? ImagePassword
+        {
+            get => _imagePassword;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _imagePassword = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// [string] Required if `ImageName` is not provided.

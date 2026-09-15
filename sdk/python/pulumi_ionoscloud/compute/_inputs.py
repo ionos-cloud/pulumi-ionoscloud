@@ -1012,6 +1012,10 @@ class DatacenterCpuArchitectureArgsDict(TypedDict):
     """
     A valid CPU family name
     """
+    enabled_features: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
+    """
+    Features enabled for this CPU architecture, e.g. `SEV-SNP` for Confidential Computing
+    """
     max_cores: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     The maximum number of cores available
@@ -1029,17 +1033,21 @@ class DatacenterCpuArchitectureArgsDict(TypedDict):
 class DatacenterCpuArchitectureArgs:
     def __init__(__self__, *,
                  cpu_family: pulumi.Input[Optional[_builtins.str]] = None,
+                 enabled_features: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  max_cores: pulumi.Input[Optional[_builtins.int]] = None,
                  max_ram: pulumi.Input[Optional[_builtins.int]] = None,
                  vendor: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] cpu_family: A valid CPU family name
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] enabled_features: Features enabled for this CPU architecture, e.g. `SEV-SNP` for Confidential Computing
         :param pulumi.Input[_builtins.int] max_cores: The maximum number of cores available
         :param pulumi.Input[_builtins.int] max_ram: The maximum number of RAM in MB
         :param pulumi.Input[_builtins.str] vendor: A valid CPU vendor name
         """
         if cpu_family is not None:
             pulumi.set(__self__, "cpu_family", cpu_family)
+        if enabled_features is not None:
+            pulumi.set(__self__, "enabled_features", enabled_features)
         if max_cores is not None:
             pulumi.set(__self__, "max_cores", max_cores)
         if max_ram is not None:
@@ -1058,6 +1066,18 @@ class DatacenterCpuArchitectureArgs:
     @cpu_family.setter
     def cpu_family(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "cpu_family", value)
+
+    @_builtins.property
+    @pulumi.getter(name="enabledFeatures")
+    def enabled_features(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
+        """
+        Features enabled for this CPU architecture, e.g. `SEV-SNP` for Confidential Computing
+        """
+        return pulumi.get(self, "enabled_features")
+
+    @enabled_features.setter
+    def enabled_features(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "enabled_features", value)
 
     @_builtins.property
     @pulumi.getter(name="maxCores")

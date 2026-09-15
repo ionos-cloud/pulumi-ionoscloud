@@ -164,7 +164,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Logging
         public string? Id { get; set; }
 
         /// <summary>
-        /// [string] The location of the Logging pipeline. Default: `de/txl`, other available locations: `de/fra`, `de/fra/2`, `de/txl`, `es/vit`, `gb/bhx`, `gb/lhr`,  `fr/par`, `us/mci`.
+        /// [string] The location of the Logging pipeline. Default: `de/txl`, other available locations: `de/fra`, `de/fra/1`, `de/fra/2`, `de/txl`, `es/vit`, `gb/lhr`, `fr/par`.
         /// </summary>
         [Input("location")]
         public string? Location { get; set; }
@@ -192,7 +192,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Logging
         public Input<string>? Id { get; set; }
 
         /// <summary>
-        /// [string] The location of the Logging pipeline. Default: `de/txl`, other available locations: `de/fra`, `de/fra/2`, `de/txl`, `es/vit`, `gb/bhx`, `gb/lhr`,  `fr/par`, `us/mci`.
+        /// [string] The location of the Logging pipeline. Default: `de/txl`, other available locations: `de/fra`, `de/fra/1`, `de/fra/2`, `de/txl`, `es/vit`, `gb/lhr`, `fr/par`.
         /// </summary>
         [Input("location")]
         public Input<string>? Location { get; set; }

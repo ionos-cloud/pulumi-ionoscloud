@@ -1263,13 +1263,13 @@ class ObjectCopy(pulumi.CustomResource):
             __props__.__dict__["object_lock_retain_until_date"] = object_lock_retain_until_date
             __props__.__dict__["server_side_encryption"] = server_side_encryption
             __props__.__dict__["server_side_encryption_customer_algorithm"] = server_side_encryption_customer_algorithm
-            __props__.__dict__["server_side_encryption_customer_key"] = server_side_encryption_customer_key
+            __props__.__dict__["server_side_encryption_customer_key"] = None if server_side_encryption_customer_key is None else pulumi.Output.secret(server_side_encryption_customer_key)
             __props__.__dict__["server_side_encryption_customer_key_md5"] = server_side_encryption_customer_key_md5
             if source is None and not opts.urn:
                 raise TypeError("Missing required property 'source'")
             __props__.__dict__["source"] = source
             __props__.__dict__["source_customer_algorithm"] = source_customer_algorithm
-            __props__.__dict__["source_customer_key"] = source_customer_key
+            __props__.__dict__["source_customer_key"] = None if source_customer_key is None else pulumi.Output.secret(source_customer_key)
             __props__.__dict__["source_customer_key_md5"] = source_customer_key_md5
             __props__.__dict__["storage_class"] = storage_class
             __props__.__dict__["tagging_directive"] = tagging_directive
@@ -1278,6 +1278,8 @@ class ObjectCopy(pulumi.CustomResource):
             __props__.__dict__["etag"] = None
             __props__.__dict__["last_modified"] = None
             __props__.__dict__["version_id"] = None
+        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["serverSideEncryptionCustomerKey", "sourceCustomerKey"])
+        opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(ObjectCopy, __self__).__init__(
             'ionoscloud:objectstorage/objectCopy:ObjectCopy',
             resource_name,

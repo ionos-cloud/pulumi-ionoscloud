@@ -7,6 +7,7 @@ import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import java.lang.Integer;
 import java.lang.String;
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import javax.annotation.Nullable;
@@ -29,6 +30,21 @@ public final class DatacenterCpuArchitectureArgs extends com.pulumi.resources.Re
      */
     public Optional<Output<String>> cpuFamily() {
         return Optional.ofNullable(this.cpuFamily);
+    }
+
+    /**
+     * Features enabled for this CPU architecture, e.g. `SEV-SNP` for Confidential Computing
+     * 
+     */
+    @Import(name="enabledFeatures")
+    private @Nullable Output<List<String>> enabledFeatures;
+
+    /**
+     * @return Features enabled for this CPU architecture, e.g. `SEV-SNP` for Confidential Computing
+     * 
+     */
+    public Optional<Output<List<String>>> enabledFeatures() {
+        return Optional.ofNullable(this.enabledFeatures);
     }
 
     /**
@@ -80,6 +96,7 @@ public final class DatacenterCpuArchitectureArgs extends com.pulumi.resources.Re
 
     private DatacenterCpuArchitectureArgs(DatacenterCpuArchitectureArgs $) {
         this.cpuFamily = $.cpuFamily;
+        this.enabledFeatures = $.enabledFeatures;
         this.maxCores = $.maxCores;
         this.maxRam = $.maxRam;
         this.vendor = $.vendor;
@@ -122,6 +139,37 @@ public final class DatacenterCpuArchitectureArgs extends com.pulumi.resources.Re
          */
         public Builder cpuFamily(String cpuFamily) {
             return cpuFamily(Output.of(cpuFamily));
+        }
+
+        /**
+         * @param enabledFeatures Features enabled for this CPU architecture, e.g. `SEV-SNP` for Confidential Computing
+         * 
+         * @return builder
+         * 
+         */
+        public Builder enabledFeatures(@Nullable Output<List<String>> enabledFeatures) {
+            $.enabledFeatures = enabledFeatures;
+            return this;
+        }
+
+        /**
+         * @param enabledFeatures Features enabled for this CPU architecture, e.g. `SEV-SNP` for Confidential Computing
+         * 
+         * @return builder
+         * 
+         */
+        public Builder enabledFeatures(List<String> enabledFeatures) {
+            return enabledFeatures(Output.of(enabledFeatures));
+        }
+
+        /**
+         * @param enabledFeatures Features enabled for this CPU architecture, e.g. `SEV-SNP` for Confidential Computing
+         * 
+         * @return builder
+         * 
+         */
+        public Builder enabledFeatures(String... enabledFeatures) {
+            return enabledFeatures(List.of(enabledFeatures));
         }
 
         /**

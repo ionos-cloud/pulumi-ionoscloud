@@ -27,6 +27,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &InMemoryDBReplicaSet{}
 	case "ionoscloud:dbaas/mariaDBCluster:MariaDBCluster":
 		r = &MariaDBCluster{}
+	case "ionoscloud:dbaas/mariaDBClusterV2:MariaDBClusterV2":
+		r = &MariaDBClusterV2{}
 	case "ionoscloud:dbaas/mongoCluster:MongoCluster":
 		r = &MongoCluster{}
 	case "ionoscloud:dbaas/mongoUser:MongoUser":
@@ -65,6 +67,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"ionoscloud",
 		"dbaas/mariaDBCluster",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"ionoscloud",
+		"dbaas/mariaDBClusterV2",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

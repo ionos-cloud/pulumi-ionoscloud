@@ -192,7 +192,7 @@ type Volume struct {
 	DiscVirtioHotPlug pulumi.BoolOutput `pulumi:"discVirtioHotPlug"`
 	// [string] Is capable of Virt-IO drive hot unplug (no reboot required). This works only for non-Windows virtual Machines.
 	DiscVirtioHotUnplug pulumi.BoolOutput `pulumi:"discVirtioHotUnplug"`
-	// [string] The volume type: HDD or SSD. This property is immutable.
+	// [string] The volume type. Possible values: `HDD`, `SSD`, `SSD Standard`, `SSD Premium`, `DAS`, `ISO`, `ESSENTIAL`, `BALANCED`, `PERFORMANCE`. This property is immutable.
 	DiskType pulumi.StringOutput `pulumi:"diskType"`
 	// (Computed) [boolean] Defaults to `false` if not previously set by the image used to create the volume. If set to `true` will expose the serial id of the disk attached to the server. If set to `false` will not expose the serial id. Some operating systems or software solutions require the serial id to be exposed to work properly. Exposing the serial can influence licensed software (e.g. Windows) behavior
 	ExposeSerial pulumi.BoolOutput `pulumi:"exposeSerial"`
@@ -257,6 +257,13 @@ func NewVolume(ctx *pulumi.Context,
 	if args.Size == nil {
 		return nil, errors.New("invalid value for required argument 'Size'")
 	}
+	if args.ImagePassword != nil {
+		args.ImagePassword = pulumi.ToSecret(args.ImagePassword).(pulumi.StringPtrInput)
+	}
+	secrets := pulumi.AdditionalSecretOutputs([]string{
+		"imagePassword",
+	})
+	opts = append(opts, secrets)
 	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Volume
 	err := ctx.RegisterResource("ionoscloud:compute/volume:Volume", name, args, &resource, opts...)
@@ -298,7 +305,7 @@ type volumeState struct {
 	DiscVirtioHotPlug *bool `pulumi:"discVirtioHotPlug"`
 	// [string] Is capable of Virt-IO drive hot unplug (no reboot required). This works only for non-Windows virtual Machines.
 	DiscVirtioHotUnplug *bool `pulumi:"discVirtioHotUnplug"`
-	// [string] The volume type: HDD or SSD. This property is immutable.
+	// [string] The volume type. Possible values: `HDD`, `SSD`, `SSD Standard`, `SSD Premium`, `DAS`, `ISO`, `ESSENTIAL`, `BALANCED`, `PERFORMANCE`. This property is immutable.
 	DiskType *string `pulumi:"diskType"`
 	// (Computed) [boolean] Defaults to `false` if not previously set by the image used to create the volume. If set to `true` will expose the serial id of the disk attached to the server. If set to `false` will not expose the serial id. Some operating systems or software solutions require the serial id to be exposed to work properly. Exposing the serial can influence licensed software (e.g. Windows) behavior
 	ExposeSerial *bool `pulumi:"exposeSerial"`
@@ -363,7 +370,7 @@ type VolumeState struct {
 	DiscVirtioHotPlug pulumi.BoolPtrInput
 	// [string] Is capable of Virt-IO drive hot unplug (no reboot required). This works only for non-Windows virtual Machines.
 	DiscVirtioHotUnplug pulumi.BoolPtrInput
-	// [string] The volume type: HDD or SSD. This property is immutable.
+	// [string] The volume type. Possible values: `HDD`, `SSD`, `SSD Standard`, `SSD Premium`, `DAS`, `ISO`, `ESSENTIAL`, `BALANCED`, `PERFORMANCE`. This property is immutable.
 	DiskType pulumi.StringPtrInput
 	// (Computed) [boolean] Defaults to `false` if not previously set by the image used to create the volume. If set to `true` will expose the serial id of the disk attached to the server. If set to `false` will not expose the serial id. Some operating systems or software solutions require the serial id to be exposed to work properly. Exposing the serial can influence licensed software (e.g. Windows) behavior
 	ExposeSerial pulumi.BoolPtrInput
@@ -422,7 +429,7 @@ type volumeArgs struct {
 	Bus *string `pulumi:"bus"`
 	// [string] The ID of a Virtual Data Center.
 	DatacenterId string `pulumi:"datacenterId"`
-	// [string] The volume type: HDD or SSD. This property is immutable.
+	// [string] The volume type. Possible values: `HDD`, `SSD`, `SSD Standard`, `SSD Premium`, `DAS`, `ISO`, `ESSENTIAL`, `BALANCED`, `PERFORMANCE`. This property is immutable.
 	DiskType string `pulumi:"diskType"`
 	// (Computed) [boolean] Defaults to `false` if not previously set by the image used to create the volume. If set to `true` will expose the serial id of the disk attached to the server. If set to `false` will not expose the serial id. Some operating systems or software solutions require the serial id to be exposed to work properly. Exposing the serial can influence licensed software (e.g. Windows) behavior
 	ExposeSerial *bool `pulumi:"exposeSerial"`
@@ -465,7 +472,7 @@ type VolumeArgs struct {
 	Bus pulumi.StringPtrInput
 	// [string] The ID of a Virtual Data Center.
 	DatacenterId pulumi.StringInput
-	// [string] The volume type: HDD or SSD. This property is immutable.
+	// [string] The volume type. Possible values: `HDD`, `SSD`, `SSD Standard`, `SSD Premium`, `DAS`, `ISO`, `ESSENTIAL`, `BALANCED`, `PERFORMANCE`. This property is immutable.
 	DiskType pulumi.StringInput
 	// (Computed) [boolean] Defaults to `false` if not previously set by the image used to create the volume. If set to `true` will expose the serial id of the disk attached to the server. If set to `false` will not expose the serial id. Some operating systems or software solutions require the serial id to be exposed to work properly. Exposing the serial can influence licensed software (e.g. Windows) behavior
 	ExposeSerial pulumi.BoolPtrInput
@@ -630,7 +637,7 @@ func (o VolumeOutput) DiscVirtioHotUnplug() pulumi.BoolOutput {
 	return o.ApplyT(func(v *Volume) pulumi.BoolOutput { return v.DiscVirtioHotUnplug }).(pulumi.BoolOutput)
 }
 
-// [string] The volume type: HDD or SSD. This property is immutable.
+// [string] The volume type. Possible values: `HDD`, `SSD`, `SSD Standard`, `SSD Premium`, `DAS`, `ISO`, `ESSENTIAL`, `BALANCED`, `PERFORMANCE`. This property is immutable.
 func (o VolumeOutput) DiskType() pulumi.StringOutput {
 	return o.ApplyT(func(v *Volume) pulumi.StringOutput { return v.DiskType }).(pulumi.StringOutput)
 }

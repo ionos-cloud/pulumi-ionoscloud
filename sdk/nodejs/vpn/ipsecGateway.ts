@@ -97,7 +97,7 @@ export class IpsecGateway extends pulumi.CustomResource {
      */
     declare public readonly gatewayIp: pulumi.Output<string>;
     /**
-     * [string] The location of the IPSec Gateway. Supported locations: de/fra, de/fra/2, de/txl, es/vit, gb/bhx, gb/lhr, us/ewr, us/las, us/mci, fr/par.
+     * [string] The location of the IPSec Gateway. Supported locations: de/fra, de/fra/1, de/fra/2, de/txl, es/vit, gb/bhx, gb/lhr, us/ewr, us/las, us/mci, fr/par.
      */
     declare public readonly location: pulumi.Output<string | undefined>;
     /**
@@ -180,7 +180,7 @@ export interface IpsecGatewayState {
      */
     gatewayIp?: pulumi.Input<string | undefined>;
     /**
-     * [string] The location of the IPSec Gateway. Supported locations: de/fra, de/fra/2, de/txl, es/vit, gb/bhx, gb/lhr, us/ewr, us/las, us/mci, fr/par.
+     * [string] The location of the IPSec Gateway. Supported locations: de/fra, de/fra/1, de/fra/2, de/txl, es/vit, gb/bhx, gb/lhr, us/ewr, us/las, us/mci, fr/par.
      */
     location?: pulumi.Input<string | undefined>;
     /**
@@ -221,7 +221,7 @@ export interface IpsecGatewayArgs {
      */
     gatewayIp: pulumi.Input<string>;
     /**
-     * [string] The location of the IPSec Gateway. Supported locations: de/fra, de/fra/2, de/txl, es/vit, gb/bhx, gb/lhr, us/ewr, us/las, us/mci, fr/par.
+     * [string] The location of the IPSec Gateway. Supported locations: de/fra, de/fra/1, de/fra/2, de/txl, es/vit, gb/bhx, gb/lhr, us/ewr, us/las, us/mci, fr/par.
      */
     location?: pulumi.Input<string | undefined>;
     /**

@@ -21,6 +21,10 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute.Outputs
         public readonly ImmutableArray<Outputs.GetServersServerCdromResult> Cdroms;
         public readonly int Cores;
         public readonly string CpuFamily;
+        /// <summary>
+        /// Features enabled on the server, e.g. SEV-SNP for a Confidential Computing VM.
+        /// </summary>
+        public readonly ImmutableArray<string> EnabledFeatures;
         public readonly string Hostname;
         /// <summary>
         /// The unique ID of the server.
@@ -53,6 +57,8 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute.Outputs
 
             string cpuFamily,
 
+            ImmutableArray<string> enabledFeatures,
+
             string hostname,
 
             string id,
@@ -84,6 +90,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute.Outputs
             Cdroms = cdroms;
             Cores = cores;
             CpuFamily = cpuFamily;
+            EnabledFeatures = enabledFeatures;
             Hostname = hostname;
             Id = id;
             Labels = labels;

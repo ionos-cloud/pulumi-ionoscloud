@@ -40,15 +40,40 @@ export const getInmemorydbSnapshot: typeof import("./getInmemorydbSnapshot").get
 export const getInmemorydbSnapshotOutput: typeof import("./getInmemorydbSnapshot").getInmemorydbSnapshotOutput = null as any;
 utilities.lazyLoad(exports, ["getInmemorydbSnapshot","getInmemorydbSnapshotOutput"], () => require("./getInmemorydbSnapshot"));
 
+export { GetMariaDBBackupLocationsV2Args, GetMariaDBBackupLocationsV2Result, GetMariaDBBackupLocationsV2OutputArgs } from "./getMariaDBBackupLocationsV2";
+export const getMariaDBBackupLocationsV2: typeof import("./getMariaDBBackupLocationsV2").getMariaDBBackupLocationsV2 = null as any;
+export const getMariaDBBackupLocationsV2Output: typeof import("./getMariaDBBackupLocationsV2").getMariaDBBackupLocationsV2Output = null as any;
+utilities.lazyLoad(exports, ["getMariaDBBackupLocationsV2","getMariaDBBackupLocationsV2Output"], () => require("./getMariaDBBackupLocationsV2"));
+
 export { GetMariaDBBackupsArgs, GetMariaDBBackupsResult, GetMariaDBBackupsOutputArgs } from "./getMariaDBBackups";
 export const getMariaDBBackups: typeof import("./getMariaDBBackups").getMariaDBBackups = null as any;
 export const getMariaDBBackupsOutput: typeof import("./getMariaDBBackups").getMariaDBBackupsOutput = null as any;
 utilities.lazyLoad(exports, ["getMariaDBBackups","getMariaDBBackupsOutput"], () => require("./getMariaDBBackups"));
 
+export { GetMariaDBBackupsV2Args, GetMariaDBBackupsV2Result, GetMariaDBBackupsV2OutputArgs } from "./getMariaDBBackupsV2";
+export const getMariaDBBackupsV2: typeof import("./getMariaDBBackupsV2").getMariaDBBackupsV2 = null as any;
+export const getMariaDBBackupsV2Output: typeof import("./getMariaDBBackupsV2").getMariaDBBackupsV2Output = null as any;
+utilities.lazyLoad(exports, ["getMariaDBBackupsV2","getMariaDBBackupsV2Output"], () => require("./getMariaDBBackupsV2"));
+
 export { GetMariaDBClusterArgs, GetMariaDBClusterResult, GetMariaDBClusterOutputArgs } from "./getMariaDBCluster";
 export const getMariaDBCluster: typeof import("./getMariaDBCluster").getMariaDBCluster = null as any;
 export const getMariaDBClusterOutput: typeof import("./getMariaDBCluster").getMariaDBClusterOutput = null as any;
 utilities.lazyLoad(exports, ["getMariaDBCluster","getMariaDBClusterOutput"], () => require("./getMariaDBCluster"));
+
+export { GetMariaDBClusterV2Args, GetMariaDBClusterV2Result, GetMariaDBClusterV2OutputArgs } from "./getMariaDBClusterV2";
+export const getMariaDBClusterV2: typeof import("./getMariaDBClusterV2").getMariaDBClusterV2 = null as any;
+export const getMariaDBClusterV2Output: typeof import("./getMariaDBClusterV2").getMariaDBClusterV2Output = null as any;
+utilities.lazyLoad(exports, ["getMariaDBClusterV2","getMariaDBClusterV2Output"], () => require("./getMariaDBClusterV2"));
+
+export { GetMariaDBClustersV2Args, GetMariaDBClustersV2Result, GetMariaDBClustersV2OutputArgs } from "./getMariaDBClustersV2";
+export const getMariaDBClustersV2: typeof import("./getMariaDBClustersV2").getMariaDBClustersV2 = null as any;
+export const getMariaDBClustersV2Output: typeof import("./getMariaDBClustersV2").getMariaDBClustersV2Output = null as any;
+utilities.lazyLoad(exports, ["getMariaDBClustersV2","getMariaDBClustersV2Output"], () => require("./getMariaDBClustersV2"));
+
+export { GetMariaDBVersionsV2Args, GetMariaDBVersionsV2Result, GetMariaDBVersionsV2OutputArgs } from "./getMariaDBVersionsV2";
+export const getMariaDBVersionsV2: typeof import("./getMariaDBVersionsV2").getMariaDBVersionsV2 = null as any;
+export const getMariaDBVersionsV2Output: typeof import("./getMariaDBVersionsV2").getMariaDBVersionsV2Output = null as any;
+utilities.lazyLoad(exports, ["getMariaDBVersionsV2","getMariaDBVersionsV2Output"], () => require("./getMariaDBVersionsV2"));
 
 export { GetMongoClusterArgs, GetMongoClusterResult, GetMongoClusterOutputArgs } from "./getMongoCluster";
 export const getMongoCluster: typeof import("./getMongoCluster").getMongoCluster = null as any;
@@ -135,6 +160,11 @@ export type MariaDBCluster = import("./mariaDBCluster").MariaDBCluster;
 export const MariaDBCluster: typeof import("./mariaDBCluster").MariaDBCluster = null as any;
 utilities.lazyLoad(exports, ["MariaDBCluster"], () => require("./mariaDBCluster"));
 
+export { MariaDBClusterV2Args, MariaDBClusterV2State } from "./mariaDBClusterV2";
+export type MariaDBClusterV2 = import("./mariaDBClusterV2").MariaDBClusterV2;
+export const MariaDBClusterV2: typeof import("./mariaDBClusterV2").MariaDBClusterV2 = null as any;
+utilities.lazyLoad(exports, ["MariaDBClusterV2"], () => require("./mariaDBClusterV2"));
+
 export { MongoClusterArgs, MongoClusterState } from "./mongoCluster";
 export type MongoCluster = import("./mongoCluster").MongoCluster;
 export const MongoCluster: typeof import("./mongoCluster").MongoCluster = null as any;
@@ -176,6 +206,8 @@ const _module = {
                 return new InMemoryDBReplicaSet(name, <any>undefined, { urn })
             case "ionoscloud:dbaas/mariaDBCluster:MariaDBCluster":
                 return new MariaDBCluster(name, <any>undefined, { urn })
+            case "ionoscloud:dbaas/mariaDBClusterV2:MariaDBClusterV2":
+                return new MariaDBClusterV2(name, <any>undefined, { urn })
             case "ionoscloud:dbaas/mongoCluster:MongoCluster":
                 return new MongoCluster(name, <any>undefined, { urn })
             case "ionoscloud:dbaas/mongoUser:MongoUser":
@@ -196,6 +228,7 @@ const _module = {
 pulumi.runtime.registerResourceModule("ionoscloud", "dbaas/inMemoryDBClusterV2", _module)
 pulumi.runtime.registerResourceModule("ionoscloud", "dbaas/inMemoryDBReplicaSet", _module)
 pulumi.runtime.registerResourceModule("ionoscloud", "dbaas/mariaDBCluster", _module)
+pulumi.runtime.registerResourceModule("ionoscloud", "dbaas/mariaDBClusterV2", _module)
 pulumi.runtime.registerResourceModule("ionoscloud", "dbaas/mongoCluster", _module)
 pulumi.runtime.registerResourceModule("ionoscloud", "dbaas/mongoUser", _module)
 pulumi.runtime.registerResourceModule("ionoscloud", "dbaas/pSQLCluster", _module)

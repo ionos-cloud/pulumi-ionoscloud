@@ -86,7 +86,7 @@ def get_psql_versions_v2(location: Optional[_builtins.str] = None,
     ```
 
 
-    :param _builtins.str location: [string] The region in which to look up available versions. Available locations: `de/fra`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
+    :param _builtins.str location: [string] The region in which to look up available versions. Available locations: `de/fra`, `de/fra/1`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
     """
     __args__ = dict()
     __args__['location'] = location
@@ -112,7 +112,7 @@ def get_psql_versions_v2_output(location: pulumi.Input[Optional[_builtins.str]] 
     ```
 
 
-    :param _builtins.str location: [string] The region in which to look up available versions. Available locations: `de/fra`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
+    :param _builtins.str location: [string] The region in which to look up available versions. Available locations: `de/fra`, `de/fra/1`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
     """
     __args__ = dict()
     __args__['location'] = location

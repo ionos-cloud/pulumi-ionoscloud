@@ -58,7 +58,7 @@ export interface GetShareArgs {
      */
     id?: string;
     /**
-     * The location where the Network File Storage share is located. Available locations: `de/fra`, `de/fra/2`, `de/txl`, `fr/par`, `gb/lhr`, `es/vit`, `us/las`, `us/ewr`, `us/mci`.
+     * The location where the Network File Storage share is located. Available locations: `de/fra`, `de/fra/1`, `de/fra/2`, `de/txl`, `fr/par`, `gb/lhr`, `es/vit`, `us/las`, `us/ewr`, `us/mci`.
      */
     location?: string;
     /**
@@ -173,7 +173,7 @@ export interface GetShareOutputArgs {
      */
     id?: pulumi.Input<string | undefined>;
     /**
-     * The location where the Network File Storage share is located. Available locations: `de/fra`, `de/fra/2`, `de/txl`, `fr/par`, `gb/lhr`, `es/vit`, `us/las`, `us/ewr`, `us/mci`.
+     * The location where the Network File Storage share is located. Available locations: `de/fra`, `de/fra/1`, `de/fra/2`, `de/txl`, `fr/par`, `gb/lhr`, `es/vit`, `us/las`, `us/ewr`, `us/mci`.
      */
     location?: pulumi.Input<string | undefined>;
     /**

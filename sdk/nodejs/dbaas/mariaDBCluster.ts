@@ -62,7 +62,7 @@ export class MariaDBCluster extends pulumi.CustomResource {
      */
     declare public readonly credentials: pulumi.Output<outputs.dbaas.MariaDBClusterCredentials>;
     /**
-     * [string] The friendly name of your cluster.
+     * [string] The friendly name of your cluster. Maximum length: 63 characters. Must contain only word characters (letters, numbers, underscores), colons, hyphens, spaces, or dots.
      */
     declare public readonly displayName: pulumi.Output<string>;
     /**
@@ -88,11 +88,11 @@ export class MariaDBCluster extends pulumi.CustomResource {
      */
     declare public readonly mariadbVersion: pulumi.Output<string>;
     /**
-     * [int] The amount of memory per instance in gigabytes (GB).
+     * [int] The amount of memory per instance in gigabytes (GB). Minimum: 4.
      */
     declare public readonly ram: pulumi.Output<number>;
     /**
-     * [int] The amount of storage per instance in gigabytes (GB).
+     * [int] The amount of storage per instance in gigabytes (GB). Minimum: 10, Maximum: 2000.
      */
     declare public readonly storageSize: pulumi.Output<number>;
 
@@ -186,7 +186,7 @@ export interface MariaDBClusterState {
      */
     credentials?: pulumi.Input<inputs.dbaas.MariaDBClusterCredentials | undefined>;
     /**
-     * [string] The friendly name of your cluster.
+     * [string] The friendly name of your cluster. Maximum length: 63 characters. Must contain only word characters (letters, numbers, underscores), colons, hyphens, spaces, or dots.
      */
     displayName?: pulumi.Input<string | undefined>;
     /**
@@ -212,11 +212,11 @@ export interface MariaDBClusterState {
      */
     mariadbVersion?: pulumi.Input<string | undefined>;
     /**
-     * [int] The amount of memory per instance in gigabytes (GB).
+     * [int] The amount of memory per instance in gigabytes (GB). Minimum: 4.
      */
     ram?: pulumi.Input<number | undefined>;
     /**
-     * [int] The amount of storage per instance in gigabytes (GB).
+     * [int] The amount of storage per instance in gigabytes (GB). Minimum: 10, Maximum: 2000.
      */
     storageSize?: pulumi.Input<number | undefined>;
 }
@@ -242,7 +242,7 @@ export interface MariaDBClusterArgs {
      */
     credentials: pulumi.Input<inputs.dbaas.MariaDBClusterCredentials>;
     /**
-     * [string] The friendly name of your cluster.
+     * [string] The friendly name of your cluster. Maximum length: 63 characters. Must contain only word characters (letters, numbers, underscores), colons, hyphens, spaces, or dots.
      */
     displayName: pulumi.Input<string>;
     /**
@@ -262,11 +262,11 @@ export interface MariaDBClusterArgs {
      */
     mariadbVersion: pulumi.Input<string>;
     /**
-     * [int] The amount of memory per instance in gigabytes (GB).
+     * [int] The amount of memory per instance in gigabytes (GB). Minimum: 4.
      */
     ram: pulumi.Input<number>;
     /**
-     * [int] The amount of storage per instance in gigabytes (GB).
+     * [int] The amount of storage per instance in gigabytes (GB). Minimum: 10, Maximum: 2000.
      */
     storageSize: pulumi.Input<number>;
 }

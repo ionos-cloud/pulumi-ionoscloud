@@ -96,8 +96,12 @@ func NewBucketObject(ctx *pulumi.Context,
 	if args.ServerSideEncryptionContext != nil {
 		args.ServerSideEncryptionContext = pulumi.ToSecret(args.ServerSideEncryptionContext).(pulumi.StringPtrInput)
 	}
+	if args.ServerSideEncryptionCustomerKey != nil {
+		args.ServerSideEncryptionCustomerKey = pulumi.ToSecret(args.ServerSideEncryptionCustomerKey).(pulumi.StringPtrInput)
+	}
 	secrets := pulumi.AdditionalSecretOutputs([]string{
 		"serverSideEncryptionContext",
+		"serverSideEncryptionCustomerKey",
 	})
 	opts = append(opts, secrets)
 	opts = internal.PkgResourceDefaultOpts(opts)

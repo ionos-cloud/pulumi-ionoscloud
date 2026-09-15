@@ -107,6 +107,10 @@ export interface GetServerResult {
      */
     readonly datacenterId: string;
     /**
+     * Features enabled on the server, e.g. `SEV-SNP` for a Confidential Computing VM.
+     */
+    readonly enabledFeatures: string[];
+    /**
      * The hostname of the resource.
      */
     readonly hostname: string;

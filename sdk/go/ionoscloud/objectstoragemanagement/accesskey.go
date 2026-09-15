@@ -76,6 +76,10 @@ func NewAccesskey(ctx *pulumi.Context,
 		args = &AccesskeyArgs{}
 	}
 
+	secrets := pulumi.AdditionalSecretOutputs([]string{
+		"secretkey",
+	})
+	opts = append(opts, secrets)
 	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Accesskey
 	err := ctx.RegisterResource("ionoscloud:objectstoragemanagement/accesskey:Accesskey", name, args, &resource, opts...)

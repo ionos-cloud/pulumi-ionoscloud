@@ -135,7 +135,7 @@ export class IpsecTunnel extends pulumi.CustomResource {
      */
     declare public readonly ike: pulumi.Output<outputs.vpn.IpsecTunnelIke>;
     /**
-     * [string] The location of the IPSec Gateway Tunnel. Supported locations: de/fra, de/fra/2, de/txl, es/vit, gb/lhr, us/ewr, us/las, us/mci, fr/par.
+     * [string] The location of the IPSec Gateway Tunnel. Supported locations: de/fra, de/fra/1, de/fra/2, de/txl, es/vit, gb/lhr, us/ewr, us/las, us/mci, fr/par.
      */
     declare public readonly location: pulumi.Output<string | undefined>;
     /**
@@ -246,7 +246,7 @@ export interface IpsecTunnelState {
      */
     ike?: pulumi.Input<inputs.vpn.IpsecTunnelIke | undefined>;
     /**
-     * [string] The location of the IPSec Gateway Tunnel. Supported locations: de/fra, de/fra/2, de/txl, es/vit, gb/lhr, us/ewr, us/las, us/mci, fr/par.
+     * [string] The location of the IPSec Gateway Tunnel. Supported locations: de/fra, de/fra/1, de/fra/2, de/txl, es/vit, gb/lhr, us/ewr, us/las, us/mci, fr/par.
      */
     location?: pulumi.Input<string | undefined>;
     /**
@@ -296,7 +296,7 @@ export interface IpsecTunnelArgs {
      */
     ike: pulumi.Input<inputs.vpn.IpsecTunnelIke>;
     /**
-     * [string] The location of the IPSec Gateway Tunnel. Supported locations: de/fra, de/fra/2, de/txl, es/vit, gb/lhr, us/ewr, us/las, us/mci, fr/par.
+     * [string] The location of the IPSec Gateway Tunnel. Supported locations: de/fra, de/fra/1, de/fra/2, de/txl, es/vit, gb/lhr, us/ewr, us/las, us/mci, fr/par.
      */
     location?: pulumi.Input<string | undefined>;
     /**

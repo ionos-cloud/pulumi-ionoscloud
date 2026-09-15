@@ -63,7 +63,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Dbaas
         public Output<string?> InitialSnapshotId { get; private set; } = null!;
 
         /// <summary>
-        /// [string] The location of your replica set. Updates to the value of the field force the replica set to be re-created. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `Location` will be: `de/fra`, other available locations are: `de/fra/2`, `de/txl`, `es/vit`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`, `fr/par`
+        /// [string] The location of your replica set. Updates to the value of the field force the replica set to be re-created. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `Location` will be: `de/fra`, other available locations are: `de/fra/1`, `de/fra/2`, `de/txl`, `es/vit`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`, `fr/par`
         /// </summary>
         [Output("location")]
         public Output<string?> Location { get; private set; } = null!;
@@ -180,7 +180,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Dbaas
         public Input<string>? InitialSnapshotId { get; set; }
 
         /// <summary>
-        /// [string] The location of your replica set. Updates to the value of the field force the replica set to be re-created. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `Location` will be: `de/fra`, other available locations are: `de/fra/2`, `de/txl`, `es/vit`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`, `fr/par`
+        /// [string] The location of your replica set. Updates to the value of the field force the replica set to be re-created. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `Location` will be: `de/fra`, other available locations are: `de/fra/1`, `de/fra/2`, `de/txl`, `es/vit`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`, `fr/par`
         /// </summary>
         [Input("location")]
         public Input<string>? Location { get; set; }
@@ -266,7 +266,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Dbaas
         public Input<string>? InitialSnapshotId { get; set; }
 
         /// <summary>
-        /// [string] The location of your replica set. Updates to the value of the field force the replica set to be re-created. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `Location` will be: `de/fra`, other available locations are: `de/fra/2`, `de/txl`, `es/vit`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`, `fr/par`
+        /// [string] The location of your replica set. Updates to the value of the field force the replica set to be re-created. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `Location` will be: `de/fra`, other available locations are: `de/fra/1`, `de/fra/2`, `de/txl`, `es/vit`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`, `fr/par`
         /// </summary>
         [Input("location")]
         public Input<string>? Location { get; set; }

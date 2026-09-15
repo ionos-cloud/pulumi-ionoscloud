@@ -43,7 +43,7 @@ type PSQLClusterV2 struct {
 	DnsName pulumi.StringOutput `pulumi:"dnsName"`
 	// [object] The instance configuration for the PostgreSQL cluster.
 	Instances PSQLClusterV2InstancesOutput `pulumi:"instances"`
-	// [string] The location of the PostgreSQL cluster. This is used for routing to the regional API endpoint. Changing this value will destroy the existing cluster and create a new one in the specified location. Available locations: `de/fra`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
+	// [string] The location of the PostgreSQL cluster. This is used for routing to the regional API endpoint. Changing this value will destroy the existing cluster and create a new one in the specified location. Available locations: `de/fra`, `de/fra/1`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
 	Location pulumi.StringOutput `pulumi:"location"`
 	// (Computed)[bool] Enables or disables the collection and reporting of logs for observability of this cluster.
 	LogsEnabled pulumi.BoolOutput `pulumi:"logsEnabled"`
@@ -130,7 +130,7 @@ type psqlclusterV2State struct {
 	DnsName *string `pulumi:"dnsName"`
 	// [object] The instance configuration for the PostgreSQL cluster.
 	Instances *PSQLClusterV2Instances `pulumi:"instances"`
-	// [string] The location of the PostgreSQL cluster. This is used for routing to the regional API endpoint. Changing this value will destroy the existing cluster and create a new one in the specified location. Available locations: `de/fra`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
+	// [string] The location of the PostgreSQL cluster. This is used for routing to the regional API endpoint. Changing this value will destroy the existing cluster and create a new one in the specified location. Available locations: `de/fra`, `de/fra/1`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
 	Location *string `pulumi:"location"`
 	// (Computed)[bool] Enables or disables the collection and reporting of logs for observability of this cluster.
 	LogsEnabled *bool `pulumi:"logsEnabled"`
@@ -164,7 +164,7 @@ type PSQLClusterV2State struct {
 	DnsName pulumi.StringPtrInput
 	// [object] The instance configuration for the PostgreSQL cluster.
 	Instances PSQLClusterV2InstancesPtrInput
-	// [string] The location of the PostgreSQL cluster. This is used for routing to the regional API endpoint. Changing this value will destroy the existing cluster and create a new one in the specified location. Available locations: `de/fra`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
+	// [string] The location of the PostgreSQL cluster. This is used for routing to the regional API endpoint. Changing this value will destroy the existing cluster and create a new one in the specified location. Available locations: `de/fra`, `de/fra/1`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
 	Location pulumi.StringPtrInput
 	// (Computed)[bool] Enables or disables the collection and reporting of logs for observability of this cluster.
 	LogsEnabled pulumi.BoolPtrInput
@@ -200,7 +200,7 @@ type psqlclusterV2Args struct {
 	Description *string `pulumi:"description"`
 	// [object] The instance configuration for the PostgreSQL cluster.
 	Instances PSQLClusterV2Instances `pulumi:"instances"`
-	// [string] The location of the PostgreSQL cluster. This is used for routing to the regional API endpoint. Changing this value will destroy the existing cluster and create a new one in the specified location. Available locations: `de/fra`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
+	// [string] The location of the PostgreSQL cluster. This is used for routing to the regional API endpoint. Changing this value will destroy the existing cluster and create a new one in the specified location. Available locations: `de/fra`, `de/fra/1`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
 	Location string `pulumi:"location"`
 	// (Computed)[bool] Enables or disables the collection and reporting of logs for observability of this cluster.
 	LogsEnabled *bool `pulumi:"logsEnabled"`
@@ -233,7 +233,7 @@ type PSQLClusterV2Args struct {
 	Description pulumi.StringPtrInput
 	// [object] The instance configuration for the PostgreSQL cluster.
 	Instances PSQLClusterV2InstancesInput
-	// [string] The location of the PostgreSQL cluster. This is used for routing to the regional API endpoint. Changing this value will destroy the existing cluster and create a new one in the specified location. Available locations: `de/fra`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
+	// [string] The location of the PostgreSQL cluster. This is used for routing to the regional API endpoint. Changing this value will destroy the existing cluster and create a new one in the specified location. Available locations: `de/fra`, `de/fra/1`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
 	Location pulumi.StringInput
 	// (Computed)[bool] Enables or disables the collection and reporting of logs for observability of this cluster.
 	LogsEnabled pulumi.BoolPtrInput
@@ -374,7 +374,7 @@ func (o PSQLClusterV2Output) Instances() PSQLClusterV2InstancesOutput {
 	return o.ApplyT(func(v *PSQLClusterV2) PSQLClusterV2InstancesOutput { return v.Instances }).(PSQLClusterV2InstancesOutput)
 }
 
-// [string] The location of the PostgreSQL cluster. This is used for routing to the regional API endpoint. Changing this value will destroy the existing cluster and create a new one in the specified location. Available locations: `de/fra`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
+// [string] The location of the PostgreSQL cluster. This is used for routing to the regional API endpoint. Changing this value will destroy the existing cluster and create a new one in the specified location. Available locations: `de/fra`, `de/fra/1`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
 func (o PSQLClusterV2Output) Location() pulumi.StringOutput {
 	return o.ApplyT(func(v *PSQLClusterV2) pulumi.StringOutput { return v.Location }).(pulumi.StringOutput)
 }

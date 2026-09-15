@@ -6,6 +6,7 @@ package com.ionoscloud.pulumi.ionoscloud.k8s.inputs;
 import com.ionoscloud.pulumi.ionoscloud.k8s.inputs.NodePoolAutoScalingArgs;
 import com.ionoscloud.pulumi.ionoscloud.k8s.inputs.NodePoolLanArgs;
 import com.ionoscloud.pulumi.ionoscloud.k8s.inputs.NodePoolMaintenanceWindowArgs;
+import com.ionoscloud.pulumi.ionoscloud.k8s.inputs.NodePoolTaintArgs;
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import java.lang.Boolean;
@@ -344,6 +345,21 @@ public final class NodePoolState extends com.pulumi.resources.ResourceArgs {
         return Optional.ofNullable(this.storageType);
     }
 
+    /**
+     * [set] Taints applied to the nodes in this pool. A taint repels pods that do not have a matching toleration. Maximum 50 taints per node pool.
+     * 
+     */
+    @Import(name="taints")
+    private @Nullable Output<List<NodePoolTaintArgs>> taints;
+
+    /**
+     * @return [set] Taints applied to the nodes in this pool. A taint repels pods that do not have a matching toleration. Maximum 50 taints per node pool.
+     * 
+     */
+    public Optional<Output<List<NodePoolTaintArgs>>> taints() {
+        return Optional.ofNullable(this.taints);
+    }
+
     private NodePoolState() {}
 
     private NodePoolState(NodePoolState $) {
@@ -367,6 +383,7 @@ public final class NodePoolState extends com.pulumi.resources.ResourceArgs {
         this.serverType = $.serverType;
         this.storageSize = $.storageSize;
         this.storageType = $.storageType;
+        this.taints = $.taints;
     }
 
     public static Builder builder() {
@@ -847,6 +864,37 @@ public final class NodePoolState extends com.pulumi.resources.ResourceArgs {
          */
         public Builder storageType(String storageType) {
             return storageType(Output.of(storageType));
+        }
+
+        /**
+         * @param taints [set] Taints applied to the nodes in this pool. A taint repels pods that do not have a matching toleration. Maximum 50 taints per node pool.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder taints(@Nullable Output<List<NodePoolTaintArgs>> taints) {
+            $.taints = taints;
+            return this;
+        }
+
+        /**
+         * @param taints [set] Taints applied to the nodes in this pool. A taint repels pods that do not have a matching toleration. Maximum 50 taints per node pool.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder taints(List<NodePoolTaintArgs> taints) {
+            return taints(Output.of(taints));
+        }
+
+        /**
+         * @param taints [set] Taints applied to the nodes in this pool. A taint repels pods that do not have a matching toleration. Maximum 50 taints per node pool.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder taints(NodePoolTaintArgs... taints) {
+            return taints(List.of(taints));
         }
 
         public NodePoolState build() {

@@ -86,6 +86,12 @@ namespace Ionoscloud.Pulumi.Ionoscloud
             {
                 Version = Utilities.Version,
                 PluginDownloadURL = "github://api.github.com/ionos-cloud/pulumi-ionoscloud",
+                AdditionalSecretOutputs =
+                {
+                    "password",
+                    "s3SecretKey",
+                    "token",
+                },
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.
@@ -120,11 +126,21 @@ namespace Ionoscloud.Pulumi.Ionoscloud
         [Input("insecure", json: true)]
         public Input<bool>? Insecure { get; set; }
 
+        [Input("password")]
+        private Input<string>? _password;
+
         /// <summary>
         /// IONOS CLOUD password for API operations. If token is provided, token is preferred
         /// </summary>
-        [Input("password")]
-        public Input<string>? Password { get; set; }
+        public Input<string>? Password
+        {
+            get => _password;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _password = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         [Input("retries", json: true)]
         public Input<int>? Retries { get; set; }
@@ -141,17 +157,37 @@ namespace Ionoscloud.Pulumi.Ionoscloud
         [Input("s3Region")]
         public Input<string>? S3Region { get; set; }
 
+        [Input("s3SecretKey")]
+        private Input<string>? _s3SecretKey;
+
         /// <summary>
         /// Secret key for IONOS Object Storage operations.
         /// </summary>
-        [Input("s3SecretKey")]
-        public Input<string>? S3SecretKey { get; set; }
+        public Input<string>? S3SecretKey
+        {
+            get => _s3SecretKey;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _s3SecretKey = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        [Input("token")]
+        private Input<string>? _token;
 
         /// <summary>
         /// IONOS CLOUD bearer token for API operations.
         /// </summary>
-        [Input("token")]
-        public Input<string>? Token { get; set; }
+        public Input<string>? Token
+        {
+            get => _token;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _token = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// IONOS CLOUD username for API operations. If token is provided, token is preferred

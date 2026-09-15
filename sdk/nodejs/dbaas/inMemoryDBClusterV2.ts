@@ -128,7 +128,7 @@ export class InMemoryDBClusterV2 extends pulumi.CustomResource {
      */
     declare public readonly instances: pulumi.Output<outputs.dbaas.InMemoryDBClusterV2Instances>;
     /**
-     * [string] The location of the cluster. Changing this forces a new resource. Available: `de/fra`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
+     * [string] The location of the cluster. Changing this forces a new resource. Available: `de/fra`, `de/fra/1`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
      */
     declare public readonly location: pulumi.Output<string>;
     /**
@@ -274,7 +274,7 @@ export interface InMemoryDBClusterV2State {
      */
     instances?: pulumi.Input<inputs.dbaas.InMemoryDBClusterV2Instances | undefined>;
     /**
-     * [string] The location of the cluster. Changing this forces a new resource. Available: `de/fra`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
+     * [string] The location of the cluster. Changing this forces a new resource. Available: `de/fra`, `de/fra/1`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
      */
     location?: pulumi.Input<string | undefined>;
     /**
@@ -340,7 +340,7 @@ export interface InMemoryDBClusterV2Args {
      */
     instances: pulumi.Input<inputs.dbaas.InMemoryDBClusterV2Instances>;
     /**
-     * [string] The location of the cluster. Changing this forces a new resource. Available: `de/fra`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
+     * [string] The location of the cluster. Changing this forces a new resource. Available: `de/fra`, `de/fra/1`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
      */
     location: pulumi.Input<string>;
     /**

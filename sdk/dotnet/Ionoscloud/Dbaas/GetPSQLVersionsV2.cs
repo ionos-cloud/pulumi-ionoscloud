@@ -89,7 +89,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Dbaas
     public sealed class GetPSQLVersionsV2Args : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// [string] The region in which to look up available versions. Available locations: `de/fra`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
+        /// [string] The region in which to look up available versions. Available locations: `de/fra`, `de/fra/1`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
         /// </summary>
         [Input("location", required: true)]
         public string Location { get; set; } = null!;
@@ -103,7 +103,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Dbaas
     public sealed class GetPSQLVersionsV2InvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// [string] The region in which to look up available versions. Available locations: `de/fra`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
+        /// [string] The region in which to look up available versions. Available locations: `de/fra`, `de/fra/1`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
         /// </summary>
         [Input("location", required: true)]
         public Input<string> Location { get; set; } = null!;

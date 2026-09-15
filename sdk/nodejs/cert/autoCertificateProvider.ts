@@ -72,7 +72,7 @@ export class AutoCertificateProvider extends pulumi.CustomResource {
      */
     declare public readonly externalAccountBinding: pulumi.Output<outputs.cert.AutoCertificateProviderExternalAccountBinding | undefined>;
     /**
-     * [string] The location of the provider. Available locations: `de/fra`, `de/fra/2`.
+     * [string] The location of the provider. Available locations: `de/fra`, `de/fra/1`, `de/fra/2`.
      */
     declare public readonly location: pulumi.Output<string | undefined>;
     /**
@@ -134,7 +134,7 @@ export interface AutoCertificateProviderState {
      */
     externalAccountBinding?: pulumi.Input<inputs.cert.AutoCertificateProviderExternalAccountBinding | undefined>;
     /**
-     * [string] The location of the provider. Available locations: `de/fra`, `de/fra/2`.
+     * [string] The location of the provider. Available locations: `de/fra`, `de/fra/1`, `de/fra/2`.
      */
     location?: pulumi.Input<string | undefined>;
     /**
@@ -160,7 +160,7 @@ export interface AutoCertificateProviderArgs {
      */
     externalAccountBinding?: pulumi.Input<inputs.cert.AutoCertificateProviderExternalAccountBinding | undefined>;
     /**
-     * [string] The location of the provider. Available locations: `de/fra`, `de/fra/2`.
+     * [string] The location of the provider. Available locations: `de/fra`, `de/fra/1`, `de/fra/2`.
      */
     location?: pulumi.Input<string | undefined>;
     /**

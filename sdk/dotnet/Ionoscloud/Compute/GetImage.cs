@@ -422,6 +422,10 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
         /// </summary>
         public readonly bool RequireLegacyBios;
         /// <summary>
+        /// Features required to run this image, e.g. `SEV-SNP` for a Confidential Computing boot image.
+        /// </summary>
+        public readonly ImmutableArray<string> RequiredFeatures;
+        /// <summary>
         /// The size of the image in GB
         /// </summary>
         public readonly double Size;
@@ -475,6 +479,8 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
 
             bool requireLegacyBios,
 
+            ImmutableArray<string> requiredFeatures,
+
             double size,
 
             string type,
@@ -502,6 +508,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
             RamHotPlug = ramHotPlug;
             RamHotUnplug = ramHotUnplug;
             RequireLegacyBios = requireLegacyBios;
+            RequiredFeatures = requiredFeatures;
             Size = size;
             Type = type;
             Version = version;

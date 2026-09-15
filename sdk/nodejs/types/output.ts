@@ -1513,6 +1513,10 @@ export namespace compute {
          */
         cpuFamily: string;
         /**
+         * Features enabled for this CPU architecture, e.g. `SEV-SNP` for Confidential Computing
+         */
+        enabledFeatures: string[];
+        /**
          * The maximum number of cores available
          */
         maxCores: number;
@@ -1949,6 +1953,10 @@ export namespace compute {
          */
         cpuFamily: string;
         /**
+         * Features enabled for this CPU architecture, e.g. `SEV-SNP` for Confidential Computing
+         */
+        enabledFeatures: string[];
+        /**
          * The maximum number of cores available
          */
         maxCores: number;
@@ -2241,6 +2249,10 @@ export namespace compute {
          * A valid CPU family name.
          */
         cpuFamily: string;
+        /**
+         * Features enabled for this CPU architecture, e.g. `SEV-SNP` for Confidential Computing.
+         */
+        enabledFeatures: string[];
         /**
          * The maximum number of cores available.
          */
@@ -2619,6 +2631,10 @@ export namespace compute {
         cdroms: outputs.compute.GetServersServerCdrom[];
         cores: number;
         cpuFamily: string;
+        /**
+         * Features enabled on the server, e.g. SEV-SNP for a Confidential Computing VM.
+         */
+        enabledFeatures: string[];
         hostname: string;
         /**
          * The unique ID of the server.
@@ -3944,6 +3960,17 @@ export namespace dbaas {
         snapshotTime: string;
     }
 
+    export interface GetMariaDBBackupLocationsV2Item {
+        /**
+         * The ID (UUID) of the backup location.
+         */
+        id: string;
+        /**
+         * [string] The location to query. Requests are routed to the corresponding regional MariaDB endpoint. Available locations: `de/fra`, `de/fra/1`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
+         */
+        location: string;
+    }
+
     export interface GetMariaDBBackupsBackup {
         /**
          * The list of backups for the specified cluster
@@ -3972,6 +3999,37 @@ export namespace dbaas {
          * The size of the backup in Mebibytes (MiB). This is the size of the binary backup file that was stored
          */
         size: number;
+    }
+
+    export interface GetMariaDBBackupsV2Item {
+        /**
+         * [string] Filter backups by the cluster they belong to.
+         */
+        clusterId: string;
+        /**
+         * The name of the cluster this backup belongs to.
+         */
+        clusterName: string;
+        /**
+         * The earliest point in time to which the cluster can be restored from this backup (RFC3339).
+         */
+        earliestRecoveryTargetTime: string;
+        /**
+         * The ID (UUID) of the backup.
+         */
+        id: string;
+        /**
+         * The latest point in time to which the cluster can be restored (RFC3339). Empty if the backup can be restored up to the current time.
+         */
+        latestRecoveryTargetTime: string;
+        /**
+         * [string] The location to query. Available locations: `de/fra`, `de/fra/1`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
+         */
+        location: string;
+        /**
+         * The MariaDB version of the cluster at backup time.
+         */
+        mariadbClusterVersion: string;
     }
 
     export interface GetMariaDBClusterBackup {
@@ -4009,6 +4067,220 @@ export namespace dbaas {
          * [string] Start of the maintenance window in UTC time.
          */
         time: string;
+    }
+
+    export interface GetMariaDBClusterV2Backup {
+        /**
+         * [string] The location to query. Available locations: `de/fra`, `de/fra/1`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
+         *
+         * > **Note:** Either `id` or `name` must be provided. If none, or both are provided, the datasource will return an error.
+         */
+        location: string;
+        /**
+         * The number of days cluster backups are retained.
+         */
+        retentionDays: number;
+    }
+
+    export interface GetMariaDBClusterV2Connections {
+        /**
+         * The ID of the Virtual Data Center the cluster is connected to.
+         */
+        datacenterId: string;
+        /**
+         * The numeric LAN ID the cluster is connected to.
+         */
+        lanId: string;
+        /**
+         * The IP address and netmask of the cluster's primary instance, in CIDR notation.
+         */
+        primaryInstanceAddress: string;
+    }
+
+    export interface GetMariaDBClusterV2Credentials {
+        /**
+         * The name of the initial database.
+         */
+        database: string;
+        /**
+         * The username of the initial MariaDB user.
+         */
+        username: string;
+    }
+
+    export interface GetMariaDBClusterV2Instances {
+        /**
+         * The number of CPU cores per instance.
+         */
+        cores: number;
+        /**
+         * The total number of instances in the cluster.
+         */
+        count: number;
+        /**
+         * The amount of memory per instance in gigabytes (GB).
+         */
+        ram: number;
+        /**
+         * The amount of storage per instance in gigabytes (GB).
+         */
+        storageSize: number;
+    }
+
+    export interface GetMariaDBClusterV2MaintenanceWindow {
+        /**
+         * The name of the week day.
+         */
+        dayOfTheWeek: string;
+        /**
+         * Start of the maintenance window in UTC time.
+         */
+        time: string;
+    }
+
+    export interface GetMariaDBClustersV2Item {
+        /**
+         * Backup location and retention configuration.
+         */
+        backup: outputs.dbaas.GetMariaDBClustersV2ItemBackup;
+        /**
+         * Connection information of the MariaDB cluster.
+         */
+        connections: outputs.dbaas.GetMariaDBClustersV2ItemConnections;
+        /**
+         * Credentials for the initial database user.
+         */
+        credentials: outputs.dbaas.GetMariaDBClustersV2ItemCredentials;
+        /**
+         * Human-readable description for the cluster.
+         */
+        description: string;
+        /**
+         * The DNS name used to access the cluster.
+         */
+        dnsName: string;
+        /**
+         * The ID (UUID) of the cluster.
+         */
+        id: string;
+        /**
+         * Compute and storage configuration for each instance in the cluster.
+         */
+        instances: outputs.dbaas.GetMariaDBClustersV2ItemInstances;
+        /**
+         * [string] The location to query. Available locations: `de/fra`, `de/fra/1`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
+         */
+        location: string;
+        /**
+         * Whether log collection and reporting is enabled for this cluster's observability.
+         */
+        logsEnabled: boolean;
+        /**
+         * A weekly 4 hour-long window, during which maintenance might occur.
+         */
+        maintenanceWindow: outputs.dbaas.GetMariaDBClustersV2ItemMaintenanceWindow;
+        /**
+         * Whether metrics collection and reporting is enabled for this cluster's observability.
+         */
+        metricsEnabled: boolean;
+        /**
+         * [string] Filter clusters by name (**partial match** — the value is passed directly to the API's name filter, so it matches any cluster name containing the given string, not only an exact match).
+         */
+        name: string;
+        /**
+         * The MariaDB version for the cluster.
+         */
+        version: string;
+    }
+
+    export interface GetMariaDBClustersV2ItemBackup {
+        /**
+         * [string] The location to query. Available locations: `de/fra`, `de/fra/1`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
+         */
+        location: string;
+        /**
+         * The number of days cluster backups are retained.
+         */
+        retentionDays: number;
+    }
+
+    export interface GetMariaDBClustersV2ItemConnections {
+        /**
+         * The ID of the Virtual Data Center the cluster is connected to.
+         */
+        datacenterId: string;
+        /**
+         * The numeric LAN ID the cluster is connected to.
+         */
+        lanId: string;
+        /**
+         * The IP address and netmask of the cluster's primary instance, in CIDR notation.
+         */
+        primaryInstanceAddress: string;
+    }
+
+    export interface GetMariaDBClustersV2ItemCredentials {
+        /**
+         * The name of the initial database.
+         */
+        database: string;
+        /**
+         * The username of the initial MariaDB user.
+         */
+        username: string;
+    }
+
+    export interface GetMariaDBClustersV2ItemInstances {
+        /**
+         * The number of CPU cores per instance.
+         */
+        cores: number;
+        /**
+         * The total number of instances in the cluster (one primary and n-1 secondary).
+         */
+        count: number;
+        /**
+         * The amount of memory per instance in gigabytes (GB).
+         */
+        ram: number;
+        /**
+         * The amount of storage per instance in gigabytes (GB).
+         */
+        storageSize: number;
+    }
+
+    export interface GetMariaDBClustersV2ItemMaintenanceWindow {
+        /**
+         * The name of the week day.
+         */
+        dayOfTheWeek: string;
+        /**
+         * Start of the maintenance window in UTC time.
+         */
+        time: string;
+    }
+
+    export interface GetMariaDBVersionsV2Item {
+        /**
+         * List of versions that a cluster running this version can be upgraded to.
+         */
+        canUpgradeTos: string[];
+        /**
+         * Additional human-readable information about the version lifecycle.
+         */
+        comment: string;
+        /**
+         * The ID (UUID) of the version.
+         */
+        id: string;
+        /**
+         * The support status of the version.
+         */
+        status: string;
+        /**
+         * The MariaDB version string (e.g. `11.4`).
+         */
+        version: string;
     }
 
     export interface GetMongoClusterBackup {
@@ -4077,7 +4349,7 @@ export namespace dbaas {
          */
         id: string;
         /**
-         * [string] The region in which to look up backup locations. Available locations: `de/fra`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
+         * [string] The region in which to look up backup locations. Available locations: `de/fra`, `de/fra/1`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
          */
         location: string;
     }
@@ -4149,7 +4421,7 @@ export namespace dbaas {
          */
         latestRecoveryTargetTime: string;
         /**
-         * [string] The region in which to look up backups. Available locations: `de/fra`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
+         * [string] The region in which to look up backups. Available locations: `de/fra`, `de/fra/1`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
          */
         location: string;
         /**
@@ -4199,7 +4471,7 @@ export namespace dbaas {
 
     export interface GetPSQLClusterV2Backup {
         /**
-         * [string] The region in which to look up the cluster. Available locations: `de/fra`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
+         * [string] The region in which to look up the cluster. Available locations: `de/fra`, `de/fra/1`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
          *
          * Either `id` or `name` must be provided. If none, or both are provided, the datasource will return an error.
          */
@@ -4285,7 +4557,7 @@ export namespace dbaas {
          */
         instances: outputs.dbaas.GetPSQLClustersV2ClusterInstances;
         /**
-         * [string] The region in which to look up clusters. Available locations: `de/fra`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
+         * [string] The region in which to look up clusters. Available locations: `de/fra`, `de/fra/1`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
          */
         location: string;
         /**
@@ -4316,7 +4588,7 @@ export namespace dbaas {
 
     export interface GetPSQLClustersV2ClusterBackup {
         /**
-         * [string] The region in which to look up clusters. Available locations: `de/fra`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
+         * [string] The region in which to look up clusters. Available locations: `de/fra`, `de/fra/1`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
          */
         location: string;
         /**
@@ -4605,11 +4877,11 @@ export namespace dbaas {
 
     export interface MariaDBClusterCredentials {
         /**
-         * [string] The password for a MariaDB user.
+         * [string] The password for a MariaDB user. Length: 10-63 characters.
          */
         password: string;
         /**
-         * [string] The username for the initial MariaDB user. Some system usernames are restricted (e.g 'mariadb', 'admin', 'standby').
+         * [string] The username for the initial MariaDB user. Some system usernames are restricted (e.g 'mariadb', 'admin', 'standby'). Length: 1-16 characters. Must start with a letter, end with a letter or number, and contain only letters, numbers, or underscores (underscores only between alphanumeric groups).
          */
         username: string;
     }
@@ -4620,9 +4892,108 @@ export namespace dbaas {
          */
         dayOfTheWeek: string;
         /**
-         * [string] Start of the maintenance window in UTC time.
+         * [string] Start of the maintenance window in UTC time. Format: HH:MM:SS.
          */
         time: string;
+    }
+
+    export interface MariaDBClusterV2Backup {
+        /**
+         * [string] The Object Storage location where the backup will be created. Changing this forces re-creation of the cluster.
+         */
+        location: string;
+        /**
+         * [int] Configures how many days cluster backups are retained.
+         */
+        retentionDays: number;
+    }
+
+    export interface MariaDBClusterV2Connections {
+        /**
+         * [string] The datacenter to connect your instance to.
+         */
+        datacenterId: string;
+        /**
+         * [string] The numeric LAN ID to connect your instance to.
+         */
+        lanId: string;
+        /**
+         * [string] The IP address and netmask of the cluster's primary instance, in CIDR notation.
+         */
+        primaryInstanceAddress: string;
+    }
+
+    export interface MariaDBClusterV2Credentials {
+        /**
+         * [string] The name of the initial database to be created.
+         */
+        database: string;
+        /**
+         * [string] **Sensitive.** The password for the initial MariaDB user. Not returned by the API — will be null in state after `pulumi import`.
+         */
+        password: string;
+        /**
+         * [string] The username of the initial MariaDB user.
+         */
+        username: string;
+    }
+
+    export interface MariaDBClusterV2Instances {
+        /**
+         * [int] The number of CPU cores per instance.
+         */
+        cores: number;
+        /**
+         * [int] The total number of instances in the cluster (one primary and n-1 secondary).
+         */
+        count: number;
+        /**
+         * [int] The amount of memory per instance in gigabytes (GB).
+         */
+        ram: number;
+        /**
+         * [int] The amount of storage per instance in gigabytes (GB).
+         */
+        storageSize: number;
+    }
+
+    export interface MariaDBClusterV2MaintenanceWindow {
+        /**
+         * [string] The name of the week day.
+         */
+        dayOfTheWeek: string;
+        /**
+         * [string] Start of the maintenance window in UTC time (`HH:MM:SS`).
+         */
+        time: string;
+    }
+
+    export interface MariaDBClusterV2RestoreFromBackup {
+        /**
+         * [string] ISO 8601 timestamp causing the system to replay backups up to the specified time. Optional for create-time restore; required for in-place restore during an update.
+         *
+         * > **Note:** `restoreFromBackup` is not returned by the API. The values are stored in state as configured but will be null after `pulumi import`.
+         */
+        recoveryTargetDatetime?: string;
+        /**
+         * [string] UUID of the backup to restore from. Required when `restoreFromBackup` is set during cluster creation; not valid for in-place restore during an update.
+         */
+        sourceBackupId?: string;
+    }
+
+    export interface MariaDBClusterV2Timeouts {
+        /**
+         * A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+         */
+        create?: string;
+        /**
+         * A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs.
+         */
+        delete?: string;
+        /**
+         * A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+         */
+        update?: string;
     }
 
     export interface MongoClusterBackup {
@@ -5098,6 +5469,21 @@ export namespace k8s {
         publicIp: string;
     }
 
+    export interface GetNodePoolTaint {
+        /**
+         * Taint effect: `NoSchedule`, `NoExecute`, or `PreferNoSchedule`
+         */
+        effect: string;
+        /**
+         * Taint key
+         */
+        key: string;
+        /**
+         * Taint value
+         */
+        value: string;
+    }
+
     export interface NodePoolAutoScaling {
         /**
          * [int] The maximum number of worker nodes that the node pool can scale to. Should be greater than min_node_count
@@ -5144,6 +5530,21 @@ export namespace k8s {
          * [string] A clock time in the day when maintenance is allowed
          */
         time: string;
+    }
+
+    export interface NodePoolTaint {
+        /**
+         * [string] Taint effect determines how a taint repels pods. One of: `NoSchedule`, `NoExecute`, `PreferNoSchedule`.
+         */
+        effect: string;
+        /**
+         * [string] Taint key. Must be a valid Kubernetes label key format. May include an optional prefix (DNS subdomain) followed by a slash.
+         */
+        key: string;
+        /**
+         * [string] Taint value. Must be a valid Kubernetes label value format.
+         */
+        value?: string;
     }
 
 }

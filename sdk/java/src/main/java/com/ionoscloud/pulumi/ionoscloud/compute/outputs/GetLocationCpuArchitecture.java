@@ -7,6 +7,7 @@ import com.pulumi.core.annotations.CustomType;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Integer;
 import java.lang.String;
+import java.util.List;
 import java.util.Objects;
 
 @CustomType
@@ -16,6 +17,11 @@ public final class GetLocationCpuArchitecture {
      * 
      */
     private String cpuFamily;
+    /**
+     * @return Features enabled for this CPU architecture, e.g. `SEV-SNP` for Confidential Computing.
+     * 
+     */
+    private List<String> enabledFeatures;
     /**
      * @return The maximum number of cores available.
      * 
@@ -39,6 +45,13 @@ public final class GetLocationCpuArchitecture {
      */
     public String cpuFamily() {
         return this.cpuFamily;
+    }
+    /**
+     * @return Features enabled for this CPU architecture, e.g. `SEV-SNP` for Confidential Computing.
+     * 
+     */
+    public List<String> enabledFeatures() {
+        return this.enabledFeatures;
     }
     /**
      * @return The maximum number of cores available.
@@ -72,6 +85,7 @@ public final class GetLocationCpuArchitecture {
     @CustomType.Builder
     public static final class Builder {
         private String cpuFamily;
+        private List<String> enabledFeatures;
         private Integer maxCores;
         private Integer maxRam;
         private String vendor;
@@ -79,6 +93,7 @@ public final class GetLocationCpuArchitecture {
         public Builder(GetLocationCpuArchitecture defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.cpuFamily = defaults.cpuFamily;
+    	      this.enabledFeatures = defaults.enabledFeatures;
     	      this.maxCores = defaults.maxCores;
     	      this.maxRam = defaults.maxRam;
     	      this.vendor = defaults.vendor;
@@ -91,6 +106,17 @@ public final class GetLocationCpuArchitecture {
             }
             this.cpuFamily = cpuFamily;
             return this;
+        }
+        @CustomType.Setter
+        public Builder enabledFeatures(List<String> enabledFeatures) {
+            if (enabledFeatures == null) {
+              throw new MissingRequiredPropertyException("GetLocationCpuArchitecture", "enabledFeatures");
+            }
+            this.enabledFeatures = enabledFeatures;
+            return this;
+        }
+        public Builder enabledFeatures(String... enabledFeatures) {
+            return enabledFeatures(List.of(enabledFeatures));
         }
         @CustomType.Setter
         public Builder maxCores(Integer maxCores) {
@@ -119,6 +145,7 @@ public final class GetLocationCpuArchitecture {
         public GetLocationCpuArchitecture build() {
             final var _resultValue = new GetLocationCpuArchitecture();
             _resultValue.cpuFamily = cpuFamily;
+            _resultValue.enabledFeatures = enabledFeatures;
             _resultValue.maxCores = maxCores;
             _resultValue.maxRam = maxRam;
             _resultValue.vendor = vendor;

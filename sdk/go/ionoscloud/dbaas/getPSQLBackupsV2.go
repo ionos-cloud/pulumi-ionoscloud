@@ -80,7 +80,7 @@ func GetPSQLBackupsV2(ctx *pulumi.Context, args *GetPSQLBackupsV2Args, opts ...p
 type GetPSQLBackupsV2Args struct {
 	// [string] The ID (UUID) of the cluster to filter backups by.
 	ClusterId *string `pulumi:"clusterId"`
-	// [string] The region in which to look up backups. Available locations: `de/fra`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
+	// [string] The region in which to look up backups. Available locations: `de/fra`, `de/fra/1`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
 	Location string `pulumi:"location"`
 }
 
@@ -109,7 +109,7 @@ func GetPSQLBackupsV2Output(ctx *pulumi.Context, args GetPSQLBackupsV2OutputArgs
 type GetPSQLBackupsV2OutputArgs struct {
 	// [string] The ID (UUID) of the cluster to filter backups by.
 	ClusterId pulumi.StringPtrInput `pulumi:"clusterId"`
-	// [string] The region in which to look up backups. Available locations: `de/fra`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
+	// [string] The region in which to look up backups. Available locations: `de/fra`, `de/fra/1`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
 	Location pulumi.StringInput `pulumi:"location"`
 }
 

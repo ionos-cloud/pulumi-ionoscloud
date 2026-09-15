@@ -102,7 +102,7 @@ type GetKafkaUserCredentialsArgs struct {
 	ClusterId string `pulumi:"clusterId"`
 	// [string] the ID of the Kafka user, can be retrieved using `getKafkaUsers` data source;
 	Id *string `pulumi:"id"`
-	// [string] the location of the Kafka cluster, can be one of: `de/fra`, `de/fra/2`, `de/txl`, `fr/par`, `es/vit`, `gb/lhr`, `gb/bhx`, `us/las`, `us/mci`, `us/ewr`. If omitted, the default location will be used: `de/fra`;
+	// [string] the location of the Kafka cluster, can be one of: `de/fra`, `de/fra/1`, `de/fra/2`, `de/txl`, `fr/par`, `es/vit`, `gb/lhr`, `gb/bhx`, `us/las`, `us/mci`, `us/ewr`. If omitted, the default location will be used: `de/fra`;
 	Location *string                          `pulumi:"location"`
 	Timeouts *GetKafkaUserCredentialsTimeouts `pulumi:"timeouts"`
 	// [string] the name of the Kafka user, can be retrieved using `getKafkaUsers` data source;
@@ -136,7 +136,7 @@ type GetKafkaUserCredentialsOutputArgs struct {
 	ClusterId pulumi.StringInput `pulumi:"clusterId"`
 	// [string] the ID of the Kafka user, can be retrieved using `getKafkaUsers` data source;
 	Id pulumi.StringPtrInput `pulumi:"id"`
-	// [string] the location of the Kafka cluster, can be one of: `de/fra`, `de/fra/2`, `de/txl`, `fr/par`, `es/vit`, `gb/lhr`, `gb/bhx`, `us/las`, `us/mci`, `us/ewr`. If omitted, the default location will be used: `de/fra`;
+	// [string] the location of the Kafka cluster, can be one of: `de/fra`, `de/fra/1`, `de/fra/2`, `de/txl`, `fr/par`, `es/vit`, `gb/lhr`, `gb/bhx`, `us/las`, `us/mci`, `us/ewr`. If omitted, the default location will be used: `de/fra`;
 	Location pulumi.StringPtrInput                   `pulumi:"location"`
 	Timeouts GetKafkaUserCredentialsTimeoutsPtrInput `pulumi:"timeouts"`
 	// [string] the name of the Kafka user, can be retrieved using `getKafkaUsers` data source;

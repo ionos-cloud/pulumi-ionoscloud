@@ -181,7 +181,7 @@ export class Volume extends pulumi.CustomResource {
      */
     declare public /*out*/ readonly discVirtioHotUnplug: pulumi.Output<boolean>;
     /**
-     * [string] The volume type: HDD or SSD. This property is immutable.
+     * [string] The volume type. Possible values: `HDD`, `SSD`, `SSD Standard`, `SSD Premium`, `DAS`, `ISO`, `ESSENTIAL`, `BALANCED`, `PERFORMANCE`. This property is immutable.
      */
     declare public readonly diskType: pulumi.Output<string>;
     /**
@@ -326,7 +326,7 @@ export class Volume extends pulumi.CustomResource {
             resourceInputs["diskType"] = args?.diskType;
             resourceInputs["exposeSerial"] = args?.exposeSerial;
             resourceInputs["imageName"] = args?.imageName;
-            resourceInputs["imagePassword"] = args?.imagePassword;
+            resourceInputs["imagePassword"] = args?.imagePassword ? pulumi.secret(args.imagePassword) : undefined;
             resourceInputs["licenceType"] = args?.licenceType;
             resourceInputs["location"] = args?.location;
             resourceInputs["name"] = args?.name;
@@ -350,6 +350,8 @@ export class Volume extends pulumi.CustomResource {
             resourceInputs["sshkey"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        const secretOpts = { additionalSecretOutputs: ["imagePassword"] };
+        opts = pulumi.mergeOptions(opts, secretOpts);
         super(Volume.__pulumiType, name, resourceInputs, opts);
     }
 }
@@ -395,7 +397,7 @@ export interface VolumeState {
      */
     discVirtioHotUnplug?: pulumi.Input<boolean | undefined>;
     /**
-     * [string] The volume type: HDD or SSD. This property is immutable.
+     * [string] The volume type. Possible values: `HDD`, `SSD`, `SSD Standard`, `SSD Premium`, `DAS`, `ISO`, `ESSENTIAL`, `BALANCED`, `PERFORMANCE`. This property is immutable.
      */
     diskType?: pulumi.Input<string | undefined>;
     /**
@@ -499,7 +501,7 @@ export interface VolumeArgs {
      */
     datacenterId: pulumi.Input<string>;
     /**
-     * [string] The volume type: HDD or SSD. This property is immutable.
+     * [string] The volume type. Possible values: `HDD`, `SSD`, `SSD Standard`, `SSD Premium`, `DAS`, `ISO`, `ESSENTIAL`, `BALANCED`, `PERFORMANCE`. This property is immutable.
      */
     diskType: pulumi.Input<string>;
     /**

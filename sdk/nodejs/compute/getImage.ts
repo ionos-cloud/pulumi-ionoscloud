@@ -189,6 +189,10 @@ export interface GetImageResult {
      */
     readonly requireLegacyBios: boolean;
     /**
+     * Features required to run this image, e.g. `SEV-SNP` for a Confidential Computing boot image.
+     */
+    readonly requiredFeatures: string[];
+    /**
      * The size of the image in GB
      */
     readonly size: number;

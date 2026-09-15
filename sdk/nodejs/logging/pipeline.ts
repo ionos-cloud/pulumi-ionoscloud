@@ -106,7 +106,7 @@ export class Pipeline extends pulumi.CustomResource {
      */
     declare public /*out*/ readonly key: pulumi.Output<string>;
     /**
-     * [string] The location of the Logging pipeline. Default: `de/txl`, other available locations: `de/fra`, `de/fra/2`, `de/txl`, `es/vit`, `gb/bhx`, `gb/lhr`,  `fr/par`, `us/mci`. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
+     * [string] The location of the Logging pipeline. Default: `de/txl`. Available locations: `de/fra`, `de/fra/1`, `de/fra/2`, `de/txl`, `es/vit`, `gb/lhr`, `fr/par`. If this is not set and if no value is provided for the `IONOS_API_URL_LOGGING` env var, the default `location` will be: `de/txl`.
      */
     declare public readonly location: pulumi.Output<string | undefined>;
     /**
@@ -179,7 +179,7 @@ export interface PipelineState {
      */
     key?: pulumi.Input<string | undefined>;
     /**
-     * [string] The location of the Logging pipeline. Default: `de/txl`, other available locations: `de/fra`, `de/fra/2`, `de/txl`, `es/vit`, `gb/bhx`, `gb/lhr`,  `fr/par`, `us/mci`. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
+     * [string] The location of the Logging pipeline. Default: `de/txl`. Available locations: `de/fra`, `de/fra/1`, `de/fra/2`, `de/txl`, `es/vit`, `gb/lhr`, `fr/par`. If this is not set and if no value is provided for the `IONOS_API_URL_LOGGING` env var, the default `location` will be: `de/txl`.
      */
     location?: pulumi.Input<string | undefined>;
     /**
@@ -201,7 +201,7 @@ export interface PipelineState {
  */
 export interface PipelineArgs {
     /**
-     * [string] The location of the Logging pipeline. Default: `de/txl`, other available locations: `de/fra`, `de/fra/2`, `de/txl`, `es/vit`, `gb/bhx`, `gb/lhr`,  `fr/par`, `us/mci`. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`.
+     * [string] The location of the Logging pipeline. Default: `de/txl`. Available locations: `de/fra`, `de/fra/1`, `de/fra/2`, `de/txl`, `es/vit`, `gb/lhr`, `fr/par`. If this is not set and if no value is provided for the `IONOS_API_URL_LOGGING` env var, the default `location` will be: `de/txl`.
      */
     location?: pulumi.Input<string | undefined>;
     /**

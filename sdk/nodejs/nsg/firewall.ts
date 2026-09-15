@@ -105,7 +105,7 @@ export class Firewall extends pulumi.CustomResource {
      */
     declare public readonly portRangeStart: pulumi.Output<number | undefined>;
     /**
-     * [string] The protocol for the rule: TCP, UDP, ICMP, ANY. Property cannot be modified after creation (disallowed in update requests).
+     * [string] The protocol for the rule: TCP, UDP, ICMP, ANY. Property cannot be modified after creation (disallowed in update requests); changing it forces a new resource to be created.
      */
     declare public readonly protocol: pulumi.Output<string>;
     /**
@@ -218,7 +218,7 @@ export interface FirewallState {
      */
     portRangeStart?: pulumi.Input<number | undefined>;
     /**
-     * [string] The protocol for the rule: TCP, UDP, ICMP, ANY. Property cannot be modified after creation (disallowed in update requests).
+     * [string] The protocol for the rule: TCP, UDP, ICMP, ANY. Property cannot be modified after creation (disallowed in update requests); changing it forces a new resource to be created.
      */
     protocol?: pulumi.Input<string | undefined>;
     /**
@@ -276,7 +276,7 @@ export interface FirewallArgs {
      */
     portRangeStart?: pulumi.Input<number | undefined>;
     /**
-     * [string] The protocol for the rule: TCP, UDP, ICMP, ANY. Property cannot be modified after creation (disallowed in update requests).
+     * [string] The protocol for the rule: TCP, UDP, ICMP, ANY. Property cannot be modified after creation (disallowed in update requests); changing it forces a new resource to be created.
      */
     protocol: pulumi.Input<string>;
     /**

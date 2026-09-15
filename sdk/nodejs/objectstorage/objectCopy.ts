@@ -274,11 +274,11 @@ export class ObjectCopy extends pulumi.CustomResource {
             resourceInputs["objectLockRetainUntilDate"] = args?.objectLockRetainUntilDate;
             resourceInputs["serverSideEncryption"] = args?.serverSideEncryption;
             resourceInputs["serverSideEncryptionCustomerAlgorithm"] = args?.serverSideEncryptionCustomerAlgorithm;
-            resourceInputs["serverSideEncryptionCustomerKey"] = args?.serverSideEncryptionCustomerKey;
+            resourceInputs["serverSideEncryptionCustomerKey"] = args?.serverSideEncryptionCustomerKey ? pulumi.secret(args.serverSideEncryptionCustomerKey) : undefined;
             resourceInputs["serverSideEncryptionCustomerKeyMd5"] = args?.serverSideEncryptionCustomerKeyMd5;
             resourceInputs["source"] = args?.source;
             resourceInputs["sourceCustomerAlgorithm"] = args?.sourceCustomerAlgorithm;
-            resourceInputs["sourceCustomerKey"] = args?.sourceCustomerKey;
+            resourceInputs["sourceCustomerKey"] = args?.sourceCustomerKey ? pulumi.secret(args.sourceCustomerKey) : undefined;
             resourceInputs["sourceCustomerKeyMd5"] = args?.sourceCustomerKeyMd5;
             resourceInputs["storageClass"] = args?.storageClass;
             resourceInputs["taggingDirective"] = args?.taggingDirective;
@@ -289,6 +289,8 @@ export class ObjectCopy extends pulumi.CustomResource {
             resourceInputs["versionId"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        const secretOpts = { additionalSecretOutputs: ["serverSideEncryptionCustomerKey", "sourceCustomerKey"] };
+        opts = pulumi.mergeOptions(opts, secretOpts);
         super(ObjectCopy.__pulumiType, name, resourceInputs, opts);
     }
 }

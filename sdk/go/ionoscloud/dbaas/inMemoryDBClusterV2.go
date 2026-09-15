@@ -116,7 +116,7 @@ type InMemoryDBClusterV2 struct {
 	EvictionPolicy pulumi.StringOutput `pulumi:"evictionPolicy"`
 	// [object] The instance sizing configuration.
 	Instances InMemoryDBClusterV2InstancesOutput `pulumi:"instances"`
-	// [string] The location of the cluster. Changing this forces a new resource. Available: `de/fra`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
+	// [string] The location of the cluster. Changing this forces a new resource. Available: `de/fra`, `de/fra/1`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
 	Location pulumi.StringOutput `pulumi:"location"`
 	// (Computed)[bool] Enable log collection for observability. If not set, the API default is used.
 	LogsEnabled pulumi.BoolOutput `pulumi:"logsEnabled"`
@@ -204,7 +204,7 @@ type inMemoryDBClusterV2State struct {
 	EvictionPolicy *string `pulumi:"evictionPolicy"`
 	// [object] The instance sizing configuration.
 	Instances *InMemoryDBClusterV2Instances `pulumi:"instances"`
-	// [string] The location of the cluster. Changing this forces a new resource. Available: `de/fra`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
+	// [string] The location of the cluster. Changing this forces a new resource. Available: `de/fra`, `de/fra/1`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
 	Location *string `pulumi:"location"`
 	// (Computed)[bool] Enable log collection for observability. If not set, the API default is used.
 	LogsEnabled *bool `pulumi:"logsEnabled"`
@@ -239,7 +239,7 @@ type InMemoryDBClusterV2State struct {
 	EvictionPolicy pulumi.StringPtrInput
 	// [object] The instance sizing configuration.
 	Instances InMemoryDBClusterV2InstancesPtrInput
-	// [string] The location of the cluster. Changing this forces a new resource. Available: `de/fra`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
+	// [string] The location of the cluster. Changing this forces a new resource. Available: `de/fra`, `de/fra/1`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
 	Location pulumi.StringPtrInput
 	// (Computed)[bool] Enable log collection for observability. If not set, the API default is used.
 	LogsEnabled pulumi.BoolPtrInput
@@ -276,7 +276,7 @@ type inMemoryDBClusterV2Args struct {
 	EvictionPolicy string `pulumi:"evictionPolicy"`
 	// [object] The instance sizing configuration.
 	Instances InMemoryDBClusterV2Instances `pulumi:"instances"`
-	// [string] The location of the cluster. Changing this forces a new resource. Available: `de/fra`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
+	// [string] The location of the cluster. Changing this forces a new resource. Available: `de/fra`, `de/fra/1`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
 	Location string `pulumi:"location"`
 	// (Computed)[bool] Enable log collection for observability. If not set, the API default is used.
 	LogsEnabled *bool `pulumi:"logsEnabled"`
@@ -310,7 +310,7 @@ type InMemoryDBClusterV2Args struct {
 	EvictionPolicy pulumi.StringInput
 	// [object] The instance sizing configuration.
 	Instances InMemoryDBClusterV2InstancesInput
-	// [string] The location of the cluster. Changing this forces a new resource. Available: `de/fra`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
+	// [string] The location of the cluster. Changing this forces a new resource. Available: `de/fra`, `de/fra/1`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
 	Location pulumi.StringInput
 	// (Computed)[bool] Enable log collection for observability. If not set, the API default is used.
 	LogsEnabled pulumi.BoolPtrInput
@@ -449,7 +449,7 @@ func (o InMemoryDBClusterV2Output) Instances() InMemoryDBClusterV2InstancesOutpu
 	return o.ApplyT(func(v *InMemoryDBClusterV2) InMemoryDBClusterV2InstancesOutput { return v.Instances }).(InMemoryDBClusterV2InstancesOutput)
 }
 
-// [string] The location of the cluster. Changing this forces a new resource. Available: `de/fra`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
+// [string] The location of the cluster. Changing this forces a new resource. Available: `de/fra`, `de/fra/1`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
 func (o InMemoryDBClusterV2Output) Location() pulumi.StringOutput {
 	return o.ApplyT(func(v *InMemoryDBClusterV2) pulumi.StringOutput { return v.Location }).(pulumi.StringOutput)
 }

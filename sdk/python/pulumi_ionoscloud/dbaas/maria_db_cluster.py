@@ -38,11 +38,11 @@ class MariaDBClusterArgs:
         :param pulumi.Input['MariaDBClusterConnectionsArgs'] connections: The network connection for your cluster. Only one connection is allowed.
         :param pulumi.Input[_builtins.int] cores: [int] The number of CPU cores per instance.
         :param pulumi.Input['MariaDBClusterCredentialsArgs'] credentials: Credentials for the database user to be created.
-        :param pulumi.Input[_builtins.str] display_name: [string] The friendly name of your cluster.
+        :param pulumi.Input[_builtins.str] display_name: [string] The friendly name of your cluster. Maximum length: 63 characters. Must contain only word characters (letters, numbers, underscores), colons, hyphens, spaces, or dots.
         :param pulumi.Input[_builtins.int] instances: [int] The total number of instances in the cluster (one primary and n-1 secondary).
         :param pulumi.Input[_builtins.str] mariadb_version: [string] The MariaDB version of your cluster. Cannot be downgraded.
-        :param pulumi.Input[_builtins.int] ram: [int] The amount of memory per instance in gigabytes (GB).
-        :param pulumi.Input[_builtins.int] storage_size: [int] The amount of storage per instance in gigabytes (GB).
+        :param pulumi.Input[_builtins.int] ram: [int] The amount of memory per instance in gigabytes (GB). Minimum: 4.
+        :param pulumi.Input[_builtins.int] storage_size: [int] The amount of storage per instance in gigabytes (GB). Minimum: 10, Maximum: 2000.
         :param pulumi.Input['MariaDBClusterBackupArgs'] backup: Properties configuring the backup of the cluster. Immutable, change forces re-creation of the cluster.
         :param pulumi.Input[_builtins.str] location: [string] The location in which the cluster will be created. Different service endpoints are used based on location, possible options are: "de/fra", "de/txl", "es/vit", "fr/par", "gb/lhr", "us/ewr", "us/las", "us/mci". If not set, the endpoint will be the one corresponding to "de/txl".
         :param pulumi.Input['MariaDBClusterMaintenanceWindowArgs'] maintenance_window: (Computed) A weekly 4 hour-long window, during which maintenance might occur
@@ -102,7 +102,7 @@ class MariaDBClusterArgs:
     @pulumi.getter(name="displayName")
     def display_name(self) -> pulumi.Input[_builtins.str]:
         """
-        [string] The friendly name of your cluster.
+        [string] The friendly name of your cluster. Maximum length: 63 characters. Must contain only word characters (letters, numbers, underscores), colons, hyphens, spaces, or dots.
         """
         return pulumi.get(self, "display_name")
 
@@ -138,7 +138,7 @@ class MariaDBClusterArgs:
     @pulumi.getter
     def ram(self) -> pulumi.Input[_builtins.int]:
         """
-        [int] The amount of memory per instance in gigabytes (GB).
+        [int] The amount of memory per instance in gigabytes (GB). Minimum: 4.
         """
         return pulumi.get(self, "ram")
 
@@ -150,7 +150,7 @@ class MariaDBClusterArgs:
     @pulumi.getter(name="storageSize")
     def storage_size(self) -> pulumi.Input[_builtins.int]:
         """
-        [int] The amount of storage per instance in gigabytes (GB).
+        [int] The amount of storage per instance in gigabytes (GB). Minimum: 10, Maximum: 2000.
         """
         return pulumi.get(self, "storage_size")
 
@@ -217,7 +217,7 @@ class _MariaDBClusterState:
         :param pulumi.Input['MariaDBClusterConnectionsArgs'] connections: The network connection for your cluster. Only one connection is allowed.
         :param pulumi.Input[_builtins.int] cores: [int] The number of CPU cores per instance.
         :param pulumi.Input['MariaDBClusterCredentialsArgs'] credentials: Credentials for the database user to be created.
-        :param pulumi.Input[_builtins.str] display_name: [string] The friendly name of your cluster.
+        :param pulumi.Input[_builtins.str] display_name: [string] The friendly name of your cluster. Maximum length: 63 characters. Must contain only word characters (letters, numbers, underscores), colons, hyphens, spaces, or dots.
         :param pulumi.Input[_builtins.str] dns_name: [string] The DNS name pointing to your cluster.
                
                > **⚠ WARNING:** `IONOS_API_URL_MARIADB` can be used to set a custom API URL for the MariaDB Cluster. `location` field needs to be empty, otherwise it will override the custom API URL. Setting `endpoint` or `IONOS_API_URL` does not have any effect.
@@ -225,8 +225,8 @@ class _MariaDBClusterState:
         :param pulumi.Input[_builtins.str] location: [string] The location in which the cluster will be created. Different service endpoints are used based on location, possible options are: "de/fra", "de/txl", "es/vit", "fr/par", "gb/lhr", "us/ewr", "us/las", "us/mci". If not set, the endpoint will be the one corresponding to "de/txl".
         :param pulumi.Input['MariaDBClusterMaintenanceWindowArgs'] maintenance_window: (Computed) A weekly 4 hour-long window, during which maintenance might occur
         :param pulumi.Input[_builtins.str] mariadb_version: [string] The MariaDB version of your cluster. Cannot be downgraded.
-        :param pulumi.Input[_builtins.int] ram: [int] The amount of memory per instance in gigabytes (GB).
-        :param pulumi.Input[_builtins.int] storage_size: [int] The amount of storage per instance in gigabytes (GB).
+        :param pulumi.Input[_builtins.int] ram: [int] The amount of memory per instance in gigabytes (GB). Minimum: 4.
+        :param pulumi.Input[_builtins.int] storage_size: [int] The amount of storage per instance in gigabytes (GB). Minimum: 10, Maximum: 2000.
         """
         if backup is not None:
             pulumi.set(__self__, "backup", backup)
@@ -305,7 +305,7 @@ class _MariaDBClusterState:
     @pulumi.getter(name="displayName")
     def display_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        [string] The friendly name of your cluster.
+        [string] The friendly name of your cluster. Maximum length: 63 characters. Must contain only word characters (letters, numbers, underscores), colons, hyphens, spaces, or dots.
         """
         return pulumi.get(self, "display_name")
 
@@ -379,7 +379,7 @@ class _MariaDBClusterState:
     @pulumi.getter
     def ram(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
-        [int] The amount of memory per instance in gigabytes (GB).
+        [int] The amount of memory per instance in gigabytes (GB). Minimum: 4.
         """
         return pulumi.get(self, "ram")
 
@@ -391,7 +391,7 @@ class _MariaDBClusterState:
     @pulumi.getter(name="storageSize")
     def storage_size(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
-        [int] The amount of storage per instance in gigabytes (GB).
+        [int] The amount of storage per instance in gigabytes (GB). Minimum: 10, Maximum: 2000.
         """
         return pulumi.get(self, "storage_size")
 
@@ -436,13 +436,13 @@ class MariaDBCluster(pulumi.CustomResource):
         :param pulumi.Input[Union['MariaDBClusterConnectionsArgs', 'MariaDBClusterConnectionsArgsDict']] connections: The network connection for your cluster. Only one connection is allowed.
         :param pulumi.Input[_builtins.int] cores: [int] The number of CPU cores per instance.
         :param pulumi.Input[Union['MariaDBClusterCredentialsArgs', 'MariaDBClusterCredentialsArgsDict']] credentials: Credentials for the database user to be created.
-        :param pulumi.Input[_builtins.str] display_name: [string] The friendly name of your cluster.
+        :param pulumi.Input[_builtins.str] display_name: [string] The friendly name of your cluster. Maximum length: 63 characters. Must contain only word characters (letters, numbers, underscores), colons, hyphens, spaces, or dots.
         :param pulumi.Input[_builtins.int] instances: [int] The total number of instances in the cluster (one primary and n-1 secondary).
         :param pulumi.Input[_builtins.str] location: [string] The location in which the cluster will be created. Different service endpoints are used based on location, possible options are: "de/fra", "de/txl", "es/vit", "fr/par", "gb/lhr", "us/ewr", "us/las", "us/mci". If not set, the endpoint will be the one corresponding to "de/txl".
         :param pulumi.Input[Union['MariaDBClusterMaintenanceWindowArgs', 'MariaDBClusterMaintenanceWindowArgsDict']] maintenance_window: (Computed) A weekly 4 hour-long window, during which maintenance might occur
         :param pulumi.Input[_builtins.str] mariadb_version: [string] The MariaDB version of your cluster. Cannot be downgraded.
-        :param pulumi.Input[_builtins.int] ram: [int] The amount of memory per instance in gigabytes (GB).
-        :param pulumi.Input[_builtins.int] storage_size: [int] The amount of storage per instance in gigabytes (GB).
+        :param pulumi.Input[_builtins.int] ram: [int] The amount of memory per instance in gigabytes (GB). Minimum: 4.
+        :param pulumi.Input[_builtins.int] storage_size: [int] The amount of storage per instance in gigabytes (GB). Minimum: 10, Maximum: 2000.
         """
         ...
     @overload
@@ -558,7 +558,7 @@ class MariaDBCluster(pulumi.CustomResource):
         :param pulumi.Input[Union['MariaDBClusterConnectionsArgs', 'MariaDBClusterConnectionsArgsDict']] connections: The network connection for your cluster. Only one connection is allowed.
         :param pulumi.Input[_builtins.int] cores: [int] The number of CPU cores per instance.
         :param pulumi.Input[Union['MariaDBClusterCredentialsArgs', 'MariaDBClusterCredentialsArgsDict']] credentials: Credentials for the database user to be created.
-        :param pulumi.Input[_builtins.str] display_name: [string] The friendly name of your cluster.
+        :param pulumi.Input[_builtins.str] display_name: [string] The friendly name of your cluster. Maximum length: 63 characters. Must contain only word characters (letters, numbers, underscores), colons, hyphens, spaces, or dots.
         :param pulumi.Input[_builtins.str] dns_name: [string] The DNS name pointing to your cluster.
                
                > **⚠ WARNING:** `IONOS_API_URL_MARIADB` can be used to set a custom API URL for the MariaDB Cluster. `location` field needs to be empty, otherwise it will override the custom API URL. Setting `endpoint` or `IONOS_API_URL` does not have any effect.
@@ -566,8 +566,8 @@ class MariaDBCluster(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] location: [string] The location in which the cluster will be created. Different service endpoints are used based on location, possible options are: "de/fra", "de/txl", "es/vit", "fr/par", "gb/lhr", "us/ewr", "us/las", "us/mci". If not set, the endpoint will be the one corresponding to "de/txl".
         :param pulumi.Input[Union['MariaDBClusterMaintenanceWindowArgs', 'MariaDBClusterMaintenanceWindowArgsDict']] maintenance_window: (Computed) A weekly 4 hour-long window, during which maintenance might occur
         :param pulumi.Input[_builtins.str] mariadb_version: [string] The MariaDB version of your cluster. Cannot be downgraded.
-        :param pulumi.Input[_builtins.int] ram: [int] The amount of memory per instance in gigabytes (GB).
-        :param pulumi.Input[_builtins.int] storage_size: [int] The amount of storage per instance in gigabytes (GB).
+        :param pulumi.Input[_builtins.int] ram: [int] The amount of memory per instance in gigabytes (GB). Minimum: 4.
+        :param pulumi.Input[_builtins.int] storage_size: [int] The amount of storage per instance in gigabytes (GB). Minimum: 10, Maximum: 2000.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -623,7 +623,7 @@ class MariaDBCluster(pulumi.CustomResource):
     @pulumi.getter(name="displayName")
     def display_name(self) -> pulumi.Output[_builtins.str]:
         """
-        [string] The friendly name of your cluster.
+        [string] The friendly name of your cluster. Maximum length: 63 characters. Must contain only word characters (letters, numbers, underscores), colons, hyphens, spaces, or dots.
         """
         return pulumi.get(self, "display_name")
 
@@ -673,7 +673,7 @@ class MariaDBCluster(pulumi.CustomResource):
     @pulumi.getter
     def ram(self) -> pulumi.Output[_builtins.int]:
         """
-        [int] The amount of memory per instance in gigabytes (GB).
+        [int] The amount of memory per instance in gigabytes (GB). Minimum: 4.
         """
         return pulumi.get(self, "ram")
 
@@ -681,7 +681,7 @@ class MariaDBCluster(pulumi.CustomResource):
     @pulumi.getter(name="storageSize")
     def storage_size(self) -> pulumi.Output[_builtins.int]:
         """
-        [int] The amount of storage per instance in gigabytes (GB).
+        [int] The amount of storage per instance in gigabytes (GB). Minimum: 10, Maximum: 2000.
         """
         return pulumi.get(self, "storage_size")
 

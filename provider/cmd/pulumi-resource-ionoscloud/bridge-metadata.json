@@ -239,7 +239,14 @@
                 "majorVersion": 1,
                 "fields": {
                     "cpu_architecture": {
-                        "maxItemsOne": false
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "enabled_features": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
                     },
                     "features": {
                         "maxItemsOne": false
@@ -421,6 +428,9 @@
                     },
                     "public_ips": {
                         "maxItemsOne": false
+                    },
+                    "taints": {
+                        "maxItemsOne": false
                     }
                 }
             },
@@ -498,6 +508,10 @@
                         "maxItemsOne": true
                     }
                 }
+            },
+            "ionoscloud_mariadb_cluster_v2": {
+                "current": "ionoscloud:dbaas/mariaDBClusterV2:MariaDBClusterV2",
+                "majorVersion": 1
             },
             "ionoscloud_mongo_cluster": {
                 "current": "ionoscloud:dbaas/mongoCluster:MongoCluster",
@@ -801,6 +815,9 @@
                 "current": "ionoscloud:compute/server:Server",
                 "majorVersion": 1,
                 "fields": {
+                    "enabled_features": {
+                        "maxItemsOne": false
+                    },
                     "firewallrule_ids": {
                         "maxItemsOne": false
                     },
@@ -897,6 +914,9 @@
                 "current": "ionoscloud:compute/vCPUServer:VCPUServer",
                 "majorVersion": 1,
                 "fields": {
+                    "enabled_features": {
+                        "maxItemsOne": false
+                    },
                     "firewallrule_ids": {
                         "maxItemsOne": false
                     },
@@ -1286,7 +1306,14 @@
                 "majorVersion": 1,
                 "fields": {
                     "cpu_architecture": {
-                        "maxItemsOne": false
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "enabled_features": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
                     },
                     "features": {
                         "maxItemsOne": false
@@ -1422,6 +1449,9 @@
                 "majorVersion": 1,
                 "fields": {
                     "image_aliases": {
+                        "maxItemsOne": false
+                    },
+                    "required_features": {
                         "maxItemsOne": false
                     }
                 }
@@ -1651,6 +1681,9 @@
                     },
                     "public_ips": {
                         "maxItemsOne": false
+                    },
+                    "taints": {
+                        "maxItemsOne": false
                     }
                 }
             },
@@ -1713,7 +1746,14 @@
                 "majorVersion": 1,
                 "fields": {
                     "cpu_architecture": {
-                        "maxItemsOne": false
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "enabled_features": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
                     },
                     "image_aliases": {
                         "maxItemsOne": false
@@ -1736,6 +1776,15 @@
                     }
                 }
             },
+            "ionoscloud_mariadb_backup_locations_v2": {
+                "current": "ionoscloud:dbaas/getMariaDBBackupLocationsV2:getMariaDBBackupLocationsV2",
+                "majorVersion": 1,
+                "fields": {
+                    "items": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
             "ionoscloud_mariadb_backups": {
                 "current": "ionoscloud:dbaas/getMariaDBBackups:getMariaDBBackups",
                 "majorVersion": 1,
@@ -1752,6 +1801,15 @@
                     }
                 }
             },
+            "ionoscloud_mariadb_backups_v2": {
+                "current": "ionoscloud:dbaas/getMariaDBBackupsV2:getMariaDBBackupsV2",
+                "majorVersion": 1,
+                "fields": {
+                    "items": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
             "ionoscloud_mariadb_cluster": {
                 "current": "ionoscloud:dbaas/getMariaDBCluster:getMariaDBCluster",
                 "majorVersion": 1,
@@ -1764,6 +1822,35 @@
                     },
                     "maintenance_window": {
                         "maxItemsOne": false
+                    }
+                }
+            },
+            "ionoscloud_mariadb_cluster_v2": {
+                "current": "ionoscloud:dbaas/getMariaDBClusterV2:getMariaDBClusterV2",
+                "majorVersion": 1
+            },
+            "ionoscloud_mariadb_clusters_v2": {
+                "current": "ionoscloud:dbaas/getMariaDBClustersV2:getMariaDBClustersV2",
+                "majorVersion": 1,
+                "fields": {
+                    "items": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "ionoscloud_mariadb_versions_v2": {
+                "current": "ionoscloud:dbaas/getMariaDBVersionsV2:getMariaDBVersionsV2",
+                "majorVersion": 1,
+                "fields": {
+                    "items": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "can_upgrade_to": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
                     }
                 }
             },
@@ -2116,6 +2203,9 @@
                             }
                         }
                     },
+                    "enabled_features": {
+                        "maxItemsOne": false
+                    },
                     "labels": {
                         "maxItemsOne": false
                     },
@@ -2173,6 +2263,9 @@
                                             }
                                         }
                                     }
+                                },
+                                "enabled_features": {
+                                    "maxItemsOne": false
                                 },
                                 "labels": {
                                     "maxItemsOne": false
@@ -2269,6 +2362,9 @@
                                 }
                             }
                         }
+                    },
+                    "enabled_features": {
+                        "maxItemsOne": false
                     },
                     "labels": {
                         "maxItemsOne": false
@@ -2433,6 +2529,7 @@
             "ionoscloud:dbaas/inMemoryDBClusterV2:InMemoryDBClusterV2": 1,
             "ionoscloud:dbaas/inMemoryDBReplicaSet:InMemoryDBReplicaSet": 0,
             "ionoscloud:dbaas/mariaDBCluster:MariaDBCluster": 0,
+            "ionoscloud:dbaas/mariaDBClusterV2:MariaDBClusterV2": 1,
             "ionoscloud:dbaas/mongoCluster:MongoCluster": 0,
             "ionoscloud:dbaas/mongoUser:MongoUser": 0,
             "ionoscloud:dbaas/pSQLCluster:PSQLCluster": 0,
@@ -2521,8 +2618,13 @@
             "ionoscloud:dbaas/getInMemoryDBSnapshotsV2:getInMemoryDBSnapshotsV2": 1,
             "ionoscloud:dbaas/getInMemoryDBVersionsV2:getInMemoryDBVersionsV2": 1,
             "ionoscloud:dbaas/getInmemorydbSnapshot:getInmemorydbSnapshot": 0,
+            "ionoscloud:dbaas/getMariaDBBackupLocationsV2:getMariaDBBackupLocationsV2": 1,
             "ionoscloud:dbaas/getMariaDBBackups:getMariaDBBackups": 0,
+            "ionoscloud:dbaas/getMariaDBBackupsV2:getMariaDBBackupsV2": 1,
             "ionoscloud:dbaas/getMariaDBCluster:getMariaDBCluster": 0,
+            "ionoscloud:dbaas/getMariaDBClusterV2:getMariaDBClusterV2": 1,
+            "ionoscloud:dbaas/getMariaDBClustersV2:getMariaDBClustersV2": 1,
+            "ionoscloud:dbaas/getMariaDBVersionsV2:getMariaDBVersionsV2": 1,
             "ionoscloud:dbaas/getMongoCluster:getMongoCluster": 0,
             "ionoscloud:dbaas/getMongoTemplate:getMongoTemplate": 0,
             "ionoscloud:dbaas/getMongoUser:getMongoUser": 0,
@@ -2573,7 +2675,9 @@
             "ionoscloud:vpn/getWireguardPeer:getWireguardPeer": 0
         },
         "listResources": {
+            "ionoscloud:compute/datacenter:Datacenter": 1,
             "ionoscloud:dbaas/inMemoryDBClusterV2:InMemoryDBClusterV2": 1,
+            "ionoscloud:dbaas/mariaDBClusterV2:MariaDBClusterV2": 1,
             "ionoscloud:dbaas/pSQLClusterV2:PSQLClusterV2": 1,
             "ionoscloud:objectstorage/bucket:Bucket": 1,
             "ionoscloud:objectstoragemanagement/accesskey:Accesskey": 1
