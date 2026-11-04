@@ -27,10 +27,7 @@ class GetInMemoryDBClustersV2Result:
     """
     A collection of values returned by getInMemoryDBClustersV2.
     """
-    def __init__(__self__, id=None, items=None, location=None, name=None):
-        if id and not isinstance(id, str):
-            raise TypeError("Expected argument 'id' to be a str")
-        pulumi.set(__self__, "id", id)
+    def __init__(__self__, items=None, location=None, name=None):
         if items and not isinstance(items, list):
             raise TypeError("Expected argument 'items' to be a list")
         pulumi.set(__self__, "items", items)
@@ -40,14 +37,6 @@ class GetInMemoryDBClustersV2Result:
         if name and not isinstance(name, str):
             raise TypeError("Expected argument 'name' to be a str")
         pulumi.set(__self__, "name", name)
-
-    @_builtins.property
-    @pulumi.getter
-    def id(self) -> _builtins.str:
-        """
-        The provider-assigned unique ID for this managed resource.
-        """
-        return pulumi.get(self, "id")
 
     @_builtins.property
     @pulumi.getter
@@ -74,7 +63,6 @@ class AwaitableGetInMemoryDBClustersV2Result(GetInMemoryDBClustersV2Result):
         if False:
             yield self
         return GetInMemoryDBClustersV2Result(
-            id=self.id,
             items=self.items,
             location=self.location,
             name=self.name)
@@ -108,7 +96,6 @@ def get_in_memory_db_clusters_v2(location: Optional[_builtins.str] = None,
     __ret__ = pulumi.runtime.invoke('ionoscloud:dbaas/getInMemoryDBClustersV2:getInMemoryDBClustersV2', __args__, opts=opts, typ=GetInMemoryDBClustersV2Result).value
 
     return AwaitableGetInMemoryDBClustersV2Result(
-        id=pulumi.get(__ret__, 'id'),
         items=pulumi.get(__ret__, 'items'),
         location=pulumi.get(__ret__, 'location'),
         name=pulumi.get(__ret__, 'name'))
@@ -139,7 +126,6 @@ def get_in_memory_db_clusters_v2_output(location: pulumi.Input[Optional[_builtin
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('ionoscloud:dbaas/getInMemoryDBClustersV2:getInMemoryDBClustersV2', __args__, opts=opts, typ=GetInMemoryDBClustersV2Result)
     return __ret__.apply(lambda __response__: GetInMemoryDBClustersV2Result(
-        id=pulumi.get(__response__, 'id'),
         items=pulumi.get(__response__, 'items'),
         location=pulumi.get(__response__, 'location'),
         name=pulumi.get(__response__, 'name')))

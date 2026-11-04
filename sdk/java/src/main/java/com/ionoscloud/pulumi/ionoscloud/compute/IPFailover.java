@@ -33,8 +33,8 @@ import javax.annotation.Nullable;
  * import com.ionoscloud.pulumi.ionoscloud.compute.IPBlockArgs;
  * import com.ionoscloud.pulumi.ionoscloud.compute.Lan;
  * import com.ionoscloud.pulumi.ionoscloud.compute.LanArgs;
- * import com.pulumi.random.password;
- * import com.pulumi.random.passwordArgs;
+ * import com.pulumi.random.Password;
+ * import com.pulumi.random.PasswordArgs;
  * import com.ionoscloud.pulumi.ionoscloud.compute.Server;
  * import com.ionoscloud.pulumi.ionoscloud.compute.ServerArgs;
  * import com.pulumi.ionoscloud.compute.inputs.ServerVolumeArgs;
@@ -85,7 +85,7 @@ import javax.annotation.Nullable;
  *             .cores(1)
  *             .ram(1024)
  *             .imageName("Ubuntu-20.04")
- *             .imagePassword(serverImagePassword.result())
+ *             .imagePassword(serverImagePassword.get("result"))
  *             .volume(ServerVolumeArgs.builder()
  *                 .name("system")
  *                 .size(14)
@@ -95,14 +95,14 @@ import javax.annotation.Nullable;
  *                 .lan(1)
  *                 .dhcp(true)
  *                 .firewallActive(true)
- *                 .ips(exampleIPBlock.ips().applyValue(_ips -> _ips[0]))
+ *                 .ips(exampleIPBlock.ips().applyValue(_ips -> _ips.get(0)))
  *                 .build())
  *             .build());
  * 
  *         var exampleIPFailover = new IPFailover("exampleIPFailover", IPFailoverArgs.builder()
  *             .datacenterId(example.id())
  *             .lanId(exampleLan.id())
- *             .ip(exampleIPBlock.ips().applyValue(_ips -> _ips[0]))
+ *             .ip(exampleIPBlock.ips().applyValue(_ips -> _ips.get(0)))
  *             .nicuuid(exampleServer.primaryNic())
  *             .build(), CustomResourceOptions.builder()
  *                 .dependsOn(exampleLan)

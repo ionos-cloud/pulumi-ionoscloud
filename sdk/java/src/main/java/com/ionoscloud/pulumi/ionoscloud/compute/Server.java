@@ -47,8 +47,8 @@ import javax.annotation.Nullable;
  * import com.ionoscloud.pulumi.ionoscloud.compute.LanArgs;
  * import com.ionoscloud.pulumi.ionoscloud.compute.IPBlock;
  * import com.ionoscloud.pulumi.ionoscloud.compute.IPBlockArgs;
- * import com.pulumi.random.password;
- * import com.pulumi.random.passwordArgs;
+ * import com.pulumi.random.Password;
+ * import com.pulumi.random.PasswordArgs;
  * import com.ionoscloud.pulumi.ionoscloud.compute.Server;
  * import com.ionoscloud.pulumi.ionoscloud.compute.ServerArgs;
  * import com.pulumi.ionoscloud.compute.inputs.ServerVolumeArgs;
@@ -105,7 +105,7 @@ import javax.annotation.Nullable;
  *             .cores(1)
  *             .ram(1024)
  *             .imageName(example.name())
- *             .imagePassword(serverImagePassword.result())
+ *             .imagePassword(serverImagePassword.get("result"))
  *             .type("ENTERPRISE")
  *             .volume(ServerVolumeArgs.builder()
  *                 .name("system")
@@ -122,16 +122,16 @@ import javax.annotation.Nullable;
  *                 .firewallActive(true)
  *                 .firewallType("BIDIRECTIONAL")
  *                 .ips(                
- *                     exampleIPBlock.ips().applyValue(_ips -> _ips[0]),
- *                     exampleIPBlock.ips().applyValue(_ips -> _ips[1]))
+ *                     exampleIPBlock.ips().applyValue(_ips -> _ips.get(0)),
+ *                     exampleIPBlock.ips().applyValue(_ips -> _ips.get(1)))
  *                 .firewalls(ServerNicFirewallArgs.builder()
  *                     .protocol("TCP")
  *                     .name("SSH")
  *                     .portRangeStart(22)
  *                     .portRangeEnd(22)
  *                     .sourceMac("00:0a:95:9d:68:17")
- *                     .sourceIp(exampleIPBlock.ips().applyValue(_ips -> _ips[2]))
- *                     .targetIp(exampleIPBlock.ips().applyValue(_ips -> _ips[3]))
+ *                     .sourceIp(exampleIPBlock.ips().applyValue(_ips -> _ips.get(2)))
+ *                     .targetIp(exampleIPBlock.ips().applyValue(_ips -> _ips.get(3)))
  *                     .type("EGRESS")
  *                     .build())
  *                 .build())
@@ -168,8 +168,8 @@ import javax.annotation.Nullable;
  * import com.ionoscloud.pulumi.ionoscloud.compute.Lan;
  * import com.ionoscloud.pulumi.ionoscloud.compute.LanArgs;
  * import com.pulumi.std.StdFunctions;
- * import com.pulumi.random.password;
- * import com.pulumi.random.passwordArgs;
+ * import com.pulumi.random.Password;
+ * import com.pulumi.random.PasswordArgs;
  * import com.ionoscloud.pulumi.ionoscloud.compute.Server;
  * import com.ionoscloud.pulumi.ionoscloud.compute.ServerArgs;
  * import com.pulumi.ionoscloud.compute.inputs.ServerVolumeArgs;
@@ -207,7 +207,7 @@ import javax.annotation.Nullable;
  *                 Map.entry("input", example.ipv6CidrBlock()),
  *                 Map.entry("newbits", 8),
  *                 Map.entry("netnum", 10)
- *             )).result())
+ *             )).get("result"))
  *             .build());
  * 
  *         var serverImagePassword = new Password("serverImagePassword", PasswordArgs.builder()
@@ -221,7 +221,7 @@ import javax.annotation.Nullable;
  *             .cores(1)
  *             .ram(1024)
  *             .imageName("ubuntu:latest")
- *             .imagePassword(serverImagePassword.result())
+ *             .imagePassword(serverImagePassword.get("result"))
  *             .type("ENTERPRISE")
  *             .volume(ServerVolumeArgs.builder()
  *                 .name("system")
@@ -238,47 +238,47 @@ import javax.annotation.Nullable;
  *                 .firewallActive(true)
  *                 .firewallType("BIDIRECTIONAL")
  *                 .ips(                
- *                     webserverIpblock.ips().applyValue(_ips -> _ips[0]),
- *                     webserverIpblock.ips().applyValue(_ips -> _ips[1]))
+ *                     webserverIpblock.ips().applyValue(_ips -> _ips.get(0)),
+ *                     webserverIpblock.ips().applyValue(_ips -> _ips.get(1)))
  *                 .dhcpv6(true)
  *                 .ipv6CidrBlock(StdFunctions.cidrsubnet(Map.ofEntries(
  *                     Map.entry("input", exampleLan.ipv6CidrBlock()),
  *                     Map.entry("newbits", 16),
  *                     Map.entry("netnum", 24)
- *                 )).result())
+ *                 )).get("result"))
  *                 .ipv6Ips(                
  *                     StdFunctions.cidrhost(Map.ofEntries(
  *                         Map.entry("input", StdFunctions.cidrsubnet(Map.ofEntries(
  *                             Map.entry("input", exampleLan.ipv6CidrBlock()),
  *                             Map.entry("newbits", 16),
  *                             Map.entry("netnum", 24)
- *                         )).result()),
+ *                         )).get("result")),
  *                         Map.entry("host", 10)
- *                     )).result(),
+ *                     )).get("result"),
  *                     StdFunctions.cidrhost(Map.ofEntries(
  *                         Map.entry("input", StdFunctions.cidrsubnet(Map.ofEntries(
  *                             Map.entry("input", exampleLan.ipv6CidrBlock()),
  *                             Map.entry("newbits", 16),
  *                             Map.entry("netnum", 24)
- *                         )).result()),
+ *                         )).get("result")),
  *                         Map.entry("host", 20)
- *                     )).result(),
+ *                     )).get("result"),
  *                     StdFunctions.cidrhost(Map.ofEntries(
  *                         Map.entry("input", StdFunctions.cidrsubnet(Map.ofEntries(
  *                             Map.entry("input", exampleLan.ipv6CidrBlock()),
  *                             Map.entry("newbits", 16),
  *                             Map.entry("netnum", 24)
- *                         )).result()),
+ *                         )).get("result")),
  *                         Map.entry("host", 30)
- *                     )).result())
+ *                     )).get("result"))
  *                 .firewalls(ServerNicFirewallArgs.builder()
  *                     .protocol("TCP")
  *                     .name("SSH")
  *                     .portRangeStart(22)
  *                     .portRangeEnd(22)
  *                     .sourceMac("00:0a:95:9d:68:17")
- *                     .sourceIp(webserverIpblock.ips().applyValue(_ips -> _ips[2]))
- *                     .targetIp(webserverIpblock.ips().applyValue(_ips -> _ips[3]))
+ *                     .sourceIp(webserverIpblock.ips().applyValue(_ips -> _ips.get(2)))
+ *                     .targetIp(webserverIpblock.ips().applyValue(_ips -> _ips.get(3)))
  *                     .type("EGRESS")
  *                     .build())
  *                 .build())
@@ -306,8 +306,8 @@ import javax.annotation.Nullable;
  * import com.ionoscloud.pulumi.ionoscloud.compute.DatacenterArgs;
  * import com.ionoscloud.pulumi.ionoscloud.compute.Lan;
  * import com.ionoscloud.pulumi.ionoscloud.compute.LanArgs;
- * import com.pulumi.random.password;
- * import com.pulumi.random.passwordArgs;
+ * import com.pulumi.random.Password;
+ * import com.pulumi.random.PasswordArgs;
  * import com.ionoscloud.pulumi.ionoscloud.compute.Server;
  * import com.ionoscloud.pulumi.ionoscloud.compute.ServerArgs;
  * import com.pulumi.ionoscloud.compute.inputs.ServerVolumeArgs;
@@ -351,7 +351,7 @@ import javax.annotation.Nullable;
  *             .imageName("ubuntu:latest")
  *             .type("CUBE")
  *             .templateUuid(example.id())
- *             .imagePassword(serverImagePassword.result())
+ *             .imagePassword(serverImagePassword.get("result"))
  *             .datacenterId(exampleDatacenter.id())
  *             .volume(ServerVolumeArgs.builder()
  *                 .name("Volume Example")
@@ -430,7 +430,7 @@ import javax.annotation.Nullable;
  *             .name("ubuntu_latest_from_cdrom")
  *             .cores(1)
  *             .ram(1024)
- *             .cpuFamily(cdromDatacenter.cpuArchitectures().applyValue(_cpuArchitectures -> _cpuArchitectures[0].cpuFamily()))
+ *             .cpuFamily(cdromDatacenter.cpuArchitectures().applyValue(_cpuArchitectures -> _cpuArchitectures.get(0).cpuFamily()))
  *             .type("ENTERPRISE")
  *             .volume(ServerVolumeArgs.builder()
  *                 .name("hdd0")

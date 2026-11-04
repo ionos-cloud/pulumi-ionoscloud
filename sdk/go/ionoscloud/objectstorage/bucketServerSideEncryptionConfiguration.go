@@ -39,7 +39,7 @@ import (
 //				Rules: objectstorage.BucketServerSideEncryptionConfigurationRuleArray{
 //					&objectstorage.BucketServerSideEncryptionConfigurationRuleArgs{
 //						ApplyServerSideEncryptionByDefault: objectstorage.BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultArgs{
-//							map[string]interface{}{
+//							map[string]string{
 //								"sseAlgorithm": "AES256",
 //							},
 //						},

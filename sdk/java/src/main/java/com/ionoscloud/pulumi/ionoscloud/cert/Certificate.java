@@ -46,9 +46,9 @@ import javax.annotation.Nullable;
  *     public static void stack(Context ctx) {
  *         var cert = new Certificate("cert", CertificateArgs.builder()
  *             .name("add_name_here")
- *             .certificate(StdFunctions.file(Map.of("input", "path_to_cert")).result())
- *             .certificateChain(StdFunctions.file(Map.of("input", "path_to_cert_chain")).result())
- *             .privateKey(StdFunctions.file(Map.of("input", "path_to_private_key")).result())
+ *             .certificate(StdFunctions.file(Map.of("input", "path_to_cert")).get("result"))
+ *             .certificateChain(StdFunctions.file(Map.of("input", "path_to_cert_chain")).get("result"))
+ *             .privateKey(StdFunctions.file(Map.of("input", "path_to_private_key")).get("result"))
  *             .build());
  * 
  *     }
@@ -90,8 +90,8 @@ import javax.annotation.Nullable;
  * cert_body_here
  * -----END CERTIFICATE-----
  *             """)
- *             .certificateChain(StdFunctions.file(Map.of("input", "path_to_cert_chain")).result())
- *             .privateKey(StdFunctions.file(Map.of("input", "path_to_private_key")).result())
+ *             .certificateChain(StdFunctions.file(Map.of("input", "path_to_cert_chain")).get("result"))
+ *             .privateKey(StdFunctions.file(Map.of("input", "path_to_private_key")).get("result"))
  *             .build());
  * 
  *     }

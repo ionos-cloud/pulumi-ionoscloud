@@ -96,13 +96,13 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Autoscaling
     ///             {
     ///                 new Ionoscloud.Autoscaling.Inputs.GroupReplicaConfigurationNicArgs
     ///                 {
-    ///                     Lan = lanExample1.Id,
+    ///                     Lan = lanExample1.Id.Apply(x =&gt; int.Parse(x, System.Globalization.CultureInfo.InvariantCulture)),
     ///                     Name = "nic_example_1",
     ///                     Dhcp = true,
     ///                 },
     ///                 new Ionoscloud.Autoscaling.Inputs.GroupReplicaConfigurationNicArgs
     ///                 {
-    ///                     Lan = lanExample2.Id,
+    ///                     Lan = lanExample2.Id.Apply(x =&gt; int.Parse(x, System.Globalization.CultureInfo.InvariantCulture)),
     ///                     Name = "nic_example_2",
     ///                     Dhcp = true,
     ///                     FirewallActive = true,

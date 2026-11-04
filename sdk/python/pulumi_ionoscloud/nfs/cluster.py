@@ -232,10 +232,10 @@ class Cluster(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 connections: pulumi.Input[Optional[Union['ClusterConnectionsArgs', 'ClusterConnectionsArgsDict']]] = None,
+                 connections: pulumi.Input[Optional[Union['ClusterConnectionsArgs', 'ClusterConnectionsArgsDict', 'outputs.ClusterConnections']]] = None,
                  location: pulumi.Input[Optional[_builtins.str]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
-                 nfs: pulumi.Input[Optional[Union['ClusterNfsArgs', 'ClusterNfsArgsDict']]] = None,
+                 nfs: pulumi.Input[Optional[Union['ClusterNfsArgs', 'ClusterNfsArgsDict', 'outputs.ClusterNfs']]] = None,
                  size: pulumi.Input[Optional[_builtins.int]] = None,
                  size_unit: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
@@ -284,7 +284,7 @@ class Cluster(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Union['ClusterConnectionsArgs', 'ClusterConnectionsArgsDict']] connections: The network connections for the Network File Storage Cluster.
+        :param pulumi.Input[Union['ClusterConnectionsArgs', 'ClusterConnectionsArgsDict', 'outputs.ClusterConnections']] connections: The network connections for the Network File Storage Cluster.
         :param pulumi.Input[_builtins.str] location: The location where the Network File Storage cluster is located. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`. Other available locations are: `de/fra/1`, `de/fra/2`, `de/txl`, `fr/par`, `gb/lhr`, `es/vit`, `us/las`, `us/ewr`, `us/mci`.
                - `de/fra` - Frankfurt
                - `de/txl` - Berlin
@@ -356,10 +356,10 @@ class Cluster(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 connections: pulumi.Input[Optional[Union['ClusterConnectionsArgs', 'ClusterConnectionsArgsDict']]] = None,
+                 connections: pulumi.Input[Optional[Union['ClusterConnectionsArgs', 'ClusterConnectionsArgsDict', 'outputs.ClusterConnections']]] = None,
                  location: pulumi.Input[Optional[_builtins.str]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
-                 nfs: pulumi.Input[Optional[Union['ClusterNfsArgs', 'ClusterNfsArgsDict']]] = None,
+                 nfs: pulumi.Input[Optional[Union['ClusterNfsArgs', 'ClusterNfsArgsDict', 'outputs.ClusterNfs']]] = None,
                  size: pulumi.Input[Optional[_builtins.int]] = None,
                  size_unit: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
@@ -391,10 +391,10 @@ class Cluster(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            connections: pulumi.Input[Optional[Union['ClusterConnectionsArgs', 'ClusterConnectionsArgsDict']]] = None,
+            connections: pulumi.Input[Optional[Union['ClusterConnectionsArgs', 'ClusterConnectionsArgsDict', 'outputs.ClusterConnections']]] = None,
             location: pulumi.Input[Optional[_builtins.str]] = None,
             name: pulumi.Input[Optional[_builtins.str]] = None,
-            nfs: pulumi.Input[Optional[Union['ClusterNfsArgs', 'ClusterNfsArgsDict']]] = None,
+            nfs: pulumi.Input[Optional[Union['ClusterNfsArgs', 'ClusterNfsArgsDict', 'outputs.ClusterNfs']]] = None,
             size: pulumi.Input[Optional[_builtins.int]] = None,
             size_unit: pulumi.Input[Optional[_builtins.str]] = None) -> 'Cluster':
         """
@@ -404,7 +404,7 @@ class Cluster(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Union['ClusterConnectionsArgs', 'ClusterConnectionsArgsDict']] connections: The network connections for the Network File Storage Cluster.
+        :param pulumi.Input[Union['ClusterConnectionsArgs', 'ClusterConnectionsArgsDict', 'outputs.ClusterConnections']] connections: The network connections for the Network File Storage Cluster.
         :param pulumi.Input[_builtins.str] location: The location where the Network File Storage cluster is located. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`. Other available locations are: `de/fra/1`, `de/fra/2`, `de/txl`, `fr/par`, `gb/lhr`, `es/vit`, `us/las`, `us/ewr`, `us/mci`.
                - `de/fra` - Frankfurt
                - `de/txl` - Berlin

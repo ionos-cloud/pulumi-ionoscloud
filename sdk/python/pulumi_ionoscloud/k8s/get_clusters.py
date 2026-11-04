@@ -94,7 +94,7 @@ class AwaitableGetClustersResult(GetClustersResult):
             location=self.location)
 
 
-def get_clusters(filters: Optional[Sequence[Union['GetClustersFilterArgs', 'GetClustersFilterArgsDict']]] = None,
+def get_clusters(filters: Optional[Sequence[Union['GetClustersFilterArgs', 'GetClustersFilterArgsDict', 'outputs.GetClustersFilterResult']]] = None,
                  location: Optional[_builtins.str] = None,
                  opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetClustersResult:
     """
@@ -152,7 +152,7 @@ def get_clusters(filters: Optional[Sequence[Union['GetClustersFilterArgs', 'GetC
     ```
 
 
-    :param Sequence[Union['GetClustersFilterArgs', 'GetClustersFilterArgsDict']] filters: One or more property name - value pairs to be used in filtering the cluster list by the specified attributes. You can use most of the top level fields from the  k8s_cluster resource **except** those containing other nested structures such as `maintenance_window` or `config`.
+    :param Sequence[Union['GetClustersFilterArgs', 'GetClustersFilterArgsDict', 'outputs.GetClustersFilterResult']] filters: One or more property name - value pairs to be used in filtering the cluster list by the specified attributes. You can use most of the top level fields from the  k8s_cluster resource **except** those containing other nested structures such as `maintenance_window` or `config`.
            
            **NOTE:** Filtering uses partial matching for all types of values. Searching for a cluster using `name:testCluster` will find all clusters who have the `testCluster` substring in their name. This also applies to values for properties that would normally be boolean or numerical.
     """
@@ -168,7 +168,7 @@ def get_clusters(filters: Optional[Sequence[Union['GetClustersFilterArgs', 'GetC
         filters=pulumi.get(__ret__, 'filters'),
         id=pulumi.get(__ret__, 'id'),
         location=pulumi.get(__ret__, 'location'))
-def get_clusters_output(filters: pulumi.Input[Optional[Optional[Sequence[Union['GetClustersFilterArgs', 'GetClustersFilterArgsDict']]]]] = None,
+def get_clusters_output(filters: pulumi.Input[Optional[Optional[Sequence[Union['GetClustersFilterArgs', 'GetClustersFilterArgsDict', 'outputs.GetClustersFilterResult']]]]] = None,
                         location: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                         opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetClustersResult]:
     """
@@ -226,7 +226,7 @@ def get_clusters_output(filters: pulumi.Input[Optional[Optional[Sequence[Union['
     ```
 
 
-    :param Sequence[Union['GetClustersFilterArgs', 'GetClustersFilterArgsDict']] filters: One or more property name - value pairs to be used in filtering the cluster list by the specified attributes. You can use most of the top level fields from the  k8s_cluster resource **except** those containing other nested structures such as `maintenance_window` or `config`.
+    :param Sequence[Union['GetClustersFilterArgs', 'GetClustersFilterArgsDict', 'outputs.GetClustersFilterResult']] filters: One or more property name - value pairs to be used in filtering the cluster list by the specified attributes. You can use most of the top level fields from the  k8s_cluster resource **except** those containing other nested structures such as `maintenance_window` or `config`.
            
            **NOTE:** Filtering uses partial matching for all types of values. Searching for a cluster using `name:testCluster` will find all clusters who have the `testCluster` substring in their name. This also applies to values for properties that would normally be boolean or numerical.
     """

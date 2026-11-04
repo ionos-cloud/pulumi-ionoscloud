@@ -357,7 +357,7 @@ class NatGatewayRule(pulumi.CustomResource):
                  protocol: pulumi.Input[Optional[_builtins.str]] = None,
                  public_ip: pulumi.Input[Optional[_builtins.str]] = None,
                  source_subnet: pulumi.Input[Optional[_builtins.str]] = None,
-                 target_port_range: pulumi.Input[Optional[Union['NatGatewayRuleTargetPortRangeArgs', 'NatGatewayRuleTargetPortRangeArgsDict']]] = None,
+                 target_port_range: pulumi.Input[Optional[Union['NatGatewayRuleTargetPortRangeArgs', 'NatGatewayRuleTargetPortRangeArgsDict', 'outputs.NatGatewayRuleTargetPortRange']]] = None,
                  target_subnet: pulumi.Input[Optional[_builtins.str]] = None,
                  type: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
@@ -426,7 +426,7 @@ class NatGatewayRule(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] protocol: [string] Protocol of the NAT gateway rule. Defaults to ALL. If protocol is 'ICMP' then targetPortRange start and end cannot be set.
         :param pulumi.Input[_builtins.str] public_ip: [string] Public IP address of the NAT gateway rule. Specifies the address used for masking outgoing packets source address field. Should be one of the customer reserved IP address already configured on the NAT gateway resource.
         :param pulumi.Input[_builtins.str] source_subnet: [string] Source subnet of the NAT gateway rule. For SNAT rules it specifies which packets this translation rule applies to based on the packets source IP address.
-        :param pulumi.Input[Union['NatGatewayRuleTargetPortRangeArgs', 'NatGatewayRuleTargetPortRangeArgsDict']] target_port_range: Target port range of the NAT gateway rule. For SNAT rules it specifies which packets this translation rule applies to based on destination port. If none is provided, rule will match any port.
+        :param pulumi.Input[Union['NatGatewayRuleTargetPortRangeArgs', 'NatGatewayRuleTargetPortRangeArgsDict', 'outputs.NatGatewayRuleTargetPortRange']] target_port_range: Target port range of the NAT gateway rule. For SNAT rules it specifies which packets this translation rule applies to based on destination port. If none is provided, rule will match any port.
         :param pulumi.Input[_builtins.str] target_subnet: [string] Target or destination subnet of the NAT gateway rule. For SNAT rules it specifies which packets this translation rule applies to based on the packets destination IP address. If none is provided, rule will match any address.
         :param pulumi.Input[_builtins.str] type: [string] Type of the NAT gateway rule.
         """
@@ -515,7 +515,7 @@ class NatGatewayRule(pulumi.CustomResource):
                  protocol: pulumi.Input[Optional[_builtins.str]] = None,
                  public_ip: pulumi.Input[Optional[_builtins.str]] = None,
                  source_subnet: pulumi.Input[Optional[_builtins.str]] = None,
-                 target_port_range: pulumi.Input[Optional[Union['NatGatewayRuleTargetPortRangeArgs', 'NatGatewayRuleTargetPortRangeArgsDict']]] = None,
+                 target_port_range: pulumi.Input[Optional[Union['NatGatewayRuleTargetPortRangeArgs', 'NatGatewayRuleTargetPortRangeArgsDict', 'outputs.NatGatewayRuleTargetPortRange']]] = None,
                  target_subnet: pulumi.Input[Optional[_builtins.str]] = None,
                  type: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
@@ -562,7 +562,7 @@ class NatGatewayRule(pulumi.CustomResource):
             protocol: pulumi.Input[Optional[_builtins.str]] = None,
             public_ip: pulumi.Input[Optional[_builtins.str]] = None,
             source_subnet: pulumi.Input[Optional[_builtins.str]] = None,
-            target_port_range: pulumi.Input[Optional[Union['NatGatewayRuleTargetPortRangeArgs', 'NatGatewayRuleTargetPortRangeArgsDict']]] = None,
+            target_port_range: pulumi.Input[Optional[Union['NatGatewayRuleTargetPortRangeArgs', 'NatGatewayRuleTargetPortRangeArgsDict', 'outputs.NatGatewayRuleTargetPortRange']]] = None,
             target_subnet: pulumi.Input[Optional[_builtins.str]] = None,
             type: pulumi.Input[Optional[_builtins.str]] = None) -> 'NatGatewayRule':
         """
@@ -578,7 +578,7 @@ class NatGatewayRule(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] protocol: [string] Protocol of the NAT gateway rule. Defaults to ALL. If protocol is 'ICMP' then targetPortRange start and end cannot be set.
         :param pulumi.Input[_builtins.str] public_ip: [string] Public IP address of the NAT gateway rule. Specifies the address used for masking outgoing packets source address field. Should be one of the customer reserved IP address already configured on the NAT gateway resource.
         :param pulumi.Input[_builtins.str] source_subnet: [string] Source subnet of the NAT gateway rule. For SNAT rules it specifies which packets this translation rule applies to based on the packets source IP address.
-        :param pulumi.Input[Union['NatGatewayRuleTargetPortRangeArgs', 'NatGatewayRuleTargetPortRangeArgsDict']] target_port_range: Target port range of the NAT gateway rule. For SNAT rules it specifies which packets this translation rule applies to based on destination port. If none is provided, rule will match any port.
+        :param pulumi.Input[Union['NatGatewayRuleTargetPortRangeArgs', 'NatGatewayRuleTargetPortRangeArgsDict', 'outputs.NatGatewayRuleTargetPortRange']] target_port_range: Target port range of the NAT gateway rule. For SNAT rules it specifies which packets this translation rule applies to based on destination port. If none is provided, rule will match any port.
         :param pulumi.Input[_builtins.str] target_subnet: [string] Target or destination subnet of the NAT gateway rule. For SNAT rules it specifies which packets this translation rule applies to based on the packets destination IP address. If none is provided, rule will match any address.
         :param pulumi.Input[_builtins.str] type: [string] Type of the NAT gateway rule.
         """

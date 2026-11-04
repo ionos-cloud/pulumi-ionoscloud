@@ -59,19 +59,13 @@ type GetPSQLBackupLocationV2Args struct {
 type GetPSQLBackupLocationV2Result struct {
 	// The list of available backup locations. Each backup location has the following attributes:
 	BackupLocations []GetPSQLBackupLocationV2BackupLocation `pulumi:"backupLocations"`
-	// The provider-assigned unique ID for this managed resource.
-	Id string `pulumi:"id"`
 	// The Object Storage location identifier (e.g. `de`, `eu-central-2`).
 	Location string `pulumi:"location"`
 }
 
 func GetPSQLBackupLocationV2Output(ctx *pulumi.Context, args GetPSQLBackupLocationV2OutputArgs, opts ...pulumi.InvokeOption) GetPSQLBackupLocationV2ResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (GetPSQLBackupLocationV2ResultOutput, error) {
-			args := v.(GetPSQLBackupLocationV2Args)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("ionoscloud:dbaas/getPSQLBackupLocationV2:getPSQLBackupLocationV2", args, GetPSQLBackupLocationV2ResultOutput{}, options).(GetPSQLBackupLocationV2ResultOutput), nil
-		}).(GetPSQLBackupLocationV2ResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("ionoscloud:dbaas/getPSQLBackupLocationV2:getPSQLBackupLocationV2", args, GetPSQLBackupLocationV2ResultOutput{}, options).(GetPSQLBackupLocationV2ResultOutput)
 }
 
 // A collection of arguments for invoking getPSQLBackupLocationV2.
@@ -104,11 +98,6 @@ func (o GetPSQLBackupLocationV2ResultOutput) BackupLocations() GetPSQLBackupLoca
 	return o.ApplyT(func(v GetPSQLBackupLocationV2Result) []GetPSQLBackupLocationV2BackupLocation {
 		return v.BackupLocations
 	}).(GetPSQLBackupLocationV2BackupLocationArrayOutput)
-}
-
-// The provider-assigned unique ID for this managed resource.
-func (o GetPSQLBackupLocationV2ResultOutput) Id() pulumi.StringOutput {
-	return o.ApplyT(func(v GetPSQLBackupLocationV2Result) string { return v.Id }).(pulumi.StringOutput)
 }
 
 // The Object Storage location identifier (e.g. `de`, `eu-central-2`).

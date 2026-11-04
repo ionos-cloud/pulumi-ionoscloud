@@ -41,10 +41,6 @@ export interface GetBucketArgs {
  * A collection of values returned by getBucket.
  */
 export interface GetBucketResult {
-    /**
-     * The provider-assigned unique ID for this managed resource.
-     */
-    readonly id: string;
     readonly name: string;
     /**
      * The region where the bucket is located.

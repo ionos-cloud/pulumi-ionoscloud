@@ -63,22 +63,16 @@ type GetKafkaUsersArgs struct {
 
 // A collection of values returned by getKafkaUsers.
 type GetKafkaUsersResult struct {
-	ClusterId string `pulumi:"clusterId"`
-	// The provider-assigned unique ID for this managed resource.
-	Id       string                 `pulumi:"id"`
-	Location *string                `pulumi:"location"`
-	Timeouts *GetKafkaUsersTimeouts `pulumi:"timeouts"`
+	ClusterId string                 `pulumi:"clusterId"`
+	Location  *string                `pulumi:"location"`
+	Timeouts  *GetKafkaUsersTimeouts `pulumi:"timeouts"`
 	// the list of users, for each user inside the list, the following information is retrieved:
 	Users []GetKafkaUsersUser `pulumi:"users"`
 }
 
 func GetKafkaUsersOutput(ctx *pulumi.Context, args GetKafkaUsersOutputArgs, opts ...pulumi.InvokeOption) GetKafkaUsersResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (GetKafkaUsersResultOutput, error) {
-			args := v.(GetKafkaUsersArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("ionoscloud:index/getKafkaUsers:getKafkaUsers", args, GetKafkaUsersResultOutput{}, options).(GetKafkaUsersResultOutput), nil
-		}).(GetKafkaUsersResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("ionoscloud:index/getKafkaUsers:getKafkaUsers", args, GetKafkaUsersResultOutput{}, options).(GetKafkaUsersResultOutput)
 }
 
 // A collection of arguments for invoking getKafkaUsers.
@@ -111,11 +105,6 @@ func (o GetKafkaUsersResultOutput) ToGetKafkaUsersResultOutputWithContext(ctx co
 
 func (o GetKafkaUsersResultOutput) ClusterId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetKafkaUsersResult) string { return v.ClusterId }).(pulumi.StringOutput)
-}
-
-// The provider-assigned unique ID for this managed resource.
-func (o GetKafkaUsersResultOutput) Id() pulumi.StringOutput {
-	return o.ApplyT(func(v GetKafkaUsersResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
 func (o GetKafkaUsersResultOutput) Location() pulumi.StringPtrOutput {

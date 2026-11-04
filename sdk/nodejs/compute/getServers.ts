@@ -79,7 +79,6 @@ export interface GetServersArgs {
     /**
      * One or more name/value pairs to filter off of. You can use most base fields in the server resource. These do **NOT** include nested fields in nics or volume nested fields.
      *
-     *
      * `datacenterId` must be provided. If `datacenterId` is missing , the datasource will return an error.
      *
      * **NOTE:** Lookup by filter is partial. Searching for a server using filter name and value `test`, will find all servers that have `test` in the name.
@@ -180,7 +179,6 @@ export interface GetServersOutputArgs {
     datacenterId: pulumi.Input<string>;
     /**
      * One or more name/value pairs to filter off of. You can use most base fields in the server resource. These do **NOT** include nested fields in nics or volume nested fields.
-     *
      *
      * `datacenterId` must be provided. If `datacenterId` is missing , the datasource will return an error.
      *

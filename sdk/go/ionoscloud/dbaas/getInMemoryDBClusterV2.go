@@ -123,12 +123,8 @@ type LookupInMemoryDBClusterV2Result struct {
 }
 
 func LookupInMemoryDBClusterV2Output(ctx *pulumi.Context, args LookupInMemoryDBClusterV2OutputArgs, opts ...pulumi.InvokeOption) LookupInMemoryDBClusterV2ResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupInMemoryDBClusterV2ResultOutput, error) {
-			args := v.(LookupInMemoryDBClusterV2Args)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("ionoscloud:dbaas/getInMemoryDBClusterV2:getInMemoryDBClusterV2", args, LookupInMemoryDBClusterV2ResultOutput{}, options).(LookupInMemoryDBClusterV2ResultOutput), nil
-		}).(LookupInMemoryDBClusterV2ResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("ionoscloud:dbaas/getInMemoryDBClusterV2:getInMemoryDBClusterV2", args, LookupInMemoryDBClusterV2ResultOutput{}, options).(LookupInMemoryDBClusterV2ResultOutput)
 }
 
 // A collection of arguments for invoking getInMemoryDBClusterV2.

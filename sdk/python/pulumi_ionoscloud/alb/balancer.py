@@ -353,7 +353,7 @@ class Balancer(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  central_logging: pulumi.Input[Optional[_builtins.bool]] = None,
                  datacenter_id: pulumi.Input[Optional[_builtins.str]] = None,
-                 flowlog: pulumi.Input[Optional[Union['BalancerFlowlogArgs', 'BalancerFlowlogArgsDict']]] = None,
+                 flowlog: pulumi.Input[Optional[Union['BalancerFlowlogArgs', 'BalancerFlowlogArgsDict', 'outputs.BalancerFlowlog']]] = None,
                  ips: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  lb_private_ips: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  listener_lan: pulumi.Input[Optional[_builtins.int]] = None,
@@ -408,7 +408,7 @@ class Balancer(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.bool] central_logging: [bool] Turn logging on and off for this product. Default value is 'false'.
         :param pulumi.Input[_builtins.str] datacenter_id: [string] ID of the datacenter.
-        :param pulumi.Input[Union['BalancerFlowlogArgs', 'BalancerFlowlogArgsDict']] flowlog: [list] Only 1 flow log can be configured. Only the name field can change as part of an update. Flow logs holistically capture network information such as source and destination IP addresses, source and destination ports, number of packets, amount of bytes, the start and end time of the recording, and the type of protocol – and log the extent to which your instances are being accessed.
+        :param pulumi.Input[Union['BalancerFlowlogArgs', 'BalancerFlowlogArgsDict', 'outputs.BalancerFlowlog']] flowlog: [list] Only 1 flow log can be configured. Only the name field can change as part of an update. Flow logs holistically capture network information such as source and destination IP addresses, source and destination ports, number of packets, amount of bytes, the start and end time of the recording, and the type of protocol – and log the extent to which your instances are being accessed.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ips: [set] Collection of the Application Load Balancer IP addresses. (Inbound and outbound) IPs of the listenerLan are customer-reserved public IPs for the public Load Balancers, and private IPs for the private Load Balancers.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] lb_private_ips: [set] Collection of private IP addresses with the subnet mask of the Application Load Balancer. IPs must contain valid a subnet mask. If no IP is provided, the system will generate an IP with /24 subnet.
         :param pulumi.Input[_builtins.int] listener_lan: [int] ID of the listening (inbound) LAN.
@@ -481,7 +481,7 @@ class Balancer(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  central_logging: pulumi.Input[Optional[_builtins.bool]] = None,
                  datacenter_id: pulumi.Input[Optional[_builtins.str]] = None,
-                 flowlog: pulumi.Input[Optional[Union['BalancerFlowlogArgs', 'BalancerFlowlogArgsDict']]] = None,
+                 flowlog: pulumi.Input[Optional[Union['BalancerFlowlogArgs', 'BalancerFlowlogArgsDict', 'outputs.BalancerFlowlog']]] = None,
                  ips: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  lb_private_ips: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  listener_lan: pulumi.Input[Optional[_builtins.int]] = None,
@@ -526,7 +526,7 @@ class Balancer(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             central_logging: pulumi.Input[Optional[_builtins.bool]] = None,
             datacenter_id: pulumi.Input[Optional[_builtins.str]] = None,
-            flowlog: pulumi.Input[Optional[Union['BalancerFlowlogArgs', 'BalancerFlowlogArgsDict']]] = None,
+            flowlog: pulumi.Input[Optional[Union['BalancerFlowlogArgs', 'BalancerFlowlogArgsDict', 'outputs.BalancerFlowlog']]] = None,
             ips: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
             lb_private_ips: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
             listener_lan: pulumi.Input[Optional[_builtins.int]] = None,
@@ -543,7 +543,7 @@ class Balancer(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.bool] central_logging: [bool] Turn logging on and off for this product. Default value is 'false'.
         :param pulumi.Input[_builtins.str] datacenter_id: [string] ID of the datacenter.
-        :param pulumi.Input[Union['BalancerFlowlogArgs', 'BalancerFlowlogArgsDict']] flowlog: [list] Only 1 flow log can be configured. Only the name field can change as part of an update. Flow logs holistically capture network information such as source and destination IP addresses, source and destination ports, number of packets, amount of bytes, the start and end time of the recording, and the type of protocol – and log the extent to which your instances are being accessed.
+        :param pulumi.Input[Union['BalancerFlowlogArgs', 'BalancerFlowlogArgsDict', 'outputs.BalancerFlowlog']] flowlog: [list] Only 1 flow log can be configured. Only the name field can change as part of an update. Flow logs holistically capture network information such as source and destination IP addresses, source and destination ports, number of packets, amount of bytes, the start and end time of the recording, and the type of protocol – and log the extent to which your instances are being accessed.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ips: [set] Collection of the Application Load Balancer IP addresses. (Inbound and outbound) IPs of the listenerLan are customer-reserved public IPs for the public Load Balancers, and private IPs for the private Load Balancers.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] lb_private_ips: [set] Collection of private IP addresses with the subnet mask of the Application Load Balancer. IPs must contain valid a subnet mask. If no IP is provided, the system will generate an IP with /24 subnet.
         :param pulumi.Input[_builtins.int] listener_lan: [int] ID of the listening (inbound) LAN.

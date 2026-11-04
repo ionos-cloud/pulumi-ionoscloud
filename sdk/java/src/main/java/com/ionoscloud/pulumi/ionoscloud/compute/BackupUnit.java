@@ -27,8 +27,8 @@ import javax.annotation.Nullable;
  * import com.pulumi.Context;
  * import com.pulumi.Pulumi;
  * import com.pulumi.core.Output;
- * import com.pulumi.random.password;
- * import com.pulumi.random.passwordArgs;
+ * import com.pulumi.random.Password;
+ * import com.pulumi.random.PasswordArgs;
  * import com.ionoscloud.pulumi.ionoscloud.compute.BackupUnit;
  * import com.ionoscloud.pulumi.ionoscloud.compute.BackupUnitArgs;
  * import java.util.ArrayList;
@@ -52,7 +52,7 @@ import javax.annotation.Nullable;
  * 
  *         var example = new BackupUnit("example", BackupUnitArgs.builder()
  *             .name("Backup Unit Example")
- *             .password(backupUnitPassword.result())
+ *             .password(backupUnitPassword.get("result"))
  *             .email("example}{@literal @}{@code example-domain.com")
  *             .build());
  * 

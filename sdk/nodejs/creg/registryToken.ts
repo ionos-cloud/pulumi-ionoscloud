@@ -98,7 +98,7 @@ export class RegistryToken extends pulumi.CustomResource {
      * [string] Saves token password to file. Only works on create. Takes as argument a file name, or a file path
      *
      * > **⚠ WARNING** `savePasswordToFile` must be used with caution.
-     * > It will save the password(token) returned on create to a file. This is the only way to get the token.
+     * It will save the password(token) returned on create to a file. This is the only way to get the token.
      */
     declare public readonly savePasswordToFile: pulumi.Output<string | undefined>;
     /**
@@ -176,7 +176,7 @@ export interface RegistryTokenState {
      * [string] Saves token password to file. Only works on create. Takes as argument a file name, or a file path
      *
      * > **⚠ WARNING** `savePasswordToFile` must be used with caution.
-     * > It will save the password(token) returned on create to a file. This is the only way to get the token.
+     * It will save the password(token) returned on create to a file. This is the only way to get the token.
      */
     savePasswordToFile?: pulumi.Input<string | undefined>;
     /**
@@ -211,7 +211,7 @@ export interface RegistryTokenArgs {
      * [string] Saves token password to file. Only works on create. Takes as argument a file name, or a file path
      *
      * > **⚠ WARNING** `savePasswordToFile` must be used with caution.
-     * > It will save the password(token) returned on create to a file. This is the only way to get the token.
+     * It will save the password(token) returned on create to a file. This is the only way to get the token.
      */
     savePasswordToFile?: pulumi.Input<string | undefined>;
     /**

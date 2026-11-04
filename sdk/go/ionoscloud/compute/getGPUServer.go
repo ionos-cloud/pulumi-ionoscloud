@@ -126,12 +126,8 @@ type LookupGPUServerResult struct {
 }
 
 func LookupGPUServerOutput(ctx *pulumi.Context, args LookupGPUServerOutputArgs, opts ...pulumi.InvokeOption) LookupGPUServerResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupGPUServerResultOutput, error) {
-			args := v.(LookupGPUServerArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("ionoscloud:compute/getGPUServer:getGPUServer", args, LookupGPUServerResultOutput{}, options).(LookupGPUServerResultOutput), nil
-		}).(LookupGPUServerResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("ionoscloud:compute/getGPUServer:getGPUServer", args, LookupGPUServerResultOutput{}, options).(LookupGPUServerResultOutput)
 }
 
 // A collection of arguments for invoking getGPUServer.

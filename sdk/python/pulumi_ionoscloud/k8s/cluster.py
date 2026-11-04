@@ -390,12 +390,12 @@ class Cluster(pulumi.CustomResource):
                  api_subnet_allow_lists: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  k8s_version: pulumi.Input[Optional[_builtins.str]] = None,
                  location: pulumi.Input[Optional[_builtins.str]] = None,
-                 maintenance_window: pulumi.Input[Optional[Union['ClusterMaintenanceWindowArgs', 'ClusterMaintenanceWindowArgsDict']]] = None,
+                 maintenance_window: pulumi.Input[Optional[Union['ClusterMaintenanceWindowArgs', 'ClusterMaintenanceWindowArgsDict', 'outputs.ClusterMaintenanceWindow']]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  nat_gateway_ip: pulumi.Input[Optional[_builtins.str]] = None,
                  node_subnet: pulumi.Input[Optional[_builtins.str]] = None,
                  public: pulumi.Input[Optional[_builtins.bool]] = None,
-                 s3_buckets: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ClusterS3BucketArgs', 'ClusterS3BucketArgsDict']]]]] = None,
+                 s3_buckets: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ClusterS3BucketArgs', 'ClusterS3BucketArgsDict', 'outputs.ClusterS3Bucket']]]]] = None,
                  __props__=None):
         """
         Manages a [Managed Kubernetes Cluster](https://docs.ionos.com/cloud/containers/managed-kubernetes/overview) on IONOS CLOUD.
@@ -474,12 +474,12 @@ class Cluster(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] api_subnet_allow_lists: [list] Access to the K8s API server is restricted to these CIDRs. Cluster-internal traffic is not affected by this restriction. If no allowlist is specified, access is not restricted. If an IP without subnet mask is provided, the default value will be used: 32 for IPv4 and 128 for IPv6.
         :param pulumi.Input[_builtins.str] k8s_version: [string] The desired Kubernetes Version. For supported values, please check the API documentation. Downgrades are not supported. The provider will ignore downgrades of patch level.
         :param pulumi.Input[_builtins.str] location: [string] This attribute is mandatory if the cluster is private. The location must be enabled for your contract, or you must have a data center at that location. This property is not adjustable.
-        :param pulumi.Input[Union['ClusterMaintenanceWindowArgs', 'ClusterMaintenanceWindowArgsDict']] maintenance_window: A maintenance window comprise of a day of the week and a time for maintenance to be allowed
+        :param pulumi.Input[Union['ClusterMaintenanceWindowArgs', 'ClusterMaintenanceWindowArgsDict', 'outputs.ClusterMaintenanceWindow']] maintenance_window: A maintenance window comprise of a day of the week and a time for maintenance to be allowed
         :param pulumi.Input[_builtins.str] name: [string] The name of the Kubernetes Cluster.
         :param pulumi.Input[_builtins.str] nat_gateway_ip: [string] The NAT gateway IP of the cluster if the cluster is private. This attribute is immutable. Must be a reserved IP in the same location as the cluster's location. This attribute is mandatory if the cluster is private.
         :param pulumi.Input[_builtins.str] node_subnet: [string] The node subnet of the cluster, if the cluster is private. This attribute is optional and immutable. Must be a valid CIDR notation for an IPv4 network prefix of 16 bits length.
         :param pulumi.Input[_builtins.bool] public: [boolean] Indicates if the cluster is public or private. This attribute is immutable.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['ClusterS3BucketArgs', 'ClusterS3BucketArgsDict']]]] s3_buckets: [list] List of IONOS Object Storage buckets configured for K8s usage. For now it contains only an IONOS Object Storage bucket used to store K8s API audit logs.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ClusterS3BucketArgs', 'ClusterS3BucketArgsDict', 'outputs.ClusterS3Bucket']]]] s3_buckets: [list] List of IONOS Object Storage buckets configured for K8s usage. For now it contains only an IONOS Object Storage bucket used to store K8s API audit logs.
         """
         ...
     @overload
@@ -575,12 +575,12 @@ class Cluster(pulumi.CustomResource):
                  api_subnet_allow_lists: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  k8s_version: pulumi.Input[Optional[_builtins.str]] = None,
                  location: pulumi.Input[Optional[_builtins.str]] = None,
-                 maintenance_window: pulumi.Input[Optional[Union['ClusterMaintenanceWindowArgs', 'ClusterMaintenanceWindowArgsDict']]] = None,
+                 maintenance_window: pulumi.Input[Optional[Union['ClusterMaintenanceWindowArgs', 'ClusterMaintenanceWindowArgsDict', 'outputs.ClusterMaintenanceWindow']]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  nat_gateway_ip: pulumi.Input[Optional[_builtins.str]] = None,
                  node_subnet: pulumi.Input[Optional[_builtins.str]] = None,
                  public: pulumi.Input[Optional[_builtins.bool]] = None,
-                 s3_buckets: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ClusterS3BucketArgs', 'ClusterS3BucketArgsDict']]]]] = None,
+                 s3_buckets: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ClusterS3BucketArgs', 'ClusterS3BucketArgsDict', 'outputs.ClusterS3Bucket']]]]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -615,12 +615,12 @@ class Cluster(pulumi.CustomResource):
             api_subnet_allow_lists: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
             k8s_version: pulumi.Input[Optional[_builtins.str]] = None,
             location: pulumi.Input[Optional[_builtins.str]] = None,
-            maintenance_window: pulumi.Input[Optional[Union['ClusterMaintenanceWindowArgs', 'ClusterMaintenanceWindowArgsDict']]] = None,
+            maintenance_window: pulumi.Input[Optional[Union['ClusterMaintenanceWindowArgs', 'ClusterMaintenanceWindowArgsDict', 'outputs.ClusterMaintenanceWindow']]] = None,
             name: pulumi.Input[Optional[_builtins.str]] = None,
             nat_gateway_ip: pulumi.Input[Optional[_builtins.str]] = None,
             node_subnet: pulumi.Input[Optional[_builtins.str]] = None,
             public: pulumi.Input[Optional[_builtins.bool]] = None,
-            s3_buckets: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ClusterS3BucketArgs', 'ClusterS3BucketArgsDict']]]]] = None,
+            s3_buckets: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ClusterS3BucketArgs', 'ClusterS3BucketArgsDict', 'outputs.ClusterS3Bucket']]]]] = None,
             viable_node_pool_versions: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None) -> 'Cluster':
         """
         Get an existing Cluster resource's state with the given name, id, and optional extra
@@ -635,12 +635,12 @@ class Cluster(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] api_subnet_allow_lists: [list] Access to the K8s API server is restricted to these CIDRs. Cluster-internal traffic is not affected by this restriction. If no allowlist is specified, access is not restricted. If an IP without subnet mask is provided, the default value will be used: 32 for IPv4 and 128 for IPv6.
         :param pulumi.Input[_builtins.str] k8s_version: [string] The desired Kubernetes Version. For supported values, please check the API documentation. Downgrades are not supported. The provider will ignore downgrades of patch level.
         :param pulumi.Input[_builtins.str] location: [string] This attribute is mandatory if the cluster is private. The location must be enabled for your contract, or you must have a data center at that location. This property is not adjustable.
-        :param pulumi.Input[Union['ClusterMaintenanceWindowArgs', 'ClusterMaintenanceWindowArgsDict']] maintenance_window: A maintenance window comprise of a day of the week and a time for maintenance to be allowed
+        :param pulumi.Input[Union['ClusterMaintenanceWindowArgs', 'ClusterMaintenanceWindowArgsDict', 'outputs.ClusterMaintenanceWindow']] maintenance_window: A maintenance window comprise of a day of the week and a time for maintenance to be allowed
         :param pulumi.Input[_builtins.str] name: [string] The name of the Kubernetes Cluster.
         :param pulumi.Input[_builtins.str] nat_gateway_ip: [string] The NAT gateway IP of the cluster if the cluster is private. This attribute is immutable. Must be a reserved IP in the same location as the cluster's location. This attribute is mandatory if the cluster is private.
         :param pulumi.Input[_builtins.str] node_subnet: [string] The node subnet of the cluster, if the cluster is private. This attribute is optional and immutable. Must be a valid CIDR notation for an IPv4 network prefix of 16 bits length.
         :param pulumi.Input[_builtins.bool] public: [boolean] Indicates if the cluster is public or private. This attribute is immutable.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['ClusterS3BucketArgs', 'ClusterS3BucketArgsDict']]]] s3_buckets: [list] List of IONOS Object Storage buckets configured for K8s usage. For now it contains only an IONOS Object Storage bucket used to store K8s API audit logs.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ClusterS3BucketArgs', 'ClusterS3BucketArgsDict', 'outputs.ClusterS3Bucket']]]] s3_buckets: [list] List of IONOS Object Storage buckets configured for K8s usage. For now it contains only an IONOS Object Storage bucket used to store K8s API audit logs.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] viable_node_pool_versions: [list] List of versions that may be used for node pools under this cluster
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))

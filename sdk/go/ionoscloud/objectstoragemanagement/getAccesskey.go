@@ -74,12 +74,8 @@ type LookupAccesskeyResult struct {
 }
 
 func LookupAccesskeyOutput(ctx *pulumi.Context, args LookupAccesskeyOutputArgs, opts ...pulumi.InvokeOption) LookupAccesskeyResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupAccesskeyResultOutput, error) {
-			args := v.(LookupAccesskeyArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("ionoscloud:objectstoragemanagement/getAccesskey:getAccesskey", args, LookupAccesskeyResultOutput{}, options).(LookupAccesskeyResultOutput), nil
-		}).(LookupAccesskeyResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("ionoscloud:objectstoragemanagement/getAccesskey:getAccesskey", args, LookupAccesskeyResultOutput{}, options).(LookupAccesskeyResultOutput)
 }
 
 // A collection of arguments for invoking getAccesskey.

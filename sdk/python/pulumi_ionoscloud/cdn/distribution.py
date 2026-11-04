@@ -186,7 +186,7 @@ class Distribution(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  certificate_id: pulumi.Input[Optional[_builtins.str]] = None,
                  domain: pulumi.Input[Optional[_builtins.str]] = None,
-                 routing_rules: pulumi.Input[Optional[Sequence[pulumi.Input[Union['DistributionRoutingRuleArgs', 'DistributionRoutingRuleArgsDict']]]]] = None,
+                 routing_rules: pulumi.Input[Optional[Sequence[pulumi.Input[Union['DistributionRoutingRuleArgs', 'DistributionRoutingRuleArgsDict', 'outputs.DistributionRoutingRule']]]]] = None,
                  __props__=None):
         """
         Manages a [CDN Distribution](https://docs.ionos.com/cloud/network-services/cdn/overview#how-does-cdn-work) on IONOS CLOUD.
@@ -258,7 +258,7 @@ class Distribution(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] certificate_id: [string] The ID of the certificate to use for the distribution. You can create certificates with the certificate resource.
         :param pulumi.Input[_builtins.str] domain: [string] The domain of the distribution.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['DistributionRoutingRuleArgs', 'DistributionRoutingRuleArgsDict']]]] routing_rules: [list] The routing rules for the distribution.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['DistributionRoutingRuleArgs', 'DistributionRoutingRuleArgsDict', 'outputs.DistributionRoutingRule']]]] routing_rules: [list] The routing rules for the distribution.
         """
         ...
     @overload
@@ -349,7 +349,7 @@ class Distribution(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  certificate_id: pulumi.Input[Optional[_builtins.str]] = None,
                  domain: pulumi.Input[Optional[_builtins.str]] = None,
-                 routing_rules: pulumi.Input[Optional[Sequence[pulumi.Input[Union['DistributionRoutingRuleArgs', 'DistributionRoutingRuleArgsDict']]]]] = None,
+                 routing_rules: pulumi.Input[Optional[Sequence[pulumi.Input[Union['DistributionRoutingRuleArgs', 'DistributionRoutingRuleArgsDict', 'outputs.DistributionRoutingRule']]]]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -384,7 +384,7 @@ class Distribution(pulumi.CustomResource):
             public_endpoint_v4: pulumi.Input[Optional[_builtins.str]] = None,
             public_endpoint_v6: pulumi.Input[Optional[_builtins.str]] = None,
             resource_urn: pulumi.Input[Optional[_builtins.str]] = None,
-            routing_rules: pulumi.Input[Optional[Sequence[pulumi.Input[Union['DistributionRoutingRuleArgs', 'DistributionRoutingRuleArgsDict']]]]] = None) -> 'Distribution':
+            routing_rules: pulumi.Input[Optional[Sequence[pulumi.Input[Union['DistributionRoutingRuleArgs', 'DistributionRoutingRuleArgsDict', 'outputs.DistributionRoutingRule']]]]] = None) -> 'Distribution':
         """
         Get an existing Distribution resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -397,7 +397,7 @@ class Distribution(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] public_endpoint_v4: IP of the distribution, it has to be included on the domain DNS Zone as A record.
         :param pulumi.Input[_builtins.str] public_endpoint_v6: IP of the distribution, it has to be included on the domain DNS Zone as AAAA record.
         :param pulumi.Input[_builtins.str] resource_urn: Unique resource indentifier.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['DistributionRoutingRuleArgs', 'DistributionRoutingRuleArgsDict']]]] routing_rules: [list] The routing rules for the distribution.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['DistributionRoutingRuleArgs', 'DistributionRoutingRuleArgsDict', 'outputs.DistributionRoutingRule']]]] routing_rules: [list] The routing rules for the distribution.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 

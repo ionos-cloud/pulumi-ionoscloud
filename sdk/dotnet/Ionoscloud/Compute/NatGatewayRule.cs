@@ -58,7 +58,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
     ///         {
     ///             new Ionoscloud.Compute.Inputs.NatGatewayLanArgs
     ///             {
-    ///                 Id = exampleLan.Id,
+    ///                 Id = exampleLan.Id.Apply(x =&gt; int.Parse(x, System.Globalization.CultureInfo.InvariantCulture)),
     ///                 GatewayIps = new[]
     ///                 {
     ///                     "10.11.2.5",

@@ -125,12 +125,8 @@ type LookupPSQLClusterResult struct {
 }
 
 func LookupPSQLClusterOutput(ctx *pulumi.Context, args LookupPSQLClusterOutputArgs, opts ...pulumi.InvokeOption) LookupPSQLClusterResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupPSQLClusterResultOutput, error) {
-			args := v.(LookupPSQLClusterArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("ionoscloud:dbaas/getPSQLCluster:getPSQLCluster", args, LookupPSQLClusterResultOutput{}, options).(LookupPSQLClusterResultOutput), nil
-		}).(LookupPSQLClusterResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("ionoscloud:dbaas/getPSQLCluster:getPSQLCluster", args, LookupPSQLClusterResultOutput{}, options).(LookupPSQLClusterResultOutput)
 }
 
 // A collection of arguments for invoking getPSQLCluster.

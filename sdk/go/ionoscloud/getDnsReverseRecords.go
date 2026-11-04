@@ -129,12 +129,8 @@ type GetDnsReverseRecordsResult struct {
 }
 
 func GetDnsReverseRecordsOutput(ctx *pulumi.Context, args GetDnsReverseRecordsOutputArgs, opts ...pulumi.InvokeOption) GetDnsReverseRecordsResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (GetDnsReverseRecordsResultOutput, error) {
-			args := v.(GetDnsReverseRecordsArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("ionoscloud:index/getDnsReverseRecords:getDnsReverseRecords", args, GetDnsReverseRecordsResultOutput{}, options).(GetDnsReverseRecordsResultOutput), nil
-		}).(GetDnsReverseRecordsResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("ionoscloud:index/getDnsReverseRecords:getDnsReverseRecords", args, GetDnsReverseRecordsResultOutput{}, options).(GetDnsReverseRecordsResultOutput)
 }
 
 // A collection of arguments for invoking getDnsReverseRecords.

@@ -203,10 +203,6 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Objectstorage
         /// The date and time at which the object is no longer cacheable.
         /// </summary>
         public readonly string Expires;
-        /// <summary>
-        /// The provider-assigned unique ID for this managed resource.
-        /// </summary>
-        public readonly string Id;
         public readonly string Key;
         /// <summary>
         /// A map of metadata stored with the object.
@@ -288,8 +284,6 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Objectstorage
 
             string expires,
 
-            string id,
-
             string key,
 
             ImmutableDictionary<string, string> metadata,
@@ -332,7 +326,6 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Objectstorage
             ContentType = contentType;
             Etag = etag;
             Expires = expires;
-            Id = id;
             Key = key;
             Metadata = metadata;
             ObjectLockLegalHold = objectLockLegalHold;

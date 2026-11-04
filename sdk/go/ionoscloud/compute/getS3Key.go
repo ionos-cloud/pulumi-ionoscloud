@@ -73,12 +73,8 @@ type LookupS3KeyResult struct {
 }
 
 func LookupS3KeyOutput(ctx *pulumi.Context, args LookupS3KeyOutputArgs, opts ...pulumi.InvokeOption) LookupS3KeyResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupS3KeyResultOutput, error) {
-			args := v.(LookupS3KeyArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("ionoscloud:compute/getS3Key:getS3Key", args, LookupS3KeyResultOutput{}, options).(LookupS3KeyResultOutput), nil
-		}).(LookupS3KeyResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("ionoscloud:compute/getS3Key:getS3Key", args, LookupS3KeyResultOutput{}, options).(LookupS3KeyResultOutput)
 }
 
 // A collection of arguments for invoking getS3Key.

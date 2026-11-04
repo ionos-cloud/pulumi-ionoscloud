@@ -70,12 +70,8 @@ type LookupPSQLUserResult struct {
 }
 
 func LookupPSQLUserOutput(ctx *pulumi.Context, args LookupPSQLUserOutputArgs, opts ...pulumi.InvokeOption) LookupPSQLUserResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupPSQLUserResultOutput, error) {
-			args := v.(LookupPSQLUserArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("ionoscloud:dbaas/getPSQLUser:getPSQLUser", args, LookupPSQLUserResultOutput{}, options).(LookupPSQLUserResultOutput), nil
-		}).(LookupPSQLUserResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("ionoscloud:dbaas/getPSQLUser:getPSQLUser", args, LookupPSQLUserResultOutput{}, options).(LookupPSQLUserResultOutput)
 }
 
 // A collection of arguments for invoking getPSQLUser.

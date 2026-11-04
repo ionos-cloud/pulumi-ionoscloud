@@ -67,8 +67,6 @@ type GetMariaDBBackupsV2Args struct {
 type GetMariaDBBackupsV2Result struct {
 	// The ID of the cluster this backup belongs to.
 	ClusterId *string `pulumi:"clusterId"`
-	// The provider-assigned unique ID for this managed resource.
-	Id string `pulumi:"id"`
 	// List of backups. Each item includes:
 	Items []GetMariaDBBackupsV2Item `pulumi:"items"`
 	// The Object Storage location where the backup is stored.
@@ -76,12 +74,8 @@ type GetMariaDBBackupsV2Result struct {
 }
 
 func GetMariaDBBackupsV2Output(ctx *pulumi.Context, args GetMariaDBBackupsV2OutputArgs, opts ...pulumi.InvokeOption) GetMariaDBBackupsV2ResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (GetMariaDBBackupsV2ResultOutput, error) {
-			args := v.(GetMariaDBBackupsV2Args)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("ionoscloud:dbaas/getMariaDBBackupsV2:getMariaDBBackupsV2", args, GetMariaDBBackupsV2ResultOutput{}, options).(GetMariaDBBackupsV2ResultOutput), nil
-		}).(GetMariaDBBackupsV2ResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("ionoscloud:dbaas/getMariaDBBackupsV2:getMariaDBBackupsV2", args, GetMariaDBBackupsV2ResultOutput{}, options).(GetMariaDBBackupsV2ResultOutput)
 }
 
 // A collection of arguments for invoking getMariaDBBackupsV2.
@@ -114,11 +108,6 @@ func (o GetMariaDBBackupsV2ResultOutput) ToGetMariaDBBackupsV2ResultOutputWithCo
 // The ID of the cluster this backup belongs to.
 func (o GetMariaDBBackupsV2ResultOutput) ClusterId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetMariaDBBackupsV2Result) *string { return v.ClusterId }).(pulumi.StringPtrOutput)
-}
-
-// The provider-assigned unique ID for this managed resource.
-func (o GetMariaDBBackupsV2ResultOutput) Id() pulumi.StringOutput {
-	return o.ApplyT(func(v GetMariaDBBackupsV2Result) string { return v.Id }).(pulumi.StringOutput)
 }
 
 // List of backups. Each item includes:

@@ -264,12 +264,12 @@ class TargetGroup(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  algorithm: pulumi.Input[Optional[_builtins.str]] = None,
-                 health_check: pulumi.Input[Optional[Union['TargetGroupHealthCheckArgs', 'TargetGroupHealthCheckArgsDict']]] = None,
-                 http_health_check: pulumi.Input[Optional[Union['TargetGroupHttpHealthCheckArgs', 'TargetGroupHttpHealthCheckArgsDict']]] = None,
+                 health_check: pulumi.Input[Optional[Union['TargetGroupHealthCheckArgs', 'TargetGroupHealthCheckArgsDict', 'outputs.TargetGroupHealthCheck']]] = None,
+                 http_health_check: pulumi.Input[Optional[Union['TargetGroupHttpHealthCheckArgs', 'TargetGroupHttpHealthCheckArgsDict', 'outputs.TargetGroupHttpHealthCheck']]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  protocol: pulumi.Input[Optional[_builtins.str]] = None,
                  protocol_version: pulumi.Input[Optional[_builtins.str]] = None,
-                 targets: pulumi.Input[Optional[Sequence[pulumi.Input[Union['TargetGroupTargetArgs', 'TargetGroupTargetArgsDict']]]]] = None,
+                 targets: pulumi.Input[Optional[Sequence[pulumi.Input[Union['TargetGroupTargetArgs', 'TargetGroupTargetArgsDict', 'outputs.TargetGroupTarget']]]]] = None,
                  __props__=None):
         """
         Manages a [Target Group](https://docs.ionos.com/cloud/network-services/application-load-balancer/overview#target-group) on IONOS CLOUD.
@@ -330,12 +330,12 @@ class TargetGroup(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] algorithm: [string] Balancing algorithm.
-        :param pulumi.Input[Union['TargetGroupHealthCheckArgs', 'TargetGroupHealthCheckArgsDict']] health_check: Health check attributes for Target Group.
-        :param pulumi.Input[Union['TargetGroupHttpHealthCheckArgs', 'TargetGroupHttpHealthCheckArgsDict']] http_health_check: Http health check attributes for Target Group
+        :param pulumi.Input[Union['TargetGroupHealthCheckArgs', 'TargetGroupHealthCheckArgsDict', 'outputs.TargetGroupHealthCheck']] health_check: Health check attributes for Target Group.
+        :param pulumi.Input[Union['TargetGroupHttpHealthCheckArgs', 'TargetGroupHttpHealthCheckArgsDict', 'outputs.TargetGroupHttpHealthCheck']] http_health_check: Http health check attributes for Target Group
         :param pulumi.Input[_builtins.str] name: [string] The name of the target group.
         :param pulumi.Input[_builtins.str] protocol: [string] Balancing protocol.
         :param pulumi.Input[_builtins.str] protocol_version: [string] The forwarding protocol version. Value is ignored when protocol is not 'HTTP'.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['TargetGroupTargetArgs', 'TargetGroupTargetArgsDict']]]] targets: [list] Array of items in the collection
+        :param pulumi.Input[Sequence[pulumi.Input[Union['TargetGroupTargetArgs', 'TargetGroupTargetArgsDict', 'outputs.TargetGroupTarget']]]] targets: [list] Array of items in the collection
         """
         ...
     @overload
@@ -415,12 +415,12 @@ class TargetGroup(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  algorithm: pulumi.Input[Optional[_builtins.str]] = None,
-                 health_check: pulumi.Input[Optional[Union['TargetGroupHealthCheckArgs', 'TargetGroupHealthCheckArgsDict']]] = None,
-                 http_health_check: pulumi.Input[Optional[Union['TargetGroupHttpHealthCheckArgs', 'TargetGroupHttpHealthCheckArgsDict']]] = None,
+                 health_check: pulumi.Input[Optional[Union['TargetGroupHealthCheckArgs', 'TargetGroupHealthCheckArgsDict', 'outputs.TargetGroupHealthCheck']]] = None,
+                 http_health_check: pulumi.Input[Optional[Union['TargetGroupHttpHealthCheckArgs', 'TargetGroupHttpHealthCheckArgsDict', 'outputs.TargetGroupHttpHealthCheck']]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  protocol: pulumi.Input[Optional[_builtins.str]] = None,
                  protocol_version: pulumi.Input[Optional[_builtins.str]] = None,
-                 targets: pulumi.Input[Optional[Sequence[pulumi.Input[Union['TargetGroupTargetArgs', 'TargetGroupTargetArgsDict']]]]] = None,
+                 targets: pulumi.Input[Optional[Sequence[pulumi.Input[Union['TargetGroupTargetArgs', 'TargetGroupTargetArgsDict', 'outputs.TargetGroupTarget']]]]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -454,12 +454,12 @@ class TargetGroup(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             algorithm: pulumi.Input[Optional[_builtins.str]] = None,
-            health_check: pulumi.Input[Optional[Union['TargetGroupHealthCheckArgs', 'TargetGroupHealthCheckArgsDict']]] = None,
-            http_health_check: pulumi.Input[Optional[Union['TargetGroupHttpHealthCheckArgs', 'TargetGroupHttpHealthCheckArgsDict']]] = None,
+            health_check: pulumi.Input[Optional[Union['TargetGroupHealthCheckArgs', 'TargetGroupHealthCheckArgsDict', 'outputs.TargetGroupHealthCheck']]] = None,
+            http_health_check: pulumi.Input[Optional[Union['TargetGroupHttpHealthCheckArgs', 'TargetGroupHttpHealthCheckArgsDict', 'outputs.TargetGroupHttpHealthCheck']]] = None,
             name: pulumi.Input[Optional[_builtins.str]] = None,
             protocol: pulumi.Input[Optional[_builtins.str]] = None,
             protocol_version: pulumi.Input[Optional[_builtins.str]] = None,
-            targets: pulumi.Input[Optional[Sequence[pulumi.Input[Union['TargetGroupTargetArgs', 'TargetGroupTargetArgsDict']]]]] = None) -> 'TargetGroup':
+            targets: pulumi.Input[Optional[Sequence[pulumi.Input[Union['TargetGroupTargetArgs', 'TargetGroupTargetArgsDict', 'outputs.TargetGroupTarget']]]]] = None) -> 'TargetGroup':
         """
         Get an existing TargetGroup resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -468,12 +468,12 @@ class TargetGroup(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] algorithm: [string] Balancing algorithm.
-        :param pulumi.Input[Union['TargetGroupHealthCheckArgs', 'TargetGroupHealthCheckArgsDict']] health_check: Health check attributes for Target Group.
-        :param pulumi.Input[Union['TargetGroupHttpHealthCheckArgs', 'TargetGroupHttpHealthCheckArgsDict']] http_health_check: Http health check attributes for Target Group
+        :param pulumi.Input[Union['TargetGroupHealthCheckArgs', 'TargetGroupHealthCheckArgsDict', 'outputs.TargetGroupHealthCheck']] health_check: Health check attributes for Target Group.
+        :param pulumi.Input[Union['TargetGroupHttpHealthCheckArgs', 'TargetGroupHttpHealthCheckArgsDict', 'outputs.TargetGroupHttpHealthCheck']] http_health_check: Http health check attributes for Target Group
         :param pulumi.Input[_builtins.str] name: [string] The name of the target group.
         :param pulumi.Input[_builtins.str] protocol: [string] Balancing protocol.
         :param pulumi.Input[_builtins.str] protocol_version: [string] The forwarding protocol version. Value is ignored when protocol is not 'HTTP'.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['TargetGroupTargetArgs', 'TargetGroupTargetArgsDict']]]] targets: [list] Array of items in the collection
+        :param pulumi.Input[Sequence[pulumi.Input[Union['TargetGroupTargetArgs', 'TargetGroupTargetArgsDict', 'outputs.TargetGroupTarget']]]] targets: [list] Array of items in the collection
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 

@@ -127,10 +127,6 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Objectstorage
     [OutputType]
     public sealed class GetBucketResult
     {
-        /// <summary>
-        /// The provider-assigned unique ID for this managed resource.
-        /// </summary>
-        public readonly string Id;
         public readonly string Name;
         /// <summary>
         /// The region where the bucket is located.
@@ -139,13 +135,10 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Objectstorage
 
         [OutputConstructor]
         private GetBucketResult(
-            string id,
-
             string name,
 
             string region)
         {
-            Id = id;
             Name = name;
             Region = region;
         }

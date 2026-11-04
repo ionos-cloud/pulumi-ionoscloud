@@ -249,8 +249,8 @@ class Group(pulumi.CustomResource):
                  max_replica_count: pulumi.Input[Optional[_builtins.int]] = None,
                  min_replica_count: pulumi.Input[Optional[_builtins.int]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
-                 policy: pulumi.Input[Optional[Union['GroupPolicyArgs', 'GroupPolicyArgsDict']]] = None,
-                 replica_configuration: pulumi.Input[Optional[Union['GroupReplicaConfigurationArgs', 'GroupReplicaConfigurationArgsDict']]] = None,
+                 policy: pulumi.Input[Optional[Union['GroupPolicyArgs', 'GroupPolicyArgsDict', 'outputs.GroupPolicy']]] = None,
+                 replica_configuration: pulumi.Input[Optional[Union['GroupReplicaConfigurationArgs', 'GroupReplicaConfigurationArgsDict', 'outputs.GroupReplicaConfiguration']]] = None,
                  __props__=None):
         """
         Manages an [Autoscaling Group](https://docs.ionos.com/cloud/compute-services/vm-auto-scaling/overview#components-of-vm-auto-scaling) on IONOS CLOUD.
@@ -361,8 +361,8 @@ class Group(pulumi.CustomResource):
         :param pulumi.Input[_builtins.int] max_replica_count: [int] The maximum value for the number of replicas on a VM Auto Scaling Group. Must be >= 0 and <= 200. Will be enforced for both automatic and manual changes.
         :param pulumi.Input[_builtins.int] min_replica_count: [int] The minimum value for the number of replicas on a VM Auto Scaling Group. Must be >= 0 and <= 200. Will be enforced for both automatic and manual changes.
         :param pulumi.Input[_builtins.str] name: [string] User-defined name for the Autoscaling Group.
-        :param pulumi.Input[Union['GroupPolicyArgs', 'GroupPolicyArgsDict']] policy: [List] Specifies the behavior of this Autoscaling Group. A policy consists of Triggers and Actions, whereby an Action is some kind of automated behavior, and a Trigger is defined by the circumstances under which the Action is triggered. Currently, two separate Actions, namely Scaling In and Out are supported, triggered through Thresholds defined on a given Metric.
-        :param pulumi.Input[Union['GroupReplicaConfigurationArgs', 'GroupReplicaConfigurationArgsDict']] replica_configuration: [List]
+        :param pulumi.Input[Union['GroupPolicyArgs', 'GroupPolicyArgsDict', 'outputs.GroupPolicy']] policy: [List] Specifies the behavior of this Autoscaling Group. A policy consists of Triggers and Actions, whereby an Action is some kind of automated behavior, and a Trigger is defined by the circumstances under which the Action is triggered. Currently, two separate Actions, namely Scaling In and Out are supported, triggered through Thresholds defined on a given Metric.
+        :param pulumi.Input[Union['GroupReplicaConfigurationArgs', 'GroupReplicaConfigurationArgsDict', 'outputs.GroupReplicaConfiguration']] replica_configuration: [List]
         """
         ...
     @overload
@@ -492,8 +492,8 @@ class Group(pulumi.CustomResource):
                  max_replica_count: pulumi.Input[Optional[_builtins.int]] = None,
                  min_replica_count: pulumi.Input[Optional[_builtins.int]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
-                 policy: pulumi.Input[Optional[Union['GroupPolicyArgs', 'GroupPolicyArgsDict']]] = None,
-                 replica_configuration: pulumi.Input[Optional[Union['GroupReplicaConfigurationArgs', 'GroupReplicaConfigurationArgsDict']]] = None,
+                 policy: pulumi.Input[Optional[Union['GroupPolicyArgs', 'GroupPolicyArgsDict', 'outputs.GroupPolicy']]] = None,
+                 replica_configuration: pulumi.Input[Optional[Union['GroupReplicaConfigurationArgs', 'GroupReplicaConfigurationArgsDict', 'outputs.GroupReplicaConfiguration']]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -535,8 +535,8 @@ class Group(pulumi.CustomResource):
             max_replica_count: pulumi.Input[Optional[_builtins.int]] = None,
             min_replica_count: pulumi.Input[Optional[_builtins.int]] = None,
             name: pulumi.Input[Optional[_builtins.str]] = None,
-            policy: pulumi.Input[Optional[Union['GroupPolicyArgs', 'GroupPolicyArgsDict']]] = None,
-            replica_configuration: pulumi.Input[Optional[Union['GroupReplicaConfigurationArgs', 'GroupReplicaConfigurationArgsDict']]] = None) -> 'Group':
+            policy: pulumi.Input[Optional[Union['GroupPolicyArgs', 'GroupPolicyArgsDict', 'outputs.GroupPolicy']]] = None,
+            replica_configuration: pulumi.Input[Optional[Union['GroupReplicaConfigurationArgs', 'GroupReplicaConfigurationArgsDict', 'outputs.GroupReplicaConfiguration']]] = None) -> 'Group':
         """
         Get an existing Group resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -549,8 +549,8 @@ class Group(pulumi.CustomResource):
         :param pulumi.Input[_builtins.int] max_replica_count: [int] The maximum value for the number of replicas on a VM Auto Scaling Group. Must be >= 0 and <= 200. Will be enforced for both automatic and manual changes.
         :param pulumi.Input[_builtins.int] min_replica_count: [int] The minimum value for the number of replicas on a VM Auto Scaling Group. Must be >= 0 and <= 200. Will be enforced for both automatic and manual changes.
         :param pulumi.Input[_builtins.str] name: [string] User-defined name for the Autoscaling Group.
-        :param pulumi.Input[Union['GroupPolicyArgs', 'GroupPolicyArgsDict']] policy: [List] Specifies the behavior of this Autoscaling Group. A policy consists of Triggers and Actions, whereby an Action is some kind of automated behavior, and a Trigger is defined by the circumstances under which the Action is triggered. Currently, two separate Actions, namely Scaling In and Out are supported, triggered through Thresholds defined on a given Metric.
-        :param pulumi.Input[Union['GroupReplicaConfigurationArgs', 'GroupReplicaConfigurationArgsDict']] replica_configuration: [List]
+        :param pulumi.Input[Union['GroupPolicyArgs', 'GroupPolicyArgsDict', 'outputs.GroupPolicy']] policy: [List] Specifies the behavior of this Autoscaling Group. A policy consists of Triggers and Actions, whereby an Action is some kind of automated behavior, and a Trigger is defined by the circumstances under which the Action is triggered. Currently, two separate Actions, namely Scaling In and Out are supported, triggered through Thresholds defined on a given Metric.
+        :param pulumi.Input[Union['GroupReplicaConfigurationArgs', 'GroupReplicaConfigurationArgsDict', 'outputs.GroupReplicaConfiguration']] replica_configuration: [List]
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 

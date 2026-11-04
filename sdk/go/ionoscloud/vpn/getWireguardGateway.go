@@ -89,12 +89,8 @@ type LookupWireguardGatewayResult struct {
 }
 
 func LookupWireguardGatewayOutput(ctx *pulumi.Context, args LookupWireguardGatewayOutputArgs, opts ...pulumi.InvokeOption) LookupWireguardGatewayResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupWireguardGatewayResultOutput, error) {
-			args := v.(LookupWireguardGatewayArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("ionoscloud:vpn/getWireguardGateway:getWireguardGateway", args, LookupWireguardGatewayResultOutput{}, options).(LookupWireguardGatewayResultOutput), nil
-		}).(LookupWireguardGatewayResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("ionoscloud:vpn/getWireguardGateway:getWireguardGateway", args, LookupWireguardGatewayResultOutput{}, options).(LookupWireguardGatewayResultOutput)
 }
 
 // A collection of arguments for invoking getWireguardGateway.

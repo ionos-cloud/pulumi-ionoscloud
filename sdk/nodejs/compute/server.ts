@@ -273,7 +273,7 @@ import * as utilities from "../utilities";
  *     name: "ubuntu_latest_from_cdrom",
  *     cores: 1,
  *     ram: 1024,
- *     cpuFamily: cdromDatacenter.cpuArchitectures.apply(cpuArchitectures => cpuArchitectures[0].cpuFamily),
+ *     cpuFamily: cdromDatacenter.cpuArchitectures[0].cpuFamily,
  *     type: "ENTERPRISE",
  *     volume: {
  *         name: "hdd0",
@@ -355,15 +355,14 @@ export class Server extends pulumi.CustomResource {
      * ⚠️ **_Warning: `allowReplace` - lets you update immutable fields, but it first destroys and then re-creates the server in order to do it. This field should be used with care, understanding the risks._**
      *
      * > **⚠ WARNING**
-     * >
+     * > 
      * > Image_name under volume level is deprecated, please use imageName under server level
-     * > sshKeyPath and sshKeys fields are immutable.
-     *
+     * sshKeyPath and sshKeys fields are immutable.
      *
      * > **⚠ WARNING**
-     * >
+     * > 
      * > If you want to create a **CUBE** server, you have to provide the `templateUuid`. In this case you can not set `cores`, `ram` and `volume.size` arguments, these being mutually exclusive with `templateUuid`.
-     * >
+     * > 
      * > In all the other cases (**ENTERPRISE** servers) you have to provide values for `cores`, `ram` and `volume size`.
      */
     declare public readonly confidential: pulumi.Output<boolean>;
@@ -590,15 +589,14 @@ export interface ServerState {
      * ⚠️ **_Warning: `allowReplace` - lets you update immutable fields, but it first destroys and then re-creates the server in order to do it. This field should be used with care, understanding the risks._**
      *
      * > **⚠ WARNING**
-     * >
+     * > 
      * > Image_name under volume level is deprecated, please use imageName under server level
-     * > sshKeyPath and sshKeys fields are immutable.
-     *
+     * sshKeyPath and sshKeys fields are immutable.
      *
      * > **⚠ WARNING**
-     * >
+     * > 
      * > If you want to create a **CUBE** server, you have to provide the `templateUuid`. In this case you can not set `cores`, `ram` and `volume.size` arguments, these being mutually exclusive with `templateUuid`.
-     * >
+     * > 
      * > In all the other cases (**ENTERPRISE** servers) you have to provide values for `cores`, `ram` and `volume size`.
      */
     confidential?: pulumi.Input<boolean | undefined>;
@@ -734,15 +732,14 @@ export interface ServerArgs {
      * ⚠️ **_Warning: `allowReplace` - lets you update immutable fields, but it first destroys and then re-creates the server in order to do it. This field should be used with care, understanding the risks._**
      *
      * > **⚠ WARNING**
-     * >
+     * > 
      * > Image_name under volume level is deprecated, please use imageName under server level
-     * > sshKeyPath and sshKeys fields are immutable.
-     *
+     * sshKeyPath and sshKeys fields are immutable.
      *
      * > **⚠ WARNING**
-     * >
+     * > 
      * > If you want to create a **CUBE** server, you have to provide the `templateUuid`. In this case you can not set `cores`, `ram` and `volume.size` arguments, these being mutually exclusive with `templateUuid`.
-     * >
+     * > 
      * > In all the other cases (**ENTERPRISE** servers) you have to provide values for `cores`, `ram` and `volume size`.
      */
     confidential?: pulumi.Input<boolean | undefined>;

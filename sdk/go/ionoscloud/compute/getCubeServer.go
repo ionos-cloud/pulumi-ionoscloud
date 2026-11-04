@@ -128,12 +128,8 @@ type LookupCubeServerResult struct {
 }
 
 func LookupCubeServerOutput(ctx *pulumi.Context, args LookupCubeServerOutputArgs, opts ...pulumi.InvokeOption) LookupCubeServerResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupCubeServerResultOutput, error) {
-			args := v.(LookupCubeServerArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("ionoscloud:compute/getCubeServer:getCubeServer", args, LookupCubeServerResultOutput{}, options).(LookupCubeServerResultOutput), nil
-		}).(LookupCubeServerResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("ionoscloud:compute/getCubeServer:getCubeServer", args, LookupCubeServerResultOutput{}, options).(LookupCubeServerResultOutput)
 }
 
 // A collection of arguments for invoking getCubeServer.

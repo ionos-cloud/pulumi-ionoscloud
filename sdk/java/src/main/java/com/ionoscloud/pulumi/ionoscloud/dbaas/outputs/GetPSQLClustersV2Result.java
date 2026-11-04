@@ -20,11 +20,6 @@ public final class GetPSQLClustersV2Result {
      */
     private List<GetPSQLClustersV2Cluster> clusters;
     /**
-     * @return The provider-assigned unique ID for this managed resource.
-     * 
-     */
-    private String id;
-    /**
      * @return The Object Storage location where the backups are stored.
      * 
      */
@@ -42,13 +37,6 @@ public final class GetPSQLClustersV2Result {
      */
     public List<GetPSQLClustersV2Cluster> clusters() {
         return this.clusters;
-    }
-    /**
-     * @return The provider-assigned unique ID for this managed resource.
-     * 
-     */
-    public String id() {
-        return this.id;
     }
     /**
      * @return The Object Storage location where the backups are stored.
@@ -75,14 +63,12 @@ public final class GetPSQLClustersV2Result {
     @CustomType.Builder
     public static final class Builder {
         private List<GetPSQLClustersV2Cluster> clusters;
-        private String id;
         private String location;
         private @Nullable String name;
         public Builder() {}
         public Builder(GetPSQLClustersV2Result defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.clusters = defaults.clusters;
-    	      this.id = defaults.id;
     	      this.location = defaults.location;
     	      this.name = defaults.name;
         }
@@ -97,14 +83,6 @@ public final class GetPSQLClustersV2Result {
         }
         public Builder clusters(GetPSQLClustersV2Cluster... clusters) {
             return clusters(List.of(clusters));
-        }
-        @CustomType.Setter
-        public Builder id(String id) {
-            if (id == null) {
-              throw new MissingRequiredPropertyException("GetPSQLClustersV2Result", "id");
-            }
-            this.id = id;
-            return this;
         }
         @CustomType.Setter
         public Builder location(String location) {
@@ -123,7 +101,6 @@ public final class GetPSQLClustersV2Result {
         public GetPSQLClustersV2Result build() {
             final var _resultValue = new GetPSQLClustersV2Result();
             _resultValue.clusters = clusters;
-            _resultValue.id = id;
             _resultValue.location = location;
             _resultValue.name = name;
             return _resultValue;

@@ -46,7 +46,7 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var examplePgDatabase = new PSQLDatabase("examplePgDatabase", PSQLDatabaseArgs.builder()
- *             .clusterId(example.id())
+ *             .clusterId(example.get("id"))
  *             .name("exampledatabase")
  *             .owner("exampleuser")
  *             .build());

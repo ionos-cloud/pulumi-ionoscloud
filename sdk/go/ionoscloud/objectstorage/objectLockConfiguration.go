@@ -39,7 +39,7 @@ import (
 //				Bucket:            example.Name,
 //				ObjectLockEnabled: pulumi.String("Enabled"),
 //				Rule: objectstorage.ObjectLockConfigurationRuleArgs{
-//					map[string]interface{}{
+//					map[string][]map[string]interface{}{
 //						"defaultRetention": []map[string]interface{}{
 //							map[string]interface{}{
 //								"mode": "GOVERNANCE",

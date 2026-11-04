@@ -60,9 +60,8 @@ class VCPUServerArgs:
         :param pulumi.Input['VCPUServerNicArgs'] nic: See the Nic section.
         :param pulumi.Input[_builtins.bool] nic_multi_queue: [bool] Activate or deactivate the Multi Queue feature on all NICs of the server. This feature is beneficial to enable when the NICs are experiencing performance issues (e.g. low throughput). Toggling this feature will also initiate a restart of the server. If the specified value is `true`, the feature will be activated; if it is not specified or set to `false`, the feature will be deactivated.
                
-               
                > **⚠ WARNING**
-               >
+               > 
                > ssh_keys field is immutable.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] security_groups_ids: The list of Security Group IDs for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ssh_keys: [list] Immutable List of absolute or relative paths to files containing public SSH key that will be injected into IONOS CLOUD provided Linux images. Also accepts ssh keys directly. Public SSH keys are set on the image as authorized keys for appropriate SSH login to the instance using the corresponding private key. This field may only be set in creation requests. When reading, it always returns null. SSH keys are only supported if a public Linux image is used for the volume creation. Does not support `~` expansion to homedir in the given path.
@@ -293,9 +292,8 @@ class VCPUServerArgs:
         """
         [bool] Activate or deactivate the Multi Queue feature on all NICs of the server. This feature is beneficial to enable when the NICs are experiencing performance issues (e.g. low throughput). Toggling this feature will also initiate a restart of the server. If the specified value is `true`, the feature will be activated; if it is not specified or set to `false`, the feature will be deactivated.
 
-
         > **⚠ WARNING**
-        >
+        > 
         > ssh_keys field is immutable.
         """
         return pulumi.get(self, "nic_multi_queue")
@@ -395,9 +393,8 @@ class _VCPUServerState:
         :param pulumi.Input['VCPUServerNicArgs'] nic: See the Nic section.
         :param pulumi.Input[_builtins.bool] nic_multi_queue: [bool] Activate or deactivate the Multi Queue feature on all NICs of the server. This feature is beneficial to enable when the NICs are experiencing performance issues (e.g. low throughput). Toggling this feature will also initiate a restart of the server. If the specified value is `true`, the feature will be activated; if it is not specified or set to `false`, the feature will be deactivated.
                
-               
                > **⚠ WARNING**
-               >
+               > 
                > ssh_keys field is immutable.
         :param pulumi.Input[_builtins.str] primary_ip: The associated IP address.
         :param pulumi.Input[_builtins.str] primary_nic: The associated NIC.
@@ -699,9 +696,8 @@ class _VCPUServerState:
         """
         [bool] Activate or deactivate the Multi Queue feature on all NICs of the server. This feature is beneficial to enable when the NICs are experiencing performance issues (e.g. low throughput). Toggling this feature will also initiate a restart of the server. If the specified value is `true`, the feature will be activated; if it is not specified or set to `false`, the feature will be deactivated.
 
-
         > **⚠ WARNING**
-        >
+        > 
         > ssh_keys field is immutable.
         """
         return pulumi.get(self, "nic_multi_queue")
@@ -819,16 +815,16 @@ class VCPUServer(pulumi.CustomResource):
                  hostname: pulumi.Input[Optional[_builtins.str]] = None,
                  image_name: pulumi.Input[Optional[_builtins.str]] = None,
                  image_password: pulumi.Input[Optional[_builtins.str]] = None,
-                 labels: pulumi.Input[Optional[Sequence[pulumi.Input[Union['VCPUServerLabelArgs', 'VCPUServerLabelArgsDict']]]]] = None,
+                 labels: pulumi.Input[Optional[Sequence[pulumi.Input[Union['VCPUServerLabelArgs', 'VCPUServerLabelArgsDict', 'outputs.VCPUServerLabel']]]]] = None,
                  location: pulumi.Input[Optional[_builtins.str]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
-                 nic: pulumi.Input[Optional[Union['VCPUServerNicArgs', 'VCPUServerNicArgsDict']]] = None,
+                 nic: pulumi.Input[Optional[Union['VCPUServerNicArgs', 'VCPUServerNicArgsDict', 'outputs.VCPUServerNic']]] = None,
                  nic_multi_queue: pulumi.Input[Optional[_builtins.bool]] = None,
                  ram: pulumi.Input[Optional[_builtins.int]] = None,
                  security_groups_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  ssh_keys: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  vm_state: pulumi.Input[Optional[_builtins.str]] = None,
-                 volume: pulumi.Input[Optional[Union['VCPUServerVolumeArgs', 'VCPUServerVolumeArgsDict']]] = None,
+                 volume: pulumi.Input[Optional[Union['VCPUServerVolumeArgs', 'VCPUServerVolumeArgsDict', 'outputs.VCPUServerVolume']]] = None,
                  __props__=None):
         """
         A [vCPU Server](https://docs.ionos.com/cloud/compute-services/compute-engine/vcpu-server) that you create is a new Virtual Machine (VM) provisioned and hosted in one of IONOS' physical data centers. A vCPU Server behaves exactly like physical servers and you can use them either standalone or in combination with other IONOS CLOUD products.
@@ -946,21 +942,20 @@ class VCPUServer(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] hostname: (Computed)[string] The hostname of the resource. Allowed characters are a-z, 0-9 and - (minus). Hostname should not start with minus and should not be longer than 63 characters. If no value provided explicitly, it will be populated with the name of the server
         :param pulumi.Input[_builtins.str] image_name: [string] The name, ID or alias of the image. May also be a snapshot ID. It is required if `licence_type` is not provided. Attribute is immutable.
         :param pulumi.Input[_builtins.str] image_password: [string] The password for the image.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['VCPUServerLabelArgs', 'VCPUServerLabelArgsDict']]]] labels: A label can be seen as an object with only two required fields: `key` and `value`, both of the `string` type. Please check the example presented above to see how a `label` can be used in the plan. A server can have multiple labels.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['VCPUServerLabelArgs', 'VCPUServerLabelArgsDict', 'outputs.VCPUServerLabel']]]] labels: A label can be seen as an object with only two required fields: `key` and `value`, both of the `string` type. Please check the example presented above to see how a `label` can be used in the plan. A server can have multiple labels.
         :param pulumi.Input[_builtins.str] location: The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
         :param pulumi.Input[_builtins.str] name: [string] The name of the server.
-        :param pulumi.Input[Union['VCPUServerNicArgs', 'VCPUServerNicArgsDict']] nic: See the Nic section.
+        :param pulumi.Input[Union['VCPUServerNicArgs', 'VCPUServerNicArgsDict', 'outputs.VCPUServerNic']] nic: See the Nic section.
         :param pulumi.Input[_builtins.bool] nic_multi_queue: [bool] Activate or deactivate the Multi Queue feature on all NICs of the server. This feature is beneficial to enable when the NICs are experiencing performance issues (e.g. low throughput). Toggling this feature will also initiate a restart of the server. If the specified value is `true`, the feature will be activated; if it is not specified or set to `false`, the feature will be deactivated.
                
-               
                > **⚠ WARNING**
-               >
+               > 
                > ssh_keys field is immutable.
         :param pulumi.Input[_builtins.int] ram: [integer] The amount of memory for the server in MB.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] security_groups_ids: The list of Security Group IDs for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ssh_keys: [list] Immutable List of absolute or relative paths to files containing public SSH key that will be injected into IONOS CLOUD provided Linux images. Also accepts ssh keys directly. Public SSH keys are set on the image as authorized keys for appropriate SSH login to the instance using the corresponding private key. This field may only be set in creation requests. When reading, it always returns null. SSH keys are only supported if a public Linux image is used for the volume creation. Does not support `~` expansion to homedir in the given path.
         :param pulumi.Input[_builtins.str] vm_state: Sets the power state of the vcpu server. Possible values: `RUNNING` or `SHUTOFF`.
-        :param pulumi.Input[Union['VCPUServerVolumeArgs', 'VCPUServerVolumeArgsDict']] volume: See the Volume section.
+        :param pulumi.Input[Union['VCPUServerVolumeArgs', 'VCPUServerVolumeArgsDict', 'outputs.VCPUServerVolume']] volume: See the Volume section.
         """
         ...
     @overload
@@ -1097,16 +1092,16 @@ class VCPUServer(pulumi.CustomResource):
                  hostname: pulumi.Input[Optional[_builtins.str]] = None,
                  image_name: pulumi.Input[Optional[_builtins.str]] = None,
                  image_password: pulumi.Input[Optional[_builtins.str]] = None,
-                 labels: pulumi.Input[Optional[Sequence[pulumi.Input[Union['VCPUServerLabelArgs', 'VCPUServerLabelArgsDict']]]]] = None,
+                 labels: pulumi.Input[Optional[Sequence[pulumi.Input[Union['VCPUServerLabelArgs', 'VCPUServerLabelArgsDict', 'outputs.VCPUServerLabel']]]]] = None,
                  location: pulumi.Input[Optional[_builtins.str]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
-                 nic: pulumi.Input[Optional[Union['VCPUServerNicArgs', 'VCPUServerNicArgsDict']]] = None,
+                 nic: pulumi.Input[Optional[Union['VCPUServerNicArgs', 'VCPUServerNicArgsDict', 'outputs.VCPUServerNic']]] = None,
                  nic_multi_queue: pulumi.Input[Optional[_builtins.bool]] = None,
                  ram: pulumi.Input[Optional[_builtins.int]] = None,
                  security_groups_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  ssh_keys: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  vm_state: pulumi.Input[Optional[_builtins.str]] = None,
-                 volume: pulumi.Input[Optional[Union['VCPUServerVolumeArgs', 'VCPUServerVolumeArgsDict']]] = None,
+                 volume: pulumi.Input[Optional[Union['VCPUServerVolumeArgs', 'VCPUServerVolumeArgsDict', 'outputs.VCPUServerVolume']]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -1179,10 +1174,10 @@ class VCPUServer(pulumi.CustomResource):
             image_name: pulumi.Input[Optional[_builtins.str]] = None,
             image_password: pulumi.Input[Optional[_builtins.str]] = None,
             inline_volume_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            labels: pulumi.Input[Optional[Sequence[pulumi.Input[Union['VCPUServerLabelArgs', 'VCPUServerLabelArgsDict']]]]] = None,
+            labels: pulumi.Input[Optional[Sequence[pulumi.Input[Union['VCPUServerLabelArgs', 'VCPUServerLabelArgsDict', 'outputs.VCPUServerLabel']]]]] = None,
             location: pulumi.Input[Optional[_builtins.str]] = None,
             name: pulumi.Input[Optional[_builtins.str]] = None,
-            nic: pulumi.Input[Optional[Union['VCPUServerNicArgs', 'VCPUServerNicArgsDict']]] = None,
+            nic: pulumi.Input[Optional[Union['VCPUServerNicArgs', 'VCPUServerNicArgsDict', 'outputs.VCPUServerNic']]] = None,
             nic_multi_queue: pulumi.Input[Optional[_builtins.bool]] = None,
             primary_ip: pulumi.Input[Optional[_builtins.str]] = None,
             primary_nic: pulumi.Input[Optional[_builtins.str]] = None,
@@ -1191,7 +1186,7 @@ class VCPUServer(pulumi.CustomResource):
             ssh_keys: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
             type: pulumi.Input[Optional[_builtins.str]] = None,
             vm_state: pulumi.Input[Optional[_builtins.str]] = None,
-            volume: pulumi.Input[Optional[Union['VCPUServerVolumeArgs', 'VCPUServerVolumeArgsDict']]] = None) -> 'VCPUServer':
+            volume: pulumi.Input[Optional[Union['VCPUServerVolumeArgs', 'VCPUServerVolumeArgsDict', 'outputs.VCPUServerVolume']]] = None) -> 'VCPUServer':
         """
         Get an existing VCPUServer resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -1213,15 +1208,14 @@ class VCPUServer(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] image_name: [string] The name, ID or alias of the image. May also be a snapshot ID. It is required if `licence_type` is not provided. Attribute is immutable.
         :param pulumi.Input[_builtins.str] image_password: [string] The password for the image.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] inline_volume_ids: A list with the IDs for the volumes that are defined inside the server resource.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['VCPUServerLabelArgs', 'VCPUServerLabelArgsDict']]]] labels: A label can be seen as an object with only two required fields: `key` and `value`, both of the `string` type. Please check the example presented above to see how a `label` can be used in the plan. A server can have multiple labels.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['VCPUServerLabelArgs', 'VCPUServerLabelArgsDict', 'outputs.VCPUServerLabel']]]] labels: A label can be seen as an object with only two required fields: `key` and `value`, both of the `string` type. Please check the example presented above to see how a `label` can be used in the plan. A server can have multiple labels.
         :param pulumi.Input[_builtins.str] location: The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
         :param pulumi.Input[_builtins.str] name: [string] The name of the server.
-        :param pulumi.Input[Union['VCPUServerNicArgs', 'VCPUServerNicArgsDict']] nic: See the Nic section.
+        :param pulumi.Input[Union['VCPUServerNicArgs', 'VCPUServerNicArgsDict', 'outputs.VCPUServerNic']] nic: See the Nic section.
         :param pulumi.Input[_builtins.bool] nic_multi_queue: [bool] Activate or deactivate the Multi Queue feature on all NICs of the server. This feature is beneficial to enable when the NICs are experiencing performance issues (e.g. low throughput). Toggling this feature will also initiate a restart of the server. If the specified value is `true`, the feature will be activated; if it is not specified or set to `false`, the feature will be deactivated.
                
-               
                > **⚠ WARNING**
-               >
+               > 
                > ssh_keys field is immutable.
         :param pulumi.Input[_builtins.str] primary_ip: The associated IP address.
         :param pulumi.Input[_builtins.str] primary_nic: The associated NIC.
@@ -1229,7 +1223,7 @@ class VCPUServer(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] security_groups_ids: The list of Security Group IDs for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ssh_keys: [list] Immutable List of absolute or relative paths to files containing public SSH key that will be injected into IONOS CLOUD provided Linux images. Also accepts ssh keys directly. Public SSH keys are set on the image as authorized keys for appropriate SSH login to the instance using the corresponding private key. This field may only be set in creation requests. When reading, it always returns null. SSH keys are only supported if a public Linux image is used for the volume creation. Does not support `~` expansion to homedir in the given path.
         :param pulumi.Input[_builtins.str] vm_state: Sets the power state of the vcpu server. Possible values: `RUNNING` or `SHUTOFF`.
-        :param pulumi.Input[Union['VCPUServerVolumeArgs', 'VCPUServerVolumeArgsDict']] volume: See the Volume section.
+        :param pulumi.Input[Union['VCPUServerVolumeArgs', 'VCPUServerVolumeArgsDict', 'outputs.VCPUServerVolume']] volume: See the Volume section.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -1421,9 +1415,8 @@ class VCPUServer(pulumi.CustomResource):
         """
         [bool] Activate or deactivate the Multi Queue feature on all NICs of the server. This feature is beneficial to enable when the NICs are experiencing performance issues (e.g. low throughput). Toggling this feature will also initiate a restart of the server. If the specified value is `true`, the feature will be activated; if it is not specified or set to `false`, the feature will be deactivated.
 
-
         > **⚠ WARNING**
-        >
+        > 
         > ssh_keys field is immutable.
         """
         return pulumi.get(self, "nic_multi_queue")

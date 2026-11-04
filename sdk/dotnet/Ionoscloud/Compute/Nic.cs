@@ -78,7 +78,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
     ///     {
     ///         DatacenterId = example.Id,
     ///         ServerId = exampleServer.Id,
-    ///         Lan = exampleLan.Id,
+    ///         Lan = exampleLan.Id.Apply(x =&gt; int.Parse(x, System.Globalization.CultureInfo.InvariantCulture)),
     ///         Name = "NIC",
     ///         Dhcp = true,
     ///         FirewallActive = true,
@@ -158,7 +158,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
     ///     {
     ///         DatacenterId = example.Id,
     ///         ServerId = exampleServer.Id,
-    ///         Lan = exampleLan.Id,
+    ///         Lan = exampleLan.Id.Apply(x =&gt; int.Parse(x, System.Globalization.CultureInfo.InvariantCulture)),
     ///         Name = "IPv6 Enabled NIC",
     ///         Dhcp = true,
     ///         FirewallActive = true,

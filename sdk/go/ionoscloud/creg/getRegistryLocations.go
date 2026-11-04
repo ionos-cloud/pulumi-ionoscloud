@@ -55,10 +55,8 @@ type GetRegistryLocationsResult struct {
 }
 
 func GetRegistryLocationsOutput(ctx *pulumi.Context, opts ...pulumi.InvokeOption) GetRegistryLocationsResultOutput {
-	return pulumi.ToOutput(0).ApplyT(func(int) (GetRegistryLocationsResultOutput, error) {
-		options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-		return ctx.InvokeOutput("ionoscloud:creg/getRegistryLocations:getRegistryLocations", nil, GetRegistryLocationsResultOutput{}, options).(GetRegistryLocationsResultOutput), nil
-	}).(GetRegistryLocationsResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("ionoscloud:creg/getRegistryLocations:getRegistryLocations", nil, GetRegistryLocationsResultOutput{}, options).(GetRegistryLocationsResultOutput)
 }
 
 // A collection of values returned by getRegistryLocations.

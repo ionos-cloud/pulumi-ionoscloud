@@ -94,12 +94,8 @@ type LookupInMemoryDBReplicaSetResult struct {
 }
 
 func LookupInMemoryDBReplicaSetOutput(ctx *pulumi.Context, args LookupInMemoryDBReplicaSetOutputArgs, opts ...pulumi.InvokeOption) LookupInMemoryDBReplicaSetResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupInMemoryDBReplicaSetResultOutput, error) {
-			args := v.(LookupInMemoryDBReplicaSetArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("ionoscloud:dbaas/getInMemoryDBReplicaSet:getInMemoryDBReplicaSet", args, LookupInMemoryDBReplicaSetResultOutput{}, options).(LookupInMemoryDBReplicaSetResultOutput), nil
-		}).(LookupInMemoryDBReplicaSetResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("ionoscloud:dbaas/getInMemoryDBReplicaSet:getInMemoryDBReplicaSet", args, LookupInMemoryDBReplicaSetResultOutput{}, options).(LookupInMemoryDBReplicaSetResultOutput)
 }
 
 // A collection of arguments for invoking getInMemoryDBReplicaSet.

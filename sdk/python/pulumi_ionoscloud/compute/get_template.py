@@ -125,7 +125,7 @@ class AwaitableGetTemplateResult(GetTemplateResult):
 
 def get_template(category: Optional[_builtins.str] = None,
                  cores: Optional[_builtins.float] = None,
-                 gpuses: Optional[Sequence[Union['GetTemplateGpusArgs', 'GetTemplateGpusArgsDict']]] = None,
+                 gpuses: Optional[Sequence[Union['GetTemplateGpusArgs', 'GetTemplateGpusArgsDict', 'outputs.GetTemplateGpusResult']]] = None,
                  name: Optional[_builtins.str] = None,
                  ram: Optional[_builtins.float] = None,
                  storage_size: Optional[_builtins.float] = None,
@@ -174,7 +174,7 @@ def get_template(category: Optional[_builtins.str] = None,
            
            Any of the arguments ca be provided. If none, the datasource will return an error.
     :param _builtins.float cores: The CPU cores count.
-    :param Sequence[Union['GetTemplateGpusArgs', 'GetTemplateGpusArgsDict']] gpuses: List of GPUs in the template
+    :param Sequence[Union['GetTemplateGpusArgs', 'GetTemplateGpusArgsDict', 'outputs.GetTemplateGpusResult']] gpuses: List of GPUs in the template
     :param _builtins.str name: A name of that resource.
     :param _builtins.float ram: The RAM size in MB.
     :param _builtins.float storage_size: The storage size in GB.
@@ -199,7 +199,7 @@ def get_template(category: Optional[_builtins.str] = None,
         storage_size=pulumi.get(__ret__, 'storage_size'))
 def get_template_output(category: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                         cores: pulumi.Input[Optional[Optional[_builtins.float]]] = None,
-                        gpuses: pulumi.Input[Optional[Optional[Sequence[Union['GetTemplateGpusArgs', 'GetTemplateGpusArgsDict']]]]] = None,
+                        gpuses: pulumi.Input[Optional[Optional[Sequence[Union['GetTemplateGpusArgs', 'GetTemplateGpusArgsDict', 'outputs.GetTemplateGpusResult']]]]] = None,
                         name: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                         ram: pulumi.Input[Optional[Optional[_builtins.float]]] = None,
                         storage_size: pulumi.Input[Optional[Optional[_builtins.float]]] = None,
@@ -248,7 +248,7 @@ def get_template_output(category: pulumi.Input[Optional[Optional[_builtins.str]]
            
            Any of the arguments ca be provided. If none, the datasource will return an error.
     :param _builtins.float cores: The CPU cores count.
-    :param Sequence[Union['GetTemplateGpusArgs', 'GetTemplateGpusArgsDict']] gpuses: List of GPUs in the template
+    :param Sequence[Union['GetTemplateGpusArgs', 'GetTemplateGpusArgsDict', 'outputs.GetTemplateGpusResult']] gpuses: List of GPUs in the template
     :param _builtins.str name: A name of that resource.
     :param _builtins.float ram: The RAM size in MB.
     :param _builtins.float storage_size: The storage size in GB.

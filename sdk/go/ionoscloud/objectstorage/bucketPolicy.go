@@ -51,7 +51,7 @@ import (
 //							"arn:aws:s3:::example",
 //							"arn:aws:s3:::example/*",
 //						},
-//						"Condition": map[string]interface{}{
+//						"Condition": map[string][]string{
 //							"IpAddress": []string{
 //								"123.123.123.123/32",
 //							},
@@ -68,7 +68,7 @@ import (
 //			json0 := string(tmpJSON0)
 //			_, err = objectstorage.NewBucketPolicy(ctx, "example", &objectstorage.BucketPolicyArgs{
 //				Bucket: example.Name,
-//				Policy: pulumi.String(pulumi.String(json0)),
+//				Policy: pulumi.String(json0),
 //			})
 //			if err != nil {
 //				return err

@@ -21,6 +21,8 @@ import (
 //
 // import (
 //
+//	"strconv"
+//
 //	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/compute"
 //	"github.com/pulumi/pulumi-random/sdk/go/random"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
@@ -85,7 +87,7 @@ import (
 //			_, err = compute.NewNic(ctx, "example", &compute.NicArgs{
 //				DatacenterId:   example.ID(),
 //				ServerId:       exampleServer.ID(),
-//				Lan:            exampleLan.ID(),
+//				Lan:            exampleLan.ID().ToStringOutput().ApplyT(strconv.Atoi).(pulumi.IntOutput),
 //				Name:           pulumi.String("NIC"),
 //				Dhcp:           pulumi.Bool(true),
 //				FirewallActive: pulumi.Bool(true),
@@ -114,6 +116,8 @@ import (
 // package main
 //
 // import (
+//
+//	"strconv"
 //
 //	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/compute"
 //	"github.com/pulumi/pulumi-random/sdk/go/random"
@@ -145,7 +149,7 @@ import (
 //				DatacenterId:  example.ID(),
 //				Public:        pulumi.Bool(true),
 //				Name:          pulumi.String("IPv6 Enabled LAN"),
-//				Ipv6CidrBlock: invokeCidrsubnet.Result,
+//				Ipv6CidrBlock: invokeCidrsubnet.Result.(pulumi.String),
 //			})
 //			if err != nil {
 //				return err
@@ -222,13 +226,13 @@ import (
 //			_, err = compute.NewNic(ctx, "example", &compute.NicArgs{
 //				DatacenterId:   example.ID(),
 //				ServerId:       exampleServer.ID(),
-//				Lan:            exampleLan.ID(),
+//				Lan:            exampleLan.ID().ToStringOutput().ApplyT(strconv.Atoi).(pulumi.IntOutput),
 //				Name:           pulumi.String("IPv6 Enabled NIC"),
 //				Dhcp:           pulumi.Bool(true),
 //				FirewallActive: pulumi.Bool(true),
 //				FirewallType:   pulumi.String("INGRESS"),
 //				Dhcpv6:         pulumi.Bool(false),
-//				Ipv6CidrBlock:  invokeCidrsubnet1.Result,
+//				Ipv6CidrBlock:  invokeCidrsubnet1.Result.(pulumi.String),
 //				Ipv6Ips: pulumi.StringArray{
 //					invokeCidrhost2.Result,
 //					invokeCidrhost3.Result,
@@ -308,7 +312,7 @@ import (
 //				FirewallActive: pulumi.Bool(true),
 //				FirewallType:   pulumi.String("INGRESS"),
 //				Dhcpv6:         pulumi.Bool(false),
-//				Ipv6CidrBlock:  invokeCidrsubnet.Result,
+//				Ipv6CidrBlock:  invokeCidrsubnet.Result.(pulumi.String),
 //				Ipv6Ips: pulumi.StringArray{
 //					invokeCidrhost1.Result,
 //					invokeCidrhost2.Result,

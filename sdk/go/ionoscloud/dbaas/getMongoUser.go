@@ -77,12 +77,8 @@ type LookupMongoUserResult struct {
 }
 
 func LookupMongoUserOutput(ctx *pulumi.Context, args LookupMongoUserOutputArgs, opts ...pulumi.InvokeOption) LookupMongoUserResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupMongoUserResultOutput, error) {
-			args := v.(LookupMongoUserArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("ionoscloud:dbaas/getMongoUser:getMongoUser", args, LookupMongoUserResultOutput{}, options).(LookupMongoUserResultOutput), nil
-		}).(LookupMongoUserResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("ionoscloud:dbaas/getMongoUser:getMongoUser", args, LookupMongoUserResultOutput{}, options).(LookupMongoUserResultOutput)
 }
 
 // A collection of arguments for invoking getMongoUser.

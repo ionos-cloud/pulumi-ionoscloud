@@ -47,7 +47,7 @@ public final class NsgFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var example = NsgFunctions.getNsg(GetNsgArgs.builder()
-     *             .datacenterId(exampleIonoscloudDatacenter.id())
+     *             .datacenterId(exampleIonoscloudDatacenter.get("id"))
      *             .id(nsgId)
      *             .build());
      * 
@@ -82,7 +82,7 @@ public final class NsgFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var example = NsgFunctions.getNsg(GetNsgArgs.builder()
-     *             .datacenterId(exampleIonoscloudDatacenter.id())
+     *             .datacenterId(exampleIonoscloudDatacenter.get("id"))
      *             .name("NSG Example")
      *             .build());
      * 
@@ -128,7 +128,7 @@ public final class NsgFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var example = NsgFunctions.getNsg(GetNsgArgs.builder()
-     *             .datacenterId(exampleIonoscloudDatacenter.id())
+     *             .datacenterId(exampleIonoscloudDatacenter.get("id"))
      *             .id(nsgId)
      *             .build());
      * 
@@ -163,7 +163,7 @@ public final class NsgFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var example = NsgFunctions.getNsg(GetNsgArgs.builder()
-     *             .datacenterId(exampleIonoscloudDatacenter.id())
+     *             .datacenterId(exampleIonoscloudDatacenter.get("id"))
      *             .name("NSG Example")
      *             .build());
      * 
@@ -209,7 +209,7 @@ public final class NsgFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var example = NsgFunctions.getNsg(GetNsgArgs.builder()
-     *             .datacenterId(exampleIonoscloudDatacenter.id())
+     *             .datacenterId(exampleIonoscloudDatacenter.get("id"))
      *             .id(nsgId)
      *             .build());
      * 
@@ -244,7 +244,7 @@ public final class NsgFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var example = NsgFunctions.getNsg(GetNsgArgs.builder()
-     *             .datacenterId(exampleIonoscloudDatacenter.id())
+     *             .datacenterId(exampleIonoscloudDatacenter.get("id"))
      *             .name("NSG Example")
      *             .build());
      * 
@@ -290,7 +290,7 @@ public final class NsgFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var example = NsgFunctions.getNsg(GetNsgArgs.builder()
-     *             .datacenterId(exampleIonoscloudDatacenter.id())
+     *             .datacenterId(exampleIonoscloudDatacenter.get("id"))
      *             .id(nsgId)
      *             .build());
      * 
@@ -325,7 +325,7 @@ public final class NsgFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var example = NsgFunctions.getNsg(GetNsgArgs.builder()
-     *             .datacenterId(exampleIonoscloudDatacenter.id())
+     *             .datacenterId(exampleIonoscloudDatacenter.get("id"))
      *             .name("NSG Example")
      *             .build());
      * 
@@ -371,7 +371,7 @@ public final class NsgFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var example = NsgFunctions.getNsg(GetNsgArgs.builder()
-     *             .datacenterId(exampleIonoscloudDatacenter.id())
+     *             .datacenterId(exampleIonoscloudDatacenter.get("id"))
      *             .id(nsgId)
      *             .build());
      * 
@@ -406,7 +406,7 @@ public final class NsgFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var example = NsgFunctions.getNsg(GetNsgArgs.builder()
-     *             .datacenterId(exampleIonoscloudDatacenter.id())
+     *             .datacenterId(exampleIonoscloudDatacenter.get("id"))
      *             .name("NSG Example")
      *             .build());
      * 

@@ -113,12 +113,8 @@ type LookupLanResult struct {
 }
 
 func LookupLanOutput(ctx *pulumi.Context, args LookupLanOutputArgs, opts ...pulumi.InvokeOption) LookupLanResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupLanResultOutput, error) {
-			args := v.(LookupLanArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("ionoscloud:compute/getLan:getLan", args, LookupLanResultOutput{}, options).(LookupLanResultOutput), nil
-		}).(LookupLanResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("ionoscloud:compute/getLan:getLan", args, LookupLanResultOutput{}, options).(LookupLanResultOutput)
 }
 
 // A collection of arguments for invoking getLan.

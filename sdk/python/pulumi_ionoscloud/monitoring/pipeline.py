@@ -184,7 +184,7 @@ class Pipeline(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  location: pulumi.Input[Optional[_builtins.str]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
-                 timeouts: pulumi.Input[Optional[Union['PipelineTimeoutsArgs', 'PipelineTimeoutsArgsDict']]] = None,
+                 timeouts: pulumi.Input[Optional[Union['PipelineTimeoutsArgs', 'PipelineTimeoutsArgsDict', 'outputs.PipelineTimeouts']]] = None,
                  __props__=None):
         """
         Manages a [Monitoring pipeline](https://docs.ionos.com/cloud/observability/monitoring-service).
@@ -304,7 +304,7 @@ class Pipeline(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  location: pulumi.Input[Optional[_builtins.str]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
-                 timeouts: pulumi.Input[Optional[Union['PipelineTimeoutsArgs', 'PipelineTimeoutsArgsDict']]] = None,
+                 timeouts: pulumi.Input[Optional[Union['PipelineTimeoutsArgs', 'PipelineTimeoutsArgsDict', 'outputs.PipelineTimeouts']]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -337,7 +337,7 @@ class Pipeline(pulumi.CustomResource):
             key: pulumi.Input[Optional[_builtins.str]] = None,
             location: pulumi.Input[Optional[_builtins.str]] = None,
             name: pulumi.Input[Optional[_builtins.str]] = None,
-            timeouts: pulumi.Input[Optional[Union['PipelineTimeoutsArgs', 'PipelineTimeoutsArgsDict']]] = None) -> 'Pipeline':
+            timeouts: pulumi.Input[Optional[Union['PipelineTimeoutsArgs', 'PipelineTimeoutsArgsDict', 'outputs.PipelineTimeouts']]] = None) -> 'Pipeline':
         """
         Get an existing Pipeline resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

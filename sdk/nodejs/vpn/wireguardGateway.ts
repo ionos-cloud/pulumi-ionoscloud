@@ -126,7 +126,7 @@ export class WireguardGateway extends pulumi.CustomResource {
     declare public readonly privateKey: pulumi.Output<string>;
     /**
      * (Computed)[String] The public key for the WireGuard Gateway.
-     * -
+     * ---
      * > **⚠ NOTE:** `IONOS_API_URL_VPN` can be used to set a custom API URL for the resource. `location` field needs to be empty, otherwise it will override the custom API URL. Setting `endpoint` or `IONOS_API_URL` does not have any effect.
      */
     declare public /*out*/ readonly publicKey: pulumi.Output<string>;
@@ -240,7 +240,7 @@ export interface WireguardGatewayState {
     privateKey?: pulumi.Input<string | undefined>;
     /**
      * (Computed)[String] The public key for the WireGuard Gateway.
-     * -
+     * ---
      * > **⚠ NOTE:** `IONOS_API_URL_VPN` can be used to set a custom API URL for the resource. `location` field needs to be empty, otherwise it will override the custom API URL. Setting `endpoint` or `IONOS_API_URL` does not have any effect.
      */
     publicKey?: pulumi.Input<string | undefined>;

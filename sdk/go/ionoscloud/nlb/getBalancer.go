@@ -115,12 +115,8 @@ type LookupBalancerResult struct {
 }
 
 func LookupBalancerOutput(ctx *pulumi.Context, args LookupBalancerOutputArgs, opts ...pulumi.InvokeOption) LookupBalancerResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupBalancerResultOutput, error) {
-			args := v.(LookupBalancerArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("ionoscloud:nlb/getBalancer:getBalancer", args, LookupBalancerResultOutput{}, options).(LookupBalancerResultOutput), nil
-		}).(LookupBalancerResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("ionoscloud:nlb/getBalancer:getBalancer", args, LookupBalancerResultOutput{}, options).(LookupBalancerResultOutput)
 }
 
 // A collection of arguments for invoking getBalancer.

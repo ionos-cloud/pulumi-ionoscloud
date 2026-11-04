@@ -113,10 +113,10 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var example = new Balancer("example", BalancerArgs.builder()
- *             .datacenterId(exampleIonoscloudDatacenter.id())
+ *             .datacenterId(exampleIonoscloudDatacenter.get("id"))
  *             .name("nlb with flowlog")
- *             .listenerLan(example1.id())
- *             .targetLan(example2.id())
+ *             .listenerLan(example1.get("id"))
+ *             .targetLan(example2.get("id"))
  *             .ips("10.12.118.224")
  *             .lbPrivateIps("10.13.72.225/24")
  *             .flowlog(BalancerFlowlogArgs.builder()

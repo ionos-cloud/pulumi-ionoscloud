@@ -47,10 +47,6 @@ export interface GetPSQLBackupLocationV2Result {
      */
     readonly backupLocations: outputs.dbaas.GetPSQLBackupLocationV2BackupLocation[];
     /**
-     * The provider-assigned unique ID for this managed resource.
-     */
-    readonly id: string;
-    /**
      * The Object Storage location identifier (e.g. `de`, `eu-central-2`).
      */
     readonly location: string;

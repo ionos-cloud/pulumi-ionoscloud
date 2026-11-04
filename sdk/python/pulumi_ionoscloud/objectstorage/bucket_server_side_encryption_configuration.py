@@ -106,7 +106,7 @@ class BucketServerSideEncryptionConfiguration(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  bucket: pulumi.Input[Optional[_builtins.str]] = None,
-                 rules: pulumi.Input[Optional[Sequence[pulumi.Input[Union['BucketServerSideEncryptionConfigurationRuleArgs', 'BucketServerSideEncryptionConfigurationRuleArgsDict']]]]] = None,
+                 rules: pulumi.Input[Optional[Sequence[pulumi.Input[Union['BucketServerSideEncryptionConfigurationRuleArgs', 'BucketServerSideEncryptionConfigurationRuleArgsDict', 'outputs.BucketServerSideEncryptionConfigurationRule']]]]] = None,
                  __props__=None):
         """
         Manages Server Side Encryption Configuration for Buckets on IONOS CLOUD.
@@ -139,7 +139,7 @@ class BucketServerSideEncryptionConfiguration(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] bucket: [string] The name of the bucket where the object will be stored.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['BucketServerSideEncryptionConfigurationRuleArgs', 'BucketServerSideEncryptionConfigurationRuleArgsDict']]]] rules: [block] A block of rule as defined below.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['BucketServerSideEncryptionConfigurationRuleArgs', 'BucketServerSideEncryptionConfigurationRuleArgsDict', 'outputs.BucketServerSideEncryptionConfigurationRule']]]] rules: [block] A block of rule as defined below.
         """
         ...
     @overload
@@ -191,7 +191,7 @@ class BucketServerSideEncryptionConfiguration(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  bucket: pulumi.Input[Optional[_builtins.str]] = None,
-                 rules: pulumi.Input[Optional[Sequence[pulumi.Input[Union['BucketServerSideEncryptionConfigurationRuleArgs', 'BucketServerSideEncryptionConfigurationRuleArgsDict']]]]] = None,
+                 rules: pulumi.Input[Optional[Sequence[pulumi.Input[Union['BucketServerSideEncryptionConfigurationRuleArgs', 'BucketServerSideEncryptionConfigurationRuleArgsDict', 'outputs.BucketServerSideEncryptionConfigurationRule']]]]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -216,7 +216,7 @@ class BucketServerSideEncryptionConfiguration(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             bucket: pulumi.Input[Optional[_builtins.str]] = None,
-            rules: pulumi.Input[Optional[Sequence[pulumi.Input[Union['BucketServerSideEncryptionConfigurationRuleArgs', 'BucketServerSideEncryptionConfigurationRuleArgsDict']]]]] = None) -> 'BucketServerSideEncryptionConfiguration':
+            rules: pulumi.Input[Optional[Sequence[pulumi.Input[Union['BucketServerSideEncryptionConfigurationRuleArgs', 'BucketServerSideEncryptionConfigurationRuleArgsDict', 'outputs.BucketServerSideEncryptionConfigurationRule']]]]] = None) -> 'BucketServerSideEncryptionConfiguration':
         """
         Get an existing BucketServerSideEncryptionConfiguration resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -225,7 +225,7 @@ class BucketServerSideEncryptionConfiguration(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] bucket: [string] The name of the bucket where the object will be stored.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['BucketServerSideEncryptionConfigurationRuleArgs', 'BucketServerSideEncryptionConfigurationRuleArgsDict']]]] rules: [block] A block of rule as defined below.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['BucketServerSideEncryptionConfigurationRuleArgs', 'BucketServerSideEncryptionConfigurationRuleArgsDict', 'outputs.BucketServerSideEncryptionConfigurationRule']]]] rules: [block] A block of rule as defined below.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 

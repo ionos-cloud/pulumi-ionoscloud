@@ -67,8 +67,6 @@ type GetInMemoryDBSnapshotsV2Args struct {
 type GetInMemoryDBSnapshotsV2Result struct {
 	// The ID of the cluster this snapshot belongs to.
 	ClusterId *string `pulumi:"clusterId"`
-	// The provider-assigned unique ID for this managed resource.
-	Id string `pulumi:"id"`
 	// List of snapshots. Each item includes:
 	Items []GetInMemoryDBSnapshotsV2Item `pulumi:"items"`
 	// The location of the snapshot.
@@ -76,12 +74,8 @@ type GetInMemoryDBSnapshotsV2Result struct {
 }
 
 func GetInMemoryDBSnapshotsV2Output(ctx *pulumi.Context, args GetInMemoryDBSnapshotsV2OutputArgs, opts ...pulumi.InvokeOption) GetInMemoryDBSnapshotsV2ResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (GetInMemoryDBSnapshotsV2ResultOutput, error) {
-			args := v.(GetInMemoryDBSnapshotsV2Args)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("ionoscloud:dbaas/getInMemoryDBSnapshotsV2:getInMemoryDBSnapshotsV2", args, GetInMemoryDBSnapshotsV2ResultOutput{}, options).(GetInMemoryDBSnapshotsV2ResultOutput), nil
-		}).(GetInMemoryDBSnapshotsV2ResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("ionoscloud:dbaas/getInMemoryDBSnapshotsV2:getInMemoryDBSnapshotsV2", args, GetInMemoryDBSnapshotsV2ResultOutput{}, options).(GetInMemoryDBSnapshotsV2ResultOutput)
 }
 
 // A collection of arguments for invoking getInMemoryDBSnapshotsV2.
@@ -114,11 +108,6 @@ func (o GetInMemoryDBSnapshotsV2ResultOutput) ToGetInMemoryDBSnapshotsV2ResultOu
 // The ID of the cluster this snapshot belongs to.
 func (o GetInMemoryDBSnapshotsV2ResultOutput) ClusterId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetInMemoryDBSnapshotsV2Result) *string { return v.ClusterId }).(pulumi.StringPtrOutput)
-}
-
-// The provider-assigned unique ID for this managed resource.
-func (o GetInMemoryDBSnapshotsV2ResultOutput) Id() pulumi.StringOutput {
-	return o.ApplyT(func(v GetInMemoryDBSnapshotsV2Result) string { return v.Id }).(pulumi.StringOutput)
 }
 
 // List of snapshots. Each item includes:

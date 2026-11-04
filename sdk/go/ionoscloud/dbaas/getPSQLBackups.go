@@ -73,12 +73,8 @@ type GetPSQLBackupsResult struct {
 }
 
 func GetPSQLBackupsOutput(ctx *pulumi.Context, args GetPSQLBackupsOutputArgs, opts ...pulumi.InvokeOption) GetPSQLBackupsResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (GetPSQLBackupsResultOutput, error) {
-			args := v.(GetPSQLBackupsArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("ionoscloud:dbaas/getPSQLBackups:getPSQLBackups", args, GetPSQLBackupsResultOutput{}, options).(GetPSQLBackupsResultOutput), nil
-		}).(GetPSQLBackupsResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("ionoscloud:dbaas/getPSQLBackups:getPSQLBackups", args, GetPSQLBackupsResultOutput{}, options).(GetPSQLBackupsResultOutput)
 }
 
 // A collection of arguments for invoking getPSQLBackups.

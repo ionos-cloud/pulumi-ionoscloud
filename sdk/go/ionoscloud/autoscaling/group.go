@@ -21,6 +21,8 @@ import (
 //
 // import (
 //
+//	"strconv"
+//
 //	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/autoscaling"
 //	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/compute"
 //	"github.com/pulumi/pulumi-random/sdk/go/random"
@@ -100,12 +102,12 @@ import (
 //					Ram:              pulumi.Int(2048),
 //					Nics: autoscaling.GroupReplicaConfigurationNicArray{
 //						&autoscaling.GroupReplicaConfigurationNicArgs{
-//							Lan:  lanExample1.ID(),
+//							Lan:  lanExample1.ID().ToStringOutput().ApplyT(strconv.Atoi).(pulumi.IntOutput),
 //							Name: pulumi.String("nic_example_1"),
 //							Dhcp: pulumi.Bool(true),
 //						},
 //						&autoscaling.GroupReplicaConfigurationNicArgs{
-//							Lan:            lanExample2.ID(),
+//							Lan:            lanExample2.ID().ToStringOutput().ApplyT(strconv.Atoi).(pulumi.IntOutput),
 //							Name:           pulumi.String("nic_example_2"),
 //							Dhcp:           pulumi.Bool(true),
 //							FirewallActive: pulumi.Bool(true),

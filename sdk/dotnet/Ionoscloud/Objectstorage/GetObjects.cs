@@ -214,10 +214,6 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Objectstorage
         public readonly string? EncodingType;
         public readonly bool? FetchOwner;
         /// <summary>
-        /// The provider-assigned unique ID for this managed resource.
-        /// </summary>
-        public readonly string Id;
-        /// <summary>
         /// A list of objects in the bucket.
         /// </summary>
         public readonly ImmutableArray<string> Keys;
@@ -238,8 +234,6 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Objectstorage
 
             bool? fetchOwner,
 
-            string id,
-
             ImmutableArray<string> keys,
 
             int? maxKeys,
@@ -255,7 +249,6 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Objectstorage
             Delimiter = delimiter;
             EncodingType = encodingType;
             FetchOwner = fetchOwner;
-            Id = id;
             Keys = keys;
             MaxKeys = maxKeys;
             Owners = owners;

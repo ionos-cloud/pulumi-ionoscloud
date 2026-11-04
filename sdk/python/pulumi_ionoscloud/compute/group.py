@@ -1334,7 +1334,7 @@ class Group(pulumi.CustomResource):
             s3_privilege: pulumi.Input[Optional[_builtins.bool]] = None,
             user_id: pulumi.Input[Optional[_builtins.str]] = None,
             user_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            users: pulumi.Input[Optional[Sequence[pulumi.Input[Union['GroupUserArgs', 'GroupUserArgsDict']]]]] = None) -> 'Group':
+            users: pulumi.Input[Optional[Sequence[pulumi.Input[Union['GroupUserArgs', 'GroupUserArgsDict', 'outputs.GroupUser']]]]] = None) -> 'Group':
         """
         Get an existing Group resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -1371,7 +1371,7 @@ class Group(pulumi.CustomResource):
         :param pulumi.Input[_builtins.bool] s3_privilege: [Boolean] The group will have S3 privilege.
         :param pulumi.Input[_builtins.str] user_id: [string] The ID of the specific user to add to the group. Please use user_ids argument since this is **DEPRECATED**
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] user_ids: [list] A list of users to add to the group.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['GroupUserArgs', 'GroupUserArgsDict']]]] users: List of users - See the User section
+        :param pulumi.Input[Sequence[pulumi.Input[Union['GroupUserArgs', 'GroupUserArgsDict', 'outputs.GroupUser']]]] users: List of users - See the User section
                
                **NOTE:** user_id/user_ids field cannot be used at the same time with group_ids field in user resource. Trying to add the same user to the same group in both ways in the same plan will result in a cyclic dependency error.
         """

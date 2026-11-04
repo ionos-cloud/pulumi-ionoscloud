@@ -55,7 +55,7 @@ import javax.annotation.Nullable;
  *         var recordexample = new DnsReverseRecord("recordexample", DnsReverseRecordArgs.builder()
  *             .name("reverse.record.example.com")
  *             .description("example description")
- *             .ip(example.ips().applyValue(_ips -> _ips[0]))
+ *             .ip(example.ips().applyValue(_ips -> _ips.get(0)))
  *             .build());
  * 
  *     }

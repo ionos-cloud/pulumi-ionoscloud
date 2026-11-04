@@ -23,6 +23,8 @@ import (
 //
 // import (
 //
+//	"strconv"
+//
 //	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/compute"
 //	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/nlb"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
@@ -59,8 +61,8 @@ import (
 //			exampleBalancer, err := nlb.NewBalancer(ctx, "example", &nlb.BalancerArgs{
 //				DatacenterId: example.ID(),
 //				Name:         pulumi.String("example"),
-//				ListenerLan:  example1.ID(),
-//				TargetLan:    example2.ID(),
+//				ListenerLan:  example1.ID().ToStringOutput().ApplyT(strconv.Atoi).(pulumi.IntOutput),
+//				TargetLan:    example2.ID().ToStringOutput().ApplyT(strconv.Atoi).(pulumi.IntOutput),
 //				Ips: pulumi.StringArray{
 //					pulumi.String("10.12.118.224"),
 //				},

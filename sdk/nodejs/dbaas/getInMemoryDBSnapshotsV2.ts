@@ -55,10 +55,6 @@ export interface GetInMemoryDBSnapshotsV2Result {
      */
     readonly clusterId?: string;
     /**
-     * The provider-assigned unique ID for this managed resource.
-     */
-    readonly id: string;
-    /**
      * List of snapshots. Each item includes:
      */
     readonly items: outputs.dbaas.GetInMemoryDBSnapshotsV2Item[];

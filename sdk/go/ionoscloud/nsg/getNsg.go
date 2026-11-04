@@ -109,12 +109,8 @@ type LookupNsgResult struct {
 }
 
 func LookupNsgOutput(ctx *pulumi.Context, args LookupNsgOutputArgs, opts ...pulumi.InvokeOption) LookupNsgResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupNsgResultOutput, error) {
-			args := v.(LookupNsgArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("ionoscloud:nsg/getNsg:getNsg", args, LookupNsgResultOutput{}, options).(LookupNsgResultOutput), nil
-		}).(LookupNsgResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("ionoscloud:nsg/getNsg:getNsg", args, LookupNsgResultOutput{}, options).(LookupNsgResultOutput)
 }
 
 // A collection of arguments for invoking getNsg.

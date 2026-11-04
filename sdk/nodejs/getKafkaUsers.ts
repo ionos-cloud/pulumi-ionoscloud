@@ -53,10 +53,6 @@ export interface GetKafkaUsersArgs {
  */
 export interface GetKafkaUsersResult {
     readonly clusterId: string;
-    /**
-     * The provider-assigned unique ID for this managed resource.
-     */
-    readonly id: string;
     readonly location?: string;
     readonly timeouts?: outputs.GetKafkaUsersTimeouts;
     /**

@@ -119,12 +119,8 @@ type LookupMariaDBClusterResult struct {
 }
 
 func LookupMariaDBClusterOutput(ctx *pulumi.Context, args LookupMariaDBClusterOutputArgs, opts ...pulumi.InvokeOption) LookupMariaDBClusterResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupMariaDBClusterResultOutput, error) {
-			args := v.(LookupMariaDBClusterArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("ionoscloud:dbaas/getMariaDBCluster:getMariaDBCluster", args, LookupMariaDBClusterResultOutput{}, options).(LookupMariaDBClusterResultOutput), nil
-		}).(LookupMariaDBClusterResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("ionoscloud:dbaas/getMariaDBCluster:getMariaDBCluster", args, LookupMariaDBClusterResultOutput{}, options).(LookupMariaDBClusterResultOutput)
 }
 
 // A collection of arguments for invoking getMariaDBCluster.

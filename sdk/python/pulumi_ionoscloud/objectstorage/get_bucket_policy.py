@@ -26,13 +26,10 @@ class GetBucketPolicyResult:
     """
     A collection of values returned by getBucketPolicy.
     """
-    def __init__(__self__, bucket=None, id=None, policy=None):
+    def __init__(__self__, bucket=None, policy=None):
         if bucket and not isinstance(bucket, str):
             raise TypeError("Expected argument 'bucket' to be a str")
         pulumi.set(__self__, "bucket", bucket)
-        if id and not isinstance(id, str):
-            raise TypeError("Expected argument 'id' to be a str")
-        pulumi.set(__self__, "id", id)
         if policy and not isinstance(policy, str):
             raise TypeError("Expected argument 'policy' to be a str")
         pulumi.set(__self__, "policy", policy)
@@ -41,14 +38,6 @@ class GetBucketPolicyResult:
     @pulumi.getter
     def bucket(self) -> _builtins.str:
         return pulumi.get(self, "bucket")
-
-    @_builtins.property
-    @pulumi.getter
-    def id(self) -> _builtins.str:
-        """
-        The provider-assigned unique ID for this managed resource.
-        """
-        return pulumi.get(self, "id")
 
     @_builtins.property
     @pulumi.getter
@@ -66,7 +55,6 @@ class AwaitableGetBucketPolicyResult(GetBucketPolicyResult):
             yield self
         return GetBucketPolicyResult(
             bucket=self.bucket,
-            id=self.id,
             policy=self.policy)
 
 
@@ -96,7 +84,6 @@ def get_bucket_policy(bucket: Optional[_builtins.str] = None,
 
     return AwaitableGetBucketPolicyResult(
         bucket=pulumi.get(__ret__, 'bucket'),
-        id=pulumi.get(__ret__, 'id'),
         policy=pulumi.get(__ret__, 'policy'))
 def get_bucket_policy_output(bucket: pulumi.Input[Optional[_builtins.str]] = None,
                              opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetBucketPolicyResult]:
@@ -123,5 +110,4 @@ def get_bucket_policy_output(bucket: pulumi.Input[Optional[_builtins.str]] = Non
     __ret__ = pulumi.runtime.invoke_output('ionoscloud:objectstorage/getBucketPolicy:getBucketPolicy', __args__, opts=opts, typ=GetBucketPolicyResult)
     return __ret__.apply(lambda __response__: GetBucketPolicyResult(
         bucket=pulumi.get(__response__, 'bucket'),
-        id=pulumi.get(__response__, 'id'),
         policy=pulumi.get(__response__, 'policy')))

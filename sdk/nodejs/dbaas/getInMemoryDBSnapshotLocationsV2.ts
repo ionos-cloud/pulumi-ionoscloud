@@ -42,10 +42,6 @@ export interface GetInMemoryDBSnapshotLocationsV2Args {
  */
 export interface GetInMemoryDBSnapshotLocationsV2Result {
     /**
-     * The provider-assigned unique ID for this managed resource.
-     */
-    readonly id: string;
-    /**
      * List of snapshot location objects. Each item includes:
      */
     readonly items: outputs.dbaas.GetInMemoryDBSnapshotLocationsV2Item[];

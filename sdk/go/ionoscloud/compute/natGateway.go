@@ -21,6 +21,8 @@ import (
 //
 // import (
 //
+//	"strconv"
+//
 //	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/compute"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
@@ -66,7 +68,7 @@ import (
 //				},
 //				Lans: compute.NatGatewayLanArray{
 //					&compute.NatGatewayLanArgs{
-//						Id: exampleLan.ID(),
+//						Id: exampleLan.ID().ToStringOutput().ApplyT(strconv.Atoi).(pulumi.IntOutput),
 //						GatewayIps: pulumi.StringArray{
 //							pulumi.String("10.11.2.5"),
 //						},

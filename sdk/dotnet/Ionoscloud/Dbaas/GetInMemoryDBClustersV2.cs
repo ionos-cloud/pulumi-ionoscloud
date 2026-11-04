@@ -149,10 +149,6 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Dbaas
     public sealed class GetInMemoryDBClustersV2Result
     {
         /// <summary>
-        /// The provider-assigned unique ID for this managed resource.
-        /// </summary>
-        public readonly string Id;
-        /// <summary>
         /// List of clusters. Each item exposes the same attributes as the ionoscloud.dbaas.InMemoryDBClusterV2 data source. Note that `credentials.password` is not available — only `credentials.username` is returned by the API.
         /// </summary>
         public readonly ImmutableArray<Outputs.GetInMemoryDBClustersV2ItemResult> Items;
@@ -161,15 +157,12 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Dbaas
 
         [OutputConstructor]
         private GetInMemoryDBClustersV2Result(
-            string id,
-
             ImmutableArray<Outputs.GetInMemoryDBClustersV2ItemResult> items,
 
             string location,
 
             string? name)
         {
-            Id = id;
             Items = items;
             Location = location;
             Name = name;

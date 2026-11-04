@@ -136,12 +136,8 @@ type GetMongoTemplateResult struct {
 }
 
 func GetMongoTemplateOutput(ctx *pulumi.Context, args GetMongoTemplateOutputArgs, opts ...pulumi.InvokeOption) GetMongoTemplateResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (GetMongoTemplateResultOutput, error) {
-			args := v.(GetMongoTemplateArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("ionoscloud:dbaas/getMongoTemplate:getMongoTemplate", args, GetMongoTemplateResultOutput{}, options).(GetMongoTemplateResultOutput), nil
-		}).(GetMongoTemplateResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("ionoscloud:dbaas/getMongoTemplate:getMongoTemplate", args, GetMongoTemplateResultOutput{}, options).(GetMongoTemplateResultOutput)
 }
 
 // A collection of arguments for invoking getMongoTemplate.

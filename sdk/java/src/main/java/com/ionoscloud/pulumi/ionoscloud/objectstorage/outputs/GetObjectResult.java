@@ -60,11 +60,6 @@ public final class GetObjectResult {
      * 
      */
     private String expires;
-    /**
-     * @return The provider-assigned unique ID for this managed resource.
-     * 
-     */
-    private String id;
     private String key;
     /**
      * @return A map of metadata stored with the object.
@@ -205,13 +200,6 @@ public final class GetObjectResult {
     public String expires() {
         return this.expires;
     }
-    /**
-     * @return The provider-assigned unique ID for this managed resource.
-     * 
-     */
-    public String id() {
-        return this.id;
-    }
     public String key() {
         return this.key;
     }
@@ -336,7 +324,6 @@ public final class GetObjectResult {
         private String contentType;
         private String etag;
         private String expires;
-        private String id;
         private String key;
         private Map<String,String> metadata;
         private String objectLockLegalHold;
@@ -366,7 +353,6 @@ public final class GetObjectResult {
     	      this.contentType = defaults.contentType;
     	      this.etag = defaults.etag;
     	      this.expires = defaults.expires;
-    	      this.id = defaults.id;
     	      this.key = defaults.key;
     	      this.metadata = defaults.metadata;
     	      this.objectLockLegalHold = defaults.objectLockLegalHold;
@@ -463,14 +449,6 @@ public final class GetObjectResult {
               throw new MissingRequiredPropertyException("GetObjectResult", "expires");
             }
             this.expires = expires;
-            return this;
-        }
-        @CustomType.Setter
-        public Builder id(String id) {
-            if (id == null) {
-              throw new MissingRequiredPropertyException("GetObjectResult", "id");
-            }
-            this.id = id;
             return this;
         }
         @CustomType.Setter
@@ -611,7 +589,6 @@ public final class GetObjectResult {
             _resultValue.contentType = contentType;
             _resultValue.etag = etag;
             _resultValue.expires = expires;
-            _resultValue.id = id;
             _resultValue.key = key;
             _resultValue.metadata = metadata;
             _resultValue.objectLockLegalHold = objectLockLegalHold;

@@ -66,7 +66,7 @@ import (
 //				DatacenterId:  exampleDatacenter.ID(),
 //				Cores:         pulumi.Int(1),
 //				Ram:           pulumi.Int(1024),
-//				ImageName:     pulumi.String(pulumi.String(example.Id)),
+//				ImageName:     pulumi.String(example.Id),
 //				ImagePassword: serverImagePassword.Result,
 //				Type:          pulumi.String("ENTERPRISE"),
 //				Volume: &compute.ServerVolumeArgs{

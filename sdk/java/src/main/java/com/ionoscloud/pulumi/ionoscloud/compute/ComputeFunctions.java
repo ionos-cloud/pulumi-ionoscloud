@@ -9754,7 +9754,7 @@ public final class ComputeFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var example = ComputeFunctions.getServers(GetServersArgs.builder()
-     *             .datacenterId(exampleIonoscloudDatacenter.id())
+     *             .datacenterId(exampleIonoscloudDatacenter.get("id"))
      *             .filters(GetServersFilterArgs.builder()
      *                 .name("name")
      *                 .value("server_name_to_look_here")
@@ -9793,7 +9793,7 @@ public final class ComputeFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var example = ComputeFunctions.getServers(GetServersArgs.builder()
-     *             .datacenterId(exampleIonoscloudDatacenter.id())
+     *             .datacenterId(exampleIonoscloudDatacenter.get("id"))
      *             .filters(GetServersFilterArgs.builder()
      *                 .name("cpu_family")
      *                 .value("INTEL_XEON")
@@ -9832,7 +9832,7 @@ public final class ComputeFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var example = ComputeFunctions.getServers(GetServersArgs.builder()
-     *             .datacenterId(exampleIonoscloudDatacenter.id())
+     *             .datacenterId(exampleIonoscloudDatacenter.get("id"))
      *             .filters(            
      *                 GetServersFilterArgs.builder()
      *                     .name("name")
@@ -9885,7 +9885,7 @@ public final class ComputeFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var example = ComputeFunctions.getServers(GetServersArgs.builder()
-     *             .datacenterId(exampleIonoscloudDatacenter.id())
+     *             .datacenterId(exampleIonoscloudDatacenter.get("id"))
      *             .filters(GetServersFilterArgs.builder()
      *                 .name("name")
      *                 .value("server_name_to_look_here")
@@ -9924,7 +9924,7 @@ public final class ComputeFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var example = ComputeFunctions.getServers(GetServersArgs.builder()
-     *             .datacenterId(exampleIonoscloudDatacenter.id())
+     *             .datacenterId(exampleIonoscloudDatacenter.get("id"))
      *             .filters(GetServersFilterArgs.builder()
      *                 .name("cpu_family")
      *                 .value("INTEL_XEON")
@@ -9963,7 +9963,7 @@ public final class ComputeFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var example = ComputeFunctions.getServers(GetServersArgs.builder()
-     *             .datacenterId(exampleIonoscloudDatacenter.id())
+     *             .datacenterId(exampleIonoscloudDatacenter.get("id"))
      *             .filters(            
      *                 GetServersFilterArgs.builder()
      *                     .name("name")
@@ -10016,7 +10016,7 @@ public final class ComputeFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var example = ComputeFunctions.getServers(GetServersArgs.builder()
-     *             .datacenterId(exampleIonoscloudDatacenter.id())
+     *             .datacenterId(exampleIonoscloudDatacenter.get("id"))
      *             .filters(GetServersFilterArgs.builder()
      *                 .name("name")
      *                 .value("server_name_to_look_here")
@@ -10055,7 +10055,7 @@ public final class ComputeFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var example = ComputeFunctions.getServers(GetServersArgs.builder()
-     *             .datacenterId(exampleIonoscloudDatacenter.id())
+     *             .datacenterId(exampleIonoscloudDatacenter.get("id"))
      *             .filters(GetServersFilterArgs.builder()
      *                 .name("cpu_family")
      *                 .value("INTEL_XEON")
@@ -10094,7 +10094,7 @@ public final class ComputeFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var example = ComputeFunctions.getServers(GetServersArgs.builder()
-     *             .datacenterId(exampleIonoscloudDatacenter.id())
+     *             .datacenterId(exampleIonoscloudDatacenter.get("id"))
      *             .filters(            
      *                 GetServersFilterArgs.builder()
      *                     .name("name")
@@ -10147,7 +10147,7 @@ public final class ComputeFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var example = ComputeFunctions.getServers(GetServersArgs.builder()
-     *             .datacenterId(exampleIonoscloudDatacenter.id())
+     *             .datacenterId(exampleIonoscloudDatacenter.get("id"))
      *             .filters(GetServersFilterArgs.builder()
      *                 .name("name")
      *                 .value("server_name_to_look_here")
@@ -10186,7 +10186,7 @@ public final class ComputeFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var example = ComputeFunctions.getServers(GetServersArgs.builder()
-     *             .datacenterId(exampleIonoscloudDatacenter.id())
+     *             .datacenterId(exampleIonoscloudDatacenter.get("id"))
      *             .filters(GetServersFilterArgs.builder()
      *                 .name("cpu_family")
      *                 .value("INTEL_XEON")
@@ -10225,7 +10225,7 @@ public final class ComputeFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var example = ComputeFunctions.getServers(GetServersArgs.builder()
-     *             .datacenterId(exampleIonoscloudDatacenter.id())
+     *             .datacenterId(exampleIonoscloudDatacenter.get("id"))
      *             .filters(            
      *                 GetServersFilterArgs.builder()
      *                     .name("name")
@@ -10278,7 +10278,7 @@ public final class ComputeFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var example = ComputeFunctions.getServers(GetServersArgs.builder()
-     *             .datacenterId(exampleIonoscloudDatacenter.id())
+     *             .datacenterId(exampleIonoscloudDatacenter.get("id"))
      *             .filters(GetServersFilterArgs.builder()
      *                 .name("name")
      *                 .value("server_name_to_look_here")
@@ -10317,7 +10317,7 @@ public final class ComputeFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var example = ComputeFunctions.getServers(GetServersArgs.builder()
-     *             .datacenterId(exampleIonoscloudDatacenter.id())
+     *             .datacenterId(exampleIonoscloudDatacenter.get("id"))
      *             .filters(GetServersFilterArgs.builder()
      *                 .name("cpu_family")
      *                 .value("INTEL_XEON")
@@ -10356,7 +10356,7 @@ public final class ComputeFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var example = ComputeFunctions.getServers(GetServersArgs.builder()
-     *             .datacenterId(exampleIonoscloudDatacenter.id())
+     *             .datacenterId(exampleIonoscloudDatacenter.get("id"))
      *             .filters(            
      *                 GetServersFilterArgs.builder()
      *                     .name("name")

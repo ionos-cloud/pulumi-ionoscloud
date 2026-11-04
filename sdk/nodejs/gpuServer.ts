@@ -121,7 +121,7 @@ export class GpuServer extends pulumi.CustomResource {
      * ⚠️ **_Warning: `allowReplace` - lets you update immutable fields, but it first destroys and then re-creates the server in order to do it. This field should be used with care, understanding the risks._**
      *
      * > **⚠ WARNING**
-     * >
+     * > 
      * > Image_name under volume level is deprecated, please use imageName under server level
      */
     declare public readonly allowReplace: pulumi.Output<boolean | undefined>;
@@ -287,7 +287,7 @@ export interface GpuServerState {
      * ⚠️ **_Warning: `allowReplace` - lets you update immutable fields, but it first destroys and then re-creates the server in order to do it. This field should be used with care, understanding the risks._**
      *
      * > **⚠ WARNING**
-     * >
+     * > 
      * > Image_name under volume level is deprecated, please use imageName under server level
      */
     allowReplace?: pulumi.Input<boolean | undefined>;
@@ -379,7 +379,7 @@ export interface GpuServerArgs {
      * ⚠️ **_Warning: `allowReplace` - lets you update immutable fields, but it first destroys and then re-creates the server in order to do it. This field should be used with care, understanding the risks._**
      *
      * > **⚠ WARNING**
-     * >
+     * > 
      * > Image_name under volume level is deprecated, please use imageName under server level
      */
     allowReplace?: pulumi.Input<boolean | undefined>;

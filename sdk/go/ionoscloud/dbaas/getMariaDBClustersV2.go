@@ -65,8 +65,6 @@ type GetMariaDBClustersV2Args struct {
 
 // A collection of values returned by getMariaDBClustersV2.
 type GetMariaDBClustersV2Result struct {
-	// The provider-assigned unique ID for this managed resource.
-	Id string `pulumi:"id"`
 	// List of clusters. Each item exposes the same attributes as the dbaas.MariaDBClusterV2 data source. Note that `credentials.password` is not available — only `credentials.username` and `credentials.database` are returned by the API.
 	Items    []GetMariaDBClustersV2Item `pulumi:"items"`
 	Location string                     `pulumi:"location"`
@@ -74,12 +72,8 @@ type GetMariaDBClustersV2Result struct {
 }
 
 func GetMariaDBClustersV2Output(ctx *pulumi.Context, args GetMariaDBClustersV2OutputArgs, opts ...pulumi.InvokeOption) GetMariaDBClustersV2ResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (GetMariaDBClustersV2ResultOutput, error) {
-			args := v.(GetMariaDBClustersV2Args)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("ionoscloud:dbaas/getMariaDBClustersV2:getMariaDBClustersV2", args, GetMariaDBClustersV2ResultOutput{}, options).(GetMariaDBClustersV2ResultOutput), nil
-		}).(GetMariaDBClustersV2ResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("ionoscloud:dbaas/getMariaDBClustersV2:getMariaDBClustersV2", args, GetMariaDBClustersV2ResultOutput{}, options).(GetMariaDBClustersV2ResultOutput)
 }
 
 // A collection of arguments for invoking getMariaDBClustersV2.
@@ -107,11 +101,6 @@ func (o GetMariaDBClustersV2ResultOutput) ToGetMariaDBClustersV2ResultOutput() G
 
 func (o GetMariaDBClustersV2ResultOutput) ToGetMariaDBClustersV2ResultOutputWithContext(ctx context.Context) GetMariaDBClustersV2ResultOutput {
 	return o
-}
-
-// The provider-assigned unique ID for this managed resource.
-func (o GetMariaDBClustersV2ResultOutput) Id() pulumi.StringOutput {
-	return o.ApplyT(func(v GetMariaDBClustersV2Result) string { return v.Id }).(pulumi.StringOutput)
 }
 
 // List of clusters. Each item exposes the same attributes as the dbaas.MariaDBClusterV2 data source. Note that `credentials.password` is not available — only `credentials.username` and `credentials.database` are returned by the API.

@@ -113,12 +113,8 @@ type GetGpuResult struct {
 }
 
 func GetGpuOutput(ctx *pulumi.Context, args GetGpuOutputArgs, opts ...pulumi.InvokeOption) GetGpuResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (GetGpuResultOutput, error) {
-			args := v.(GetGpuArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("ionoscloud:compute/getGpu:getGpu", args, GetGpuResultOutput{}, options).(GetGpuResultOutput), nil
-		}).(GetGpuResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("ionoscloud:compute/getGpu:getGpu", args, GetGpuResultOutput{}, options).(GetGpuResultOutput)
 }
 
 // A collection of arguments for invoking getGpu.

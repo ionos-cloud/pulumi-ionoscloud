@@ -28,7 +28,7 @@ class BootDeviceSelectionArgs:
 
         :param pulumi.Input[_builtins.str] datacenter_id: [string] The ID of a Virtual Data Center.
         :param pulumi.Input[_builtins.str] server_id: [string] The ID of a server.
-        :param pulumi.Input[_builtins.str] boot_device_id: [string] The ID of a bootable device such as a volume or an image data source. If this field is omitted from the configuration, the VM will be restarted with no primary boot device, and it will enter the PXE shell for network booting. 
+        :param pulumi.Input[_builtins.str] boot_device_id: [string] The ID of a bootable device such as a volume or an image data source. If this field is omitted from the configuration, the VM will be restarted with no primary boot device, and it will enter the PXE shell for network booting.
                ***Note***: If the network booting process started by the PXE shell fails, the VM will still boot into the image of the attached storage as a fallback. This behavior imitates the "Boot from Network" option from [DCD](https://dcd.ionos.com/).
         :param pulumi.Input[_builtins.str] location: The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
         """
@@ -67,7 +67,7 @@ class BootDeviceSelectionArgs:
     @pulumi.getter(name="bootDeviceId")
     def boot_device_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        [string] The ID of a bootable device such as a volume or an image data source. If this field is omitted from the configuration, the VM will be restarted with no primary boot device, and it will enter the PXE shell for network booting. 
+        [string] The ID of a bootable device such as a volume or an image data source. If this field is omitted from the configuration, the VM will be restarted with no primary boot device, and it will enter the PXE shell for network booting.
         ***Note***: If the network booting process started by the PXE shell fails, the VM will still boot into the image of the attached storage as a fallback. This behavior imitates the "Boot from Network" option from [DCD](https://dcd.ionos.com/).
         """
         return pulumi.get(self, "boot_device_id")
@@ -100,7 +100,7 @@ class _BootDeviceSelectionState:
         """
         Input properties used for looking up and filtering BootDeviceSelection resources.
 
-        :param pulumi.Input[_builtins.str] boot_device_id: [string] The ID of a bootable device such as a volume or an image data source. If this field is omitted from the configuration, the VM will be restarted with no primary boot device, and it will enter the PXE shell for network booting. 
+        :param pulumi.Input[_builtins.str] boot_device_id: [string] The ID of a bootable device such as a volume or an image data source. If this field is omitted from the configuration, the VM will be restarted with no primary boot device, and it will enter the PXE shell for network booting.
                ***Note***: If the network booting process started by the PXE shell fails, the VM will still boot into the image of the attached storage as a fallback. This behavior imitates the "Boot from Network" option from [DCD](https://dcd.ionos.com/).
         :param pulumi.Input[_builtins.str] datacenter_id: [string] The ID of a Virtual Data Center.
         :param pulumi.Input[_builtins.str] default_boot_volume_id: ID of the first attached volume of the Server, which will be the default boot volume.
@@ -122,7 +122,7 @@ class _BootDeviceSelectionState:
     @pulumi.getter(name="bootDeviceId")
     def boot_device_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        [string] The ID of a bootable device such as a volume or an image data source. If this field is omitted from the configuration, the VM will be restarted with no primary boot device, and it will enter the PXE shell for network booting. 
+        [string] The ID of a bootable device such as a volume or an image data source. If this field is omitted from the configuration, the VM will be restarted with no primary boot device, and it will enter the PXE shell for network booting.
         ***Note***: If the network booting process started by the PXE shell fails, the VM will still boot into the image of the attached storage as a fallback. This behavior imitates the "Boot from Network" option from [DCD](https://dcd.ionos.com/).
         """
         return pulumi.get(self, "boot_device_id")
@@ -221,7 +221,7 @@ class BootDeviceSelection(pulumi.CustomResource):
                 "availability_zone": "AUTO",
             },
             nic={
-                "lan": int(example_ionoscloud_lan["id"]),
+                "lan": example_ionoscloud_lan["id"],
                 "name": "Nic Example",
                 "dhcp": True,
                 "firewall_active": True,
@@ -262,7 +262,7 @@ class BootDeviceSelection(pulumi.CustomResource):
                 "availability_zone": "AUTO",
             },
             nic={
-                "lan": int(example_ionoscloud_lan["id"]),
+                "lan": example_ionoscloud_lan["id"],
                 "name": "Nic Example",
                 "dhcp": True,
                 "firewall_active": True,
@@ -303,7 +303,7 @@ class BootDeviceSelection(pulumi.CustomResource):
                 "availability_zone": "AUTO",
             },
             nic={
-                "lan": int(example_ionoscloud_lan["id"]),
+                "lan": example_ionoscloud_lan["id"],
                 "name": "Nic Example",
                 "dhcp": True,
                 "firewall_active": True,
@@ -347,7 +347,7 @@ class BootDeviceSelection(pulumi.CustomResource):
                 "availability_zone": "AUTO",
             },
             nic={
-                "lan": int(example_ionoscloud_lan["id"]),
+                "lan": example_ionoscloud_lan["id"],
                 "name": "Nic Example",
                 "dhcp": True,
                 "firewall_active": True,
@@ -372,7 +372,7 @@ class BootDeviceSelection(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[_builtins.str] boot_device_id: [string] The ID of a bootable device such as a volume or an image data source. If this field is omitted from the configuration, the VM will be restarted with no primary boot device, and it will enter the PXE shell for network booting. 
+        :param pulumi.Input[_builtins.str] boot_device_id: [string] The ID of a bootable device such as a volume or an image data source. If this field is omitted from the configuration, the VM will be restarted with no primary boot device, and it will enter the PXE shell for network booting.
                ***Note***: If the network booting process started by the PXE shell fails, the VM will still boot into the image of the attached storage as a fallback. This behavior imitates the "Boot from Network" option from [DCD](https://dcd.ionos.com/).
         :param pulumi.Input[_builtins.str] datacenter_id: [string] The ID of a Virtual Data Center.
         :param pulumi.Input[_builtins.str] location: The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
@@ -414,7 +414,7 @@ class BootDeviceSelection(pulumi.CustomResource):
                 "availability_zone": "AUTO",
             },
             nic={
-                "lan": int(example_ionoscloud_lan["id"]),
+                "lan": example_ionoscloud_lan["id"],
                 "name": "Nic Example",
                 "dhcp": True,
                 "firewall_active": True,
@@ -455,7 +455,7 @@ class BootDeviceSelection(pulumi.CustomResource):
                 "availability_zone": "AUTO",
             },
             nic={
-                "lan": int(example_ionoscloud_lan["id"]),
+                "lan": example_ionoscloud_lan["id"],
                 "name": "Nic Example",
                 "dhcp": True,
                 "firewall_active": True,
@@ -496,7 +496,7 @@ class BootDeviceSelection(pulumi.CustomResource):
                 "availability_zone": "AUTO",
             },
             nic={
-                "lan": int(example_ionoscloud_lan["id"]),
+                "lan": example_ionoscloud_lan["id"],
                 "name": "Nic Example",
                 "dhcp": True,
                 "firewall_active": True,
@@ -540,7 +540,7 @@ class BootDeviceSelection(pulumi.CustomResource):
                 "availability_zone": "AUTO",
             },
             nic={
-                "lan": int(example_ionoscloud_lan["id"]),
+                "lan": example_ionoscloud_lan["id"],
                 "name": "Nic Example",
                 "dhcp": True,
                 "firewall_active": True,
@@ -622,7 +622,7 @@ class BootDeviceSelection(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[_builtins.str] boot_device_id: [string] The ID of a bootable device such as a volume or an image data source. If this field is omitted from the configuration, the VM will be restarted with no primary boot device, and it will enter the PXE shell for network booting. 
+        :param pulumi.Input[_builtins.str] boot_device_id: [string] The ID of a bootable device such as a volume or an image data source. If this field is omitted from the configuration, the VM will be restarted with no primary boot device, and it will enter the PXE shell for network booting.
                ***Note***: If the network booting process started by the PXE shell fails, the VM will still boot into the image of the attached storage as a fallback. This behavior imitates the "Boot from Network" option from [DCD](https://dcd.ionos.com/).
         :param pulumi.Input[_builtins.str] datacenter_id: [string] The ID of a Virtual Data Center.
         :param pulumi.Input[_builtins.str] default_boot_volume_id: ID of the first attached volume of the Server, which will be the default boot volume.
@@ -644,7 +644,7 @@ class BootDeviceSelection(pulumi.CustomResource):
     @pulumi.getter(name="bootDeviceId")
     def boot_device_id(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
-        [string] The ID of a bootable device such as a volume or an image data source. If this field is omitted from the configuration, the VM will be restarted with no primary boot device, and it will enter the PXE shell for network booting. 
+        [string] The ID of a bootable device such as a volume or an image data source. If this field is omitted from the configuration, the VM will be restarted with no primary boot device, and it will enter the PXE shell for network booting.
         ***Note***: If the network booting process started by the PXE shell fails, the VM will still boot into the image of the attached storage as a fallback. This behavior imitates the "Boot from Network" option from [DCD](https://dcd.ionos.com/).
         """
         return pulumi.get(self, "boot_device_id")

@@ -3934,7 +3934,7 @@ class GetMongoClusterConnectionResult(dict):
                          Note the following unavailable IP ranges:
                          10.233.64.0/18
                          10.233.0.0/18
-                         10.233.114.0/24 		
+                         10.233.114.0/24
                 example: [192.168.1.100/24, 192.168.1.101/24]
         :param _builtins.str datacenter_id: The datacenter to connect your cluster to.
         :param _builtins.str lan_id: The LAN to connect your cluster to.
@@ -3951,7 +3951,7 @@ class GetMongoClusterConnectionResult(dict):
                   Note the following unavailable IP ranges:
                   10.233.64.0/18
                   10.233.0.0/18
-                  10.233.114.0/24 		
+                  10.233.114.0/24
          example: [192.168.1.100/24, 192.168.1.101/24]
         """
         return pulumi.get(self, "cidr_lists")

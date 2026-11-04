@@ -118,10 +118,6 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Dbaas
     [OutputType]
     public sealed class GetPSQLVersionsV2Result
     {
-        /// <summary>
-        /// The provider-assigned unique ID for this managed resource.
-        /// </summary>
-        public readonly string Id;
         public readonly string Location;
         /// <summary>
         /// The list of available PostgreSQL versions. Each version has the following attributes:
@@ -130,13 +126,10 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Dbaas
 
         [OutputConstructor]
         private GetPSQLVersionsV2Result(
-            string id,
-
             string location,
 
             ImmutableArray<Outputs.GetPSQLVersionsV2VersionResult> versions)
         {
-            Id = id;
             Location = location;
             Versions = versions;
         }
