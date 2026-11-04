@@ -280,7 +280,7 @@ class Share(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 client_groups: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ShareClientGroupArgs', 'ShareClientGroupArgsDict']]]]] = None,
+                 client_groups: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ShareClientGroupArgs', 'ShareClientGroupArgsDict', 'outputs.ShareClientGroup']]]]] = None,
                  cluster_id: pulumi.Input[Optional[_builtins.str]] = None,
                  gid: pulumi.Input[Optional[_builtins.int]] = None,
                  location: pulumi.Input[Optional[_builtins.str]] = None,
@@ -348,7 +348,7 @@ class Share(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['ShareClientGroupArgs', 'ShareClientGroupArgsDict']]]] client_groups: The groups of clients are the systems connecting to the Network File Storage cluster. Each group includes:
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ShareClientGroupArgs', 'ShareClientGroupArgsDict', 'outputs.ShareClientGroup']]]] client_groups: The groups of clients are the systems connecting to the Network File Storage cluster. Each group includes:
         :param pulumi.Input[_builtins.str] cluster_id: The ID of the Network File Storage Cluster.
         :param pulumi.Input[_builtins.int] gid: The group ID that will own the exported directory. If not set, **anonymous** (`512`) will be used.
         :param pulumi.Input[_builtins.str] location: The location of the Network File Storage Cluster. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`. Other available locations are: `de/fra/1`, `de/fra/2`, `de/txl`, `fr/par`, `gb/lhr`, `es/vit`, `us/las`, `us/ewr`, `us/mci`.
@@ -435,7 +435,7 @@ class Share(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 client_groups: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ShareClientGroupArgs', 'ShareClientGroupArgsDict']]]]] = None,
+                 client_groups: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ShareClientGroupArgs', 'ShareClientGroupArgsDict', 'outputs.ShareClientGroup']]]]] = None,
                  cluster_id: pulumi.Input[Optional[_builtins.str]] = None,
                  gid: pulumi.Input[Optional[_builtins.int]] = None,
                  location: pulumi.Input[Optional[_builtins.str]] = None,
@@ -473,7 +473,7 @@ class Share(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            client_groups: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ShareClientGroupArgs', 'ShareClientGroupArgsDict']]]]] = None,
+            client_groups: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ShareClientGroupArgs', 'ShareClientGroupArgsDict', 'outputs.ShareClientGroup']]]]] = None,
             cluster_id: pulumi.Input[Optional[_builtins.str]] = None,
             gid: pulumi.Input[Optional[_builtins.int]] = None,
             location: pulumi.Input[Optional[_builtins.str]] = None,
@@ -488,7 +488,7 @@ class Share(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['ShareClientGroupArgs', 'ShareClientGroupArgsDict']]]] client_groups: The groups of clients are the systems connecting to the Network File Storage cluster. Each group includes:
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ShareClientGroupArgs', 'ShareClientGroupArgsDict', 'outputs.ShareClientGroup']]]] client_groups: The groups of clients are the systems connecting to the Network File Storage cluster. Each group includes:
         :param pulumi.Input[_builtins.str] cluster_id: The ID of the Network File Storage Cluster.
         :param pulumi.Input[_builtins.int] gid: The group ID that will own the exported directory. If not set, **anonymous** (`512`) will be used.
         :param pulumi.Input[_builtins.str] location: The location of the Network File Storage Cluster. If this is not set and if no value is provided for the `IONOS_API_URL` env var, the default `location` will be: `de/fra`. Other available locations are: `de/fra/1`, `de/fra/2`, `de/txl`, `fr/par`, `gb/lhr`, `es/vit`, `us/las`, `us/ewr`, `us/mci`.

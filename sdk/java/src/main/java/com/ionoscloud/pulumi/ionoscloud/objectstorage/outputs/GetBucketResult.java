@@ -10,11 +10,6 @@ import java.util.Objects;
 
 @CustomType
 public final class GetBucketResult {
-    /**
-     * @return The provider-assigned unique ID for this managed resource.
-     * 
-     */
-    private String id;
     private String name;
     /**
      * @return The region where the bucket is located.
@@ -23,13 +18,6 @@ public final class GetBucketResult {
     private String region;
 
     private GetBucketResult() {}
-    /**
-     * @return The provider-assigned unique ID for this managed resource.
-     * 
-     */
-    public String id() {
-        return this.id;
-    }
     public String name() {
         return this.name;
     }
@@ -50,25 +38,15 @@ public final class GetBucketResult {
     }
     @CustomType.Builder
     public static final class Builder {
-        private String id;
         private String name;
         private String region;
         public Builder() {}
         public Builder(GetBucketResult defaults) {
     	      Objects.requireNonNull(defaults);
-    	      this.id = defaults.id;
     	      this.name = defaults.name;
     	      this.region = defaults.region;
         }
 
-        @CustomType.Setter
-        public Builder id(String id) {
-            if (id == null) {
-              throw new MissingRequiredPropertyException("GetBucketResult", "id");
-            }
-            this.id = id;
-            return this;
-        }
         @CustomType.Setter
         public Builder name(String name) {
             if (name == null) {
@@ -87,7 +65,6 @@ public final class GetBucketResult {
         }
         public GetBucketResult build() {
             final var _resultValue = new GetBucketResult();
-            _resultValue.id = id;
             _resultValue.name = name;
             _resultValue.region = region;
             return _resultValue;

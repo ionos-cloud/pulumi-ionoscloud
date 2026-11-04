@@ -105,12 +105,8 @@ type LookupAutoCertificateProviderResult struct {
 }
 
 func LookupAutoCertificateProviderOutput(ctx *pulumi.Context, args LookupAutoCertificateProviderOutputArgs, opts ...pulumi.InvokeOption) LookupAutoCertificateProviderResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupAutoCertificateProviderResultOutput, error) {
-			args := v.(LookupAutoCertificateProviderArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("ionoscloud:cert/getAutoCertificateProvider:getAutoCertificateProvider", args, LookupAutoCertificateProviderResultOutput{}, options).(LookupAutoCertificateProviderResultOutput), nil
-		}).(LookupAutoCertificateProviderResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("ionoscloud:cert/getAutoCertificateProvider:getAutoCertificateProvider", args, LookupAutoCertificateProviderResultOutput{}, options).(LookupAutoCertificateProviderResultOutput)
 }
 
 // A collection of arguments for invoking getAutoCertificateProvider.

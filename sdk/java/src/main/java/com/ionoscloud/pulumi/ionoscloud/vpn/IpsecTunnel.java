@@ -81,7 +81,7 @@ import javax.annotation.Nullable;
  *         var example = new IpsecGateway("example", IpsecGatewayArgs.builder()
  *             .name("ipsec_gateway_basic")
  *             .location("de/fra")
- *             .gatewayIp(testIpblock.ips().applyValue(_ips -> _ips[0]))
+ *             .gatewayIp(testIpblock.ips().applyValue(_ips -> _ips.get(0)))
  *             .version("IKEv2")
  *             .description("This gateway connects site A to VDC X.")
  *             .connections(IpsecGatewayConnectionArgs.builder()

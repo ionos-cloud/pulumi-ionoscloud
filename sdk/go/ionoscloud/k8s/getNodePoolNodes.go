@@ -69,12 +69,8 @@ type GetNodePoolNodesResult struct {
 }
 
 func GetNodePoolNodesOutput(ctx *pulumi.Context, args GetNodePoolNodesOutputArgs, opts ...pulumi.InvokeOption) GetNodePoolNodesResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (GetNodePoolNodesResultOutput, error) {
-			args := v.(GetNodePoolNodesArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("ionoscloud:k8s/getNodePoolNodes:getNodePoolNodes", args, GetNodePoolNodesResultOutput{}, options).(GetNodePoolNodesResultOutput), nil
-		}).(GetNodePoolNodesResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("ionoscloud:k8s/getNodePoolNodes:getNodePoolNodes", args, GetNodePoolNodesResultOutput{}, options).(GetNodePoolNodesResultOutput)
 }
 
 // A collection of arguments for invoking getNodePoolNodes.

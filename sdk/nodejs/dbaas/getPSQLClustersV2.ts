@@ -64,10 +64,6 @@ export interface GetPSQLClustersV2Result {
      */
     readonly clusters: outputs.dbaas.GetPSQLClustersV2Cluster[];
     /**
-     * The provider-assigned unique ID for this managed resource.
-     */
-    readonly id: string;
-    /**
      * The Object Storage location where the backups are stored.
      */
     readonly location: string;

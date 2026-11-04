@@ -156,7 +156,7 @@ class AwaitableGetShareResult(GetShareResult):
             uid=self.uid)
 
 
-def get_share(client_groups: Optional[Sequence[Union['GetShareClientGroupArgs', 'GetShareClientGroupArgsDict']]] = None,
+def get_share(client_groups: Optional[Sequence[Union['GetShareClientGroupArgs', 'GetShareClientGroupArgsDict', 'outputs.GetShareClientGroupResult']]] = None,
               cluster_id: Optional[_builtins.str] = None,
               gid: Optional[_builtins.int] = None,
               id: Optional[_builtins.str] = None,
@@ -181,7 +181,7 @@ def get_share(client_groups: Optional[Sequence[Union['GetShareClientGroupArgs', 
     ```
 
 
-    :param Sequence[Union['GetShareClientGroupArgs', 'GetShareClientGroupArgsDict']] client_groups: The groups of clients are the systems connecting to the Network File Storage cluster. Each client group supports the following:
+    :param Sequence[Union['GetShareClientGroupArgs', 'GetShareClientGroupArgsDict', 'outputs.GetShareClientGroupResult']] client_groups: The groups of clients are the systems connecting to the Network File Storage cluster. Each client group supports the following:
     :param _builtins.str cluster_id: The ID of the Network File Storage cluster.
     :param _builtins.int gid: The group ID that will own the exported directory. If not set, **anonymous** (`512`) will be used.
     :param _builtins.str id: ID of the Network File Storage share.
@@ -215,7 +215,7 @@ def get_share(client_groups: Optional[Sequence[Union['GetShareClientGroupArgs', 
         partial_match=pulumi.get(__ret__, 'partial_match'),
         quota=pulumi.get(__ret__, 'quota'),
         uid=pulumi.get(__ret__, 'uid'))
-def get_share_output(client_groups: pulumi.Input[Optional[Optional[Sequence[Union['GetShareClientGroupArgs', 'GetShareClientGroupArgsDict']]]]] = None,
+def get_share_output(client_groups: pulumi.Input[Optional[Optional[Sequence[Union['GetShareClientGroupArgs', 'GetShareClientGroupArgsDict', 'outputs.GetShareClientGroupResult']]]]] = None,
                      cluster_id: pulumi.Input[Optional[_builtins.str]] = None,
                      gid: pulumi.Input[Optional[Optional[_builtins.int]]] = None,
                      id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
@@ -240,7 +240,7 @@ def get_share_output(client_groups: pulumi.Input[Optional[Optional[Sequence[Unio
     ```
 
 
-    :param Sequence[Union['GetShareClientGroupArgs', 'GetShareClientGroupArgsDict']] client_groups: The groups of clients are the systems connecting to the Network File Storage cluster. Each client group supports the following:
+    :param Sequence[Union['GetShareClientGroupArgs', 'GetShareClientGroupArgsDict', 'outputs.GetShareClientGroupResult']] client_groups: The groups of clients are the systems connecting to the Network File Storage cluster. Each client group supports the following:
     :param _builtins.str cluster_id: The ID of the Network File Storage cluster.
     :param _builtins.int gid: The group ID that will own the exported directory. If not set, **anonymous** (`512`) will be used.
     :param _builtins.str id: ID of the Network File Storage share.

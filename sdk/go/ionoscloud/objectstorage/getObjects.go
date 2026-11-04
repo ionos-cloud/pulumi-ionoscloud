@@ -78,8 +78,6 @@ type GetObjectsResult struct {
 	Delimiter      *string  `pulumi:"delimiter"`
 	EncodingType   *string  `pulumi:"encodingType"`
 	FetchOwner     *bool    `pulumi:"fetchOwner"`
-	// The provider-assigned unique ID for this managed resource.
-	Id string `pulumi:"id"`
 	// A list of objects in the bucket.
 	Keys       []string `pulumi:"keys"`
 	MaxKeys    *int     `pulumi:"maxKeys"`
@@ -89,12 +87,8 @@ type GetObjectsResult struct {
 }
 
 func GetObjectsOutput(ctx *pulumi.Context, args GetObjectsOutputArgs, opts ...pulumi.InvokeOption) GetObjectsResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (GetObjectsResultOutput, error) {
-			args := v.(GetObjectsArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("ionoscloud:objectstorage/getObjects:getObjects", args, GetObjectsResultOutput{}, options).(GetObjectsResultOutput), nil
-		}).(GetObjectsResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("ionoscloud:objectstorage/getObjects:getObjects", args, GetObjectsResultOutput{}, options).(GetObjectsResultOutput)
 }
 
 // A collection of arguments for invoking getObjects.
@@ -153,11 +147,6 @@ func (o GetObjectsResultOutput) EncodingType() pulumi.StringPtrOutput {
 
 func (o GetObjectsResultOutput) FetchOwner() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v GetObjectsResult) *bool { return v.FetchOwner }).(pulumi.BoolPtrOutput)
-}
-
-// The provider-assigned unique ID for this managed resource.
-func (o GetObjectsResultOutput) Id() pulumi.StringOutput {
-	return o.ApplyT(func(v GetObjectsResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
 // A list of objects in the bucket.

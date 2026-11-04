@@ -139,7 +139,7 @@ class ObjectLockConfiguration(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  bucket: pulumi.Input[Optional[_builtins.str]] = None,
                  object_lock_enabled: pulumi.Input[Optional[_builtins.str]] = None,
-                 rule: pulumi.Input[Optional[Union['ObjectLockConfigurationRuleArgs', 'ObjectLockConfigurationRuleArgsDict']]] = None,
+                 rule: pulumi.Input[Optional[Union['ObjectLockConfigurationRuleArgs', 'ObjectLockConfigurationRuleArgsDict', 'outputs.ObjectLockConfigurationRule']]] = None,
                  __props__=None):
         """
         Manages Object Lock Configuration for Buckets on IONOS CLOUD.
@@ -177,7 +177,7 @@ class ObjectLockConfiguration(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] bucket: [string] The name of the bucket where the object will be stored.
         :param pulumi.Input[_builtins.str] object_lock_enabled: [Optional] The object lock configuration status of the bucket. Must be `Enabled`.
-        :param pulumi.Input[Union['ObjectLockConfigurationRuleArgs', 'ObjectLockConfigurationRuleArgsDict']] rule: [block] A block of rule as defined below.
+        :param pulumi.Input[Union['ObjectLockConfigurationRuleArgs', 'ObjectLockConfigurationRuleArgsDict', 'outputs.ObjectLockConfigurationRule']] rule: [block] A block of rule as defined below.
         """
         ...
     @overload
@@ -234,7 +234,7 @@ class ObjectLockConfiguration(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  bucket: pulumi.Input[Optional[_builtins.str]] = None,
                  object_lock_enabled: pulumi.Input[Optional[_builtins.str]] = None,
-                 rule: pulumi.Input[Optional[Union['ObjectLockConfigurationRuleArgs', 'ObjectLockConfigurationRuleArgsDict']]] = None,
+                 rule: pulumi.Input[Optional[Union['ObjectLockConfigurationRuleArgs', 'ObjectLockConfigurationRuleArgsDict', 'outputs.ObjectLockConfigurationRule']]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -261,7 +261,7 @@ class ObjectLockConfiguration(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             bucket: pulumi.Input[Optional[_builtins.str]] = None,
             object_lock_enabled: pulumi.Input[Optional[_builtins.str]] = None,
-            rule: pulumi.Input[Optional[Union['ObjectLockConfigurationRuleArgs', 'ObjectLockConfigurationRuleArgsDict']]] = None) -> 'ObjectLockConfiguration':
+            rule: pulumi.Input[Optional[Union['ObjectLockConfigurationRuleArgs', 'ObjectLockConfigurationRuleArgsDict', 'outputs.ObjectLockConfigurationRule']]] = None) -> 'ObjectLockConfiguration':
         """
         Get an existing ObjectLockConfiguration resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -271,7 +271,7 @@ class ObjectLockConfiguration(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] bucket: [string] The name of the bucket where the object will be stored.
         :param pulumi.Input[_builtins.str] object_lock_enabled: [Optional] The object lock configuration status of the bucket. Must be `Enabled`.
-        :param pulumi.Input[Union['ObjectLockConfigurationRuleArgs', 'ObjectLockConfigurationRuleArgsDict']] rule: [block] A block of rule as defined below.
+        :param pulumi.Input[Union['ObjectLockConfigurationRuleArgs', 'ObjectLockConfigurationRuleArgsDict', 'outputs.ObjectLockConfigurationRule']] rule: [block] A block of rule as defined below.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 

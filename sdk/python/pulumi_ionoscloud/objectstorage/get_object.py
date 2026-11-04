@@ -26,7 +26,7 @@ class GetObjectResult:
     """
     A collection of values returned by getObject.
     """
-    def __init__(__self__, body=None, bucket=None, cache_control=None, content_disposition=None, content_encoding=None, content_language=None, content_length=None, content_type=None, etag=None, expires=None, id=None, key=None, metadata=None, object_lock_legal_hold=None, object_lock_mode=None, object_lock_retain_until_date=None, range=None, request_payer=None, server_side_encryption=None, server_side_encryption_context=None, server_side_encryption_customer_algorithm=None, server_side_encryption_customer_key=None, server_side_encryption_customer_key_md5=None, storage_class=None, tags=None, version_id=None, website_redirect=None):
+    def __init__(__self__, body=None, bucket=None, cache_control=None, content_disposition=None, content_encoding=None, content_language=None, content_length=None, content_type=None, etag=None, expires=None, key=None, metadata=None, object_lock_legal_hold=None, object_lock_mode=None, object_lock_retain_until_date=None, range=None, request_payer=None, server_side_encryption=None, server_side_encryption_context=None, server_side_encryption_customer_algorithm=None, server_side_encryption_customer_key=None, server_side_encryption_customer_key_md5=None, storage_class=None, tags=None, version_id=None, website_redirect=None):
         if body and not isinstance(body, str):
             raise TypeError("Expected argument 'body' to be a str")
         pulumi.set(__self__, "body", body)
@@ -57,9 +57,6 @@ class GetObjectResult:
         if expires and not isinstance(expires, str):
             raise TypeError("Expected argument 'expires' to be a str")
         pulumi.set(__self__, "expires", expires)
-        if id and not isinstance(id, str):
-            raise TypeError("Expected argument 'id' to be a str")
-        pulumi.set(__self__, "id", id)
         if key and not isinstance(key, str):
             raise TypeError("Expected argument 'key' to be a str")
         pulumi.set(__self__, "key", key)
@@ -185,14 +182,6 @@ class GetObjectResult:
         The date and time at which the object is no longer cacheable.
         """
         return pulumi.get(self, "expires")
-
-    @_builtins.property
-    @pulumi.getter
-    def id(self) -> _builtins.str:
-        """
-        The provider-assigned unique ID for this managed resource.
-        """
-        return pulumi.get(self, "id")
 
     @_builtins.property
     @pulumi.getter
@@ -333,7 +322,6 @@ class AwaitableGetObjectResult(GetObjectResult):
             content_type=self.content_type,
             etag=self.etag,
             expires=self.expires,
-            id=self.id,
             key=self.key,
             metadata=self.metadata,
             object_lock_legal_hold=self.object_lock_legal_hold,
@@ -397,7 +385,6 @@ def get_object(bucket: Optional[_builtins.str] = None,
         content_type=pulumi.get(__ret__, 'content_type'),
         etag=pulumi.get(__ret__, 'etag'),
         expires=pulumi.get(__ret__, 'expires'),
-        id=pulumi.get(__ret__, 'id'),
         key=pulumi.get(__ret__, 'key'),
         metadata=pulumi.get(__ret__, 'metadata'),
         object_lock_legal_hold=pulumi.get(__ret__, 'object_lock_legal_hold'),
@@ -458,7 +445,6 @@ def get_object_output(bucket: pulumi.Input[Optional[_builtins.str]] = None,
         content_type=pulumi.get(__response__, 'content_type'),
         etag=pulumi.get(__response__, 'etag'),
         expires=pulumi.get(__response__, 'expires'),
-        id=pulumi.get(__response__, 'id'),
         key=pulumi.get(__response__, 'key'),
         metadata=pulumi.get(__response__, 'metadata'),
         object_lock_legal_hold=pulumi.get(__response__, 'object_lock_legal_hold'),

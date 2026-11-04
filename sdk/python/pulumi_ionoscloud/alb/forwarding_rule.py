@@ -360,7 +360,7 @@ class ForwardingRule(pulumi.CustomResource):
                  application_loadbalancer_id: pulumi.Input[Optional[_builtins.str]] = None,
                  client_timeout: pulumi.Input[Optional[_builtins.int]] = None,
                  datacenter_id: pulumi.Input[Optional[_builtins.str]] = None,
-                 http_rules: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ForwardingRuleHttpRuleArgs', 'ForwardingRuleHttpRuleArgsDict']]]]] = None,
+                 http_rules: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ForwardingRuleHttpRuleArgs', 'ForwardingRuleHttpRuleArgsDict', 'outputs.ForwardingRuleHttpRule']]]]] = None,
                  listener_ip: pulumi.Input[Optional[_builtins.str]] = None,
                  listener_port: pulumi.Input[Optional[_builtins.int]] = None,
                  location: pulumi.Input[Optional[_builtins.str]] = None,
@@ -460,7 +460,7 @@ class ForwardingRule(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] application_loadbalancer_id: [string] The ID of Application Load Balancer.
         :param pulumi.Input[_builtins.int] client_timeout: [int] The maximum time in milliseconds to wait for the client to acknowledge or send data; default is 50,000 (50 seconds).
         :param pulumi.Input[_builtins.str] datacenter_id: [string] The ID of a Virtual Data Center.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['ForwardingRuleHttpRuleArgs', 'ForwardingRuleHttpRuleArgsDict']]]] http_rules: [list] Array of items in that collection
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ForwardingRuleHttpRuleArgs', 'ForwardingRuleHttpRuleArgsDict', 'outputs.ForwardingRuleHttpRule']]]] http_rules: [list] Array of items in that collection
         :param pulumi.Input[_builtins.str] listener_ip: [string] Listening (inbound) IP.
         :param pulumi.Input[_builtins.int] listener_port: [int] Listening (inbound) port number; valid range is 1 to 65535.
         :param pulumi.Input[_builtins.str] location: The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
@@ -579,7 +579,7 @@ class ForwardingRule(pulumi.CustomResource):
                  application_loadbalancer_id: pulumi.Input[Optional[_builtins.str]] = None,
                  client_timeout: pulumi.Input[Optional[_builtins.int]] = None,
                  datacenter_id: pulumi.Input[Optional[_builtins.str]] = None,
-                 http_rules: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ForwardingRuleHttpRuleArgs', 'ForwardingRuleHttpRuleArgsDict']]]]] = None,
+                 http_rules: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ForwardingRuleHttpRuleArgs', 'ForwardingRuleHttpRuleArgsDict', 'outputs.ForwardingRuleHttpRule']]]]] = None,
                  listener_ip: pulumi.Input[Optional[_builtins.str]] = None,
                  listener_port: pulumi.Input[Optional[_builtins.int]] = None,
                  location: pulumi.Input[Optional[_builtins.str]] = None,
@@ -628,7 +628,7 @@ class ForwardingRule(pulumi.CustomResource):
             application_loadbalancer_id: pulumi.Input[Optional[_builtins.str]] = None,
             client_timeout: pulumi.Input[Optional[_builtins.int]] = None,
             datacenter_id: pulumi.Input[Optional[_builtins.str]] = None,
-            http_rules: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ForwardingRuleHttpRuleArgs', 'ForwardingRuleHttpRuleArgsDict']]]]] = None,
+            http_rules: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ForwardingRuleHttpRuleArgs', 'ForwardingRuleHttpRuleArgsDict', 'outputs.ForwardingRuleHttpRule']]]]] = None,
             listener_ip: pulumi.Input[Optional[_builtins.str]] = None,
             listener_port: pulumi.Input[Optional[_builtins.int]] = None,
             location: pulumi.Input[Optional[_builtins.str]] = None,
@@ -645,7 +645,7 @@ class ForwardingRule(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] application_loadbalancer_id: [string] The ID of Application Load Balancer.
         :param pulumi.Input[_builtins.int] client_timeout: [int] The maximum time in milliseconds to wait for the client to acknowledge or send data; default is 50,000 (50 seconds).
         :param pulumi.Input[_builtins.str] datacenter_id: [string] The ID of a Virtual Data Center.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['ForwardingRuleHttpRuleArgs', 'ForwardingRuleHttpRuleArgsDict']]]] http_rules: [list] Array of items in that collection
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ForwardingRuleHttpRuleArgs', 'ForwardingRuleHttpRuleArgsDict', 'outputs.ForwardingRuleHttpRule']]]] http_rules: [list] Array of items in that collection
         :param pulumi.Input[_builtins.str] listener_ip: [string] Listening (inbound) IP.
         :param pulumi.Input[_builtins.int] listener_port: [int] Listening (inbound) port number; valid range is 1 to 65535.
         :param pulumi.Input[_builtins.str] location: The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.

@@ -119,10 +119,6 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Dbaas
     public sealed class GetMariaDBVersionsV2Result
     {
         /// <summary>
-        /// The provider-assigned unique ID for this managed resource.
-        /// </summary>
-        public readonly string Id;
-        /// <summary>
         /// List of supported versions. Each item includes:
         /// </summary>
         public readonly ImmutableArray<Outputs.GetMariaDBVersionsV2ItemResult> Items;
@@ -130,13 +126,10 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Dbaas
 
         [OutputConstructor]
         private GetMariaDBVersionsV2Result(
-            string id,
-
             ImmutableArray<Outputs.GetMariaDBVersionsV2ItemResult> items,
 
             string location)
         {
-            Id = id;
             Items = items;
             Location = location;
         }

@@ -51,8 +51,8 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Nlb
     ///     {
     ///         DatacenterId = example.Id,
     ///         Name = "example",
-    ///         ListenerLan = example1.Id,
-    ///         TargetLan = example2.Id,
+    ///         ListenerLan = example1.Id.Apply(x =&gt; int.Parse(x, System.Globalization.CultureInfo.InvariantCulture)),
+    ///         TargetLan = example2.Id.Apply(x =&gt; int.Parse(x, System.Globalization.CultureInfo.InvariantCulture)),
     ///         Ips = new[]
     ///         {
     ///             "10.12.118.224",
@@ -127,8 +127,8 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Nlb
     ///     {
     ///         DatacenterId = example.Id,
     ///         Name = "example",
-    ///         ListenerLan = example1.Id,
-    ///         TargetLan = example2.Id,
+    ///         ListenerLan = example1.Id.Apply(x =&gt; int.Parse(x, System.Globalization.CultureInfo.InvariantCulture)),
+    ///         TargetLan = example2.Id.Apply(x =&gt; int.Parse(x, System.Globalization.CultureInfo.InvariantCulture)),
     ///         Ips = new[]
     ///         {
     ///             "10.12.118.224",

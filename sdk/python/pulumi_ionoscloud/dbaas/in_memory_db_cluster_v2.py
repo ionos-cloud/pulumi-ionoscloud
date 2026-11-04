@@ -530,20 +530,20 @@ class InMemoryDBClusterV2(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 connections: pulumi.Input[Optional[Union['InMemoryDBClusterV2ConnectionsArgs', 'InMemoryDBClusterV2ConnectionsArgsDict']]] = None,
-                 credentials: pulumi.Input[Optional[Union['InMemoryDBClusterV2CredentialsArgs', 'InMemoryDBClusterV2CredentialsArgsDict']]] = None,
+                 connections: pulumi.Input[Optional[Union['InMemoryDBClusterV2ConnectionsArgs', 'InMemoryDBClusterV2ConnectionsArgsDict', 'outputs.InMemoryDBClusterV2Connections']]] = None,
+                 credentials: pulumi.Input[Optional[Union['InMemoryDBClusterV2CredentialsArgs', 'InMemoryDBClusterV2CredentialsArgsDict', 'outputs.InMemoryDBClusterV2Credentials']]] = None,
                  description: pulumi.Input[Optional[_builtins.str]] = None,
                  eviction_policy: pulumi.Input[Optional[_builtins.str]] = None,
-                 instances: pulumi.Input[Optional[Union['InMemoryDBClusterV2InstancesArgs', 'InMemoryDBClusterV2InstancesArgsDict']]] = None,
+                 instances: pulumi.Input[Optional[Union['InMemoryDBClusterV2InstancesArgs', 'InMemoryDBClusterV2InstancesArgsDict', 'outputs.InMemoryDBClusterV2Instances']]] = None,
                  location: pulumi.Input[Optional[_builtins.str]] = None,
                  logs_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
-                 maintenance_window: pulumi.Input[Optional[Union['InMemoryDBClusterV2MaintenanceWindowArgs', 'InMemoryDBClusterV2MaintenanceWindowArgsDict']]] = None,
+                 maintenance_window: pulumi.Input[Optional[Union['InMemoryDBClusterV2MaintenanceWindowArgs', 'InMemoryDBClusterV2MaintenanceWindowArgsDict', 'outputs.InMemoryDBClusterV2MaintenanceWindow']]] = None,
                  metrics_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  persistence_mode: pulumi.Input[Optional[_builtins.str]] = None,
-                 restore_from_snapshot: pulumi.Input[Optional[Union['InMemoryDBClusterV2RestoreFromSnapshotArgs', 'InMemoryDBClusterV2RestoreFromSnapshotArgsDict']]] = None,
-                 snapshot: pulumi.Input[Optional[Union['InMemoryDBClusterV2SnapshotArgs', 'InMemoryDBClusterV2SnapshotArgsDict']]] = None,
-                 timeouts: pulumi.Input[Optional[Union['InMemoryDBClusterV2TimeoutsArgs', 'InMemoryDBClusterV2TimeoutsArgsDict']]] = None,
+                 restore_from_snapshot: pulumi.Input[Optional[Union['InMemoryDBClusterV2RestoreFromSnapshotArgs', 'InMemoryDBClusterV2RestoreFromSnapshotArgsDict', 'outputs.InMemoryDBClusterV2RestoreFromSnapshot']]] = None,
+                 snapshot: pulumi.Input[Optional[Union['InMemoryDBClusterV2SnapshotArgs', 'InMemoryDBClusterV2SnapshotArgsDict', 'outputs.InMemoryDBClusterV2Snapshot']]] = None,
+                 timeouts: pulumi.Input[Optional[Union['InMemoryDBClusterV2TimeoutsArgs', 'InMemoryDBClusterV2TimeoutsArgsDict', 'outputs.InMemoryDBClusterV2Timeouts']]] = None,
                  version: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
@@ -615,20 +615,20 @@ class InMemoryDBClusterV2(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Union['InMemoryDBClusterV2ConnectionsArgs', 'InMemoryDBClusterV2ConnectionsArgsDict']] connections: [object] The network connection for your cluster. Only one connection is allowed.
-        :param pulumi.Input[Union['InMemoryDBClusterV2CredentialsArgs', 'InMemoryDBClusterV2CredentialsArgsDict']] credentials: [object] Credentials for the InMemoryDB cluster user.
+        :param pulumi.Input[Union['InMemoryDBClusterV2ConnectionsArgs', 'InMemoryDBClusterV2ConnectionsArgsDict', 'outputs.InMemoryDBClusterV2Connections']] connections: [object] The network connection for your cluster. Only one connection is allowed.
+        :param pulumi.Input[Union['InMemoryDBClusterV2CredentialsArgs', 'InMemoryDBClusterV2CredentialsArgsDict', 'outputs.InMemoryDBClusterV2Credentials']] credentials: [object] Credentials for the InMemoryDB cluster user.
         :param pulumi.Input[_builtins.str] description: [string] Human-readable description.
         :param pulumi.Input[_builtins.str] eviction_policy: [string] Key eviction strategy: `noeviction`, `allkeys-lru`, `allkeys-lfu`, `allkeys-random`, `volatile-lru`, `volatile-lfu`, `volatile-random`, `volatile-ttl`.
-        :param pulumi.Input[Union['InMemoryDBClusterV2InstancesArgs', 'InMemoryDBClusterV2InstancesArgsDict']] instances: [object] The instance sizing configuration.
+        :param pulumi.Input[Union['InMemoryDBClusterV2InstancesArgs', 'InMemoryDBClusterV2InstancesArgsDict', 'outputs.InMemoryDBClusterV2Instances']] instances: [object] The instance sizing configuration.
         :param pulumi.Input[_builtins.str] location: [string] The location of the cluster. Changing this forces a new resource. Available: `de/fra`, `de/fra/1`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
         :param pulumi.Input[_builtins.bool] logs_enabled: (Computed)[bool] Enable log collection for observability. If not set, the API default is used.
-        :param pulumi.Input[Union['InMemoryDBClusterV2MaintenanceWindowArgs', 'InMemoryDBClusterV2MaintenanceWindowArgsDict']] maintenance_window: [object] A weekly 4 hour-long window, during which maintenance might occur.
+        :param pulumi.Input[Union['InMemoryDBClusterV2MaintenanceWindowArgs', 'InMemoryDBClusterV2MaintenanceWindowArgsDict', 'outputs.InMemoryDBClusterV2MaintenanceWindow']] maintenance_window: [object] A weekly 4 hour-long window, during which maintenance might occur.
         :param pulumi.Input[_builtins.bool] metrics_enabled: (Computed)[bool] Enable metrics collection for observability. If not set, the API default is used.
         :param pulumi.Input[_builtins.str] name: [string] Cluster name (2–63 alphanumeric chars with dashes, underscores, dots).
         :param pulumi.Input[_builtins.str] persistence_mode: (Computed)[string] Data persistence mode: `None`, `AOF`, `RDB`, `RDB_AOF`. If not set, the API default is used.
-        :param pulumi.Input[Union['InMemoryDBClusterV2RestoreFromSnapshotArgs', 'InMemoryDBClusterV2RestoreFromSnapshotArgsDict']] restore_from_snapshot: [object] Restore configuration from a snapshot.
-        :param pulumi.Input[Union['InMemoryDBClusterV2SnapshotArgs', 'InMemoryDBClusterV2SnapshotArgsDict']] snapshot: [object] Snapshot configuration.
-        :param pulumi.Input[Union['InMemoryDBClusterV2TimeoutsArgs', 'InMemoryDBClusterV2TimeoutsArgsDict']] timeouts: Standard Terraform timeouts: `create`, `update`, `delete`.
+        :param pulumi.Input[Union['InMemoryDBClusterV2RestoreFromSnapshotArgs', 'InMemoryDBClusterV2RestoreFromSnapshotArgsDict', 'outputs.InMemoryDBClusterV2RestoreFromSnapshot']] restore_from_snapshot: [object] Restore configuration from a snapshot.
+        :param pulumi.Input[Union['InMemoryDBClusterV2SnapshotArgs', 'InMemoryDBClusterV2SnapshotArgsDict', 'outputs.InMemoryDBClusterV2Snapshot']] snapshot: [object] Snapshot configuration.
+        :param pulumi.Input[Union['InMemoryDBClusterV2TimeoutsArgs', 'InMemoryDBClusterV2TimeoutsArgsDict', 'outputs.InMemoryDBClusterV2Timeouts']] timeouts: Standard Terraform timeouts: `create`, `update`, `delete`.
         :param pulumi.Input[_builtins.str] version: [string] The InMemoryDB version. Upgrades only (see `/versions` endpoint).
         """
         ...
@@ -719,20 +719,20 @@ class InMemoryDBClusterV2(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 connections: pulumi.Input[Optional[Union['InMemoryDBClusterV2ConnectionsArgs', 'InMemoryDBClusterV2ConnectionsArgsDict']]] = None,
-                 credentials: pulumi.Input[Optional[Union['InMemoryDBClusterV2CredentialsArgs', 'InMemoryDBClusterV2CredentialsArgsDict']]] = None,
+                 connections: pulumi.Input[Optional[Union['InMemoryDBClusterV2ConnectionsArgs', 'InMemoryDBClusterV2ConnectionsArgsDict', 'outputs.InMemoryDBClusterV2Connections']]] = None,
+                 credentials: pulumi.Input[Optional[Union['InMemoryDBClusterV2CredentialsArgs', 'InMemoryDBClusterV2CredentialsArgsDict', 'outputs.InMemoryDBClusterV2Credentials']]] = None,
                  description: pulumi.Input[Optional[_builtins.str]] = None,
                  eviction_policy: pulumi.Input[Optional[_builtins.str]] = None,
-                 instances: pulumi.Input[Optional[Union['InMemoryDBClusterV2InstancesArgs', 'InMemoryDBClusterV2InstancesArgsDict']]] = None,
+                 instances: pulumi.Input[Optional[Union['InMemoryDBClusterV2InstancesArgs', 'InMemoryDBClusterV2InstancesArgsDict', 'outputs.InMemoryDBClusterV2Instances']]] = None,
                  location: pulumi.Input[Optional[_builtins.str]] = None,
                  logs_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
-                 maintenance_window: pulumi.Input[Optional[Union['InMemoryDBClusterV2MaintenanceWindowArgs', 'InMemoryDBClusterV2MaintenanceWindowArgsDict']]] = None,
+                 maintenance_window: pulumi.Input[Optional[Union['InMemoryDBClusterV2MaintenanceWindowArgs', 'InMemoryDBClusterV2MaintenanceWindowArgsDict', 'outputs.InMemoryDBClusterV2MaintenanceWindow']]] = None,
                  metrics_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  persistence_mode: pulumi.Input[Optional[_builtins.str]] = None,
-                 restore_from_snapshot: pulumi.Input[Optional[Union['InMemoryDBClusterV2RestoreFromSnapshotArgs', 'InMemoryDBClusterV2RestoreFromSnapshotArgsDict']]] = None,
-                 snapshot: pulumi.Input[Optional[Union['InMemoryDBClusterV2SnapshotArgs', 'InMemoryDBClusterV2SnapshotArgsDict']]] = None,
-                 timeouts: pulumi.Input[Optional[Union['InMemoryDBClusterV2TimeoutsArgs', 'InMemoryDBClusterV2TimeoutsArgsDict']]] = None,
+                 restore_from_snapshot: pulumi.Input[Optional[Union['InMemoryDBClusterV2RestoreFromSnapshotArgs', 'InMemoryDBClusterV2RestoreFromSnapshotArgsDict', 'outputs.InMemoryDBClusterV2RestoreFromSnapshot']]] = None,
+                 snapshot: pulumi.Input[Optional[Union['InMemoryDBClusterV2SnapshotArgs', 'InMemoryDBClusterV2SnapshotArgsDict', 'outputs.InMemoryDBClusterV2Snapshot']]] = None,
+                 timeouts: pulumi.Input[Optional[Union['InMemoryDBClusterV2TimeoutsArgs', 'InMemoryDBClusterV2TimeoutsArgsDict', 'outputs.InMemoryDBClusterV2Timeouts']]] = None,
                  version: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -785,21 +785,21 @@ class InMemoryDBClusterV2(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            connections: pulumi.Input[Optional[Union['InMemoryDBClusterV2ConnectionsArgs', 'InMemoryDBClusterV2ConnectionsArgsDict']]] = None,
-            credentials: pulumi.Input[Optional[Union['InMemoryDBClusterV2CredentialsArgs', 'InMemoryDBClusterV2CredentialsArgsDict']]] = None,
+            connections: pulumi.Input[Optional[Union['InMemoryDBClusterV2ConnectionsArgs', 'InMemoryDBClusterV2ConnectionsArgsDict', 'outputs.InMemoryDBClusterV2Connections']]] = None,
+            credentials: pulumi.Input[Optional[Union['InMemoryDBClusterV2CredentialsArgs', 'InMemoryDBClusterV2CredentialsArgsDict', 'outputs.InMemoryDBClusterV2Credentials']]] = None,
             description: pulumi.Input[Optional[_builtins.str]] = None,
             dns_name: pulumi.Input[Optional[_builtins.str]] = None,
             eviction_policy: pulumi.Input[Optional[_builtins.str]] = None,
-            instances: pulumi.Input[Optional[Union['InMemoryDBClusterV2InstancesArgs', 'InMemoryDBClusterV2InstancesArgsDict']]] = None,
+            instances: pulumi.Input[Optional[Union['InMemoryDBClusterV2InstancesArgs', 'InMemoryDBClusterV2InstancesArgsDict', 'outputs.InMemoryDBClusterV2Instances']]] = None,
             location: pulumi.Input[Optional[_builtins.str]] = None,
             logs_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
-            maintenance_window: pulumi.Input[Optional[Union['InMemoryDBClusterV2MaintenanceWindowArgs', 'InMemoryDBClusterV2MaintenanceWindowArgsDict']]] = None,
+            maintenance_window: pulumi.Input[Optional[Union['InMemoryDBClusterV2MaintenanceWindowArgs', 'InMemoryDBClusterV2MaintenanceWindowArgsDict', 'outputs.InMemoryDBClusterV2MaintenanceWindow']]] = None,
             metrics_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
             name: pulumi.Input[Optional[_builtins.str]] = None,
             persistence_mode: pulumi.Input[Optional[_builtins.str]] = None,
-            restore_from_snapshot: pulumi.Input[Optional[Union['InMemoryDBClusterV2RestoreFromSnapshotArgs', 'InMemoryDBClusterV2RestoreFromSnapshotArgsDict']]] = None,
-            snapshot: pulumi.Input[Optional[Union['InMemoryDBClusterV2SnapshotArgs', 'InMemoryDBClusterV2SnapshotArgsDict']]] = None,
-            timeouts: pulumi.Input[Optional[Union['InMemoryDBClusterV2TimeoutsArgs', 'InMemoryDBClusterV2TimeoutsArgsDict']]] = None,
+            restore_from_snapshot: pulumi.Input[Optional[Union['InMemoryDBClusterV2RestoreFromSnapshotArgs', 'InMemoryDBClusterV2RestoreFromSnapshotArgsDict', 'outputs.InMemoryDBClusterV2RestoreFromSnapshot']]] = None,
+            snapshot: pulumi.Input[Optional[Union['InMemoryDBClusterV2SnapshotArgs', 'InMemoryDBClusterV2SnapshotArgsDict', 'outputs.InMemoryDBClusterV2Snapshot']]] = None,
+            timeouts: pulumi.Input[Optional[Union['InMemoryDBClusterV2TimeoutsArgs', 'InMemoryDBClusterV2TimeoutsArgsDict', 'outputs.InMemoryDBClusterV2Timeouts']]] = None,
             version: pulumi.Input[Optional[_builtins.str]] = None) -> 'InMemoryDBClusterV2':
         """
         Get an existing InMemoryDBClusterV2 resource's state with the given name, id, and optional extra
@@ -808,21 +808,21 @@ class InMemoryDBClusterV2(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Union['InMemoryDBClusterV2ConnectionsArgs', 'InMemoryDBClusterV2ConnectionsArgsDict']] connections: [object] The network connection for your cluster. Only one connection is allowed.
-        :param pulumi.Input[Union['InMemoryDBClusterV2CredentialsArgs', 'InMemoryDBClusterV2CredentialsArgsDict']] credentials: [object] Credentials for the InMemoryDB cluster user.
+        :param pulumi.Input[Union['InMemoryDBClusterV2ConnectionsArgs', 'InMemoryDBClusterV2ConnectionsArgsDict', 'outputs.InMemoryDBClusterV2Connections']] connections: [object] The network connection for your cluster. Only one connection is allowed.
+        :param pulumi.Input[Union['InMemoryDBClusterV2CredentialsArgs', 'InMemoryDBClusterV2CredentialsArgsDict', 'outputs.InMemoryDBClusterV2Credentials']] credentials: [object] Credentials for the InMemoryDB cluster user.
         :param pulumi.Input[_builtins.str] description: [string] Human-readable description.
         :param pulumi.Input[_builtins.str] dns_name: The DNS name for connecting to the cluster's primary instance.
         :param pulumi.Input[_builtins.str] eviction_policy: [string] Key eviction strategy: `noeviction`, `allkeys-lru`, `allkeys-lfu`, `allkeys-random`, `volatile-lru`, `volatile-lfu`, `volatile-random`, `volatile-ttl`.
-        :param pulumi.Input[Union['InMemoryDBClusterV2InstancesArgs', 'InMemoryDBClusterV2InstancesArgsDict']] instances: [object] The instance sizing configuration.
+        :param pulumi.Input[Union['InMemoryDBClusterV2InstancesArgs', 'InMemoryDBClusterV2InstancesArgsDict', 'outputs.InMemoryDBClusterV2Instances']] instances: [object] The instance sizing configuration.
         :param pulumi.Input[_builtins.str] location: [string] The location of the cluster. Changing this forces a new resource. Available: `de/fra`, `de/fra/1`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
         :param pulumi.Input[_builtins.bool] logs_enabled: (Computed)[bool] Enable log collection for observability. If not set, the API default is used.
-        :param pulumi.Input[Union['InMemoryDBClusterV2MaintenanceWindowArgs', 'InMemoryDBClusterV2MaintenanceWindowArgsDict']] maintenance_window: [object] A weekly 4 hour-long window, during which maintenance might occur.
+        :param pulumi.Input[Union['InMemoryDBClusterV2MaintenanceWindowArgs', 'InMemoryDBClusterV2MaintenanceWindowArgsDict', 'outputs.InMemoryDBClusterV2MaintenanceWindow']] maintenance_window: [object] A weekly 4 hour-long window, during which maintenance might occur.
         :param pulumi.Input[_builtins.bool] metrics_enabled: (Computed)[bool] Enable metrics collection for observability. If not set, the API default is used.
         :param pulumi.Input[_builtins.str] name: [string] Cluster name (2–63 alphanumeric chars with dashes, underscores, dots).
         :param pulumi.Input[_builtins.str] persistence_mode: (Computed)[string] Data persistence mode: `None`, `AOF`, `RDB`, `RDB_AOF`. If not set, the API default is used.
-        :param pulumi.Input[Union['InMemoryDBClusterV2RestoreFromSnapshotArgs', 'InMemoryDBClusterV2RestoreFromSnapshotArgsDict']] restore_from_snapshot: [object] Restore configuration from a snapshot.
-        :param pulumi.Input[Union['InMemoryDBClusterV2SnapshotArgs', 'InMemoryDBClusterV2SnapshotArgsDict']] snapshot: [object] Snapshot configuration.
-        :param pulumi.Input[Union['InMemoryDBClusterV2TimeoutsArgs', 'InMemoryDBClusterV2TimeoutsArgsDict']] timeouts: Standard Terraform timeouts: `create`, `update`, `delete`.
+        :param pulumi.Input[Union['InMemoryDBClusterV2RestoreFromSnapshotArgs', 'InMemoryDBClusterV2RestoreFromSnapshotArgsDict', 'outputs.InMemoryDBClusterV2RestoreFromSnapshot']] restore_from_snapshot: [object] Restore configuration from a snapshot.
+        :param pulumi.Input[Union['InMemoryDBClusterV2SnapshotArgs', 'InMemoryDBClusterV2SnapshotArgsDict', 'outputs.InMemoryDBClusterV2Snapshot']] snapshot: [object] Snapshot configuration.
+        :param pulumi.Input[Union['InMemoryDBClusterV2TimeoutsArgs', 'InMemoryDBClusterV2TimeoutsArgsDict', 'outputs.InMemoryDBClusterV2Timeouts']] timeouts: Standard Terraform timeouts: `create`, `update`, `delete`.
         :param pulumi.Input[_builtins.str] version: [string] The InMemoryDB version. Upgrades only (see `/versions` endpoint).
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))

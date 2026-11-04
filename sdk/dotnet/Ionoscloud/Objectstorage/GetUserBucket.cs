@@ -140,10 +140,6 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Objectstorage
     public sealed class GetUserBucketResult
     {
         /// <summary>
-        /// The provider-assigned unique ID for this managed resource.
-        /// </summary>
-        public readonly string Id;
-        /// <summary>
         /// The name of the bucket.
         /// </summary>
         public readonly string Name;
@@ -162,8 +158,6 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Objectstorage
 
         [OutputConstructor]
         private GetUserBucketResult(
-            string id,
-
             string name,
 
             bool objectLockEnabled,
@@ -172,7 +166,6 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Objectstorage
 
             ImmutableDictionary<string, string> tags)
         {
-            Id = id;
             Name = name;
             ObjectLockEnabled = objectLockEnabled;
             Region = region;

@@ -76,8 +76,8 @@ import javax.annotation.Nullable;
  *             .datacenterId(example.id())
  *             .name("example")
  *             .publicIps(            
- *                 exampleIPBlock.ips().applyValue(_ips -> _ips[0]),
- *                 exampleIPBlock.ips().applyValue(_ips -> _ips[1]))
+ *                 exampleIPBlock.ips().applyValue(_ips -> _ips.get(0)),
+ *                 exampleIPBlock.ips().applyValue(_ips -> _ips.get(1)))
  *             .lans(NatGatewayLanArgs.builder()
  *                 .id(exampleLan.id())
  *                 .gatewayIps("10.11.2.5")
@@ -91,7 +91,7 @@ import javax.annotation.Nullable;
  *             .type("SNAT")
  *             .protocol("TCP")
  *             .sourceSubnet("10.0.1.0/24")
- *             .publicIp(exampleIPBlock.ips().applyValue(_ips -> _ips[0]))
+ *             .publicIp(exampleIPBlock.ips().applyValue(_ips -> _ips.get(0)))
  *             .targetSubnet("10.0.1.0/24")
  *             .targetPortRange(NatGatewayRuleTargetPortRangeArgs.builder()
  *                 .start(500)

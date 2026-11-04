@@ -239,7 +239,7 @@ class Bucket(pulumi.CustomResource):
                  object_lock_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
                  region: pulumi.Input[Optional[_builtins.str]] = None,
                  tags: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 timeouts: pulumi.Input[Optional[Union['BucketTimeoutsArgs', 'BucketTimeoutsArgsDict']]] = None,
+                 timeouts: pulumi.Input[Optional[Union['BucketTimeoutsArgs', 'BucketTimeoutsArgsDict', 'outputs.BucketTimeouts']]] = None,
                  __props__=None):
         """
         Manages [IONOS Object Storage Buckets](https://docs.ionos.com/cloud/storage-and-backup/ionos-object-storage) on IONOS CLOUD.
@@ -288,7 +288,7 @@ class Bucket(pulumi.CustomResource):
         :param pulumi.Input[_builtins.bool] object_lock_enabled: [bool] The object lock configuration status of the bucket. Must be `true` or `false`.
         :param pulumi.Input[_builtins.str] region: [string] Specifies the Region where the bucket will be created. Available regions are: `eu-central-3`, `eu-central-4`, `us-central-1`. Can be used only if the region is the same as the global region (set using `IONOS_S3_REGION` env var or `s3_region` provider attribute) or if the global region is unset. For using multiple different regions, please check the `Working with multiple regions/locations` section presented here.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] tags: A mapping of tags to assign to the bucket.
-        :param pulumi.Input[Union['BucketTimeoutsArgs', 'BucketTimeoutsArgsDict']] timeouts: Timeouts for this resource.
+        :param pulumi.Input[Union['BucketTimeoutsArgs', 'BucketTimeoutsArgsDict', 'outputs.BucketTimeouts']] timeouts: Timeouts for this resource.
         """
         ...
     @overload
@@ -356,7 +356,7 @@ class Bucket(pulumi.CustomResource):
                  object_lock_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
                  region: pulumi.Input[Optional[_builtins.str]] = None,
                  tags: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 timeouts: pulumi.Input[Optional[Union['BucketTimeoutsArgs', 'BucketTimeoutsArgsDict']]] = None,
+                 timeouts: pulumi.Input[Optional[Union['BucketTimeoutsArgs', 'BucketTimeoutsArgsDict', 'outputs.BucketTimeouts']]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -387,7 +387,7 @@ class Bucket(pulumi.CustomResource):
             object_lock_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
             region: pulumi.Input[Optional[_builtins.str]] = None,
             tags: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-            timeouts: pulumi.Input[Optional[Union['BucketTimeoutsArgs', 'BucketTimeoutsArgsDict']]] = None) -> 'Bucket':
+            timeouts: pulumi.Input[Optional[Union['BucketTimeoutsArgs', 'BucketTimeoutsArgsDict', 'outputs.BucketTimeouts']]] = None) -> 'Bucket':
         """
         Get an existing Bucket resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -400,7 +400,7 @@ class Bucket(pulumi.CustomResource):
         :param pulumi.Input[_builtins.bool] object_lock_enabled: [bool] The object lock configuration status of the bucket. Must be `true` or `false`.
         :param pulumi.Input[_builtins.str] region: [string] Specifies the Region where the bucket will be created. Available regions are: `eu-central-3`, `eu-central-4`, `us-central-1`. Can be used only if the region is the same as the global region (set using `IONOS_S3_REGION` env var or `s3_region` provider attribute) or if the global region is unset. For using multiple different regions, please check the `Working with multiple regions/locations` section presented here.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] tags: A mapping of tags to assign to the bucket.
-        :param pulumi.Input[Union['BucketTimeoutsArgs', 'BucketTimeoutsArgsDict']] timeouts: Timeouts for this resource.
+        :param pulumi.Input[Union['BucketTimeoutsArgs', 'BucketTimeoutsArgsDict', 'outputs.BucketTimeouts']] timeouts: Timeouts for this resource.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 

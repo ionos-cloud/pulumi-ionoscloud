@@ -40,8 +40,8 @@ import javax.annotation.Nullable;
  * import com.ionoscloud.pulumi.ionoscloud.compute.LanArgs;
  * import com.ionoscloud.pulumi.ionoscloud.compute.IPBlock;
  * import com.ionoscloud.pulumi.ionoscloud.compute.IPBlockArgs;
- * import com.pulumi.random.password;
- * import com.pulumi.random.passwordArgs;
+ * import com.pulumi.random.Password;
+ * import com.pulumi.random.PasswordArgs;
  * import com.ionoscloud.pulumi.ionoscloud.compute.Server;
  * import com.ionoscloud.pulumi.ionoscloud.compute.ServerArgs;
  * import com.pulumi.ionoscloud.compute.inputs.ServerVolumeArgs;
@@ -99,7 +99,7 @@ import javax.annotation.Nullable;
  *             .cores(1)
  *             .ram(1024)
  *             .imageName(example.name())
- *             .imagePassword(serverImagePassword.result())
+ *             .imagePassword(serverImagePassword.get("result"))
  *             .type("ENTERPRISE")
  *             .volume(ServerVolumeArgs.builder()
  *                 .name("system")
@@ -116,16 +116,16 @@ import javax.annotation.Nullable;
  *                 .firewallActive(true)
  *                 .firewallType("BIDIRECTIONAL")
  *                 .ips(                
- *                     exampleIPBlock.ips().applyValue(_ips -> _ips[0]),
- *                     exampleIPBlock.ips().applyValue(_ips -> _ips[1]))
+ *                     exampleIPBlock.ips().applyValue(_ips -> _ips.get(0)),
+ *                     exampleIPBlock.ips().applyValue(_ips -> _ips.get(1)))
  *                 .firewalls(ServerNicFirewallArgs.builder()
  *                     .protocol("TCP")
  *                     .name("SSH")
  *                     .portRangeStart(22)
  *                     .portRangeEnd(22)
  *                     .sourceMac("00:0a:95:9d:68:17")
- *                     .sourceIp(exampleIPBlock.ips().applyValue(_ips -> _ips[2]))
- *                     .targetIp(exampleIPBlock.ips().applyValue(_ips -> _ips[3]))
+ *                     .sourceIp(exampleIPBlock.ips().applyValue(_ips -> _ips.get(2)))
+ *                     .targetIp(exampleIPBlock.ips().applyValue(_ips -> _ips.get(3)))
  *                     .type("EGRESS")
  *                     .build())
  *                 .build())
@@ -145,7 +145,7 @@ import javax.annotation.Nullable;
  *             .diskType("SSD Standard")
  *             .bus("VIRTIO")
  *             .imageName(example.name())
- *             .imagePassword(volumeImagePassword.result())
+ *             .imagePassword(volumeImagePassword.get("result"))
  *             .userData("foo")
  *             .build());
  * 

@@ -1131,7 +1131,7 @@ public final class CregFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var example = CregFunctions.getRegistryToken(GetRegistryTokenArgs.builder()
-     *             .registryId(exampleIonoscloudContainerRegistry.id())
+     *             .registryId(exampleIonoscloudContainerRegistry.get("id"))
      *             .id("token_id")
      *             .build());
      * 
@@ -1166,7 +1166,7 @@ public final class CregFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var example = CregFunctions.getRegistryToken(GetRegistryTokenArgs.builder()
-     *             .registryId(exampleIonoscloudContainerRegistry.id())
+     *             .registryId(exampleIonoscloudContainerRegistry.get("id"))
      *             .name("container-registry-token-example")
      *             .build());
      * 
@@ -1201,7 +1201,7 @@ public final class CregFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var example = CregFunctions.getRegistryToken(GetRegistryTokenArgs.builder()
-     *             .registryId(exampleIonoscloudContainerRegistry.id())
+     *             .registryId(exampleIonoscloudContainerRegistry.get("id"))
      *             .name("-example")
      *             .partialMatch(true)
      *             .build());
@@ -1249,7 +1249,7 @@ public final class CregFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var example = CregFunctions.getRegistryToken(GetRegistryTokenArgs.builder()
-     *             .registryId(exampleIonoscloudContainerRegistry.id())
+     *             .registryId(exampleIonoscloudContainerRegistry.get("id"))
      *             .id("token_id")
      *             .build());
      * 
@@ -1284,7 +1284,7 @@ public final class CregFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var example = CregFunctions.getRegistryToken(GetRegistryTokenArgs.builder()
-     *             .registryId(exampleIonoscloudContainerRegistry.id())
+     *             .registryId(exampleIonoscloudContainerRegistry.get("id"))
      *             .name("container-registry-token-example")
      *             .build());
      * 
@@ -1319,7 +1319,7 @@ public final class CregFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var example = CregFunctions.getRegistryToken(GetRegistryTokenArgs.builder()
-     *             .registryId(exampleIonoscloudContainerRegistry.id())
+     *             .registryId(exampleIonoscloudContainerRegistry.get("id"))
      *             .name("-example")
      *             .partialMatch(true)
      *             .build());
@@ -1367,7 +1367,7 @@ public final class CregFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var example = CregFunctions.getRegistryToken(GetRegistryTokenArgs.builder()
-     *             .registryId(exampleIonoscloudContainerRegistry.id())
+     *             .registryId(exampleIonoscloudContainerRegistry.get("id"))
      *             .id("token_id")
      *             .build());
      * 
@@ -1402,7 +1402,7 @@ public final class CregFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var example = CregFunctions.getRegistryToken(GetRegistryTokenArgs.builder()
-     *             .registryId(exampleIonoscloudContainerRegistry.id())
+     *             .registryId(exampleIonoscloudContainerRegistry.get("id"))
      *             .name("container-registry-token-example")
      *             .build());
      * 
@@ -1437,7 +1437,7 @@ public final class CregFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var example = CregFunctions.getRegistryToken(GetRegistryTokenArgs.builder()
-     *             .registryId(exampleIonoscloudContainerRegistry.id())
+     *             .registryId(exampleIonoscloudContainerRegistry.get("id"))
      *             .name("-example")
      *             .partialMatch(true)
      *             .build());
@@ -1485,7 +1485,7 @@ public final class CregFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var example = CregFunctions.getRegistryToken(GetRegistryTokenArgs.builder()
-     *             .registryId(exampleIonoscloudContainerRegistry.id())
+     *             .registryId(exampleIonoscloudContainerRegistry.get("id"))
      *             .id("token_id")
      *             .build());
      * 
@@ -1520,7 +1520,7 @@ public final class CregFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var example = CregFunctions.getRegistryToken(GetRegistryTokenArgs.builder()
-     *             .registryId(exampleIonoscloudContainerRegistry.id())
+     *             .registryId(exampleIonoscloudContainerRegistry.get("id"))
      *             .name("container-registry-token-example")
      *             .build());
      * 
@@ -1555,7 +1555,7 @@ public final class CregFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var example = CregFunctions.getRegistryToken(GetRegistryTokenArgs.builder()
-     *             .registryId(exampleIonoscloudContainerRegistry.id())
+     *             .registryId(exampleIonoscloudContainerRegistry.get("id"))
      *             .name("-example")
      *             .partialMatch(true)
      *             .build());
@@ -1603,7 +1603,7 @@ public final class CregFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var example = CregFunctions.getRegistryToken(GetRegistryTokenArgs.builder()
-     *             .registryId(exampleIonoscloudContainerRegistry.id())
+     *             .registryId(exampleIonoscloudContainerRegistry.get("id"))
      *             .id("token_id")
      *             .build());
      * 
@@ -1638,7 +1638,7 @@ public final class CregFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var example = CregFunctions.getRegistryToken(GetRegistryTokenArgs.builder()
-     *             .registryId(exampleIonoscloudContainerRegistry.id())
+     *             .registryId(exampleIonoscloudContainerRegistry.get("id"))
      *             .name("container-registry-token-example")
      *             .build());
      * 
@@ -1673,7 +1673,7 @@ public final class CregFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var example = CregFunctions.getRegistryToken(GetRegistryTokenArgs.builder()
-     *             .registryId(exampleIonoscloudContainerRegistry.id())
+     *             .registryId(exampleIonoscloudContainerRegistry.get("id"))
      *             .name("-example")
      *             .partialMatch(true)
      *             .build());

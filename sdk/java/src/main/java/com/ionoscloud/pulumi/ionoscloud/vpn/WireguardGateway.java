@@ -78,7 +78,7 @@ import javax.annotation.Nullable;
  *             .name("gateway_example")
  *             .description("description")
  *             .privateKey("private")
- *             .gatewayIp(ipblockExample.ips().applyValue(_ips -> _ips[0]))
+ *             .gatewayIp(ipblockExample.ips().applyValue(_ips -> _ips.get(0)))
  *             .interfaceIpv4Cidr("192.168.1.100/24")
  *             .connections(WireguardGatewayConnectionArgs.builder()
  *                 .datacenterId(datacenterExample.id())

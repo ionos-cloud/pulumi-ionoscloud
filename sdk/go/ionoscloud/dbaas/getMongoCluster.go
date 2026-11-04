@@ -126,12 +126,8 @@ type LookupMongoClusterResult struct {
 }
 
 func LookupMongoClusterOutput(ctx *pulumi.Context, args LookupMongoClusterOutputArgs, opts ...pulumi.InvokeOption) LookupMongoClusterResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupMongoClusterResultOutput, error) {
-			args := v.(LookupMongoClusterArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("ionoscloud:dbaas/getMongoCluster:getMongoCluster", args, LookupMongoClusterResultOutput{}, options).(LookupMongoClusterResultOutput), nil
-		}).(LookupMongoClusterResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("ionoscloud:dbaas/getMongoCluster:getMongoCluster", args, LookupMongoClusterResultOutput{}, options).(LookupMongoClusterResultOutput)
 }
 
 // A collection of arguments for invoking getMongoCluster.

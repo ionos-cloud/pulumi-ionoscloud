@@ -570,15 +570,15 @@ class PSQLCluster(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  allow_replace: pulumi.Input[Optional[_builtins.bool]] = None,
                  backup_location: pulumi.Input[Optional[_builtins.str]] = None,
-                 connection_pooler: pulumi.Input[Optional[Union['PSQLClusterConnectionPoolerArgs', 'PSQLClusterConnectionPoolerArgsDict']]] = None,
-                 connections: pulumi.Input[Optional[Union['PSQLClusterConnectionsArgs', 'PSQLClusterConnectionsArgsDict']]] = None,
+                 connection_pooler: pulumi.Input[Optional[Union['PSQLClusterConnectionPoolerArgs', 'PSQLClusterConnectionPoolerArgsDict', 'outputs.PSQLClusterConnectionPooler']]] = None,
+                 connections: pulumi.Input[Optional[Union['PSQLClusterConnectionsArgs', 'PSQLClusterConnectionsArgsDict', 'outputs.PSQLClusterConnections']]] = None,
                  cores: pulumi.Input[Optional[_builtins.int]] = None,
-                 credentials: pulumi.Input[Optional[Union['PSQLClusterCredentialsArgs', 'PSQLClusterCredentialsArgsDict']]] = None,
+                 credentials: pulumi.Input[Optional[Union['PSQLClusterCredentialsArgs', 'PSQLClusterCredentialsArgsDict', 'outputs.PSQLClusterCredentials']]] = None,
                  display_name: pulumi.Input[Optional[_builtins.str]] = None,
-                 from_backup: pulumi.Input[Optional[Union['PSQLClusterFromBackupArgs', 'PSQLClusterFromBackupArgsDict']]] = None,
+                 from_backup: pulumi.Input[Optional[Union['PSQLClusterFromBackupArgs', 'PSQLClusterFromBackupArgsDict', 'outputs.PSQLClusterFromBackup']]] = None,
                  instances: pulumi.Input[Optional[_builtins.int]] = None,
                  location: pulumi.Input[Optional[_builtins.str]] = None,
-                 maintenance_window: pulumi.Input[Optional[Union['PSQLClusterMaintenanceWindowArgs', 'PSQLClusterMaintenanceWindowArgsDict']]] = None,
+                 maintenance_window: pulumi.Input[Optional[Union['PSQLClusterMaintenanceWindowArgs', 'PSQLClusterMaintenanceWindowArgsDict', 'outputs.PSQLClusterMaintenanceWindow']]] = None,
                  postgres_version: pulumi.Input[Optional[_builtins.str]] = None,
                  ram: pulumi.Input[Optional[_builtins.int]] = None,
                  storage_size: pulumi.Input[Optional[_builtins.int]] = None,
@@ -647,15 +647,15 @@ class PSQLCluster(pulumi.CustomResource):
                
                **_Warning: `allow_replace` - lets you update immutable fields, but it first destroys and then re-creates the cluster in order to do it. Set the field to true only if you know what you are doing._**
         :param pulumi.Input[_builtins.str] backup_location: (Computed)[string] The IONOS Object Storage location where the backups will be stored. Possible values are: `de`, `eu-south-2`, `eu-central-2`. This attribute is immutable (disallowed in update requests).
-        :param pulumi.Input[Union['PSQLClusterConnectionPoolerArgs', 'PSQLClusterConnectionPoolerArgsDict']] connection_pooler: [object]
-        :param pulumi.Input[Union['PSQLClusterConnectionsArgs', 'PSQLClusterConnectionsArgsDict']] connections: [string] Details about the network connection for your cluster.
+        :param pulumi.Input[Union['PSQLClusterConnectionPoolerArgs', 'PSQLClusterConnectionPoolerArgsDict', 'outputs.PSQLClusterConnectionPooler']] connection_pooler: [object]
+        :param pulumi.Input[Union['PSQLClusterConnectionsArgs', 'PSQLClusterConnectionsArgsDict', 'outputs.PSQLClusterConnections']] connections: [string] Details about the network connection for your cluster.
         :param pulumi.Input[_builtins.int] cores: [int] The number of CPU cores per replica.
-        :param pulumi.Input[Union['PSQLClusterCredentialsArgs', 'PSQLClusterCredentialsArgsDict']] credentials: [string] Credentials for the database user to be created. This attribute is immutable(disallowed in update requests).
+        :param pulumi.Input[Union['PSQLClusterCredentialsArgs', 'PSQLClusterCredentialsArgsDict', 'outputs.PSQLClusterCredentials']] credentials: [string] Credentials for the database user to be created. This attribute is immutable(disallowed in update requests).
         :param pulumi.Input[_builtins.str] display_name: [string] The friendly name of your cluster.
-        :param pulumi.Input[Union['PSQLClusterFromBackupArgs', 'PSQLClusterFromBackupArgsDict']] from_backup: [string] The unique ID of the backup you want to restore. This attribute is immutable(disallowed in update requests).
+        :param pulumi.Input[Union['PSQLClusterFromBackupArgs', 'PSQLClusterFromBackupArgsDict', 'outputs.PSQLClusterFromBackup']] from_backup: [string] The unique ID of the backup you want to restore. This attribute is immutable(disallowed in update requests).
         :param pulumi.Input[_builtins.int] instances: [int] The total number of instances in the cluster (one master and n-1 standbys)
         :param pulumi.Input[_builtins.str] location: [string] The physical location where the cluster will be created. This will be where all of your instances live. Property cannot be modified after datacenter creation. Available locations: `de/fra`, `us/las`, `us/ewr`, `de/txl`, `gb/lhr`, `gb/bhx`, `es/vit`, `fr/par`, `us/mci`, `de/fra/1`, `de/fra/2`. This attribute is immutable (disallowed in update requests).
-        :param pulumi.Input[Union['PSQLClusterMaintenanceWindowArgs', 'PSQLClusterMaintenanceWindowArgsDict']] maintenance_window: (Computed) A weekly 4 hour-long window, during which maintenance might occur
+        :param pulumi.Input[Union['PSQLClusterMaintenanceWindowArgs', 'PSQLClusterMaintenanceWindowArgsDict', 'outputs.PSQLClusterMaintenanceWindow']] maintenance_window: (Computed) A weekly 4 hour-long window, during which maintenance might occur
         :param pulumi.Input[_builtins.str] postgres_version: [string] The PostgreSQL version of your cluster.
         :param pulumi.Input[_builtins.int] ram: [int] The amount of memory per instance in megabytes. Has to be a multiple of 1024.
         :param pulumi.Input[_builtins.int] storage_size: [int] The amount of storage per instance in MB. Has to be a multiple of 2048.
@@ -741,15 +741,15 @@ class PSQLCluster(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  allow_replace: pulumi.Input[Optional[_builtins.bool]] = None,
                  backup_location: pulumi.Input[Optional[_builtins.str]] = None,
-                 connection_pooler: pulumi.Input[Optional[Union['PSQLClusterConnectionPoolerArgs', 'PSQLClusterConnectionPoolerArgsDict']]] = None,
-                 connections: pulumi.Input[Optional[Union['PSQLClusterConnectionsArgs', 'PSQLClusterConnectionsArgsDict']]] = None,
+                 connection_pooler: pulumi.Input[Optional[Union['PSQLClusterConnectionPoolerArgs', 'PSQLClusterConnectionPoolerArgsDict', 'outputs.PSQLClusterConnectionPooler']]] = None,
+                 connections: pulumi.Input[Optional[Union['PSQLClusterConnectionsArgs', 'PSQLClusterConnectionsArgsDict', 'outputs.PSQLClusterConnections']]] = None,
                  cores: pulumi.Input[Optional[_builtins.int]] = None,
-                 credentials: pulumi.Input[Optional[Union['PSQLClusterCredentialsArgs', 'PSQLClusterCredentialsArgsDict']]] = None,
+                 credentials: pulumi.Input[Optional[Union['PSQLClusterCredentialsArgs', 'PSQLClusterCredentialsArgsDict', 'outputs.PSQLClusterCredentials']]] = None,
                  display_name: pulumi.Input[Optional[_builtins.str]] = None,
-                 from_backup: pulumi.Input[Optional[Union['PSQLClusterFromBackupArgs', 'PSQLClusterFromBackupArgsDict']]] = None,
+                 from_backup: pulumi.Input[Optional[Union['PSQLClusterFromBackupArgs', 'PSQLClusterFromBackupArgsDict', 'outputs.PSQLClusterFromBackup']]] = None,
                  instances: pulumi.Input[Optional[_builtins.int]] = None,
                  location: pulumi.Input[Optional[_builtins.str]] = None,
-                 maintenance_window: pulumi.Input[Optional[Union['PSQLClusterMaintenanceWindowArgs', 'PSQLClusterMaintenanceWindowArgsDict']]] = None,
+                 maintenance_window: pulumi.Input[Optional[Union['PSQLClusterMaintenanceWindowArgs', 'PSQLClusterMaintenanceWindowArgsDict', 'outputs.PSQLClusterMaintenanceWindow']]] = None,
                  postgres_version: pulumi.Input[Optional[_builtins.str]] = None,
                  ram: pulumi.Input[Optional[_builtins.int]] = None,
                  storage_size: pulumi.Input[Optional[_builtins.int]] = None,
@@ -813,16 +813,16 @@ class PSQLCluster(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             allow_replace: pulumi.Input[Optional[_builtins.bool]] = None,
             backup_location: pulumi.Input[Optional[_builtins.str]] = None,
-            connection_pooler: pulumi.Input[Optional[Union['PSQLClusterConnectionPoolerArgs', 'PSQLClusterConnectionPoolerArgsDict']]] = None,
-            connections: pulumi.Input[Optional[Union['PSQLClusterConnectionsArgs', 'PSQLClusterConnectionsArgsDict']]] = None,
+            connection_pooler: pulumi.Input[Optional[Union['PSQLClusterConnectionPoolerArgs', 'PSQLClusterConnectionPoolerArgsDict', 'outputs.PSQLClusterConnectionPooler']]] = None,
+            connections: pulumi.Input[Optional[Union['PSQLClusterConnectionsArgs', 'PSQLClusterConnectionsArgsDict', 'outputs.PSQLClusterConnections']]] = None,
             cores: pulumi.Input[Optional[_builtins.int]] = None,
-            credentials: pulumi.Input[Optional[Union['PSQLClusterCredentialsArgs', 'PSQLClusterCredentialsArgsDict']]] = None,
+            credentials: pulumi.Input[Optional[Union['PSQLClusterCredentialsArgs', 'PSQLClusterCredentialsArgsDict', 'outputs.PSQLClusterCredentials']]] = None,
             display_name: pulumi.Input[Optional[_builtins.str]] = None,
             dns_name: pulumi.Input[Optional[_builtins.str]] = None,
-            from_backup: pulumi.Input[Optional[Union['PSQLClusterFromBackupArgs', 'PSQLClusterFromBackupArgsDict']]] = None,
+            from_backup: pulumi.Input[Optional[Union['PSQLClusterFromBackupArgs', 'PSQLClusterFromBackupArgsDict', 'outputs.PSQLClusterFromBackup']]] = None,
             instances: pulumi.Input[Optional[_builtins.int]] = None,
             location: pulumi.Input[Optional[_builtins.str]] = None,
-            maintenance_window: pulumi.Input[Optional[Union['PSQLClusterMaintenanceWindowArgs', 'PSQLClusterMaintenanceWindowArgsDict']]] = None,
+            maintenance_window: pulumi.Input[Optional[Union['PSQLClusterMaintenanceWindowArgs', 'PSQLClusterMaintenanceWindowArgsDict', 'outputs.PSQLClusterMaintenanceWindow']]] = None,
             postgres_version: pulumi.Input[Optional[_builtins.str]] = None,
             ram: pulumi.Input[Optional[_builtins.int]] = None,
             storage_size: pulumi.Input[Optional[_builtins.int]] = None,
@@ -839,16 +839,16 @@ class PSQLCluster(pulumi.CustomResource):
                
                **_Warning: `allow_replace` - lets you update immutable fields, but it first destroys and then re-creates the cluster in order to do it. Set the field to true only if you know what you are doing._**
         :param pulumi.Input[_builtins.str] backup_location: (Computed)[string] The IONOS Object Storage location where the backups will be stored. Possible values are: `de`, `eu-south-2`, `eu-central-2`. This attribute is immutable (disallowed in update requests).
-        :param pulumi.Input[Union['PSQLClusterConnectionPoolerArgs', 'PSQLClusterConnectionPoolerArgsDict']] connection_pooler: [object]
-        :param pulumi.Input[Union['PSQLClusterConnectionsArgs', 'PSQLClusterConnectionsArgsDict']] connections: [string] Details about the network connection for your cluster.
+        :param pulumi.Input[Union['PSQLClusterConnectionPoolerArgs', 'PSQLClusterConnectionPoolerArgsDict', 'outputs.PSQLClusterConnectionPooler']] connection_pooler: [object]
+        :param pulumi.Input[Union['PSQLClusterConnectionsArgs', 'PSQLClusterConnectionsArgsDict', 'outputs.PSQLClusterConnections']] connections: [string] Details about the network connection for your cluster.
         :param pulumi.Input[_builtins.int] cores: [int] The number of CPU cores per replica.
-        :param pulumi.Input[Union['PSQLClusterCredentialsArgs', 'PSQLClusterCredentialsArgsDict']] credentials: [string] Credentials for the database user to be created. This attribute is immutable(disallowed in update requests).
+        :param pulumi.Input[Union['PSQLClusterCredentialsArgs', 'PSQLClusterCredentialsArgsDict', 'outputs.PSQLClusterCredentials']] credentials: [string] Credentials for the database user to be created. This attribute is immutable(disallowed in update requests).
         :param pulumi.Input[_builtins.str] display_name: [string] The friendly name of your cluster.
         :param pulumi.Input[_builtins.str] dns_name: [string] The DNS name pointing to your cluster.
-        :param pulumi.Input[Union['PSQLClusterFromBackupArgs', 'PSQLClusterFromBackupArgsDict']] from_backup: [string] The unique ID of the backup you want to restore. This attribute is immutable(disallowed in update requests).
+        :param pulumi.Input[Union['PSQLClusterFromBackupArgs', 'PSQLClusterFromBackupArgsDict', 'outputs.PSQLClusterFromBackup']] from_backup: [string] The unique ID of the backup you want to restore. This attribute is immutable(disallowed in update requests).
         :param pulumi.Input[_builtins.int] instances: [int] The total number of instances in the cluster (one master and n-1 standbys)
         :param pulumi.Input[_builtins.str] location: [string] The physical location where the cluster will be created. This will be where all of your instances live. Property cannot be modified after datacenter creation. Available locations: `de/fra`, `us/las`, `us/ewr`, `de/txl`, `gb/lhr`, `gb/bhx`, `es/vit`, `fr/par`, `us/mci`, `de/fra/1`, `de/fra/2`. This attribute is immutable (disallowed in update requests).
-        :param pulumi.Input[Union['PSQLClusterMaintenanceWindowArgs', 'PSQLClusterMaintenanceWindowArgsDict']] maintenance_window: (Computed) A weekly 4 hour-long window, during which maintenance might occur
+        :param pulumi.Input[Union['PSQLClusterMaintenanceWindowArgs', 'PSQLClusterMaintenanceWindowArgsDict', 'outputs.PSQLClusterMaintenanceWindow']] maintenance_window: (Computed) A weekly 4 hour-long window, during which maintenance might occur
         :param pulumi.Input[_builtins.str] postgres_version: [string] The PostgreSQL version of your cluster.
         :param pulumi.Input[_builtins.int] ram: [int] The amount of memory per instance in megabytes. Has to be a multiple of 1024.
         :param pulumi.Input[_builtins.int] storage_size: [int] The amount of storage per instance in MB. Has to be a multiple of 2048.

@@ -55,10 +55,6 @@ export interface GetMariaDBBackupsV2Result {
      */
     readonly clusterId?: string;
     /**
-     * The provider-assigned unique ID for this managed resource.
-     */
-    readonly id: string;
-    /**
      * List of backups. Each item includes:
      */
     readonly items: outputs.dbaas.GetMariaDBBackupsV2Item[];

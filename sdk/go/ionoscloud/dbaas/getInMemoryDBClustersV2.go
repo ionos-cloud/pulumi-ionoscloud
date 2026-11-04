@@ -65,8 +65,6 @@ type GetInMemoryDBClustersV2Args struct {
 
 // A collection of values returned by getInMemoryDBClustersV2.
 type GetInMemoryDBClustersV2Result struct {
-	// The provider-assigned unique ID for this managed resource.
-	Id string `pulumi:"id"`
 	// List of clusters. Each item exposes the same attributes as the dbaas.InMemoryDBClusterV2 data source. Note that `credentials.password` is not available — only `credentials.username` is returned by the API.
 	Items    []GetInMemoryDBClustersV2Item `pulumi:"items"`
 	Location string                        `pulumi:"location"`
@@ -74,12 +72,8 @@ type GetInMemoryDBClustersV2Result struct {
 }
 
 func GetInMemoryDBClustersV2Output(ctx *pulumi.Context, args GetInMemoryDBClustersV2OutputArgs, opts ...pulumi.InvokeOption) GetInMemoryDBClustersV2ResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (GetInMemoryDBClustersV2ResultOutput, error) {
-			args := v.(GetInMemoryDBClustersV2Args)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("ionoscloud:dbaas/getInMemoryDBClustersV2:getInMemoryDBClustersV2", args, GetInMemoryDBClustersV2ResultOutput{}, options).(GetInMemoryDBClustersV2ResultOutput), nil
-		}).(GetInMemoryDBClustersV2ResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("ionoscloud:dbaas/getInMemoryDBClustersV2:getInMemoryDBClustersV2", args, GetInMemoryDBClustersV2ResultOutput{}, options).(GetInMemoryDBClustersV2ResultOutput)
 }
 
 // A collection of arguments for invoking getInMemoryDBClustersV2.
@@ -107,11 +101,6 @@ func (o GetInMemoryDBClustersV2ResultOutput) ToGetInMemoryDBClustersV2ResultOutp
 
 func (o GetInMemoryDBClustersV2ResultOutput) ToGetInMemoryDBClustersV2ResultOutputWithContext(ctx context.Context) GetInMemoryDBClustersV2ResultOutput {
 	return o
-}
-
-// The provider-assigned unique ID for this managed resource.
-func (o GetInMemoryDBClustersV2ResultOutput) Id() pulumi.StringOutput {
-	return o.ApplyT(func(v GetInMemoryDBClustersV2Result) string { return v.Id }).(pulumi.StringOutput)
 }
 
 // List of clusters. Each item exposes the same attributes as the dbaas.InMemoryDBClusterV2 data source. Note that `credentials.password` is not available — only `credentials.username` is returned by the API.

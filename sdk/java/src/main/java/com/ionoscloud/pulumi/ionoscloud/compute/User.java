@@ -32,8 +32,8 @@ import javax.annotation.Nullable;
  * import com.pulumi.core.Output;
  * import com.ionoscloud.pulumi.ionoscloud.compute.Group;
  * import com.ionoscloud.pulumi.ionoscloud.compute.GroupArgs;
- * import com.pulumi.random.password;
- * import com.pulumi.random.passwordArgs;
+ * import com.pulumi.random.Password;
+ * import com.pulumi.random.PasswordArgs;
  * import com.ionoscloud.pulumi.ionoscloud.compute.User;
  * import com.ionoscloud.pulumi.ionoscloud.compute.UserArgs;
  * import java.util.ArrayList;
@@ -85,7 +85,7 @@ import javax.annotation.Nullable;
  *             .firstName("example")
  *             .lastName("example")
  *             .email("unique}{@literal @}{@code ionos.com")
- *             .password(userPassword.result())
+ *             .password(userPassword.get("result"))
  *             .administrator(false)
  *             .forceSecAuth(false)
  *             .active(true)
@@ -113,8 +113,8 @@ import javax.annotation.Nullable;
  * import com.pulumi.Context;
  * import com.pulumi.Pulumi;
  * import com.pulumi.core.Output;
- * import com.pulumi.random.password;
- * import com.pulumi.random.passwordArgs;
+ * import com.pulumi.random.Password;
+ * import com.pulumi.random.PasswordArgs;
  * import com.ionoscloud.pulumi.ionoscloud.compute.User;
  * import com.ionoscloud.pulumi.ionoscloud.compute.UserArgs;
  * import java.util.ArrayList;
@@ -140,7 +140,7 @@ import javax.annotation.Nullable;
  *             .firstName("example")
  *             .lastName("example")
  *             .email("unique}{@literal @}{@code ionos.com")
- *             .passwordWo(userPassword.result())
+ *             .passwordWo(userPassword.get("result"))
  *             .passwordWoVersion(1)
  *             .administrator(false)
  *             .forceSecAuth(false)

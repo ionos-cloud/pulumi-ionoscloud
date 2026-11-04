@@ -15,11 +15,6 @@ import javax.annotation.Nullable;
 @CustomType
 public final class GetMariaDBClustersV2Result {
     /**
-     * @return The provider-assigned unique ID for this managed resource.
-     * 
-     */
-    private String id;
-    /**
      * @return List of clusters. Each item exposes the same attributes as the&lt;span pulumi-lang-nodejs=&#34; ionoscloud.dbaas.MariaDBClusterV2 &#34; pulumi-lang-dotnet=&#34; ionoscloud.dbaas.MariaDBClusterV2 &#34; pulumi-lang-go=&#34; dbaas.MariaDBClusterV2 &#34; pulumi-lang-python=&#34; dbaas.MariaDBClusterV2 &#34; pulumi-lang-yaml=&#34; ionoscloud.dbaas.MariaDBClusterV2 &#34; pulumi-lang-java=&#34; ionoscloud.dbaas.MariaDBClusterV2 &#34; pulumi-lang-hcl=&#34; ionoscloud_mariadb_cluster_v2 &#34;&gt; ionoscloud.dbaas.MariaDBClusterV2 &lt;/span&gt;data source. Note that `credentials.password` is not available — only `credentials.username` and `credentials.database` are returned by the API.
      * 
      */
@@ -28,13 +23,6 @@ public final class GetMariaDBClustersV2Result {
     private @Nullable String name;
 
     private GetMariaDBClustersV2Result() {}
-    /**
-     * @return The provider-assigned unique ID for this managed resource.
-     * 
-     */
-    public String id() {
-        return this.id;
-    }
     /**
      * @return List of clusters. Each item exposes the same attributes as the&lt;span pulumi-lang-nodejs=&#34; ionoscloud.dbaas.MariaDBClusterV2 &#34; pulumi-lang-dotnet=&#34; ionoscloud.dbaas.MariaDBClusterV2 &#34; pulumi-lang-go=&#34; dbaas.MariaDBClusterV2 &#34; pulumi-lang-python=&#34; dbaas.MariaDBClusterV2 &#34; pulumi-lang-yaml=&#34; ionoscloud.dbaas.MariaDBClusterV2 &#34; pulumi-lang-java=&#34; ionoscloud.dbaas.MariaDBClusterV2 &#34; pulumi-lang-hcl=&#34; ionoscloud_mariadb_cluster_v2 &#34;&gt; ionoscloud.dbaas.MariaDBClusterV2 &lt;/span&gt;data source. Note that `credentials.password` is not available — only `credentials.username` and `credentials.database` are returned by the API.
      * 
@@ -58,27 +46,17 @@ public final class GetMariaDBClustersV2Result {
     }
     @CustomType.Builder
     public static final class Builder {
-        private String id;
         private List<GetMariaDBClustersV2Item> items;
         private String location;
         private @Nullable String name;
         public Builder() {}
         public Builder(GetMariaDBClustersV2Result defaults) {
     	      Objects.requireNonNull(defaults);
-    	      this.id = defaults.id;
     	      this.items = defaults.items;
     	      this.location = defaults.location;
     	      this.name = defaults.name;
         }
 
-        @CustomType.Setter
-        public Builder id(String id) {
-            if (id == null) {
-              throw new MissingRequiredPropertyException("GetMariaDBClustersV2Result", "id");
-            }
-            this.id = id;
-            return this;
-        }
         @CustomType.Setter
         public Builder items(List<GetMariaDBClustersV2Item> items) {
             if (items == null) {
@@ -106,7 +84,6 @@ public final class GetMariaDBClustersV2Result {
         }
         public GetMariaDBClustersV2Result build() {
             final var _resultValue = new GetMariaDBClustersV2Result();
-            _resultValue.id = id;
             _resultValue.items = items;
             _resultValue.location = location;
             _resultValue.name = name;

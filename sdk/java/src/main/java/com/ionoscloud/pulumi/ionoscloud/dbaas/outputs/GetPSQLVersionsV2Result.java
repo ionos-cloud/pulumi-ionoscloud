@@ -12,11 +12,6 @@ import java.util.Objects;
 
 @CustomType
 public final class GetPSQLVersionsV2Result {
-    /**
-     * @return The provider-assigned unique ID for this managed resource.
-     * 
-     */
-    private String id;
     private String location;
     /**
      * @return The list of available PostgreSQL versions. Each version has the following attributes:
@@ -25,13 +20,6 @@ public final class GetPSQLVersionsV2Result {
     private List<GetPSQLVersionsV2Version> versions;
 
     private GetPSQLVersionsV2Result() {}
-    /**
-     * @return The provider-assigned unique ID for this managed resource.
-     * 
-     */
-    public String id() {
-        return this.id;
-    }
     public String location() {
         return this.location;
     }
@@ -52,25 +40,15 @@ public final class GetPSQLVersionsV2Result {
     }
     @CustomType.Builder
     public static final class Builder {
-        private String id;
         private String location;
         private List<GetPSQLVersionsV2Version> versions;
         public Builder() {}
         public Builder(GetPSQLVersionsV2Result defaults) {
     	      Objects.requireNonNull(defaults);
-    	      this.id = defaults.id;
     	      this.location = defaults.location;
     	      this.versions = defaults.versions;
         }
 
-        @CustomType.Setter
-        public Builder id(String id) {
-            if (id == null) {
-              throw new MissingRequiredPropertyException("GetPSQLVersionsV2Result", "id");
-            }
-            this.id = id;
-            return this;
-        }
         @CustomType.Setter
         public Builder location(String location) {
             if (location == null) {
@@ -92,7 +70,6 @@ public final class GetPSQLVersionsV2Result {
         }
         public GetPSQLVersionsV2Result build() {
             final var _resultValue = new GetPSQLVersionsV2Result();
-            _resultValue.id = id;
             _resultValue.location = location;
             _resultValue.versions = versions;
             return _resultValue;

@@ -37,7 +37,7 @@ import (
 //			_, err = objectstorage.NewBucketVersioning(ctx, "example", &objectstorage.BucketVersioningArgs{
 //				Bucket: example.Name,
 //				VersioningConfiguration: objectstorage.BucketVersioningVersioningConfigurationArgs{
-//					map[string]interface{}{
+//					map[string]string{
 //						"status": "Enabled",
 //					},
 //				},

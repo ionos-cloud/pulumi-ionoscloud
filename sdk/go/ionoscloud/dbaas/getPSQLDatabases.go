@@ -97,12 +97,8 @@ type GetPSQLDatabasesResult struct {
 }
 
 func GetPSQLDatabasesOutput(ctx *pulumi.Context, args GetPSQLDatabasesOutputArgs, opts ...pulumi.InvokeOption) GetPSQLDatabasesResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (GetPSQLDatabasesResultOutput, error) {
-			args := v.(GetPSQLDatabasesArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("ionoscloud:dbaas/getPSQLDatabases:getPSQLDatabases", args, GetPSQLDatabasesResultOutput{}, options).(GetPSQLDatabasesResultOutput), nil
-		}).(GetPSQLDatabasesResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("ionoscloud:dbaas/getPSQLDatabases:getPSQLDatabases", args, GetPSQLDatabasesResultOutput{}, options).(GetPSQLDatabasesResultOutput)
 }
 
 // A collection of arguments for invoking getPSQLDatabases.

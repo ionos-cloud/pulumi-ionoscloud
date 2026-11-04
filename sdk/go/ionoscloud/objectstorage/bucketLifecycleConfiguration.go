@@ -41,12 +41,12 @@ import (
 //						Id:     pulumi.String("1"),
 //						Status: pulumi.String("Enabled"),
 //						Filter: objectstorage.BucketLifecycleConfigurationRuleFilterArgs{
-//							map[string]interface{}{
+//							map[string]string{
 //								"prefix": "/logs",
 //							},
 //						},
 //						Expiration: objectstorage.BucketLifecycleConfigurationRuleExpirationArgs{
-//							map[string]interface{}{
+//							map[string]int{
 //								"days": 90,
 //							},
 //						},
@@ -55,12 +55,12 @@ import (
 //						Id:     pulumi.String("2"),
 //						Status: pulumi.String("Enabled"),
 //						Filter: objectstorage.BucketLifecycleConfigurationRuleFilterArgs{
-//							map[string]interface{}{
+//							map[string]string{
 //								"prefix": "/logs",
 //							},
 //						},
 //						NoncurrentVersionExpiration: objectstorage.BucketLifecycleConfigurationRuleNoncurrentVersionExpirationArgs{
-//							map[string]interface{}{
+//							map[string]int{
 //								"noncurrentDays": 90,
 //							},
 //						},
@@ -69,12 +69,12 @@ import (
 //						Id:     pulumi.String("3"),
 //						Status: pulumi.String("Enabled"),
 //						Filter: objectstorage.BucketLifecycleConfigurationRuleFilterArgs{
-//							map[string]interface{}{
+//							map[string]string{
 //								"prefix": "/logs",
 //							},
 //						},
 //						AbortIncompleteMultipartUpload: objectstorage.BucketLifecycleConfigurationRuleAbortIncompleteMultipartUploadArgs{
-//							map[string]interface{}{
+//							map[string]int{
 //								"daysAfterInitiation": 90,
 //							},
 //						},

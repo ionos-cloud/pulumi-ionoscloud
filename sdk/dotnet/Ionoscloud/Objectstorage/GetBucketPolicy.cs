@@ -126,10 +126,6 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Objectstorage
     {
         public readonly string Bucket;
         /// <summary>
-        /// The provider-assigned unique ID for this managed resource.
-        /// </summary>
-        public readonly string Id;
-        /// <summary>
         /// The policy of the bucket.
         /// </summary>
         public readonly string Policy;
@@ -138,12 +134,9 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Objectstorage
         private GetBucketPolicyResult(
             string bucket,
 
-            string id,
-
             string policy)
         {
             Bucket = bucket;
-            Id = id;
             Policy = policy;
         }
     }

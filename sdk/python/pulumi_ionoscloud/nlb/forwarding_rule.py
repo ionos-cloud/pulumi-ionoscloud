@@ -349,14 +349,14 @@ class ForwardingRule(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  algorithm: pulumi.Input[Optional[_builtins.str]] = None,
                  datacenter_id: pulumi.Input[Optional[_builtins.str]] = None,
-                 health_check: pulumi.Input[Optional[Union['ForwardingRuleHealthCheckArgs', 'ForwardingRuleHealthCheckArgsDict']]] = None,
+                 health_check: pulumi.Input[Optional[Union['ForwardingRuleHealthCheckArgs', 'ForwardingRuleHealthCheckArgsDict', 'outputs.ForwardingRuleHealthCheck']]] = None,
                  listener_ip: pulumi.Input[Optional[_builtins.str]] = None,
                  listener_port: pulumi.Input[Optional[_builtins.int]] = None,
                  location: pulumi.Input[Optional[_builtins.str]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  networkloadbalancer_id: pulumi.Input[Optional[_builtins.str]] = None,
                  protocol: pulumi.Input[Optional[_builtins.str]] = None,
-                 targets: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ForwardingRuleTargetArgs', 'ForwardingRuleTargetArgsDict']]]]] = None,
+                 targets: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ForwardingRuleTargetArgs', 'ForwardingRuleTargetArgsDict', 'outputs.ForwardingRuleTarget']]]]] = None,
                  __props__=None):
         """
         Manages a **Network Load Balancer Forwarding Rule** on IONOS CLOUD.
@@ -475,13 +475,13 @@ class ForwardingRule(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] algorithm: [string] Algorithm for the balancing.
         :param pulumi.Input[_builtins.str] datacenter_id: [string] A Datacenter's UUID.
-        :param pulumi.Input[Union['ForwardingRuleHealthCheckArgs', 'ForwardingRuleHealthCheckArgsDict']] health_check: Health check attributes for Network Load Balancer forwarding rule.
+        :param pulumi.Input[Union['ForwardingRuleHealthCheckArgs', 'ForwardingRuleHealthCheckArgsDict', 'outputs.ForwardingRuleHealthCheck']] health_check: Health check attributes for Network Load Balancer forwarding rule.
         :param pulumi.Input[_builtins.str] listener_ip: [string] Listening IP. (inbound)
         :param pulumi.Input[_builtins.int] listener_port: [int] Listening port number. (inbound) (range: 1 to 65535)
         :param pulumi.Input[_builtins.str] location: The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
         :param pulumi.Input[_builtins.str] name: [string] A name of that Network Load Balancer forwarding rule.
         :param pulumi.Input[_builtins.str] protocol: [string] Protocol of the balancing.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['ForwardingRuleTargetArgs', 'ForwardingRuleTargetArgsDict']]]] targets: [Set] Array of items in that collection.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ForwardingRuleTargetArgs', 'ForwardingRuleTargetArgsDict', 'outputs.ForwardingRuleTarget']]]] targets: [Set] Array of items in that collection.
         """
         ...
     @overload
@@ -619,14 +619,14 @@ class ForwardingRule(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  algorithm: pulumi.Input[Optional[_builtins.str]] = None,
                  datacenter_id: pulumi.Input[Optional[_builtins.str]] = None,
-                 health_check: pulumi.Input[Optional[Union['ForwardingRuleHealthCheckArgs', 'ForwardingRuleHealthCheckArgsDict']]] = None,
+                 health_check: pulumi.Input[Optional[Union['ForwardingRuleHealthCheckArgs', 'ForwardingRuleHealthCheckArgsDict', 'outputs.ForwardingRuleHealthCheck']]] = None,
                  listener_ip: pulumi.Input[Optional[_builtins.str]] = None,
                  listener_port: pulumi.Input[Optional[_builtins.int]] = None,
                  location: pulumi.Input[Optional[_builtins.str]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  networkloadbalancer_id: pulumi.Input[Optional[_builtins.str]] = None,
                  protocol: pulumi.Input[Optional[_builtins.str]] = None,
-                 targets: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ForwardingRuleTargetArgs', 'ForwardingRuleTargetArgsDict']]]]] = None,
+                 targets: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ForwardingRuleTargetArgs', 'ForwardingRuleTargetArgsDict', 'outputs.ForwardingRuleTarget']]]]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -672,14 +672,14 @@ class ForwardingRule(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             algorithm: pulumi.Input[Optional[_builtins.str]] = None,
             datacenter_id: pulumi.Input[Optional[_builtins.str]] = None,
-            health_check: pulumi.Input[Optional[Union['ForwardingRuleHealthCheckArgs', 'ForwardingRuleHealthCheckArgsDict']]] = None,
+            health_check: pulumi.Input[Optional[Union['ForwardingRuleHealthCheckArgs', 'ForwardingRuleHealthCheckArgsDict', 'outputs.ForwardingRuleHealthCheck']]] = None,
             listener_ip: pulumi.Input[Optional[_builtins.str]] = None,
             listener_port: pulumi.Input[Optional[_builtins.int]] = None,
             location: pulumi.Input[Optional[_builtins.str]] = None,
             name: pulumi.Input[Optional[_builtins.str]] = None,
             networkloadbalancer_id: pulumi.Input[Optional[_builtins.str]] = None,
             protocol: pulumi.Input[Optional[_builtins.str]] = None,
-            targets: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ForwardingRuleTargetArgs', 'ForwardingRuleTargetArgsDict']]]]] = None) -> 'ForwardingRule':
+            targets: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ForwardingRuleTargetArgs', 'ForwardingRuleTargetArgsDict', 'outputs.ForwardingRuleTarget']]]]] = None) -> 'ForwardingRule':
         """
         Get an existing ForwardingRule resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -689,13 +689,13 @@ class ForwardingRule(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] algorithm: [string] Algorithm for the balancing.
         :param pulumi.Input[_builtins.str] datacenter_id: [string] A Datacenter's UUID.
-        :param pulumi.Input[Union['ForwardingRuleHealthCheckArgs', 'ForwardingRuleHealthCheckArgsDict']] health_check: Health check attributes for Network Load Balancer forwarding rule.
+        :param pulumi.Input[Union['ForwardingRuleHealthCheckArgs', 'ForwardingRuleHealthCheckArgsDict', 'outputs.ForwardingRuleHealthCheck']] health_check: Health check attributes for Network Load Balancer forwarding rule.
         :param pulumi.Input[_builtins.str] listener_ip: [string] Listening IP. (inbound)
         :param pulumi.Input[_builtins.int] listener_port: [int] Listening port number. (inbound) (range: 1 to 65535)
         :param pulumi.Input[_builtins.str] location: The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
         :param pulumi.Input[_builtins.str] name: [string] A name of that Network Load Balancer forwarding rule.
         :param pulumi.Input[_builtins.str] protocol: [string] Protocol of the balancing.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['ForwardingRuleTargetArgs', 'ForwardingRuleTargetArgsDict']]]] targets: [Set] Array of items in that collection.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ForwardingRuleTargetArgs', 'ForwardingRuleTargetArgsDict', 'outputs.ForwardingRuleTarget']]]] targets: [Set] Array of items in that collection.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 

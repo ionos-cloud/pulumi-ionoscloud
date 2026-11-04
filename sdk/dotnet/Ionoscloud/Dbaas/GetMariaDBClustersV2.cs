@@ -149,10 +149,6 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Dbaas
     public sealed class GetMariaDBClustersV2Result
     {
         /// <summary>
-        /// The provider-assigned unique ID for this managed resource.
-        /// </summary>
-        public readonly string Id;
-        /// <summary>
         /// List of clusters. Each item exposes the same attributes as the ionoscloud.dbaas.MariaDBClusterV2 data source. Note that `credentials.password` is not available — only `credentials.username` and `credentials.database` are returned by the API.
         /// </summary>
         public readonly ImmutableArray<Outputs.GetMariaDBClustersV2ItemResult> Items;
@@ -161,15 +157,12 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Dbaas
 
         [OutputConstructor]
         private GetMariaDBClustersV2Result(
-            string id,
-
             ImmutableArray<Outputs.GetMariaDBClustersV2ItemResult> items,
 
             string location,
 
             string? name)
         {
-            Id = id;
             Items = items;
             Location = location;
             Name = name;

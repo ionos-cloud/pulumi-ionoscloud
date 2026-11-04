@@ -167,7 +167,7 @@ import * as utilities from "../utilities";
  * const example = new ionoscloud.compute.Nic("example", {
  *     datacenterId: exampleIonoscloudDatacenter.id,
  *     serverId: exampleIonoscloudServer.id,
- *     lan: Number(exampleIonoscloudLan.id),
+ *     lan: exampleIonoscloudLan.id,
  *     name: "IPV6 and Flowlog Enabled NIC",
  *     dhcp: true,
  *     firewallActive: true,
@@ -337,7 +337,7 @@ export class Nic extends pulumi.CustomResource {
      */
     declare public /*out*/ readonly pciSlot: pulumi.Output<number>;
     /**
-     * The list of Security Group IDs for the resource. 
+     * The list of Security Group IDs for the resource.
      *
      * ⚠️ **Note:**: Removing the `flowlog` forces re-creation of the NIC resource.
      */
@@ -476,7 +476,7 @@ export interface NicState {
      */
     pciSlot?: pulumi.Input<number | undefined>;
     /**
-     * The list of Security Group IDs for the resource. 
+     * The list of Security Group IDs for the resource.
      *
      * ⚠️ **Note:**: Removing the `flowlog` forces re-creation of the NIC resource.
      */
@@ -544,7 +544,7 @@ export interface NicArgs {
      */
     name?: pulumi.Input<string | undefined>;
     /**
-     * The list of Security Group IDs for the resource. 
+     * The list of Security Group IDs for the resource.
      *
      * ⚠️ **Note:**: Removing the `flowlog` forces re-creation of the NIC resource.
      */

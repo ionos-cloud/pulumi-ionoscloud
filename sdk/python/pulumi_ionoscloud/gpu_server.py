@@ -47,7 +47,7 @@ class GpuServerArgs:
                ⚠️ **_Warning: `allow_replace` - lets you update immutable fields, but it first destroys and then re-creates the server in order to do it. This field should be used with care, understanding the risks._**
                
                > **⚠ WARNING**
-               >
+               > 
                > Image_name under volume level is deprecated, please use image_name under server level
         :param pulumi.Input[_builtins.str] availability_zone: [string] The availability zone in which the server should exist. This property is immutable.
         :param pulumi.Input[_builtins.str] boot_image: [string] The image or snapshot UUID / name. May also be an image alias. It is required if `licence_type` is not provided.
@@ -134,7 +134,7 @@ class GpuServerArgs:
         ⚠️ **_Warning: `allow_replace` - lets you update immutable fields, but it first destroys and then re-creates the server in order to do it. This field should be used with care, understanding the risks._**
 
         > **⚠ WARNING**
-        >
+        > 
         > Image_name under volume level is deprecated, please use image_name under server level
         """
         return pulumi.get(self, "allow_replace")
@@ -307,7 +307,7 @@ class _GpuServerState:
                ⚠️ **_Warning: `allow_replace` - lets you update immutable fields, but it first destroys and then re-creates the server in order to do it. This field should be used with care, understanding the risks._**
                
                > **⚠ WARNING**
-               >
+               > 
                > Image_name under volume level is deprecated, please use image_name under server level
         :param pulumi.Input[_builtins.str] availability_zone: [string] The availability zone in which the server should exist. This property is immutable.
         :param pulumi.Input[_builtins.str] boot_image: [string] The image or snapshot UUID / name. May also be an image alias. It is required if `licence_type` is not provided.
@@ -379,7 +379,7 @@ class _GpuServerState:
         ⚠️ **_Warning: `allow_replace` - lets you update immutable fields, but it first destroys and then re-creates the server in order to do it. This field should be used with care, understanding the risks._**
 
         > **⚠ WARNING**
-        >
+        > 
         > Image_name under volume level is deprecated, please use image_name under server level
         """
         return pulumi.get(self, "allow_replace")
@@ -637,12 +637,12 @@ class GpuServer(pulumi.CustomResource):
                  image_password: pulumi.Input[Optional[_builtins.str]] = None,
                  location: pulumi.Input[Optional[_builtins.str]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
-                 nic: pulumi.Input[Optional[Union['GpuServerNicArgs', 'GpuServerNicArgsDict']]] = None,
+                 nic: pulumi.Input[Optional[Union['GpuServerNicArgs', 'GpuServerNicArgsDict', 'outputs.GpuServerNic']]] = None,
                  security_groups_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  ssh_key_paths: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  template_uuid: pulumi.Input[Optional[_builtins.str]] = None,
                  vm_state: pulumi.Input[Optional[_builtins.str]] = None,
-                 volume: pulumi.Input[Optional[Union['GpuServerVolumeArgs', 'GpuServerVolumeArgsDict']]] = None,
+                 volume: pulumi.Input[Optional[Union['GpuServerVolumeArgs', 'GpuServerVolumeArgsDict', 'outputs.GpuServerVolume']]] = None,
                  __props__=None):
         """
         A GPU Server is a Virtual Machine (VM) provisioned from a GPU-enabled template.
@@ -725,7 +725,7 @@ class GpuServer(pulumi.CustomResource):
                ⚠️ **_Warning: `allow_replace` - lets you update immutable fields, but it first destroys and then re-creates the server in order to do it. This field should be used with care, understanding the risks._**
                
                > **⚠ WARNING**
-               >
+               > 
                > Image_name under volume level is deprecated, please use image_name under server level
         :param pulumi.Input[_builtins.str] availability_zone: [string] The availability zone in which the server should exist. This property is immutable.
         :param pulumi.Input[_builtins.str] boot_image: [string] The image or snapshot UUID / name. May also be an image alias. It is required if `licence_type` is not provided.
@@ -735,12 +735,12 @@ class GpuServer(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] image_password: [string] Required if `ssh_key_path` is not provided.
         :param pulumi.Input[_builtins.str] location: The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
         :param pulumi.Input[_builtins.str] name: [string] The name of the server.
-        :param pulumi.Input[Union['GpuServerNicArgs', 'GpuServerNicArgsDict']] nic: See the Nic section.
+        :param pulumi.Input[Union['GpuServerNicArgs', 'GpuServerNicArgsDict', 'outputs.GpuServerNic']] nic: See the Nic section.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] security_groups_ids: The list of Security Group IDs for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ssh_key_paths: [list] List of paths to files containing a public SSH key that will be injected into IONOS CLOUD provided Linux images. Required for IONOS CLOUD Linux images. Required if `image_password` is not provided.
         :param pulumi.Input[_builtins.str] template_uuid: [string] The UUID of the template used for creating a GPU server.
         :param pulumi.Input[_builtins.str] vm_state: [string] Sets the power state of the GPU server. E.g: `RUNNING` or `SUSPENDED`.
-        :param pulumi.Input[Union['GpuServerVolumeArgs', 'GpuServerVolumeArgsDict']] volume: See the Volume section.
+        :param pulumi.Input[Union['GpuServerVolumeArgs', 'GpuServerVolumeArgsDict', 'outputs.GpuServerVolume']] volume: See the Volume section.
         """
         ...
     @overload
@@ -846,12 +846,12 @@ class GpuServer(pulumi.CustomResource):
                  image_password: pulumi.Input[Optional[_builtins.str]] = None,
                  location: pulumi.Input[Optional[_builtins.str]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
-                 nic: pulumi.Input[Optional[Union['GpuServerNicArgs', 'GpuServerNicArgsDict']]] = None,
+                 nic: pulumi.Input[Optional[Union['GpuServerNicArgs', 'GpuServerNicArgsDict', 'outputs.GpuServerNic']]] = None,
                  security_groups_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  ssh_key_paths: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  template_uuid: pulumi.Input[Optional[_builtins.str]] = None,
                  vm_state: pulumi.Input[Optional[_builtins.str]] = None,
-                 volume: pulumi.Input[Optional[Union['GpuServerVolumeArgs', 'GpuServerVolumeArgsDict']]] = None,
+                 volume: pulumi.Input[Optional[Union['GpuServerVolumeArgs', 'GpuServerVolumeArgsDict', 'outputs.GpuServerVolume']]] = None,
                  __props__=None):
         pulumi.log.warn("""GpuServer is deprecated: ionoscloud.index/gpuserver.GpuServer has been deprecated in favor of ionoscloud.compute/gpuserver.GPUServer""")
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -912,14 +912,14 @@ class GpuServer(pulumi.CustomResource):
             inline_volume_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
             location: pulumi.Input[Optional[_builtins.str]] = None,
             name: pulumi.Input[Optional[_builtins.str]] = None,
-            nic: pulumi.Input[Optional[Union['GpuServerNicArgs', 'GpuServerNicArgsDict']]] = None,
+            nic: pulumi.Input[Optional[Union['GpuServerNicArgs', 'GpuServerNicArgsDict', 'outputs.GpuServerNic']]] = None,
             primary_ip: pulumi.Input[Optional[_builtins.str]] = None,
             primary_nic: pulumi.Input[Optional[_builtins.str]] = None,
             security_groups_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
             ssh_key_paths: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
             template_uuid: pulumi.Input[Optional[_builtins.str]] = None,
             vm_state: pulumi.Input[Optional[_builtins.str]] = None,
-            volume: pulumi.Input[Optional[Union['GpuServerVolumeArgs', 'GpuServerVolumeArgsDict']]] = None) -> 'GpuServer':
+            volume: pulumi.Input[Optional[Union['GpuServerVolumeArgs', 'GpuServerVolumeArgsDict', 'outputs.GpuServerVolume']]] = None) -> 'GpuServer':
         """
         Get an existing GpuServer resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -932,7 +932,7 @@ class GpuServer(pulumi.CustomResource):
                ⚠️ **_Warning: `allow_replace` - lets you update immutable fields, but it first destroys and then re-creates the server in order to do it. This field should be used with care, understanding the risks._**
                
                > **⚠ WARNING**
-               >
+               > 
                > Image_name under volume level is deprecated, please use image_name under server level
         :param pulumi.Input[_builtins.str] availability_zone: [string] The availability zone in which the server should exist. This property is immutable.
         :param pulumi.Input[_builtins.str] boot_image: [string] The image or snapshot UUID / name. May also be an image alias. It is required if `licence_type` is not provided.
@@ -945,14 +945,14 @@ class GpuServer(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] inline_volume_ids: A list that contains the IDs for the volumes defined inside the gpu server resource.
         :param pulumi.Input[_builtins.str] location: The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
         :param pulumi.Input[_builtins.str] name: [string] The name of the server.
-        :param pulumi.Input[Union['GpuServerNicArgs', 'GpuServerNicArgsDict']] nic: See the Nic section.
+        :param pulumi.Input[Union['GpuServerNicArgs', 'GpuServerNicArgsDict', 'outputs.GpuServerNic']] nic: See the Nic section.
         :param pulumi.Input[_builtins.str] primary_ip: The associated IP address.
         :param pulumi.Input[_builtins.str] primary_nic: The associated NIC.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] security_groups_ids: The list of Security Group IDs for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ssh_key_paths: [list] List of paths to files containing a public SSH key that will be injected into IONOS CLOUD provided Linux images. Required for IONOS CLOUD Linux images. Required if `image_password` is not provided.
         :param pulumi.Input[_builtins.str] template_uuid: [string] The UUID of the template used for creating a GPU server.
         :param pulumi.Input[_builtins.str] vm_state: [string] Sets the power state of the GPU server. E.g: `RUNNING` or `SUSPENDED`.
-        :param pulumi.Input[Union['GpuServerVolumeArgs', 'GpuServerVolumeArgsDict']] volume: See the Volume section.
+        :param pulumi.Input[Union['GpuServerVolumeArgs', 'GpuServerVolumeArgsDict', 'outputs.GpuServerVolume']] volume: See the Volume section.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -989,7 +989,7 @@ class GpuServer(pulumi.CustomResource):
         ⚠️ **_Warning: `allow_replace` - lets you update immutable fields, but it first destroys and then re-creates the server in order to do it. This field should be used with care, understanding the risks._**
 
         > **⚠ WARNING**
-        >
+        > 
         > Image_name under volume level is deprecated, please use image_name under server level
         """
         return pulumi.get(self, "allow_replace")

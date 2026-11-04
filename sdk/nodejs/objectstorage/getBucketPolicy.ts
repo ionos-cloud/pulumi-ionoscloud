@@ -43,10 +43,6 @@ export interface GetBucketPolicyArgs {
 export interface GetBucketPolicyResult {
     readonly bucket: string;
     /**
-     * The provider-assigned unique ID for this managed resource.
-     */
-    readonly id: string;
-    /**
      * The policy of the bucket.
      */
     readonly policy: string;

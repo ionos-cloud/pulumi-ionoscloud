@@ -51,10 +51,6 @@ export interface GetMariaDBClustersV2Args {
  */
 export interface GetMariaDBClustersV2Result {
     /**
-     * The provider-assigned unique ID for this managed resource.
-     */
-    readonly id: string;
-    /**
      * List of clusters. Each item exposes the same attributes as the ionoscloud.dbaas.MariaDBClusterV2 data source. Note that `credentials.password` is not available — only `credentials.username` and `credentials.database` are returned by the API.
      */
     readonly items: outputs.dbaas.GetMariaDBClustersV2Item[];

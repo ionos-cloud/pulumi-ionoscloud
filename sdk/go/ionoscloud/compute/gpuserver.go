@@ -27,6 +27,8 @@ import (
 //
 // import (
 //
+//	"strconv"
+//
 //	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/compute"
 //	"github.com/pulumi/pulumi-random/sdk/go/random"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
@@ -84,7 +86,7 @@ import (
 //					RequireLegacyBios: pulumi.Bool(false),
 //				},
 //				Nic: &compute.GPUServerNicArgs{
-//					Lan:            exampleLan.ID(),
+//					Lan:            exampleLan.ID().ToStringOutput().ApplyT(strconv.Atoi).(pulumi.IntOutput),
 //					Name:           pulumi.String("system"),
 //					Dhcp:           pulumi.Bool(true),
 //					FirewallActive: pulumi.Bool(true),

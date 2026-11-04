@@ -119,12 +119,8 @@ type LookupNatGatewayRuleResult struct {
 }
 
 func LookupNatGatewayRuleOutput(ctx *pulumi.Context, args LookupNatGatewayRuleOutputArgs, opts ...pulumi.InvokeOption) LookupNatGatewayRuleResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupNatGatewayRuleResultOutput, error) {
-			args := v.(LookupNatGatewayRuleArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("ionoscloud:compute/getNatGatewayRule:getNatGatewayRule", args, LookupNatGatewayRuleResultOutput{}, options).(LookupNatGatewayRuleResultOutput), nil
-		}).(LookupNatGatewayRuleResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("ionoscloud:compute/getNatGatewayRule:getNatGatewayRule", args, LookupNatGatewayRuleResultOutput{}, options).(LookupNatGatewayRuleResultOutput)
 }
 
 // A collection of arguments for invoking getNatGatewayRule.

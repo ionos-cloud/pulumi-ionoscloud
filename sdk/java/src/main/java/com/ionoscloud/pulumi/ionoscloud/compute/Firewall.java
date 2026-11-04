@@ -32,8 +32,8 @@ import javax.annotation.Nullable;
  * import com.ionoscloud.pulumi.ionoscloud.compute.DatacenterArgs;
  * import com.ionoscloud.pulumi.ionoscloud.compute.IPBlock;
  * import com.ionoscloud.pulumi.ionoscloud.compute.IPBlockArgs;
- * import com.pulumi.random.password;
- * import com.pulumi.random.passwordArgs;
+ * import com.pulumi.random.Password;
+ * import com.pulumi.random.PasswordArgs;
  * import com.ionoscloud.pulumi.ionoscloud.compute.Server;
  * import com.ionoscloud.pulumi.ionoscloud.compute.ServerArgs;
  * import com.pulumi.ionoscloud.compute.inputs.ServerVolumeArgs;
@@ -79,7 +79,7 @@ import javax.annotation.Nullable;
  *             .cores(1)
  *             .ram(1024)
  *             .imageName("Ubuntu-20.04")
- *             .imagePassword(serverImagePassword.result())
+ *             .imagePassword(serverImagePassword.get("result"))
  *             .volume(ServerVolumeArgs.builder()
  *                 .name("system")
  *                 .size(14)
@@ -108,8 +108,8 @@ import javax.annotation.Nullable;
  *             .protocol("ICMP")
  *             .name("Firewall Example")
  *             .sourceMac("00:0a:95:9d:68:16")
- *             .sourceIp(exampleIPBlock.ips().applyValue(_ips -> _ips[0]))
- *             .targetIp(exampleIPBlock.ips().applyValue(_ips -> _ips[1]))
+ *             .sourceIp(exampleIPBlock.ips().applyValue(_ips -> _ips.get(0)))
+ *             .targetIp(exampleIPBlock.ips().applyValue(_ips -> _ips.get(1)))
  *             .icmpType("1")
  *             .icmpCode("8")
  *             .type("INGRESS")

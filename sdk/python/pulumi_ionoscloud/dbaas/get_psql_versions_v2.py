@@ -27,24 +27,13 @@ class GetPSQLVersionsV2Result:
     """
     A collection of values returned by getPSQLVersionsV2.
     """
-    def __init__(__self__, id=None, location=None, versions=None):
-        if id and not isinstance(id, str):
-            raise TypeError("Expected argument 'id' to be a str")
-        pulumi.set(__self__, "id", id)
+    def __init__(__self__, location=None, versions=None):
         if location and not isinstance(location, str):
             raise TypeError("Expected argument 'location' to be a str")
         pulumi.set(__self__, "location", location)
         if versions and not isinstance(versions, list):
             raise TypeError("Expected argument 'versions' to be a list")
         pulumi.set(__self__, "versions", versions)
-
-    @_builtins.property
-    @pulumi.getter
-    def id(self) -> _builtins.str:
-        """
-        The provider-assigned unique ID for this managed resource.
-        """
-        return pulumi.get(self, "id")
 
     @_builtins.property
     @pulumi.getter
@@ -66,7 +55,6 @@ class AwaitableGetPSQLVersionsV2Result(GetPSQLVersionsV2Result):
         if False:
             yield self
         return GetPSQLVersionsV2Result(
-            id=self.id,
             location=self.location,
             versions=self.versions)
 
@@ -94,7 +82,6 @@ def get_psql_versions_v2(location: Optional[_builtins.str] = None,
     __ret__ = pulumi.runtime.invoke('ionoscloud:dbaas/getPSQLVersionsV2:getPSQLVersionsV2', __args__, opts=opts, typ=GetPSQLVersionsV2Result).value
 
     return AwaitableGetPSQLVersionsV2Result(
-        id=pulumi.get(__ret__, 'id'),
         location=pulumi.get(__ret__, 'location'),
         versions=pulumi.get(__ret__, 'versions'))
 def get_psql_versions_v2_output(location: pulumi.Input[Optional[_builtins.str]] = None,
@@ -119,6 +106,5 @@ def get_psql_versions_v2_output(location: pulumi.Input[Optional[_builtins.str]] 
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('ionoscloud:dbaas/getPSQLVersionsV2:getPSQLVersionsV2', __args__, opts=opts, typ=GetPSQLVersionsV2Result)
     return __ret__.apply(lambda __response__: GetPSQLVersionsV2Result(
-        id=pulumi.get(__response__, 'id'),
         location=pulumi.get(__response__, 'location'),
         versions=pulumi.get(__response__, 'versions')))

@@ -2072,7 +2072,7 @@ export namespace nfs {
         ipAddress: pulumi.Input<string>;
         /**
          * The Private LAN to which the Network File Storage cluster must be connected.
-         * -
+         * ---
          * > **⚠ NOTE:** `IONOS_API_URL_NFS` can be used to set a custom API URL for the resource. `location` field needs to be empty, otherwise it will override the custom API URL. Setting `endpoint` or `IONOS_API_URL` does not have any effect.
          */
         lan: pulumi.Input<string>;

@@ -92,7 +92,7 @@ class AwaitableGetServersResult(GetServersResult):
 
 
 def get_servers(datacenter_id: Optional[_builtins.str] = None,
-                filters: Optional[Sequence[Union['GetServersFilterArgs', 'GetServersFilterArgsDict']]] = None,
+                filters: Optional[Sequence[Union['GetServersFilterArgs', 'GetServersFilterArgsDict', 'outputs.GetServersFilterResult']]] = None,
                 location: Optional[_builtins.str] = None,
                 opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetServersResult:
     """
@@ -144,8 +144,7 @@ def get_servers(datacenter_id: Optional[_builtins.str] = None,
 
 
     :param _builtins.str datacenter_id: Name of an existing datacenter that the servers are a part of
-    :param Sequence[Union['GetServersFilterArgs', 'GetServersFilterArgsDict']] filters: One or more name/value pairs to filter off of. You can use most base fields in the server resource. These do **NOT** include nested fields in nics or volume nested fields.
-           
+    :param Sequence[Union['GetServersFilterArgs', 'GetServersFilterArgsDict', 'outputs.GetServersFilterResult']] filters: One or more name/value pairs to filter off of. You can use most base fields in the server resource. These do **NOT** include nested fields in nics or volume nested fields.
            
            `datacenter_id` must be provided. If `datacenter_id` is missing , the datasource will return an error.
            
@@ -168,7 +167,7 @@ def get_servers(datacenter_id: Optional[_builtins.str] = None,
         location=pulumi.get(__ret__, 'location'),
         servers=pulumi.get(__ret__, 'servers'))
 def get_servers_output(datacenter_id: pulumi.Input[Optional[_builtins.str]] = None,
-                       filters: pulumi.Input[Optional[Optional[Sequence[Union['GetServersFilterArgs', 'GetServersFilterArgsDict']]]]] = None,
+                       filters: pulumi.Input[Optional[Optional[Sequence[Union['GetServersFilterArgs', 'GetServersFilterArgsDict', 'outputs.GetServersFilterResult']]]]] = None,
                        location: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                        opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetServersResult]:
     """
@@ -220,8 +219,7 @@ def get_servers_output(datacenter_id: pulumi.Input[Optional[_builtins.str]] = No
 
 
     :param _builtins.str datacenter_id: Name of an existing datacenter that the servers are a part of
-    :param Sequence[Union['GetServersFilterArgs', 'GetServersFilterArgsDict']] filters: One or more name/value pairs to filter off of. You can use most base fields in the server resource. These do **NOT** include nested fields in nics or volume nested fields.
-           
+    :param Sequence[Union['GetServersFilterArgs', 'GetServersFilterArgsDict', 'outputs.GetServersFilterResult']] filters: One or more name/value pairs to filter off of. You can use most base fields in the server resource. These do **NOT** include nested fields in nics or volume nested fields.
            
            `datacenter_id` must be provided. If `datacenter_id` is missing , the datasource will return an error.
            

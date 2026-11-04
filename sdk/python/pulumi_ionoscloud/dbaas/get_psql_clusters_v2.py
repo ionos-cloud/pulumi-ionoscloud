@@ -27,13 +27,10 @@ class GetPSQLClustersV2Result:
     """
     A collection of values returned by getPSQLClustersV2.
     """
-    def __init__(__self__, clusters=None, id=None, location=None, name=None):
+    def __init__(__self__, clusters=None, location=None, name=None):
         if clusters and not isinstance(clusters, list):
             raise TypeError("Expected argument 'clusters' to be a list")
         pulumi.set(__self__, "clusters", clusters)
-        if id and not isinstance(id, str):
-            raise TypeError("Expected argument 'id' to be a str")
-        pulumi.set(__self__, "id", id)
         if location and not isinstance(location, str):
             raise TypeError("Expected argument 'location' to be a str")
         pulumi.set(__self__, "location", location)
@@ -48,14 +45,6 @@ class GetPSQLClustersV2Result:
         The list of PostgreSQL v2 clusters. Each cluster has the following attributes:
         """
         return pulumi.get(self, "clusters")
-
-    @_builtins.property
-    @pulumi.getter
-    def id(self) -> _builtins.str:
-        """
-        The provider-assigned unique ID for this managed resource.
-        """
-        return pulumi.get(self, "id")
 
     @_builtins.property
     @pulumi.getter
@@ -81,7 +70,6 @@ class AwaitableGetPSQLClustersV2Result(GetPSQLClustersV2Result):
             yield self
         return GetPSQLClustersV2Result(
             clusters=self.clusters,
-            id=self.id,
             location=self.location,
             name=self.name)
 
@@ -124,7 +112,6 @@ def get_psql_clusters_v2(location: Optional[_builtins.str] = None,
 
     return AwaitableGetPSQLClustersV2Result(
         clusters=pulumi.get(__ret__, 'clusters'),
-        id=pulumi.get(__ret__, 'id'),
         location=pulumi.get(__ret__, 'location'),
         name=pulumi.get(__ret__, 'name'))
 def get_psql_clusters_v2_output(location: pulumi.Input[Optional[_builtins.str]] = None,
@@ -164,6 +151,5 @@ def get_psql_clusters_v2_output(location: pulumi.Input[Optional[_builtins.str]] 
     __ret__ = pulumi.runtime.invoke_output('ionoscloud:dbaas/getPSQLClustersV2:getPSQLClustersV2', __args__, opts=opts, typ=GetPSQLClustersV2Result)
     return __ret__.apply(lambda __response__: GetPSQLClustersV2Result(
         clusters=pulumi.get(__response__, 'clusters'),
-        id=pulumi.get(__response__, 'id'),
         location=pulumi.get(__response__, 'location'),
         name=pulumi.get(__response__, 'name')))

@@ -23,6 +23,8 @@ import (
 //
 // import (
 //
+//	"strconv"
+//
 //	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/compute"
 //	"github.com/pulumi/pulumi-random/sdk/go/random"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
@@ -77,7 +79,7 @@ import (
 //				DatacenterId:  exampleDatacenter.ID(),
 //				Cores:         pulumi.Int(1),
 //				Ram:           pulumi.Int(1024),
-//				ImageName:     pulumi.String(pulumi.String(example.Name)),
+//				ImageName:     pulumi.String(example.Name),
 //				ImagePassword: serverImagePassword.Result,
 //				Type:          pulumi.String("ENTERPRISE"),
 //				Volume: &compute.ServerVolumeArgs{
@@ -89,7 +91,7 @@ import (
 //					AvailabilityZone: pulumi.String("ZONE_1"),
 //				},
 //				Nic: &compute.ServerNicArgs{
-//					Lan:            exampleLan.ID(),
+//					Lan:            exampleLan.ID().ToStringOutput().ApplyT(strconv.Atoi).(pulumi.IntOutput),
 //					Name:           pulumi.String("system"),
 //					Dhcp:           pulumi.Bool(true),
 //					FirewallActive: pulumi.Bool(true),
@@ -138,7 +140,7 @@ import (
 //				Size:             pulumi.Int(5),
 //				DiskType:         pulumi.String("SSD Standard"),
 //				Bus:              pulumi.String("VIRTIO"),
-//				ImageName:        pulumi.String(pulumi.String(example.Name)),
+//				ImageName:        pulumi.String(example.Name),
 //				ImagePassword:    volumeImagePassword.Result,
 //				UserData:         pulumi.String("foo"),
 //			})

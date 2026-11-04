@@ -18,11 +18,6 @@ public final class GetPSQLBackupLocationV2Result {
      */
     private List<GetPSQLBackupLocationV2BackupLocation> backupLocations;
     /**
-     * @return The provider-assigned unique ID for this managed resource.
-     * 
-     */
-    private String id;
-    /**
      * @return The Object Storage location identifier (e.g. &lt;span pulumi-lang-nodejs=&#34;`de`&#34; pulumi-lang-dotnet=&#34;`De`&#34; pulumi-lang-go=&#34;`de`&#34; pulumi-lang-python=&#34;`de`&#34; pulumi-lang-yaml=&#34;`de`&#34; pulumi-lang-java=&#34;`de`&#34; pulumi-lang-hcl=&#34;`de`&#34;&gt;`de`&lt;/span&gt;, `eu-central-2`).
      * 
      */
@@ -35,13 +30,6 @@ public final class GetPSQLBackupLocationV2Result {
      */
     public List<GetPSQLBackupLocationV2BackupLocation> backupLocations() {
         return this.backupLocations;
-    }
-    /**
-     * @return The provider-assigned unique ID for this managed resource.
-     * 
-     */
-    public String id() {
-        return this.id;
     }
     /**
      * @return The Object Storage location identifier (e.g. &lt;span pulumi-lang-nodejs=&#34;`de`&#34; pulumi-lang-dotnet=&#34;`De`&#34; pulumi-lang-go=&#34;`de`&#34; pulumi-lang-python=&#34;`de`&#34; pulumi-lang-yaml=&#34;`de`&#34; pulumi-lang-java=&#34;`de`&#34; pulumi-lang-hcl=&#34;`de`&#34;&gt;`de`&lt;/span&gt;, `eu-central-2`).
@@ -61,13 +49,11 @@ public final class GetPSQLBackupLocationV2Result {
     @CustomType.Builder
     public static final class Builder {
         private List<GetPSQLBackupLocationV2BackupLocation> backupLocations;
-        private String id;
         private String location;
         public Builder() {}
         public Builder(GetPSQLBackupLocationV2Result defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.backupLocations = defaults.backupLocations;
-    	      this.id = defaults.id;
     	      this.location = defaults.location;
         }
 
@@ -83,14 +69,6 @@ public final class GetPSQLBackupLocationV2Result {
             return backupLocations(List.of(backupLocations));
         }
         @CustomType.Setter
-        public Builder id(String id) {
-            if (id == null) {
-              throw new MissingRequiredPropertyException("GetPSQLBackupLocationV2Result", "id");
-            }
-            this.id = id;
-            return this;
-        }
-        @CustomType.Setter
         public Builder location(String location) {
             if (location == null) {
               throw new MissingRequiredPropertyException("GetPSQLBackupLocationV2Result", "location");
@@ -101,7 +79,6 @@ public final class GetPSQLBackupLocationV2Result {
         public GetPSQLBackupLocationV2Result build() {
             final var _resultValue = new GetPSQLBackupLocationV2Result();
             _resultValue.backupLocations = backupLocations;
-            _resultValue.id = id;
             _resultValue.location = location;
             return _resultValue;
         }

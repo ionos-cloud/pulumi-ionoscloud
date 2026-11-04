@@ -153,10 +153,6 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Dbaas
         /// </summary>
         public readonly string? ClusterId;
         /// <summary>
-        /// The provider-assigned unique ID for this managed resource.
-        /// </summary>
-        public readonly string Id;
-        /// <summary>
         /// List of snapshots. Each item includes:
         /// </summary>
         public readonly ImmutableArray<Outputs.GetInMemoryDBSnapshotsV2ItemResult> Items;
@@ -169,14 +165,11 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Dbaas
         private GetInMemoryDBSnapshotsV2Result(
             string? clusterId,
 
-            string id,
-
             ImmutableArray<Outputs.GetInMemoryDBSnapshotsV2ItemResult> items,
 
             string location)
         {
             ClusterId = clusterId;
-            Id = id;
             Items = items;
             Location = location;
         }

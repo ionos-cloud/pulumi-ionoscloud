@@ -43,8 +43,8 @@ import javax.annotation.Nullable;
  * import com.ionoscloud.pulumi.ionoscloud.compute.DatacenterArgs;
  * import com.ionoscloud.pulumi.ionoscloud.compute.Lan;
  * import com.ionoscloud.pulumi.ionoscloud.compute.LanArgs;
- * import com.pulumi.random.password;
- * import com.pulumi.random.passwordArgs;
+ * import com.pulumi.random.Password;
+ * import com.pulumi.random.PasswordArgs;
  * import com.ionoscloud.pulumi.ionoscloud.compute.CubeServer;
  * import com.ionoscloud.pulumi.ionoscloud.compute.CubeServerArgs;
  * import com.pulumi.ionoscloud.compute.inputs.CubeServerVolumeArgs;
@@ -86,7 +86,7 @@ import javax.annotation.Nullable;
  *             .name("Server Example")
  *             .imageName("ubuntu:latest")
  *             .templateUuid(example.id())
- *             .imagePassword(serverImagePassword.result())
+ *             .imagePassword(serverImagePassword.get("result"))
  *             .datacenterId(exampleDatacenter.id())
  *             .volume(CubeServerVolumeArgs.builder()
  *                 .name("Volume Example")
@@ -126,8 +126,8 @@ import javax.annotation.Nullable;
  * import com.ionoscloud.pulumi.ionoscloud.compute.Lan;
  * import com.ionoscloud.pulumi.ionoscloud.compute.LanArgs;
  * import com.pulumi.std.StdFunctions;
- * import com.pulumi.random.password;
- * import com.pulumi.random.passwordArgs;
+ * import com.pulumi.random.Password;
+ * import com.pulumi.random.PasswordArgs;
  * import com.ionoscloud.pulumi.ionoscloud.compute.CubeServer;
  * import com.ionoscloud.pulumi.ionoscloud.compute.CubeServerArgs;
  * import com.pulumi.ionoscloud.compute.inputs.CubeServerVolumeArgs;
@@ -168,7 +168,7 @@ import javax.annotation.Nullable;
  *                 Map.entry("input", exampleDatacenter.ipv6CidrBlock()),
  *                 Map.entry("newbits", 8),
  *                 Map.entry("netnum", 10)
- *             )).result())
+ *             )).get("result"))
  *             .build());
  * 
  *         var serverImagePassword = new Password("serverImagePassword", PasswordArgs.builder()
@@ -181,7 +181,7 @@ import javax.annotation.Nullable;
  *             .availabilityZone("AUTO")
  *             .imageName("ubuntu:latest")
  *             .templateUuid(example.id())
- *             .imagePassword(serverImagePassword.result())
+ *             .imagePassword(serverImagePassword.get("result"))
  *             .datacenterId(exampleDatacenter.id())
  *             .volume(CubeServerVolumeArgs.builder()
  *                 .name("Volume Example")
@@ -193,39 +193,39 @@ import javax.annotation.Nullable;
  *                 .name("Nic Example")
  *                 .dhcp(true)
  *                 .ips(                
- *                     webserverIpblock.ips().applyValue(_ips -> _ips[0]),
- *                     webserverIpblock.ips().applyValue(_ips -> _ips[1]))
+ *                     webserverIpblock.ips().applyValue(_ips -> _ips.get(0)),
+ *                     webserverIpblock.ips().applyValue(_ips -> _ips.get(1)))
  *                 .dhcpv6(false)
  *                 .ipv6CidrBlock(StdFunctions.cidrsubnet(Map.ofEntries(
  *                     Map.entry("input", exampleLan.ipv6CidrBlock()),
  *                     Map.entry("newbits", 16),
  *                     Map.entry("netnum", 5)
- *                 )).result())
+ *                 )).get("result"))
  *                 .ipv6Ips(                
  *                     StdFunctions.cidrhost(Map.ofEntries(
  *                         Map.entry("input", StdFunctions.cidrsubnet(Map.ofEntries(
  *                             Map.entry("input", exampleLan.ipv6CidrBlock()),
  *                             Map.entry("newbits", 16),
  *                             Map.entry("netnum", 5)
- *                         )).result()),
+ *                         )).get("result")),
  *                         Map.entry("host", 1)
- *                     )).result(),
+ *                     )).get("result"),
  *                     StdFunctions.cidrhost(Map.ofEntries(
  *                         Map.entry("input", StdFunctions.cidrsubnet(Map.ofEntries(
  *                             Map.entry("input", exampleLan.ipv6CidrBlock()),
  *                             Map.entry("newbits", 16),
  *                             Map.entry("netnum", 5)
- *                         )).result()),
+ *                         )).get("result")),
  *                         Map.entry("host", 2)
- *                     )).result(),
+ *                     )).get("result"),
  *                     StdFunctions.cidrhost(Map.ofEntries(
  *                         Map.entry("input", StdFunctions.cidrsubnet(Map.ofEntries(
  *                             Map.entry("input", exampleLan.ipv6CidrBlock()),
  *                             Map.entry("newbits", 16),
  *                             Map.entry("netnum", 5)
- *                         )).result()),
+ *                         )).get("result")),
  *                         Map.entry("host", 3)
- *                     )).result())
+ *                     )).get("result"))
  *                 .firewallActive(true)
  *                 .build())
  *             .build());

@@ -59,8 +59,8 @@ import javax.annotation.Nullable;
  *             .imageName("ubuntu:latest")
  *             .cores(2)
  *             .ram(2048)
- *             .imagePassword(serverImagePassword.result())
- *             .datacenterId(exampleIonoscloudDatacenter.id())
+ *             .imagePassword(serverImagePassword.get("result"))
+ *             .datacenterId(exampleIonoscloudDatacenter.get("id"))
  *             .volume(ServerVolumeArgs.builder()
  *                 .name("Inline Updated")
  *                 .size(20)
@@ -69,7 +69,7 @@ import javax.annotation.Nullable;
  *                 .availabilityZone("AUTO")
  *                 .build())
  *             .nic(ServerNicArgs.builder()
- *                 .lan(exampleIonoscloudLan.id())
+ *                 .lan(exampleIonoscloudLan.get("id"))
  *                 .name("Nic Example")
  *                 .dhcp(true)
  *                 .firewallActive(true)
@@ -78,17 +78,17 @@ import javax.annotation.Nullable;
  * 
  *         var exampleVolume = new Volume("exampleVolume", VolumeArgs.builder()
  *             .serverId(exampleServer.id())
- *             .datacenterId(exampleIonoscloudDatacenter.id())
+ *             .datacenterId(exampleIonoscloudDatacenter.get("id"))
  *             .name("External 1")
  *             .size(10)
  *             .diskType("HDD")
  *             .availabilityZone("AUTO")
  *             .imageName("debian:latest")
- *             .imagePassword(serverImagePassword.result())
+ *             .imagePassword(serverImagePassword.get("result"))
  *             .build());
  * 
  *         var example = new BootDeviceSelection("example", BootDeviceSelectionArgs.builder()
- *             .datacenterId(exampleIonoscloudDatacenter.id())
+ *             .datacenterId(exampleIonoscloudDatacenter.get("id"))
  *             .serverId(exampleServer.id())
  *             .bootDeviceId(exampleVolume.id())
  *             .build());
@@ -135,8 +135,8 @@ import javax.annotation.Nullable;
  *             .imageName("ubuntu:latest")
  *             .cores(2)
  *             .ram(2048)
- *             .imagePassword(serverImagePassword.result())
- *             .datacenterId(exampleIonoscloudDatacenter.id())
+ *             .imagePassword(serverImagePassword.get("result"))
+ *             .datacenterId(exampleIonoscloudDatacenter.get("id"))
  *             .volume(ServerVolumeArgs.builder()
  *                 .name("Inline Updated")
  *                 .size(20)
@@ -145,7 +145,7 @@ import javax.annotation.Nullable;
  *                 .availabilityZone("AUTO")
  *                 .build())
  *             .nic(ServerNicArgs.builder()
- *                 .lan(exampleIonoscloudLan.id())
+ *                 .lan(exampleIonoscloudLan.get("id"))
  *                 .name("Nic Example")
  *                 .dhcp(true)
  *                 .firewallActive(true)
@@ -153,20 +153,20 @@ import javax.annotation.Nullable;
  *             .build());
  * 
  *         var example = new BootDeviceSelection("example", BootDeviceSelectionArgs.builder()
- *             .datacenterId(exampleIonoscloudDatacenter.id())
+ *             .datacenterId(exampleIonoscloudDatacenter.get("id"))
  *             .serverId(exampleServer.id())
- *             .bootDeviceId(exampleServer.inlineVolumeIds().applyValue(_inlineVolumeIds -> _inlineVolumeIds[0]))
+ *             .bootDeviceId(exampleServer.inlineVolumeIds().applyValue(_inlineVolumeIds -> _inlineVolumeIds.get(0)))
  *             .build());
  * 
  *         var exampleVolume = new Volume("exampleVolume", VolumeArgs.builder()
  *             .serverId(exampleServer.id())
- *             .datacenterId(exampleIonoscloudDatacenter.id())
+ *             .datacenterId(exampleIonoscloudDatacenter.get("id"))
  *             .name("External 1")
  *             .size(10)
  *             .diskType("HDD")
  *             .availabilityZone("AUTO")
  *             .imageName("debian:latest")
- *             .imagePassword(serverImagePassword.result())
+ *             .imagePassword(serverImagePassword.get("result"))
  *             .build());
  * 
  *     }
@@ -213,8 +213,8 @@ import javax.annotation.Nullable;
  *             .imageName("ubuntu:latest")
  *             .cores(2)
  *             .ram(2048)
- *             .imagePassword(serverImagePassword.result())
- *             .datacenterId(exampleIonoscloudDatacenter.id())
+ *             .imagePassword(serverImagePassword.get("result"))
+ *             .datacenterId(exampleIonoscloudDatacenter.get("id"))
  *             .volume(ServerVolumeArgs.builder()
  *                 .name("Inline Updated")
  *                 .size(20)
@@ -223,7 +223,7 @@ import javax.annotation.Nullable;
  *                 .availabilityZone("AUTO")
  *                 .build())
  *             .nic(ServerNicArgs.builder()
- *                 .lan(exampleIonoscloudLan.id())
+ *                 .lan(exampleIonoscloudLan.get("id"))
  *                 .name("Nic Example")
  *                 .dhcp(true)
  *                 .firewallActive(true)
@@ -237,20 +237,20 @@ import javax.annotation.Nullable;
  *             .build());
  * 
  *         var exampleBootDeviceSelection = new BootDeviceSelection("exampleBootDeviceSelection", BootDeviceSelectionArgs.builder()
- *             .datacenterId(exampleIonoscloudDatacenter.id())
+ *             .datacenterId(exampleIonoscloudDatacenter.get("id"))
  *             .serverId(exampleServer.id())
  *             .bootDeviceId(example.id())
  *             .build());
  * 
  *         var exampleVolume = new Volume("exampleVolume", VolumeArgs.builder()
  *             .serverId(exampleServer.id())
- *             .datacenterId(exampleIonoscloudDatacenter.id())
+ *             .datacenterId(exampleIonoscloudDatacenter.get("id"))
  *             .name("External 1")
  *             .size(10)
  *             .diskType("HDD")
  *             .availabilityZone("AUTO")
  *             .imageName("debian:latest")
- *             .imagePassword(serverImagePassword.result())
+ *             .imagePassword(serverImagePassword.get("result"))
  *             .build());
  * 
  *     }
@@ -297,8 +297,8 @@ import javax.annotation.Nullable;
  *             .imageName("ubuntu:latest")
  *             .cores(2)
  *             .ram(2048)
- *             .imagePassword(serverImagePassword.result())
- *             .datacenterId(exampleIonoscloudDatacenter.id())
+ *             .imagePassword(serverImagePassword.get("result"))
+ *             .datacenterId(exampleIonoscloudDatacenter.get("id"))
  *             .volume(ServerVolumeArgs.builder()
  *                 .name("Inline volume")
  *                 .size(20)
@@ -307,7 +307,7 @@ import javax.annotation.Nullable;
  *                 .availabilityZone("AUTO")
  *                 .build())
  *             .nic(ServerNicArgs.builder()
- *                 .lan(exampleIonoscloudLan.id())
+ *                 .lan(exampleIonoscloudLan.get("id"))
  *                 .name("Nic Example")
  *                 .dhcp(true)
  *                 .firewallActive(true)
@@ -315,19 +315,19 @@ import javax.annotation.Nullable;
  *             .build());
  * 
  *         var exampleBootDeviceSelection = new BootDeviceSelection("exampleBootDeviceSelection", BootDeviceSelectionArgs.builder()
- *             .datacenterId(exampleIonoscloudDatacenter.id())
+ *             .datacenterId(exampleIonoscloudDatacenter.get("id"))
  *             .serverId(exampleServer.id())
  *             .build());
  * 
  *         var exampleVolume = new Volume("exampleVolume", VolumeArgs.builder()
  *             .serverId(exampleServer.id())
- *             .datacenterId(exampleIonoscloudDatacenter.id())
+ *             .datacenterId(exampleIonoscloudDatacenter.get("id"))
  *             .name("External 1")
  *             .size(10)
  *             .diskType("HDD")
  *             .availabilityZone("AUTO")
  *             .imageName("debian:latest")
- *             .imagePassword(serverImagePassword.result())
+ *             .imagePassword(serverImagePassword.get("result"))
  *             .build());
  * 
  *         final var example = ComputeFunctions.getImage(GetImageArgs.builder()

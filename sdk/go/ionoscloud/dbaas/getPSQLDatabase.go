@@ -70,12 +70,8 @@ type LookupPSQLDatabaseResult struct {
 }
 
 func LookupPSQLDatabaseOutput(ctx *pulumi.Context, args LookupPSQLDatabaseOutputArgs, opts ...pulumi.InvokeOption) LookupPSQLDatabaseResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupPSQLDatabaseResultOutput, error) {
-			args := v.(LookupPSQLDatabaseArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("ionoscloud:dbaas/getPSQLDatabase:getPSQLDatabase", args, LookupPSQLDatabaseResultOutput{}, options).(LookupPSQLDatabaseResultOutput), nil
-		}).(LookupPSQLDatabaseResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("ionoscloud:dbaas/getPSQLDatabase:getPSQLDatabase", args, LookupPSQLDatabaseResultOutput{}, options).(LookupPSQLDatabaseResultOutput)
 }
 
 // A collection of arguments for invoking getPSQLDatabase.

@@ -41,10 +41,6 @@ export interface GetPSQLVersionsV2Args {
  * A collection of values returned by getPSQLVersionsV2.
  */
 export interface GetPSQLVersionsV2Result {
-    /**
-     * The provider-assigned unique ID for this managed resource.
-     */
-    readonly id: string;
     readonly location: string;
     /**
      * The list of available PostgreSQL versions. Each version has the following attributes:

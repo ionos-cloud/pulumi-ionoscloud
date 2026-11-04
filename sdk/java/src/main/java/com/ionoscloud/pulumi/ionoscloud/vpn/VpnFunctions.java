@@ -1236,7 +1236,7 @@ public final class VpnFunctions {
      *             .name("example-gateway")
      *             .build());
      * 
-     *         ctx.export("vpnWireguardGatewayPublicKey", exampleVpnWireguardGateway.publicKey());
+     *         ctx.export("vpnWireguardGatewayPublicKey", exampleVpnWireguardGateway.get("publicKey"));
      *     }
      * }
      * }
@@ -1280,7 +1280,7 @@ public final class VpnFunctions {
      *             .name("example-gateway")
      *             .build());
      * 
-     *         ctx.export("vpnWireguardGatewayPublicKey", exampleVpnWireguardGateway.publicKey());
+     *         ctx.export("vpnWireguardGatewayPublicKey", exampleVpnWireguardGateway.get("publicKey"));
      *     }
      * }
      * }
@@ -1324,7 +1324,7 @@ public final class VpnFunctions {
      *             .name("example-gateway")
      *             .build());
      * 
-     *         ctx.export("vpnWireguardGatewayPublicKey", exampleVpnWireguardGateway.publicKey());
+     *         ctx.export("vpnWireguardGatewayPublicKey", exampleVpnWireguardGateway.get("publicKey"));
      *     }
      * }
      * }
@@ -1368,7 +1368,7 @@ public final class VpnFunctions {
      *             .name("example-gateway")
      *             .build());
      * 
-     *         ctx.export("vpnWireguardGatewayPublicKey", exampleVpnWireguardGateway.publicKey());
+     *         ctx.export("vpnWireguardGatewayPublicKey", exampleVpnWireguardGateway.get("publicKey"));
      *     }
      * }
      * }
@@ -1412,7 +1412,7 @@ public final class VpnFunctions {
      *             .name("example-gateway")
      *             .build());
      * 
-     *         ctx.export("vpnWireguardGatewayPublicKey", exampleVpnWireguardGateway.publicKey());
+     *         ctx.export("vpnWireguardGatewayPublicKey", exampleVpnWireguardGateway.get("publicKey"));
      *     }
      * }
      * }
@@ -1456,7 +1456,7 @@ public final class VpnFunctions {
      *             .name("example-gateway")
      *             .build());
      * 
-     *         ctx.export("vpnWireguardGatewayPublicKey", exampleVpnWireguardGateway.publicKey());
+     *         ctx.export("vpnWireguardGatewayPublicKey", exampleVpnWireguardGateway.get("publicKey"));
      *     }
      * }
      * }
@@ -1500,7 +1500,7 @@ public final class VpnFunctions {
      *             .name("example-gateway")
      *             .build());
      * 
-     *         ctx.export("vpnWireguardGatewayPublicKey", exampleVpnWireguardGateway.publicKey());
+     *         ctx.export("vpnWireguardGatewayPublicKey", exampleVpnWireguardGateway.get("publicKey"));
      *     }
      * }
      * }
@@ -1545,7 +1545,7 @@ public final class VpnFunctions {
      *             .name("example-peer")
      *             .build());
      * 
-     *         ctx.export("vpnWireguardPeerPublicKey", exampleVpnWireguardPeer.publicKey());
+     *         ctx.export("vpnWireguardPeerPublicKey", exampleVpnWireguardPeer.get("publicKey"));
      *     }
      * }
      * }
@@ -1590,7 +1590,7 @@ public final class VpnFunctions {
      *             .name("example-peer")
      *             .build());
      * 
-     *         ctx.export("vpnWireguardPeerPublicKey", exampleVpnWireguardPeer.publicKey());
+     *         ctx.export("vpnWireguardPeerPublicKey", exampleVpnWireguardPeer.get("publicKey"));
      *     }
      * }
      * }
@@ -1635,7 +1635,7 @@ public final class VpnFunctions {
      *             .name("example-peer")
      *             .build());
      * 
-     *         ctx.export("vpnWireguardPeerPublicKey", exampleVpnWireguardPeer.publicKey());
+     *         ctx.export("vpnWireguardPeerPublicKey", exampleVpnWireguardPeer.get("publicKey"));
      *     }
      * }
      * }
@@ -1680,7 +1680,7 @@ public final class VpnFunctions {
      *             .name("example-peer")
      *             .build());
      * 
-     *         ctx.export("vpnWireguardPeerPublicKey", exampleVpnWireguardPeer.publicKey());
+     *         ctx.export("vpnWireguardPeerPublicKey", exampleVpnWireguardPeer.get("publicKey"));
      *     }
      * }
      * }
@@ -1725,7 +1725,7 @@ public final class VpnFunctions {
      *             .name("example-peer")
      *             .build());
      * 
-     *         ctx.export("vpnWireguardPeerPublicKey", exampleVpnWireguardPeer.publicKey());
+     *         ctx.export("vpnWireguardPeerPublicKey", exampleVpnWireguardPeer.get("publicKey"));
      *     }
      * }
      * }

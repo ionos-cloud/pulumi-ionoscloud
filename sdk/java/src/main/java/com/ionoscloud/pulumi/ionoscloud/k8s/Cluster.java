@@ -124,7 +124,7 @@ import javax.annotation.Nullable;
  *                 .name("globally_unique_bucket_name")
  *                 .build())
  *             .location("de/fra")
- *             .natGatewayIp(k8sip.ips().applyValue(_ips -> _ips[0]))
+ *             .natGatewayIp(k8sip.ips().applyValue(_ips -> _ips.get(0)))
  *             .nodeSubnet("192.168.0.0/16")
  *             .public_(false)
  *             .build());

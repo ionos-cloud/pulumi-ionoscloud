@@ -199,10 +199,6 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Dbaas
         /// </summary>
         public readonly string? ClusterId;
         /// <summary>
-        /// The provider-assigned unique ID for this managed resource.
-        /// </summary>
-        public readonly string Id;
-        /// <summary>
         /// The Object Storage location where the backup is stored.
         /// </summary>
         public readonly string Location;
@@ -213,13 +209,10 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Dbaas
 
             string? clusterId,
 
-            string id,
-
             string location)
         {
             Backups = backups;
             ClusterId = clusterId;
-            Id = id;
             Location = location;
         }
     }

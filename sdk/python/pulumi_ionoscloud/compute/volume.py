@@ -55,9 +55,9 @@ class VolumeArgs:
         :param pulumi.Input[_builtins.bool] require_legacy_bios: (Computed)[boolean] Indicates if the image requires the legacy BIOS for compatibility or specific needs. During creation, if an image is used, the value will be inherited from the image, regardless of the value set in the plan. Later on, the value can be updated.
                
                > **⚠ WARNING**
-               >
+               > 
                > ssh_key_path and ssh_keys fields are immutable.
-               > If you want to create a **CUBE** server, the type of the inline volume must be set to **DAS**. In this case, you can not set the `size` argument since it is taken from the `template_uuid` you set in the server.
+               If you want to create a **CUBE** server, the type of the inline volume must be set to **DAS**. In this case, you can not set the `size` argument since it is taken from the `template_uuid` you set in the server.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ssh_key_paths: [list] List of absolute paths to files containing a public SSH key that will be injected into IONOS CLOUD provided Linux images. Also accepts ssh keys directly. Required for IONOS CLOUD Linux images. Required if `image_password` is not provided. This property is immutable.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ssh_keys: [list] List of absolute paths to files containing a public SSH key that will be injected into IONOS CLOUD provided Linux images. Also accepts ssh keys directly. Required for IONOS CLOUD Linux images. Required if `image_password` is not provided. This property is immutable.
         :param pulumi.Input[_builtins.str] user_data: [string] The cloud-init configuration for the volume as base64 encoded string. The property is immutable and is only allowed to be set on a new volume creation. This option will work only with cloud-init compatible images.
@@ -256,9 +256,9 @@ class VolumeArgs:
         (Computed)[boolean] Indicates if the image requires the legacy BIOS for compatibility or specific needs. During creation, if an image is used, the value will be inherited from the image, regardless of the value set in the plan. Later on, the value can be updated.
 
         > **⚠ WARNING**
-        >
+        > 
         > ssh_key_path and ssh_keys fields are immutable.
-        > If you want to create a **CUBE** server, the type of the inline volume must be set to **DAS**. In this case, you can not set the `size` argument since it is taken from the `template_uuid` you set in the server.
+        If you want to create a **CUBE** server, the type of the inline volume must be set to **DAS**. In this case, you can not set the `size` argument since it is taken from the `template_uuid` you set in the server.
         """
         return pulumi.get(self, "require_legacy_bios")
 
@@ -362,9 +362,9 @@ class _VolumeState:
         :param pulumi.Input[_builtins.bool] require_legacy_bios: (Computed)[boolean] Indicates if the image requires the legacy BIOS for compatibility or specific needs. During creation, if an image is used, the value will be inherited from the image, regardless of the value set in the plan. Later on, the value can be updated.
                
                > **⚠ WARNING**
-               >
+               > 
                > ssh_key_path and ssh_keys fields are immutable.
-               > If you want to create a **CUBE** server, the type of the inline volume must be set to **DAS**. In this case, you can not set the `size` argument since it is taken from the `template_uuid` you set in the server.
+               If you want to create a **CUBE** server, the type of the inline volume must be set to **DAS**. In this case, you can not set the `size` argument since it is taken from the `template_uuid` you set in the server.
         :param pulumi.Input[_builtins.str] server_id: [string] The ID of a server.
         :param pulumi.Input[_builtins.int] size: [integer] The size of the volume in GB.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ssh_key_paths: [list] List of absolute paths to files containing a public SSH key that will be injected into IONOS CLOUD provided Linux images. Also accepts ssh keys directly. Required for IONOS CLOUD Linux images. Required if `image_password` is not provided. This property is immutable.
@@ -699,9 +699,9 @@ class _VolumeState:
         (Computed)[boolean] Indicates if the image requires the legacy BIOS for compatibility or specific needs. During creation, if an image is used, the value will be inherited from the image, regardless of the value set in the plan. Later on, the value can be updated.
 
         > **⚠ WARNING**
-        >
+        > 
         > ssh_key_path and ssh_keys fields are immutable.
-        > If you want to create a **CUBE** server, the type of the inline volume must be set to **DAS**. In this case, you can not set the `size` argument since it is taken from the `template_uuid` you set in the server.
+        If you want to create a **CUBE** server, the type of the inline volume must be set to **DAS**. In this case, you can not set the `size` argument since it is taken from the `template_uuid` you set in the server.
         """
         return pulumi.get(self, "require_legacy_bios")
 
@@ -925,9 +925,9 @@ class Volume(pulumi.CustomResource):
         :param pulumi.Input[_builtins.bool] require_legacy_bios: (Computed)[boolean] Indicates if the image requires the legacy BIOS for compatibility or specific needs. During creation, if an image is used, the value will be inherited from the image, regardless of the value set in the plan. Later on, the value can be updated.
                
                > **⚠ WARNING**
-               >
+               > 
                > ssh_key_path and ssh_keys fields are immutable.
-               > If you want to create a **CUBE** server, the type of the inline volume must be set to **DAS**. In this case, you can not set the `size` argument since it is taken from the `template_uuid` you set in the server.
+               If you want to create a **CUBE** server, the type of the inline volume must be set to **DAS**. In this case, you can not set the `size` argument since it is taken from the `template_uuid` you set in the server.
         :param pulumi.Input[_builtins.str] server_id: [string] The ID of a server.
         :param pulumi.Input[_builtins.int] size: [integer] The size of the volume in GB.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ssh_key_paths: [list] List of absolute paths to files containing a public SSH key that will be injected into IONOS CLOUD provided Linux images. Also accepts ssh keys directly. Required for IONOS CLOUD Linux images. Required if `image_password` is not provided. This property is immutable.
@@ -1193,9 +1193,9 @@ class Volume(pulumi.CustomResource):
         :param pulumi.Input[_builtins.bool] require_legacy_bios: (Computed)[boolean] Indicates if the image requires the legacy BIOS for compatibility or specific needs. During creation, if an image is used, the value will be inherited from the image, regardless of the value set in the plan. Later on, the value can be updated.
                
                > **⚠ WARNING**
-               >
+               > 
                > ssh_key_path and ssh_keys fields are immutable.
-               > If you want to create a **CUBE** server, the type of the inline volume must be set to **DAS**. In this case, you can not set the `size` argument since it is taken from the `template_uuid` you set in the server.
+               If you want to create a **CUBE** server, the type of the inline volume must be set to **DAS**. In this case, you can not set the `size` argument since it is taken from the `template_uuid` you set in the server.
         :param pulumi.Input[_builtins.str] server_id: [string] The ID of a server.
         :param pulumi.Input[_builtins.int] size: [integer] The size of the volume in GB.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ssh_key_paths: [list] List of absolute paths to files containing a public SSH key that will be injected into IONOS CLOUD provided Linux images. Also accepts ssh keys directly. Required for IONOS CLOUD Linux images. Required if `image_password` is not provided. This property is immutable.
@@ -1418,9 +1418,9 @@ class Volume(pulumi.CustomResource):
         (Computed)[boolean] Indicates if the image requires the legacy BIOS for compatibility or specific needs. During creation, if an image is used, the value will be inherited from the image, regardless of the value set in the plan. Later on, the value can be updated.
 
         > **⚠ WARNING**
-        >
+        > 
         > ssh_key_path and ssh_keys fields are immutable.
-        > If you want to create a **CUBE** server, the type of the inline volume must be set to **DAS**. In this case, you can not set the `size` argument since it is taken from the `template_uuid` you set in the server.
+        If you want to create a **CUBE** server, the type of the inline volume must be set to **DAS**. In this case, you can not set the `size` argument since it is taken from the `template_uuid` you set in the server.
         """
         return pulumi.get(self, "require_legacy_bios")
 

@@ -100,12 +100,8 @@ type LookupBackupUnitResult struct {
 }
 
 func LookupBackupUnitOutput(ctx *pulumi.Context, args LookupBackupUnitOutputArgs, opts ...pulumi.InvokeOption) LookupBackupUnitResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupBackupUnitResultOutput, error) {
-			args := v.(LookupBackupUnitArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("ionoscloud:compute/getBackupUnit:getBackupUnit", args, LookupBackupUnitResultOutput{}, options).(LookupBackupUnitResultOutput), nil
-		}).(LookupBackupUnitResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("ionoscloud:compute/getBackupUnit:getBackupUnit", args, LookupBackupUnitResultOutput{}, options).(LookupBackupUnitResultOutput)
 }
 
 // A collection of arguments for invoking getBackupUnit.

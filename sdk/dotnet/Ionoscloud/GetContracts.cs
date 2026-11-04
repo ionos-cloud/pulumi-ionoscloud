@@ -198,19 +198,11 @@ namespace Ionoscloud.Pulumi.Ionoscloud
     public sealed class GetContractsResult
     {
         public readonly ImmutableArray<Outputs.GetContractsContractResult> Contracts;
-        /// <summary>
-        /// The provider-assigned unique ID for this managed resource.
-        /// </summary>
-        public readonly string Id;
 
         [OutputConstructor]
-        private GetContractsResult(
-            ImmutableArray<Outputs.GetContractsContractResult> contracts,
-
-            string id)
+        private GetContractsResult(ImmutableArray<Outputs.GetContractsContractResult> contracts)
         {
             Contracts = contracts;
-            Id = id;
         }
     }
 }

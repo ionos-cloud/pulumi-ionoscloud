@@ -435,7 +435,7 @@ class Datacenter(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            cpu_architectures: pulumi.Input[Optional[Sequence[pulumi.Input[Union['DatacenterCpuArchitectureArgs', 'DatacenterCpuArchitectureArgsDict']]]]] = None,
+            cpu_architectures: pulumi.Input[Optional[Sequence[pulumi.Input[Union['DatacenterCpuArchitectureArgs', 'DatacenterCpuArchitectureArgsDict', 'outputs.DatacenterCpuArchitecture']]]]] = None,
             description: pulumi.Input[Optional[_builtins.str]] = None,
             features: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
             ipv6_cidr_block: pulumi.Input[Optional[_builtins.str]] = None,
@@ -450,7 +450,7 @@ class Datacenter(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['DatacenterCpuArchitectureArgs', 'DatacenterCpuArchitectureArgsDict']]]] cpu_architectures: Array of features and CPU families available in a location
+        :param pulumi.Input[Sequence[pulumi.Input[Union['DatacenterCpuArchitectureArgs', 'DatacenterCpuArchitectureArgsDict', 'outputs.DatacenterCpuArchitecture']]]] cpu_architectures: Array of features and CPU families available in a location
         :param pulumi.Input[_builtins.str] description: [string] Description for the Virtual Data Center.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] features: List of features supported by the location this data center is part of
         :param pulumi.Input[_builtins.str] ipv6_cidr_block: The automatically-assigned /56 IPv6 CIDR block if IPv6 is enabled on this virtual data center

@@ -206,11 +206,11 @@ class Crossconnect(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 connectable_datacenters: pulumi.Input[Optional[Sequence[pulumi.Input[Union['CrossconnectConnectableDatacenterArgs', 'CrossconnectConnectableDatacenterArgsDict']]]]] = None,
+                 connectable_datacenters: pulumi.Input[Optional[Sequence[pulumi.Input[Union['CrossconnectConnectableDatacenterArgs', 'CrossconnectConnectableDatacenterArgsDict', 'outputs.CrossconnectConnectableDatacenter']]]]] = None,
                  description: pulumi.Input[Optional[_builtins.str]] = None,
                  location: pulumi.Input[Optional[_builtins.str]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
-                 peers: pulumi.Input[Optional[Sequence[pulumi.Input[Union['CrossconnectPeerArgs', 'CrossconnectPeerArgsDict']]]]] = None,
+                 peers: pulumi.Input[Optional[Sequence[pulumi.Input[Union['CrossconnectPeerArgs', 'CrossconnectPeerArgsDict', 'outputs.CrossconnectPeer']]]]] = None,
                  __props__=None):
         """
         Manages a [Cross Connect](https://docs.ionos.com/cloud/network-services/cross-connect/overview) on IONOS CLOUD.
@@ -262,12 +262,12 @@ class Crossconnect(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['CrossconnectConnectableDatacenterArgs', 'CrossconnectConnectableDatacenterArgsDict']]]] connectable_datacenters: A list containing all the connectable datacenters
+        :param pulumi.Input[Sequence[pulumi.Input[Union['CrossconnectConnectableDatacenterArgs', 'CrossconnectConnectableDatacenterArgsDict', 'outputs.CrossconnectConnectableDatacenter']]]] connectable_datacenters: A list containing all the connectable datacenters
         :param pulumi.Input[_builtins.str] description: [string] A short description for the cross-connection.
                - `connectable datacenters` - (Computed) A list containing all the connectable datacenters
         :param pulumi.Input[_builtins.str] location: The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
         :param pulumi.Input[_builtins.str] name: [string] The name of the cross-connection.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['CrossconnectPeerArgs', 'CrossconnectPeerArgsDict']]]] peers: Lists LAN's joined to this cross connect
+        :param pulumi.Input[Sequence[pulumi.Input[Union['CrossconnectPeerArgs', 'CrossconnectPeerArgsDict', 'outputs.CrossconnectPeer']]]] peers: Lists LAN's joined to this cross connect
         """
         ...
     @overload
@@ -338,11 +338,11 @@ class Crossconnect(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 connectable_datacenters: pulumi.Input[Optional[Sequence[pulumi.Input[Union['CrossconnectConnectableDatacenterArgs', 'CrossconnectConnectableDatacenterArgsDict']]]]] = None,
+                 connectable_datacenters: pulumi.Input[Optional[Sequence[pulumi.Input[Union['CrossconnectConnectableDatacenterArgs', 'CrossconnectConnectableDatacenterArgsDict', 'outputs.CrossconnectConnectableDatacenter']]]]] = None,
                  description: pulumi.Input[Optional[_builtins.str]] = None,
                  location: pulumi.Input[Optional[_builtins.str]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
-                 peers: pulumi.Input[Optional[Sequence[pulumi.Input[Union['CrossconnectPeerArgs', 'CrossconnectPeerArgsDict']]]]] = None,
+                 peers: pulumi.Input[Optional[Sequence[pulumi.Input[Union['CrossconnectPeerArgs', 'CrossconnectPeerArgsDict', 'outputs.CrossconnectPeer']]]]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -367,11 +367,11 @@ class Crossconnect(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            connectable_datacenters: pulumi.Input[Optional[Sequence[pulumi.Input[Union['CrossconnectConnectableDatacenterArgs', 'CrossconnectConnectableDatacenterArgsDict']]]]] = None,
+            connectable_datacenters: pulumi.Input[Optional[Sequence[pulumi.Input[Union['CrossconnectConnectableDatacenterArgs', 'CrossconnectConnectableDatacenterArgsDict', 'outputs.CrossconnectConnectableDatacenter']]]]] = None,
             description: pulumi.Input[Optional[_builtins.str]] = None,
             location: pulumi.Input[Optional[_builtins.str]] = None,
             name: pulumi.Input[Optional[_builtins.str]] = None,
-            peers: pulumi.Input[Optional[Sequence[pulumi.Input[Union['CrossconnectPeerArgs', 'CrossconnectPeerArgsDict']]]]] = None) -> 'Crossconnect':
+            peers: pulumi.Input[Optional[Sequence[pulumi.Input[Union['CrossconnectPeerArgs', 'CrossconnectPeerArgsDict', 'outputs.CrossconnectPeer']]]]] = None) -> 'Crossconnect':
         """
         Get an existing Crossconnect resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -379,12 +379,12 @@ class Crossconnect(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['CrossconnectConnectableDatacenterArgs', 'CrossconnectConnectableDatacenterArgsDict']]]] connectable_datacenters: A list containing all the connectable datacenters
+        :param pulumi.Input[Sequence[pulumi.Input[Union['CrossconnectConnectableDatacenterArgs', 'CrossconnectConnectableDatacenterArgsDict', 'outputs.CrossconnectConnectableDatacenter']]]] connectable_datacenters: A list containing all the connectable datacenters
         :param pulumi.Input[_builtins.str] description: [string] A short description for the cross-connection.
                - `connectable datacenters` - (Computed) A list containing all the connectable datacenters
         :param pulumi.Input[_builtins.str] location: The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
         :param pulumi.Input[_builtins.str] name: [string] The name of the cross-connection.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['CrossconnectPeerArgs', 'CrossconnectPeerArgsDict']]]] peers: Lists LAN's joined to this cross connect
+        :param pulumi.Input[Sequence[pulumi.Input[Union['CrossconnectPeerArgs', 'CrossconnectPeerArgsDict', 'outputs.CrossconnectPeer']]]] peers: Lists LAN's joined to this cross connect
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 

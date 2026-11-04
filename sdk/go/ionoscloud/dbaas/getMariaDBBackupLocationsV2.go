@@ -56,8 +56,6 @@ type GetMariaDBBackupLocationsV2Args struct {
 
 // A collection of values returned by getMariaDBBackupLocationsV2.
 type GetMariaDBBackupLocationsV2Result struct {
-	// The provider-assigned unique ID for this managed resource.
-	Id string `pulumi:"id"`
 	// List of backup location objects. Each item includes:
 	Items []GetMariaDBBackupLocationsV2Item `pulumi:"items"`
 	// The Object Storage location name.
@@ -65,12 +63,8 @@ type GetMariaDBBackupLocationsV2Result struct {
 }
 
 func GetMariaDBBackupLocationsV2Output(ctx *pulumi.Context, args GetMariaDBBackupLocationsV2OutputArgs, opts ...pulumi.InvokeOption) GetMariaDBBackupLocationsV2ResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (GetMariaDBBackupLocationsV2ResultOutput, error) {
-			args := v.(GetMariaDBBackupLocationsV2Args)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("ionoscloud:dbaas/getMariaDBBackupLocationsV2:getMariaDBBackupLocationsV2", args, GetMariaDBBackupLocationsV2ResultOutput{}, options).(GetMariaDBBackupLocationsV2ResultOutput), nil
-		}).(GetMariaDBBackupLocationsV2ResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("ionoscloud:dbaas/getMariaDBBackupLocationsV2:getMariaDBBackupLocationsV2", args, GetMariaDBBackupLocationsV2ResultOutput{}, options).(GetMariaDBBackupLocationsV2ResultOutput)
 }
 
 // A collection of arguments for invoking getMariaDBBackupLocationsV2.
@@ -96,11 +90,6 @@ func (o GetMariaDBBackupLocationsV2ResultOutput) ToGetMariaDBBackupLocationsV2Re
 
 func (o GetMariaDBBackupLocationsV2ResultOutput) ToGetMariaDBBackupLocationsV2ResultOutputWithContext(ctx context.Context) GetMariaDBBackupLocationsV2ResultOutput {
 	return o
-}
-
-// The provider-assigned unique ID for this managed resource.
-func (o GetMariaDBBackupLocationsV2ResultOutput) Id() pulumi.StringOutput {
-	return o.ApplyT(func(v GetMariaDBBackupLocationsV2Result) string { return v.Id }).(pulumi.StringOutput)
 }
 
 // List of backup location objects. Each item includes:

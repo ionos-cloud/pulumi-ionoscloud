@@ -13,11 +13,6 @@ import java.util.Objects;
 @CustomType
 public final class GetMariaDBBackupLocationsV2Result {
     /**
-     * @return The provider-assigned unique ID for this managed resource.
-     * 
-     */
-    private String id;
-    /**
      * @return List of backup location objects. Each item includes:
      * 
      */
@@ -29,13 +24,6 @@ public final class GetMariaDBBackupLocationsV2Result {
     private String location;
 
     private GetMariaDBBackupLocationsV2Result() {}
-    /**
-     * @return The provider-assigned unique ID for this managed resource.
-     * 
-     */
-    public String id() {
-        return this.id;
-    }
     /**
      * @return List of backup location objects. Each item includes:
      * 
@@ -60,25 +48,15 @@ public final class GetMariaDBBackupLocationsV2Result {
     }
     @CustomType.Builder
     public static final class Builder {
-        private String id;
         private List<GetMariaDBBackupLocationsV2Item> items;
         private String location;
         public Builder() {}
         public Builder(GetMariaDBBackupLocationsV2Result defaults) {
     	      Objects.requireNonNull(defaults);
-    	      this.id = defaults.id;
     	      this.items = defaults.items;
     	      this.location = defaults.location;
         }
 
-        @CustomType.Setter
-        public Builder id(String id) {
-            if (id == null) {
-              throw new MissingRequiredPropertyException("GetMariaDBBackupLocationsV2Result", "id");
-            }
-            this.id = id;
-            return this;
-        }
         @CustomType.Setter
         public Builder items(List<GetMariaDBBackupLocationsV2Item> items) {
             if (items == null) {
@@ -100,7 +78,6 @@ public final class GetMariaDBBackupLocationsV2Result {
         }
         public GetMariaDBBackupLocationsV2Result build() {
             final var _resultValue = new GetMariaDBBackupLocationsV2Result();
-            _resultValue.id = id;
             _resultValue.items = items;
             _resultValue.location = location;
             return _resultValue;

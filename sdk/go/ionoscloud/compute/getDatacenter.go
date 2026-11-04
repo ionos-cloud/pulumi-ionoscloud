@@ -112,12 +112,8 @@ type LookupDatacenterResult struct {
 }
 
 func LookupDatacenterOutput(ctx *pulumi.Context, args LookupDatacenterOutputArgs, opts ...pulumi.InvokeOption) LookupDatacenterResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupDatacenterResultOutput, error) {
-			args := v.(LookupDatacenterArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("ionoscloud:compute/getDatacenter:getDatacenter", args, LookupDatacenterResultOutput{}, options).(LookupDatacenterResultOutput), nil
-		}).(LookupDatacenterResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("ionoscloud:compute/getDatacenter:getDatacenter", args, LookupDatacenterResultOutput{}, options).(LookupDatacenterResultOutput)
 }
 
 // A collection of arguments for invoking getDatacenter.

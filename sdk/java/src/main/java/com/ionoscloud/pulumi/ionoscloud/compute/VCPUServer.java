@@ -47,8 +47,8 @@ import javax.annotation.Nullable;
  * import com.ionoscloud.pulumi.ionoscloud.compute.LanArgs;
  * import com.ionoscloud.pulumi.ionoscloud.compute.IPBlock;
  * import com.ionoscloud.pulumi.ionoscloud.compute.IPBlockArgs;
- * import com.pulumi.random.password;
- * import com.pulumi.random.passwordArgs;
+ * import com.pulumi.random.Password;
+ * import com.pulumi.random.PasswordArgs;
  * import com.ionoscloud.pulumi.ionoscloud.compute.VCPUServer;
  * import com.ionoscloud.pulumi.ionoscloud.compute.VCPUServerArgs;
  * import com.pulumi.ionoscloud.compute.inputs.VCPUServerVolumeArgs;
@@ -104,7 +104,7 @@ import javax.annotation.Nullable;
  *             .cores(1)
  *             .ram(1024)
  *             .imageName(example.id())
- *             .imagePassword(serverImagePassword.result())
+ *             .imagePassword(serverImagePassword.get("result"))
  *             .volume(VCPUServerVolumeArgs.builder()
  *                 .name("system")
  *                 .size(5)
@@ -119,16 +119,16 @@ import javax.annotation.Nullable;
  *                 .firewallActive(true)
  *                 .firewallType("BIDIRECTIONAL")
  *                 .ips(                
- *                     exampleIPBlock.ips().applyValue(_ips -> _ips[0]),
- *                     exampleIPBlock.ips().applyValue(_ips -> _ips[1]))
+ *                     exampleIPBlock.ips().applyValue(_ips -> _ips.get(0)),
+ *                     exampleIPBlock.ips().applyValue(_ips -> _ips.get(1)))
  *                 .firewalls(VCPUServerNicFirewallArgs.builder()
  *                     .protocol("TCP")
  *                     .name("SSH")
  *                     .portRangeStart(22)
  *                     .portRangeEnd(22)
  *                     .sourceMac("00:0a:95:9d:68:17")
- *                     .sourceIp(exampleIPBlock.ips().applyValue(_ips -> _ips[2]))
- *                     .targetIp(exampleIPBlock.ips().applyValue(_ips -> _ips[3]))
+ *                     .sourceIp(exampleIPBlock.ips().applyValue(_ips -> _ips.get(2)))
+ *                     .targetIp(exampleIPBlock.ips().applyValue(_ips -> _ips.get(3)))
  *                     .type("EGRESS")
  *                     .build())
  *                 .build())

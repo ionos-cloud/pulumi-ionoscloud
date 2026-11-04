@@ -56,20 +56,14 @@ type GetMariaDBVersionsV2Args struct {
 
 // A collection of values returned by getMariaDBVersionsV2.
 type GetMariaDBVersionsV2Result struct {
-	// The provider-assigned unique ID for this managed resource.
-	Id string `pulumi:"id"`
 	// List of supported versions. Each item includes:
 	Items    []GetMariaDBVersionsV2Item `pulumi:"items"`
 	Location string                     `pulumi:"location"`
 }
 
 func GetMariaDBVersionsV2Output(ctx *pulumi.Context, args GetMariaDBVersionsV2OutputArgs, opts ...pulumi.InvokeOption) GetMariaDBVersionsV2ResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (GetMariaDBVersionsV2ResultOutput, error) {
-			args := v.(GetMariaDBVersionsV2Args)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("ionoscloud:dbaas/getMariaDBVersionsV2:getMariaDBVersionsV2", args, GetMariaDBVersionsV2ResultOutput{}, options).(GetMariaDBVersionsV2ResultOutput), nil
-		}).(GetMariaDBVersionsV2ResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("ionoscloud:dbaas/getMariaDBVersionsV2:getMariaDBVersionsV2", args, GetMariaDBVersionsV2ResultOutput{}, options).(GetMariaDBVersionsV2ResultOutput)
 }
 
 // A collection of arguments for invoking getMariaDBVersionsV2.
@@ -95,11 +89,6 @@ func (o GetMariaDBVersionsV2ResultOutput) ToGetMariaDBVersionsV2ResultOutput() G
 
 func (o GetMariaDBVersionsV2ResultOutput) ToGetMariaDBVersionsV2ResultOutputWithContext(ctx context.Context) GetMariaDBVersionsV2ResultOutput {
 	return o
-}
-
-// The provider-assigned unique ID for this managed resource.
-func (o GetMariaDBVersionsV2ResultOutput) Id() pulumi.StringOutput {
-	return o.ApplyT(func(v GetMariaDBVersionsV2Result) string { return v.Id }).(pulumi.StringOutput)
 }
 
 // List of supported versions. Each item includes:

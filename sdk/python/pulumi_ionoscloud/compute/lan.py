@@ -282,7 +282,7 @@ class Lan(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  datacenter_id: pulumi.Input[Optional[_builtins.str]] = None,
-                 ip_failovers: pulumi.Input[Optional[Sequence[pulumi.Input[Union['LanIpFailoverArgs', 'LanIpFailoverArgsDict']]]]] = None,
+                 ip_failovers: pulumi.Input[Optional[Sequence[pulumi.Input[Union['LanIpFailoverArgs', 'LanIpFailoverArgsDict', 'outputs.LanIpFailover']]]]] = None,
                  ipv6_cidr_block: pulumi.Input[Optional[_builtins.str]] = None,
                  location: pulumi.Input[Optional[_builtins.str]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
@@ -348,7 +348,7 @@ class Lan(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] datacenter_id: [string] The ID of a Virtual Data Center.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['LanIpFailoverArgs', 'LanIpFailoverArgsDict']]]] ip_failovers: IP failover configurations for lan
+        :param pulumi.Input[Sequence[pulumi.Input[Union['LanIpFailoverArgs', 'LanIpFailoverArgsDict', 'outputs.LanIpFailover']]]] ip_failovers: IP failover configurations for lan
         :param pulumi.Input[_builtins.str] ipv6_cidr_block: Contains the LAN's /64 IPv6 CIDR block if this LAN is IPv6 enabled. 'AUTO' will result in enabling this LAN for IPv6 and automatically assign a /64 IPv6 CIDR block to this LAN. If you specify your own IPv6 CIDR block then you must provide a unique /64 block, which is inside the IPv6 CIDR block of the virtual datacenter and unique inside all LANs from this virtual datacenter.
         :param pulumi.Input[_builtins.str] location: The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
         :param pulumi.Input[_builtins.str] name: [string] The name of the LAN.
@@ -433,7 +433,7 @@ class Lan(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  datacenter_id: pulumi.Input[Optional[_builtins.str]] = None,
-                 ip_failovers: pulumi.Input[Optional[Sequence[pulumi.Input[Union['LanIpFailoverArgs', 'LanIpFailoverArgsDict']]]]] = None,
+                 ip_failovers: pulumi.Input[Optional[Sequence[pulumi.Input[Union['LanIpFailoverArgs', 'LanIpFailoverArgsDict', 'outputs.LanIpFailover']]]]] = None,
                  ipv6_cidr_block: pulumi.Input[Optional[_builtins.str]] = None,
                  location: pulumi.Input[Optional[_builtins.str]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
@@ -469,7 +469,7 @@ class Lan(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             datacenter_id: pulumi.Input[Optional[_builtins.str]] = None,
-            ip_failovers: pulumi.Input[Optional[Sequence[pulumi.Input[Union['LanIpFailoverArgs', 'LanIpFailoverArgsDict']]]]] = None,
+            ip_failovers: pulumi.Input[Optional[Sequence[pulumi.Input[Union['LanIpFailoverArgs', 'LanIpFailoverArgsDict', 'outputs.LanIpFailover']]]]] = None,
             ipv4_cidr_block: pulumi.Input[Optional[_builtins.str]] = None,
             ipv6_cidr_block: pulumi.Input[Optional[_builtins.str]] = None,
             location: pulumi.Input[Optional[_builtins.str]] = None,
@@ -484,7 +484,7 @@ class Lan(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] datacenter_id: [string] The ID of a Virtual Data Center.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['LanIpFailoverArgs', 'LanIpFailoverArgsDict']]]] ip_failovers: IP failover configurations for lan
+        :param pulumi.Input[Sequence[pulumi.Input[Union['LanIpFailoverArgs', 'LanIpFailoverArgsDict', 'outputs.LanIpFailover']]]] ip_failovers: IP failover configurations for lan
         :param pulumi.Input[_builtins.str] ipv4_cidr_block: [String] For public LANs this property is null, for private LANs it contains the private IPv4 CIDR range. This property is a read only property.
         :param pulumi.Input[_builtins.str] ipv6_cidr_block: Contains the LAN's /64 IPv6 CIDR block if this LAN is IPv6 enabled. 'AUTO' will result in enabling this LAN for IPv6 and automatically assign a /64 IPv6 CIDR block to this LAN. If you specify your own IPv6 CIDR block then you must provide a unique /64 block, which is inside the IPv6 CIDR block of the virtual datacenter and unique inside all LANs from this virtual datacenter.
         :param pulumi.Input[_builtins.str] location: The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.

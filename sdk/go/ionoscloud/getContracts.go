@@ -85,15 +85,11 @@ func GetContracts(ctx *pulumi.Context, opts ...pulumi.InvokeOption) (*GetContrac
 // A collection of values returned by getContracts.
 type GetContractsResult struct {
 	Contracts []GetContractsContract `pulumi:"contracts"`
-	// The provider-assigned unique ID for this managed resource.
-	Id string `pulumi:"id"`
 }
 
 func GetContractsOutput(ctx *pulumi.Context, opts ...pulumi.InvokeOption) GetContractsResultOutput {
-	return pulumi.ToOutput(0).ApplyT(func(int) (GetContractsResultOutput, error) {
-		options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-		return ctx.InvokeOutput("ionoscloud:index/getContracts:getContracts", nil, GetContractsResultOutput{}, options).(GetContractsResultOutput), nil
-	}).(GetContractsResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("ionoscloud:index/getContracts:getContracts", nil, GetContractsResultOutput{}, options).(GetContractsResultOutput)
 }
 
 // A collection of values returned by getContracts.
@@ -113,11 +109,6 @@ func (o GetContractsResultOutput) ToGetContractsResultOutputWithContext(ctx cont
 
 func (o GetContractsResultOutput) Contracts() GetContractsContractArrayOutput {
 	return o.ApplyT(func(v GetContractsResult) []GetContractsContract { return v.Contracts }).(GetContractsContractArrayOutput)
-}
-
-// The provider-assigned unique ID for this managed resource.
-func (o GetContractsResultOutput) Id() pulumi.StringOutput {
-	return o.ApplyT(func(v GetContractsResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
 func init() {

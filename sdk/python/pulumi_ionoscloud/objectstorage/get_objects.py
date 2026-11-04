@@ -26,7 +26,7 @@ class GetObjectsResult:
     """
     A collection of values returned by getObjects.
     """
-    def __init__(__self__, bucket=None, common_prefixes=None, delimiter=None, encoding_type=None, fetch_owner=None, id=None, keys=None, max_keys=None, owners=None, prefix=None, start_after=None):
+    def __init__(__self__, bucket=None, common_prefixes=None, delimiter=None, encoding_type=None, fetch_owner=None, keys=None, max_keys=None, owners=None, prefix=None, start_after=None):
         if bucket and not isinstance(bucket, str):
             raise TypeError("Expected argument 'bucket' to be a str")
         pulumi.set(__self__, "bucket", bucket)
@@ -42,9 +42,6 @@ class GetObjectsResult:
         if fetch_owner and not isinstance(fetch_owner, bool):
             raise TypeError("Expected argument 'fetch_owner' to be a bool")
         pulumi.set(__self__, "fetch_owner", fetch_owner)
-        if id and not isinstance(id, str):
-            raise TypeError("Expected argument 'id' to be a str")
-        pulumi.set(__self__, "id", id)
         if keys and not isinstance(keys, list):
             raise TypeError("Expected argument 'keys' to be a list")
         pulumi.set(__self__, "keys", keys)
@@ -91,14 +88,6 @@ class GetObjectsResult:
 
     @_builtins.property
     @pulumi.getter
-    def id(self) -> _builtins.str:
-        """
-        The provider-assigned unique ID for this managed resource.
-        """
-        return pulumi.get(self, "id")
-
-    @_builtins.property
-    @pulumi.getter
     def keys(self) -> Sequence[_builtins.str]:
         """
         A list of objects in the bucket.
@@ -137,7 +126,6 @@ class AwaitableGetObjectsResult(GetObjectsResult):
             delimiter=self.delimiter,
             encoding_type=self.encoding_type,
             fetch_owner=self.fetch_owner,
-            id=self.id,
             keys=self.keys,
             max_keys=self.max_keys,
             owners=self.owners,
@@ -195,7 +183,6 @@ def get_objects(bucket: Optional[_builtins.str] = None,
         delimiter=pulumi.get(__ret__, 'delimiter'),
         encoding_type=pulumi.get(__ret__, 'encoding_type'),
         fetch_owner=pulumi.get(__ret__, 'fetch_owner'),
-        id=pulumi.get(__ret__, 'id'),
         keys=pulumi.get(__ret__, 'keys'),
         max_keys=pulumi.get(__ret__, 'max_keys'),
         owners=pulumi.get(__ret__, 'owners'),
@@ -250,7 +237,6 @@ def get_objects_output(bucket: pulumi.Input[Optional[_builtins.str]] = None,
         delimiter=pulumi.get(__response__, 'delimiter'),
         encoding_type=pulumi.get(__response__, 'encoding_type'),
         fetch_owner=pulumi.get(__response__, 'fetch_owner'),
-        id=pulumi.get(__response__, 'id'),
         keys=pulumi.get(__response__, 'keys'),
         max_keys=pulumi.get(__response__, 'max_keys'),
         owners=pulumi.get(__response__, 'owners'),

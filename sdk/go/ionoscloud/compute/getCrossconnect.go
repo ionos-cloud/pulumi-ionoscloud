@@ -105,12 +105,8 @@ type LookupCrossconnectResult struct {
 }
 
 func LookupCrossconnectOutput(ctx *pulumi.Context, args LookupCrossconnectOutputArgs, opts ...pulumi.InvokeOption) LookupCrossconnectResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupCrossconnectResultOutput, error) {
-			args := v.(LookupCrossconnectArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("ionoscloud:compute/getCrossconnect:getCrossconnect", args, LookupCrossconnectResultOutput{}, options).(LookupCrossconnectResultOutput), nil
-		}).(LookupCrossconnectResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("ionoscloud:compute/getCrossconnect:getCrossconnect", args, LookupCrossconnectResultOutput{}, options).(LookupCrossconnectResultOutput)
 }
 
 // A collection of arguments for invoking getCrossconnect.

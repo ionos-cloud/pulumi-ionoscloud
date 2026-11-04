@@ -2492,6 +2492,27 @@
             }
         }
     },
+    "default-resource-schema-fixups": {
+        "resources": {
+            "ionoscloud_inmemorydb_cluster_v2": {},
+            "ionoscloud_mariadb_cluster_v2": {},
+            "ionoscloud_monitoring_pipeline": {},
+            "ionoscloud_object_storage_accesskey": {},
+            "ionoscloud_pg_cluster_v2": {},
+            "ionoscloud_s3_bucket": {},
+            "ionoscloud_s3_bucket_cors_configuration": {},
+            "ionoscloud_s3_bucket_lifecycle_configuration": {},
+            "ionoscloud_s3_bucket_object_lock_configuration": {},
+            "ionoscloud_s3_bucket_policy": {},
+            "ionoscloud_s3_bucket_public_access_block": {},
+            "ionoscloud_s3_bucket_server_side_encryption_configuration": {},
+            "ionoscloud_s3_bucket_versioning": {},
+            "ionoscloud_s3_bucket_website_configuration": {},
+            "ionoscloud_s3_object": {},
+            "ionoscloud_s3_object_copy": {},
+            "ionoscloud_user_object_storage_bucket": {}
+        }
+    },
     "mux": {
         "resources": {
             "ionoscloud:alb/balancer:Balancer": 0,

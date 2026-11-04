@@ -86,7 +86,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
     ///         },
     ///         Nic = new Ionoscloud.Compute.Inputs.ServerNicArgs
     ///         {
-    ///             Lan = exampleLan.Id,
+    ///             Lan = exampleLan.Id.Apply(x =&gt; int.Parse(x, System.Globalization.CultureInfo.InvariantCulture)),
     ///             Name = "system",
     ///             Dhcp = true,
     ///             FirewallActive = true,
@@ -192,7 +192,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
     ///         },
     ///         Nic = new Ionoscloud.Compute.Inputs.ServerNicArgs
     ///         {
-    ///             Lan = exampleLan.Id,
+    ///             Lan = exampleLan.Id.Apply(x =&gt; int.Parse(x, System.Globalization.CultureInfo.InvariantCulture)),
     ///             Name = "system",
     ///             Dhcp = true,
     ///             FirewallActive = true,
@@ -314,7 +314,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
     ///         },
     ///         Nic = new Ionoscloud.Compute.Inputs.ServerNicArgs
     ///         {
-    ///             Lan = exampleLan.Id,
+    ///             Lan = exampleLan.Id.Apply(x =&gt; int.Parse(x, System.Globalization.CultureInfo.InvariantCulture)),
     ///             Name = "Nic Example",
     ///             Dhcp = true,
     ///             FirewallActive = true,

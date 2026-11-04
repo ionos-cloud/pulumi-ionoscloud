@@ -90,19 +90,13 @@ type GetPSQLBackupsV2Result struct {
 	Backups []GetPSQLBackupsV2Backup `pulumi:"backups"`
 	// The ID (UUID) of the cluster the backup belongs to.
 	ClusterId *string `pulumi:"clusterId"`
-	// The provider-assigned unique ID for this managed resource.
-	Id string `pulumi:"id"`
 	// The Object Storage location where the backup is stored.
 	Location string `pulumi:"location"`
 }
 
 func GetPSQLBackupsV2Output(ctx *pulumi.Context, args GetPSQLBackupsV2OutputArgs, opts ...pulumi.InvokeOption) GetPSQLBackupsV2ResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (GetPSQLBackupsV2ResultOutput, error) {
-			args := v.(GetPSQLBackupsV2Args)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("ionoscloud:dbaas/getPSQLBackupsV2:getPSQLBackupsV2", args, GetPSQLBackupsV2ResultOutput{}, options).(GetPSQLBackupsV2ResultOutput), nil
-		}).(GetPSQLBackupsV2ResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("ionoscloud:dbaas/getPSQLBackupsV2:getPSQLBackupsV2", args, GetPSQLBackupsV2ResultOutput{}, options).(GetPSQLBackupsV2ResultOutput)
 }
 
 // A collection of arguments for invoking getPSQLBackupsV2.
@@ -140,11 +134,6 @@ func (o GetPSQLBackupsV2ResultOutput) Backups() GetPSQLBackupsV2BackupArrayOutpu
 // The ID (UUID) of the cluster the backup belongs to.
 func (o GetPSQLBackupsV2ResultOutput) ClusterId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetPSQLBackupsV2Result) *string { return v.ClusterId }).(pulumi.StringPtrOutput)
-}
-
-// The provider-assigned unique ID for this managed resource.
-func (o GetPSQLBackupsV2ResultOutput) Id() pulumi.StringOutput {
-	return o.ApplyT(func(v GetPSQLBackupsV2Result) string { return v.Id }).(pulumi.StringOutput)
 }
 
 // The Object Storage location where the backup is stored.

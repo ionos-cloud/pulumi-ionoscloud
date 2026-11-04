@@ -34,7 +34,7 @@ import * as utilities from "../utilities";
  *         availabilityZone: "AUTO",
  *     },
  *     nic: {
- *         lan: Number(exampleIonoscloudLan.id),
+ *         lan: exampleIonoscloudLan.id,
  *         name: "Nic Example",
  *         dhcp: true,
  *         firewallActive: true,
@@ -78,7 +78,7 @@ import * as utilities from "../utilities";
  *         availabilityZone: "AUTO",
  *     },
  *     nic: {
- *         lan: Number(exampleIonoscloudLan.id),
+ *         lan: exampleIonoscloudLan.id,
  *         name: "Nic Example",
  *         dhcp: true,
  *         firewallActive: true,
@@ -122,7 +122,7 @@ import * as utilities from "../utilities";
  *         availabilityZone: "AUTO",
  *     },
  *     nic: {
- *         lan: Number(exampleIonoscloudLan.id),
+ *         lan: exampleIonoscloudLan.id,
  *         name: "Nic Example",
  *         dhcp: true,
  *         firewallActive: true,
@@ -171,7 +171,7 @@ import * as utilities from "../utilities";
  *         availabilityZone: "AUTO",
  *     },
  *     nic: {
- *         lan: Number(exampleIonoscloudLan.id),
+ *         lan: exampleIonoscloudLan.id,
  *         name: "Nic Example",
  *         dhcp: true,
  *         firewallActive: true,
@@ -227,7 +227,7 @@ export class BootDeviceSelection extends pulumi.CustomResource {
     }
 
     /**
-     * [string] The ID of a bootable device such as a volume or an image data source. If this field is omitted from the configuration, the VM will be restarted with no primary boot device, and it will enter the PXE shell for network booting. 
+     * [string] The ID of a bootable device such as a volume or an image data source. If this field is omitted from the configuration, the VM will be restarted with no primary boot device, and it will enter the PXE shell for network booting.
      * ***Note***: If the network booting process started by the PXE shell fails, the VM will still boot into the image of the attached storage as a fallback. This behavior imitates the "Boot from Network" option from [DCD](https://dcd.ionos.com/).
      */
     declare public readonly bootDeviceId: pulumi.Output<string | undefined>;
@@ -290,7 +290,7 @@ export class BootDeviceSelection extends pulumi.CustomResource {
  */
 export interface BootDeviceSelectionState {
     /**
-     * [string] The ID of a bootable device such as a volume or an image data source. If this field is omitted from the configuration, the VM will be restarted with no primary boot device, and it will enter the PXE shell for network booting. 
+     * [string] The ID of a bootable device such as a volume or an image data source. If this field is omitted from the configuration, the VM will be restarted with no primary boot device, and it will enter the PXE shell for network booting.
      * ***Note***: If the network booting process started by the PXE shell fails, the VM will still boot into the image of the attached storage as a fallback. This behavior imitates the "Boot from Network" option from [DCD](https://dcd.ionos.com/).
      */
     bootDeviceId?: pulumi.Input<string | undefined>;
@@ -317,7 +317,7 @@ export interface BootDeviceSelectionState {
  */
 export interface BootDeviceSelectionArgs {
     /**
-     * [string] The ID of a bootable device such as a volume or an image data source. If this field is omitted from the configuration, the VM will be restarted with no primary boot device, and it will enter the PXE shell for network booting. 
+     * [string] The ID of a bootable device such as a volume or an image data source. If this field is omitted from the configuration, the VM will be restarted with no primary boot device, and it will enter the PXE shell for network booting.
      * ***Note***: If the network booting process started by the PXE shell fails, the VM will still boot into the image of the attached storage as a fallback. This behavior imitates the "Boot from Network" option from [DCD](https://dcd.ionos.com/).
      */
     bootDeviceId?: pulumi.Input<string | undefined>;

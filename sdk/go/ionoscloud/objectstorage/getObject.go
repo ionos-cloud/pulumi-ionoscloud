@@ -84,9 +84,7 @@ type GetObjectResult struct {
 	Etag string `pulumi:"etag"`
 	// The date and time at which the object is no longer cacheable.
 	Expires string `pulumi:"expires"`
-	// The provider-assigned unique ID for this managed resource.
-	Id  string `pulumi:"id"`
-	Key string `pulumi:"key"`
+	Key     string `pulumi:"key"`
 	// A map of metadata stored with the object.
 	Metadata map[string]string `pulumi:"metadata"`
 	// The legal hold status of the object, which can be either ON or OFF.
@@ -119,12 +117,8 @@ type GetObjectResult struct {
 }
 
 func GetObjectOutput(ctx *pulumi.Context, args GetObjectOutputArgs, opts ...pulumi.InvokeOption) GetObjectResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (GetObjectResultOutput, error) {
-			args := v.(GetObjectArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("ionoscloud:objectstorage/getObject:getObject", args, GetObjectResultOutput{}, options).(GetObjectResultOutput), nil
-		}).(GetObjectResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("ionoscloud:objectstorage/getObject:getObject", args, GetObjectResultOutput{}, options).(GetObjectResultOutput)
 }
 
 // A collection of arguments for invoking getObject.
@@ -205,11 +199,6 @@ func (o GetObjectResultOutput) Etag() pulumi.StringOutput {
 // The date and time at which the object is no longer cacheable.
 func (o GetObjectResultOutput) Expires() pulumi.StringOutput {
 	return o.ApplyT(func(v GetObjectResult) string { return v.Expires }).(pulumi.StringOutput)
-}
-
-// The provider-assigned unique ID for this managed resource.
-func (o GetObjectResultOutput) Id() pulumi.StringOutput {
-	return o.ApplyT(func(v GetObjectResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
 func (o GetObjectResultOutput) Key() pulumi.StringOutput {

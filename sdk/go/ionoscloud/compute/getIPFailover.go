@@ -77,12 +77,8 @@ type LookupIPFailoverResult struct {
 }
 
 func LookupIPFailoverOutput(ctx *pulumi.Context, args LookupIPFailoverOutputArgs, opts ...pulumi.InvokeOption) LookupIPFailoverResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupIPFailoverResultOutput, error) {
-			args := v.(LookupIPFailoverArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("ionoscloud:compute/getIPFailover:getIPFailover", args, LookupIPFailoverResultOutput{}, options).(LookupIPFailoverResultOutput), nil
-		}).(LookupIPFailoverResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("ionoscloud:compute/getIPFailover:getIPFailover", args, LookupIPFailoverResultOutput{}, options).(LookupIPFailoverResultOutput)
 }
 
 // A collection of arguments for invoking getIPFailover.
