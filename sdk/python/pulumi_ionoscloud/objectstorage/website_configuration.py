@@ -202,10 +202,10 @@ class WebsiteConfiguration(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  bucket: pulumi.Input[Optional[_builtins.str]] = None,
-                 error_document: pulumi.Input[Optional[Union['WebsiteConfigurationErrorDocumentArgs', 'WebsiteConfigurationErrorDocumentArgsDict']]] = None,
-                 index_document: pulumi.Input[Optional[Union['WebsiteConfigurationIndexDocumentArgs', 'WebsiteConfigurationIndexDocumentArgsDict']]] = None,
-                 redirect_all_requests_to: pulumi.Input[Optional[Union['WebsiteConfigurationRedirectAllRequestsToArgs', 'WebsiteConfigurationRedirectAllRequestsToArgsDict']]] = None,
-                 routing_rules: pulumi.Input[Optional[Sequence[pulumi.Input[Union['WebsiteConfigurationRoutingRuleArgs', 'WebsiteConfigurationRoutingRuleArgsDict']]]]] = None,
+                 error_document: pulumi.Input[Optional[Union['WebsiteConfigurationErrorDocumentArgs', 'WebsiteConfigurationErrorDocumentArgsDict', 'outputs.WebsiteConfigurationErrorDocument']]] = None,
+                 index_document: pulumi.Input[Optional[Union['WebsiteConfigurationIndexDocumentArgs', 'WebsiteConfigurationIndexDocumentArgsDict', 'outputs.WebsiteConfigurationIndexDocument']]] = None,
+                 redirect_all_requests_to: pulumi.Input[Optional[Union['WebsiteConfigurationRedirectAllRequestsToArgs', 'WebsiteConfigurationRedirectAllRequestsToArgsDict', 'outputs.WebsiteConfigurationRedirectAllRequestsTo']]] = None,
+                 routing_rules: pulumi.Input[Optional[Sequence[pulumi.Input[Union['WebsiteConfigurationRoutingRuleArgs', 'WebsiteConfigurationRoutingRuleArgsDict', 'outputs.WebsiteConfigurationRoutingRule']]]]] = None,
                  __props__=None):
         """
         Manages Website Configuration for Buckets on IONOS CLOUD.
@@ -247,10 +247,10 @@ class WebsiteConfiguration(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] bucket: [string] The name of the bucket where the object will be stored.
-        :param pulumi.Input[Union['WebsiteConfigurationErrorDocumentArgs', 'WebsiteConfigurationErrorDocumentArgsDict']] error_document: The object key name to use when a 4XX class error occurs. Replacement must be made for object keys containing special characters (such as carriage returns) when using XML requests
-        :param pulumi.Input[Union['WebsiteConfigurationIndexDocumentArgs', 'WebsiteConfigurationIndexDocumentArgsDict']] index_document: Container for the Suffix element.
-        :param pulumi.Input[Union['WebsiteConfigurationRedirectAllRequestsToArgs', 'WebsiteConfigurationRedirectAllRequestsToArgsDict']] redirect_all_requests_to: Container for redirect information. You can redirect requests to another host, to another page, or with another protocol. In the event of an error, you can can specify a different error code to return.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['WebsiteConfigurationRoutingRuleArgs', 'WebsiteConfigurationRoutingRuleArgsDict']]]] routing_rules: A container for describing a condition that must be met for the specified redirect to apply.
+        :param pulumi.Input[Union['WebsiteConfigurationErrorDocumentArgs', 'WebsiteConfigurationErrorDocumentArgsDict', 'outputs.WebsiteConfigurationErrorDocument']] error_document: The object key name to use when a 4XX class error occurs. Replacement must be made for object keys containing special characters (such as carriage returns) when using XML requests
+        :param pulumi.Input[Union['WebsiteConfigurationIndexDocumentArgs', 'WebsiteConfigurationIndexDocumentArgsDict', 'outputs.WebsiteConfigurationIndexDocument']] index_document: Container for the Suffix element.
+        :param pulumi.Input[Union['WebsiteConfigurationRedirectAllRequestsToArgs', 'WebsiteConfigurationRedirectAllRequestsToArgsDict', 'outputs.WebsiteConfigurationRedirectAllRequestsTo']] redirect_all_requests_to: Container for redirect information. You can redirect requests to another host, to another page, or with another protocol. In the event of an error, you can can specify a different error code to return.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['WebsiteConfigurationRoutingRuleArgs', 'WebsiteConfigurationRoutingRuleArgsDict', 'outputs.WebsiteConfigurationRoutingRule']]]] routing_rules: A container for describing a condition that must be met for the specified redirect to apply.
         """
         ...
     @overload
@@ -311,10 +311,10 @@ class WebsiteConfiguration(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  bucket: pulumi.Input[Optional[_builtins.str]] = None,
-                 error_document: pulumi.Input[Optional[Union['WebsiteConfigurationErrorDocumentArgs', 'WebsiteConfigurationErrorDocumentArgsDict']]] = None,
-                 index_document: pulumi.Input[Optional[Union['WebsiteConfigurationIndexDocumentArgs', 'WebsiteConfigurationIndexDocumentArgsDict']]] = None,
-                 redirect_all_requests_to: pulumi.Input[Optional[Union['WebsiteConfigurationRedirectAllRequestsToArgs', 'WebsiteConfigurationRedirectAllRequestsToArgsDict']]] = None,
-                 routing_rules: pulumi.Input[Optional[Sequence[pulumi.Input[Union['WebsiteConfigurationRoutingRuleArgs', 'WebsiteConfigurationRoutingRuleArgsDict']]]]] = None,
+                 error_document: pulumi.Input[Optional[Union['WebsiteConfigurationErrorDocumentArgs', 'WebsiteConfigurationErrorDocumentArgsDict', 'outputs.WebsiteConfigurationErrorDocument']]] = None,
+                 index_document: pulumi.Input[Optional[Union['WebsiteConfigurationIndexDocumentArgs', 'WebsiteConfigurationIndexDocumentArgsDict', 'outputs.WebsiteConfigurationIndexDocument']]] = None,
+                 redirect_all_requests_to: pulumi.Input[Optional[Union['WebsiteConfigurationRedirectAllRequestsToArgs', 'WebsiteConfigurationRedirectAllRequestsToArgsDict', 'outputs.WebsiteConfigurationRedirectAllRequestsTo']]] = None,
+                 routing_rules: pulumi.Input[Optional[Sequence[pulumi.Input[Union['WebsiteConfigurationRoutingRuleArgs', 'WebsiteConfigurationRoutingRuleArgsDict', 'outputs.WebsiteConfigurationRoutingRule']]]]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -342,10 +342,10 @@ class WebsiteConfiguration(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             bucket: pulumi.Input[Optional[_builtins.str]] = None,
-            error_document: pulumi.Input[Optional[Union['WebsiteConfigurationErrorDocumentArgs', 'WebsiteConfigurationErrorDocumentArgsDict']]] = None,
-            index_document: pulumi.Input[Optional[Union['WebsiteConfigurationIndexDocumentArgs', 'WebsiteConfigurationIndexDocumentArgsDict']]] = None,
-            redirect_all_requests_to: pulumi.Input[Optional[Union['WebsiteConfigurationRedirectAllRequestsToArgs', 'WebsiteConfigurationRedirectAllRequestsToArgsDict']]] = None,
-            routing_rules: pulumi.Input[Optional[Sequence[pulumi.Input[Union['WebsiteConfigurationRoutingRuleArgs', 'WebsiteConfigurationRoutingRuleArgsDict']]]]] = None) -> 'WebsiteConfiguration':
+            error_document: pulumi.Input[Optional[Union['WebsiteConfigurationErrorDocumentArgs', 'WebsiteConfigurationErrorDocumentArgsDict', 'outputs.WebsiteConfigurationErrorDocument']]] = None,
+            index_document: pulumi.Input[Optional[Union['WebsiteConfigurationIndexDocumentArgs', 'WebsiteConfigurationIndexDocumentArgsDict', 'outputs.WebsiteConfigurationIndexDocument']]] = None,
+            redirect_all_requests_to: pulumi.Input[Optional[Union['WebsiteConfigurationRedirectAllRequestsToArgs', 'WebsiteConfigurationRedirectAllRequestsToArgsDict', 'outputs.WebsiteConfigurationRedirectAllRequestsTo']]] = None,
+            routing_rules: pulumi.Input[Optional[Sequence[pulumi.Input[Union['WebsiteConfigurationRoutingRuleArgs', 'WebsiteConfigurationRoutingRuleArgsDict', 'outputs.WebsiteConfigurationRoutingRule']]]]] = None) -> 'WebsiteConfiguration':
         """
         Get an existing WebsiteConfiguration resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -354,10 +354,10 @@ class WebsiteConfiguration(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] bucket: [string] The name of the bucket where the object will be stored.
-        :param pulumi.Input[Union['WebsiteConfigurationErrorDocumentArgs', 'WebsiteConfigurationErrorDocumentArgsDict']] error_document: The object key name to use when a 4XX class error occurs. Replacement must be made for object keys containing special characters (such as carriage returns) when using XML requests
-        :param pulumi.Input[Union['WebsiteConfigurationIndexDocumentArgs', 'WebsiteConfigurationIndexDocumentArgsDict']] index_document: Container for the Suffix element.
-        :param pulumi.Input[Union['WebsiteConfigurationRedirectAllRequestsToArgs', 'WebsiteConfigurationRedirectAllRequestsToArgsDict']] redirect_all_requests_to: Container for redirect information. You can redirect requests to another host, to another page, or with another protocol. In the event of an error, you can can specify a different error code to return.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['WebsiteConfigurationRoutingRuleArgs', 'WebsiteConfigurationRoutingRuleArgsDict']]]] routing_rules: A container for describing a condition that must be met for the specified redirect to apply.
+        :param pulumi.Input[Union['WebsiteConfigurationErrorDocumentArgs', 'WebsiteConfigurationErrorDocumentArgsDict', 'outputs.WebsiteConfigurationErrorDocument']] error_document: The object key name to use when a 4XX class error occurs. Replacement must be made for object keys containing special characters (such as carriage returns) when using XML requests
+        :param pulumi.Input[Union['WebsiteConfigurationIndexDocumentArgs', 'WebsiteConfigurationIndexDocumentArgsDict', 'outputs.WebsiteConfigurationIndexDocument']] index_document: Container for the Suffix element.
+        :param pulumi.Input[Union['WebsiteConfigurationRedirectAllRequestsToArgs', 'WebsiteConfigurationRedirectAllRequestsToArgsDict', 'outputs.WebsiteConfigurationRedirectAllRequestsTo']] redirect_all_requests_to: Container for redirect information. You can redirect requests to another host, to another page, or with another protocol. In the event of an error, you can can specify a different error code to return.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['WebsiteConfigurationRoutingRuleArgs', 'WebsiteConfigurationRoutingRuleArgsDict', 'outputs.WebsiteConfigurationRoutingRule']]]] routing_rules: A container for describing a condition that must be met for the specified redirect to apply.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 

@@ -27,24 +27,13 @@ class GetMariaDBBackupLocationsV2Result:
     """
     A collection of values returned by getMariaDBBackupLocationsV2.
     """
-    def __init__(__self__, id=None, items=None, location=None):
-        if id and not isinstance(id, str):
-            raise TypeError("Expected argument 'id' to be a str")
-        pulumi.set(__self__, "id", id)
+    def __init__(__self__, items=None, location=None):
         if items and not isinstance(items, list):
             raise TypeError("Expected argument 'items' to be a list")
         pulumi.set(__self__, "items", items)
         if location and not isinstance(location, str):
             raise TypeError("Expected argument 'location' to be a str")
         pulumi.set(__self__, "location", location)
-
-    @_builtins.property
-    @pulumi.getter
-    def id(self) -> _builtins.str:
-        """
-        The provider-assigned unique ID for this managed resource.
-        """
-        return pulumi.get(self, "id")
 
     @_builtins.property
     @pulumi.getter
@@ -69,7 +58,6 @@ class AwaitableGetMariaDBBackupLocationsV2Result(GetMariaDBBackupLocationsV2Resu
         if False:
             yield self
         return GetMariaDBBackupLocationsV2Result(
-            id=self.id,
             items=self.items,
             location=self.location)
 
@@ -97,7 +85,6 @@ def get_maria_db_backup_locations_v2(location: Optional[_builtins.str] = None,
     __ret__ = pulumi.runtime.invoke('ionoscloud:dbaas/getMariaDBBackupLocationsV2:getMariaDBBackupLocationsV2', __args__, opts=opts, typ=GetMariaDBBackupLocationsV2Result).value
 
     return AwaitableGetMariaDBBackupLocationsV2Result(
-        id=pulumi.get(__ret__, 'id'),
         items=pulumi.get(__ret__, 'items'),
         location=pulumi.get(__ret__, 'location'))
 def get_maria_db_backup_locations_v2_output(location: pulumi.Input[Optional[_builtins.str]] = None,
@@ -122,6 +109,5 @@ def get_maria_db_backup_locations_v2_output(location: pulumi.Input[Optional[_bui
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('ionoscloud:dbaas/getMariaDBBackupLocationsV2:getMariaDBBackupLocationsV2', __args__, opts=opts, typ=GetMariaDBBackupLocationsV2Result)
     return __ret__.apply(lambda __response__: GetMariaDBBackupLocationsV2Result(
-        id=pulumi.get(__response__, 'id'),
         items=pulumi.get(__response__, 'items'),
         location=pulumi.get(__response__, 'location')))

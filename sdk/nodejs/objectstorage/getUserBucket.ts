@@ -48,10 +48,6 @@ export interface GetUserBucketArgs {
  */
 export interface GetUserBucketResult {
     /**
-     * The provider-assigned unique ID for this managed resource.
-     */
-    readonly id: string;
-    /**
      * The name of the bucket.
      */
     readonly name: string;

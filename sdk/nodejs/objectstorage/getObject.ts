@@ -94,10 +94,6 @@ export interface GetObjectResult {
      * The date and time at which the object is no longer cacheable.
      */
     readonly expires: string;
-    /**
-     * The provider-assigned unique ID for this managed resource.
-     */
-    readonly id: string;
     readonly key: string;
     /**
      * A map of metadata stored with the object.

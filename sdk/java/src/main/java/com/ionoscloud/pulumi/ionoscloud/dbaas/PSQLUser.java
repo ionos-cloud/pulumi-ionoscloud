@@ -32,8 +32,8 @@ import javax.annotation.Nullable;
  * import com.pulumi.Context;
  * import com.pulumi.Pulumi;
  * import com.pulumi.core.Output;
- * import com.pulumi.random.password;
- * import com.pulumi.random.passwordArgs;
+ * import com.pulumi.random.Password;
+ * import com.pulumi.random.PasswordArgs;
  * import com.ionoscloud.pulumi.ionoscloud.dbaas.PSQLUser;
  * import com.ionoscloud.pulumi.ionoscloud.dbaas.PSQLUserArgs;
  * import java.util.ArrayList;
@@ -56,9 +56,9 @@ import javax.annotation.Nullable;
  *             .build());
  * 
  *         var examplePgUser = new PSQLUser("examplePgUser", PSQLUserArgs.builder()
- *             .clusterId(example.id())
+ *             .clusterId(example.get("id"))
  *             .username("exampleuser")
- *             .password(userPassword.result())
+ *             .password(userPassword.get("result"))
  *             .build());
  * 
  *     }

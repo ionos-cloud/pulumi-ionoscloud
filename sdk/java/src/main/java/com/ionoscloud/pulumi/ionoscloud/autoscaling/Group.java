@@ -35,8 +35,8 @@ import javax.annotation.Nullable;
  * import com.ionoscloud.pulumi.ionoscloud.compute.LanArgs;
  * import com.ionoscloud.pulumi.ionoscloud.compute.TargetGroup;
  * import com.ionoscloud.pulumi.ionoscloud.compute.TargetGroupArgs;
- * import com.pulumi.random.password;
- * import com.pulumi.random.passwordArgs;
+ * import com.pulumi.random.Password;
+ * import com.pulumi.random.PasswordArgs;
  * import com.ionoscloud.pulumi.ionoscloud.autoscaling.Group;
  * import com.ionoscloud.pulumi.ionoscloud.autoscaling.GroupArgs;
  * import com.pulumi.ionoscloud.autoscaling.inputs.GroupPolicyArgs;
@@ -156,7 +156,7 @@ import javax.annotation.Nullable;
  *                     .size(10)
  *                     .type("HDD")
  *                     .userData("ZWNobyAiSGVsbG8sIFdvcmxkIgo=")
- *                     .imagePassword(serverImagePassword.result())
+ *                     .imagePassword(serverImagePassword.get("result"))
  *                     .bootOrder("AUTO")
  *                     .build())
  *                 .build())

@@ -42,10 +42,6 @@ export interface GetMariaDBBackupLocationsV2Args {
  */
 export interface GetMariaDBBackupLocationsV2Result {
     /**
-     * The provider-assigned unique ID for this managed resource.
-     */
-    readonly id: string;
-    /**
      * List of backup location objects. Each item includes:
      */
     readonly items: outputs.dbaas.GetMariaDBBackupLocationsV2Item[];

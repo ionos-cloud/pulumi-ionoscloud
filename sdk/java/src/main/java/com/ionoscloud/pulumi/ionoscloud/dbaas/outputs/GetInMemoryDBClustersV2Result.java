@@ -15,11 +15,6 @@ import javax.annotation.Nullable;
 @CustomType
 public final class GetInMemoryDBClustersV2Result {
     /**
-     * @return The provider-assigned unique ID for this managed resource.
-     * 
-     */
-    private String id;
-    /**
      * @return List of clusters. Each item exposes the same attributes as the&lt;span pulumi-lang-nodejs=&#34; ionoscloud.dbaas.InMemoryDBClusterV2 &#34; pulumi-lang-dotnet=&#34; ionoscloud.dbaas.InMemoryDBClusterV2 &#34; pulumi-lang-go=&#34; dbaas.InMemoryDBClusterV2 &#34; pulumi-lang-python=&#34; dbaas.InMemoryDBClusterV2 &#34; pulumi-lang-yaml=&#34; ionoscloud.dbaas.InMemoryDBClusterV2 &#34; pulumi-lang-java=&#34; ionoscloud.dbaas.InMemoryDBClusterV2 &#34; pulumi-lang-hcl=&#34; ionoscloud_inmemorydb_cluster_v2 &#34;&gt; ionoscloud.dbaas.InMemoryDBClusterV2 &lt;/span&gt;data source. Note that `credentials.password` is not available — only `credentials.username` is returned by the API.
      * 
      */
@@ -28,13 +23,6 @@ public final class GetInMemoryDBClustersV2Result {
     private @Nullable String name;
 
     private GetInMemoryDBClustersV2Result() {}
-    /**
-     * @return The provider-assigned unique ID for this managed resource.
-     * 
-     */
-    public String id() {
-        return this.id;
-    }
     /**
      * @return List of clusters. Each item exposes the same attributes as the&lt;span pulumi-lang-nodejs=&#34; ionoscloud.dbaas.InMemoryDBClusterV2 &#34; pulumi-lang-dotnet=&#34; ionoscloud.dbaas.InMemoryDBClusterV2 &#34; pulumi-lang-go=&#34; dbaas.InMemoryDBClusterV2 &#34; pulumi-lang-python=&#34; dbaas.InMemoryDBClusterV2 &#34; pulumi-lang-yaml=&#34; ionoscloud.dbaas.InMemoryDBClusterV2 &#34; pulumi-lang-java=&#34; ionoscloud.dbaas.InMemoryDBClusterV2 &#34; pulumi-lang-hcl=&#34; ionoscloud_inmemorydb_cluster_v2 &#34;&gt; ionoscloud.dbaas.InMemoryDBClusterV2 &lt;/span&gt;data source. Note that `credentials.password` is not available — only `credentials.username` is returned by the API.
      * 
@@ -58,27 +46,17 @@ public final class GetInMemoryDBClustersV2Result {
     }
     @CustomType.Builder
     public static final class Builder {
-        private String id;
         private List<GetInMemoryDBClustersV2Item> items;
         private String location;
         private @Nullable String name;
         public Builder() {}
         public Builder(GetInMemoryDBClustersV2Result defaults) {
     	      Objects.requireNonNull(defaults);
-    	      this.id = defaults.id;
     	      this.items = defaults.items;
     	      this.location = defaults.location;
     	      this.name = defaults.name;
         }
 
-        @CustomType.Setter
-        public Builder id(String id) {
-            if (id == null) {
-              throw new MissingRequiredPropertyException("GetInMemoryDBClustersV2Result", "id");
-            }
-            this.id = id;
-            return this;
-        }
         @CustomType.Setter
         public Builder items(List<GetInMemoryDBClustersV2Item> items) {
             if (items == null) {
@@ -106,7 +84,6 @@ public final class GetInMemoryDBClustersV2Result {
         }
         public GetInMemoryDBClustersV2Result build() {
             final var _resultValue = new GetInMemoryDBClustersV2Result();
-            _resultValue.id = id;
             _resultValue.items = items;
             _resultValue.location = location;
             _resultValue.name = name;

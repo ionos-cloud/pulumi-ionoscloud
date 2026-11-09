@@ -21,6 +21,8 @@ import (
 //
 // import (
 //
+//	"strconv"
+//
 //	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/alb"
 //	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/cert"
 //	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/compute"
@@ -59,11 +61,11 @@ import (
 //			exampleBalancer, err := alb.NewBalancer(ctx, "example", &alb.BalancerArgs{
 //				DatacenterId: example.ID(),
 //				Name:         pulumi.String("ALB Example"),
-//				ListenerLan:  example1.ID(),
+//				ListenerLan:  example1.ID().ToStringOutput().ApplyT(strconv.Atoi).(pulumi.IntOutput),
 //				Ips: pulumi.StringArray{
 //					pulumi.String("10.12.118.224"),
 //				},
-//				TargetLan: example2.ID(),
+//				TargetLan: example2.ID().ToStringOutput().ApplyT(strconv.Atoi).(pulumi.IntOutput),
 //				LbPrivateIps: pulumi.StringArray{
 //					pulumi.String("10.13.72.225/24"),
 //				},
@@ -71,19 +73,19 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			invokeFile, err := std.File(ctx, map[string]interface{}{
+//			invokeFile, err := std.File(ctx, map[string]string{
 //				"input": "path_to_cert",
 //			}, nil)
 //			if err != nil {
 //				return err
 //			}
-//			invokeFile1, err := std.File(ctx, map[string]interface{}{
+//			invokeFile1, err := std.File(ctx, map[string]string{
 //				"input": "path_to_cert_chain",
 //			}, nil)
 //			if err != nil {
 //				return err
 //			}
-//			invokeFile2, err := std.File(ctx, map[string]interface{}{
+//			invokeFile2, err := std.File(ctx, map[string]string{
 //				"input": "path_to_private_key",
 //			}, nil)
 //			if err != nil {
@@ -92,9 +94,9 @@ import (
 //			// optionally you can add a certificate to the application load balancer
 //			cert2, err := cert.NewCertificate(ctx, "cert", &cert.CertificateArgs{
 //				Name:             pulumi.String("add_name_here"),
-//				Certificate:      invokeFile.Result,
-//				CertificateChain: invokeFile1.Result,
-//				PrivateKey:       invokeFile2.Result,
+//				Certificate:      invokeFile.Result.(pulumi.String),
+//				CertificateChain: invokeFile1.Result.(pulumi.String),
+//				PrivateKey:       invokeFile2.Result.(pulumi.String),
 //			})
 //			if err != nil {
 //				return err

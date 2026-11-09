@@ -47,7 +47,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
         /// {
         ///     var example = Ionoscloud.Compute.GetTemplate.Invoke(new()
         ///     {
-        ///         Cores = 6,
+        ///         Cores = 6.0,
         ///     });
         /// 
         /// });
@@ -64,7 +64,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
         /// {
         ///     var example = Ionoscloud.Compute.GetTemplate.Invoke(new()
         ///     {
-        ///         Ram = 49152,
+        ///         Ram = 49152.0,
         ///     });
         /// 
         /// });
@@ -81,7 +81,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
         /// {
         ///     var example = Ionoscloud.Compute.GetTemplate.Invoke(new()
         ///     {
-        ///         StorageSize = 80,
+        ///         StorageSize = 80.0,
         ///     });
         /// 
         /// });
@@ -125,7 +125,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
         /// {
         ///     var example = Ionoscloud.Compute.GetTemplate.Invoke(new()
         ///     {
-        ///         Cores = 6,
+        ///         Cores = 6.0,
         ///     });
         /// 
         /// });
@@ -142,7 +142,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
         /// {
         ///     var example = Ionoscloud.Compute.GetTemplate.Invoke(new()
         ///     {
-        ///         Ram = 49152,
+        ///         Ram = 49152.0,
         ///     });
         /// 
         /// });
@@ -159,7 +159,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
         /// {
         ///     var example = Ionoscloud.Compute.GetTemplate.Invoke(new()
         ///     {
-        ///         StorageSize = 80,
+        ///         StorageSize = 80.0,
         ///     });
         /// 
         /// });
@@ -203,7 +203,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
         /// {
         ///     var example = Ionoscloud.Compute.GetTemplate.Invoke(new()
         ///     {
-        ///         Cores = 6,
+        ///         Cores = 6.0,
         ///     });
         /// 
         /// });
@@ -220,7 +220,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
         /// {
         ///     var example = Ionoscloud.Compute.GetTemplate.Invoke(new()
         ///     {
-        ///         Ram = 49152,
+        ///         Ram = 49152.0,
         ///     });
         /// 
         /// });
@@ -237,7 +237,7 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Compute
         /// {
         ///     var example = Ionoscloud.Compute.GetTemplate.Invoke(new()
         ///     {
-        ///         StorageSize = 80,
+        ///         StorageSize = 80.0,
         ///     });
         /// 
         /// });

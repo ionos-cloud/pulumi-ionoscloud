@@ -467,18 +467,18 @@ class MariaDBClusterV2(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 backup: pulumi.Input[Optional[Union['MariaDBClusterV2BackupArgs', 'MariaDBClusterV2BackupArgsDict']]] = None,
-                 connections: pulumi.Input[Optional[Union['MariaDBClusterV2ConnectionsArgs', 'MariaDBClusterV2ConnectionsArgsDict']]] = None,
-                 credentials: pulumi.Input[Optional[Union['MariaDBClusterV2CredentialsArgs', 'MariaDBClusterV2CredentialsArgsDict']]] = None,
+                 backup: pulumi.Input[Optional[Union['MariaDBClusterV2BackupArgs', 'MariaDBClusterV2BackupArgsDict', 'outputs.MariaDBClusterV2Backup']]] = None,
+                 connections: pulumi.Input[Optional[Union['MariaDBClusterV2ConnectionsArgs', 'MariaDBClusterV2ConnectionsArgsDict', 'outputs.MariaDBClusterV2Connections']]] = None,
+                 credentials: pulumi.Input[Optional[Union['MariaDBClusterV2CredentialsArgs', 'MariaDBClusterV2CredentialsArgsDict', 'outputs.MariaDBClusterV2Credentials']]] = None,
                  description: pulumi.Input[Optional[_builtins.str]] = None,
-                 instances: pulumi.Input[Optional[Union['MariaDBClusterV2InstancesArgs', 'MariaDBClusterV2InstancesArgsDict']]] = None,
+                 instances: pulumi.Input[Optional[Union['MariaDBClusterV2InstancesArgs', 'MariaDBClusterV2InstancesArgsDict', 'outputs.MariaDBClusterV2Instances']]] = None,
                  location: pulumi.Input[Optional[_builtins.str]] = None,
                  logs_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
-                 maintenance_window: pulumi.Input[Optional[Union['MariaDBClusterV2MaintenanceWindowArgs', 'MariaDBClusterV2MaintenanceWindowArgsDict']]] = None,
+                 maintenance_window: pulumi.Input[Optional[Union['MariaDBClusterV2MaintenanceWindowArgs', 'MariaDBClusterV2MaintenanceWindowArgsDict', 'outputs.MariaDBClusterV2MaintenanceWindow']]] = None,
                  metrics_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
-                 restore_from_backup: pulumi.Input[Optional[Union['MariaDBClusterV2RestoreFromBackupArgs', 'MariaDBClusterV2RestoreFromBackupArgsDict']]] = None,
-                 timeouts: pulumi.Input[Optional[Union['MariaDBClusterV2TimeoutsArgs', 'MariaDBClusterV2TimeoutsArgsDict']]] = None,
+                 restore_from_backup: pulumi.Input[Optional[Union['MariaDBClusterV2RestoreFromBackupArgs', 'MariaDBClusterV2RestoreFromBackupArgsDict', 'outputs.MariaDBClusterV2RestoreFromBackup']]] = None,
+                 timeouts: pulumi.Input[Optional[Union['MariaDBClusterV2TimeoutsArgs', 'MariaDBClusterV2TimeoutsArgsDict', 'outputs.MariaDBClusterV2Timeouts']]] = None,
                  version: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
@@ -541,18 +541,18 @@ class MariaDBClusterV2(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Union['MariaDBClusterV2BackupArgs', 'MariaDBClusterV2BackupArgsDict']] backup: [object] Configures backup location and retention.
-        :param pulumi.Input[Union['MariaDBClusterV2ConnectionsArgs', 'MariaDBClusterV2ConnectionsArgsDict']] connections: [object] Connection information of the MariaDB cluster. Only one connection is allowed.
-        :param pulumi.Input[Union['MariaDBClusterV2CredentialsArgs', 'MariaDBClusterV2CredentialsArgsDict']] credentials: [object] Credentials for the initial database user to be created.
+        :param pulumi.Input[Union['MariaDBClusterV2BackupArgs', 'MariaDBClusterV2BackupArgsDict', 'outputs.MariaDBClusterV2Backup']] backup: [object] Configures backup location and retention.
+        :param pulumi.Input[Union['MariaDBClusterV2ConnectionsArgs', 'MariaDBClusterV2ConnectionsArgsDict', 'outputs.MariaDBClusterV2Connections']] connections: [object] Connection information of the MariaDB cluster. Only one connection is allowed.
+        :param pulumi.Input[Union['MariaDBClusterV2CredentialsArgs', 'MariaDBClusterV2CredentialsArgsDict', 'outputs.MariaDBClusterV2Credentials']] credentials: [object] Credentials for the initial database user to be created.
         :param pulumi.Input[_builtins.str] description: [string] Human-readable description for the cluster.
-        :param pulumi.Input[Union['MariaDBClusterV2InstancesArgs', 'MariaDBClusterV2InstancesArgsDict']] instances: [object] Compute and storage configuration for each instance in the cluster.
+        :param pulumi.Input[Union['MariaDBClusterV2InstancesArgs', 'MariaDBClusterV2InstancesArgsDict', 'outputs.MariaDBClusterV2Instances']] instances: [object] Compute and storage configuration for each instance in the cluster.
         :param pulumi.Input[_builtins.str] location: [string] The location of the cluster. Changing this forces a new resource. Available: `de/fra`, `de/fra/1`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
         :param pulumi.Input[_builtins.bool] logs_enabled: (Computed)[bool] Allows or disallows the collection and reporting of logs for this cluster's observability. If not set, the API default is used.
-        :param pulumi.Input[Union['MariaDBClusterV2MaintenanceWindowArgs', 'MariaDBClusterV2MaintenanceWindowArgsDict']] maintenance_window: [object] A weekly 4 hour-long window, during which maintenance might occur.
+        :param pulumi.Input[Union['MariaDBClusterV2MaintenanceWindowArgs', 'MariaDBClusterV2MaintenanceWindowArgsDict', 'outputs.MariaDBClusterV2MaintenanceWindow']] maintenance_window: [object] A weekly 4 hour-long window, during which maintenance might occur.
         :param pulumi.Input[_builtins.bool] metrics_enabled: (Computed)[bool] Allows or disallows the collection and reporting of metrics for this cluster's observability. If not set, the API default is used.
         :param pulumi.Input[_builtins.str] name: [string] The name of the MariaDB cluster.
-        :param pulumi.Input[Union['MariaDBClusterV2RestoreFromBackupArgs', 'MariaDBClusterV2RestoreFromBackupArgsDict']] restore_from_backup: [object] Restores the cluster from a backup.
-        :param pulumi.Input[Union['MariaDBClusterV2TimeoutsArgs', 'MariaDBClusterV2TimeoutsArgsDict']] timeouts: Standard Terraform timeouts: `create`, `update`, `delete`.
+        :param pulumi.Input[Union['MariaDBClusterV2RestoreFromBackupArgs', 'MariaDBClusterV2RestoreFromBackupArgsDict', 'outputs.MariaDBClusterV2RestoreFromBackup']] restore_from_backup: [object] Restores the cluster from a backup.
+        :param pulumi.Input[Union['MariaDBClusterV2TimeoutsArgs', 'MariaDBClusterV2TimeoutsArgsDict', 'outputs.MariaDBClusterV2Timeouts']] timeouts: Standard Terraform timeouts: `create`, `update`, `delete`.
         :param pulumi.Input[_builtins.str] version: [string] The MariaDB version for the cluster. See the `dbaas_get_maria_db_versions_v2` data source for the list of supported versions and their available upgrade paths.
         """
         ...
@@ -634,18 +634,18 @@ class MariaDBClusterV2(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 backup: pulumi.Input[Optional[Union['MariaDBClusterV2BackupArgs', 'MariaDBClusterV2BackupArgsDict']]] = None,
-                 connections: pulumi.Input[Optional[Union['MariaDBClusterV2ConnectionsArgs', 'MariaDBClusterV2ConnectionsArgsDict']]] = None,
-                 credentials: pulumi.Input[Optional[Union['MariaDBClusterV2CredentialsArgs', 'MariaDBClusterV2CredentialsArgsDict']]] = None,
+                 backup: pulumi.Input[Optional[Union['MariaDBClusterV2BackupArgs', 'MariaDBClusterV2BackupArgsDict', 'outputs.MariaDBClusterV2Backup']]] = None,
+                 connections: pulumi.Input[Optional[Union['MariaDBClusterV2ConnectionsArgs', 'MariaDBClusterV2ConnectionsArgsDict', 'outputs.MariaDBClusterV2Connections']]] = None,
+                 credentials: pulumi.Input[Optional[Union['MariaDBClusterV2CredentialsArgs', 'MariaDBClusterV2CredentialsArgsDict', 'outputs.MariaDBClusterV2Credentials']]] = None,
                  description: pulumi.Input[Optional[_builtins.str]] = None,
-                 instances: pulumi.Input[Optional[Union['MariaDBClusterV2InstancesArgs', 'MariaDBClusterV2InstancesArgsDict']]] = None,
+                 instances: pulumi.Input[Optional[Union['MariaDBClusterV2InstancesArgs', 'MariaDBClusterV2InstancesArgsDict', 'outputs.MariaDBClusterV2Instances']]] = None,
                  location: pulumi.Input[Optional[_builtins.str]] = None,
                  logs_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
-                 maintenance_window: pulumi.Input[Optional[Union['MariaDBClusterV2MaintenanceWindowArgs', 'MariaDBClusterV2MaintenanceWindowArgsDict']]] = None,
+                 maintenance_window: pulumi.Input[Optional[Union['MariaDBClusterV2MaintenanceWindowArgs', 'MariaDBClusterV2MaintenanceWindowArgsDict', 'outputs.MariaDBClusterV2MaintenanceWindow']]] = None,
                  metrics_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
-                 restore_from_backup: pulumi.Input[Optional[Union['MariaDBClusterV2RestoreFromBackupArgs', 'MariaDBClusterV2RestoreFromBackupArgsDict']]] = None,
-                 timeouts: pulumi.Input[Optional[Union['MariaDBClusterV2TimeoutsArgs', 'MariaDBClusterV2TimeoutsArgsDict']]] = None,
+                 restore_from_backup: pulumi.Input[Optional[Union['MariaDBClusterV2RestoreFromBackupArgs', 'MariaDBClusterV2RestoreFromBackupArgsDict', 'outputs.MariaDBClusterV2RestoreFromBackup']]] = None,
+                 timeouts: pulumi.Input[Optional[Union['MariaDBClusterV2TimeoutsArgs', 'MariaDBClusterV2TimeoutsArgsDict', 'outputs.MariaDBClusterV2Timeouts']]] = None,
                  version: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -694,19 +694,19 @@ class MariaDBClusterV2(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            backup: pulumi.Input[Optional[Union['MariaDBClusterV2BackupArgs', 'MariaDBClusterV2BackupArgsDict']]] = None,
-            connections: pulumi.Input[Optional[Union['MariaDBClusterV2ConnectionsArgs', 'MariaDBClusterV2ConnectionsArgsDict']]] = None,
-            credentials: pulumi.Input[Optional[Union['MariaDBClusterV2CredentialsArgs', 'MariaDBClusterV2CredentialsArgsDict']]] = None,
+            backup: pulumi.Input[Optional[Union['MariaDBClusterV2BackupArgs', 'MariaDBClusterV2BackupArgsDict', 'outputs.MariaDBClusterV2Backup']]] = None,
+            connections: pulumi.Input[Optional[Union['MariaDBClusterV2ConnectionsArgs', 'MariaDBClusterV2ConnectionsArgsDict', 'outputs.MariaDBClusterV2Connections']]] = None,
+            credentials: pulumi.Input[Optional[Union['MariaDBClusterV2CredentialsArgs', 'MariaDBClusterV2CredentialsArgsDict', 'outputs.MariaDBClusterV2Credentials']]] = None,
             description: pulumi.Input[Optional[_builtins.str]] = None,
             dns_name: pulumi.Input[Optional[_builtins.str]] = None,
-            instances: pulumi.Input[Optional[Union['MariaDBClusterV2InstancesArgs', 'MariaDBClusterV2InstancesArgsDict']]] = None,
+            instances: pulumi.Input[Optional[Union['MariaDBClusterV2InstancesArgs', 'MariaDBClusterV2InstancesArgsDict', 'outputs.MariaDBClusterV2Instances']]] = None,
             location: pulumi.Input[Optional[_builtins.str]] = None,
             logs_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
-            maintenance_window: pulumi.Input[Optional[Union['MariaDBClusterV2MaintenanceWindowArgs', 'MariaDBClusterV2MaintenanceWindowArgsDict']]] = None,
+            maintenance_window: pulumi.Input[Optional[Union['MariaDBClusterV2MaintenanceWindowArgs', 'MariaDBClusterV2MaintenanceWindowArgsDict', 'outputs.MariaDBClusterV2MaintenanceWindow']]] = None,
             metrics_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
             name: pulumi.Input[Optional[_builtins.str]] = None,
-            restore_from_backup: pulumi.Input[Optional[Union['MariaDBClusterV2RestoreFromBackupArgs', 'MariaDBClusterV2RestoreFromBackupArgsDict']]] = None,
-            timeouts: pulumi.Input[Optional[Union['MariaDBClusterV2TimeoutsArgs', 'MariaDBClusterV2TimeoutsArgsDict']]] = None,
+            restore_from_backup: pulumi.Input[Optional[Union['MariaDBClusterV2RestoreFromBackupArgs', 'MariaDBClusterV2RestoreFromBackupArgsDict', 'outputs.MariaDBClusterV2RestoreFromBackup']]] = None,
+            timeouts: pulumi.Input[Optional[Union['MariaDBClusterV2TimeoutsArgs', 'MariaDBClusterV2TimeoutsArgsDict', 'outputs.MariaDBClusterV2Timeouts']]] = None,
             version: pulumi.Input[Optional[_builtins.str]] = None) -> 'MariaDBClusterV2':
         """
         Get an existing MariaDBClusterV2 resource's state with the given name, id, and optional extra
@@ -715,19 +715,19 @@ class MariaDBClusterV2(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Union['MariaDBClusterV2BackupArgs', 'MariaDBClusterV2BackupArgsDict']] backup: [object] Configures backup location and retention.
-        :param pulumi.Input[Union['MariaDBClusterV2ConnectionsArgs', 'MariaDBClusterV2ConnectionsArgsDict']] connections: [object] Connection information of the MariaDB cluster. Only one connection is allowed.
-        :param pulumi.Input[Union['MariaDBClusterV2CredentialsArgs', 'MariaDBClusterV2CredentialsArgsDict']] credentials: [object] Credentials for the initial database user to be created.
+        :param pulumi.Input[Union['MariaDBClusterV2BackupArgs', 'MariaDBClusterV2BackupArgsDict', 'outputs.MariaDBClusterV2Backup']] backup: [object] Configures backup location and retention.
+        :param pulumi.Input[Union['MariaDBClusterV2ConnectionsArgs', 'MariaDBClusterV2ConnectionsArgsDict', 'outputs.MariaDBClusterV2Connections']] connections: [object] Connection information of the MariaDB cluster. Only one connection is allowed.
+        :param pulumi.Input[Union['MariaDBClusterV2CredentialsArgs', 'MariaDBClusterV2CredentialsArgsDict', 'outputs.MariaDBClusterV2Credentials']] credentials: [object] Credentials for the initial database user to be created.
         :param pulumi.Input[_builtins.str] description: [string] Human-readable description for the cluster.
         :param pulumi.Input[_builtins.str] dns_name: The DNS name used to access the cluster.
-        :param pulumi.Input[Union['MariaDBClusterV2InstancesArgs', 'MariaDBClusterV2InstancesArgsDict']] instances: [object] Compute and storage configuration for each instance in the cluster.
+        :param pulumi.Input[Union['MariaDBClusterV2InstancesArgs', 'MariaDBClusterV2InstancesArgsDict', 'outputs.MariaDBClusterV2Instances']] instances: [object] Compute and storage configuration for each instance in the cluster.
         :param pulumi.Input[_builtins.str] location: [string] The location of the cluster. Changing this forces a new resource. Available: `de/fra`, `de/fra/1`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
         :param pulumi.Input[_builtins.bool] logs_enabled: (Computed)[bool] Allows or disallows the collection and reporting of logs for this cluster's observability. If not set, the API default is used.
-        :param pulumi.Input[Union['MariaDBClusterV2MaintenanceWindowArgs', 'MariaDBClusterV2MaintenanceWindowArgsDict']] maintenance_window: [object] A weekly 4 hour-long window, during which maintenance might occur.
+        :param pulumi.Input[Union['MariaDBClusterV2MaintenanceWindowArgs', 'MariaDBClusterV2MaintenanceWindowArgsDict', 'outputs.MariaDBClusterV2MaintenanceWindow']] maintenance_window: [object] A weekly 4 hour-long window, during which maintenance might occur.
         :param pulumi.Input[_builtins.bool] metrics_enabled: (Computed)[bool] Allows or disallows the collection and reporting of metrics for this cluster's observability. If not set, the API default is used.
         :param pulumi.Input[_builtins.str] name: [string] The name of the MariaDB cluster.
-        :param pulumi.Input[Union['MariaDBClusterV2RestoreFromBackupArgs', 'MariaDBClusterV2RestoreFromBackupArgsDict']] restore_from_backup: [object] Restores the cluster from a backup.
-        :param pulumi.Input[Union['MariaDBClusterV2TimeoutsArgs', 'MariaDBClusterV2TimeoutsArgsDict']] timeouts: Standard Terraform timeouts: `create`, `update`, `delete`.
+        :param pulumi.Input[Union['MariaDBClusterV2RestoreFromBackupArgs', 'MariaDBClusterV2RestoreFromBackupArgsDict', 'outputs.MariaDBClusterV2RestoreFromBackup']] restore_from_backup: [object] Restores the cluster from a backup.
+        :param pulumi.Input[Union['MariaDBClusterV2TimeoutsArgs', 'MariaDBClusterV2TimeoutsArgsDict', 'outputs.MariaDBClusterV2Timeouts']] timeouts: Standard Terraform timeouts: `create`, `update`, `delete`.
         :param pulumi.Input[_builtins.str] version: [string] The MariaDB version for the cluster. See the `dbaas_get_maria_db_versions_v2` data source for the list of supported versions and their available upgrade paths.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))

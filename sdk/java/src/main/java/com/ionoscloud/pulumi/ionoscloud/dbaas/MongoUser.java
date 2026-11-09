@@ -120,8 +120,8 @@ import javax.annotation.Nullable;
  * import com.ionoscloud.pulumi.ionoscloud.dbaas.MongoClusterArgs;
  * import com.pulumi.ionoscloud.dbaas.inputs.MongoClusterMaintenanceWindowArgs;
  * import com.pulumi.ionoscloud.dbaas.inputs.MongoClusterConnectionsArgs;
- * import com.pulumi.random.password;
- * import com.pulumi.random.passwordArgs;
+ * import com.pulumi.random.Password;
+ * import com.pulumi.random.PasswordArgs;
  * import com.ionoscloud.pulumi.ionoscloud.dbaas.MongoUser;
  * import com.ionoscloud.pulumi.ionoscloud.dbaas.MongoUserArgs;
  * import com.pulumi.ionoscloud.dbaas.inputs.MongoUserRoleArgs;
@@ -183,7 +183,7 @@ import javax.annotation.Nullable;
  *         var exampleMongoUser = new MongoUser("exampleMongoUser", MongoUserArgs.builder()
  *             .clusterId(exampleMongoCluster.id())
  *             .username("myUser")
- *             .password(userPassword.result())
+ *             .password(userPassword.get("result"))
  *             .roles(            
  *                 MongoUserRoleArgs.builder()
  *                     .role("read")

@@ -25,11 +25,6 @@ public final class GetObjectsResult {
     private @Nullable String encodingType;
     private @Nullable Boolean fetchOwner;
     /**
-     * @return The provider-assigned unique ID for this managed resource.
-     * 
-     */
-    private String id;
-    /**
      * @return A list of objects in the bucket.
      * 
      */
@@ -58,13 +53,6 @@ public final class GetObjectsResult {
     }
     public Optional<Boolean> fetchOwner() {
         return Optional.ofNullable(this.fetchOwner);
-    }
-    /**
-     * @return The provider-assigned unique ID for this managed resource.
-     * 
-     */
-    public String id() {
-        return this.id;
     }
     /**
      * @return A list of objects in the bucket.
@@ -100,7 +88,6 @@ public final class GetObjectsResult {
         private @Nullable String delimiter;
         private @Nullable String encodingType;
         private @Nullable Boolean fetchOwner;
-        private String id;
         private List<String> keys;
         private @Nullable Integer maxKeys;
         private List<String> owners;
@@ -114,7 +101,6 @@ public final class GetObjectsResult {
     	      this.delimiter = defaults.delimiter;
     	      this.encodingType = defaults.encodingType;
     	      this.fetchOwner = defaults.fetchOwner;
-    	      this.id = defaults.id;
     	      this.keys = defaults.keys;
     	      this.maxKeys = defaults.maxKeys;
     	      this.owners = defaults.owners;
@@ -157,14 +143,6 @@ public final class GetObjectsResult {
         public Builder fetchOwner(@Nullable Boolean fetchOwner) {
 
             this.fetchOwner = fetchOwner;
-            return this;
-        }
-        @CustomType.Setter
-        public Builder id(String id) {
-            if (id == null) {
-              throw new MissingRequiredPropertyException("GetObjectsResult", "id");
-            }
-            this.id = id;
             return this;
         }
         @CustomType.Setter
@@ -214,7 +192,6 @@ public final class GetObjectsResult {
             _resultValue.delimiter = delimiter;
             _resultValue.encodingType = encodingType;
             _resultValue.fetchOwner = fetchOwner;
-            _resultValue.id = id;
             _resultValue.keys = keys;
             _resultValue.maxKeys = maxKeys;
             _resultValue.owners = owners;

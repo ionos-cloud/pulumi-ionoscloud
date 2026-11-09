@@ -27,6 +27,8 @@ import (
 //
 // import (
 //
+//	"strconv"
+//
 //	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/compute"
 //	"github.com/pulumi/pulumi-random/sdk/go/random"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
@@ -66,7 +68,7 @@ import (
 //			_, err = compute.NewCubeServer(ctx, "example", &compute.CubeServerArgs{
 //				Name:          pulumi.String("Server Example"),
 //				ImageName:     pulumi.String("ubuntu:latest"),
-//				TemplateUuid:  pulumi.String(pulumi.String(example.Id)),
+//				TemplateUuid:  pulumi.String(example.Id),
 //				ImagePassword: serverImagePassword.Result,
 //				DatacenterId:  exampleDatacenter.ID(),
 //				Volume: &compute.CubeServerVolumeArgs{
@@ -75,7 +77,7 @@ import (
 //					DiskType:    pulumi.String("DAS"),
 //				},
 //				Nic: &compute.CubeServerNicArgs{
-//					Lan:            exampleLan.ID(),
+//					Lan:            exampleLan.ID().ToStringOutput().ApplyT(strconv.Atoi).(pulumi.IntOutput),
 //					Name:           pulumi.String("Nic Example"),
 //					Dhcp:           pulumi.Bool(true),
 //					FirewallActive: pulumi.Bool(true),
@@ -96,6 +98,8 @@ import (
 // package main
 //
 // import (
+//
+//	"strconv"
 //
 //	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/compute"
 //	"github.com/pulumi/pulumi-random/sdk/go/random"
@@ -139,7 +143,7 @@ import (
 //				DatacenterId:  exampleDatacenter.ID(),
 //				Public:        pulumi.Bool(true),
 //				Name:          pulumi.String("Lan Example"),
-//				Ipv6CidrBlock: invokeCidrsubnet.Result,
+//				Ipv6CidrBlock: invokeCidrsubnet.Result.(pulumi.String),
 //			})
 //			if err != nil {
 //				return err
@@ -196,7 +200,7 @@ import (
 //				Name:             pulumi.String("Server Example"),
 //				AvailabilityZone: pulumi.String("AUTO"),
 //				ImageName:        pulumi.String("ubuntu:latest"),
-//				TemplateUuid:     pulumi.String(pulumi.String(example.Id)),
+//				TemplateUuid:     pulumi.String(example.Id),
 //				ImagePassword:    serverImagePassword.Result,
 //				DatacenterId:     exampleDatacenter.ID(),
 //				Volume: &compute.CubeServerVolumeArgs{
@@ -205,7 +209,7 @@ import (
 //					DiskType:    pulumi.String("DAS"),
 //				},
 //				Nic: &compute.CubeServerNicArgs{
-//					Lan:  exampleLan.ID(),
+//					Lan:  exampleLan.ID().ToStringOutput().ApplyT(strconv.Atoi).(pulumi.IntOutput),
 //					Name: pulumi.String("Nic Example"),
 //					Dhcp: pulumi.Bool(true),
 //					Ips: pulumi.StringArray{
@@ -217,7 +221,7 @@ import (
 //						}).(pulumi.StringOutput),
 //					},
 //					Dhcpv6:        pulumi.Bool(false),
-//					Ipv6CidrBlock: invokeCidrsubnet1.Result,
+//					Ipv6CidrBlock: invokeCidrsubnet1.Result.(pulumi.String),
 //					Ipv6Ips: pulumi.StringArray{
 //						invokeCidrhost2.Result,
 //						invokeCidrhost3.Result,

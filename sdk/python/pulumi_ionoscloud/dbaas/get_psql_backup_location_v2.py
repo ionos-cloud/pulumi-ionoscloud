@@ -27,13 +27,10 @@ class GetPSQLBackupLocationV2Result:
     """
     A collection of values returned by getPSQLBackupLocationV2.
     """
-    def __init__(__self__, backup_locations=None, id=None, location=None):
+    def __init__(__self__, backup_locations=None, location=None):
         if backup_locations and not isinstance(backup_locations, list):
             raise TypeError("Expected argument 'backup_locations' to be a list")
         pulumi.set(__self__, "backup_locations", backup_locations)
-        if id and not isinstance(id, str):
-            raise TypeError("Expected argument 'id' to be a str")
-        pulumi.set(__self__, "id", id)
         if location and not isinstance(location, str):
             raise TypeError("Expected argument 'location' to be a str")
         pulumi.set(__self__, "location", location)
@@ -45,14 +42,6 @@ class GetPSQLBackupLocationV2Result:
         The list of available backup locations. Each backup location has the following attributes:
         """
         return pulumi.get(self, "backup_locations")
-
-    @_builtins.property
-    @pulumi.getter
-    def id(self) -> _builtins.str:
-        """
-        The provider-assigned unique ID for this managed resource.
-        """
-        return pulumi.get(self, "id")
 
     @_builtins.property
     @pulumi.getter
@@ -70,7 +59,6 @@ class AwaitableGetPSQLBackupLocationV2Result(GetPSQLBackupLocationV2Result):
             yield self
         return GetPSQLBackupLocationV2Result(
             backup_locations=self.backup_locations,
-            id=self.id,
             location=self.location)
 
 
@@ -99,7 +87,6 @@ def get_psql_backup_location_v2(location: Optional[_builtins.str] = None,
 
     return AwaitableGetPSQLBackupLocationV2Result(
         backup_locations=pulumi.get(__ret__, 'backup_locations'),
-        id=pulumi.get(__ret__, 'id'),
         location=pulumi.get(__ret__, 'location'))
 def get_psql_backup_location_v2_output(location: pulumi.Input[Optional[_builtins.str]] = None,
                                        opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetPSQLBackupLocationV2Result]:
@@ -125,5 +112,4 @@ def get_psql_backup_location_v2_output(location: pulumi.Input[Optional[_builtins
     __ret__ = pulumi.runtime.invoke_output('ionoscloud:dbaas/getPSQLBackupLocationV2:getPSQLBackupLocationV2', __args__, opts=opts, typ=GetPSQLBackupLocationV2Result)
     return __ret__.apply(lambda __response__: GetPSQLBackupLocationV2Result(
         backup_locations=pulumi.get(__response__, 'backup_locations'),
-        id=pulumi.get(__response__, 'id'),
         location=pulumi.get(__response__, 'location')))

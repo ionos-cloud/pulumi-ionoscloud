@@ -13,11 +13,6 @@ import java.util.Objects;
 @CustomType
 public final class GetUserBucketResult {
     /**
-     * @return The provider-assigned unique ID for this managed resource.
-     * 
-     */
-    private String id;
-    /**
      * @return The name of the bucket.
      * 
      */
@@ -39,13 +34,6 @@ public final class GetUserBucketResult {
     private Map<String,String> tags;
 
     private GetUserBucketResult() {}
-    /**
-     * @return The provider-assigned unique ID for this managed resource.
-     * 
-     */
-    public String id() {
-        return this.id;
-    }
     /**
      * @return The name of the bucket.
      * 
@@ -84,7 +72,6 @@ public final class GetUserBucketResult {
     }
     @CustomType.Builder
     public static final class Builder {
-        private String id;
         private String name;
         private Boolean objectLockEnabled;
         private String region;
@@ -92,21 +79,12 @@ public final class GetUserBucketResult {
         public Builder() {}
         public Builder(GetUserBucketResult defaults) {
     	      Objects.requireNonNull(defaults);
-    	      this.id = defaults.id;
     	      this.name = defaults.name;
     	      this.objectLockEnabled = defaults.objectLockEnabled;
     	      this.region = defaults.region;
     	      this.tags = defaults.tags;
         }
 
-        @CustomType.Setter
-        public Builder id(String id) {
-            if (id == null) {
-              throw new MissingRequiredPropertyException("GetUserBucketResult", "id");
-            }
-            this.id = id;
-            return this;
-        }
         @CustomType.Setter
         public Builder name(String name) {
             if (name == null) {
@@ -141,7 +119,6 @@ public final class GetUserBucketResult {
         }
         public GetUserBucketResult build() {
             final var _resultValue = new GetUserBucketResult();
-            _resultValue.id = id;
             _resultValue.name = name;
             _resultValue.objectLockEnabled = objectLockEnabled;
             _resultValue.region = region;

@@ -118,12 +118,8 @@ type LookupIpsecGatewayResult struct {
 }
 
 func LookupIpsecGatewayOutput(ctx *pulumi.Context, args LookupIpsecGatewayOutputArgs, opts ...pulumi.InvokeOption) LookupIpsecGatewayResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupIpsecGatewayResultOutput, error) {
-			args := v.(LookupIpsecGatewayArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("ionoscloud:vpn/getIpsecGateway:getIpsecGateway", args, LookupIpsecGatewayResultOutput{}, options).(LookupIpsecGatewayResultOutput), nil
-		}).(LookupIpsecGatewayResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("ionoscloud:vpn/getIpsecGateway:getIpsecGateway", args, LookupIpsecGatewayResultOutput{}, options).(LookupIpsecGatewayResultOutput)
 }
 
 // A collection of arguments for invoking getIpsecGateway.

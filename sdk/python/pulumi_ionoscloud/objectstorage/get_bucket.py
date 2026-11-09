@@ -26,24 +26,13 @@ class GetBucketResult:
     """
     A collection of values returned by getBucket.
     """
-    def __init__(__self__, id=None, name=None, region=None):
-        if id and not isinstance(id, str):
-            raise TypeError("Expected argument 'id' to be a str")
-        pulumi.set(__self__, "id", id)
+    def __init__(__self__, name=None, region=None):
         if name and not isinstance(name, str):
             raise TypeError("Expected argument 'name' to be a str")
         pulumi.set(__self__, "name", name)
         if region and not isinstance(region, str):
             raise TypeError("Expected argument 'region' to be a str")
         pulumi.set(__self__, "region", region)
-
-    @_builtins.property
-    @pulumi.getter
-    def id(self) -> _builtins.str:
-        """
-        The provider-assigned unique ID for this managed resource.
-        """
-        return pulumi.get(self, "id")
 
     @_builtins.property
     @pulumi.getter
@@ -65,7 +54,6 @@ class AwaitableGetBucketResult(GetBucketResult):
         if False:
             yield self
         return GetBucketResult(
-            id=self.id,
             name=self.name,
             region=self.region)
 
@@ -95,7 +83,6 @@ def get_bucket(name: Optional[_builtins.str] = None,
     __ret__ = pulumi.runtime.invoke('ionoscloud:objectstorage/getBucket:getBucket', __args__, opts=opts, typ=GetBucketResult).value
 
     return AwaitableGetBucketResult(
-        id=pulumi.get(__ret__, 'id'),
         name=pulumi.get(__ret__, 'name'),
         region=pulumi.get(__ret__, 'region'))
 def get_bucket_output(name: pulumi.Input[Optional[_builtins.str]] = None,
@@ -122,6 +109,5 @@ def get_bucket_output(name: pulumi.Input[Optional[_builtins.str]] = None,
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('ionoscloud:objectstorage/getBucket:getBucket', __args__, opts=opts, typ=GetBucketResult)
     return __ret__.apply(lambda __response__: GetBucketResult(
-        id=pulumi.get(__response__, 'id'),
         name=pulumi.get(__response__, 'name'),
         region=pulumi.get(__response__, 'region')))

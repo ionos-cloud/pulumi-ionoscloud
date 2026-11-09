@@ -4311,7 +4311,7 @@ export namespace dbaas {
          *           Note the following unavailable IP ranges:
          *           10.233.64.0/18
          *           10.233.0.0/18
-         *           10.233.114.0/24 		
+         *           10.233.114.0/24
          *  example: [192.168.1.100/24, 192.168.1.101/24]
          */
         cidrLists: string[];
@@ -5685,7 +5685,7 @@ export namespace nfs {
         ipAddress: string;
         /**
          * The Private LAN to which the Network File Storage cluster must be connected.
-         * -
+         * ---
          * > **⚠ NOTE:** `IONOS_API_URL_NFS` can be used to set a custom API URL for the resource. `location` field needs to be empty, otherwise it will override the custom API URL. Setting `endpoint` or `IONOS_API_URL` does not have any effect.
          */
         lan: string;

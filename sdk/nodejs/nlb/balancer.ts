@@ -52,8 +52,8 @@ import * as utilities from "../utilities";
  * const example = new ionoscloud.nlb.Balancer("example", {
  *     datacenterId: exampleIonoscloudDatacenter.id,
  *     name: "nlb with flowlog",
- *     listenerLan: Number(example1.id),
- *     targetLan: Number(example2.id),
+ *     listenerLan: example1.id,
+ *     targetLan: example2.id,
  *     ips: ["10.12.118.224"],
  *     lbPrivateIps: ["10.13.72.225/24"],
  *     flowlog: {

@@ -42,10 +42,6 @@ export interface GetInMemoryDBVersionsV2Args {
  */
 export interface GetInMemoryDBVersionsV2Result {
     /**
-     * The provider-assigned unique ID for this managed resource.
-     */
-    readonly id: string;
-    /**
      * List of versions. Each item includes:
      */
     readonly items: outputs.dbaas.GetInMemoryDBVersionsV2Item[];

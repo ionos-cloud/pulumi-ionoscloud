@@ -56,20 +56,14 @@ type GetInMemoryDBVersionsV2Args struct {
 
 // A collection of values returned by getInMemoryDBVersionsV2.
 type GetInMemoryDBVersionsV2Result struct {
-	// The provider-assigned unique ID for this managed resource.
-	Id string `pulumi:"id"`
 	// List of versions. Each item includes:
 	Items    []GetInMemoryDBVersionsV2Item `pulumi:"items"`
 	Location string                        `pulumi:"location"`
 }
 
 func GetInMemoryDBVersionsV2Output(ctx *pulumi.Context, args GetInMemoryDBVersionsV2OutputArgs, opts ...pulumi.InvokeOption) GetInMemoryDBVersionsV2ResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (GetInMemoryDBVersionsV2ResultOutput, error) {
-			args := v.(GetInMemoryDBVersionsV2Args)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("ionoscloud:dbaas/getInMemoryDBVersionsV2:getInMemoryDBVersionsV2", args, GetInMemoryDBVersionsV2ResultOutput{}, options).(GetInMemoryDBVersionsV2ResultOutput), nil
-		}).(GetInMemoryDBVersionsV2ResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("ionoscloud:dbaas/getInMemoryDBVersionsV2:getInMemoryDBVersionsV2", args, GetInMemoryDBVersionsV2ResultOutput{}, options).(GetInMemoryDBVersionsV2ResultOutput)
 }
 
 // A collection of arguments for invoking getInMemoryDBVersionsV2.
@@ -95,11 +89,6 @@ func (o GetInMemoryDBVersionsV2ResultOutput) ToGetInMemoryDBVersionsV2ResultOutp
 
 func (o GetInMemoryDBVersionsV2ResultOutput) ToGetInMemoryDBVersionsV2ResultOutputWithContext(ctx context.Context) GetInMemoryDBVersionsV2ResultOutput {
 	return o
-}
-
-// The provider-assigned unique ID for this managed resource.
-func (o GetInMemoryDBVersionsV2ResultOutput) Id() pulumi.StringOutput {
-	return o.ApplyT(func(v GetInMemoryDBVersionsV2Result) string { return v.Id }).(pulumi.StringOutput)
 }
 
 // List of versions. Each item includes:

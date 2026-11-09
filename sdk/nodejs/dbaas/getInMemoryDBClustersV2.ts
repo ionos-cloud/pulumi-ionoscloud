@@ -51,10 +51,6 @@ export interface GetInMemoryDBClustersV2Args {
  */
 export interface GetInMemoryDBClustersV2Result {
     /**
-     * The provider-assigned unique ID for this managed resource.
-     */
-    readonly id: string;
-    /**
      * List of clusters. Each item exposes the same attributes as the ionoscloud.dbaas.InMemoryDBClusterV2 data source. Note that `credentials.password` is not available — only `credentials.username` is returned by the API.
      */
     readonly items: outputs.dbaas.GetInMemoryDBClustersV2Item[];

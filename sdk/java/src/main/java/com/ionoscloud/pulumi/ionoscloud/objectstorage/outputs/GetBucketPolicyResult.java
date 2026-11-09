@@ -12,11 +12,6 @@ import java.util.Objects;
 public final class GetBucketPolicyResult {
     private String bucket;
     /**
-     * @return The provider-assigned unique ID for this managed resource.
-     * 
-     */
-    private String id;
-    /**
      * @return The policy of the bucket.
      * 
      */
@@ -25,13 +20,6 @@ public final class GetBucketPolicyResult {
     private GetBucketPolicyResult() {}
     public String bucket() {
         return this.bucket;
-    }
-    /**
-     * @return The provider-assigned unique ID for this managed resource.
-     * 
-     */
-    public String id() {
-        return this.id;
     }
     /**
      * @return The policy of the bucket.
@@ -51,13 +39,11 @@ public final class GetBucketPolicyResult {
     @CustomType.Builder
     public static final class Builder {
         private String bucket;
-        private String id;
         private String policy;
         public Builder() {}
         public Builder(GetBucketPolicyResult defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.bucket = defaults.bucket;
-    	      this.id = defaults.id;
     	      this.policy = defaults.policy;
         }
 
@@ -67,14 +53,6 @@ public final class GetBucketPolicyResult {
               throw new MissingRequiredPropertyException("GetBucketPolicyResult", "bucket");
             }
             this.bucket = bucket;
-            return this;
-        }
-        @CustomType.Setter
-        public Builder id(String id) {
-            if (id == null) {
-              throw new MissingRequiredPropertyException("GetBucketPolicyResult", "id");
-            }
-            this.id = id;
             return this;
         }
         @CustomType.Setter
@@ -88,7 +66,6 @@ public final class GetBucketPolicyResult {
         public GetBucketPolicyResult build() {
             final var _resultValue = new GetBucketPolicyResult();
             _resultValue.bucket = bucket;
-            _resultValue.id = id;
             _resultValue.policy = policy;
             return _resultValue;
         }

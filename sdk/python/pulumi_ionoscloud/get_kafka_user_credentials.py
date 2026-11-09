@@ -114,7 +114,7 @@ class AwaitableGetKafkaUserCredentialsResult(GetKafkaUserCredentialsResult):
 def get_kafka_user_credentials(cluster_id: Optional[_builtins.str] = None,
                                id: Optional[_builtins.str] = None,
                                location: Optional[_builtins.str] = None,
-                               timeouts: Optional[Union['GetKafkaUserCredentialsTimeoutsArgs', 'GetKafkaUserCredentialsTimeoutsArgsDict']] = None,
+                               timeouts: Optional[Union['GetKafkaUserCredentialsTimeoutsArgs', 'GetKafkaUserCredentialsTimeoutsArgsDict', 'outputs.GetKafkaUserCredentialsTimeoutsResult']] = None,
                                username: Optional[_builtins.str] = None,
                                opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetKafkaUserCredentialsResult:
     """
@@ -187,7 +187,7 @@ def get_kafka_user_credentials(cluster_id: Optional[_builtins.str] = None,
 def get_kafka_user_credentials_output(cluster_id: pulumi.Input[Optional[_builtins.str]] = None,
                                       id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                                       location: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
-                                      timeouts: pulumi.Input[Optional[Optional[Union['GetKafkaUserCredentialsTimeoutsArgs', 'GetKafkaUserCredentialsTimeoutsArgsDict']]]] = None,
+                                      timeouts: pulumi.Input[Optional[Optional[Union['GetKafkaUserCredentialsTimeoutsArgs', 'GetKafkaUserCredentialsTimeoutsArgsDict', 'outputs.GetKafkaUserCredentialsTimeoutsResult']]]] = None,
                                       username: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                                       opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetKafkaUserCredentialsResult]:
     """

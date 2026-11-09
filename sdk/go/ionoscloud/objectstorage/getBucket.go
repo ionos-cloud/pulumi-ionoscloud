@@ -58,20 +58,14 @@ type LookupBucketArgs struct {
 
 // A collection of values returned by getBucket.
 type LookupBucketResult struct {
-	// The provider-assigned unique ID for this managed resource.
-	Id   string `pulumi:"id"`
 	Name string `pulumi:"name"`
 	// The region where the bucket is located.
 	Region string `pulumi:"region"`
 }
 
 func LookupBucketOutput(ctx *pulumi.Context, args LookupBucketOutputArgs, opts ...pulumi.InvokeOption) LookupBucketResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupBucketResultOutput, error) {
-			args := v.(LookupBucketArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("ionoscloud:objectstorage/getBucket:getBucket", args, LookupBucketResultOutput{}, options).(LookupBucketResultOutput), nil
-		}).(LookupBucketResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("ionoscloud:objectstorage/getBucket:getBucket", args, LookupBucketResultOutput{}, options).(LookupBucketResultOutput)
 }
 
 // A collection of arguments for invoking getBucket.
@@ -97,11 +91,6 @@ func (o LookupBucketResultOutput) ToLookupBucketResultOutput() LookupBucketResul
 
 func (o LookupBucketResultOutput) ToLookupBucketResultOutputWithContext(ctx context.Context) LookupBucketResultOutput {
 	return o
-}
-
-// The provider-assigned unique ID for this managed resource.
-func (o LookupBucketResultOutput) Id() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupBucketResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
 func (o LookupBucketResultOutput) Name() pulumi.StringOutput {

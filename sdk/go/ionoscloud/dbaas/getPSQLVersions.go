@@ -91,12 +91,8 @@ type GetPSQLVersionsResult struct {
 }
 
 func GetPSQLVersionsOutput(ctx *pulumi.Context, args GetPSQLVersionsOutputArgs, opts ...pulumi.InvokeOption) GetPSQLVersionsResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (GetPSQLVersionsResultOutput, error) {
-			args := v.(GetPSQLVersionsArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("ionoscloud:dbaas/getPSQLVersions:getPSQLVersions", args, GetPSQLVersionsResultOutput{}, options).(GetPSQLVersionsResultOutput), nil
-		}).(GetPSQLVersionsResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("ionoscloud:dbaas/getPSQLVersions:getPSQLVersions", args, GetPSQLVersionsResultOutput{}, options).(GetPSQLVersionsResultOutput)
 }
 
 // A collection of arguments for invoking getPSQLVersions.

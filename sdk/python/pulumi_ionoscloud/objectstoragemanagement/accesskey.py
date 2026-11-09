@@ -171,7 +171,7 @@ class Accesskey(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  description: pulumi.Input[Optional[_builtins.str]] = None,
-                 timeouts: pulumi.Input[Optional[Union['AccesskeyTimeoutsArgs', 'AccesskeyTimeoutsArgsDict']]] = None,
+                 timeouts: pulumi.Input[Optional[Union['AccesskeyTimeoutsArgs', 'AccesskeyTimeoutsArgsDict', 'outputs.AccesskeyTimeouts']]] = None,
                  __props__=None):
         """
         Manages an [Object Storage Accesskey](https://docs.ionos.com/cloud/storage-and-backup/ionos-object-storage/concepts/key-management) on IONOS CLOUD.
@@ -203,7 +203,7 @@ class Accesskey(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] description: [string] Description of the Access key.
-        :param pulumi.Input[Union['AccesskeyTimeoutsArgs', 'AccesskeyTimeoutsArgsDict']] timeouts: Timeouts for this resource.
+        :param pulumi.Input[Union['AccesskeyTimeoutsArgs', 'AccesskeyTimeoutsArgsDict', 'outputs.AccesskeyTimeouts']] timeouts: Timeouts for this resource.
         """
         ...
     @overload
@@ -254,7 +254,7 @@ class Accesskey(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  description: pulumi.Input[Optional[_builtins.str]] = None,
-                 timeouts: pulumi.Input[Optional[Union['AccesskeyTimeoutsArgs', 'AccesskeyTimeoutsArgsDict']]] = None,
+                 timeouts: pulumi.Input[Optional[Union['AccesskeyTimeoutsArgs', 'AccesskeyTimeoutsArgsDict', 'outputs.AccesskeyTimeouts']]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -287,7 +287,7 @@ class Accesskey(pulumi.CustomResource):
             contract_user_id: pulumi.Input[Optional[_builtins.str]] = None,
             description: pulumi.Input[Optional[_builtins.str]] = None,
             secretkey: pulumi.Input[Optional[_builtins.str]] = None,
-            timeouts: pulumi.Input[Optional[Union['AccesskeyTimeoutsArgs', 'AccesskeyTimeoutsArgsDict']]] = None) -> 'Accesskey':
+            timeouts: pulumi.Input[Optional[Union['AccesskeyTimeoutsArgs', 'AccesskeyTimeoutsArgsDict', 'outputs.AccesskeyTimeouts']]] = None) -> 'Accesskey':
         """
         Get an existing Accesskey resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -300,7 +300,7 @@ class Accesskey(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] contract_user_id: The contract user ID which is valid for contract-owned buckets
         :param pulumi.Input[_builtins.str] description: [string] Description of the Access key.
         :param pulumi.Input[_builtins.str] secretkey: The secret key of the Access key.
-        :param pulumi.Input[Union['AccesskeyTimeoutsArgs', 'AccesskeyTimeoutsArgsDict']] timeouts: Timeouts for this resource.
+        :param pulumi.Input[Union['AccesskeyTimeoutsArgs', 'AccesskeyTimeoutsArgsDict', 'outputs.AccesskeyTimeouts']] timeouts: Timeouts for this resource.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 

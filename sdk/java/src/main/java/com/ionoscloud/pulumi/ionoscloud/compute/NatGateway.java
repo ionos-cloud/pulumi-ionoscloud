@@ -74,8 +74,8 @@ import javax.annotation.Nullable;
  *             .datacenterId(example.id())
  *             .name("example")
  *             .publicIps(            
- *                 exampleIPBlock.ips().applyValue(_ips -> _ips[0]),
- *                 exampleIPBlock.ips().applyValue(_ips -> _ips[1]))
+ *                 exampleIPBlock.ips().applyValue(_ips -> _ips.get(0)),
+ *                 exampleIPBlock.ips().applyValue(_ips -> _ips.get(1)))
  *             .lans(NatGatewayLanArgs.builder()
  *                 .id(exampleLan.id())
  *                 .gatewayIps("10.11.2.5")

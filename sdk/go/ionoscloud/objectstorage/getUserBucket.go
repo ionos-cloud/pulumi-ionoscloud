@@ -61,8 +61,6 @@ type LookupUserBucketArgs struct {
 
 // A collection of values returned by getUserBucket.
 type LookupUserBucketResult struct {
-	// The provider-assigned unique ID for this managed resource.
-	Id string `pulumi:"id"`
 	// The name of the bucket.
 	Name string `pulumi:"name"`
 	// Whether Object Lock is enabled for the bucket.
@@ -74,12 +72,8 @@ type LookupUserBucketResult struct {
 }
 
 func LookupUserBucketOutput(ctx *pulumi.Context, args LookupUserBucketOutputArgs, opts ...pulumi.InvokeOption) LookupUserBucketResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupUserBucketResultOutput, error) {
-			args := v.(LookupUserBucketArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("ionoscloud:objectstorage/getUserBucket:getUserBucket", args, LookupUserBucketResultOutput{}, options).(LookupUserBucketResultOutput), nil
-		}).(LookupUserBucketResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("ionoscloud:objectstorage/getUserBucket:getUserBucket", args, LookupUserBucketResultOutput{}, options).(LookupUserBucketResultOutput)
 }
 
 // A collection of arguments for invoking getUserBucket.
@@ -107,11 +101,6 @@ func (o LookupUserBucketResultOutput) ToLookupUserBucketResultOutput() LookupUse
 
 func (o LookupUserBucketResultOutput) ToLookupUserBucketResultOutputWithContext(ctx context.Context) LookupUserBucketResultOutput {
 	return o
-}
-
-// The provider-assigned unique ID for this managed resource.
-func (o LookupUserBucketResultOutput) Id() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupUserBucketResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
 // The name of the bucket.

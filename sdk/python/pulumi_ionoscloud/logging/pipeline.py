@@ -202,7 +202,7 @@ class Pipeline(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  location: pulumi.Input[Optional[_builtins.str]] = None,
-                 logs: pulumi.Input[Optional[Sequence[pulumi.Input[Union['PipelineLogArgs', 'PipelineLogArgsDict']]]]] = None,
+                 logs: pulumi.Input[Optional[Sequence[pulumi.Input[Union['PipelineLogArgs', 'PipelineLogArgsDict', 'outputs.PipelineLog']]]]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
@@ -267,7 +267,7 @@ class Pipeline(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] location: [string] The location of the Logging pipeline. Default: `de/txl`. Available locations: `de/fra`, `de/fra/1`, `de/fra/2`, `de/txl`, `es/vit`, `gb/lhr`, `fr/par`. If this is not set and if no value is provided for the `IONOS_API_URL_LOGGING` env var, the default `location` will be: `de/txl`.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['PipelineLogArgs', 'PipelineLogArgsDict']]]] logs: [list] Pipeline logs, a list that contains elements with the following structure:
+        :param pulumi.Input[Sequence[pulumi.Input[Union['PipelineLogArgs', 'PipelineLogArgsDict', 'outputs.PipelineLog']]]] logs: [list] Pipeline logs, a list that contains elements with the following structure:
         :param pulumi.Input[_builtins.str] name: [string] The name of the Logging pipeline.
         """
         ...
@@ -351,7 +351,7 @@ class Pipeline(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  location: pulumi.Input[Optional[_builtins.str]] = None,
-                 logs: pulumi.Input[Optional[Sequence[pulumi.Input[Union['PipelineLogArgs', 'PipelineLogArgsDict']]]]] = None,
+                 logs: pulumi.Input[Optional[Sequence[pulumi.Input[Union['PipelineLogArgs', 'PipelineLogArgsDict', 'outputs.PipelineLog']]]]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -387,7 +387,7 @@ class Pipeline(pulumi.CustomResource):
             http_address: pulumi.Input[Optional[_builtins.str]] = None,
             key: pulumi.Input[Optional[_builtins.str]] = None,
             location: pulumi.Input[Optional[_builtins.str]] = None,
-            logs: pulumi.Input[Optional[Sequence[pulumi.Input[Union['PipelineLogArgs', 'PipelineLogArgsDict']]]]] = None,
+            logs: pulumi.Input[Optional[Sequence[pulumi.Input[Union['PipelineLogArgs', 'PipelineLogArgsDict', 'outputs.PipelineLog']]]]] = None,
             name: pulumi.Input[Optional[_builtins.str]] = None,
             tcp_address: pulumi.Input[Optional[_builtins.str]] = None) -> 'Pipeline':
         """
@@ -401,7 +401,7 @@ class Pipeline(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] http_address: [string] The HTTP address of the pipeline. This is the address to which logs are sent using the HTTP protocol.
         :param pulumi.Input[_builtins.str] key: [string] The key is shared once and is used to authenticate the logs sent to the pipeline
         :param pulumi.Input[_builtins.str] location: [string] The location of the Logging pipeline. Default: `de/txl`. Available locations: `de/fra`, `de/fra/1`, `de/fra/2`, `de/txl`, `es/vit`, `gb/lhr`, `fr/par`. If this is not set and if no value is provided for the `IONOS_API_URL_LOGGING` env var, the default `location` will be: `de/txl`.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['PipelineLogArgs', 'PipelineLogArgsDict']]]] logs: [list] Pipeline logs, a list that contains elements with the following structure:
+        :param pulumi.Input[Sequence[pulumi.Input[Union['PipelineLogArgs', 'PipelineLogArgsDict', 'outputs.PipelineLog']]]] logs: [list] Pipeline logs, a list that contains elements with the following structure:
         :param pulumi.Input[_builtins.str] name: [string] The name of the Logging pipeline.
         :param pulumi.Input[_builtins.str] tcp_address: [string] The TCP address of the pipeline. This is the address to which logs are sent using the TCP protocol.
         """

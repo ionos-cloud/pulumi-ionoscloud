@@ -13,11 +13,6 @@ import java.util.Objects;
 @CustomType
 public final class GetInMemoryDBSnapshotLocationsV2Result {
     /**
-     * @return The provider-assigned unique ID for this managed resource.
-     * 
-     */
-    private String id;
-    /**
      * @return List of snapshot location objects. Each item includes:
      * 
      */
@@ -25,13 +20,6 @@ public final class GetInMemoryDBSnapshotLocationsV2Result {
     private String location;
 
     private GetInMemoryDBSnapshotLocationsV2Result() {}
-    /**
-     * @return The provider-assigned unique ID for this managed resource.
-     * 
-     */
-    public String id() {
-        return this.id;
-    }
     /**
      * @return List of snapshot location objects. Each item includes:
      * 
@@ -52,25 +40,15 @@ public final class GetInMemoryDBSnapshotLocationsV2Result {
     }
     @CustomType.Builder
     public static final class Builder {
-        private String id;
         private List<GetInMemoryDBSnapshotLocationsV2Item> items;
         private String location;
         public Builder() {}
         public Builder(GetInMemoryDBSnapshotLocationsV2Result defaults) {
     	      Objects.requireNonNull(defaults);
-    	      this.id = defaults.id;
     	      this.items = defaults.items;
     	      this.location = defaults.location;
         }
 
-        @CustomType.Setter
-        public Builder id(String id) {
-            if (id == null) {
-              throw new MissingRequiredPropertyException("GetInMemoryDBSnapshotLocationsV2Result", "id");
-            }
-            this.id = id;
-            return this;
-        }
         @CustomType.Setter
         public Builder items(List<GetInMemoryDBSnapshotLocationsV2Item> items) {
             if (items == null) {
@@ -92,7 +70,6 @@ public final class GetInMemoryDBSnapshotLocationsV2Result {
         }
         public GetInMemoryDBSnapshotLocationsV2Result build() {
             final var _resultValue = new GetInMemoryDBSnapshotLocationsV2Result();
-            _resultValue.id = id;
             _resultValue.items = items;
             _resultValue.location = location;
             return _resultValue;

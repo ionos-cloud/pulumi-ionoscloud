@@ -565,15 +565,15 @@ class MongoCluster(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 backup: pulumi.Input[Optional[Union['MongoClusterBackupArgs', 'MongoClusterBackupArgsDict']]] = None,
-                 bi_connector: pulumi.Input[Optional[Union['MongoClusterBiConnectorArgs', 'MongoClusterBiConnectorArgsDict']]] = None,
-                 connections: pulumi.Input[Optional[Union['MongoClusterConnectionsArgs', 'MongoClusterConnectionsArgsDict']]] = None,
+                 backup: pulumi.Input[Optional[Union['MongoClusterBackupArgs', 'MongoClusterBackupArgsDict', 'outputs.MongoClusterBackup']]] = None,
+                 bi_connector: pulumi.Input[Optional[Union['MongoClusterBiConnectorArgs', 'MongoClusterBiConnectorArgsDict', 'outputs.MongoClusterBiConnector']]] = None,
+                 connections: pulumi.Input[Optional[Union['MongoClusterConnectionsArgs', 'MongoClusterConnectionsArgsDict', 'outputs.MongoClusterConnections']]] = None,
                  cores: pulumi.Input[Optional[_builtins.int]] = None,
                  display_name: pulumi.Input[Optional[_builtins.str]] = None,
                  edition: pulumi.Input[Optional[_builtins.str]] = None,
                  instances: pulumi.Input[Optional[_builtins.int]] = None,
                  location: pulumi.Input[Optional[_builtins.str]] = None,
-                 maintenance_window: pulumi.Input[Optional[Union['MongoClusterMaintenanceWindowArgs', 'MongoClusterMaintenanceWindowArgsDict']]] = None,
+                 maintenance_window: pulumi.Input[Optional[Union['MongoClusterMaintenanceWindowArgs', 'MongoClusterMaintenanceWindowArgsDict', 'outputs.MongoClusterMaintenanceWindow']]] = None,
                  mongodb_version: pulumi.Input[Optional[_builtins.str]] = None,
                  ram: pulumi.Input[Optional[_builtins.int]] = None,
                  shards: pulumi.Input[Optional[_builtins.int]] = None,
@@ -682,15 +682,15 @@ class MongoCluster(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Union['MongoClusterBackupArgs', 'MongoClusterBackupArgsDict']] backup: [list]
-        :param pulumi.Input[Union['MongoClusterBiConnectorArgs', 'MongoClusterBiConnectorArgsDict']] bi_connector: (Computed)The MongoDB Connector for Business Intelligence allows you to query a MongoDB database using SQL commands to aid in data analysis.
-        :param pulumi.Input[Union['MongoClusterConnectionsArgs', 'MongoClusterConnectionsArgsDict']] connections: [List] Details about the network connection for your cluster. Updates to the value of the field force the cluster to be re-created.
+        :param pulumi.Input[Union['MongoClusterBackupArgs', 'MongoClusterBackupArgsDict', 'outputs.MongoClusterBackup']] backup: [list]
+        :param pulumi.Input[Union['MongoClusterBiConnectorArgs', 'MongoClusterBiConnectorArgsDict', 'outputs.MongoClusterBiConnector']] bi_connector: (Computed)The MongoDB Connector for Business Intelligence allows you to query a MongoDB database using SQL commands to aid in data analysis.
+        :param pulumi.Input[Union['MongoClusterConnectionsArgs', 'MongoClusterConnectionsArgsDict', 'outputs.MongoClusterConnections']] connections: [List] Details about the network connection for your cluster. Updates to the value of the field force the cluster to be re-created.
         :param pulumi.Input[_builtins.int] cores: (Computed)[int] The number of CPU cores per replica. Required for enterprise edition.
         :param pulumi.Input[_builtins.str] display_name: [string] The name of your cluster. Updates to the value of the field force the cluster to be re-created.
         :param pulumi.Input[_builtins.str] edition: (Computed)[string] Cluster edition. Playground, business or enterprise.
         :param pulumi.Input[_builtins.int] instances: [int] The total number of instances in the cluster (one master and n-1 standbys). Example: 1, 3, 5, 7. Updates to the value of the field force the cluster to be re-created.
         :param pulumi.Input[_builtins.str] location: [string] The physical location where the cluster will be created. Property cannot be modified after datacenter creation (disallowed in update requests). Available locations: `de/fra`, `us/las`, `us/ewr`, `de/txl`, `gb/lhr`, `gb/bhx`, `es/vit`, `fr/par`, `us/mci`, `de/fra/1`, `de/fra/2`. Update forces cluster re-creation.
-        :param pulumi.Input[Union['MongoClusterMaintenanceWindowArgs', 'MongoClusterMaintenanceWindowArgsDict']] maintenance_window: (Computed) A weekly 4 hour-long window, during which maintenance might occur.  Updates to the value of the field force the cluster to be re-created.
+        :param pulumi.Input[Union['MongoClusterMaintenanceWindowArgs', 'MongoClusterMaintenanceWindowArgsDict', 'outputs.MongoClusterMaintenanceWindow']] maintenance_window: (Computed) A weekly 4 hour-long window, during which maintenance might occur.  Updates to the value of the field force the cluster to be re-created.
         :param pulumi.Input[_builtins.str] mongodb_version: [string] The MongoDB version of your cluster. Downgrade is not possible and will throw an error.
         :param pulumi.Input[_builtins.int] ram: (Computed)[int]The amount of memory per instance in megabytes. Required for enterprise edition.
         :param pulumi.Input[_builtins.int] shards: [int]The total number of shards in the cluster.
@@ -818,15 +818,15 @@ class MongoCluster(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 backup: pulumi.Input[Optional[Union['MongoClusterBackupArgs', 'MongoClusterBackupArgsDict']]] = None,
-                 bi_connector: pulumi.Input[Optional[Union['MongoClusterBiConnectorArgs', 'MongoClusterBiConnectorArgsDict']]] = None,
-                 connections: pulumi.Input[Optional[Union['MongoClusterConnectionsArgs', 'MongoClusterConnectionsArgsDict']]] = None,
+                 backup: pulumi.Input[Optional[Union['MongoClusterBackupArgs', 'MongoClusterBackupArgsDict', 'outputs.MongoClusterBackup']]] = None,
+                 bi_connector: pulumi.Input[Optional[Union['MongoClusterBiConnectorArgs', 'MongoClusterBiConnectorArgsDict', 'outputs.MongoClusterBiConnector']]] = None,
+                 connections: pulumi.Input[Optional[Union['MongoClusterConnectionsArgs', 'MongoClusterConnectionsArgsDict', 'outputs.MongoClusterConnections']]] = None,
                  cores: pulumi.Input[Optional[_builtins.int]] = None,
                  display_name: pulumi.Input[Optional[_builtins.str]] = None,
                  edition: pulumi.Input[Optional[_builtins.str]] = None,
                  instances: pulumi.Input[Optional[_builtins.int]] = None,
                  location: pulumi.Input[Optional[_builtins.str]] = None,
-                 maintenance_window: pulumi.Input[Optional[Union['MongoClusterMaintenanceWindowArgs', 'MongoClusterMaintenanceWindowArgsDict']]] = None,
+                 maintenance_window: pulumi.Input[Optional[Union['MongoClusterMaintenanceWindowArgs', 'MongoClusterMaintenanceWindowArgsDict', 'outputs.MongoClusterMaintenanceWindow']]] = None,
                  mongodb_version: pulumi.Input[Optional[_builtins.str]] = None,
                  ram: pulumi.Input[Optional[_builtins.int]] = None,
                  shards: pulumi.Input[Optional[_builtins.int]] = None,
@@ -880,16 +880,16 @@ class MongoCluster(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            backup: pulumi.Input[Optional[Union['MongoClusterBackupArgs', 'MongoClusterBackupArgsDict']]] = None,
-            bi_connector: pulumi.Input[Optional[Union['MongoClusterBiConnectorArgs', 'MongoClusterBiConnectorArgsDict']]] = None,
+            backup: pulumi.Input[Optional[Union['MongoClusterBackupArgs', 'MongoClusterBackupArgsDict', 'outputs.MongoClusterBackup']]] = None,
+            bi_connector: pulumi.Input[Optional[Union['MongoClusterBiConnectorArgs', 'MongoClusterBiConnectorArgsDict', 'outputs.MongoClusterBiConnector']]] = None,
             connection_string: pulumi.Input[Optional[_builtins.str]] = None,
-            connections: pulumi.Input[Optional[Union['MongoClusterConnectionsArgs', 'MongoClusterConnectionsArgsDict']]] = None,
+            connections: pulumi.Input[Optional[Union['MongoClusterConnectionsArgs', 'MongoClusterConnectionsArgsDict', 'outputs.MongoClusterConnections']]] = None,
             cores: pulumi.Input[Optional[_builtins.int]] = None,
             display_name: pulumi.Input[Optional[_builtins.str]] = None,
             edition: pulumi.Input[Optional[_builtins.str]] = None,
             instances: pulumi.Input[Optional[_builtins.int]] = None,
             location: pulumi.Input[Optional[_builtins.str]] = None,
-            maintenance_window: pulumi.Input[Optional[Union['MongoClusterMaintenanceWindowArgs', 'MongoClusterMaintenanceWindowArgsDict']]] = None,
+            maintenance_window: pulumi.Input[Optional[Union['MongoClusterMaintenanceWindowArgs', 'MongoClusterMaintenanceWindowArgsDict', 'outputs.MongoClusterMaintenanceWindow']]] = None,
             mongodb_version: pulumi.Input[Optional[_builtins.str]] = None,
             ram: pulumi.Input[Optional[_builtins.int]] = None,
             shards: pulumi.Input[Optional[_builtins.int]] = None,
@@ -904,16 +904,16 @@ class MongoCluster(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Union['MongoClusterBackupArgs', 'MongoClusterBackupArgsDict']] backup: [list]
-        :param pulumi.Input[Union['MongoClusterBiConnectorArgs', 'MongoClusterBiConnectorArgsDict']] bi_connector: (Computed)The MongoDB Connector for Business Intelligence allows you to query a MongoDB database using SQL commands to aid in data analysis.
+        :param pulumi.Input[Union['MongoClusterBackupArgs', 'MongoClusterBackupArgsDict', 'outputs.MongoClusterBackup']] backup: [list]
+        :param pulumi.Input[Union['MongoClusterBiConnectorArgs', 'MongoClusterBiConnectorArgsDict', 'outputs.MongoClusterBiConnector']] bi_connector: (Computed)The MongoDB Connector for Business Intelligence allows you to query a MongoDB database using SQL commands to aid in data analysis.
         :param pulumi.Input[_builtins.str] connection_string: [string] The physical location where the cluster will be created. This will be where all of your instances live. Updates to the value of the field force the cluster to be re-created. Available locations: de/txl, gb/lhr, es/vit
-        :param pulumi.Input[Union['MongoClusterConnectionsArgs', 'MongoClusterConnectionsArgsDict']] connections: [List] Details about the network connection for your cluster. Updates to the value of the field force the cluster to be re-created.
+        :param pulumi.Input[Union['MongoClusterConnectionsArgs', 'MongoClusterConnectionsArgsDict', 'outputs.MongoClusterConnections']] connections: [List] Details about the network connection for your cluster. Updates to the value of the field force the cluster to be re-created.
         :param pulumi.Input[_builtins.int] cores: (Computed)[int] The number of CPU cores per replica. Required for enterprise edition.
         :param pulumi.Input[_builtins.str] display_name: [string] The name of your cluster. Updates to the value of the field force the cluster to be re-created.
         :param pulumi.Input[_builtins.str] edition: (Computed)[string] Cluster edition. Playground, business or enterprise.
         :param pulumi.Input[_builtins.int] instances: [int] The total number of instances in the cluster (one master and n-1 standbys). Example: 1, 3, 5, 7. Updates to the value of the field force the cluster to be re-created.
         :param pulumi.Input[_builtins.str] location: [string] The physical location where the cluster will be created. Property cannot be modified after datacenter creation (disallowed in update requests). Available locations: `de/fra`, `us/las`, `us/ewr`, `de/txl`, `gb/lhr`, `gb/bhx`, `es/vit`, `fr/par`, `us/mci`, `de/fra/1`, `de/fra/2`. Update forces cluster re-creation.
-        :param pulumi.Input[Union['MongoClusterMaintenanceWindowArgs', 'MongoClusterMaintenanceWindowArgsDict']] maintenance_window: (Computed) A weekly 4 hour-long window, during which maintenance might occur.  Updates to the value of the field force the cluster to be re-created.
+        :param pulumi.Input[Union['MongoClusterMaintenanceWindowArgs', 'MongoClusterMaintenanceWindowArgsDict', 'outputs.MongoClusterMaintenanceWindow']] maintenance_window: (Computed) A weekly 4 hour-long window, during which maintenance might occur.  Updates to the value of the field force the cluster to be re-created.
         :param pulumi.Input[_builtins.str] mongodb_version: [string] The MongoDB version of your cluster. Downgrade is not possible and will throw an error.
         :param pulumi.Input[_builtins.int] ram: (Computed)[int]The amount of memory per instance in megabytes. Required for enterprise edition.
         :param pulumi.Input[_builtins.int] shards: [int]The total number of shards in the cluster.

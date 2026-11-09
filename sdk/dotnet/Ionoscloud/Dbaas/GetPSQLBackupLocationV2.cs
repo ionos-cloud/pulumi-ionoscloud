@@ -126,10 +126,6 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Dbaas
         /// </summary>
         public readonly ImmutableArray<Outputs.GetPSQLBackupLocationV2BackupLocationResult> BackupLocations;
         /// <summary>
-        /// The provider-assigned unique ID for this managed resource.
-        /// </summary>
-        public readonly string Id;
-        /// <summary>
         /// The Object Storage location identifier (e.g. `De`, `eu-central-2`).
         /// </summary>
         public readonly string Location;
@@ -138,12 +134,9 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Dbaas
         private GetPSQLBackupLocationV2Result(
             ImmutableArray<Outputs.GetPSQLBackupLocationV2BackupLocationResult> backupLocations,
 
-            string id,
-
             string location)
         {
             BackupLocations = backupLocations;
-            Id = id;
             Location = location;
         }
     }

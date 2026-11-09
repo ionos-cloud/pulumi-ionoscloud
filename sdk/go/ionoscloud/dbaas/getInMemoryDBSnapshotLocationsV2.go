@@ -56,20 +56,14 @@ type GetInMemoryDBSnapshotLocationsV2Args struct {
 
 // A collection of values returned by getInMemoryDBSnapshotLocationsV2.
 type GetInMemoryDBSnapshotLocationsV2Result struct {
-	// The provider-assigned unique ID for this managed resource.
-	Id string `pulumi:"id"`
 	// List of snapshot location objects. Each item includes:
 	Items    []GetInMemoryDBSnapshotLocationsV2Item `pulumi:"items"`
 	Location string                                 `pulumi:"location"`
 }
 
 func GetInMemoryDBSnapshotLocationsV2Output(ctx *pulumi.Context, args GetInMemoryDBSnapshotLocationsV2OutputArgs, opts ...pulumi.InvokeOption) GetInMemoryDBSnapshotLocationsV2ResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (GetInMemoryDBSnapshotLocationsV2ResultOutput, error) {
-			args := v.(GetInMemoryDBSnapshotLocationsV2Args)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("ionoscloud:dbaas/getInMemoryDBSnapshotLocationsV2:getInMemoryDBSnapshotLocationsV2", args, GetInMemoryDBSnapshotLocationsV2ResultOutput{}, options).(GetInMemoryDBSnapshotLocationsV2ResultOutput), nil
-		}).(GetInMemoryDBSnapshotLocationsV2ResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("ionoscloud:dbaas/getInMemoryDBSnapshotLocationsV2:getInMemoryDBSnapshotLocationsV2", args, GetInMemoryDBSnapshotLocationsV2ResultOutput{}, options).(GetInMemoryDBSnapshotLocationsV2ResultOutput)
 }
 
 // A collection of arguments for invoking getInMemoryDBSnapshotLocationsV2.
@@ -95,11 +89,6 @@ func (o GetInMemoryDBSnapshotLocationsV2ResultOutput) ToGetInMemoryDBSnapshotLoc
 
 func (o GetInMemoryDBSnapshotLocationsV2ResultOutput) ToGetInMemoryDBSnapshotLocationsV2ResultOutputWithContext(ctx context.Context) GetInMemoryDBSnapshotLocationsV2ResultOutput {
 	return o
-}
-
-// The provider-assigned unique ID for this managed resource.
-func (o GetInMemoryDBSnapshotLocationsV2ResultOutput) Id() pulumi.StringOutput {
-	return o.ApplyT(func(v GetInMemoryDBSnapshotLocationsV2Result) string { return v.Id }).(pulumi.StringOutput)
 }
 
 // List of snapshot location objects. Each item includes:

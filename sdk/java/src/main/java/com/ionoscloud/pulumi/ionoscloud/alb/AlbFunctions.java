@@ -51,7 +51,7 @@ public final class AlbFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var example = AlbFunctions.getBalancer(GetBalancerArgs.builder()
-     *             .datacenterId(exampleIonoscloudDatacenter.id())
+     *             .datacenterId(exampleIonoscloudDatacenter.get("id"))
      *             .id("alb_id")
      *             .build());
      * 
@@ -86,7 +86,7 @@ public final class AlbFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var example = AlbFunctions.getBalancer(GetBalancerArgs.builder()
-     *             .datacenterId(exampleIonoscloudDatacenter.id())
+     *             .datacenterId(exampleIonoscloudDatacenter.get("id"))
      *             .name("ALB name")
      *             .build());
      * 
@@ -121,7 +121,7 @@ public final class AlbFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var example = AlbFunctions.getBalancer(GetBalancerArgs.builder()
-     *             .datacenterId(exampleIonoscloudDatacenter.id())
+     *             .datacenterId(exampleIonoscloudDatacenter.get("id"))
      *             .name("name")
      *             .partialMatch(true)
      *             .build());
@@ -169,7 +169,7 @@ public final class AlbFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var example = AlbFunctions.getBalancer(GetBalancerArgs.builder()
-     *             .datacenterId(exampleIonoscloudDatacenter.id())
+     *             .datacenterId(exampleIonoscloudDatacenter.get("id"))
      *             .id("alb_id")
      *             .build());
      * 
@@ -204,7 +204,7 @@ public final class AlbFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var example = AlbFunctions.getBalancer(GetBalancerArgs.builder()
-     *             .datacenterId(exampleIonoscloudDatacenter.id())
+     *             .datacenterId(exampleIonoscloudDatacenter.get("id"))
      *             .name("ALB name")
      *             .build());
      * 
@@ -239,7 +239,7 @@ public final class AlbFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var example = AlbFunctions.getBalancer(GetBalancerArgs.builder()
-     *             .datacenterId(exampleIonoscloudDatacenter.id())
+     *             .datacenterId(exampleIonoscloudDatacenter.get("id"))
      *             .name("name")
      *             .partialMatch(true)
      *             .build());
@@ -287,7 +287,7 @@ public final class AlbFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var example = AlbFunctions.getBalancer(GetBalancerArgs.builder()
-     *             .datacenterId(exampleIonoscloudDatacenter.id())
+     *             .datacenterId(exampleIonoscloudDatacenter.get("id"))
      *             .id("alb_id")
      *             .build());
      * 
@@ -322,7 +322,7 @@ public final class AlbFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var example = AlbFunctions.getBalancer(GetBalancerArgs.builder()
-     *             .datacenterId(exampleIonoscloudDatacenter.id())
+     *             .datacenterId(exampleIonoscloudDatacenter.get("id"))
      *             .name("ALB name")
      *             .build());
      * 
@@ -357,7 +357,7 @@ public final class AlbFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var example = AlbFunctions.getBalancer(GetBalancerArgs.builder()
-     *             .datacenterId(exampleIonoscloudDatacenter.id())
+     *             .datacenterId(exampleIonoscloudDatacenter.get("id"))
      *             .name("name")
      *             .partialMatch(true)
      *             .build());
@@ -405,7 +405,7 @@ public final class AlbFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var example = AlbFunctions.getBalancer(GetBalancerArgs.builder()
-     *             .datacenterId(exampleIonoscloudDatacenter.id())
+     *             .datacenterId(exampleIonoscloudDatacenter.get("id"))
      *             .id("alb_id")
      *             .build());
      * 
@@ -440,7 +440,7 @@ public final class AlbFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var example = AlbFunctions.getBalancer(GetBalancerArgs.builder()
-     *             .datacenterId(exampleIonoscloudDatacenter.id())
+     *             .datacenterId(exampleIonoscloudDatacenter.get("id"))
      *             .name("ALB name")
      *             .build());
      * 
@@ -475,7 +475,7 @@ public final class AlbFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var example = AlbFunctions.getBalancer(GetBalancerArgs.builder()
-     *             .datacenterId(exampleIonoscloudDatacenter.id())
+     *             .datacenterId(exampleIonoscloudDatacenter.get("id"))
      *             .name("name")
      *             .partialMatch(true)
      *             .build());
@@ -523,7 +523,7 @@ public final class AlbFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var example = AlbFunctions.getBalancer(GetBalancerArgs.builder()
-     *             .datacenterId(exampleIonoscloudDatacenter.id())
+     *             .datacenterId(exampleIonoscloudDatacenter.get("id"))
      *             .id("alb_id")
      *             .build());
      * 
@@ -558,7 +558,7 @@ public final class AlbFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var example = AlbFunctions.getBalancer(GetBalancerArgs.builder()
-     *             .datacenterId(exampleIonoscloudDatacenter.id())
+     *             .datacenterId(exampleIonoscloudDatacenter.get("id"))
      *             .name("ALB name")
      *             .build());
      * 
@@ -593,7 +593,7 @@ public final class AlbFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var example = AlbFunctions.getBalancer(GetBalancerArgs.builder()
-     *             .datacenterId(exampleIonoscloudDatacenter.id())
+     *             .datacenterId(exampleIonoscloudDatacenter.get("id"))
      *             .name("name")
      *             .partialMatch(true)
      *             .build());
@@ -641,8 +641,8 @@ public final class AlbFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var example = AlbFunctions.getForwardingRule(GetForwardingRuleArgs.builder()
-     *             .datacenterId(exampleIonoscloudDatacenter.id())
-     *             .applicationLoadbalancerId(exampleIonoscloudApplicationLoadbalancer.id())
+     *             .datacenterId(exampleIonoscloudDatacenter.get("id"))
+     *             .applicationLoadbalancerId(exampleIonoscloudApplicationLoadbalancer.get("id"))
      *             .id("alb_fwr_id")
      *             .build());
      * 
@@ -677,8 +677,8 @@ public final class AlbFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var example = AlbFunctions.getForwardingRule(GetForwardingRuleArgs.builder()
-     *             .datacenterId(exampleIonoscloudDatacenter.id())
-     *             .applicationLoadbalancerId(exampleIonoscloudApplicationLoadbalancer.id())
+     *             .datacenterId(exampleIonoscloudDatacenter.get("id"))
+     *             .applicationLoadbalancerId(exampleIonoscloudApplicationLoadbalancer.get("id"))
      *             .name("ALB FR Example")
      *             .build());
      * 
@@ -713,8 +713,8 @@ public final class AlbFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var example = AlbFunctions.getForwardingRule(GetForwardingRuleArgs.builder()
-     *             .datacenterId(exampleIonoscloudDatacenter.id())
-     *             .applicationLoadbalancerId(exampleIonoscloudApplicationLoadbalancer.id())
+     *             .datacenterId(exampleIonoscloudDatacenter.get("id"))
+     *             .applicationLoadbalancerId(exampleIonoscloudApplicationLoadbalancer.get("id"))
      *             .name("Example")
      *             .partialMatch(true)
      *             .build());
@@ -762,8 +762,8 @@ public final class AlbFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var example = AlbFunctions.getForwardingRule(GetForwardingRuleArgs.builder()
-     *             .datacenterId(exampleIonoscloudDatacenter.id())
-     *             .applicationLoadbalancerId(exampleIonoscloudApplicationLoadbalancer.id())
+     *             .datacenterId(exampleIonoscloudDatacenter.get("id"))
+     *             .applicationLoadbalancerId(exampleIonoscloudApplicationLoadbalancer.get("id"))
      *             .id("alb_fwr_id")
      *             .build());
      * 
@@ -798,8 +798,8 @@ public final class AlbFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var example = AlbFunctions.getForwardingRule(GetForwardingRuleArgs.builder()
-     *             .datacenterId(exampleIonoscloudDatacenter.id())
-     *             .applicationLoadbalancerId(exampleIonoscloudApplicationLoadbalancer.id())
+     *             .datacenterId(exampleIonoscloudDatacenter.get("id"))
+     *             .applicationLoadbalancerId(exampleIonoscloudApplicationLoadbalancer.get("id"))
      *             .name("ALB FR Example")
      *             .build());
      * 
@@ -834,8 +834,8 @@ public final class AlbFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var example = AlbFunctions.getForwardingRule(GetForwardingRuleArgs.builder()
-     *             .datacenterId(exampleIonoscloudDatacenter.id())
-     *             .applicationLoadbalancerId(exampleIonoscloudApplicationLoadbalancer.id())
+     *             .datacenterId(exampleIonoscloudDatacenter.get("id"))
+     *             .applicationLoadbalancerId(exampleIonoscloudApplicationLoadbalancer.get("id"))
      *             .name("Example")
      *             .partialMatch(true)
      *             .build());
@@ -883,8 +883,8 @@ public final class AlbFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var example = AlbFunctions.getForwardingRule(GetForwardingRuleArgs.builder()
-     *             .datacenterId(exampleIonoscloudDatacenter.id())
-     *             .applicationLoadbalancerId(exampleIonoscloudApplicationLoadbalancer.id())
+     *             .datacenterId(exampleIonoscloudDatacenter.get("id"))
+     *             .applicationLoadbalancerId(exampleIonoscloudApplicationLoadbalancer.get("id"))
      *             .id("alb_fwr_id")
      *             .build());
      * 
@@ -919,8 +919,8 @@ public final class AlbFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var example = AlbFunctions.getForwardingRule(GetForwardingRuleArgs.builder()
-     *             .datacenterId(exampleIonoscloudDatacenter.id())
-     *             .applicationLoadbalancerId(exampleIonoscloudApplicationLoadbalancer.id())
+     *             .datacenterId(exampleIonoscloudDatacenter.get("id"))
+     *             .applicationLoadbalancerId(exampleIonoscloudApplicationLoadbalancer.get("id"))
      *             .name("ALB FR Example")
      *             .build());
      * 
@@ -955,8 +955,8 @@ public final class AlbFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var example = AlbFunctions.getForwardingRule(GetForwardingRuleArgs.builder()
-     *             .datacenterId(exampleIonoscloudDatacenter.id())
-     *             .applicationLoadbalancerId(exampleIonoscloudApplicationLoadbalancer.id())
+     *             .datacenterId(exampleIonoscloudDatacenter.get("id"))
+     *             .applicationLoadbalancerId(exampleIonoscloudApplicationLoadbalancer.get("id"))
      *             .name("Example")
      *             .partialMatch(true)
      *             .build());
@@ -1004,8 +1004,8 @@ public final class AlbFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var example = AlbFunctions.getForwardingRule(GetForwardingRuleArgs.builder()
-     *             .datacenterId(exampleIonoscloudDatacenter.id())
-     *             .applicationLoadbalancerId(exampleIonoscloudApplicationLoadbalancer.id())
+     *             .datacenterId(exampleIonoscloudDatacenter.get("id"))
+     *             .applicationLoadbalancerId(exampleIonoscloudApplicationLoadbalancer.get("id"))
      *             .id("alb_fwr_id")
      *             .build());
      * 
@@ -1040,8 +1040,8 @@ public final class AlbFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var example = AlbFunctions.getForwardingRule(GetForwardingRuleArgs.builder()
-     *             .datacenterId(exampleIonoscloudDatacenter.id())
-     *             .applicationLoadbalancerId(exampleIonoscloudApplicationLoadbalancer.id())
+     *             .datacenterId(exampleIonoscloudDatacenter.get("id"))
+     *             .applicationLoadbalancerId(exampleIonoscloudApplicationLoadbalancer.get("id"))
      *             .name("ALB FR Example")
      *             .build());
      * 
@@ -1076,8 +1076,8 @@ public final class AlbFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var example = AlbFunctions.getForwardingRule(GetForwardingRuleArgs.builder()
-     *             .datacenterId(exampleIonoscloudDatacenter.id())
-     *             .applicationLoadbalancerId(exampleIonoscloudApplicationLoadbalancer.id())
+     *             .datacenterId(exampleIonoscloudDatacenter.get("id"))
+     *             .applicationLoadbalancerId(exampleIonoscloudApplicationLoadbalancer.get("id"))
      *             .name("Example")
      *             .partialMatch(true)
      *             .build());
@@ -1125,8 +1125,8 @@ public final class AlbFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var example = AlbFunctions.getForwardingRule(GetForwardingRuleArgs.builder()
-     *             .datacenterId(exampleIonoscloudDatacenter.id())
-     *             .applicationLoadbalancerId(exampleIonoscloudApplicationLoadbalancer.id())
+     *             .datacenterId(exampleIonoscloudDatacenter.get("id"))
+     *             .applicationLoadbalancerId(exampleIonoscloudApplicationLoadbalancer.get("id"))
      *             .id("alb_fwr_id")
      *             .build());
      * 
@@ -1161,8 +1161,8 @@ public final class AlbFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var example = AlbFunctions.getForwardingRule(GetForwardingRuleArgs.builder()
-     *             .datacenterId(exampleIonoscloudDatacenter.id())
-     *             .applicationLoadbalancerId(exampleIonoscloudApplicationLoadbalancer.id())
+     *             .datacenterId(exampleIonoscloudDatacenter.get("id"))
+     *             .applicationLoadbalancerId(exampleIonoscloudApplicationLoadbalancer.get("id"))
      *             .name("ALB FR Example")
      *             .build());
      * 
@@ -1197,8 +1197,8 @@ public final class AlbFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var example = AlbFunctions.getForwardingRule(GetForwardingRuleArgs.builder()
-     *             .datacenterId(exampleIonoscloudDatacenter.id())
-     *             .applicationLoadbalancerId(exampleIonoscloudApplicationLoadbalancer.id())
+     *             .datacenterId(exampleIonoscloudDatacenter.get("id"))
+     *             .applicationLoadbalancerId(exampleIonoscloudApplicationLoadbalancer.get("id"))
      *             .name("Example")
      *             .partialMatch(true)
      *             .build());

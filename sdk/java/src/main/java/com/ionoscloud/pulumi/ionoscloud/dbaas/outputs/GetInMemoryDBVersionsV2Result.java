@@ -13,11 +13,6 @@ import java.util.Objects;
 @CustomType
 public final class GetInMemoryDBVersionsV2Result {
     /**
-     * @return The provider-assigned unique ID for this managed resource.
-     * 
-     */
-    private String id;
-    /**
      * @return List of versions. Each item includes:
      * 
      */
@@ -25,13 +20,6 @@ public final class GetInMemoryDBVersionsV2Result {
     private String location;
 
     private GetInMemoryDBVersionsV2Result() {}
-    /**
-     * @return The provider-assigned unique ID for this managed resource.
-     * 
-     */
-    public String id() {
-        return this.id;
-    }
     /**
      * @return List of versions. Each item includes:
      * 
@@ -52,25 +40,15 @@ public final class GetInMemoryDBVersionsV2Result {
     }
     @CustomType.Builder
     public static final class Builder {
-        private String id;
         private List<GetInMemoryDBVersionsV2Item> items;
         private String location;
         public Builder() {}
         public Builder(GetInMemoryDBVersionsV2Result defaults) {
     	      Objects.requireNonNull(defaults);
-    	      this.id = defaults.id;
     	      this.items = defaults.items;
     	      this.location = defaults.location;
         }
 
-        @CustomType.Setter
-        public Builder id(String id) {
-            if (id == null) {
-              throw new MissingRequiredPropertyException("GetInMemoryDBVersionsV2Result", "id");
-            }
-            this.id = id;
-            return this;
-        }
         @CustomType.Setter
         public Builder items(List<GetInMemoryDBVersionsV2Item> items) {
             if (items == null) {
@@ -92,7 +70,6 @@ public final class GetInMemoryDBVersionsV2Result {
         }
         public GetInMemoryDBVersionsV2Result build() {
             final var _resultValue = new GetInMemoryDBVersionsV2Result();
-            _resultValue.id = id;
             _resultValue.items = items;
             _resultValue.location = location;
             return _resultValue;

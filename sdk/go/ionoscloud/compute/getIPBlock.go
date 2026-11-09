@@ -157,12 +157,8 @@ type LookupIPBlockResult struct {
 }
 
 func LookupIPBlockOutput(ctx *pulumi.Context, args LookupIPBlockOutputArgs, opts ...pulumi.InvokeOption) LookupIPBlockResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupIPBlockResultOutput, error) {
-			args := v.(LookupIPBlockArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("ionoscloud:compute/getIPBlock:getIPBlock", args, LookupIPBlockResultOutput{}, options).(LookupIPBlockResultOutput), nil
-		}).(LookupIPBlockResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("ionoscloud:compute/getIPBlock:getIPBlock", args, LookupIPBlockResultOutput{}, options).(LookupIPBlockResultOutput)
 }
 
 // A collection of arguments for invoking getIPBlock.

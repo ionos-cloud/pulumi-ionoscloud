@@ -97,7 +97,7 @@ def get_mongo_user(cluster_id: Optional[_builtins.str] = None,
                    database: Optional[_builtins.str] = None,
                    id: Optional[_builtins.str] = None,
                    location: Optional[_builtins.str] = None,
-                   roles: Optional[Sequence[Union['GetMongoUserRoleArgs', 'GetMongoUserRoleArgsDict']]] = None,
+                   roles: Optional[Sequence[Union['GetMongoUserRoleArgs', 'GetMongoUserRoleArgsDict', 'outputs.GetMongoUserRoleResult']]] = None,
                    username: Optional[_builtins.str] = None,
                    opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetMongoUserResult:
     """
@@ -119,7 +119,7 @@ def get_mongo_user(cluster_id: Optional[_builtins.str] = None,
 
     :param _builtins.str cluster_id: [string] The unique ID of the cluster. Updates to the value of the field force the cluster to be re-created.
     :param _builtins.str database: [string] The user database to use for authentication. Updates to the value of the field force the cluster to be re-created.
-    :param Sequence[Union['GetMongoUserRoleArgs', 'GetMongoUserRoleArgsDict']] roles: [string] a list of mongodb user roles. Updates to the value of the field force the cluster to be re-created.
+    :param Sequence[Union['GetMongoUserRoleArgs', 'GetMongoUserRoleArgsDict', 'outputs.GetMongoUserRoleResult']] roles: [string] a list of mongodb user roles. Updates to the value of the field force the cluster to be re-created.
     :param _builtins.str username: [string] Used for authentication. Updates to the value of the field force the cluster to be re-created.
     """
     __args__ = dict()
@@ -143,7 +143,7 @@ def get_mongo_user_output(cluster_id: pulumi.Input[Optional[_builtins.str]] = No
                           database: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                           id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                           location: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
-                          roles: pulumi.Input[Optional[Optional[Sequence[Union['GetMongoUserRoleArgs', 'GetMongoUserRoleArgsDict']]]]] = None,
+                          roles: pulumi.Input[Optional[Optional[Sequence[Union['GetMongoUserRoleArgs', 'GetMongoUserRoleArgsDict', 'outputs.GetMongoUserRoleResult']]]]] = None,
                           username: pulumi.Input[Optional[_builtins.str]] = None,
                           opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetMongoUserResult]:
     """
@@ -165,7 +165,7 @@ def get_mongo_user_output(cluster_id: pulumi.Input[Optional[_builtins.str]] = No
 
     :param _builtins.str cluster_id: [string] The unique ID of the cluster. Updates to the value of the field force the cluster to be re-created.
     :param _builtins.str database: [string] The user database to use for authentication. Updates to the value of the field force the cluster to be re-created.
-    :param Sequence[Union['GetMongoUserRoleArgs', 'GetMongoUserRoleArgsDict']] roles: [string] a list of mongodb user roles. Updates to the value of the field force the cluster to be re-created.
+    :param Sequence[Union['GetMongoUserRoleArgs', 'GetMongoUserRoleArgsDict', 'outputs.GetMongoUserRoleResult']] roles: [string] a list of mongodb user roles. Updates to the value of the field force the cluster to be re-created.
     :param _builtins.str username: [string] Used for authentication. Updates to the value of the field force the cluster to be re-created.
     """
     __args__ = dict()

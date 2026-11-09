@@ -25,11 +25,6 @@ public final class GetPSQLBackupsV2Result {
      */
     private @Nullable String clusterId;
     /**
-     * @return The provider-assigned unique ID for this managed resource.
-     * 
-     */
-    private String id;
-    /**
      * @return The Object Storage location where the backup is stored.
      * 
      */
@@ -51,13 +46,6 @@ public final class GetPSQLBackupsV2Result {
         return Optional.ofNullable(this.clusterId);
     }
     /**
-     * @return The provider-assigned unique ID for this managed resource.
-     * 
-     */
-    public String id() {
-        return this.id;
-    }
-    /**
      * @return The Object Storage location where the backup is stored.
      * 
      */
@@ -76,14 +64,12 @@ public final class GetPSQLBackupsV2Result {
     public static final class Builder {
         private List<GetPSQLBackupsV2Backup> backups;
         private @Nullable String clusterId;
-        private String id;
         private String location;
         public Builder() {}
         public Builder(GetPSQLBackupsV2Result defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.backups = defaults.backups;
     	      this.clusterId = defaults.clusterId;
-    	      this.id = defaults.id;
     	      this.location = defaults.location;
         }
 
@@ -105,14 +91,6 @@ public final class GetPSQLBackupsV2Result {
             return this;
         }
         @CustomType.Setter
-        public Builder id(String id) {
-            if (id == null) {
-              throw new MissingRequiredPropertyException("GetPSQLBackupsV2Result", "id");
-            }
-            this.id = id;
-            return this;
-        }
-        @CustomType.Setter
         public Builder location(String location) {
             if (location == null) {
               throw new MissingRequiredPropertyException("GetPSQLBackupsV2Result", "location");
@@ -124,7 +102,6 @@ public final class GetPSQLBackupsV2Result {
             final var _resultValue = new GetPSQLBackupsV2Result();
             _resultValue.backups = backups;
             _resultValue.clusterId = clusterId;
-            _resultValue.id = id;
             _resultValue.location = location;
             return _resultValue;
         }

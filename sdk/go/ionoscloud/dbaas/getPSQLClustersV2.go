@@ -88,8 +88,6 @@ type GetPSQLClustersV2Args struct {
 type GetPSQLClustersV2Result struct {
 	// The list of PostgreSQL v2 clusters. Each cluster has the following attributes:
 	Clusters []GetPSQLClustersV2Cluster `pulumi:"clusters"`
-	// The provider-assigned unique ID for this managed resource.
-	Id string `pulumi:"id"`
 	// The Object Storage location where the backups are stored.
 	Location string `pulumi:"location"`
 	// The name of the PostgreSQL cluster.
@@ -97,12 +95,8 @@ type GetPSQLClustersV2Result struct {
 }
 
 func GetPSQLClustersV2Output(ctx *pulumi.Context, args GetPSQLClustersV2OutputArgs, opts ...pulumi.InvokeOption) GetPSQLClustersV2ResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (GetPSQLClustersV2ResultOutput, error) {
-			args := v.(GetPSQLClustersV2Args)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("ionoscloud:dbaas/getPSQLClustersV2:getPSQLClustersV2", args, GetPSQLClustersV2ResultOutput{}, options).(GetPSQLClustersV2ResultOutput), nil
-		}).(GetPSQLClustersV2ResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("ionoscloud:dbaas/getPSQLClustersV2:getPSQLClustersV2", args, GetPSQLClustersV2ResultOutput{}, options).(GetPSQLClustersV2ResultOutput)
 }
 
 // A collection of arguments for invoking getPSQLClustersV2.
@@ -135,11 +129,6 @@ func (o GetPSQLClustersV2ResultOutput) ToGetPSQLClustersV2ResultOutputWithContex
 // The list of PostgreSQL v2 clusters. Each cluster has the following attributes:
 func (o GetPSQLClustersV2ResultOutput) Clusters() GetPSQLClustersV2ClusterArrayOutput {
 	return o.ApplyT(func(v GetPSQLClustersV2Result) []GetPSQLClustersV2Cluster { return v.Clusters }).(GetPSQLClustersV2ClusterArrayOutput)
-}
-
-// The provider-assigned unique ID for this managed resource.
-func (o GetPSQLClustersV2ResultOutput) Id() pulumi.StringOutput {
-	return o.ApplyT(func(v GetPSQLClustersV2Result) string { return v.Id }).(pulumi.StringOutput)
 }
 
 // The Object Storage location where the backups are stored.

@@ -152,10 +152,6 @@ namespace Ionoscloud.Pulumi.Ionoscloud
     public sealed class GetKafkaUsersResult
     {
         public readonly string ClusterId;
-        /// <summary>
-        /// The provider-assigned unique ID for this managed resource.
-        /// </summary>
-        public readonly string Id;
         public readonly string? Location;
         public readonly Outputs.GetKafkaUsersTimeoutsResult? Timeouts;
         /// <summary>
@@ -167,8 +163,6 @@ namespace Ionoscloud.Pulumi.Ionoscloud
         private GetKafkaUsersResult(
             string clusterId,
 
-            string id,
-
             string? location,
 
             Outputs.GetKafkaUsersTimeoutsResult? timeouts,
@@ -176,7 +170,6 @@ namespace Ionoscloud.Pulumi.Ionoscloud
             ImmutableArray<Outputs.GetKafkaUsersUserResult> users)
         {
             ClusterId = clusterId;
-            Id = id;
             Location = location;
             Timeouts = timeouts;
             Users = users;

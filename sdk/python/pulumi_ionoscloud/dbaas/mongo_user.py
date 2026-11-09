@@ -202,7 +202,7 @@ class MongoUser(pulumi.CustomResource):
                  cluster_id: pulumi.Input[Optional[_builtins.str]] = None,
                  location: pulumi.Input[Optional[_builtins.str]] = None,
                  password: pulumi.Input[Optional[_builtins.str]] = None,
-                 roles: pulumi.Input[Optional[Sequence[pulumi.Input[Union['MongoUserRoleArgs', 'MongoUserRoleArgsDict']]]]] = None,
+                 roles: pulumi.Input[Optional[Sequence[pulumi.Input[Union['MongoUserRoleArgs', 'MongoUserRoleArgsDict', 'outputs.MongoUserRole']]]]] = None,
                  username: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
@@ -328,7 +328,7 @@ class MongoUser(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] cluster_id: [string] The unique ID of the cluster. Updates to the value of the field force the cluster to be re-created.
         :param pulumi.Input[_builtins.str] location: The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
         :param pulumi.Input[_builtins.str] password: [string] User password. Updates to the value of the field force the cluster to be re-created.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['MongoUserRoleArgs', 'MongoUserRoleArgsDict']]]] roles: [string] a list of mongodb user roles. Updates to the value of the field force the cluster to be re-created.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['MongoUserRoleArgs', 'MongoUserRoleArgsDict', 'outputs.MongoUserRole']]]] roles: [string] a list of mongodb user roles. Updates to the value of the field force the cluster to be re-created.
         :param pulumi.Input[_builtins.str] username: [string] Used for authentication. Updates to the value of the field force the cluster to be re-created.
         """
         ...
@@ -473,7 +473,7 @@ class MongoUser(pulumi.CustomResource):
                  cluster_id: pulumi.Input[Optional[_builtins.str]] = None,
                  location: pulumi.Input[Optional[_builtins.str]] = None,
                  password: pulumi.Input[Optional[_builtins.str]] = None,
-                 roles: pulumi.Input[Optional[Sequence[pulumi.Input[Union['MongoUserRoleArgs', 'MongoUserRoleArgsDict']]]]] = None,
+                 roles: pulumi.Input[Optional[Sequence[pulumi.Input[Union['MongoUserRoleArgs', 'MongoUserRoleArgsDict', 'outputs.MongoUserRole']]]]] = None,
                  username: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -510,7 +510,7 @@ class MongoUser(pulumi.CustomResource):
             cluster_id: pulumi.Input[Optional[_builtins.str]] = None,
             location: pulumi.Input[Optional[_builtins.str]] = None,
             password: pulumi.Input[Optional[_builtins.str]] = None,
-            roles: pulumi.Input[Optional[Sequence[pulumi.Input[Union['MongoUserRoleArgs', 'MongoUserRoleArgsDict']]]]] = None,
+            roles: pulumi.Input[Optional[Sequence[pulumi.Input[Union['MongoUserRoleArgs', 'MongoUserRoleArgsDict', 'outputs.MongoUserRole']]]]] = None,
             username: pulumi.Input[Optional[_builtins.str]] = None) -> 'MongoUser':
         """
         Get an existing MongoUser resource's state with the given name, id, and optional extra
@@ -522,7 +522,7 @@ class MongoUser(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] cluster_id: [string] The unique ID of the cluster. Updates to the value of the field force the cluster to be re-created.
         :param pulumi.Input[_builtins.str] location: The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
         :param pulumi.Input[_builtins.str] password: [string] User password. Updates to the value of the field force the cluster to be re-created.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['MongoUserRoleArgs', 'MongoUserRoleArgsDict']]]] roles: [string] a list of mongodb user roles. Updates to the value of the field force the cluster to be re-created.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['MongoUserRoleArgs', 'MongoUserRoleArgsDict', 'outputs.MongoUserRole']]]] roles: [string] a list of mongodb user roles. Updates to the value of the field force the cluster to be re-created.
         :param pulumi.Input[_builtins.str] username: [string] Used for authentication. Updates to the value of the field force the cluster to be re-created.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))

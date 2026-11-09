@@ -66,12 +66,8 @@ type GetInmemorydbSnapshotResult struct {
 }
 
 func GetInmemorydbSnapshotOutput(ctx *pulumi.Context, args GetInmemorydbSnapshotOutputArgs, opts ...pulumi.InvokeOption) GetInmemorydbSnapshotResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (GetInmemorydbSnapshotResultOutput, error) {
-			args := v.(GetInmemorydbSnapshotArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("ionoscloud:dbaas/getInmemorydbSnapshot:getInmemorydbSnapshot", args, GetInmemorydbSnapshotResultOutput{}, options).(GetInmemorydbSnapshotResultOutput), nil
-		}).(GetInmemorydbSnapshotResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("ionoscloud:dbaas/getInmemorydbSnapshot:getInmemorydbSnapshot", args, GetInmemorydbSnapshotResultOutput{}, options).(GetInmemorydbSnapshotResultOutput)
 }
 
 // A collection of arguments for invoking getInmemorydbSnapshot.

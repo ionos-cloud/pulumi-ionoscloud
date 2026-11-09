@@ -30,8 +30,8 @@ import javax.annotation.Nullable;
  * import com.pulumi.Context;
  * import com.pulumi.Pulumi;
  * import com.pulumi.core.Output;
- * import com.pulumi.random.password;
- * import com.pulumi.random.passwordArgs;
+ * import com.pulumi.random.Password;
+ * import com.pulumi.random.PasswordArgs;
  * import com.ionoscloud.pulumi.ionoscloud.compute.User;
  * import com.ionoscloud.pulumi.ionoscloud.compute.UserArgs;
  * import com.ionoscloud.pulumi.ionoscloud.compute.Group;
@@ -59,7 +59,7 @@ import javax.annotation.Nullable;
  *             .firstName("user1")
  *             .lastName("user1")
  *             .email("unique_email.com")
- *             .password(user1Password.result())
+ *             .password(user1Password.get("result"))
  *             .administrator(false)
  *             .forceSecAuth(false)
  *             .build());
@@ -74,7 +74,7 @@ import javax.annotation.Nullable;
  *             .firstName("user2")
  *             .lastName("user2")
  *             .email("unique_email.com")
- *             .password(user2Password.result())
+ *             .password(user2Password.get("result"))
  *             .administrator(false)
  *             .forceSecAuth(false)
  *             .build());

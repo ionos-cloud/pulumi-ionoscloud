@@ -122,12 +122,8 @@ type GetKafkaUserCredentialsResult struct {
 }
 
 func GetKafkaUserCredentialsOutput(ctx *pulumi.Context, args GetKafkaUserCredentialsOutputArgs, opts ...pulumi.InvokeOption) GetKafkaUserCredentialsResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (GetKafkaUserCredentialsResultOutput, error) {
-			args := v.(GetKafkaUserCredentialsArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("ionoscloud:index/getKafkaUserCredentials:getKafkaUserCredentials", args, GetKafkaUserCredentialsResultOutput{}, options).(GetKafkaUserCredentialsResultOutput), nil
-		}).(GetKafkaUserCredentialsResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("ionoscloud:index/getKafkaUserCredentials:getKafkaUserCredentials", args, GetKafkaUserCredentialsResultOutput{}, options).(GetKafkaUserCredentialsResultOutput)
 }
 
 // A collection of arguments for invoking getKafkaUserCredentials.

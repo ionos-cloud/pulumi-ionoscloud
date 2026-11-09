@@ -120,12 +120,8 @@ type GetResourceResult struct {
 }
 
 func GetResourceOutput(ctx *pulumi.Context, args GetResourceOutputArgs, opts ...pulumi.InvokeOption) GetResourceResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (GetResourceResultOutput, error) {
-			args := v.(GetResourceArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("ionoscloud:compute/getResource:getResource", args, GetResourceResultOutput{}, options).(GetResourceResultOutput), nil
-		}).(GetResourceResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("ionoscloud:compute/getResource:getResource", args, GetResourceResultOutput{}, options).(GetResourceResultOutput)
 }
 
 // A collection of arguments for invoking getResource.

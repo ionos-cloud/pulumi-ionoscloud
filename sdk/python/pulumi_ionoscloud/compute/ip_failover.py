@@ -33,14 +33,14 @@ class IPFailoverArgs:
         :param pulumi.Input[_builtins.str] nicuuid: [string] The ID of a NIC.
                
                > **⚠ WARNING:** Do not modify the IP for an IP failover group (that was provisioned via Terraform)
-               > using the DCD, the API or other means because it may lead to unexpected behavior. If you provisioned
-               > an IP failover group using Terraform, please use only Terraform in order to manage the created
-               > IP failover group.
+               using the DCD, the API or other means because it may lead to unexpected behavior. If you provisioned
+               an IP failover group using Terraform, please use only Terraform in order to manage the created
+               IP failover group.
                
                > **⚠ WARNING:** For creating multiple IP failover groups at the same time, you can use one of the
-               > following options:
+               following options:
                1. Create multiple IP failover groups resources and use `depends_on` meta-argument to specify the order
-               of creation, for example:
+                  of creation, for example:
                ```example
                resource "ionoscloud_ipfailover" "firstexample" {
                datacenter_id         = "datacenter ID"
@@ -58,7 +58,7 @@ class IPFailoverArgs:
                }
                ```
                2. Define the resources as presented above, but without using the `depends_on` meta-argument and run the apply command using
-               `-parallelism=1` as presented below:
+                  `-parallelism=1` as presented below:
                ```shell
                pulumi up -parallelism=1
                ```
@@ -113,14 +113,14 @@ class IPFailoverArgs:
         [string] The ID of a NIC.
 
         > **⚠ WARNING:** Do not modify the IP for an IP failover group (that was provisioned via Terraform)
-        > using the DCD, the API or other means because it may lead to unexpected behavior. If you provisioned
-        > an IP failover group using Terraform, please use only Terraform in order to manage the created
-        > IP failover group.
+        using the DCD, the API or other means because it may lead to unexpected behavior. If you provisioned
+        an IP failover group using Terraform, please use only Terraform in order to manage the created
+        IP failover group.
 
         > **⚠ WARNING:** For creating multiple IP failover groups at the same time, you can use one of the
-        > following options:
+        following options:
         1. Create multiple IP failover groups resources and use `depends_on` meta-argument to specify the order
-        of creation, for example:
+           of creation, for example:
         ```example
         resource "ionoscloud_ipfailover" "firstexample" {
         datacenter_id         = "datacenter ID"
@@ -138,7 +138,7 @@ class IPFailoverArgs:
         }
         ```
         2. Define the resources as presented above, but without using the `depends_on` meta-argument and run the apply command using
-        `-parallelism=1` as presented below:
+           `-parallelism=1` as presented below:
         ```shell
         pulumi up -parallelism=1
         ```
@@ -176,14 +176,14 @@ class _IPFailoverState:
         :param pulumi.Input[_builtins.str] nicuuid: [string] The ID of a NIC.
                
                > **⚠ WARNING:** Do not modify the IP for an IP failover group (that was provisioned via Terraform)
-               > using the DCD, the API or other means because it may lead to unexpected behavior. If you provisioned
-               > an IP failover group using Terraform, please use only Terraform in order to manage the created
-               > IP failover group.
+               using the DCD, the API or other means because it may lead to unexpected behavior. If you provisioned
+               an IP failover group using Terraform, please use only Terraform in order to manage the created
+               IP failover group.
                
                > **⚠ WARNING:** For creating multiple IP failover groups at the same time, you can use one of the
-               > following options:
+               following options:
                1. Create multiple IP failover groups resources and use `depends_on` meta-argument to specify the order
-               of creation, for example:
+                  of creation, for example:
                ```example
                resource "ionoscloud_ipfailover" "firstexample" {
                datacenter_id         = "datacenter ID"
@@ -201,7 +201,7 @@ class _IPFailoverState:
                }
                ```
                2. Define the resources as presented above, but without using the `depends_on` meta-argument and run the apply command using
-               `-parallelism=1` as presented below:
+                  `-parallelism=1` as presented below:
                ```shell
                pulumi up -parallelism=1
                ```
@@ -269,14 +269,14 @@ class _IPFailoverState:
         [string] The ID of a NIC.
 
         > **⚠ WARNING:** Do not modify the IP for an IP failover group (that was provisioned via Terraform)
-        > using the DCD, the API or other means because it may lead to unexpected behavior. If you provisioned
-        > an IP failover group using Terraform, please use only Terraform in order to manage the created
-        > IP failover group.
+        using the DCD, the API or other means because it may lead to unexpected behavior. If you provisioned
+        an IP failover group using Terraform, please use only Terraform in order to manage the created
+        IP failover group.
 
         > **⚠ WARNING:** For creating multiple IP failover groups at the same time, you can use one of the
-        > following options:
+        following options:
         1. Create multiple IP failover groups resources and use `depends_on` meta-argument to specify the order
-        of creation, for example:
+           of creation, for example:
         ```example
         resource "ionoscloud_ipfailover" "firstexample" {
         datacenter_id         = "datacenter ID"
@@ -294,7 +294,7 @@ class _IPFailoverState:
         }
         ```
         2. Define the resources as presented above, but without using the `depends_on` meta-argument and run the apply command using
-        `-parallelism=1` as presented below:
+           `-parallelism=1` as presented below:
         ```shell
         pulumi up -parallelism=1
         ```
@@ -399,14 +399,14 @@ class IPFailover(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] nicuuid: [string] The ID of a NIC.
                
                > **⚠ WARNING:** Do not modify the IP for an IP failover group (that was provisioned via Terraform)
-               > using the DCD, the API or other means because it may lead to unexpected behavior. If you provisioned
-               > an IP failover group using Terraform, please use only Terraform in order to manage the created
-               > IP failover group.
+               using the DCD, the API or other means because it may lead to unexpected behavior. If you provisioned
+               an IP failover group using Terraform, please use only Terraform in order to manage the created
+               IP failover group.
                
                > **⚠ WARNING:** For creating multiple IP failover groups at the same time, you can use one of the
-               > following options:
+               following options:
                1. Create multiple IP failover groups resources and use `depends_on` meta-argument to specify the order
-               of creation, for example:
+                  of creation, for example:
                ```example
                resource "ionoscloud_ipfailover" "firstexample" {
                datacenter_id         = "datacenter ID"
@@ -424,7 +424,7 @@ class IPFailover(pulumi.CustomResource):
                }
                ```
                2. Define the resources as presented above, but without using the `depends_on` meta-argument and run the apply command using
-               `-parallelism=1` as presented below:
+                  `-parallelism=1` as presented below:
                ```shell
                pulumi up -parallelism=1
                ```
@@ -578,14 +578,14 @@ class IPFailover(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] nicuuid: [string] The ID of a NIC.
                
                > **⚠ WARNING:** Do not modify the IP for an IP failover group (that was provisioned via Terraform)
-               > using the DCD, the API or other means because it may lead to unexpected behavior. If you provisioned
-               > an IP failover group using Terraform, please use only Terraform in order to manage the created
-               > IP failover group.
+               using the DCD, the API or other means because it may lead to unexpected behavior. If you provisioned
+               an IP failover group using Terraform, please use only Terraform in order to manage the created
+               IP failover group.
                
                > **⚠ WARNING:** For creating multiple IP failover groups at the same time, you can use one of the
-               > following options:
+               following options:
                1. Create multiple IP failover groups resources and use `depends_on` meta-argument to specify the order
-               of creation, for example:
+                  of creation, for example:
                ```example
                resource "ionoscloud_ipfailover" "firstexample" {
                datacenter_id         = "datacenter ID"
@@ -603,7 +603,7 @@ class IPFailover(pulumi.CustomResource):
                }
                ```
                2. Define the resources as presented above, but without using the `depends_on` meta-argument and run the apply command using
-               `-parallelism=1` as presented below:
+                  `-parallelism=1` as presented below:
                ```shell
                pulumi up -parallelism=1
                ```
@@ -655,14 +655,14 @@ class IPFailover(pulumi.CustomResource):
         [string] The ID of a NIC.
 
         > **⚠ WARNING:** Do not modify the IP for an IP failover group (that was provisioned via Terraform)
-        > using the DCD, the API or other means because it may lead to unexpected behavior. If you provisioned
-        > an IP failover group using Terraform, please use only Terraform in order to manage the created
-        > IP failover group.
+        using the DCD, the API or other means because it may lead to unexpected behavior. If you provisioned
+        an IP failover group using Terraform, please use only Terraform in order to manage the created
+        IP failover group.
 
         > **⚠ WARNING:** For creating multiple IP failover groups at the same time, you can use one of the
-        > following options:
+        following options:
         1. Create multiple IP failover groups resources and use `depends_on` meta-argument to specify the order
-        of creation, for example:
+           of creation, for example:
         ```example
         resource "ionoscloud_ipfailover" "firstexample" {
         datacenter_id         = "datacenter ID"
@@ -680,7 +680,7 @@ class IPFailover(pulumi.CustomResource):
         }
         ```
         2. Define the resources as presented above, but without using the `depends_on` meta-argument and run the apply command using
-        `-parallelism=1` as presented below:
+           `-parallelism=1` as presented below:
         ```shell
         pulumi up -parallelism=1
         ```

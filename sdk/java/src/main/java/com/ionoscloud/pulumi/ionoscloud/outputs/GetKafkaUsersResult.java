@@ -16,11 +16,6 @@ import javax.annotation.Nullable;
 @CustomType
 public final class GetKafkaUsersResult {
     private String clusterId;
-    /**
-     * @return The provider-assigned unique ID for this managed resource.
-     * 
-     */
-    private String id;
     private @Nullable String location;
     private @Nullable GetKafkaUsersTimeouts timeouts;
     /**
@@ -32,13 +27,6 @@ public final class GetKafkaUsersResult {
     private GetKafkaUsersResult() {}
     public String clusterId() {
         return this.clusterId;
-    }
-    /**
-     * @return The provider-assigned unique ID for this managed resource.
-     * 
-     */
-    public String id() {
-        return this.id;
     }
     public Optional<String> location() {
         return Optional.ofNullable(this.location);
@@ -64,7 +52,6 @@ public final class GetKafkaUsersResult {
     @CustomType.Builder
     public static final class Builder {
         private String clusterId;
-        private String id;
         private @Nullable String location;
         private @Nullable GetKafkaUsersTimeouts timeouts;
         private List<GetKafkaUsersUser> users;
@@ -72,7 +59,6 @@ public final class GetKafkaUsersResult {
         public Builder(GetKafkaUsersResult defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.clusterId = defaults.clusterId;
-    	      this.id = defaults.id;
     	      this.location = defaults.location;
     	      this.timeouts = defaults.timeouts;
     	      this.users = defaults.users;
@@ -84,14 +70,6 @@ public final class GetKafkaUsersResult {
               throw new MissingRequiredPropertyException("GetKafkaUsersResult", "clusterId");
             }
             this.clusterId = clusterId;
-            return this;
-        }
-        @CustomType.Setter
-        public Builder id(String id) {
-            if (id == null) {
-              throw new MissingRequiredPropertyException("GetKafkaUsersResult", "id");
-            }
-            this.id = id;
             return this;
         }
         @CustomType.Setter
@@ -120,7 +98,6 @@ public final class GetKafkaUsersResult {
         public GetKafkaUsersResult build() {
             final var _resultValue = new GetKafkaUsersResult();
             _resultValue.clusterId = clusterId;
-            _resultValue.id = id;
             _resultValue.location = location;
             _resultValue.timeouts = timeouts;
             _resultValue.users = users;

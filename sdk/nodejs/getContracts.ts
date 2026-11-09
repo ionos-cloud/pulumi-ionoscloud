@@ -65,10 +65,6 @@ export function getContracts(opts?: pulumi.InvokeOptions): Promise<GetContractsR
  */
 export interface GetContractsResult {
     readonly contracts: outputs.GetContractsContract[];
-    /**
-     * The provider-assigned unique ID for this managed resource.
-     */
-    readonly id: string;
 }
 /**
  * The `contracts` data source provides information about the contracts available in your IONOS CLOUD account, including resource limits and other contract details.

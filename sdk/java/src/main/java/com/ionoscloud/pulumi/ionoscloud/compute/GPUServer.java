@@ -44,8 +44,8 @@ import javax.annotation.Nullable;
  * import com.ionoscloud.pulumi.ionoscloud.compute.IPBlockArgs;
  * import com.ionoscloud.pulumi.ionoscloud.compute.Lan;
  * import com.ionoscloud.pulumi.ionoscloud.compute.LanArgs;
- * import com.pulumi.random.password;
- * import com.pulumi.random.passwordArgs;
+ * import com.pulumi.random.Password;
+ * import com.pulumi.random.PasswordArgs;
  * import com.ionoscloud.pulumi.ionoscloud.compute.GPUServer;
  * import com.ionoscloud.pulumi.ionoscloud.compute.GPUServerArgs;
  * import com.pulumi.ionoscloud.compute.inputs.GPUServerVolumeArgs;
@@ -93,7 +93,7 @@ import javax.annotation.Nullable;
  *             .availabilityZone("AUTO")
  *             .templateUuid("6913ed82-a143-4c15-89ac-08fb375a97c5")
  *             .imageName("ubuntu:latest")
- *             .imagePassword(serverImagePassword.result())
+ *             .imagePassword(serverImagePassword.get("result"))
  *             .vmState("RUNNING")
  *             .volume(GPUServerVolumeArgs.builder()
  *                 .name("system")
@@ -110,7 +110,7 @@ import javax.annotation.Nullable;
  *                 .dhcp(true)
  *                 .firewallActive(true)
  *                 .firewallType("INGRESS")
- *                 .ips(webserverIpblock.ips().applyValue(_ips -> _ips[0]))
+ *                 .ips(webserverIpblock.ips().applyValue(_ips -> _ips.get(0)))
  *                 .firewall(GPUServerNicFirewallArgs.builder()
  *                     .protocol("TCP")
  *                     .name("SSH")

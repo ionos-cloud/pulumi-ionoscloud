@@ -184,7 +184,7 @@ class IPBlock(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 ip_consumers: pulumi.Input[Optional[Sequence[pulumi.Input[Union['IPBlockIpConsumerArgs', 'IPBlockIpConsumerArgsDict']]]]] = None,
+                 ip_consumers: pulumi.Input[Optional[Sequence[pulumi.Input[Union['IPBlockIpConsumerArgs', 'IPBlockIpConsumerArgsDict', 'outputs.IPBlockIpConsumer']]]]] = None,
                  location: pulumi.Input[Optional[_builtins.str]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  size: pulumi.Input[Optional[_builtins.int]] = None,
@@ -215,7 +215,7 @@ class IPBlock(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['IPBlockIpConsumerArgs', 'IPBlockIpConsumerArgsDict']]]] ip_consumers: Read-Only attribute. Lists consumption detail of an individual ip
+        :param pulumi.Input[Sequence[pulumi.Input[Union['IPBlockIpConsumerArgs', 'IPBlockIpConsumerArgsDict', 'outputs.IPBlockIpConsumer']]]] ip_consumers: Read-Only attribute. Lists consumption detail of an individual ip
         :param pulumi.Input[_builtins.str] location: [string] The regional location for this IP Block: us/las, us/ewr, de/fra, de/fkb.
         :param pulumi.Input[_builtins.str] name: [string] The name of Ip Block
         :param pulumi.Input[_builtins.int] size: [integer] The number of IP addresses to reserve for this block.
@@ -265,7 +265,7 @@ class IPBlock(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 ip_consumers: pulumi.Input[Optional[Sequence[pulumi.Input[Union['IPBlockIpConsumerArgs', 'IPBlockIpConsumerArgsDict']]]]] = None,
+                 ip_consumers: pulumi.Input[Optional[Sequence[pulumi.Input[Union['IPBlockIpConsumerArgs', 'IPBlockIpConsumerArgsDict', 'outputs.IPBlockIpConsumer']]]]] = None,
                  location: pulumi.Input[Optional[_builtins.str]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  size: pulumi.Input[Optional[_builtins.int]] = None,
@@ -297,7 +297,7 @@ class IPBlock(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            ip_consumers: pulumi.Input[Optional[Sequence[pulumi.Input[Union['IPBlockIpConsumerArgs', 'IPBlockIpConsumerArgsDict']]]]] = None,
+            ip_consumers: pulumi.Input[Optional[Sequence[pulumi.Input[Union['IPBlockIpConsumerArgs', 'IPBlockIpConsumerArgsDict', 'outputs.IPBlockIpConsumer']]]]] = None,
             ips: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
             location: pulumi.Input[Optional[_builtins.str]] = None,
             name: pulumi.Input[Optional[_builtins.str]] = None,
@@ -309,7 +309,7 @@ class IPBlock(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['IPBlockIpConsumerArgs', 'IPBlockIpConsumerArgsDict']]]] ip_consumers: Read-Only attribute. Lists consumption detail of an individual ip
+        :param pulumi.Input[Sequence[pulumi.Input[Union['IPBlockIpConsumerArgs', 'IPBlockIpConsumerArgsDict', 'outputs.IPBlockIpConsumer']]]] ip_consumers: Read-Only attribute. Lists consumption detail of an individual ip
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ips: [integer] The list of IP addresses associated with this block.
         :param pulumi.Input[_builtins.str] location: [string] The regional location for this IP Block: us/las, us/ewr, de/fra, de/fkb.
         :param pulumi.Input[_builtins.str] name: [string] The name of Ip Block

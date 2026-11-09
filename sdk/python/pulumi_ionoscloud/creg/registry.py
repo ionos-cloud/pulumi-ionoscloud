@@ -226,8 +226,8 @@ class Registry(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  api_subnet_allow_lists: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 features: pulumi.Input[Optional[Union['RegistryFeaturesArgs', 'RegistryFeaturesArgsDict']]] = None,
-                 garbage_collection_schedule: pulumi.Input[Optional[Union['RegistryGarbageCollectionScheduleArgs', 'RegistryGarbageCollectionScheduleArgsDict']]] = None,
+                 features: pulumi.Input[Optional[Union['RegistryFeaturesArgs', 'RegistryFeaturesArgsDict', 'outputs.RegistryFeatures']]] = None,
+                 garbage_collection_schedule: pulumi.Input[Optional[Union['RegistryGarbageCollectionScheduleArgs', 'RegistryGarbageCollectionScheduleArgsDict', 'outputs.RegistryGarbageCollectionSchedule']]] = None,
                  location: pulumi.Input[Optional[_builtins.str]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
@@ -265,8 +265,8 @@ class Registry(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] api_subnet_allow_lists: [list] The subnet CIDRs that are allowed to connect to the registry.  Specify "a.b.c.d/32" for an individual IP address. __Note__: If this list is empty or not set, there are no restrictions.
-        :param pulumi.Input[Union['RegistryFeaturesArgs', 'RegistryFeaturesArgsDict']] features: [Map]
-        :param pulumi.Input[Union['RegistryGarbageCollectionScheduleArgs', 'RegistryGarbageCollectionScheduleArgsDict']] garbage_collection_schedule: [Map]
+        :param pulumi.Input[Union['RegistryFeaturesArgs', 'RegistryFeaturesArgsDict', 'outputs.RegistryFeatures']] features: [Map]
+        :param pulumi.Input[Union['RegistryGarbageCollectionScheduleArgs', 'RegistryGarbageCollectionScheduleArgsDict', 'outputs.RegistryGarbageCollectionSchedule']] garbage_collection_schedule: [Map]
         :param pulumi.Input[_builtins.str] location: [string] Immutable, update forces re-creation of the resource.
         :param pulumi.Input[_builtins.str] name: The name of the container registry. Immutable, update forces re-creation of the resource.
         """
@@ -323,8 +323,8 @@ class Registry(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  api_subnet_allow_lists: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 features: pulumi.Input[Optional[Union['RegistryFeaturesArgs', 'RegistryFeaturesArgsDict']]] = None,
-                 garbage_collection_schedule: pulumi.Input[Optional[Union['RegistryGarbageCollectionScheduleArgs', 'RegistryGarbageCollectionScheduleArgsDict']]] = None,
+                 features: pulumi.Input[Optional[Union['RegistryFeaturesArgs', 'RegistryFeaturesArgsDict', 'outputs.RegistryFeatures']]] = None,
+                 garbage_collection_schedule: pulumi.Input[Optional[Union['RegistryGarbageCollectionScheduleArgs', 'RegistryGarbageCollectionScheduleArgsDict', 'outputs.RegistryGarbageCollectionSchedule']]] = None,
                  location: pulumi.Input[Optional[_builtins.str]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
@@ -356,12 +356,12 @@ class Registry(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             api_subnet_allow_lists: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            features: pulumi.Input[Optional[Union['RegistryFeaturesArgs', 'RegistryFeaturesArgsDict']]] = None,
-            garbage_collection_schedule: pulumi.Input[Optional[Union['RegistryGarbageCollectionScheduleArgs', 'RegistryGarbageCollectionScheduleArgsDict']]] = None,
+            features: pulumi.Input[Optional[Union['RegistryFeaturesArgs', 'RegistryFeaturesArgsDict', 'outputs.RegistryFeatures']]] = None,
+            garbage_collection_schedule: pulumi.Input[Optional[Union['RegistryGarbageCollectionScheduleArgs', 'RegistryGarbageCollectionScheduleArgsDict', 'outputs.RegistryGarbageCollectionSchedule']]] = None,
             hostname: pulumi.Input[Optional[_builtins.str]] = None,
             location: pulumi.Input[Optional[_builtins.str]] = None,
             name: pulumi.Input[Optional[_builtins.str]] = None,
-            storage_usages: pulumi.Input[Optional[Sequence[pulumi.Input[Union['RegistryStorageUsageArgs', 'RegistryStorageUsageArgsDict']]]]] = None) -> 'Registry':
+            storage_usages: pulumi.Input[Optional[Sequence[pulumi.Input[Union['RegistryStorageUsageArgs', 'RegistryStorageUsageArgsDict', 'outputs.RegistryStorageUsage']]]]] = None) -> 'Registry':
         """
         Get an existing Registry resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -370,8 +370,8 @@ class Registry(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] api_subnet_allow_lists: [list] The subnet CIDRs that are allowed to connect to the registry.  Specify "a.b.c.d/32" for an individual IP address. __Note__: If this list is empty or not set, there are no restrictions.
-        :param pulumi.Input[Union['RegistryFeaturesArgs', 'RegistryFeaturesArgsDict']] features: [Map]
-        :param pulumi.Input[Union['RegistryGarbageCollectionScheduleArgs', 'RegistryGarbageCollectionScheduleArgsDict']] garbage_collection_schedule: [Map]
+        :param pulumi.Input[Union['RegistryFeaturesArgs', 'RegistryFeaturesArgsDict', 'outputs.RegistryFeatures']] features: [Map]
+        :param pulumi.Input[Union['RegistryGarbageCollectionScheduleArgs', 'RegistryGarbageCollectionScheduleArgsDict', 'outputs.RegistryGarbageCollectionSchedule']] garbage_collection_schedule: [Map]
         :param pulumi.Input[_builtins.str] location: [string] Immutable, update forces re-creation of the resource.
         :param pulumi.Input[_builtins.str] name: The name of the container registry. Immutable, update forces re-creation of the resource.
         """

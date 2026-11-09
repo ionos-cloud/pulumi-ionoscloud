@@ -56,20 +56,14 @@ type GetPSQLVersionsV2Args struct {
 
 // A collection of values returned by getPSQLVersionsV2.
 type GetPSQLVersionsV2Result struct {
-	// The provider-assigned unique ID for this managed resource.
-	Id       string `pulumi:"id"`
 	Location string `pulumi:"location"`
 	// The list of available PostgreSQL versions. Each version has the following attributes:
 	Versions []GetPSQLVersionsV2Version `pulumi:"versions"`
 }
 
 func GetPSQLVersionsV2Output(ctx *pulumi.Context, args GetPSQLVersionsV2OutputArgs, opts ...pulumi.InvokeOption) GetPSQLVersionsV2ResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (GetPSQLVersionsV2ResultOutput, error) {
-			args := v.(GetPSQLVersionsV2Args)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("ionoscloud:dbaas/getPSQLVersionsV2:getPSQLVersionsV2", args, GetPSQLVersionsV2ResultOutput{}, options).(GetPSQLVersionsV2ResultOutput), nil
-		}).(GetPSQLVersionsV2ResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("ionoscloud:dbaas/getPSQLVersionsV2:getPSQLVersionsV2", args, GetPSQLVersionsV2ResultOutput{}, options).(GetPSQLVersionsV2ResultOutput)
 }
 
 // A collection of arguments for invoking getPSQLVersionsV2.
@@ -95,11 +89,6 @@ func (o GetPSQLVersionsV2ResultOutput) ToGetPSQLVersionsV2ResultOutput() GetPSQL
 
 func (o GetPSQLVersionsV2ResultOutput) ToGetPSQLVersionsV2ResultOutputWithContext(ctx context.Context) GetPSQLVersionsV2ResultOutput {
 	return o
-}
-
-// The provider-assigned unique ID for this managed resource.
-func (o GetPSQLVersionsV2ResultOutput) Id() pulumi.StringOutput {
-	return o.ApplyT(func(v GetPSQLVersionsV2Result) string { return v.Id }).(pulumi.StringOutput)
 }
 
 func (o GetPSQLVersionsV2ResultOutput) Location() pulumi.StringOutput {

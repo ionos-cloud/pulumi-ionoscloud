@@ -223,9 +223,8 @@ export class VCPUServer extends pulumi.CustomResource {
     /**
      * [bool] Activate or deactivate the Multi Queue feature on all NICs of the server. This feature is beneficial to enable when the NICs are experiencing performance issues (e.g. low throughput). Toggling this feature will also initiate a restart of the server. If the specified value is `true`, the feature will be activated; if it is not specified or set to `false`, the feature will be deactivated.
      *
-     *
      * > **⚠ WARNING**
-     * >
+     * > 
      * > sshKeys field is immutable.
      */
     declare public readonly nicMultiQueue: pulumi.Output<boolean | undefined>;
@@ -432,9 +431,8 @@ export interface VCPUServerState {
     /**
      * [bool] Activate or deactivate the Multi Queue feature on all NICs of the server. This feature is beneficial to enable when the NICs are experiencing performance issues (e.g. low throughput). Toggling this feature will also initiate a restart of the server. If the specified value is `true`, the feature will be activated; if it is not specified or set to `false`, the feature will be deactivated.
      *
-     *
      * > **⚠ WARNING**
-     * >
+     * > 
      * > sshKeys field is immutable.
      */
     nicMultiQueue?: pulumi.Input<boolean | undefined>;
@@ -530,9 +528,8 @@ export interface VCPUServerArgs {
     /**
      * [bool] Activate or deactivate the Multi Queue feature on all NICs of the server. This feature is beneficial to enable when the NICs are experiencing performance issues (e.g. low throughput). Toggling this feature will also initiate a restart of the server. If the specified value is `true`, the feature will be activated; if it is not specified or set to `false`, the feature will be deactivated.
      *
-     *
      * > **⚠ WARNING**
-     * >
+     * > 
      * > sshKeys field is immutable.
      */
     nicMultiQueue?: pulumi.Input<boolean | undefined>;

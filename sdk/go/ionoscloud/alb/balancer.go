@@ -21,6 +21,8 @@ import (
 //
 // import (
 //
+//	"strconv"
+//
 //	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/alb"
 //	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/compute"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
@@ -57,11 +59,11 @@ import (
 //			_, err = alb.NewBalancer(ctx, "example", &alb.BalancerArgs{
 //				DatacenterId: example.ID(),
 //				Name:         pulumi.String("ALB Example"),
-//				ListenerLan:  example1.ID(),
+//				ListenerLan:  example1.ID().ToStringOutput().ApplyT(strconv.Atoi).(pulumi.IntOutput),
 //				Ips: pulumi.StringArray{
 //					pulumi.String("10.12.118.224"),
 //				},
-//				TargetLan: example2.ID(),
+//				TargetLan: example2.ID().ToStringOutput().ApplyT(strconv.Atoi).(pulumi.IntOutput),
 //				LbPrivateIps: pulumi.StringArray{
 //					pulumi.String("10.13.72.225/24"),
 //				},

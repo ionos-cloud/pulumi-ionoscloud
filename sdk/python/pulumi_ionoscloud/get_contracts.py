@@ -27,26 +27,15 @@ class GetContractsResult:
     """
     A collection of values returned by getContracts.
     """
-    def __init__(__self__, contracts=None, id=None):
+    def __init__(__self__, contracts=None):
         if contracts and not isinstance(contracts, list):
             raise TypeError("Expected argument 'contracts' to be a list")
         pulumi.set(__self__, "contracts", contracts)
-        if id and not isinstance(id, str):
-            raise TypeError("Expected argument 'id' to be a str")
-        pulumi.set(__self__, "id", id)
 
     @_builtins.property
     @pulumi.getter
     def contracts(self) -> Sequence['outputs.GetContractsContractResult']:
         return pulumi.get(self, "contracts")
-
-    @_builtins.property
-    @pulumi.getter
-    def id(self) -> _builtins.str:
-        """
-        The provider-assigned unique ID for this managed resource.
-        """
-        return pulumi.get(self, "id")
 
 
 class AwaitableGetContractsResult(GetContractsResult):
@@ -55,8 +44,7 @@ class AwaitableGetContractsResult(GetContractsResult):
         if False:
             yield self
         return GetContractsResult(
-            contracts=self.contracts,
-            id=self.id)
+            contracts=self.contracts)
 
 
 def get_contracts(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetContractsResult:
@@ -113,8 +101,7 @@ def get_contracts(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetCo
     __ret__ = pulumi.runtime.invoke('ionoscloud:index/getContracts:getContracts', __args__, opts=opts, typ=GetContractsResult).value
 
     return AwaitableGetContractsResult(
-        contracts=pulumi.get(__ret__, 'contracts'),
-        id=pulumi.get(__ret__, 'id'))
+        contracts=pulumi.get(__ret__, 'contracts'))
 def get_contracts_output(opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetContractsResult]:
     """
     The `contracts` data source provides information about the contracts available in your IONOS CLOUD account, including resource limits and other contract details.
@@ -168,5 +155,4 @@ def get_contracts_output(opts: Optional[Union[pulumi.InvokeOptions, pulumi.Invok
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('ionoscloud:index/getContracts:getContracts', __args__, opts=opts, typ=GetContractsResult)
     return __ret__.apply(lambda __response__: GetContractsResult(
-        contracts=pulumi.get(__response__, 'contracts'),
-        id=pulumi.get(__response__, 'id')))
+        contracts=pulumi.get(__response__, 'contracts')))

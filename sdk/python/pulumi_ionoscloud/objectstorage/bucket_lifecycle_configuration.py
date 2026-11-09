@@ -106,7 +106,7 @@ class BucketLifecycleConfiguration(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  bucket: pulumi.Input[Optional[_builtins.str]] = None,
-                 rules: pulumi.Input[Optional[Sequence[pulumi.Input[Union['BucketLifecycleConfigurationRuleArgs', 'BucketLifecycleConfigurationRuleArgsDict']]]]] = None,
+                 rules: pulumi.Input[Optional[Sequence[pulumi.Input[Union['BucketLifecycleConfigurationRuleArgs', 'BucketLifecycleConfigurationRuleArgsDict', 'outputs.BucketLifecycleConfigurationRule']]]]] = None,
                  __props__=None):
         """
         Manages Lifecycle Configuration for Buckets on IONOS CLOUD.
@@ -166,7 +166,7 @@ class BucketLifecycleConfiguration(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] bucket: [string] The name of the bucket where the object will be stored.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['BucketLifecycleConfigurationRuleArgs', 'BucketLifecycleConfigurationRuleArgsDict']]]] rules: A list of lifecycle rules for objects in the bucket.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['BucketLifecycleConfigurationRuleArgs', 'BucketLifecycleConfigurationRuleArgsDict', 'outputs.BucketLifecycleConfigurationRule']]]] rules: A list of lifecycle rules for objects in the bucket.
         """
         ...
     @overload
@@ -245,7 +245,7 @@ class BucketLifecycleConfiguration(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  bucket: pulumi.Input[Optional[_builtins.str]] = None,
-                 rules: pulumi.Input[Optional[Sequence[pulumi.Input[Union['BucketLifecycleConfigurationRuleArgs', 'BucketLifecycleConfigurationRuleArgsDict']]]]] = None,
+                 rules: pulumi.Input[Optional[Sequence[pulumi.Input[Union['BucketLifecycleConfigurationRuleArgs', 'BucketLifecycleConfigurationRuleArgsDict', 'outputs.BucketLifecycleConfigurationRule']]]]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -270,7 +270,7 @@ class BucketLifecycleConfiguration(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             bucket: pulumi.Input[Optional[_builtins.str]] = None,
-            rules: pulumi.Input[Optional[Sequence[pulumi.Input[Union['BucketLifecycleConfigurationRuleArgs', 'BucketLifecycleConfigurationRuleArgsDict']]]]] = None) -> 'BucketLifecycleConfiguration':
+            rules: pulumi.Input[Optional[Sequence[pulumi.Input[Union['BucketLifecycleConfigurationRuleArgs', 'BucketLifecycleConfigurationRuleArgsDict', 'outputs.BucketLifecycleConfigurationRule']]]]] = None) -> 'BucketLifecycleConfiguration':
         """
         Get an existing BucketLifecycleConfiguration resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -279,7 +279,7 @@ class BucketLifecycleConfiguration(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] bucket: [string] The name of the bucket where the object will be stored.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['BucketLifecycleConfigurationRuleArgs', 'BucketLifecycleConfigurationRuleArgsDict']]]] rules: A list of lifecycle rules for objects in the bucket.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['BucketLifecycleConfigurationRuleArgs', 'BucketLifecycleConfigurationRuleArgsDict', 'outputs.BucketLifecycleConfigurationRule']]]] rules: A list of lifecycle rules for objects in the bucket.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 

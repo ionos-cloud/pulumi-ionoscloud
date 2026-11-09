@@ -37,8 +37,8 @@ import javax.annotation.Nullable;
  * import com.ionoscloud.pulumi.ionoscloud.compute.IPBlockArgs;
  * import com.ionoscloud.pulumi.ionoscloud.compute.Lan;
  * import com.ionoscloud.pulumi.ionoscloud.compute.LanArgs;
- * import com.pulumi.random.password;
- * import com.pulumi.random.passwordArgs;
+ * import com.pulumi.random.Password;
+ * import com.pulumi.random.PasswordArgs;
  * import com.ionoscloud.pulumi.ionoscloud.compute.Server;
  * import com.ionoscloud.pulumi.ionoscloud.compute.ServerArgs;
  * import com.pulumi.ionoscloud.compute.inputs.ServerVolumeArgs;
@@ -88,7 +88,7 @@ import javax.annotation.Nullable;
  *             .cores(1)
  *             .ram(1024)
  *             .imageName("Ubuntu-20.04")
- *             .imagePassword(serverImagePassword.result())
+ *             .imagePassword(serverImagePassword.get("result"))
  *             .volume(ServerVolumeArgs.builder()
  *                 .name("system")
  *                 .size(14)
@@ -110,8 +110,8 @@ import javax.annotation.Nullable;
  *             .firewallActive(true)
  *             .firewallType("INGRESS")
  *             .ips(            
- *                 exampleIPBlock.ips().applyValue(_ips -> _ips[0]),
- *                 exampleIPBlock.ips().applyValue(_ips -> _ips[1]))
+ *                 exampleIPBlock.ips().applyValue(_ips -> _ips.get(0)),
+ *                 exampleIPBlock.ips().applyValue(_ips -> _ips.get(1)))
  *             .build());
  * 
  *     }
@@ -135,8 +135,8 @@ import javax.annotation.Nullable;
  * import com.ionoscloud.pulumi.ionoscloud.compute.Lan;
  * import com.ionoscloud.pulumi.ionoscloud.compute.LanArgs;
  * import com.pulumi.std.StdFunctions;
- * import com.pulumi.random.password;
- * import com.pulumi.random.passwordArgs;
+ * import com.pulumi.random.Password;
+ * import com.pulumi.random.PasswordArgs;
  * import com.ionoscloud.pulumi.ionoscloud.compute.Server;
  * import com.ionoscloud.pulumi.ionoscloud.compute.ServerArgs;
  * import com.pulumi.ionoscloud.compute.inputs.ServerVolumeArgs;
@@ -171,7 +171,7 @@ import javax.annotation.Nullable;
  *                 Map.entry("input", example.ipv6CidrBlock()),
  *                 Map.entry("newbits", 8),
  *                 Map.entry("netnum", 2)
- *             )).result())
+ *             )).get("result"))
  *             .build());
  * 
  *         var serverImagePassword = new Password("serverImagePassword", PasswordArgs.builder()
@@ -185,7 +185,7 @@ import javax.annotation.Nullable;
  *             .cores(1)
  *             .ram(1024)
  *             .imageName("Ubuntu-20.04")
- *             .imagePassword(serverImagePassword.result())
+ *             .imagePassword(serverImagePassword.get("result"))
  *             .volume(ServerVolumeArgs.builder()
  *                 .name("system")
  *                 .size(14)
@@ -211,32 +211,32 @@ import javax.annotation.Nullable;
  *                 Map.entry("input", exampleLan.ipv6CidrBlock()),
  *                 Map.entry("newbits", 16),
  *                 Map.entry("netnum", 14)
- *             )).result())
+ *             )).get("result"))
  *             .ipv6Ips(            
  *                 StdFunctions.cidrhost(Map.ofEntries(
  *                     Map.entry("input", StdFunctions.cidrsubnet(Map.ofEntries(
  *                         Map.entry("input", exampleLan.ipv6CidrBlock()),
  *                         Map.entry("newbits", 16),
  *                         Map.entry("netnum", 14)
- *                     )).result()),
+ *                     )).get("result")),
  *                     Map.entry("host", 10)
- *                 )).result(),
+ *                 )).get("result"),
  *                 StdFunctions.cidrhost(Map.ofEntries(
  *                     Map.entry("input", StdFunctions.cidrsubnet(Map.ofEntries(
  *                         Map.entry("input", exampleLan.ipv6CidrBlock()),
  *                         Map.entry("newbits", 16),
  *                         Map.entry("netnum", 14)
- *                     )).result()),
+ *                     )).get("result")),
  *                     Map.entry("host", 20)
- *                 )).result(),
+ *                 )).get("result"),
  *                 StdFunctions.cidrhost(Map.ofEntries(
  *                     Map.entry("input", StdFunctions.cidrsubnet(Map.ofEntries(
  *                         Map.entry("input", exampleLan.ipv6CidrBlock()),
  *                         Map.entry("newbits", 16),
  *                         Map.entry("netnum", 14)
- *                     )).result()),
+ *                     )).get("result")),
  *                     Map.entry("host", 30)
- *                 )).result())
+ *                 )).get("result"))
  *             .build());
  * 
  *     }
@@ -272,44 +272,44 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var example = new Nic("example", NicArgs.builder()
- *             .datacenterId(exampleIonoscloudDatacenter.id())
- *             .serverId(exampleIonoscloudServer.id())
- *             .lan(exampleIonoscloudLan.id())
+ *             .datacenterId(exampleIonoscloudDatacenter.get("id"))
+ *             .serverId(exampleIonoscloudServer.get("id"))
+ *             .lan(exampleIonoscloudLan.get("id"))
  *             .name("IPV6 and Flowlog Enabled NIC")
  *             .dhcp(true)
  *             .firewallActive(true)
  *             .firewallType("INGRESS")
  *             .dhcpv6(false)
  *             .ipv6CidrBlock(StdFunctions.cidrsubnet(Map.ofEntries(
- *                 Map.entry("input", exampleIonoscloudLan.ipv6CidrBlock()),
+ *                 Map.entry("input", exampleIonoscloudLan.get("ipv6CidrBlock")),
  *                 Map.entry("newbits", 16),
  *                 Map.entry("netnum", 14)
- *             )).result())
+ *             )).get("result"))
  *             .ipv6Ips(            
  *                 StdFunctions.cidrhost(Map.ofEntries(
  *                     Map.entry("input", StdFunctions.cidrsubnet(Map.ofEntries(
- *                         Map.entry("input", exampleIonoscloudLan.ipv6CidrBlock()),
+ *                         Map.entry("input", exampleIonoscloudLan.get("ipv6CidrBlock")),
  *                         Map.entry("newbits", 16),
  *                         Map.entry("netnum", 14)
- *                     )).result()),
+ *                     )).get("result")),
  *                     Map.entry("host", 10)
- *                 )).result(),
+ *                 )).get("result"),
  *                 StdFunctions.cidrhost(Map.ofEntries(
  *                     Map.entry("input", StdFunctions.cidrsubnet(Map.ofEntries(
- *                         Map.entry("input", exampleIonoscloudLan.ipv6CidrBlock()),
+ *                         Map.entry("input", exampleIonoscloudLan.get("ipv6CidrBlock")),
  *                         Map.entry("newbits", 16),
  *                         Map.entry("netnum", 14)
- *                     )).result()),
+ *                     )).get("result")),
  *                     Map.entry("host", 20)
- *                 )).result(),
+ *                 )).get("result"),
  *                 StdFunctions.cidrhost(Map.ofEntries(
  *                     Map.entry("input", StdFunctions.cidrsubnet(Map.ofEntries(
- *                         Map.entry("input", exampleIonoscloudLan.ipv6CidrBlock()),
+ *                         Map.entry("input", exampleIonoscloudLan.get("ipv6CidrBlock")),
  *                         Map.entry("newbits", 16),
  *                         Map.entry("netnum", 14)
- *                     )).result()),
+ *                     )).get("result")),
  *                     Map.entry("host", 30)
- *                 )).result())
+ *                 )).get("result"))
  *             .flowlog(NicFlowlogArgs.builder()
  *                 .action("ACCEPTED")
  *                 .bucket("flowlog-bucket")
@@ -361,8 +361,8 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var example = new Nic("example", NicArgs.builder()
- *             .datacenterId(foobar.id())
- *             .serverId(exampleIonoscloudServer.id())
+ *             .datacenterId(foobar.get("id"))
+ *             .serverId(exampleIonoscloudServer.get("id"))
  *             .lan(2)
  *             .dhcp(true)
  *             .firewallActive(true)

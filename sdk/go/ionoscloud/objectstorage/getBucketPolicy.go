@@ -59,19 +59,13 @@ type LookupBucketPolicyArgs struct {
 // A collection of values returned by getBucketPolicy.
 type LookupBucketPolicyResult struct {
 	Bucket string `pulumi:"bucket"`
-	// The provider-assigned unique ID for this managed resource.
-	Id string `pulumi:"id"`
 	// The policy of the bucket.
 	Policy string `pulumi:"policy"`
 }
 
 func LookupBucketPolicyOutput(ctx *pulumi.Context, args LookupBucketPolicyOutputArgs, opts ...pulumi.InvokeOption) LookupBucketPolicyResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupBucketPolicyResultOutput, error) {
-			args := v.(LookupBucketPolicyArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("ionoscloud:objectstorage/getBucketPolicy:getBucketPolicy", args, LookupBucketPolicyResultOutput{}, options).(LookupBucketPolicyResultOutput), nil
-		}).(LookupBucketPolicyResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("ionoscloud:objectstorage/getBucketPolicy:getBucketPolicy", args, LookupBucketPolicyResultOutput{}, options).(LookupBucketPolicyResultOutput)
 }
 
 // A collection of arguments for invoking getBucketPolicy.
@@ -101,11 +95,6 @@ func (o LookupBucketPolicyResultOutput) ToLookupBucketPolicyResultOutputWithCont
 
 func (o LookupBucketPolicyResultOutput) Bucket() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupBucketPolicyResult) string { return v.Bucket }).(pulumi.StringOutput)
-}
-
-// The provider-assigned unique ID for this managed resource.
-func (o LookupBucketPolicyResultOutput) Id() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupBucketPolicyResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
 // The policy of the bucket.

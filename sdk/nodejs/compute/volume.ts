@@ -233,9 +233,9 @@ export class Volume extends pulumi.CustomResource {
      * (Computed)[boolean] Indicates if the image requires the legacy BIOS for compatibility or specific needs. During creation, if an image is used, the value will be inherited from the image, regardless of the value set in the plan. Later on, the value can be updated.
      *
      * > **⚠ WARNING**
-     * >
+     * > 
      * > sshKeyPath and sshKeys fields are immutable.
-     * > If you want to create a **CUBE** server, the type of the inline volume must be set to **DAS**. In this case, you can not set the `size` argument since it is taken from the `templateUuid` you set in the server.
+     * If you want to create a **CUBE** server, the type of the inline volume must be set to **DAS**. In this case, you can not set the `size` argument since it is taken from the `templateUuid` you set in the server.
      */
     declare public readonly requireLegacyBios: pulumi.Output<boolean>;
     /**
@@ -449,9 +449,9 @@ export interface VolumeState {
      * (Computed)[boolean] Indicates if the image requires the legacy BIOS for compatibility or specific needs. During creation, if an image is used, the value will be inherited from the image, regardless of the value set in the plan. Later on, the value can be updated.
      *
      * > **⚠ WARNING**
-     * >
+     * > 
      * > sshKeyPath and sshKeys fields are immutable.
-     * > If you want to create a **CUBE** server, the type of the inline volume must be set to **DAS**. In this case, you can not set the `size` argument since it is taken from the `templateUuid` you set in the server.
+     * If you want to create a **CUBE** server, the type of the inline volume must be set to **DAS**. In this case, you can not set the `size` argument since it is taken from the `templateUuid` you set in the server.
      */
     requireLegacyBios?: pulumi.Input<boolean | undefined>;
     /**
@@ -532,9 +532,9 @@ export interface VolumeArgs {
      * (Computed)[boolean] Indicates if the image requires the legacy BIOS for compatibility or specific needs. During creation, if an image is used, the value will be inherited from the image, regardless of the value set in the plan. Later on, the value can be updated.
      *
      * > **⚠ WARNING**
-     * >
+     * > 
      * > sshKeyPath and sshKeys fields are immutable.
-     * > If you want to create a **CUBE** server, the type of the inline volume must be set to **DAS**. In this case, you can not set the `size` argument since it is taken from the `templateUuid` you set in the server.
+     * If you want to create a **CUBE** server, the type of the inline volume must be set to **DAS**. In this case, you can not set the `size` argument since it is taken from the `templateUuid` you set in the server.
      */
     requireLegacyBios?: pulumi.Input<boolean | undefined>;
     /**

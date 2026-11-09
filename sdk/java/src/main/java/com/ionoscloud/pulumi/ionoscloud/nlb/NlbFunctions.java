@@ -50,7 +50,7 @@ public final class NlbFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var example = NlbFunctions.getBalancer(GetBalancerArgs.builder()
-     *             .datacenterId(exampleIonoscloudDatacenter.id())
+     *             .datacenterId(exampleIonoscloudDatacenter.get("id"))
      *             .id("networkloadbalancer_id")
      *             .build());
      * 
@@ -85,7 +85,7 @@ public final class NlbFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var example = NlbFunctions.getBalancer(GetBalancerArgs.builder()
-     *             .datacenterId(exampleIonoscloudDatacenter.id())
+     *             .datacenterId(exampleIonoscloudDatacenter.get("id"))
      *             .name("Network Load Balancer Name")
      *             .build());
      * 
@@ -131,7 +131,7 @@ public final class NlbFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var example = NlbFunctions.getBalancer(GetBalancerArgs.builder()
-     *             .datacenterId(exampleIonoscloudDatacenter.id())
+     *             .datacenterId(exampleIonoscloudDatacenter.get("id"))
      *             .id("networkloadbalancer_id")
      *             .build());
      * 
@@ -166,7 +166,7 @@ public final class NlbFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var example = NlbFunctions.getBalancer(GetBalancerArgs.builder()
-     *             .datacenterId(exampleIonoscloudDatacenter.id())
+     *             .datacenterId(exampleIonoscloudDatacenter.get("id"))
      *             .name("Network Load Balancer Name")
      *             .build());
      * 
@@ -212,7 +212,7 @@ public final class NlbFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var example = NlbFunctions.getBalancer(GetBalancerArgs.builder()
-     *             .datacenterId(exampleIonoscloudDatacenter.id())
+     *             .datacenterId(exampleIonoscloudDatacenter.get("id"))
      *             .id("networkloadbalancer_id")
      *             .build());
      * 
@@ -247,7 +247,7 @@ public final class NlbFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var example = NlbFunctions.getBalancer(GetBalancerArgs.builder()
-     *             .datacenterId(exampleIonoscloudDatacenter.id())
+     *             .datacenterId(exampleIonoscloudDatacenter.get("id"))
      *             .name("Network Load Balancer Name")
      *             .build());
      * 
@@ -293,7 +293,7 @@ public final class NlbFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var example = NlbFunctions.getBalancer(GetBalancerArgs.builder()
-     *             .datacenterId(exampleIonoscloudDatacenter.id())
+     *             .datacenterId(exampleIonoscloudDatacenter.get("id"))
      *             .id("networkloadbalancer_id")
      *             .build());
      * 
@@ -328,7 +328,7 @@ public final class NlbFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var example = NlbFunctions.getBalancer(GetBalancerArgs.builder()
-     *             .datacenterId(exampleIonoscloudDatacenter.id())
+     *             .datacenterId(exampleIonoscloudDatacenter.get("id"))
      *             .name("Network Load Balancer Name")
      *             .build());
      * 
@@ -374,7 +374,7 @@ public final class NlbFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var example = NlbFunctions.getBalancer(GetBalancerArgs.builder()
-     *             .datacenterId(exampleIonoscloudDatacenter.id())
+     *             .datacenterId(exampleIonoscloudDatacenter.get("id"))
      *             .id("networkloadbalancer_id")
      *             .build());
      * 
@@ -409,7 +409,7 @@ public final class NlbFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var example = NlbFunctions.getBalancer(GetBalancerArgs.builder()
-     *             .datacenterId(exampleIonoscloudDatacenter.id())
+     *             .datacenterId(exampleIonoscloudDatacenter.get("id"))
      *             .name("Network Load Balancer Name")
      *             .build());
      * 

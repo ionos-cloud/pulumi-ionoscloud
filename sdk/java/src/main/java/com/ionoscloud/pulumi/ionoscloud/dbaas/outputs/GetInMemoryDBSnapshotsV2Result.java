@@ -20,11 +20,6 @@ public final class GetInMemoryDBSnapshotsV2Result {
      */
     private @Nullable String clusterId;
     /**
-     * @return The provider-assigned unique ID for this managed resource.
-     * 
-     */
-    private String id;
-    /**
      * @return List of snapshots. Each item includes:
      * 
      */
@@ -42,13 +37,6 @@ public final class GetInMemoryDBSnapshotsV2Result {
      */
     public Optional<String> clusterId() {
         return Optional.ofNullable(this.clusterId);
-    }
-    /**
-     * @return The provider-assigned unique ID for this managed resource.
-     * 
-     */
-    public String id() {
-        return this.id;
     }
     /**
      * @return List of snapshots. Each item includes:
@@ -75,14 +63,12 @@ public final class GetInMemoryDBSnapshotsV2Result {
     @CustomType.Builder
     public static final class Builder {
         private @Nullable String clusterId;
-        private String id;
         private List<GetInMemoryDBSnapshotsV2Item> items;
         private String location;
         public Builder() {}
         public Builder(GetInMemoryDBSnapshotsV2Result defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.clusterId = defaults.clusterId;
-    	      this.id = defaults.id;
     	      this.items = defaults.items;
     	      this.location = defaults.location;
         }
@@ -91,14 +77,6 @@ public final class GetInMemoryDBSnapshotsV2Result {
         public Builder clusterId(@Nullable String clusterId) {
 
             this.clusterId = clusterId;
-            return this;
-        }
-        @CustomType.Setter
-        public Builder id(String id) {
-            if (id == null) {
-              throw new MissingRequiredPropertyException("GetInMemoryDBSnapshotsV2Result", "id");
-            }
-            this.id = id;
             return this;
         }
         @CustomType.Setter
@@ -123,7 +101,6 @@ public final class GetInMemoryDBSnapshotsV2Result {
         public GetInMemoryDBSnapshotsV2Result build() {
             final var _resultValue = new GetInMemoryDBSnapshotsV2Result();
             _resultValue.clusterId = clusterId;
-            _resultValue.id = id;
             _resultValue.items = items;
             _resultValue.location = location;
             return _resultValue;

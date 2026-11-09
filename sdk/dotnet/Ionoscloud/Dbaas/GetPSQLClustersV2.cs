@@ -195,10 +195,6 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Dbaas
         /// </summary>
         public readonly ImmutableArray<Outputs.GetPSQLClustersV2ClusterResult> Clusters;
         /// <summary>
-        /// The provider-assigned unique ID for this managed resource.
-        /// </summary>
-        public readonly string Id;
-        /// <summary>
         /// The Object Storage location where the backups are stored.
         /// </summary>
         public readonly string Location;
@@ -211,14 +207,11 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Dbaas
         private GetPSQLClustersV2Result(
             ImmutableArray<Outputs.GetPSQLClustersV2ClusterResult> clusters,
 
-            string id,
-
             string location,
 
             string? name)
         {
             Clusters = clusters;
-            Id = id;
             Location = location;
             Name = name;
         }

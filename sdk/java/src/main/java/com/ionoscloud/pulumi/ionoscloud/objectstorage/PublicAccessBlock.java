@@ -43,7 +43,7 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var example = new PublicAccessBlock("example", PublicAccessBlockArgs.builder()
- *             .bucket(exampleIonoscloudS3Bucket.name())
+ *             .bucket(exampleIonoscloudS3Bucket.get("name"))
  *             .ignorePublicAcls(true)
  *             .restrictPublicBuckets(true)
  *             .blockPublicPolicy(false)

@@ -751,7 +751,7 @@ class NodePool(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  allow_replace: pulumi.Input[Optional[_builtins.bool]] = None,
                  annotations: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 auto_scaling: pulumi.Input[Optional[Union['NodePoolAutoScalingArgs', 'NodePoolAutoScalingArgsDict']]] = None,
+                 auto_scaling: pulumi.Input[Optional[Union['NodePoolAutoScalingArgs', 'NodePoolAutoScalingArgsDict', 'outputs.NodePoolAutoScaling']]] = None,
                  availability_zone: pulumi.Input[Optional[_builtins.str]] = None,
                  cores_count: pulumi.Input[Optional[_builtins.int]] = None,
                  cpu_family: pulumi.Input[Optional[_builtins.str]] = None,
@@ -759,9 +759,9 @@ class NodePool(pulumi.CustomResource):
                  k8s_cluster_id: pulumi.Input[Optional[_builtins.str]] = None,
                  k8s_version: pulumi.Input[Optional[_builtins.str]] = None,
                  labels: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 lans: pulumi.Input[Optional[Sequence[pulumi.Input[Union['NodePoolLanArgs', 'NodePoolLanArgsDict']]]]] = None,
+                 lans: pulumi.Input[Optional[Sequence[pulumi.Input[Union['NodePoolLanArgs', 'NodePoolLanArgsDict', 'outputs.NodePoolLan']]]]] = None,
                  location: pulumi.Input[Optional[_builtins.str]] = None,
-                 maintenance_window: pulumi.Input[Optional[Union['NodePoolMaintenanceWindowArgs', 'NodePoolMaintenanceWindowArgsDict']]] = None,
+                 maintenance_window: pulumi.Input[Optional[Union['NodePoolMaintenanceWindowArgs', 'NodePoolMaintenanceWindowArgsDict', 'outputs.NodePoolMaintenanceWindow']]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  node_count: pulumi.Input[Optional[_builtins.int]] = None,
                  public_ips: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
@@ -769,7 +769,7 @@ class NodePool(pulumi.CustomResource):
                  server_type: pulumi.Input[Optional[_builtins.str]] = None,
                  storage_size: pulumi.Input[Optional[_builtins.int]] = None,
                  storage_type: pulumi.Input[Optional[_builtins.str]] = None,
-                 taints: pulumi.Input[Optional[Sequence[pulumi.Input[Union['NodePoolTaintArgs', 'NodePoolTaintArgsDict']]]]] = None,
+                 taints: pulumi.Input[Optional[Sequence[pulumi.Input[Union['NodePoolTaintArgs', 'NodePoolTaintArgsDict', 'outputs.NodePoolTaint']]]]] = None,
                  __props__=None):
         """
         Manages a **Managed Kubernetes Node Pool**, part of a managed Kubernetes cluster on IONOS CLOUD.
@@ -805,7 +805,7 @@ class NodePool(pulumi.CustomResource):
                `pulumi preview`, Terraform will think that an update is required (since `node_count` from the `tf` plan will be different
                from the number of nodes set by the scheduler). To avoid that, you can use:
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] annotations: [map] A key/value map of annotations
-        :param pulumi.Input[Union['NodePoolAutoScalingArgs', 'NodePoolAutoScalingArgsDict']] auto_scaling: [string] Whether the Node Pool should autoscale. For more details, please check the API documentation
+        :param pulumi.Input[Union['NodePoolAutoScalingArgs', 'NodePoolAutoScalingArgsDict', 'outputs.NodePoolAutoScaling']] auto_scaling: [string] Whether the Node Pool should autoscale. For more details, please check the API documentation
         :param pulumi.Input[_builtins.str] availability_zone: [string] - The desired Compute availability zone - See the API documentation for more information. *This attribute is immutable*.
         :param pulumi.Input[_builtins.int] cores_count: [int] - The CPU cores count for each node of the node pool. *This attribute is immutable*.
         :param pulumi.Input[_builtins.str] cpu_family: [string] The desired CPU Family - See the API documentation for more information. *This attribute is immutable*.
@@ -813,9 +813,9 @@ class NodePool(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] k8s_cluster_id: [string] A k8s cluster's UUID
         :param pulumi.Input[_builtins.str] k8s_version: [string] The desired Kubernetes Version. For supported values, please check the API documentation. Downgrades are not supported. The provider will ignore downgrades of patch level.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] labels: [map] A key/value map of labels
-        :param pulumi.Input[Sequence[pulumi.Input[Union['NodePoolLanArgs', 'NodePoolLanArgsDict']]]] lans: [list] A list of numeric LAN id's you want this node pool to be part of. For more details, please check the API documentation, as well as the example above
+        :param pulumi.Input[Sequence[pulumi.Input[Union['NodePoolLanArgs', 'NodePoolLanArgsDict', 'outputs.NodePoolLan']]]] lans: [list] A list of numeric LAN id's you want this node pool to be part of. For more details, please check the API documentation, as well as the example above
         :param pulumi.Input[_builtins.str] location: The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
-        :param pulumi.Input[Union['NodePoolMaintenanceWindowArgs', 'NodePoolMaintenanceWindowArgsDict']] maintenance_window: See the **maintenance_window** section in the example above
+        :param pulumi.Input[Union['NodePoolMaintenanceWindowArgs', 'NodePoolMaintenanceWindowArgsDict', 'outputs.NodePoolMaintenanceWindow']] maintenance_window: See the **maintenance_window** section in the example above
         :param pulumi.Input[_builtins.str] name: [string] The name of the Kubernetes Cluster. *This attribute is immutable*.
         :param pulumi.Input[_builtins.int] node_count: [int] - The desired number of nodes in the node pool
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] public_ips: [list] A list of public IPs associated with the node pool; must have at least `node_count + 1` elements
@@ -823,7 +823,7 @@ class NodePool(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] server_type: [string] The server type for the compute engine - See the API documentation for more information. Possible values: `DedicatedCore`, `VCPU`
         :param pulumi.Input[_builtins.int] storage_size: [int] - The size of the volume in GB. The size should be greater than 10GB. *This attribute is immutable*.
         :param pulumi.Input[_builtins.str] storage_type: [string] - The desired storage type - SSD/HDD. *This attribute is immutable*.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['NodePoolTaintArgs', 'NodePoolTaintArgsDict']]]] taints: [set] Taints applied to the nodes in this pool. A taint repels pods that do not have a matching toleration. Maximum 50 taints per node pool.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['NodePoolTaintArgs', 'NodePoolTaintArgsDict', 'outputs.NodePoolTaint']]]] taints: [set] Taints applied to the nodes in this pool. A taint repels pods that do not have a matching toleration. Maximum 50 taints per node pool.
         """
         ...
     @overload
@@ -867,7 +867,7 @@ class NodePool(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  allow_replace: pulumi.Input[Optional[_builtins.bool]] = None,
                  annotations: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 auto_scaling: pulumi.Input[Optional[Union['NodePoolAutoScalingArgs', 'NodePoolAutoScalingArgsDict']]] = None,
+                 auto_scaling: pulumi.Input[Optional[Union['NodePoolAutoScalingArgs', 'NodePoolAutoScalingArgsDict', 'outputs.NodePoolAutoScaling']]] = None,
                  availability_zone: pulumi.Input[Optional[_builtins.str]] = None,
                  cores_count: pulumi.Input[Optional[_builtins.int]] = None,
                  cpu_family: pulumi.Input[Optional[_builtins.str]] = None,
@@ -875,9 +875,9 @@ class NodePool(pulumi.CustomResource):
                  k8s_cluster_id: pulumi.Input[Optional[_builtins.str]] = None,
                  k8s_version: pulumi.Input[Optional[_builtins.str]] = None,
                  labels: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 lans: pulumi.Input[Optional[Sequence[pulumi.Input[Union['NodePoolLanArgs', 'NodePoolLanArgsDict']]]]] = None,
+                 lans: pulumi.Input[Optional[Sequence[pulumi.Input[Union['NodePoolLanArgs', 'NodePoolLanArgsDict', 'outputs.NodePoolLan']]]]] = None,
                  location: pulumi.Input[Optional[_builtins.str]] = None,
-                 maintenance_window: pulumi.Input[Optional[Union['NodePoolMaintenanceWindowArgs', 'NodePoolMaintenanceWindowArgsDict']]] = None,
+                 maintenance_window: pulumi.Input[Optional[Union['NodePoolMaintenanceWindowArgs', 'NodePoolMaintenanceWindowArgsDict', 'outputs.NodePoolMaintenanceWindow']]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  node_count: pulumi.Input[Optional[_builtins.int]] = None,
                  public_ips: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
@@ -885,7 +885,7 @@ class NodePool(pulumi.CustomResource):
                  server_type: pulumi.Input[Optional[_builtins.str]] = None,
                  storage_size: pulumi.Input[Optional[_builtins.int]] = None,
                  storage_type: pulumi.Input[Optional[_builtins.str]] = None,
-                 taints: pulumi.Input[Optional[Sequence[pulumi.Input[Union['NodePoolTaintArgs', 'NodePoolTaintArgsDict']]]]] = None,
+                 taints: pulumi.Input[Optional[Sequence[pulumi.Input[Union['NodePoolTaintArgs', 'NodePoolTaintArgsDict', 'outputs.NodePoolTaint']]]]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -946,7 +946,7 @@ class NodePool(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             allow_replace: pulumi.Input[Optional[_builtins.bool]] = None,
             annotations: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-            auto_scaling: pulumi.Input[Optional[Union['NodePoolAutoScalingArgs', 'NodePoolAutoScalingArgsDict']]] = None,
+            auto_scaling: pulumi.Input[Optional[Union['NodePoolAutoScalingArgs', 'NodePoolAutoScalingArgsDict', 'outputs.NodePoolAutoScaling']]] = None,
             availability_zone: pulumi.Input[Optional[_builtins.str]] = None,
             cores_count: pulumi.Input[Optional[_builtins.int]] = None,
             cpu_family: pulumi.Input[Optional[_builtins.str]] = None,
@@ -954,9 +954,9 @@ class NodePool(pulumi.CustomResource):
             k8s_cluster_id: pulumi.Input[Optional[_builtins.str]] = None,
             k8s_version: pulumi.Input[Optional[_builtins.str]] = None,
             labels: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-            lans: pulumi.Input[Optional[Sequence[pulumi.Input[Union['NodePoolLanArgs', 'NodePoolLanArgsDict']]]]] = None,
+            lans: pulumi.Input[Optional[Sequence[pulumi.Input[Union['NodePoolLanArgs', 'NodePoolLanArgsDict', 'outputs.NodePoolLan']]]]] = None,
             location: pulumi.Input[Optional[_builtins.str]] = None,
-            maintenance_window: pulumi.Input[Optional[Union['NodePoolMaintenanceWindowArgs', 'NodePoolMaintenanceWindowArgsDict']]] = None,
+            maintenance_window: pulumi.Input[Optional[Union['NodePoolMaintenanceWindowArgs', 'NodePoolMaintenanceWindowArgsDict', 'outputs.NodePoolMaintenanceWindow']]] = None,
             name: pulumi.Input[Optional[_builtins.str]] = None,
             node_count: pulumi.Input[Optional[_builtins.int]] = None,
             public_ips: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
@@ -964,7 +964,7 @@ class NodePool(pulumi.CustomResource):
             server_type: pulumi.Input[Optional[_builtins.str]] = None,
             storage_size: pulumi.Input[Optional[_builtins.int]] = None,
             storage_type: pulumi.Input[Optional[_builtins.str]] = None,
-            taints: pulumi.Input[Optional[Sequence[pulumi.Input[Union['NodePoolTaintArgs', 'NodePoolTaintArgsDict']]]]] = None) -> 'NodePool':
+            taints: pulumi.Input[Optional[Sequence[pulumi.Input[Union['NodePoolTaintArgs', 'NodePoolTaintArgsDict', 'outputs.NodePoolTaint']]]]] = None) -> 'NodePool':
         """
         Get an existing NodePool resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -985,7 +985,7 @@ class NodePool(pulumi.CustomResource):
                `pulumi preview`, Terraform will think that an update is required (since `node_count` from the `tf` plan will be different
                from the number of nodes set by the scheduler). To avoid that, you can use:
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] annotations: [map] A key/value map of annotations
-        :param pulumi.Input[Union['NodePoolAutoScalingArgs', 'NodePoolAutoScalingArgsDict']] auto_scaling: [string] Whether the Node Pool should autoscale. For more details, please check the API documentation
+        :param pulumi.Input[Union['NodePoolAutoScalingArgs', 'NodePoolAutoScalingArgsDict', 'outputs.NodePoolAutoScaling']] auto_scaling: [string] Whether the Node Pool should autoscale. For more details, please check the API documentation
         :param pulumi.Input[_builtins.str] availability_zone: [string] - The desired Compute availability zone - See the API documentation for more information. *This attribute is immutable*.
         :param pulumi.Input[_builtins.int] cores_count: [int] - The CPU cores count for each node of the node pool. *This attribute is immutable*.
         :param pulumi.Input[_builtins.str] cpu_family: [string] The desired CPU Family - See the API documentation for more information. *This attribute is immutable*.
@@ -993,9 +993,9 @@ class NodePool(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] k8s_cluster_id: [string] A k8s cluster's UUID
         :param pulumi.Input[_builtins.str] k8s_version: [string] The desired Kubernetes Version. For supported values, please check the API documentation. Downgrades are not supported. The provider will ignore downgrades of patch level.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] labels: [map] A key/value map of labels
-        :param pulumi.Input[Sequence[pulumi.Input[Union['NodePoolLanArgs', 'NodePoolLanArgsDict']]]] lans: [list] A list of numeric LAN id's you want this node pool to be part of. For more details, please check the API documentation, as well as the example above
+        :param pulumi.Input[Sequence[pulumi.Input[Union['NodePoolLanArgs', 'NodePoolLanArgsDict', 'outputs.NodePoolLan']]]] lans: [list] A list of numeric LAN id's you want this node pool to be part of. For more details, please check the API documentation, as well as the example above
         :param pulumi.Input[_builtins.str] location: The location of the resource. This field should be used only if you are also using a file configuration and should not be configured otherwise.
-        :param pulumi.Input[Union['NodePoolMaintenanceWindowArgs', 'NodePoolMaintenanceWindowArgsDict']] maintenance_window: See the **maintenance_window** section in the example above
+        :param pulumi.Input[Union['NodePoolMaintenanceWindowArgs', 'NodePoolMaintenanceWindowArgsDict', 'outputs.NodePoolMaintenanceWindow']] maintenance_window: See the **maintenance_window** section in the example above
         :param pulumi.Input[_builtins.str] name: [string] The name of the Kubernetes Cluster. *This attribute is immutable*.
         :param pulumi.Input[_builtins.int] node_count: [int] - The desired number of nodes in the node pool
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] public_ips: [list] A list of public IPs associated with the node pool; must have at least `node_count + 1` elements
@@ -1003,7 +1003,7 @@ class NodePool(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] server_type: [string] The server type for the compute engine - See the API documentation for more information. Possible values: `DedicatedCore`, `VCPU`
         :param pulumi.Input[_builtins.int] storage_size: [int] - The size of the volume in GB. The size should be greater than 10GB. *This attribute is immutable*.
         :param pulumi.Input[_builtins.str] storage_type: [string] - The desired storage type - SSD/HDD. *This attribute is immutable*.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['NodePoolTaintArgs', 'NodePoolTaintArgsDict']]]] taints: [set] Taints applied to the nodes in this pool. A taint repels pods that do not have a matching toleration. Maximum 50 taints per node pool.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['NodePoolTaintArgs', 'NodePoolTaintArgsDict', 'outputs.NodePoolTaint']]]] taints: [set] Taints applied to the nodes in this pool. A taint repels pods that do not have a matching toleration. Maximum 50 taints per node pool.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 

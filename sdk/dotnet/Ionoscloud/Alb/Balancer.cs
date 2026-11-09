@@ -49,12 +49,12 @@ namespace Ionoscloud.Pulumi.Ionoscloud.Alb
     ///     {
     ///         DatacenterId = example.Id,
     ///         Name = "ALB Example",
-    ///         ListenerLan = example1.Id,
+    ///         ListenerLan = example1.Id.Apply(x =&gt; int.Parse(x, System.Globalization.CultureInfo.InvariantCulture)),
     ///         Ips = new[]
     ///         {
     ///             "10.12.118.224",
     ///         },
-    ///         TargetLan = example2.Id,
+    ///         TargetLan = example2.Id.Apply(x =&gt; int.Parse(x, System.Globalization.CultureInfo.InvariantCulture)),
     ///         LbPrivateIps = new[]
     ///         {
     ///             "10.13.72.225/24",

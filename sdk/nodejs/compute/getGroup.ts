@@ -50,7 +50,6 @@ export interface GetGroupArgs {
     /**
      * [Boolean] When set to true, information about users will be stored in state under `users` attribute, default value is `true`.
      *
-     *
      * Either `name` or `id` must be provided. If none, or both are provided, the datasource will return an error.
      */
     getUsersData?: boolean;
@@ -225,7 +224,6 @@ export function getGroupOutput(args?: GetGroupOutputArgs, opts?: pulumi.InvokeOu
 export interface GetGroupOutputArgs {
     /**
      * [Boolean] When set to true, information about users will be stored in state under `users` attribute, default value is `true`.
-     *
      *
      * Either `name` or `id` must be provided. If none, or both are provided, the datasource will return an error.
      */

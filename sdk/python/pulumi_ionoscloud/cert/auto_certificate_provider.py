@@ -201,7 +201,7 @@ class AutoCertificateProvider(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  email: pulumi.Input[Optional[_builtins.str]] = None,
-                 external_account_binding: pulumi.Input[Optional[Union['AutoCertificateProviderExternalAccountBindingArgs', 'AutoCertificateProviderExternalAccountBindingArgsDict']]] = None,
+                 external_account_binding: pulumi.Input[Optional[Union['AutoCertificateProviderExternalAccountBindingArgs', 'AutoCertificateProviderExternalAccountBindingArgsDict', 'outputs.AutoCertificateProviderExternalAccountBinding']]] = None,
                  location: pulumi.Input[Optional[_builtins.str]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  server: pulumi.Input[Optional[_builtins.str]] = None,
@@ -238,7 +238,7 @@ class AutoCertificateProvider(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] email: [string] The email address of the certificate requester.
-        :param pulumi.Input[Union['AutoCertificateProviderExternalAccountBindingArgs', 'AutoCertificateProviderExternalAccountBindingArgsDict']] external_account_binding: [list] External account binding details.
+        :param pulumi.Input[Union['AutoCertificateProviderExternalAccountBindingArgs', 'AutoCertificateProviderExternalAccountBindingArgsDict', 'outputs.AutoCertificateProviderExternalAccountBinding']] external_account_binding: [list] External account binding details.
         :param pulumi.Input[_builtins.str] location: [string] The location of the provider. Available locations: `de/fra`, `de/fra/1`, `de/fra/2`.
         :param pulumi.Input[_builtins.str] name: [string] The name of the certificate provider.
         :param pulumi.Input[_builtins.str] server: [string] The URL of the certificate provider.
@@ -294,7 +294,7 @@ class AutoCertificateProvider(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  email: pulumi.Input[Optional[_builtins.str]] = None,
-                 external_account_binding: pulumi.Input[Optional[Union['AutoCertificateProviderExternalAccountBindingArgs', 'AutoCertificateProviderExternalAccountBindingArgsDict']]] = None,
+                 external_account_binding: pulumi.Input[Optional[Union['AutoCertificateProviderExternalAccountBindingArgs', 'AutoCertificateProviderExternalAccountBindingArgsDict', 'outputs.AutoCertificateProviderExternalAccountBinding']]] = None,
                  location: pulumi.Input[Optional[_builtins.str]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  server: pulumi.Input[Optional[_builtins.str]] = None,
@@ -327,7 +327,7 @@ class AutoCertificateProvider(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             email: pulumi.Input[Optional[_builtins.str]] = None,
-            external_account_binding: pulumi.Input[Optional[Union['AutoCertificateProviderExternalAccountBindingArgs', 'AutoCertificateProviderExternalAccountBindingArgsDict']]] = None,
+            external_account_binding: pulumi.Input[Optional[Union['AutoCertificateProviderExternalAccountBindingArgs', 'AutoCertificateProviderExternalAccountBindingArgsDict', 'outputs.AutoCertificateProviderExternalAccountBinding']]] = None,
             location: pulumi.Input[Optional[_builtins.str]] = None,
             name: pulumi.Input[Optional[_builtins.str]] = None,
             server: pulumi.Input[Optional[_builtins.str]] = None) -> 'AutoCertificateProvider':
@@ -339,7 +339,7 @@ class AutoCertificateProvider(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] email: [string] The email address of the certificate requester.
-        :param pulumi.Input[Union['AutoCertificateProviderExternalAccountBindingArgs', 'AutoCertificateProviderExternalAccountBindingArgsDict']] external_account_binding: [list] External account binding details.
+        :param pulumi.Input[Union['AutoCertificateProviderExternalAccountBindingArgs', 'AutoCertificateProviderExternalAccountBindingArgsDict', 'outputs.AutoCertificateProviderExternalAccountBinding']] external_account_binding: [list] External account binding details.
         :param pulumi.Input[_builtins.str] location: [string] The location of the provider. Available locations: `de/fra`, `de/fra/1`, `de/fra/2`.
         :param pulumi.Input[_builtins.str] name: [string] The name of the certificate provider.
         :param pulumi.Input[_builtins.str] server: [string] The URL of the certificate provider.

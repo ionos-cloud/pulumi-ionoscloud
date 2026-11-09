@@ -27,6 +27,8 @@ import (
 //
 // import (
 //
+//	"strconv"
+//
 //	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/compute"
 //	"github.com/pulumi/pulumi-random/sdk/go/random"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
@@ -81,7 +83,7 @@ import (
 //				DatacenterId:  exampleDatacenter.ID(),
 //				Cores:         pulumi.Int(1),
 //				Ram:           pulumi.Int(1024),
-//				ImageName:     pulumi.String(pulumi.String(example.Name)),
+//				ImageName:     pulumi.String(example.Name),
 //				ImagePassword: serverImagePassword.Result,
 //				Type:          pulumi.String("ENTERPRISE"),
 //				Volume: &compute.ServerVolumeArgs{
@@ -93,7 +95,7 @@ import (
 //					AvailabilityZone: pulumi.String("ZONE_1"),
 //				},
 //				Nic: &compute.ServerNicArgs{
-//					Lan:            exampleLan.ID(),
+//					Lan:            exampleLan.ID().ToStringOutput().ApplyT(strconv.Atoi).(pulumi.IntOutput),
 //					Name:           pulumi.String("system"),
 //					Dhcp:           pulumi.Bool(true),
 //					FirewallActive: pulumi.Bool(true),
@@ -149,6 +151,8 @@ import (
 //
 // import (
 //
+//	"strconv"
+//
 //	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/compute"
 //	"github.com/pulumi/pulumi-random/sdk/go/random"
 //	"github.com/pulumi/pulumi-std/sdk/go/std"
@@ -185,7 +189,7 @@ import (
 //				DatacenterId:  example.ID(),
 //				Public:        pulumi.Bool(true),
 //				Name:          pulumi.String("public"),
-//				Ipv6CidrBlock: invokeCidrsubnet.Result,
+//				Ipv6CidrBlock: invokeCidrsubnet.Result.(pulumi.String),
 //			})
 //			if err != nil {
 //				return err
@@ -255,7 +259,7 @@ import (
 //					AvailabilityZone: pulumi.String("ZONE_1"),
 //				},
 //				Nic: &compute.ServerNicArgs{
-//					Lan:            exampleLan.ID(),
+//					Lan:            exampleLan.ID().ToStringOutput().ApplyT(strconv.Atoi).(pulumi.IntOutput),
 //					Name:           pulumi.String("system"),
 //					Dhcp:           pulumi.Bool(true),
 //					FirewallActive: pulumi.Bool(true),
@@ -269,7 +273,7 @@ import (
 //						}).(pulumi.StringOutput),
 //					},
 //					Dhcpv6:        pulumi.Bool(true),
-//					Ipv6CidrBlock: invokeCidrsubnet1.Result,
+//					Ipv6CidrBlock: invokeCidrsubnet1.Result.(pulumi.String),
 //					Ipv6Ips: pulumi.StringArray{
 //						invokeCidrhost2.Result,
 //						invokeCidrhost3.Result,
@@ -308,6 +312,8 @@ import (
 // package main
 //
 // import (
+//
+//	"strconv"
 //
 //	"github.com/ionos-cloud/pulumi-ionoscloud/sdk/go/ionoscloud/compute"
 //	"github.com/pulumi/pulumi-random/sdk/go/random"
@@ -350,7 +356,7 @@ import (
 //				AvailabilityZone: pulumi.String("ZONE_2"),
 //				ImageName:        pulumi.String("ubuntu:latest"),
 //				Type:             pulumi.String("CUBE"),
-//				TemplateUuid:     pulumi.String(pulumi.String(example.Id)),
+//				TemplateUuid:     pulumi.String(example.Id),
 //				ImagePassword:    serverImagePassword.Result,
 //				DatacenterId:     exampleDatacenter.ID(),
 //				Volume: &compute.ServerVolumeArgs{
@@ -359,7 +365,7 @@ import (
 //					DiskType:    pulumi.String("DAS"),
 //				},
 //				Nic: &compute.ServerNicArgs{
-//					Lan:            exampleLan.ID(),
+//					Lan:            exampleLan.ID().ToStringOutput().ApplyT(strconv.Atoi).(pulumi.IntOutput),
 //					Name:           pulumi.String("Nic Example"),
 //					Dhcp:           pulumi.Bool(true),
 //					FirewallActive: pulumi.Bool(true),
@@ -419,9 +425,9 @@ import (
 //				Name:         pulumi.String("ubuntu_latest_from_cdrom"),
 //				Cores:        pulumi.Int(1),
 //				Ram:          pulumi.Int(1024),
-//				CpuFamily: pulumi.String(cdromDatacenter.CpuArchitectures.ApplyT(func(cpuArchitectures []compute.DatacenterCpuArchitecture) (*string, error) {
-//					return &cpuArchitectures[0].CpuFamily, nil
-//				}).(pulumi.StringPtrOutput)),
+//				CpuFamily: cdromDatacenter.CpuArchitectures.ApplyT(func(cpuArchitectures []compute.DatacenterCpuArchitecture) (*string, error) {
+//					return cpuArchitectures[0].CpuFamily, nil
+//				}).(pulumi.StringPtrOutput),
 //				Type: pulumi.String("ENTERPRISE"),
 //				Volume: &compute.ServerVolumeArgs{
 //					Name:        pulumi.String("hdd0"),

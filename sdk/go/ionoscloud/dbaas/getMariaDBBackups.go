@@ -102,12 +102,8 @@ type GetMariaDBBackupsResult struct {
 }
 
 func GetMariaDBBackupsOutput(ctx *pulumi.Context, args GetMariaDBBackupsOutputArgs, opts ...pulumi.InvokeOption) GetMariaDBBackupsResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (GetMariaDBBackupsResultOutput, error) {
-			args := v.(GetMariaDBBackupsArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("ionoscloud:dbaas/getMariaDBBackups:getMariaDBBackups", args, GetMariaDBBackupsResultOutput{}, options).(GetMariaDBBackupsResultOutput), nil
-		}).(GetMariaDBBackupsResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("ionoscloud:dbaas/getMariaDBBackups:getMariaDBBackups", args, GetMariaDBBackupsResultOutput{}, options).(GetMariaDBBackupsResultOutput)
 }
 
 // A collection of arguments for invoking getMariaDBBackups.

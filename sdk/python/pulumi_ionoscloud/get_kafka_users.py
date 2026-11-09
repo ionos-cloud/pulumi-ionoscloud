@@ -28,13 +28,10 @@ class GetKafkaUsersResult:
     """
     A collection of values returned by getKafkaUsers.
     """
-    def __init__(__self__, cluster_id=None, id=None, location=None, timeouts=None, users=None):
+    def __init__(__self__, cluster_id=None, location=None, timeouts=None, users=None):
         if cluster_id and not isinstance(cluster_id, str):
             raise TypeError("Expected argument 'cluster_id' to be a str")
         pulumi.set(__self__, "cluster_id", cluster_id)
-        if id and not isinstance(id, str):
-            raise TypeError("Expected argument 'id' to be a str")
-        pulumi.set(__self__, "id", id)
         if location and not isinstance(location, str):
             raise TypeError("Expected argument 'location' to be a str")
         pulumi.set(__self__, "location", location)
@@ -49,14 +46,6 @@ class GetKafkaUsersResult:
     @pulumi.getter(name="clusterId")
     def cluster_id(self) -> _builtins.str:
         return pulumi.get(self, "cluster_id")
-
-    @_builtins.property
-    @pulumi.getter
-    def id(self) -> _builtins.str:
-        """
-        The provider-assigned unique ID for this managed resource.
-        """
-        return pulumi.get(self, "id")
 
     @_builtins.property
     @pulumi.getter
@@ -84,7 +73,6 @@ class AwaitableGetKafkaUsersResult(GetKafkaUsersResult):
             yield self
         return GetKafkaUsersResult(
             cluster_id=self.cluster_id,
-            id=self.id,
             location=self.location,
             timeouts=self.timeouts,
             users=self.users)
@@ -92,7 +80,7 @@ class AwaitableGetKafkaUsersResult(GetKafkaUsersResult):
 
 def get_kafka_users(cluster_id: Optional[_builtins.str] = None,
                     location: Optional[_builtins.str] = None,
-                    timeouts: Optional[Union['GetKafkaUsersTimeoutsArgs', 'GetKafkaUsersTimeoutsArgsDict']] = None,
+                    timeouts: Optional[Union['GetKafkaUsersTimeoutsArgs', 'GetKafkaUsersTimeoutsArgsDict', 'outputs.GetKafkaUsersTimeoutsResult']] = None,
                     opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetKafkaUsersResult:
     """
     The **Kafka users** data source can be used to retrieve information about users.
@@ -123,13 +111,12 @@ def get_kafka_users(cluster_id: Optional[_builtins.str] = None,
 
     return AwaitableGetKafkaUsersResult(
         cluster_id=pulumi.get(__ret__, 'cluster_id'),
-        id=pulumi.get(__ret__, 'id'),
         location=pulumi.get(__ret__, 'location'),
         timeouts=pulumi.get(__ret__, 'timeouts'),
         users=pulumi.get(__ret__, 'users'))
 def get_kafka_users_output(cluster_id: pulumi.Input[Optional[_builtins.str]] = None,
                            location: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
-                           timeouts: pulumi.Input[Optional[Optional[Union['GetKafkaUsersTimeoutsArgs', 'GetKafkaUsersTimeoutsArgsDict']]]] = None,
+                           timeouts: pulumi.Input[Optional[Optional[Union['GetKafkaUsersTimeoutsArgs', 'GetKafkaUsersTimeoutsArgsDict', 'outputs.GetKafkaUsersTimeoutsResult']]]] = None,
                            opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetKafkaUsersResult]:
     """
     The **Kafka users** data source can be used to retrieve information about users.
@@ -159,7 +146,6 @@ def get_kafka_users_output(cluster_id: pulumi.Input[Optional[_builtins.str]] = N
     __ret__ = pulumi.runtime.invoke_output('ionoscloud:index/getKafkaUsers:getKafkaUsers', __args__, opts=opts, typ=GetKafkaUsersResult)
     return __ret__.apply(lambda __response__: GetKafkaUsersResult(
         cluster_id=pulumi.get(__response__, 'cluster_id'),
-        id=pulumi.get(__response__, 'id'),
         location=pulumi.get(__response__, 'location'),
         timeouts=pulumi.get(__response__, 'timeouts'),
         users=pulumi.get(__response__, 'users')))

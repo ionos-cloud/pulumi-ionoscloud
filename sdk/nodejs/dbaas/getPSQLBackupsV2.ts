@@ -68,10 +68,6 @@ export interface GetPSQLBackupsV2Result {
      */
     readonly clusterId?: string;
     /**
-     * The provider-assigned unique ID for this managed resource.
-     */
-    readonly id: string;
-    /**
      * The Object Storage location where the backup is stored.
      */
     readonly location: string;

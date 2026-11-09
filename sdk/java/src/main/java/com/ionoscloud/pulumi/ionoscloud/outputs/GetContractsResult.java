@@ -6,29 +6,16 @@ package com.ionoscloud.pulumi.ionoscloud.outputs;
 import com.ionoscloud.pulumi.ionoscloud.outputs.GetContractsContract;
 import com.pulumi.core.annotations.CustomType;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
-import java.lang.String;
 import java.util.List;
 import java.util.Objects;
 
 @CustomType
 public final class GetContractsResult {
     private List<GetContractsContract> contracts;
-    /**
-     * @return The provider-assigned unique ID for this managed resource.
-     * 
-     */
-    private String id;
 
     private GetContractsResult() {}
     public List<GetContractsContract> contracts() {
         return this.contracts;
-    }
-    /**
-     * @return The provider-assigned unique ID for this managed resource.
-     * 
-     */
-    public String id() {
-        return this.id;
     }
 
     public static Builder builder() {
@@ -41,12 +28,10 @@ public final class GetContractsResult {
     @CustomType.Builder
     public static final class Builder {
         private List<GetContractsContract> contracts;
-        private String id;
         public Builder() {}
         public Builder(GetContractsResult defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.contracts = defaults.contracts;
-    	      this.id = defaults.id;
         }
 
         @CustomType.Setter
@@ -60,18 +45,9 @@ public final class GetContractsResult {
         public Builder contracts(GetContractsContract... contracts) {
             return contracts(List.of(contracts));
         }
-        @CustomType.Setter
-        public Builder id(String id) {
-            if (id == null) {
-              throw new MissingRequiredPropertyException("GetContractsResult", "id");
-            }
-            this.id = id;
-            return this;
-        }
         public GetContractsResult build() {
             final var _resultValue = new GetContractsResult();
             _resultValue.contracts = contracts;
-            _resultValue.id = id;
             return _resultValue;
         }
     }

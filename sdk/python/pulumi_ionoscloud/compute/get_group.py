@@ -413,7 +413,6 @@ def get_group(get_users_data: Optional[_builtins.bool] = None,
 
     :param _builtins.bool get_users_data: [Boolean] When set to true, information about users will be stored in state under `users` attribute, default value is `true`.
            
-           
            Either `name` or `id` must be provided. If none, or both are provided, the datasource will return an error.
     :param _builtins.str id: ID of the group you want to search for.
     :param _builtins.str name: Name of an existing group that you want to search for.
@@ -484,7 +483,6 @@ def get_group_output(get_users_data: pulumi.Input[Optional[Optional[_builtins.bo
 
 
     :param _builtins.bool get_users_data: [Boolean] When set to true, information about users will be stored in state under `users` attribute, default value is `true`.
-           
            
            Either `name` or `id` must be provided. If none, or both are provided, the datasource will return an error.
     :param _builtins.str id: ID of the group you want to search for.

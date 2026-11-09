@@ -26,10 +26,7 @@ class GetUserBucketResult:
     """
     A collection of values returned by getUserBucket.
     """
-    def __init__(__self__, id=None, name=None, object_lock_enabled=None, region=None, tags=None):
-        if id and not isinstance(id, str):
-            raise TypeError("Expected argument 'id' to be a str")
-        pulumi.set(__self__, "id", id)
+    def __init__(__self__, name=None, object_lock_enabled=None, region=None, tags=None):
         if name and not isinstance(name, str):
             raise TypeError("Expected argument 'name' to be a str")
         pulumi.set(__self__, "name", name)
@@ -42,14 +39,6 @@ class GetUserBucketResult:
         if tags and not isinstance(tags, dict):
             raise TypeError("Expected argument 'tags' to be a dict")
         pulumi.set(__self__, "tags", tags)
-
-    @_builtins.property
-    @pulumi.getter
-    def id(self) -> _builtins.str:
-        """
-        The provider-assigned unique ID for this managed resource.
-        """
-        return pulumi.get(self, "id")
 
     @_builtins.property
     @pulumi.getter
@@ -90,7 +79,6 @@ class AwaitableGetUserBucketResult(GetUserBucketResult):
         if False:
             yield self
         return GetUserBucketResult(
-            id=self.id,
             name=self.name,
             object_lock_enabled=self.object_lock_enabled,
             region=self.region,
@@ -126,7 +114,6 @@ def get_user_bucket(name: Optional[_builtins.str] = None,
     __ret__ = pulumi.runtime.invoke('ionoscloud:objectstorage/getUserBucket:getUserBucket', __args__, opts=opts, typ=GetUserBucketResult).value
 
     return AwaitableGetUserBucketResult(
-        id=pulumi.get(__ret__, 'id'),
         name=pulumi.get(__ret__, 'name'),
         object_lock_enabled=pulumi.get(__ret__, 'object_lock_enabled'),
         region=pulumi.get(__ret__, 'region'),
@@ -159,7 +146,6 @@ def get_user_bucket_output(name: pulumi.Input[Optional[_builtins.str]] = None,
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('ionoscloud:objectstorage/getUserBucket:getUserBucket', __args__, opts=opts, typ=GetUserBucketResult)
     return __ret__.apply(lambda __response__: GetUserBucketResult(
-        id=pulumi.get(__response__, 'id'),
         name=pulumi.get(__response__, 'name'),
         object_lock_enabled=pulumi.get(__response__, 'object_lock_enabled'),
         region=pulumi.get(__response__, 'region'),

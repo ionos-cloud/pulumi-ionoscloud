@@ -42,10 +42,6 @@ export interface GetMariaDBVersionsV2Args {
  */
 export interface GetMariaDBVersionsV2Result {
     /**
-     * The provider-assigned unique ID for this managed resource.
-     */
-    readonly id: string;
-    /**
      * List of supported versions. Each item includes:
      */
     readonly items: outputs.dbaas.GetMariaDBVersionsV2Item[];

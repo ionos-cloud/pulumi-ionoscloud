@@ -238,7 +238,7 @@ class UserBucket(pulumi.CustomResource):
                  object_lock_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
                  region: pulumi.Input[Optional[_builtins.str]] = None,
                  tags: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 timeouts: pulumi.Input[Optional[Union['UserBucketTimeoutsArgs', 'UserBucketTimeoutsArgsDict']]] = None,
+                 timeouts: pulumi.Input[Optional[Union['UserBucketTimeoutsArgs', 'UserBucketTimeoutsArgsDict', 'outputs.UserBucketTimeouts']]] = None,
                  __props__=None):
         """
         Manages user-owned IONOS Object Storage Buckets on IONOS CLOUD.
@@ -283,7 +283,7 @@ class UserBucket(pulumi.CustomResource):
         :param pulumi.Input[_builtins.bool] object_lock_enabled: [bool] Whether Object Lock is enabled for the bucket. Defaults to `false`. **Cannot be changed after creation** — changing this value forces a new resource.
         :param pulumi.Input[_builtins.str] region: [string] The region where the bucket is created. Available regions:
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] tags: A mapping of tags to assign to the bucket.
-        :param pulumi.Input[Union['UserBucketTimeoutsArgs', 'UserBucketTimeoutsArgsDict']] timeouts: Timeouts for this resource.
+        :param pulumi.Input[Union['UserBucketTimeoutsArgs', 'UserBucketTimeoutsArgsDict', 'outputs.UserBucketTimeouts']] timeouts: Timeouts for this resource.
         """
         ...
     @overload
@@ -347,7 +347,7 @@ class UserBucket(pulumi.CustomResource):
                  object_lock_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
                  region: pulumi.Input[Optional[_builtins.str]] = None,
                  tags: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 timeouts: pulumi.Input[Optional[Union['UserBucketTimeoutsArgs', 'UserBucketTimeoutsArgsDict']]] = None,
+                 timeouts: pulumi.Input[Optional[Union['UserBucketTimeoutsArgs', 'UserBucketTimeoutsArgsDict', 'outputs.UserBucketTimeouts']]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -380,7 +380,7 @@ class UserBucket(pulumi.CustomResource):
             object_lock_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
             region: pulumi.Input[Optional[_builtins.str]] = None,
             tags: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-            timeouts: pulumi.Input[Optional[Union['UserBucketTimeoutsArgs', 'UserBucketTimeoutsArgsDict']]] = None) -> 'UserBucket':
+            timeouts: pulumi.Input[Optional[Union['UserBucketTimeoutsArgs', 'UserBucketTimeoutsArgsDict', 'outputs.UserBucketTimeouts']]] = None) -> 'UserBucket':
         """
         Get an existing UserBucket resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -393,7 +393,7 @@ class UserBucket(pulumi.CustomResource):
         :param pulumi.Input[_builtins.bool] object_lock_enabled: [bool] Whether Object Lock is enabled for the bucket. Defaults to `false`. **Cannot be changed after creation** — changing this value forces a new resource.
         :param pulumi.Input[_builtins.str] region: [string] The region where the bucket is created. Available regions:
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] tags: A mapping of tags to assign to the bucket.
-        :param pulumi.Input[Union['UserBucketTimeoutsArgs', 'UserBucketTimeoutsArgsDict']] timeouts: Timeouts for this resource.
+        :param pulumi.Input[Union['UserBucketTimeoutsArgs', 'UserBucketTimeoutsArgsDict', 'outputs.UserBucketTimeouts']] timeouts: Timeouts for this resource.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 

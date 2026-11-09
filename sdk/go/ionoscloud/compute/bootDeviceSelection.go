@@ -201,7 +201,7 @@ import (
 //			_, err = compute.NewBootDeviceSelection(ctx, "example", &compute.BootDeviceSelectionArgs{
 //				DatacenterId: pulumi.Any(exampleIonoscloudDatacenter.Id),
 //				ServerId:     exampleServer.ID(),
-//				BootDeviceId: pulumi.String(pulumi.String(example.Id)),
+//				BootDeviceId: pulumi.String(example.Id),
 //			})
 //			if err != nil {
 //				return err

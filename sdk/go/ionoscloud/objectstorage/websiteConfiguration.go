@@ -37,24 +37,24 @@ import (
 //			_, err = objectstorage.NewWebsiteConfiguration(ctx, "example", &objectstorage.WebsiteConfigurationArgs{
 //				Bucket: example.Name,
 //				IndexDocument: objectstorage.WebsiteConfigurationIndexDocumentArgs{
-//					map[string]interface{}{
+//					map[string]string{
 //						"suffix": "index.html",
 //					},
 //				},
 //				ErrorDocument: objectstorage.WebsiteConfigurationErrorDocumentArgs{
-//					map[string]interface{}{
+//					map[string]string{
 //						"key": "error.html",
 //					},
 //				},
 //				RoutingRules: objectstorage.WebsiteConfigurationRoutingRuleArray{
 //					&objectstorage.WebsiteConfigurationRoutingRuleArgs{
 //						Condition: objectstorage.WebsiteConfigurationRoutingRuleConditionArgs{
-//							map[string]interface{}{
+//							map[string]string{
 //								"keyPrefixEquals": "docs/",
 //							},
 //						},
 //						Redirect: objectstorage.WebsiteConfigurationRoutingRuleRedirectArgs{
-//							map[string]interface{}{
+//							map[string]string{
 //								"replaceKeyPrefixWith": "documents/",
 //							},
 //						},

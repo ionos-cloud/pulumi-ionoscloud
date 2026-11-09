@@ -522,20 +522,20 @@ class PSQLClusterV2(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 backup: pulumi.Input[Optional[Union['PSQLClusterV2BackupArgs', 'PSQLClusterV2BackupArgsDict']]] = None,
+                 backup: pulumi.Input[Optional[Union['PSQLClusterV2BackupArgs', 'PSQLClusterV2BackupArgsDict', 'outputs.PSQLClusterV2Backup']]] = None,
                  connection_pooler: pulumi.Input[Optional[_builtins.str]] = None,
-                 connections: pulumi.Input[Optional[Union['PSQLClusterV2ConnectionsArgs', 'PSQLClusterV2ConnectionsArgsDict']]] = None,
-                 credentials: pulumi.Input[Optional[Union['PSQLClusterV2CredentialsArgs', 'PSQLClusterV2CredentialsArgsDict']]] = None,
+                 connections: pulumi.Input[Optional[Union['PSQLClusterV2ConnectionsArgs', 'PSQLClusterV2ConnectionsArgsDict', 'outputs.PSQLClusterV2Connections']]] = None,
+                 credentials: pulumi.Input[Optional[Union['PSQLClusterV2CredentialsArgs', 'PSQLClusterV2CredentialsArgsDict', 'outputs.PSQLClusterV2Credentials']]] = None,
                  description: pulumi.Input[Optional[_builtins.str]] = None,
-                 instances: pulumi.Input[Optional[Union['PSQLClusterV2InstancesArgs', 'PSQLClusterV2InstancesArgsDict']]] = None,
+                 instances: pulumi.Input[Optional[Union['PSQLClusterV2InstancesArgs', 'PSQLClusterV2InstancesArgsDict', 'outputs.PSQLClusterV2Instances']]] = None,
                  location: pulumi.Input[Optional[_builtins.str]] = None,
                  logs_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
-                 maintenance_window: pulumi.Input[Optional[Union['PSQLClusterV2MaintenanceWindowArgs', 'PSQLClusterV2MaintenanceWindowArgsDict']]] = None,
+                 maintenance_window: pulumi.Input[Optional[Union['PSQLClusterV2MaintenanceWindowArgs', 'PSQLClusterV2MaintenanceWindowArgsDict', 'outputs.PSQLClusterV2MaintenanceWindow']]] = None,
                  metrics_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  replication_mode: pulumi.Input[Optional[_builtins.str]] = None,
-                 restore_from_backup: pulumi.Input[Optional[Union['PSQLClusterV2RestoreFromBackupArgs', 'PSQLClusterV2RestoreFromBackupArgsDict']]] = None,
-                 timeouts: pulumi.Input[Optional[Union['PSQLClusterV2TimeoutsArgs', 'PSQLClusterV2TimeoutsArgsDict']]] = None,
+                 restore_from_backup: pulumi.Input[Optional[Union['PSQLClusterV2RestoreFromBackupArgs', 'PSQLClusterV2RestoreFromBackupArgsDict', 'outputs.PSQLClusterV2RestoreFromBackup']]] = None,
+                 timeouts: pulumi.Input[Optional[Union['PSQLClusterV2TimeoutsArgs', 'PSQLClusterV2TimeoutsArgsDict', 'outputs.PSQLClusterV2Timeouts']]] = None,
                  version: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
@@ -557,19 +557,19 @@ class PSQLClusterV2(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Union['PSQLClusterV2BackupArgs', 'PSQLClusterV2BackupArgsDict']] backup: [object] Backup location and retention configuration.
+        :param pulumi.Input[Union['PSQLClusterV2BackupArgs', 'PSQLClusterV2BackupArgsDict', 'outputs.PSQLClusterV2Backup']] backup: [object] Backup location and retention configuration.
         :param pulumi.Input[_builtins.str] connection_pooler: (Computed)[string] Defines how database connections are managed and reused. Possible values: `DISABLED`, `TRANSACTION`, `SESSION`.
-        :param pulumi.Input[Union['PSQLClusterV2ConnectionsArgs', 'PSQLClusterV2ConnectionsArgsDict']] connections: [object] Connection information of the PostgreSQL cluster.
-        :param pulumi.Input[Union['PSQLClusterV2CredentialsArgs', 'PSQLClusterV2CredentialsArgsDict']] credentials: [object] Credentials for the master database user to be created.
+        :param pulumi.Input[Union['PSQLClusterV2ConnectionsArgs', 'PSQLClusterV2ConnectionsArgsDict', 'outputs.PSQLClusterV2Connections']] connections: [object] Connection information of the PostgreSQL cluster.
+        :param pulumi.Input[Union['PSQLClusterV2CredentialsArgs', 'PSQLClusterV2CredentialsArgsDict', 'outputs.PSQLClusterV2Credentials']] credentials: [object] Credentials for the master database user to be created.
         :param pulumi.Input[_builtins.str] description: [string] Human-readable description for the cluster.
-        :param pulumi.Input[Union['PSQLClusterV2InstancesArgs', 'PSQLClusterV2InstancesArgsDict']] instances: [object] The instance configuration for the PostgreSQL cluster.
+        :param pulumi.Input[Union['PSQLClusterV2InstancesArgs', 'PSQLClusterV2InstancesArgsDict', 'outputs.PSQLClusterV2Instances']] instances: [object] The instance configuration for the PostgreSQL cluster.
         :param pulumi.Input[_builtins.str] location: [string] The location of the PostgreSQL cluster. This is used for routing to the regional API endpoint. Changing this value will destroy the existing cluster and create a new one in the specified location. Available locations: `de/fra`, `de/fra/1`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
         :param pulumi.Input[_builtins.bool] logs_enabled: (Computed)[bool] Enables or disables the collection and reporting of logs for observability of this cluster.
-        :param pulumi.Input[Union['PSQLClusterV2MaintenanceWindowArgs', 'PSQLClusterV2MaintenanceWindowArgsDict']] maintenance_window: [object] A weekly 4 hour-long window, during which maintenance might occur.
+        :param pulumi.Input[Union['PSQLClusterV2MaintenanceWindowArgs', 'PSQLClusterV2MaintenanceWindowArgsDict', 'outputs.PSQLClusterV2MaintenanceWindow']] maintenance_window: [object] A weekly 4 hour-long window, during which maintenance might occur.
         :param pulumi.Input[_builtins.bool] metrics_enabled: (Computed)[bool] Enables or disables the collection and reporting of metrics for observability of this cluster.
         :param pulumi.Input[_builtins.str] name: [string] The name of the PostgreSQL cluster.
         :param pulumi.Input[_builtins.str] replication_mode: [string] Replication mode across the instances. Possible values: `ASYNCHRONOUS`, `STRICTLY_SYNCHRONOUS`.
-        :param pulumi.Input[Union['PSQLClusterV2RestoreFromBackupArgs', 'PSQLClusterV2RestoreFromBackupArgsDict']] restore_from_backup: [object] Configures the cluster to be initialized with data from an existing backup.
+        :param pulumi.Input[Union['PSQLClusterV2RestoreFromBackupArgs', 'PSQLClusterV2RestoreFromBackupArgsDict', 'outputs.PSQLClusterV2RestoreFromBackup']] restore_from_backup: [object] Configures the cluster to be initialized with data from an existing backup.
         :param pulumi.Input[_builtins.str] version: [string] The PostgreSQL version of the cluster.
         """
         ...
@@ -610,20 +610,20 @@ class PSQLClusterV2(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 backup: pulumi.Input[Optional[Union['PSQLClusterV2BackupArgs', 'PSQLClusterV2BackupArgsDict']]] = None,
+                 backup: pulumi.Input[Optional[Union['PSQLClusterV2BackupArgs', 'PSQLClusterV2BackupArgsDict', 'outputs.PSQLClusterV2Backup']]] = None,
                  connection_pooler: pulumi.Input[Optional[_builtins.str]] = None,
-                 connections: pulumi.Input[Optional[Union['PSQLClusterV2ConnectionsArgs', 'PSQLClusterV2ConnectionsArgsDict']]] = None,
-                 credentials: pulumi.Input[Optional[Union['PSQLClusterV2CredentialsArgs', 'PSQLClusterV2CredentialsArgsDict']]] = None,
+                 connections: pulumi.Input[Optional[Union['PSQLClusterV2ConnectionsArgs', 'PSQLClusterV2ConnectionsArgsDict', 'outputs.PSQLClusterV2Connections']]] = None,
+                 credentials: pulumi.Input[Optional[Union['PSQLClusterV2CredentialsArgs', 'PSQLClusterV2CredentialsArgsDict', 'outputs.PSQLClusterV2Credentials']]] = None,
                  description: pulumi.Input[Optional[_builtins.str]] = None,
-                 instances: pulumi.Input[Optional[Union['PSQLClusterV2InstancesArgs', 'PSQLClusterV2InstancesArgsDict']]] = None,
+                 instances: pulumi.Input[Optional[Union['PSQLClusterV2InstancesArgs', 'PSQLClusterV2InstancesArgsDict', 'outputs.PSQLClusterV2Instances']]] = None,
                  location: pulumi.Input[Optional[_builtins.str]] = None,
                  logs_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
-                 maintenance_window: pulumi.Input[Optional[Union['PSQLClusterV2MaintenanceWindowArgs', 'PSQLClusterV2MaintenanceWindowArgsDict']]] = None,
+                 maintenance_window: pulumi.Input[Optional[Union['PSQLClusterV2MaintenanceWindowArgs', 'PSQLClusterV2MaintenanceWindowArgsDict', 'outputs.PSQLClusterV2MaintenanceWindow']]] = None,
                  metrics_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  replication_mode: pulumi.Input[Optional[_builtins.str]] = None,
-                 restore_from_backup: pulumi.Input[Optional[Union['PSQLClusterV2RestoreFromBackupArgs', 'PSQLClusterV2RestoreFromBackupArgsDict']]] = None,
-                 timeouts: pulumi.Input[Optional[Union['PSQLClusterV2TimeoutsArgs', 'PSQLClusterV2TimeoutsArgsDict']]] = None,
+                 restore_from_backup: pulumi.Input[Optional[Union['PSQLClusterV2RestoreFromBackupArgs', 'PSQLClusterV2RestoreFromBackupArgsDict', 'outputs.PSQLClusterV2RestoreFromBackup']]] = None,
+                 timeouts: pulumi.Input[Optional[Union['PSQLClusterV2TimeoutsArgs', 'PSQLClusterV2TimeoutsArgsDict', 'outputs.PSQLClusterV2Timeouts']]] = None,
                  version: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -676,21 +676,21 @@ class PSQLClusterV2(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            backup: pulumi.Input[Optional[Union['PSQLClusterV2BackupArgs', 'PSQLClusterV2BackupArgsDict']]] = None,
+            backup: pulumi.Input[Optional[Union['PSQLClusterV2BackupArgs', 'PSQLClusterV2BackupArgsDict', 'outputs.PSQLClusterV2Backup']]] = None,
             connection_pooler: pulumi.Input[Optional[_builtins.str]] = None,
-            connections: pulumi.Input[Optional[Union['PSQLClusterV2ConnectionsArgs', 'PSQLClusterV2ConnectionsArgsDict']]] = None,
-            credentials: pulumi.Input[Optional[Union['PSQLClusterV2CredentialsArgs', 'PSQLClusterV2CredentialsArgsDict']]] = None,
+            connections: pulumi.Input[Optional[Union['PSQLClusterV2ConnectionsArgs', 'PSQLClusterV2ConnectionsArgsDict', 'outputs.PSQLClusterV2Connections']]] = None,
+            credentials: pulumi.Input[Optional[Union['PSQLClusterV2CredentialsArgs', 'PSQLClusterV2CredentialsArgsDict', 'outputs.PSQLClusterV2Credentials']]] = None,
             description: pulumi.Input[Optional[_builtins.str]] = None,
             dns_name: pulumi.Input[Optional[_builtins.str]] = None,
-            instances: pulumi.Input[Optional[Union['PSQLClusterV2InstancesArgs', 'PSQLClusterV2InstancesArgsDict']]] = None,
+            instances: pulumi.Input[Optional[Union['PSQLClusterV2InstancesArgs', 'PSQLClusterV2InstancesArgsDict', 'outputs.PSQLClusterV2Instances']]] = None,
             location: pulumi.Input[Optional[_builtins.str]] = None,
             logs_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
-            maintenance_window: pulumi.Input[Optional[Union['PSQLClusterV2MaintenanceWindowArgs', 'PSQLClusterV2MaintenanceWindowArgsDict']]] = None,
+            maintenance_window: pulumi.Input[Optional[Union['PSQLClusterV2MaintenanceWindowArgs', 'PSQLClusterV2MaintenanceWindowArgsDict', 'outputs.PSQLClusterV2MaintenanceWindow']]] = None,
             metrics_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
             name: pulumi.Input[Optional[_builtins.str]] = None,
             replication_mode: pulumi.Input[Optional[_builtins.str]] = None,
-            restore_from_backup: pulumi.Input[Optional[Union['PSQLClusterV2RestoreFromBackupArgs', 'PSQLClusterV2RestoreFromBackupArgsDict']]] = None,
-            timeouts: pulumi.Input[Optional[Union['PSQLClusterV2TimeoutsArgs', 'PSQLClusterV2TimeoutsArgsDict']]] = None,
+            restore_from_backup: pulumi.Input[Optional[Union['PSQLClusterV2RestoreFromBackupArgs', 'PSQLClusterV2RestoreFromBackupArgsDict', 'outputs.PSQLClusterV2RestoreFromBackup']]] = None,
+            timeouts: pulumi.Input[Optional[Union['PSQLClusterV2TimeoutsArgs', 'PSQLClusterV2TimeoutsArgsDict', 'outputs.PSQLClusterV2Timeouts']]] = None,
             version: pulumi.Input[Optional[_builtins.str]] = None) -> 'PSQLClusterV2':
         """
         Get an existing PSQLClusterV2 resource's state with the given name, id, and optional extra
@@ -699,20 +699,20 @@ class PSQLClusterV2(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Union['PSQLClusterV2BackupArgs', 'PSQLClusterV2BackupArgsDict']] backup: [object] Backup location and retention configuration.
+        :param pulumi.Input[Union['PSQLClusterV2BackupArgs', 'PSQLClusterV2BackupArgsDict', 'outputs.PSQLClusterV2Backup']] backup: [object] Backup location and retention configuration.
         :param pulumi.Input[_builtins.str] connection_pooler: (Computed)[string] Defines how database connections are managed and reused. Possible values: `DISABLED`, `TRANSACTION`, `SESSION`.
-        :param pulumi.Input[Union['PSQLClusterV2ConnectionsArgs', 'PSQLClusterV2ConnectionsArgsDict']] connections: [object] Connection information of the PostgreSQL cluster.
-        :param pulumi.Input[Union['PSQLClusterV2CredentialsArgs', 'PSQLClusterV2CredentialsArgsDict']] credentials: [object] Credentials for the master database user to be created.
+        :param pulumi.Input[Union['PSQLClusterV2ConnectionsArgs', 'PSQLClusterV2ConnectionsArgsDict', 'outputs.PSQLClusterV2Connections']] connections: [object] Connection information of the PostgreSQL cluster.
+        :param pulumi.Input[Union['PSQLClusterV2CredentialsArgs', 'PSQLClusterV2CredentialsArgsDict', 'outputs.PSQLClusterV2Credentials']] credentials: [object] Credentials for the master database user to be created.
         :param pulumi.Input[_builtins.str] description: [string] Human-readable description for the cluster.
         :param pulumi.Input[_builtins.str] dns_name: [string] The DNS name used to access the cluster.
-        :param pulumi.Input[Union['PSQLClusterV2InstancesArgs', 'PSQLClusterV2InstancesArgsDict']] instances: [object] The instance configuration for the PostgreSQL cluster.
+        :param pulumi.Input[Union['PSQLClusterV2InstancesArgs', 'PSQLClusterV2InstancesArgsDict', 'outputs.PSQLClusterV2Instances']] instances: [object] The instance configuration for the PostgreSQL cluster.
         :param pulumi.Input[_builtins.str] location: [string] The location of the PostgreSQL cluster. This is used for routing to the regional API endpoint. Changing this value will destroy the existing cluster and create a new one in the specified location. Available locations: `de/fra`, `de/fra/1`, `de/fra/2`, `de/txl`, `es/vit`, `fr/par`, `gb/bhx`, `gb/lhr`, `us/ewr`, `us/las`, `us/mci`.
         :param pulumi.Input[_builtins.bool] logs_enabled: (Computed)[bool] Enables or disables the collection and reporting of logs for observability of this cluster.
-        :param pulumi.Input[Union['PSQLClusterV2MaintenanceWindowArgs', 'PSQLClusterV2MaintenanceWindowArgsDict']] maintenance_window: [object] A weekly 4 hour-long window, during which maintenance might occur.
+        :param pulumi.Input[Union['PSQLClusterV2MaintenanceWindowArgs', 'PSQLClusterV2MaintenanceWindowArgsDict', 'outputs.PSQLClusterV2MaintenanceWindow']] maintenance_window: [object] A weekly 4 hour-long window, during which maintenance might occur.
         :param pulumi.Input[_builtins.bool] metrics_enabled: (Computed)[bool] Enables or disables the collection and reporting of metrics for observability of this cluster.
         :param pulumi.Input[_builtins.str] name: [string] The name of the PostgreSQL cluster.
         :param pulumi.Input[_builtins.str] replication_mode: [string] Replication mode across the instances. Possible values: `ASYNCHRONOUS`, `STRICTLY_SYNCHRONOUS`.
-        :param pulumi.Input[Union['PSQLClusterV2RestoreFromBackupArgs', 'PSQLClusterV2RestoreFromBackupArgsDict']] restore_from_backup: [object] Configures the cluster to be initialized with data from an existing backup.
+        :param pulumi.Input[Union['PSQLClusterV2RestoreFromBackupArgs', 'PSQLClusterV2RestoreFromBackupArgsDict', 'outputs.PSQLClusterV2RestoreFromBackup']] restore_from_backup: [object] Configures the cluster to be initialized with data from an existing backup.
         :param pulumi.Input[_builtins.str] version: [string] The PostgreSQL version of the cluster.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
